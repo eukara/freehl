@@ -1,0 +1,166 @@
+weapon_357.shoot
+{
+	sample weapons/357_shot1.wav
+	sample weapons/357_shot2.wav
+}
+
+weapon_357.reload
+{
+	sample weapons/357_reload1.wav
+}
+
+weapon_crossbow.fire
+{
+	sample weapons/xbow_fire1.wav
+}
+
+weapon_crossbow.hit
+{
+	sample weapons/xbow_hit1.wav
+}
+
+weapon_crossbow.hitbody
+{
+	sample weapons/xbow_hitbod1.wav
+	sample weapons/xbow_hitbod2.wav
+}
+
+weapon_crossbow.reload
+{
+	sample weapons/xbow_reload1.wav
+}
+
+weapon_crowbar.hit
+{
+	sample weapons/cbar_hit1.wav
+	sample weapons/cbar_hit2.wav
+}
+
+weapon_crowbar.hitbody
+{
+	sample weapons/cbar_hitbod1.wav
+	sample weapons/cbar_hitbod2.wav
+	sample weapons/cbar_hitbod3.wav
+}
+
+weapon_crowbar.miss
+{
+	sample weapons/cbar_miss1.wav
+}
+
+weapon_glock.fire
+{
+	sample weapons/pl_gun3.wav
+}
+
+weapon_handgrenade.bounce
+{
+	sample weapons/grenade_hit1.wav
+	sample weapons/grenade_hit2.wav
+	sample weapons/grenade_hit3.wav
+}
+
+weapon_hornetgun.fire
+{
+	sample agrunt/ag_fire1.wav
+	sample agrunt/ag_fire2.wav
+	sample agrunt/ag_fire3.wav
+}
+
+weapon_hornetgun.buzz
+{
+	sample hornet/ag_buzz1.wav
+	sample hornet/ag_buzz2.wav
+	sample hornet/ag_buzz3.wav
+}
+
+weapon_hornetgun.hit
+{
+	sample hornet/ag_hornethit1.wav
+	sample hornet/ag_hornethit2.wav
+	sample hornet/ag_hornethit3.wav
+}
+
+weapon_mp5.shoot
+{
+	sample weapons/hks1.wav
+	sample weapons/hks2.wav
+}
+
+weapon_mp5.gl
+{
+	sample weapons/glauncher.wav
+}
+
+weapon_satchel.bounce
+{
+	sample weapons/g_bounce1.wav
+	sample weapons/g_bounce2.wav
+	sample weapons/g_bounce3.wav
+	sample weapons/g_bounce4.wav
+	sample weapons/g_bounce5.wav
+}
+
+weapon_tripmine.deploy
+{
+	sample weapons/mine_deploy.wav
+}
+
+weapon_tripmine.charge
+{
+	sample weapons/mine_charge.wav
+}
+
+weapon_tripmine.activate
+{
+	sample weapons/mine_activate.wav
+}
+
+weapon_rpg.shoot
+{
+	sample weapons/rocketfire1.wav
+}
+
+weapon_shotgun.single
+{
+	sample weapons/sbarrel1.wav
+}
+
+weapon_shotgun.double
+{
+	sample weapons/dbarrel1.wav
+}
+
+weapon_shotgun.reload
+{
+	sample weapons/reload3.wav
+}
+
+weapon_shotgun.cock
+{
+	sample weapons/scock1.wav
+}
+
+weapon_snark.deploy
+{
+	pitch_min 1.0
+	pitch_max 1.1
+	sample squeek/sqk_deploy1.wav
+}
+
+weapon_snark.die
+{
+	sample squeek/sqk_die1.wav
+}
+
+weapon_snark.blast
+{
+	sample squeek/sqk_blast1.wav
+}
+
+weapon_snark.hunt
+{
+	sample squeek/sqk_hunt1.wav
+	sample squeek/sqk_hunt2.wav
+	sample squeek/sqk_hunt3.wav
+}

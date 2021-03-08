@@ -1,0 +1,630 @@
+monster_alien_grunt.alert
+{
+	sample agrunt/ag_alert1.wav
+	sample agrunt/ag_alert2.wav
+	sample agrunt/ag_alert3.wav
+	sample agrunt/ag_alert4.wav
+	sample agrunt/ag_alert5.wav
+}
+
+monster_alien_grunt.attack
+{
+	sample agrunt/ag_attack1.wav
+	sample agrunt/ag_attack2.wav
+	sample agrunt/ag_attack3.wav
+}
+
+monster_alien_grunt.die
+{
+	sample agrunt/ag_die1.wav
+	sample agrunt/ag_die2.wav
+	sample agrunt/ag_die3.wav
+	sample agrunt/ag_die4.wav
+	sample agrunt/ag_die5.wav
+}
+
+monster_alien_grunt.idle
+{
+	sample agrunt/ag_idle1.wav
+	sample agrunt/ag_idle2.wav
+	sample agrunt/ag_idle3.wav
+	sample agrunt/ag_idle4.wav
+	sample agrunt/ag_idle5.wav
+}
+
+monster_alien_grunt.pain
+{
+	sample agrunt/ag_pain1.wav
+	sample agrunt/ag_pain2.wav
+	sample agrunt/ag_pain3.wav
+	sample agrunt/ag_pain4.wav
+	sample agrunt/ag_pain5.wav
+}
+
+monster_alien_controller.alert
+{
+	sample controller/con_alert1.wav
+	sample controller/con_alert2.wav
+	sample controller/con_alert3.wav
+}
+
+monster_alien_controller.attack
+{
+	sample controller/con_attack1.wav
+	sample controller/con_attack2.wav
+	sample controller/con_attack3.wav
+}
+
+monster_alien_controller.die
+{
+	sample controller/con_die1.wav
+	sample controller/con_die2.wav
+}
+
+monster_alien_controller.idle
+{
+	sample controller/con_idle1.wav
+	sample controller/con_idle2.wav
+	sample controller/con_idle3.wav
+	sample controller/con_idle4.wav
+	sample controller/con_idle5.wav
+}
+
+monster_alien_controller.pain
+{
+	sample controller/con_pain1.wav
+	sample controller/con_pain2.wav
+	sample controller/con_pain3.wav
+}
+
+monster_alien_slave.die
+{
+	sample aslave/slv_die1.wav
+	sample aslave/slv_die2.wav
+}
+
+monster_alien_slave.pain
+{
+	sample aslave/slv_pain1.wav
+	sample aslave/slv_pain2.wav
+}
+
+monster_alien_slave.attack_charge
+{
+	sample debris/zap4.wav
+}
+
+monster_alien_slave.attack_shoot
+{
+	pitch_min 1.3
+	pitch_max 1.6
+	sample hassault/hw_shoot1.wav
+}
+
+// bcl_bite3 is played when an entity is in it's mouth bcl_tongue1 unused?
+monster_barnacle.attackchew
+{
+	sample barnacle/bcl_chew1.wav
+	sample barnacle/bcl_chew2.wav
+	sample barnacle/bcl_chew3.wav
+}
+monster_barnacle.attackpull
+{
+	sample barnacle/bcl_alert2.wav
+}
+
+monster_barnacle.die
+{
+	sample barnacle/bcl_die1.wav
+	sample barnacle/bcl_die3.wav
+}
+
+monster_barney.die
+{
+	sample barney/ba_die1.wav
+	sample barney/ba_die1.wav
+	sample barney/ba_die2.wav
+}
+
+monster_barney.pain
+{
+	sample barney/ba_pain1.wav
+	sample barney/ba_pain1.wav
+	sample barney/ba_pain1.wav
+}
+
+monster_bigmomma.alert
+{
+	sample gonarch/gon_alert1.wav
+	sample gonarch/gon_alert2.wav
+	sample gonarch/gon_alert3.wav
+}
+
+// the groans for when she spits?
+monster_bigmomma.attack
+{
+	sample gonarch/gon_attack1.wav
+	sample gonarch/gon_attack2.wav
+	sample gonarch/gon_attack3.wav
+}
+
+/ mourns the death of her children
+monster_bigmomma.child
+{
+	sample gonarch/gon_childdie1.wav
+	sample gonarch/gon_childdie2.wav
+	sample gonarch/gon_childdie3.wav
+}
+
+monster_bigmomma.die
+{
+	sample gonarch/gon_die1.wav
+	sample gonarch/gon_die2.wav
+	sample gonarch/gon_die3.wav
+}
+
+monster_bigmomma.idle
+{
+	sample gonarch/gon_sack1.wav
+	sample gonarch/gon_sack2.wav
+	sample gonarch/gon_sack3.wav
+}
+
+monster_bigmomma.pain
+{
+	sample gonarch/gon_pain2.wav
+	sample gonarch/gon_pain3.wav
+	sample gonarch/gon_pain4.wav
+	sample gonarch/gon_pain5.wav
+}
+
+// has unique foot step sounds
+monster_bigmomma.step
+{
+	sample gonarch/gon_step1.wav
+	sample gonarch/gon_step2.wav
+	sample gonarch/gon_step3.wav
+}
+
+monster_bullchicken.attack
+{
+	sample bullchicken/bc_attackgrowl1.wav
+	sample bullchicken/bc_attackgrowl2.wav
+	sample bullchicken/bc_attackgrowl3.wav
+}
+
+monster_bullchicken.attackbite
+{
+	sample bullchicken/bc_bite1.wav
+	sample bullchicken/bc_bite2.wav
+	sample bullchicken/bc_bite3.wav
+}
+
+monster_bullchicken.attackshoot
+{
+	sample bullchicken/bc_attack1.wav
+	sample bullchicken/bc_attack2.wav
+	sample bullchicken/bc_attack3.wav
+}
+
+monster_bullchicken.die
+{
+	sample bullchicken/bc_die1.wav
+	sample bullchicken/bc_die2.wav
+	sample bullchicken/bc_die3.wav
+}
+
+monster_bullchicken.idle
+{
+	sample bullchicken/bc_idle1.wav
+	sample bullchicken/bc_idle2.wav
+	sample bullchicken/bc_idle3.wav
+	sample bullchicken/bc_idle4.wav
+	sample bullchicken/bc_idle5.wav
+}
+
+monster_bullchicken.pain
+{
+	sample bullchicken/bc_pain1.wav
+	sample bullchicken/bc_pain2.wav
+	sample bullchicken/bc_pain3.wav
+	sample bullchicken/bc_pain4.wav
+}
+
+monster_cockroach.die
+{
+	sample roach/rch_die.wav
+	sample roach/rch_smash.wav
+}
+
+monster_gargantua.alert
+{
+	sample garg/gar_alert1.wav
+	sample garg/gar_alert2.wav
+	sample garg/gar_alert3.wav
+}
+
+// similar to bullsquid groans during and after attacks
+monster_gargantua.attack
+{
+	sample garg/gar_attack1.wav
+	sample garg/gar_attack2.wav
+	sample garg/gar_attack3.wav
+}
+
+monster_gargantua.attackflame
+{
+	sample garg/gar_flamerun1.wav
+}
+
+monster_gargantua.attackflameoff
+{
+	sample garg/gar_flameoff1.wav
+}
+
+monster_gargantua.attackflameon
+{
+	sample garg/gar_flameon1.wav
+}
+
+
+monster_gargantua.die
+{
+	sample garg/gar_die1.wav
+	sample garg/gar_die2.wav
+}
+
+monster_gargantua.idle
+{
+	sample garg/gar_idle1.wav
+	sample garg/gar_idle2.wav
+	sample garg/gar_idle3.wav
+	sample garg/gar_idle4.wav
+	sample garg/gar_idle5.wav
+	sample garg/gar_breathe1.wav
+	sample garg/gar_breathe2.wav
+	sample garg/gar_breathe3.wav
+}
+
+monster_gargantua.pain
+{
+	sample garg/gar_pain1.wav
+	sample garg/gar_pain2.wav
+	sample garg/gar_pain3.wav
+}
+
+// has unique foot step sounds
+monster_gargantua.step
+{
+	sample garg/gar_step1.wav
+	sample garg/gar_step2.wav
+}
+
+monster_headcrab.alert
+{
+	sample headcrab/hc_alert1.wav
+	sample headcrab/hc_alert2.wav
+}
+
+// these attack sounds are actually the cry when it jumps
+monster_headcrab.attack
+{
+	sample headcrab/hc_attack1.wav
+	sample headcrab/hc_attack2.wav
+	sample headcrab/hc_attack3.wav
+}
+
+monster_headcrab.attackhit
+{
+	sample headcrab/hc_headbite.wav
+}
+
+monster_headcrab.die
+{
+	sample headcrab/hc_die1.wav
+	sample headcrab/hc_die2.wav
+}
+
+monster_headcrab.idle
+{
+	sample headcrab/hc_idle1.wav
+	sample headcrab/hc_idle2.wav
+	sample headcrab/hc_idle3.wav
+	sample headcrab/hc_idle4.wav
+	sample headcrab/hc_idle5.wav
+}
+
+monster_headcrab.pain
+{
+	sample headcrab/hc_pain1.wav
+	sample headcrab/hc_pain2.wav
+	sample headcrab/hc_pain3.wav
+}
+
+monster_houndeye.alert
+{
+	sample houndeye/he_alert1.wav
+	sample houndeye/he_alert2.wav
+	sample houndeye/he_alert3.wav
+}
+
+monster_houndeye.attack
+{
+	sample houndeye/he_attack1.wav
+	sample houndeye/he_attack2.wav
+	sample houndeye/he_attack3.wav
+}
+
+monster_houndeye.blast
+{
+	sample houndeye/he_blast1.wav
+	sample houndeye/he_blast2.wav
+	sample houndeye/he_blast3.wav
+}
+
+
+monster_houndeye.die
+{
+	sample houndeye/he_die1.wav
+	sample houndeye/he_die2.wav
+	sample houndeye/he_die3.wav
+}
+
+// Not sure where the hunt sounds are actually used
+monster_houndeye.idle
+{
+	sample houndeye/he_hunt1.wav
+	sample houndeye/he_hunt2.wav
+	sample houndeye/he_hunt3.wav
+	sample houndeye/he_hunt4.wav
+	sample houndeye/he_idle1.wav
+	sample houndeye/he_idle2.wav
+	sample houndeye/he_idle3.wav
+	sample houndeye/he_idle4.wav
+}
+
+monster_houndeye.pain
+{
+	sample houndeye/he_pain1.wav
+	sample houndeye/he_pain2.wav
+	sample houndeye/he_pain3.wav
+	sample houndeye/he_pain4.wav
+	sample houndeye/he_pain5.wav
+}
+
+monster_human_grunt.die
+{
+	sample hgrunt/gr_die1.wav
+	sample hgrunt/gr_die2.wav
+	sample hgrunt/gr_die3.wav
+}
+
+monster_human_grunt.pain
+{
+	sample hgrunt/gr_pain1.wav
+	sample hgrunt/gr_pain2.wav
+	sample hgrunt/gr_pain3.wav
+	sample hgrunt/gr_pain4.wav
+	sample hgrunt/gr_pain5.wav
+}
+
+monster_ichthyosaur.alert
+{
+	sample ichy/ichy_alert1.wav
+	sample ichy/ichy_alert2.wav
+	sample ichy/ichy_alert3.wav
+}
+
+monster_ichthyosaur.attack
+{
+	sample ichy/ichy_attack1.wav
+	sample ichy/ichy_attack2.wav
+}
+
+monster_ichthyosaur.die
+{
+	sample ichy/ichy_die1.wav
+	sample ichy/ichy_die2.wav
+	sample ichy/ichy_die3.wav
+	sample ichy/ichy_die4.wav
+}
+
+monster_ichthyosaur.idle
+{
+	sample ichy/ichy_idle1.wav
+	sample ichy/ichy_idle2.wav
+	sample ichy/ichy_idle3.wav
+	sample ichy/ichy_idle4.wav
+}
+
+monster_ichthyosaur.pain
+{
+	sample ichy/ichy_pain1.wav
+	sample ichy/ichy_pain2.wav
+	sample ichy/ichy_pain3.wav
+	sample ichy/ichy_pain4.wav
+	sample ichy/ichy_pain5.wav
+}
+
+monster_leech.alert
+{
+	sample leech/leech_alert1.wav
+	sample leech/leech_alert2.wav
+}
+
+monster_leech.attack
+{
+	sample leech/leech_bite1.wav
+	sample leech/leech_bite2.wav
+	sample leech/leech_bite3.wav
+}
+
+// other sounds
+// * x_shoot1 - ?
+// * nih_die2 - used in map not code?
+
+// these attack sounds are his growls
+monster_nihilanth.attack
+{
+	sample x/x_attack1.wav
+	sample x/x_attack2.wav
+	sample x/x_attack3.wav
+}
+
+monster_nihilanth.attackball
+{
+	sample x/x_ballattack1.wav
+}
+
+monster_nihilanth.attackballmove
+{
+	sample x/x_teleattack1.wav
+}
+
+monster_nihilanth.die
+{
+	sample x/x_die1.wav
+}
+
+monster_nihilanth.idle
+{
+	sample x/x_laugh1.wav
+	sample x/x_laugh2.wav
+}
+
+monster_nihilanth.pain
+{
+	sample x/x_pain1.wav
+	sample x/x_pain2.wav
+	sample x/x_pain3.wav
+}
+
+monster_nihilanth.recharge
+{
+	sample x/x_recharge1.wav
+	sample x/x_recharge2.wav
+	sample x/x_recharge3.wav
+}
+
+monster_scientist.die
+{
+	sample scientist/sci_die1.wav
+	sample scientist/sci_die2.wav
+	sample scientist/sci_die3.wav
+	sample scientist/sci_die4.wav
+}
+
+monster_scientist.pain
+{
+	sample scientist/sci_pain1.wav
+	sample scientist/sci_pain2.wav
+	sample scientist/sci_pain3.wav
+	sample scientist/sci_pain4.wav
+	sample scientist/sci_pain5.wav
+	sample scientist/sci_pain6.wav
+	sample scientist/sci_pain7.wav
+	sample scientist/sci_pain8.wav
+	sample scientist/sci_pain9.wav
+	sample scientist/sci_pain10.wav
+}
+
+monster_sentry.alert
+{
+	sample turret/tu_deploy.wav
+}
+
+monster_sentry.die
+{
+	sample turret/tu_die.wav
+	sample turret/tu_die2.wav
+	sample turret/tu_die3.wav
+}
+
+monster_sentry.idle
+{
+	sample turret/tu_ping.wav
+}
+
+monster_sentry.retract
+{
+	sample turret/tu_retract.wav
+}
+
+// cut sounds listing here because why not
+monster_tentacle.alert
+{
+	sample tentacle/te_alert1.wav
+	sample tentacle/te_alert2.wav
+}
+
+monster_tentacle.attack
+{
+	sample tentacle/te_strike1.wav
+	sample tentacle/te_strike2.wav
+}
+
+monster_tentacle.die
+{
+	sample tentacle/te_death2.wav
+}
+
+// includes some cut sounds might be interesting
+monster_tentacle.idle
+{
+	sample tentacle/te_roar1.wav
+	sample tentacle/te_roar2.wav
+	sample tentacle/te_search1.wav
+	sample tentacle/te_search2.wav
+	sample tentacle/te_sing1.wav
+	sample tentacle/te_sing2.wav
+}
+
+monster_turret.spindown
+{
+	sample turret/tu_spindown.wav
+}
+
+monster_turret.spinup
+{
+	sample turret/tu_spinup.wav
+}
+
+monster_zombie.alert
+{
+	sample zombie/zo_alert10.wav
+	sample zombie/zo_alert20.wav
+	sample zombie/zo_alert30.wav
+}
+
+monster_zombie.attack
+{
+	sample zombie/zo_attack1.wav
+	sample zombie/zo_attack2.wav
+}
+
+monster_zombie.attackhit
+{
+	sample zombie/claw_strike1.wav
+	sample zombie/claw_strike2.wav
+	sample zombie/claw_strike3.wav
+}
+
+monster_zombie.attackmiss
+{
+	sample zombie/claw_miss1.wav
+	sample zombie/claw_miss2.wav
+}
+
+monster_zombie.idle
+{
+	sample zombie/zo_idle1.wav
+	sample zombie/zo_idle2.wav
+	sample zombie/zo_idle3.wav
+	sample zombie/zo_idle4.wav
+}
+
+monster_zombie.pain
+{
+	sample zombie/zo_pain1.wav
+	sample zombie/zo_pain2.wav
+}

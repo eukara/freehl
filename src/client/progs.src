@@ -1,0 +1,38 @@
+#pragma target fte
+#pragma progs_dat  "../../csprogs.dat"
+
+#define CSQC
+#define CLIENT
+#define VALVE
+#define CLASSIC_VGUI
+#define GS_RENDERFX
+
+#includelist
+../../../src/shared/fteextensions.qc
+../../../src/shared/defs.h
+defs.h
+../../../src/client/defs.h
+
+../../../src/vgui/include.src
+
+../../../src/gs-entbase/client.src
+../../../src/gs-entbase/shared.src
+../shared/include.src
+
+predict.qc
+init.qc
+player.qc
+entities.qc
+cmds.qc
+game_event.qc
+view.qc
+obituary.qc
+hud.qc
+hud_weaponselect.qc
+scoreboard.qc
+input.qc
+../../../base/src/client/modelevent.qc
+
+../../../src/client/include.src
+../../../src/shared/include.src
+#endlist

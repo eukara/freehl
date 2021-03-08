@@ -1,0 +1,29 @@
+ammo.pickup
+{
+	sample items/9mmclip1.wav
+}
+
+ammo.respawn
+{
+	sample items/suitchargeok1.wav
+}
+
+item.battery
+{
+	sample items/gunpickup2.wav
+}
+
+item.healthkit
+{
+	sample items/smallmedkit1.wav
+}
+
+item.respawn
+{
+	sample items/suitchargeok1.wav
+}
+
+weapon.pickup
+{
+	sample items/gunpickup2.wav
+}

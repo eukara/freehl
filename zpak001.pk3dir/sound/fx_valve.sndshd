@@ -1,0 +1,7 @@
+fx.explosion
+{
+	sample weapons/explode3.wav
+	sample weapons/explode4.wav
+	sample weapons/explode5.wav
+	shakes 1.5
+} 

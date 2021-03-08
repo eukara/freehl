@@ -1,0 +1,12 @@
+player.fall
+{
+	sample player/pl_fallpain3.wav
+}
+player.lightfall
+{
+	sample player/pl_fallpain1.wav
+}
+player.die
+{
+	sample fvox/flatline.wav
+}
