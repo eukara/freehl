@@ -14,9 +14,10 @@
 
 ../../../src/gs-entbase/server.src
 ../../../src/gs-entbase/shared.src
-../shared/include.src
 
 defs.h
+
+../shared/include.src
 
 monster_apache.qc
 monster_alien_controller.qc
@@ -81,7 +82,6 @@ rules.qc
 flashlight.qc
 ../../../base/src/server/modelevent.qc
 
-input.qc
 spawn.qc
 
 ../../../src/server/include.src

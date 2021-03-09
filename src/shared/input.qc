@@ -23,21 +23,12 @@ Handles impulse and whatnot
 */
 void Game_Input(void)
 {
+#ifdef SERVER
 	CGameRules rules = (CGameRules)g_grMode;
 
 	if (rules.m_iIntermission) {
 		rules.IntermissionEnd();
 		return;
-	}
-
-	if (input_buttons & INPUT_BUTTON0) {
-		Weapons_Primary();
-	} else if (input_buttons & INPUT_BUTTON4) {
-		Weapons_Reload();
-	} else if (input_buttons & INPUT_BUTTON3) {
-		Weapons_Secondary();
-	} else {
-		Weapons_Release();
 	}
 
 	if (input_buttons & INPUT_BUTTON5) {
@@ -105,4 +96,15 @@ void Game_Input(void)
 	}
 
 	self.impulse = 0;
+#endif
+
+	if (input_buttons & INPUT_BUTTON0) {
+		Weapons_Primary();
+	} else if (input_buttons & INPUT_BUTTON4) {
+		Weapons_Reload();
+	} else if (input_buttons & INPUT_BUTTON3) {
+		Weapons_Secondary();
+	} else {
+		Weapons_Release();
+	}
 }

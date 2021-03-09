@@ -14,16 +14,4 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void
-Game_Input(void)
-{
-	if (input_buttons & INPUT_BUTTON0) {
-		Weapons_Primary();
-	} else if (input_buttons & INPUT_BUTTON4) {
-		Weapons_Reload();
-	} else if (input_buttons & INPUT_BUTTON3) {
-		Weapons_Secondary();
-	} else {
-		Weapons_Release();
-	}
-}
+void Flashlight_Toggle(void);

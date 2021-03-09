@@ -14,12 +14,5 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void
-GamePredict_PreFrame(player pl)
-{
-}
-
-void
-GamePredict_PostFrame(player pl)
-{
-}
+void Player_UseDown(void);
+void Player_UseUp(void);

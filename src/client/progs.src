@@ -19,7 +19,6 @@ defs.h
 ../../../src/gs-entbase/shared.src
 ../shared/include.src
 
-predict.qc
 init.qc
 player.qc
 entities.qc
@@ -30,7 +29,6 @@ obituary.qc
 hud.qc
 hud_weaponselect.qc
 scoreboard.qc
-input.qc
 ../../../base/src/client/modelevent.qc
 
 ../../../src/client/include.src
