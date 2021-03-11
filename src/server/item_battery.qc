@@ -67,9 +67,9 @@ void item_battery::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetSize([-16,-16,0],[16,16,16]);
 	SetOrigin(m_oldOrigin);
 	SetModel(m_oldModel);
+	SetSize([-16,-16,0],[16,16,16]);
 //	botinfo = BOTINFO_ARMOR;
 
 	think = __NULL__;
@@ -87,5 +87,4 @@ void item_battery::item_battery(void)
 	Sound_Precache("item.respawn");
 	model = "models/w_battery.mdl";
 	CBaseEntity::CBaseEntity();
-	item_healthkit::Respawn();
 }

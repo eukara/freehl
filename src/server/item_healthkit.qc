@@ -56,9 +56,9 @@ void item_healthkit::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetSize([-16,-16,0],[16,16,16]);
 	SetOrigin(m_oldOrigin);
 	SetModel(m_oldModel);
+	SetSize([-16,-16,0],[16,16,16]);
 	//botinfo = BOTINFO_HEALTH;
 
 	think = __NULL__;
@@ -76,5 +76,4 @@ void item_healthkit::item_healthkit(void)
 	Sound_Precache("item.respawn");
 	model = "models/w_medkit.mdl";
 	CBaseEntity::CBaseEntity();
-	item_healthkit::Respawn();
 }

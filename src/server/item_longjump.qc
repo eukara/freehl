@@ -71,9 +71,9 @@ item_longjump::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetSize([-16,-16,0],[16,16,16]);
 	SetOrigin(m_oldOrigin);
 	SetModel(m_oldModel);
+	SetSize([-16,-16,0],[16,16,16]);
 
 	think = __NULL__;
 	nextthink = -1;
@@ -104,5 +104,4 @@ item_longjump::item_longjump(void)
 	precache_sound("fvox/powermove_on.wav");
 	precache_sound("fvox/blip.wav");
 	CBaseTrigger::CBaseTrigger();
-	Respawn();
 }

@@ -45,9 +45,9 @@ void item_ammo::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetSize([-16,-16,0],[16,16,16]);
 	SetOrigin(m_oldOrigin);
 	SetModel(m_oldModel);
+	SetSize([-16,-16,0],[16,16,16]);
 
 	think = __NULL__;
 	nextthink = -1;

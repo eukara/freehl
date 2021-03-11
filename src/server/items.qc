@@ -44,6 +44,7 @@ void item_pickup::SetItem(int i)
 	id = i;
 	m_oldModel = Weapons_GetWorldmodel(id);
 	SetModel(m_oldModel);
+	SetSize([-16,-16,0], [16,16,16]);
 }
 
 void item_pickup::SetFloating(int i)
@@ -84,5 +85,4 @@ void item_pickup::item_pickup(void)
 	Sound_Precache("item.respawn");
 	Sound_Precache("weapon.pickup");
 	CBaseTrigger::CBaseTrigger();
-	Respawn();
 }
