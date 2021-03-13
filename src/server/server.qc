@@ -27,8 +27,6 @@ Game_InitRules(void)
 void
 Game_Worldspawn(void)
 {
-	Sound_Precache("ammo.pickup");
-	Sound_Precache("ammo.respawn");
 	Sound_Precache("player.die");
 	Sound_Precache("player.fall");
 	Sound_Precache("player.lightfall");

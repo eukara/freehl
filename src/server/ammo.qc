@@ -60,6 +60,8 @@ void item_ammo::Respawn(void)
 
 void item_ammo::item_ammo(void)
 {
+	Sound_Precache("ammo.pickup");
+	Sound_Precache("ammo.respawn");
 	precache_model(model);
 	m_oldModel = model;
 	SetModel(m_oldModel);

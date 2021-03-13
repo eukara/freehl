@@ -10,3 +10,19 @@ player.die
 {
 	sample fvox/flatline.wav
 }
+player.gasplight
+{
+	sample misc/null.wav
+}
+player.gaspheavy
+{
+	sample misc/null.wav
+}
+player.waterexit
+{
+	sample misc/null.wav
+}
+player.waterenter
+{
+	sample misc/null.wav
+}
