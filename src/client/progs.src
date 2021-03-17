@@ -19,6 +19,7 @@ defs.h
 ../../../src/gs-entbase/shared.src
 ../shared/include.src
 
+../../../base/src/client/draw.qc
 init.qc
 player.qc
 entities.qc
