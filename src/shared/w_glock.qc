@@ -138,6 +138,7 @@ w_glock_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
+	View_EjectShellPos(SHELL_DEFAULT, [26,8,-32], [0, 80, 100]);
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 	if (pl.glock_mag) {
@@ -178,6 +179,7 @@ w_glock_secondary(void)
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
 	Weapons_ViewPunchAngle([-2,0,0]);
+	View_EjectShellPos(SHELL_DEFAULT, [26,8,-32], [0, 80, 100]);
 
 	if (pl.glock_mag) {
 		Weapons_ViewAnimation(GLOCK_SHOOT);

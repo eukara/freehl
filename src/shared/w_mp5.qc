@@ -138,6 +138,7 @@ w_mp5_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_RIFLE);
+	View_EjectShellPos(SHELL_DEFAULT, [32,8,-32], [0, 80, 100]);
 #else
 	/* singleplayer is more accurate */
 	if (cvar("sv_playerslots") == 1) {

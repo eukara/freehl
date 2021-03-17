@@ -137,20 +137,16 @@ Damage_Radius(vector org, entity attacker, float dmg, float r, int check, int w)
 
 		/* don't bother if it's not anywhere near us */
 		dist = vlen(org - pos);
-		if (dist > r) {
+		if (dist > r)
 			continue;
-		}
 
 		/* can we physically hit this thing? */
-		if (Damage_CheckTrace(e, org) == FALSE) {
-			if (check == TRUE) {
+		if (check == TRUE)
+			if (Damage_CheckTrace(e, org) == FALSE)
 				continue;
-			}
-		}
 
 		/* calculate new damage values */
-		diff = vlen(org - pos);
-		diff = (r - diff) / r;
+		diff = (r - dist) / r;
 		new_dmg = rint(dmg * diff);
 
 		if (diff > 0) {

@@ -47,5 +47,4 @@ View_UpdateWeapon(entity vm, entity mflash)
 	skel_delete(mflash.skeletonindex);
 	mflash.skeletonindex = skel_create(vm.modelindex);
 	pSeat->m_iVMBones = skel_get_numbones(mflash.skeletonindex) + 1;
-	pSeat->m_iVMEjectBone = pSeat->m_iVMBones + 1;
 }
