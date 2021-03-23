@@ -107,6 +107,7 @@ item_suit::item_suit(void)
 	precache_sound("items/suitchargeok1.wav");
 	precache_sound("fvox/hev_logon.wav");
 	precache_sound("fvox/bell.wav");
+	Sound_Precache("item.respawn");
 	CBaseTrigger::CBaseTrigger();
 
 	m_strOnPlayerTouch = CreateOutput(m_strOnPlayerTouch);
