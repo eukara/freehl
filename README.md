@@ -3,12 +3,16 @@ Clean-room reimplementation of Half-Life: Deathmatch and Half-Life (Experimental
 
 Similar to FreeCS, this aims to recreate the feeling of the original game.
 It's designed to work with the content from the CD version of the game.
+Currently I do not aim to support the Steam version.
 
 Netplay improvements, such as prediction of both player physics and weapon-logic
 are present.
 
 This is 100% original code, feel free to audit however you wish.
 No proprietary SDKs have been looked at or taken apart, unlike similar projects.
+
+The engine you want to use to run this is FTEQW (https://www.fteqw.org), which is a project
+unrelated to this. It just happens to support the file-formats FreeHL needs.
 
 ![Preview 1](img/preview1.jpg)
 ![Preview 2](img/preview2.jpg)
@@ -23,10 +27,10 @@ Clone the repository into the Nuclide-SDK:
 then either run Nuclide's ./build_game.sh shell script, or issue 'make' inside
 ./valve/src!
 
-Obviously make sure that Nuclide has fteqw and fteqcc set-up for building.
+Obviously make sure that Nuclide has fteqw and fteqcc set-up for building and that you have some proficiency in QuakeC.
 
 ## Community
-Join us on #halflife via irc.frag-net.com and chat.
+Join us on #freecs via irc.freenode.net and chat.
 
 ## License
 ISC License
