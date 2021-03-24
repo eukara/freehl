@@ -53,6 +53,10 @@ Scores_DrawTeam(player pl, vector pos)
 				continue;
 			}
 
+			if (getplayerkeyfloat(i, "*spec") != 0) {
+				continue;
+			}
+
 			temp = getplayerkeyvalue(i, "name");
 
 			/* Out of players */
@@ -117,6 +121,10 @@ Scores_DrawNormal(player pl, vector pos)
 		string kills;
 		string deaths;
 		string name;
+
+		if (getplayerkeyfloat(i, "*spec") != 0) {
+			continue;
+		}
 
 		name = getplayerkeyvalue(i, "name");
 
