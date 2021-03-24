@@ -20,9 +20,11 @@ player.gaspheavy
 }
 player.waterexit
 {
-	sample misc/null.wav
+	sample player/pl_wade1.wav
+	sample player/pl_wade3.wav
 }
 player.waterenter
 {
-	sample misc/null.wav
+	sample player/pl_wade2.wav
+	sample player/pl_wade4.wav
 }
