@@ -1,0 +1,11 @@
+modelevent_shell.eject
+{
+	sample misc/null.wav
+}
+
+modelevent_shell.land
+{
+	attenuation idle
+	sample player/pl_shell1.wav
+	sample player/pl_shell2.wav
+}
