@@ -171,11 +171,12 @@ Scores_Draw(void)
 		
 		/* calculate all valid entries */
 		for (int i = -1; i > -32; i--) {
-			if (getplayerkeyvalue(i, "name")) {
-				break;
+			if (getplayerkeyvalue(i, "name") && getplayerkeyfloat(i, "*spec") != 1) {
+				c += 10;
 			}
-			c += 10;
 		}
+
+		c += (serverkeyfloat("teams") * 10);
 		pos = video_mins + [(video_res[0] / 2) - 145, (video_res[1] / 2) - c];
 	} else {
 		pos = video_mins + [(video_res[0] / 2) - 145, 30];
