@@ -163,29 +163,6 @@ void
 player::ReceiveEntity(float new)
 {
 	float fl;
-	if (new == FALSE) {
-		/* Go through all the physics code between the last received frame
-		 * and the newest frame and keep the changes this time around instead
-		 * of rolling back, because we'll apply the new server-verified values
-		 * right after anyway. */
-		/* FIXME: splitscreen */
-		if (entnum == player_localentnum) {
-			/* FIXME: splitscreen */
-			pSeat = &g_seats[0];
-
-			for (int i = sequence+1; i <= servercommandframe; i++) {
-				/* ...maybe the input state is too old? */
-				if (!getinputstate(i)) {
-					break;
-				}
-				input_sequence = i;
-				PMove_Run();
-			}
-
-			/* any differences in things that are read below are now
-			 * officially from prediction misses. */
-		}
-	}
 
 	/* seed for our prediction table */
 	sequence = servercommandframe;

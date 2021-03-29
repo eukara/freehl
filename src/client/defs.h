@@ -40,10 +40,8 @@ struct
 	entity m_eMuzzleflash;
 	int m_iVMBones;
 
-	/* viewmodel shell ejection */
-	float m_fEjectModel;
-	vector m_vecEjectPos;
-	vector m_vecEjectVel;
+	void(void) m_pEventCall;
+	float m_flEventTime;
 
 	int m_iLastWeapon;
 	int m_iOldWeapon;

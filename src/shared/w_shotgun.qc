@@ -42,8 +42,41 @@ enum
 	SHOTTY_IDLE,
 	SHOTTY_RELOAD_START,
 	SHOTTY_RELOAD,
-	SHOTTY_RELOAD_END
+	SHOTTY_RELOAD_END,
+	SHOTTY_COCKSOUND
 };
+
+#ifdef CLIENT
+void w_shotgun_ejectshell(void)
+{
+	static void w_shotgun_ejectshell_death(void) {
+		remove(self);
+	}
+	static void w_shotgun_ejectshell_touch(void) {
+		if (other == world)
+			Sound_Play(self, CHAN_BODY, "modelevent_shotgunshell.land");
+	}
+	entity eShell = spawn();
+	setmodel(eShell, "models/shotgunshell.mdl");
+	eShell.solid = SOLID_BBOX;
+	eShell.movetype = MOVETYPE_BOUNCE;
+	eShell.drawmask = MASK_ENGINE;
+	eShell.angles = [pSeat->m_eViewModel.angles[0], pSeat->m_eViewModel.angles[1], 0];
+	eShell.velocity = pSeat->m_vecPredictedVelocity;
+
+	makevectors(pSeat->m_eViewModel.angles);
+	eShell.velocity += (v_forward * 0);
+	eShell.velocity += (v_right * 80);
+	eShell.velocity += (v_up * 100);
+	eShell.touch = w_shotgun_ejectshell_touch;
+
+	eShell.avelocity = [0,45,900];
+	eShell.think = w_shotgun_ejectshell_death;
+	eShell.nextthink = time + 2.5f;
+	setsize(eShell, [0,0,0], [0,0,0]);
+	setorigin(eShell, pSeat->m_eViewModel.origin + (v_forward * 26) + (v_right * 8) + (v_up * -8));
+}
+#endif
 
 void w_shotgun_precache(void)
 {
@@ -53,9 +86,11 @@ void w_shotgun_precache(void)
 	Sound_Precache("weapon_shotgun.reload");
 	Sound_Precache("weapon_shotgun.cock");
 	precache_model("models/w_shotgun.mdl");
+	precache_model("models/shotgunshell.mdl");
 #else
 	precache_model("models/v_shotgun.mdl");
 	precache_model("models/p_shotgun.mdl");
+	Sound_Precache("modelevent_shotgunshell.land");
 #endif
 }
 
@@ -120,11 +155,14 @@ w_shotgun_holster(void)
 	Weapons_ViewAnimation(SHOTGUN_HOLSTER);
 }
 
+void w_shotgun_release(void);
+
 void
 w_shotgun_primary(void)
 {
 	player pl = (player)self;
 	if (pl.w_attack_next) {
+		w_shotgun_release();
 		return;
 	}
 
@@ -149,12 +187,16 @@ w_shotgun_primary(void)
 	View_SetMuzzleflash(MUZZLE_WEIRD);
 	Weapons_ViewAnimation(SHOTGUN_FIRE1);
 	Weapons_ViewPunchAngle([-5,0,0]);
+	View_AddEvent(w_shotgun_ejectshell, 0.5f);
 #endif
 
 	pl.shotgun_mag--;
 
+	/* after 1/2 a second, play the cocksound and eject shell */
+	pl.mode_tempstate = SHOTTY_COCKSOUND;
+	pl.w_idle_next = 0.5f;
+
 	pl.w_attack_next = 0.75;
-	pl.w_idle_next = 2.5f;
 }
 
 void
@@ -162,6 +204,7 @@ w_shotgun_secondary(void)
 {
 	player pl = (player)self;
 	if (pl.w_attack_next) {
+		w_shotgun_release();
 		return;
 	}
 
@@ -186,11 +229,14 @@ w_shotgun_secondary(void)
 #else
 	Weapons_ViewAnimation(SHOTGUN_FIRE2);
 	Weapons_ViewPunchAngle([-10,0,0]);
+	View_AddEvent(w_shotgun_ejectshell, 1.0f);
 #endif
+	/* after 1 second, play the cocksound and eject shell */
+	pl.mode_tempstate = SHOTTY_COCKSOUND;
+	pl.w_idle_next = 1.0f;
 
 	pl.shotgun_mag -= 2;
 	pl.w_attack_next = 1.5f;
-	pl.w_idle_next = 2.5f;
 }
 
 void
@@ -264,6 +310,15 @@ w_shotgun_release(void)
 		Weapons_ViewAnimation(SHOTGUN_PUMP);
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.cock");
+#endif
+		pl.mode_tempstate = SHOTTY_IDLE;
+		pl.w_idle_next = 10.0f;
+		pl.w_attack_next = 0.5f;
+	} else if (pl.mode_tempstate == SHOTTY_COCKSOUND) {
+#ifdef CLIENT
+
+#else
+		Sound_Play(pl, CHAN_AUTO, "weapon_shotgun.cock");
 #endif
 		pl.mode_tempstate = SHOTTY_IDLE;
 		pl.w_idle_next = 10.0f;

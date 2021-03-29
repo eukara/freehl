@@ -138,7 +138,6 @@ w_mp5_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_RIFLE);
-	View_EjectShellPos(SHELL_DEFAULT, [32,8,-32], [0, 80, 100]);
 #else
 	/* singleplayer is more accurate */
 	if (cvar("sv_playerslots") == 1) {
@@ -161,6 +160,10 @@ w_mp5_primary(void)
 	}
 
 	Weapons_ViewPunchAngle([-2,0,0]);
+
+#ifdef CLIENT
+	View_AddEvent(w_glock_ejectshell, 0.0f);
+#endif
 
 	pl.w_attack_next = 0.1f;
 	pl.w_idle_next = 10.0f;

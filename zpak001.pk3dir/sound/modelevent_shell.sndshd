@@ -1,11 +1,17 @@
-modelevent_shell.eject
-{
-	sample misc/null.wav
-}
 
 modelevent_shell.land
 {
 	attenuation idle
 	sample player/pl_shell1.wav
 	sample player/pl_shell2.wav
+	sample player/pl_shell3.wav
 }
+
+modelevent_shotgunshell.land
+{
+	attenuation idle
+	sample weapons/sshell1.wav
+	sample weapons/sshell2.wav
+	sample weapons/sshell3.wav
+}
+

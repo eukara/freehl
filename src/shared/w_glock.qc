@@ -47,15 +47,49 @@ enum
 	GLOCK_HOLSTER
 };
 
+#ifdef CLIENT
+void w_glock_ejectshell(void)
+{
+	static void w_glock_ejectshell_death(void) {
+		remove(self);
+	}
+	static void w_glock_ejectshell_touch(void) {
+		if (other == world)
+			Sound_Play(self, CHAN_BODY, "modelevent_shell.land");
+	}
+	entity eShell = spawn();
+	setmodel(eShell, "models/shell.mdl");
+	eShell.solid = SOLID_BBOX;
+	eShell.movetype = MOVETYPE_BOUNCE;
+	eShell.drawmask = MASK_ENGINE;
+	eShell.angles = [pSeat->m_eViewModel.angles[0], pSeat->m_eViewModel.angles[1], 0];
+	eShell.velocity = pSeat->m_vecPredictedVelocity;
+
+	makevectors(pSeat->m_eViewModel.angles);
+	eShell.velocity += (v_forward * 0);
+	eShell.velocity += (v_right * 80);
+	eShell.velocity += (v_up * 100);
+	eShell.touch = w_glock_ejectshell_touch;
+
+	eShell.avelocity = [0,45,900];
+	eShell.think = w_glock_ejectshell_death;
+	eShell.nextthink = time + 2.5f;
+	setsize(eShell, [0,0,0], [0,0,0]);
+	setorigin(eShell, pSeat->m_eViewModel.origin + (v_forward * 26) + (v_right * 8) + (v_up * -4));
+}
+#endif
+
 void
 w_glock_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_glock.fire");
 	precache_model("models/w_9mmhandgun.mdl");
+	precache_model("models/shell.mdl");
 #else
 	precache_model("models/v_9mmhandgun.mdl");
 	precache_model("models/p_9mmhandgun.mdl");
+	Sound_Precache("modelevent_shell.land");
 #endif
 }
 
@@ -138,7 +172,6 @@ w_glock_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
-	View_EjectShellPos(SHELL_DEFAULT, [26,8,-32], [0, 80, 100]);
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 	if (pl.glock_mag) {
@@ -146,6 +179,7 @@ w_glock_primary(void)
 	} else {
 		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
 	}
+	View_AddEvent(w_glock_ejectshell, 0.0f);
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
@@ -179,13 +213,14 @@ w_glock_secondary(void)
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
 	Weapons_ViewPunchAngle([-2,0,0]);
-	View_EjectShellPos(SHELL_DEFAULT, [26,8,-32], [0, 80, 100]);
 
 	if (pl.glock_mag) {
 		Weapons_ViewAnimation(GLOCK_SHOOT);
 	} else {
 		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
 	}
+
+	View_AddEvent(w_glock_ejectshell, 0.0f);
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
