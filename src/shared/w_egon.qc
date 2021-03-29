@@ -196,6 +196,7 @@ void w_egon_primary(void)
 	vector endpos = src + v_forward * 1024;
 	traceline(src, endpos, FALSE, pl);
 	Damage_Radius(trace_endpos, pl, 14, 64, TRUE, DMG_ELECTRO);
+	Client_ShakeOnce(trace_endpos, 128, 0.2, 1.0, 1.0f);
 #endif
 
 	pl.ammo_uranium--;
