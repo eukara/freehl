@@ -225,8 +225,8 @@ w_shotgun_secondary(void)
 		TraceAttack_FireBullets(8, pl.origin + pl.view_ofs, 5, [0.17365,0.04362], WEAPON_SHOTGUN);
 	}
 	Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.double");
-	Weapons_UpdateAmmo(pl, pl.shotgun_mag, pl.ammo_buckshot, __NULL__);
 #else
+	View_SetMuzzleflash(MUZZLE_WEIRD);
 	Weapons_ViewAnimation(SHOTGUN_FIRE2);
 	Weapons_ViewPunchAngle([-10,0,0]);
 	View_AddEvent(w_shotgun_ejectshell, 1.0f);

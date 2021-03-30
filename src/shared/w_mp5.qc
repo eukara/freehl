@@ -136,19 +136,6 @@ w_mp5_primary(void)
 		return;
 	}
 
-#ifdef CLIENT
-	View_SetMuzzleflash(MUZZLE_RIFLE);
-#else
-	/* singleplayer is more accurate */
-	if (cvar("sv_playerslots") == 1) {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5);
-	} else {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5);
-	}
-
-	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");
-#endif
-
 	pl.mp5_mag--;
 
 	/* Actual firing */
@@ -162,7 +149,17 @@ w_mp5_primary(void)
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 #ifdef CLIENT
+	View_SetMuzzleflash(MUZZLE_RIFLE);
 	View_AddEvent(w_glock_ejectshell, 0.0f);
+#else
+	/* singleplayer is more accurate */
+	if (cvar("sv_playerslots") == 1) {
+		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5);
+	} else {
+		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5);
+	}
+
+	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");
 #endif
 
 	pl.w_attack_next = 0.1f;

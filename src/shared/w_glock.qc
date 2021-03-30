@@ -179,6 +179,7 @@ w_glock_primary(void)
 	} else {
 		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
 	}
+
 	View_AddEvent(w_glock_ejectshell, 0.0f);
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
