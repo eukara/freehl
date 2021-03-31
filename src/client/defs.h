@@ -35,40 +35,6 @@ var string g_laser_spr;
 
 struct
 {
-	/* viewmodel stuff */
-	entity m_eViewModel;
-	entity m_eMuzzleflash;
-	int m_iVMBones;
-
-	void(void) m_pEventCall;
-	float m_flEventTime;
-	float m_flEventFrame;
-
-	int m_iLastWeapon;
-	int m_iOldWeapon;
-	float m_flBobTime;
-	float m_flBob;
-
-	/* damage overlay */
-	float m_flDamageAlpha;
-	vector m_vecDamagePos;
-
-	/* +zoomin cmd */
-	int m_iZoomed;
-	float m_flZoomTime;
-
-	/* player fields */
-	entity m_ePlayer;
-	vector m_vecPredictedOrigin;
-	vector m_vecPredictedOriginOld;
-	vector m_vecPredictedVelocity;
-	float m_flPredictedFlags;
-	
-	/* camera fields */
-	vector m_vecCameraOrigin;
-	vector m_vecCameraAngle;
-	float m_flCameraTime;
-
 	/* hud.c */
 	int m_iHealthOld;
 	float m_flHealthAlpha;
@@ -82,51 +48,9 @@ struct
 	float m_flAmmo3Alpha;
 	int m_iPickupWeapon;
 	float m_flPickupAlpha;
-
-	/* This is seperated from the other VGUI stuff so we can check scores
-	 * while buying and whatnot */
-	int m_iScoresVisible;
 	int m_iHUDWeaponSelected;
 	float m_flHUDWeaponSelectTime;
-
-	/* saturn controller */
-	int m_iSaturnMenu;
-
-	/* centerprint related */
-	float m_flCenterprintAlpha;
-	float m_flCenterprintTime;
-	float m_iCenterprintLines;
-	string m_strCenterprintBuffer[18];
-
-	/* chat related */
-	float m_flPrintTime;
-	string m_strPrintBuffer[5];
-	int m_iPrintLines;
-
-	int m_iInputAttack2;
-	int m_iInputReload;
-	int m_iInputUse;
-	int m_iInputDuck;
-	float m_flInputBlockTime;
-	
-	/* fading */
-	float m_flFadeDuration;
-	float m_flFadeHold;
-	float m_flFadeMaxAlpha;
-	float m_flFadeStyle;
-	float m_flFadeAlpha;
-	float m_flFadeTime;
-	vector m_vecFadeColor;
-	int m_iFadeActive;
-
-	/* shake */
-	float m_flShakeFreq;
-	float m_flShakeDuration;
-	float m_flShakeTime;
-	float m_flShakeAmp;
-
-	entity m_pWeaponFX;
-} g_seats[4], *pSeat;
+} g_seatslocal[4], *pSeatLocal;
 
 void HUD_DrawAmmo1(void);
 void HUD_DrawAmmo2(void);

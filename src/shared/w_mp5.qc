@@ -303,7 +303,7 @@ w_mp5_crosshair(void)
 		[0,72/128],
 		[24/256, 24/128],
 		g_hud_color,
-		pSeat->m_flAmmo2Alpha,
+		pSeatLocal->m_flAmmo2Alpha,
 		DRAWFLAG_ADDITIVE
 	);
 
@@ -315,7 +315,7 @@ w_mp5_crosshair(void)
 		[48/256,72/128],
 		[24/256, 24/128],
 		g_hud_color,
-		pSeat->m_flAmmo3Alpha,
+		pSeatLocal->m_flAmmo3Alpha,
 		DRAWFLAG_ADDITIVE
 	);
 #endif

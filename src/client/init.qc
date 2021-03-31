@@ -35,6 +35,12 @@ ClientGame_InitDone(void)
 void
 ClientGame_RendererRestart(string rstr)
 {
+	precache_model("models/shell.mdl");
+	precache_model("models/shotgunshell.mdl");
+	precache_model("sprites/muzzleflash1.spr");
+	precache_model("sprites/muzzleflash2.spr");
+	precache_model("sprites/muzzleflash2.spr");
+
 	Obituary_Precache();
 
 	FX_Blood_Init();
