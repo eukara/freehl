@@ -205,7 +205,7 @@ w_hornetgun_secondary(void)
 
 #ifdef SERVER
 	w_hornetgun_shoothornet();
-	Weapons_PlaySound(pl, CHAN_WEAPON, sprintf("agrunt/ag_fire%d.wav", floor(random(1,4))), 1, ATTN_NORM);
+	Sound_Play(pl, CHAN_WEAPON, "weapon_hornetgun.fire");
 #endif
 
 	pl.ammo_hornet--;
