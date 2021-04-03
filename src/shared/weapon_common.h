@@ -52,7 +52,6 @@ void Weapons_MakeVectors(void);
 vector Weapons_GetCameraPos(void);
 void Weapons_ViewAnimation(int);
 void Weapons_ViewPunchAngle(vector);
-void Weapons_PlaySound(entity, float, string, float, float);
 int Weapons_IsPresent(player, int);
 void Weapons_SetModel(string);
 void Weapons_SetGeomset(string);

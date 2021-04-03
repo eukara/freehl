@@ -278,13 +278,6 @@ void Weapons_ViewPunchAngle(vector add)
 #endif
 }
 
-void Weapons_PlaySound(entity t, float ch, string s, float vol, float at)
-{
-#ifdef SERVER
-	sound(t, ch, s, vol, at);
-#endif
-}
-
 int Weapons_IsPresent(player pl, int w)
 {
 	if (pl.g_items & g_weapons[w].id) {
