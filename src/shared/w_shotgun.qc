@@ -190,6 +190,11 @@ w_shotgun_primary(void)
 	View_AddEvent(w_shotgun_ejectshell, 0.5f);
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
+
 	pl.shotgun_mag--;
 
 	/* after 1/2 a second, play the cocksound and eject shell */
@@ -231,6 +236,12 @@ w_shotgun_secondary(void)
 	Weapons_ViewPunchAngle([-10,0,0]);
 	View_AddEvent(w_shotgun_ejectshell, 1.0f);
 #endif
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
+
 	/* after 1 second, play the cocksound and eject shell */
 	pl.mode_tempstate = SHOTTY_COCKSOUND;
 	pl.w_idle_next = 1.0f;

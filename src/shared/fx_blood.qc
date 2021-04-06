@@ -68,6 +68,8 @@ FX_Blood(vector pos, vector color)
 
 #ifdef GS_RENDERFX
 	eBlood.m_vecRenderColor = color;
+	eBlood.m_iRenderMode = RM_COLOR;
+	eBlood.m_flRenderAmt = 1.0f;
 #else
 	eBlood.colormod = color;
 #endif
@@ -88,6 +90,8 @@ FX_Blood(vector pos, vector color)
 
 #ifdef GS_RENDERFX
 		ePart.m_vecRenderColor = color;
+		ePart.m_iRenderMode = RM_COLOR;
+		ePart.m_flRenderAmt = 1.0f;
 #else
 		ePart.colormod = color;
 #endif

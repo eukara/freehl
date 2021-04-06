@@ -152,6 +152,11 @@ w_python_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.shoot");
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTPYTHON, 0.43f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTPYTHON, 0.43f);
+
 	pl.w_attack_next = 0.75f;
 	pl.w_idle_next = 10.0f;
 }

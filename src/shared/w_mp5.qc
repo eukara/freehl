@@ -162,6 +162,11 @@ w_mp5_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.1f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTMP5, 0.1f);
+
 	pl.w_attack_next = 0.1f;
 	pl.w_idle_next = 10.0f;
 }
@@ -215,6 +220,11 @@ w_mp5_secondary(void)
 	gren.touch = Grenade_ExplodeTouch;
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.gl");
 #endif
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.45f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTMP5, 0.45f);
 
 	pl.w_attack_next = 1.0f;
 	pl.w_idle_next = 10.0f;

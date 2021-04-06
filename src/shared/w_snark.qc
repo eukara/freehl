@@ -193,6 +193,11 @@ void w_snark_primary(void)
 	}
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
+
 	pl.w_idle_next = 1.0f;
 	pl.w_attack_next = 0.25f;
 

@@ -185,6 +185,11 @@ w_hornetgun_primary(void)
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(HORNETGUN_SHOOT);
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
+
 	pl.w_attack_next = 0.25;
 	pl.w_idle_next = 1.0f;
 }
@@ -210,6 +215,11 @@ w_hornetgun_secondary(void)
 
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(HORNETGUN_SHOOT);
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
 
 	pl.w_attack_next = 0.1;
 	pl.w_idle_next = 1.0f;

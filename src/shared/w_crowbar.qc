@@ -125,11 +125,10 @@ w_crowbar_primary(void)
 		Weapons_ViewAnimation(trace_fraction >= 1 ? CBAR_ATTACK3MISS:CBAR_ATTACK3HIT);
 	}
 
-	if (pl.flags & FL_CROUCHING) {
-		Animation_PlayerTopTemp(ANIM_SHOOTCROWBAR, 0.5f);
-	} else {
-		Animation_PlayerTopTemp(ANIM_CR_SHOOTCROWBAR, 0.42f);
-	}
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTCROWBAR, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
 
 #ifdef SERVER
 	Sound_Play(self, CHAN_WEAPON, "weapon_crowbar.miss");

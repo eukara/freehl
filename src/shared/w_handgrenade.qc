@@ -199,6 +199,11 @@ void w_handgrenade_release(void)
 		pl.mode_tempstate = 2;
 		pl.w_attack_next = 1.0f;
 		pl.w_idle_next = 0.5f;
+
+		if (self.flags & FL_CROUCHING)
+			Animation_PlayerTop(pl, ANIM_CR_SHOOTCROWBAR, 0.41f);
+		else
+			Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
 	} else if (pl.mode_tempstate == 2) {
 #ifdef CLIENT
 		Weapons_ViewAnimation(HANDGRENADE_DRAW);

@@ -293,6 +293,11 @@ w_tripmine_primary(void)
 	Sound_Play(mine, CHAN_WEAPON, "weapon_tripmine.charge");
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTTRIPMINE, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTTRIPMINE, 0.5f);
+
 	pl.a_ammo3 = 1;
 	pl.w_attack_next =
 	pl.w_idle_next = 0.5f;

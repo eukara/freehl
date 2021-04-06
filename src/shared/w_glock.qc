@@ -184,12 +184,12 @@ w_glock_primary(void)
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
+#endif
 
 	if (self.flags & FL_CROUCHING)
-		Animation_PlayerTopTemp(ANIM_SHOOT1HAND, 0.45f);
+		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);
 	else
-		Animation_PlayerTopTemp(ANIM_CR_SHOOT1HAND, 0.45f);
-#endif
+		Animation_PlayerTop(pl, ANIM_SHOOT1HAND, 0.2f);
 
 	pl.w_attack_next = 0.3f;
 	pl.w_idle_next = 5.0f;
@@ -225,12 +225,12 @@ w_glock_secondary(void)
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
+#endif
 
 	if (self.flags & FL_CROUCHING)
-		Animation_PlayerTopTemp(ANIM_SHOOT1HAND, 0.45f);
+		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);
 	else
-		Animation_PlayerTopTemp(ANIM_CR_SHOOT1HAND, 0.45f);
-#endif
+		Animation_PlayerTop(pl, ANIM_SHOOT1HAND, 0.2f);
 
 	pl.w_attack_next = 0.2f;
 	pl.w_idle_next = 5.0f;

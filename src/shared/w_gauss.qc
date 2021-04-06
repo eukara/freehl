@@ -282,6 +282,11 @@ void w_gauss_primary(void)
 	w_gauss_fire(1);
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
+
 	pl.w_attack_next = 0.2f;
 	pl.w_idle_next = 2.5f;
 }
@@ -361,6 +366,12 @@ void w_gauss_release(void)
 		return;
 	} else if (pl.mode_tempstate == 2) {
 		Weapons_ViewAnimation(GAUSS_FIRE1);
+
+		if (self.flags & FL_CROUCHING)
+			Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
+		else
+			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
+	
 #ifdef CLIENT
 		FXGauss p = (FXGauss)pSeat->m_pWeaponFX;
 		p.m_iBeams = 1;

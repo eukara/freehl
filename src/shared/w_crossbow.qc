@@ -199,6 +199,11 @@ w_crossbow_primary(void)
 		Weapons_ViewAnimation(CROSSBOW_FIRE3);
 	}
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTBOW, 0.25f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTBOW, 0.25f);
+
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 	pl.w_attack_next = 0.75f;
@@ -266,13 +271,13 @@ w_crossbow_release(void)
 
 	int r = (float)input_sequence % 2;
 	if (r == 1) {
-		if (pl.ammo_bolt) {
+		if (pl.crossbow_mag) {
 			Weapons_ViewAnimation(CROSSBOW_IDLE1);
 		} else {
 			Weapons_ViewAnimation(CROSSBOW_IDLE2);
 		}
 	} else {
-		if (pl.ammo_bolt) {
+		if (pl.crossbow_mag) {
 			Weapons_ViewAnimation(CROSSBOW_FIDGET1);
 		} else {
 			Weapons_ViewAnimation(CROSSBOW_FIDGET2);

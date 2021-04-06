@@ -190,6 +190,11 @@ w_satchel_primary(void)
 		s_satchel_drop(self, pl.origin, throw);
 		pl.satchel_chg++;
 		pl.ammo_satchel--;
+
+		if (self.flags & FL_CROUCHING)
+			Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
+		else
+			Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
 	} else {
 		/* detonate all we have */
 		s_satchel_detonate(pl);
@@ -239,6 +244,11 @@ w_satchel_secondary(void)
 	Weapons_SetModel("models/v_satchel_radio.mdl");
 	Weapons_ViewAnimation(RADIO_DRAW);
 #endif
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
 
 	pl.satchel_chg++;
 	pl.ammo_satchel--;

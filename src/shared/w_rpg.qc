@@ -162,6 +162,11 @@ void w_rpg_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.shoot");
 #endif
 
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTRPG, 0.43f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTRPG, 0.43f);
+
 	pl.w_attack_next = 
 	pl.w_idle_next = 2.5f;
 }
