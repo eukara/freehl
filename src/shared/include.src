@@ -12,7 +12,7 @@ fx_blood.qc
 fx_breakmodel.qc
 fx_explosion.qc
 fx_gibhuman.qc
-fx_spark.qc
+../../../base/src/shared/fx_spark.qc
 fx_impact.qc
 
 items.h
