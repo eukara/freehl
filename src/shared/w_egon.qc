@@ -148,11 +148,11 @@ void w_egon_draw(void)
 	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
-	/* link the FX class */
-#ifdef CLIENT
 	Weapons_SetModel("models/v_egon.mdl");
 	Weapons_ViewAnimation(EGON_DRAW);
 
+	/* link the FX class */
+#ifdef CLIENT
 	entity eold = self;
 	self = pSeat->m_pWeaponFX;
 	spawnfunc_FXEgon();
@@ -181,11 +181,6 @@ void w_egon_primary(void)
 	}
 
 #ifdef CLIENT
-	if (Weapons_GetAnimation() == EGON_IDLE1)
-		Weapons_ViewAnimation(EGON_ALTFIREON);
-	else if (Weapons_GetAnimation() == EGON_ALTFIREON)
-		Weapons_ViewAnimation(EGON_ALTFIRECYCLE);
-
 	FXEgon p = (FXEgon)pSeat->m_pWeaponFX;
 	p.m_vecAngle = input_angles;
 	p.m_vecStart = pl.origin + pl.view_ofs;
@@ -207,10 +202,12 @@ void w_egon_primary(void)
 #endif
 		pl.mode_tempstate = 1;
 		Weapons_ViewPunchAngle([-5,0,0]);
-		pl.w_idle_next = 3.0f;
+		Weapons_ViewAnimation(EGON_ALTFIREON);
+		pl.w_idle_next = 1.5f;
 	} else if not (pl.w_idle_next > 0.0f) {
 		/* wait 3 seconds (idle next) */
 		if (pl.mode_tempstate == 1) {
+			Weapons_ViewAnimation(EGON_ALTFIRECYCLE);
 #ifdef SERVER
 			sound(pl, CHAN_WEAPON, "weapons/egon_run3.wav", 1, ATTN_NORM, 100);
 #endif

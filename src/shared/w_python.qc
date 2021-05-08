@@ -105,25 +105,22 @@ w_python_deathmsg(void)
 void
 w_python_draw(void)
 {
-#ifdef CLIENT
 	Weapons_SetModel("models/v_357.mdl");
 
 	/* singleplayer doesn't do scope */
-	if (cvar("sv_playerslots") == 1) {
+	if (serverkeyfloat("sv_playerslots") == 1) {
 		Weapons_SetGeomset("geomset 4 1\n");
 	} else {
 		Weapons_SetGeomset("geomset 4 2\n");
 	}
+
 	Weapons_ViewAnimation(PYTHON_DRAW);
-#endif
 }
 
 void
 w_python_holster(void)
 {
-#ifdef CLIENT
 	Weapons_ViewAnimation(PYTHON_HOLSTER);
-#endif
 }
 
 void
@@ -145,12 +142,13 @@ w_python_primary(void)
 	/* Actual firing */
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
-	Weapons_ViewPunchAngle([-10,0,0]);
-	Weapons_ViewAnimation(PYTHON_FIRE1);
 #else
 	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_357_bullet", 40), [0.008, 0.008], WEAPON_PYTHON);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.shoot");
 #endif
+
+	Weapons_ViewPunchAngle([-10,0,0]);
+	Weapons_ViewAnimation(PYTHON_FIRE1);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTPYTHON, 0.43f);
@@ -171,7 +169,7 @@ w_python_secondary(void)
 	}
 
 	/* singleplayer doesn't do scope */
-	if (cvar("sv_playerslots") == 1) {
+	if (serverkeyfloat("sv_playerslots") == 1) {
 		return;
 	}
 
@@ -203,9 +201,9 @@ w_python_reload(void)
 	}
 
 	/* Audio-Visual bit */
-#ifdef CLIENT
 	Weapons_ViewAnimation(PYTHON_RELOAD);
-#else
+
+#ifdef SERVER
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.reload");
 	Weapons_ReloadWeapon(pl, player::python_mag, player::ammo_357, 6);
 #endif

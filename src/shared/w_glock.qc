@@ -139,18 +139,14 @@ w_glock_pickup(int new, int startammo)
 void
 w_glock_draw(void)
 {
-#ifdef CLIENT
 	Weapons_SetModel("models/v_9mmhandgun.mdl");
 	Weapons_ViewAnimation(GLOCK_DRAW);
-#endif
 }
 
 void
 w_glock_holster(void)
 {
-#ifdef CLIENT
 	Weapons_ViewAnimation(GLOCK_HOLSTER);
-#endif
 }
 
 void
@@ -172,6 +168,12 @@ w_glock_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
+	View_AddEvent(w_glock_ejectshell, 0.0f);
+#else
+	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
+	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
+#endif
+
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 	if (pl.glock_mag) {
@@ -179,12 +181,6 @@ w_glock_primary(void)
 	} else {
 		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
 	}
-
-	View_AddEvent(w_glock_ejectshell, 0.0f);
-#else
-	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
-	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
-#endif
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);
@@ -213,6 +209,12 @@ w_glock_secondary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
+	View_AddEvent(w_glock_ejectshell, 0.0f);
+#else
+	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK);
+	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
+#endif
+
 	Weapons_ViewPunchAngle([-2,0,0]);
 
 	if (pl.glock_mag) {
@@ -220,12 +222,6 @@ w_glock_secondary(void)
 	} else {
 		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
 	}
-
-	View_AddEvent(w_glock_ejectshell, 0.0f);
-#else
-	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK);
-	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
-#endif
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);

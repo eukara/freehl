@@ -183,20 +183,20 @@ void w_snark_primary(void)
 	pl.ammo_snark--;
 
 	/* Audio-Visual Bit */
-#ifdef CLIENT
 	Weapons_ViewAnimation(SNARK_THROW);
-#else
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
+
+#ifdef SERVER
 	w_snark_deploy();
 
 	if (pl.ammo_snark <= 0) {
 		Weapons_RemoveItem(pl, WEAPON_SNARK);
 	}
 #endif
-
-	if (self.flags & FL_CROUCHING)
-		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
-	else
-		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
 
 	pl.w_idle_next = 1.0f;
 	pl.w_attack_next = 0.25f;
@@ -214,6 +214,7 @@ void w_snark_release(void)
 {
 	int r;
 	player pl = (player)self;
+
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
@@ -234,6 +235,7 @@ void w_snark_release(void)
 		break;
 	}
 }
+
 void w_snark_precache(void)
 {
 #ifdef SERVER
@@ -248,23 +250,26 @@ void w_snark_precache(void)
 	precache_model("models/v_squeak.mdl");
 #endif
 }
+
 void w_snark_updateammo(player pl)
 {
 	Weapons_UpdateAmmo(pl, -1, pl.ammo_snark, -1);
 }
+
 string w_snark_wmodel(void)
 {
 	return "models/w_sqknest.mdl";
 }
+
 string w_snark_pmodel(void)
 {
 	return "models/p_squeak.mdl";
 }
+
 string w_snark_deathmsg(void)
 {
 	return "";
 }
-
 
 float w_snark_aimanim(void)
 {

@@ -16,19 +16,19 @@
 
 /* generic function that applies damage, pain and suffering */
 void
-Damage_Apply(entity t, entity c, float dmg, int w, int type)
+Damage_Apply(entity t, entity c, float dmg, int w, damageType_t type)
 {
 	base_player tp = (base_player)t;
 
 	CGameRules rules = (CGameRules)g_grMode;
-	if (t.flags & FL_GODMODE) {
+
+	/* player god mode */
+	if (t.flags & FL_CLIENT && t.flags & FL_GODMODE)
 		return;
-	}
 
 	/* already dead, please avoid recursion */
-	if (t.health <= 0) {
+	if (t.health <= 0)
 		return;
-	}
 
 	/* skip armor */
 	if not (type & DMG_SKIP_ARMOR)

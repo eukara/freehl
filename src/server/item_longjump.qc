@@ -78,7 +78,7 @@ item_longjump::Respawn(void)
 	think = __NULL__;
 	nextthink = -1;
 
-	if (!real_owner)
+	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");
 }
 

@@ -87,10 +87,8 @@ int w_rpg_pickup(int new, int startammo)
 
 void w_rpg_draw(void)
 {
-#ifdef CLIENT
 	Weapons_SetModel("models/v_rpg.mdl");
 	Weapons_ViewAnimation(RPG_DRAW1);
-#endif
 }
 
 void w_rpg_holster(void)
@@ -112,10 +110,7 @@ void w_rpg_primary(void)
 
 	pl.rpg_mag--;
 
-#ifdef CLIENT
-	Weapons_ViewAnimation(RPG_FIRE2);
-	Weapons_ViewPunchAngle([-10,0,0]);
-#else
+#ifdef SERVER
 	static void Rocket_Touch(void) {
 		float dmg = Skill_GetValue("plr_rpg", 100);
 		FX_Explosion(self.origin);
@@ -162,6 +157,9 @@ void w_rpg_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.shoot");
 #endif
 
+	Weapons_ViewAnimation(RPG_FIRE2);
+	Weapons_ViewPunchAngle([-10,0,0]);
+
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTRPG, 0.43f);
 	else
@@ -187,10 +185,10 @@ void w_rpg_reload(void)
 		return;
 	}
 
-	/* Audio-Visual Bit */
-#ifdef CLIENT
 	Weapons_ViewAnimation(RPG_RELOAD);
-#else
+
+	/* Audio-Visual Bit */
+#ifdef SERVER
 	Weapons_ReloadWeapon(pl, player::rpg_mag, player::ammo_rocket, 1);
 #endif
 
@@ -215,7 +213,7 @@ void w_rpg_release(void)
 
 	int r = (float)input_sequence % 3;
 
-	if (pl.a_ammo1 > 0) {
+	if (pl.rpg_mag > 0) {
 		if (r == 1) {
 			Weapons_ViewAnimation(RPG_FIDGET);
 		} else {

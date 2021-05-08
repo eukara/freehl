@@ -68,7 +68,7 @@ void item_pickup::Respawn(void)
 	nextthink = -1;
 
 	if (!m_iWasDropped && cvar("sv_playerslots") > 1) {
-		if (!real_owner)
+		if (!real_owner && time > 30.0f)
 			Sound_Play(this, CHAN_ITEM, "item.respawn");
 
 		m_iClip = -1;

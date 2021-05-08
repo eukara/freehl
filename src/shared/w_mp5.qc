@@ -110,10 +110,8 @@ w_mp5_deathmsg(void)
 void
 w_mp5_draw(void)
 {
-#ifdef CLIENT
 	Weapons_SetModel("models/v_9mmar.mdl");
 	Weapons_ViewAnimation(MP5_DRAW);
-#endif
 }
 
 void
@@ -187,10 +185,7 @@ w_mp5_secondary(void)
 
 	pl.ammo_m203_grenade--;
 
-#ifdef CLIENT
-	Weapons_ViewPunchAngle([-10,0,0]);
-	Weapons_ViewAnimation(MP5_GRENADE);
-#else
+#ifdef SERVER
 	static void Grenade_ExplodeTouch(void) {
 		float dmg = Skill_GetValue("plr_9mmAR_grenade", 100);
 		FX_Explosion(self.origin);
@@ -221,6 +216,9 @@ w_mp5_secondary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.gl");
 #endif
 
+	Weapons_ViewPunchAngle([-10,0,0]);
+	Weapons_ViewAnimation(MP5_GRENADE);
+
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.45f);
 	else
@@ -246,9 +244,9 @@ w_mp5_reload(void)
 		return;
 	}
 
-#ifdef CLIENT
 	Weapons_ViewAnimation(MP5_RELOAD);
-#else
+
+#ifdef SERVER
 	Weapons_ReloadWeapon(pl, player::mp5_mag, player::ammo_9mm, 50);
 #endif
 

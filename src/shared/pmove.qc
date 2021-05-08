@@ -45,9 +45,6 @@ void GamePMove_Fall(player target, float impactspeed)
 
 void GamePMove_Jump(player target)
 {
-	float flJumptimeDelta;
-	float flChainBonus;
-
 	if (target.waterlevel >= 2) {
 		if (target.watertype == CONTENT_WATER) {
 			target.velocity[2] = 100;
@@ -62,13 +59,7 @@ void GamePMove_Jump(player target)
 			target.velocity = v_forward * 512;
 			target.velocity[2] += 100;
 		}
-		target.velocity[2] += 240;
+		if (target.flags & FL_ONGROUND)
+			target.velocity[2] += 240;
 	}
-
-	if (target.jumptime > 0) {
-		flJumptimeDelta = 0 - (target.jumptime - PHY_JUMP_CHAINWINDOW);
-		flChainBonus = PHY_JUMP_CHAIN - (((PHY_JUMP_CHAINWINDOW - (PHY_JUMP_CHAINWINDOW - flJumptimeDelta)) * 2) * PHY_JUMP_CHAINDECAY);
-		target.velocity[2] += flChainBonus;
-	}
-	target.jumptime = PHY_JUMP_CHAINWINDOW;
 }

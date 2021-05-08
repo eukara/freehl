@@ -183,6 +183,6 @@ Player_PreDraw(base_player pl, int thirdperson)
 		}
 	}
 
-	Animation_PlayerUpdate(pl);
+	Animation_PlayerUpdate((player)pl);
 	Player_HandleWeaponModel(pl, thirdperson);
 }

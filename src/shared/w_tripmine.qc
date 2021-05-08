@@ -247,10 +247,8 @@ int w_tripmine_pickup(int new, int startammo)
 
 void w_tripmine_draw(void)
 {
-#ifdef CLIENT
 	Weapons_SetModel("models/v_tripmine.mdl");
 	Weapons_ViewAnimation(TRIPMINE_DRAW);
-#endif
 }
 
 void w_tripmine_holster(void)
@@ -282,9 +280,14 @@ w_tripmine_primary(void)
 
 	pl.ammo_tripmine--;
 
-#ifdef CLIENT
 	Weapons_ViewAnimation(TRIPMINE_FIRE2);
-#else
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTTRIPMINE, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTTRIPMINE, 0.5f);
+
+#ifdef SERVER
 	vector ang = vectoangles(trace_plane_normal);
 	monster_tripmine mine = spawn(monster_tripmine, real_owner: pl, angles: ang, spawnflags: MSF_MULTIPLAYER);
 	mine.SetOrigin(trace_endpos - (v_forward * 8));
@@ -292,11 +295,6 @@ w_tripmine_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_tripmine.deploy");
 	Sound_Play(mine, CHAN_WEAPON, "weapon_tripmine.charge");
 #endif
-
-	if (self.flags & FL_CROUCHING)
-		Animation_PlayerTop(pl, ANIM_CR_SHOOTTRIPMINE, 0.41f);
-	else
-		Animation_PlayerTop(pl, ANIM_SHOOTTRIPMINE, 0.5f);
 
 	pl.a_ammo3 = 1;
 	pl.w_attack_next =

@@ -83,7 +83,7 @@ FX_Impact_Init(void)
 #endif
 
 void
-FX_Impact(int iType, vector vecPos, vector vNormal)
+FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 {
 #ifdef SERVER
 	WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET);

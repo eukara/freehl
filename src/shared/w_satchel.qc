@@ -141,7 +141,6 @@ w_satchel_pickup(int new, int startammo)
 void
 w_satchel_draw(void)
 {
-#ifdef CLIENT
 	player pl = (player)self;
 	if (pl.satchel_chg > 0) {
 		Weapons_SetModel("models/v_satchel_radio.mdl");
@@ -151,7 +150,6 @@ w_satchel_draw(void)
 		Weapons_SetModel("models/v_satchel.mdl");
 		Weapons_ViewAnimation(SATCHEL_DRAW);
 	}
-#endif
 }
 
 void
@@ -235,14 +233,14 @@ w_satchel_secondary(void)
 		return;
 	}
 
+	Weapons_SetModel("models/v_satchel_radio.mdl");
+	Weapons_ViewAnimation(RADIO_DRAW);
+
 #ifdef SERVER
 	vector throw;
 	Weapons_MakeVectors();
 	throw = pl.velocity + (v_forward * 274);
 	s_satchel_drop(self, pl.origin, throw);
-#else
-	Weapons_SetModel("models/v_satchel_radio.mdl");
-	Weapons_ViewAnimation(RADIO_DRAW);
 #endif
 
 	if (self.flags & FL_CROUCHING)

@@ -136,10 +136,8 @@ void w_handgrenade_draw(void)
 	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
-#ifdef CLIENT
 	Weapons_SetModel("models/v_grenade.mdl");
 	Weapons_ViewAnimation(HANDGRENADE_DRAW);
-#endif
 }
 
 void w_handgrenade_holster(void)
@@ -163,9 +161,7 @@ void w_handgrenade_primary(void)
 		return;
 	}
 
-#ifdef CLIENT
 	Weapons_ViewAnimation(HANDGRENADE_PULLPIN);
-#endif
 
 	pl.mode_tempstate = 1;
 	pl.w_attack_next = 0.5f;
@@ -190,9 +186,8 @@ void w_handgrenade_release(void)
 	}
 
 	if (pl.mode_tempstate == 1) {
-#ifdef CLIENT
 		Weapons_ViewAnimation(HANDGRENADE_THROW1);
-#else
+#ifdef SERVER
 		w_handgrenade_throw();
 #endif
 		pl.ammo_handgrenade--;
@@ -205,9 +200,8 @@ void w_handgrenade_release(void)
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
 	} else if (pl.mode_tempstate == 2) {
-#ifdef CLIENT
 		Weapons_ViewAnimation(HANDGRENADE_DRAW);
-#else
+#ifdef SERVER
 		if (!pl.ammo_handgrenade) {
 			Weapons_RemoveItem(pl, WEAPON_HANDGRENADE);
 		}

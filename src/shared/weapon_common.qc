@@ -264,18 +264,22 @@ void Weapons_ViewAnimation(int i)
 
 #ifdef CLIENT
 int View_GetAnimation(void);
-int Weapons_GetAnimation(void)
-{
-	return View_GetAnimation();
-}
 #endif
+
+int
+Weapons_GetAnimation(void)
+{
+#ifdef CLIENT
+	return View_GetAnimation();
+#else
+	return 0;
+#endif
+}
 
 void Weapons_ViewPunchAngle(vector add)
 {
-#ifdef CLIENT
 	player pl = (player)self;
 	pl.punchangle += add;
-#endif
 }
 
 int Weapons_IsPresent(player pl, int w)

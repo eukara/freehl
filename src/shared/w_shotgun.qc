@@ -143,10 +143,8 @@ w_shotgun_draw(void)
 	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
-#ifdef CLIENT
 	Weapons_SetModel("models/v_shotgun.mdl");
 	Weapons_ViewAnimation(SHOTGUN_DRAW);
-#endif
 }
 
 void 
@@ -177,7 +175,7 @@ w_shotgun_primary(void)
 
 #ifdef SERVER
 	/* Singleplayer is more accurate */
-	if (cvar("sv_playerslots") == 1) {
+	if (serverkeyfloat("sv_playerslots") == 1) {
 		TraceAttack_FireBullets(6, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.08716], WEAPON_SHOTGUN);
 	} else {
 		TraceAttack_FireBullets(4, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.04362], WEAPON_SHOTGUN);
@@ -185,10 +183,11 @@ w_shotgun_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.single");
 #else
 	View_SetMuzzleflash(MUZZLE_WEIRD);
-	Weapons_ViewAnimation(SHOTGUN_FIRE1);
-	Weapons_ViewPunchAngle([-5,0,0]);
 	View_AddEvent(w_shotgun_ejectshell, 0.5f);
 #endif
+
+	Weapons_ViewAnimation(SHOTGUN_FIRE1);
+	Weapons_ViewPunchAngle([-5,0,0]);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
@@ -222,9 +221,17 @@ w_shotgun_secondary(void)
 		return;
 	}
 
+	Weapons_ViewAnimation(SHOTGUN_FIRE2);
+	Weapons_ViewPunchAngle([-10,0,0]);
+
+	if (self.flags & FL_CROUCHING)
+		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
+	else
+		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
+
 #ifdef SERVER
 	/* Singleplayer is more accurate */
-	if (cvar("sv_playerslots") == 1) {
+	if (serverkeyfloat("sv_playerslots") == 1) {
 		TraceAttack_FireBullets(12, pl.origin + pl.view_ofs, 5, [0.08716,0.08716], WEAPON_SHOTGUN);
 	} else {
 		TraceAttack_FireBullets(8, pl.origin + pl.view_ofs, 5, [0.17365,0.04362], WEAPON_SHOTGUN);
@@ -232,16 +239,8 @@ w_shotgun_secondary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.double");
 #else
 	View_SetMuzzleflash(MUZZLE_WEIRD);
-	Weapons_ViewAnimation(SHOTGUN_FIRE2);
-	Weapons_ViewPunchAngle([-10,0,0]);
 	View_AddEvent(w_shotgun_ejectshell, 1.0f);
 #endif
-
-	if (self.flags & FL_CROUCHING)
-		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
-	else
-		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
-
 	/* after 1 second, play the cocksound and eject shell */
 	pl.mode_tempstate = SHOTTY_COCKSOUND;
 	pl.w_idle_next = 1.0f;
