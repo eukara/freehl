@@ -74,7 +74,7 @@ monster_tripmine::Trip(int walkthrough)
 {
 	float dmg;
 	if (!walkthrough) {
-		real_owner = g_eAttacker;
+		real_owner = g_dmg_eAttacker;
 	}
 
 	/* This is to prevent infinite loops in Damage_Radius */

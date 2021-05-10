@@ -51,6 +51,7 @@ FX_Blood(vector pos, vector color)
 			decal_pickwall(self, self.origin);
 			pointparticles(DECAL_BLOOD, g_tracedDecal.endpos, g_tracedDecal.normal, 1);
 		}
+		remove(self);
 	}
 
 	if (cvar("violence_hblood") <= 0) {

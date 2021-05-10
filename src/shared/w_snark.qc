@@ -42,6 +42,7 @@ class monster_snark:CBaseMonster
 	void(void) monster_snark;
 
 	virtual void(void) customphysics;
+	virtual void(void) Pain;
 	virtual void(void) Death;
 	virtual void(void) Respawn;
 };
@@ -100,6 +101,16 @@ monster_snark::customphysics(void)
 }
 
 void
+monster_snark::Pain(void)
+{
+	/* anything else will kill us immediately */
+	if (g_dmg_eAttacker != world) {
+		health = 0;
+		Death();
+	}
+}
+
+void
 monster_snark::Death(void)
 {
 	float dmg = Skill_GetValue("snark_dmg_pop", 5);
@@ -117,14 +128,16 @@ monster_snark::Respawn(void)
 	netname = "Snark";
 	SetModel("models/w_squeak.mdl");
 	flags |= FL_MONSTER;
-	SetSolid(SOLID_BBOX);
+	SetSolid(SOLID_CORPSE);
 	SetMovetype(MOVETYPE_WALK);
+	SetSize([-8,-8,0], [8,8,16]);
 	SetFrame(3); /* running like crazy. */
 	angles = goalentity.angles;
 	health = 20;
 	takedamage = DAMAGE_YES;
 	m_eTarget = __NULL__;
 	m_flJump = 1.0f;
+	owner = __NULL__;
 }
 
 void
