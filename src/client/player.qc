@@ -184,5 +184,6 @@ Player_PreDraw(base_player pl, int thirdperson)
 	}
 
 	Animation_PlayerUpdate((player)pl);
+	Animation_TimerUpdate((player)pl, clframetime);
 	Player_HandleWeaponModel(pl, thirdperson);
 }
