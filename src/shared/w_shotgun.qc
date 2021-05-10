@@ -160,17 +160,25 @@ void
 w_shotgun_primary(void)
 {
 	player pl = (player)self;
+
 	if (pl.w_attack_next) {
 		w_shotgun_release();
 		return;
 	}
 
-	if (pl.mode_tempstate > SHOTTY_IDLE) {
+	/* interrupt reloading if no longer empty */
+	if (pl.mode_tempstate == SHOTTY_RELOAD && pl.shotgun_mag >= 1) {
+		pl.mode_tempstate = SHOTTY_RELOAD_END;
+		w_shotgun_release();
+		return;
+	} else if (pl.mode_tempstate > SHOTTY_IDLE) {
+		w_shotgun_release();
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.shotgun_mag <= 0) {
+		w_shotgun_release();
 		return;
 	}
 
@@ -208,17 +216,25 @@ void
 w_shotgun_secondary(void)
 {
 	player pl = (player)self;
+
 	if (pl.w_attack_next) {
 		w_shotgun_release();
 		return;
 	}
 
-	if (pl.mode_tempstate > SHOTTY_IDLE) {
+	/* interrupt reloading if no longer empty */
+	if (pl.mode_tempstate == SHOTTY_RELOAD && pl.shotgun_mag >= 2) {
+		pl.mode_tempstate = SHOTTY_RELOAD_END;
+		w_shotgun_release();
+		return;
+	} else if (pl.mode_tempstate > SHOTTY_IDLE) {
+		w_shotgun_release();
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.shotgun_mag <= 1) {
+		w_shotgun_release();
 		return;
 	}
 
