@@ -90,6 +90,7 @@ void w_shotgun_precache(void)
 #else
 	precache_model("models/v_shotgun.mdl");
 	precache_model("models/p_shotgun.mdl");
+	precache_model("models/shotgunshell.mdl");
 	Sound_Precache("modelevent_shotgunshell.land");
 #endif
 }
