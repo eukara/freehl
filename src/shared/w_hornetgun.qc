@@ -57,10 +57,10 @@ w_hornetgun_pickup(int new, int startammo)
 	/* only pick it up once */
 	if (new) {
 		pl.ammo_hornet = MAX_A_HORNET;
-		return TRUE;
+		return (1);
 	}
 #endif
-	return FALSE;
+	return (0);
 }
 
 void

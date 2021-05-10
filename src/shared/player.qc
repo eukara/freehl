@@ -355,12 +355,12 @@ player::SendEntity(entity ePEnt, float fChanged)
 {
 	/* remove our entity to other clients if we're dead */
 	if (health <= 0 && ePEnt != this) {
-		return FALSE;
+		return (0);
 	}
 
 	/* target client isn't real, they have no client-side. abandon */
 	if (clienttype(ePEnt) != CLIENTTYPE_REAL) {
-		return FALSE;
+		return (0);
 	}
 
 	/* other players don't need to know about these attributes */
@@ -421,6 +421,6 @@ player::SendEntity(entity ePEnt, float fChanged)
 		WriteByte(MSG_ENTITY, mode_tempstate);
 	}
 
-	return TRUE;
+	return (1);
 }
 #endif

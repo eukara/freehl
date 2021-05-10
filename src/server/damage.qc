@@ -94,31 +94,31 @@ Damage_CheckTrace(entity t, vector vecHitPos)
 {
 	/* We're lazy. Who cares */
 	if (t.solid == SOLID_BSP) {
-		return TRUE;
+		return (1);
 	}
 
 	traceline(vecHitPos, t.origin, 1, self);
 	if (trace_fraction == 1) {
-		return TRUE;
+		return (1);
 	}
 	traceline(vecHitPos, t.origin + [15,15,0], 1, self);
 	if (trace_fraction == 1) {
-		return TRUE;
+		return (1);
 	}
 	traceline(vecHitPos, t.origin + [-15,-15,0], 1, self);
 	if (trace_fraction == 1) {
-		return TRUE;
+		return (1);
 	}
 	traceline(vecHitPos, t.origin + [-15,15,0], 1, self);
 	if (trace_fraction == 1) {
-		return TRUE;
+		return (1);
 	}
 	traceline(vecHitPos, t.origin + [15,-15,0], 1, self);
 	if (trace_fraction == 1) {
-		return TRUE;
+		return (1);
 	}
 
-	return FALSE;
+	return (0);
 }
 
 /* even more pain and suffering, mostly used for explosives */

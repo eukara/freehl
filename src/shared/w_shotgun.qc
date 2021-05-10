@@ -130,11 +130,11 @@ w_shotgun_pickup(int new, int startammo)
 		if (pl.ammo_buckshot < MAX_A_BUCKSHOT) {
 			pl.ammo_buckshot = bound(0, pl.ammo_buckshot + 8, MAX_A_BUCKSHOT);
 		} else {
-			return FALSE;
+			return (0);
 		}
 	}
 #endif
-	return TRUE;
+	return (1);
 }
 
 void

@@ -108,7 +108,7 @@ monster_alien_slave::AttackMelee(void)
 	/* functional */
 	think = AttackFlail;
 	nextthink = 0.25f;
-	return TRUE;
+	return (1);
 }
 
 void
@@ -137,7 +137,7 @@ monster_alien_slave::AttackRanged(void)
 	/* functional */
 	think = AttackBeam;
 	nextthink = time + 1.5f;
-	return TRUE;
+	return (1);
 }
 
 void

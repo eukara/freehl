@@ -22,10 +22,10 @@ ClientGame_EntityUpdate(float id, float new)
 		w_tripmine_parse();
 		break;
 	default:
-		return FALSE;
+		return (0);
 	}
 
-	return TRUE;
+	return (1);
 }
 
 void

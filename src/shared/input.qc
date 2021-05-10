@@ -14,14 +14,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*
-=================
-Input_Handle
-
-Handles impulse and whatnot
-=================
-*/
-void Game_Input(void)
+void
+Game_Input(void)
 {
 #ifdef SERVER
 	CGameRules rules = (CGameRules)g_grMode;
@@ -31,18 +25,17 @@ void Game_Input(void)
 		return;
 	}
 
-	if (input_buttons & INPUT_BUTTON5) {
+	if (input_buttons & INPUT_BUTTON5)
 		Player_UseDown(); 
-	} else {
+	else
 		Player_UseUp();
-	}
 
-	if (self.impulse == 100) {
+	if (self.impulse == 100)
 		Flashlight_Toggle();
-	}
 
 	if (cvar("sv_cheats") == 1) {
 		player pl = (player)self;
+
 		if (self.impulse == 101) {
 			pl.health = 100;
 			pl.armor = 100;
@@ -74,37 +67,17 @@ void Game_Input(void)
 			Weapons_AddItem(pl, WEAPON_SHOCKRIFLE, -1);
 #endif
 		}
-
-		if (self.impulse == 102) {
-			// Respawn all the entities
-			for (entity a = world; (a = findfloat(a, ::identity, 1));) {
-				CBaseEntity caw = (CBaseEntity)a;
-				caw.Respawn();
-				caw.SendFlags |= 
-					BASEFL_CHANGED_ORIGIN |
-					BASEFL_CHANGED_ANGLES |
-					BASEFL_CHANGED_MODELINDEX |
-					BASEFL_CHANGED_SIZE |
-					BASEFL_CHANGED_SOLID |
-					BASEFL_CHANGED_FRAME |
-					BASEFL_CHANGED_SKIN |
-					BASEFL_CHANGED_MOVETYPE |
-					BASEFL_CHANGED_EFFECTS;
-			}
-			bprint(PRINT_HIGH, "Respawning all map entities...\n");
-		}
 	}
 
 	self.impulse = 0;
 #endif
 
-	if (input_buttons & INPUT_BUTTON0) {
+	if (input_buttons & INPUT_BUTTON0)
 		Weapons_Primary();
-	} else if (input_buttons & INPUT_BUTTON4) {
+	else if (input_buttons & INPUT_BUTTON4)
 		Weapons_Reload();
-	} else if (input_buttons & INPUT_BUTTON3) {
+	else if (input_buttons & INPUT_BUTTON3)
 		Weapons_Secondary();
-	} else {
+	else
 		Weapons_Release();
-	}
 }

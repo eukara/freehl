@@ -78,11 +78,11 @@ int w_rpg_pickup(int new, int startammo)
 		if (pl.ammo_rocket < MAX_A_ROCKET) {
 			pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
 		} else {
-			return FALSE;
+			return (0);
 		}
 	}
 #endif
-	return TRUE;
+	return (1);
 }
 
 void w_rpg_draw(void)

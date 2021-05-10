@@ -76,11 +76,11 @@ w_mp5_pickup(int new, int startammo)
 		if (pl.ammo_9mm < MAX_A_9MM) {
 			pl.ammo_9mm = bound(0, pl.ammo_9mm + 25, MAX_A_9MM);
 		} else {
-			return FALSE;
+			return (0);
 		}
 	}
 #endif
-	return TRUE;
+	return (1);
 }
 
 void

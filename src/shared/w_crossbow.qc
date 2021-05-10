@@ -91,11 +91,11 @@ w_crossbow_pickup(int new, int startammo)
 		if (pl.ammo_bolt < MAX_A_BOLT) {
 			pl.ammo_bolt = bound(0, pl.ammo_bolt + 5, MAX_A_BOLT);
 		} else {
-			return FALSE;
+			return (0);
 		}
 	}
 #endif
-	return TRUE;
+	return (1);
 }
 
 void

@@ -2,7 +2,7 @@
 entities.h
 flags.h
 player.qc
-weapon_common.h
+../../../base/src/shared/weapon_common.h
 animations.h
 animations.qc
 pmove.qc
@@ -32,6 +32,6 @@ w_shotgun.qc
 w_snark.qc
 w_tripmine.qc
 weapons.qc
-weapon_common.qc
+../../../base/src/shared/weapon_common.qc
 input.qc
 #endlist

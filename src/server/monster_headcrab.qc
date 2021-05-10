@@ -96,7 +96,7 @@ monster_headcrab::AttackRanged(void)
 	/* functional */
 	makevectors(vectoangles(m_eEnemy.origin - origin));
 	velocity = v_forward * 512 + [0,0,250];
-	return TRUE;
+	return (1);
 }
 
 void

@@ -66,7 +66,7 @@ monster_tripmine::SendEntity(entity pvsent, float flags)
 	WriteCoord(MSG_ENTITY, angles[2]);
 	WriteByte(MSG_ENTITY, health);
 	WriteShort(MSG_ENTITY, modelindex);
-	return TRUE;
+	return (1);
 }
 
 void
@@ -239,10 +239,10 @@ int w_tripmine_pickup(int new, int startammo)
 	if (pl.ammo_tripmine < MAX_A_TRIPMINE) {
 		pl.ammo_tripmine = bound(0, pl.ammo_tripmine + 1, MAX_A_TRIPMINE);
 	} else {
-		return FALSE;
+		return (0);
 	}
 #endif
-	return TRUE;
+	return (1);
 }
 
 void w_tripmine_draw(void)
