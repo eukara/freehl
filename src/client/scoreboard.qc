@@ -53,10 +53,6 @@ Scores_DrawTeam(player pl, vector pos)
 				continue;
 			}
 
-			if (getplayerkeyfloat(i, "*spec") != 0) {
-				continue;
-			}
-
 			temp = getplayerkeyvalue(i, "name");
 
 			/* Out of players */
