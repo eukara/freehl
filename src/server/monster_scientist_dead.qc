@@ -72,7 +72,7 @@ monster_scientist_dead::Respawn(void)
 	solid = SOLID_CORPSE;
 	movetype = MOVETYPE_NONE;
 	SetModel(m_oldModel);
-	setsize(this, VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
+	setsize(this, VEC_HULL_MIN + [0,0,36], VEC_HULL_MIN + [0,0,36]);
 	takedamage = DAMAGE_YES;
 	health = 0;
 	velocity = [0,0,0];

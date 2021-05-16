@@ -155,6 +155,7 @@ Player_DestroyWeaponModel(entity pp)
 		remove(pl.p_model);
 }
 
+void PMove_SetSize(entity targ);
 void
 Player_PreDraw(base_player pl, int thirdperson)
 {
@@ -183,6 +184,7 @@ Player_PreDraw(base_player pl, int thirdperson)
 		}
 	}
 
+	PMove_SetSize(pl);
 	Animation_PlayerUpdate((player)pl);
 	Animation_TimerUpdate((player)pl, clframetime);
 	Player_HandleWeaponModel(pl, thirdperson);
