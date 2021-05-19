@@ -1,6 +1,24 @@
 #!/bin/sh
+
+# builds a pk3 file that's alphabetically sorted
+mk_pk3()
+{
+	tree -fi > ./build_contents.txt
+	sed -i '/build_contents/d' ./build_contents.txt
+	sed -i '/directories,/d' ./build_contents.txt
+	zip -0 "$1".pk3 -@ < ./build_contents.txt
+	rm ./build_contents.txt
+	mv "$1".pk3 ../"$1".pk3
+}
+
+# grabs a patch .zip from archive.org and saves it as a pk3
+grab_patch()
+{
+	wget -nc -O ./pak$2.pk3 http://archive.org/download/hl_shareware_data/valve/$1.zip
+}
+
 SCRPATH="$( cd "$( dirname $(readlink -nf $0) )" && pwd )"
-OUTPK3DIR="pak0_retail.pk3dir"
+OUTPK3DIR="pak1_retail.pk3dir"
 
 if ! [ -x "$(command -v unshield)" ]; then
 	printf "Error: unshield is not installed.\n" >&2
@@ -30,19 +48,30 @@ unshield -d ./tmp x "$CDROM_PATH"/data1.cab
 
 # Let's shove them all into a convenient .pk3dir
 mkdir -p ./$OUTPK3DIR
-mv -v ./tmp/Half-Life_PAK_File/valve/pak0.pak ./$OUTPK3DIR/pak0.pak
+mv -v ./tmp/Half-Life_PAK_File/valve/pak0.pak ./pak00_cd.pak
 rsync -av ./tmp/Half-Life_Program_Files/valve/ ./$OUTPK3DIR/
 mv -v ./tmp/Half-Life_Program_Files/media ./$OUTPK3DIR/media
 mv -v ./tmp/Half-Life_Program_Files/logos ./$OUTPK3DIR/logos
+cd ./$OUTPK3DIR
+mk_pk3 pak01_cd
+cd "$SCRPATH"
 
 # Get the latest patch, because that'll fix the menu assets and add more fun, free content
-wget -nc -O ./tmp/patch1110.zip http://archive.org/download/hl_shareware_data/valve/patch1110.zip
-unzip -o ./tmp/patch1110.zip -d ./$OUTPK3DIR
+grab_patch 10051006 02_1006
+grab_patch 10061008 03_1008
+grab_patch 10081009 04_1009
+grab_patch 10091010 05_1010
+grab_patch 10101013 06_1013
+grab_patch 10131015 07_1015
+grab_patch 10151016 08_1016
+grab_patch 10161100 09_1100
+grab_patch 11001101 10_1101
+grab_patch 11011104 11_1104
+grab_patch 11041106 12_1106
+grab_patch 11061107 13_1107
+grab_patch 11071108 14_1108
+grab_patch 11081109 15_1109
+grab_patch 11091110 16_1110
 
-# Dangerous rm -rf'ing going on here
-printf "All done. Would you like to clean up temporary files? (./tmp dir)\ny/n: "
-read CHOICE
-
-if [[ "$CHOICE" == [Yy]* ]]; then
-	rm -rfv ./tmp
-fi
+rm -rfv ./$OUTPK3DIR
+rm -rfv ./tmp
