@@ -121,6 +121,12 @@ Player_HandleWeaponModel(base_player pp, float thirdperson)
 		
 		/* set the new skeletonindex */
 		pl.p_model.skeletonindex = skel_create(pl.p_model.modelindex);
+
+		/* hack this thing in here FIXME: this should be done when popping in/out of a pvs */
+		if (autocvar(cl_himodels, 1, "Use high-quality player models over lower-definition ones"))
+			setcustomskin(self, "", "geomset 0 2\n");
+		else
+			setcustomskin(self, "", "geomset 0 1\n");
 	}
 
 	/* follow player at all times */
