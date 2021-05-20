@@ -210,6 +210,7 @@ weapon_t w_crowbar =
 	.id		= ITEM_CROWBAR,
 	.slot		= 0,
 	.slot_pos	= 0,
+	.weight		= 0,
 	.draw		= w_crowbar_draw,
 	.holster	= w_crowbar_holster,
 	.primary	= w_crowbar_primary,

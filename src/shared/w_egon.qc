@@ -306,6 +306,7 @@ weapon_t w_egon =
 	.id		= ITEM_EGON,
 	.slot		= 3,
 	.slot_pos	= 2,
+	.weight		= 15,
 	.draw		= w_egon_draw,
 	.holster	= w_egon_holster,
 	.primary	= w_egon_primary,

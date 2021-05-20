@@ -378,6 +378,7 @@ weapon_t w_tripmine =
 	.id		= ITEM_TRIPMINE,
 	.slot		= 4,
 	.slot_pos	= 2,
+	.weight		= -10,
 	.draw		= w_tripmine_draw,
 	.holster	= w_tripmine_holster,
 	.primary	= w_tripmine_primary,

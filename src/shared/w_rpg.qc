@@ -338,6 +338,7 @@ weapon_t w_rpg =
 	.id		= ITEM_RPG,
 	.slot		= 3,
 	.slot_pos	= 0,
+	.weight		= 20,
 	.draw		= w_rpg_draw,
 	.holster	= w_rpg_holster,
 	.primary	= w_rpg_primary,

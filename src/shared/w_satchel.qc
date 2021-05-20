@@ -316,6 +316,7 @@ weapon_t w_satchel =
 	.id		= ITEM_SATCHEL,
 	.slot		= 4,
 	.slot_pos	= 1,
+	.weight		= -20,
 	.draw		= w_satchel_draw,
 	.holster	= w_satchel_holster,
 	.primary	= w_satchel_primary,

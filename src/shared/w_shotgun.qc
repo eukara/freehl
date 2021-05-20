@@ -401,6 +401,7 @@ weapon_t w_shotgun =
 	.id		= ITEM_SHOTGUN,
 	.slot		= 2,
 	.slot_pos	= 1,
+	.weight		= 15,
 	.draw		= w_shotgun_draw,
 	.holster	= w_shotgun_holster,
 	.primary	= w_shotgun_primary,

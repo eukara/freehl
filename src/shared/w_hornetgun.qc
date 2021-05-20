@@ -307,6 +307,7 @@ weapon_t w_hornetgun =
 	.id		= ITEM_HORNETGUN,
 	.slot		= 3,
 	.slot_pos	= 3,
+	.weight		= 10,
 	.draw		= w_hornetgun_draw,
 	.holster	= w_hornetgun_holster,
 	.primary	= w_hornetgun_primary,

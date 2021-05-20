@@ -386,6 +386,7 @@ weapon_t w_glock =
 	.id		= ITEM_GLOCK,
 	.slot		= 1,
 	.slot_pos	= 0,
+	.weight		= 10,
 	.draw		= w_glock_draw,
 	.holster	= w_glock_holster,
 	.primary	= w_glock_primary,

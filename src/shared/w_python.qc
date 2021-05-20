@@ -338,6 +338,7 @@ weapon_t w_python =
 	.id		= ITEM_PYTHON,
 	.slot		= 1,
 	.slot_pos	= 1,
+	.weight		= 15,
 	.draw		= w_python_draw,
 	.holster	= w_python_holster,
 	.primary	= w_python_primary,

@@ -493,6 +493,7 @@ weapon_t w_gauss =
 	.id		= ITEM_GAUSS,
 	.slot		= 3,
 	.slot_pos	= 1,
+	.weight		= 20,
 	.draw		= w_gauss_draw,
 	.holster	= w_gauss_holster,
 	.primary	= w_gauss_primary,

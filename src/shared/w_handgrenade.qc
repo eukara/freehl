@@ -249,6 +249,7 @@ weapon_t w_handgrenade =
 	.id		= ITEM_HANDGRENADE,
 	.slot		= 4,
 	.slot_pos	= 0,
+	.weight		= 5,
 	.draw		= w_handgrenade_draw,
 	.holster	= w_handgrenade_holster,
 	.primary	= w_handgrenade_primary,

@@ -382,6 +382,7 @@ weapon_t w_mp5 =
 	.id		= ITEM_MP5,
 	.slot		= 2,
 	.slot_pos	= 0,
+	.weight		= 15,
 	.draw		= w_mp5_draw,
 	.holster	= w_mp5_holster,
 	.primary	= w_mp5_primary,

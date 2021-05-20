@@ -375,6 +375,7 @@ weapon_t w_crossbow =
 	.id		= ITEM_CROSSBOW,
 	.slot		= 2,
 	.slot_pos	= 2,
+	.weight		= 10,
 	.draw		= w_crossbow_draw,
 	.holster	= w_crossbow_holster,
 	.primary	= w_crossbow_primary,

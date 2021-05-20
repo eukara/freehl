@@ -323,6 +323,7 @@ weapon_t w_snark =
 	.id		= ITEM_SNARK,
 	.slot		= 4,
 	.slot_pos	= 3,
+	.weight		= 5,
 	.draw		= w_snark_draw,
 	.holster	= w_snark_holster,
 	.primary	= w_snark_primary,
