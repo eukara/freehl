@@ -30,6 +30,14 @@ class item_weaponbox:CBaseEntity
 	int ammo_hornet;
 	int weapon_items;
 
+#ifdef GEARBOX
+	int ammo_556;
+	int ammo_penguin;
+	int ammo_762;
+	int ammo_spore;
+	int ammo_shock;
+#endif
+
 	void(void) item_weaponbox;
 	virtual void(void) touch;
 	virtual void(player) setup;
@@ -57,6 +65,20 @@ void item_weaponbox::touch(void)
 	pl.ammo_tripmine += ammo_tripmine;
 	pl.ammo_snark += ammo_snark;
 	pl.ammo_hornet += ammo_hornet;
+
+#ifdef GEARBOX
+	pl.ammo_556 += ammo_556;
+	pl.ammo_762 += ammo_762;
+	pl.ammo_spore += ammo_spore;
+	pl.ammo_shock += ammo_shock;
+	pl.ammo_penguin += ammo_penguin;
+
+	pl.ammo_556 = min(pl.ammo_556, MAX_A_556);
+	pl.ammo_penguin = min(pl.ammo_penguin, MAX_A_PENGUIN);
+	pl.ammo_762 = min(pl.ammo_762, MAX_A_762);
+	pl.ammo_spore = min(pl.ammo_spore, MAX_A_SPORE);
+	pl.ammo_shock = min(pl.ammo_shock, MAX_A_SHOCK);
+#endif
 
 	/* cull */
 	pl.ammo_9mm = min(pl.ammo_9mm, MAX_A_9MM);
@@ -95,6 +117,14 @@ void item_weaponbox::setup(player pl)
 	ammo_hornet = pl.ammo_hornet;
 	weapon_items = pl.g_items;
 
+#ifdef GEARBOX
+	ammo_556 = pl.ammo_556;
+	ammo_762 = pl.ammo_762;
+	ammo_spore = pl.ammo_spore;
+	ammo_shock = pl.ammo_shock;
+	ammo_penguin = pl.ammo_penguin;
+#endif
+
 	/* none of this! */
 	if (ammo_satchel == 0 && pl.g_items & ITEM_SATCHEL)
 		weapon_items &= ~ITEM_SATCHEL;
@@ -104,6 +134,11 @@ void item_weaponbox::setup(player pl)
 		weapon_items &= ~ITEM_SNARK;
 	if (ammo_tripmine == 0 && pl.g_items & ITEM_TRIPMINE)
 		weapon_items &= ~ITEM_TRIPMINE;
+
+#ifdef GEARBOX
+	if (ammo_tripmine == 0 && pl.g_items & ITEM_PENGUIN)
+		weapon_items &= ~ITEM_PENGUIN;
+#endif
 }
 
 void item_weaponbox::item_weaponbox(void)
