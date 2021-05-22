@@ -30,7 +30,7 @@ then either run Nuclide's ./build_game.sh shell script, or issue 'make' inside
 Obviously make sure that Nuclide has fteqw and fteqcc set-up for building and that you have some proficiency in QuakeC.
 
 ## Community
-Join us on #freecs via irc.freenode.net and chat.
+Join us on #freecs via irc.libera.chat and talk/lurk!
 
 ## License
 ISC License
