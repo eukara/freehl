@@ -204,8 +204,14 @@ w_python_reload(void)
 	Weapons_ViewAnimation(PYTHON_RELOAD);
 
 #ifdef SERVER
+	static void w_python_reload_done(void) {
+		player pl = (player)self;
+		Weapons_ReloadWeapon(pl, player::python_mag, player::ammo_357, 6);
+	}
+
+	pl.think = w_python_reload_done;
+	pl.nextthink = time + 3.25f;
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.reload");
-	Weapons_ReloadWeapon(pl, player::python_mag, player::ammo_357, 6);
 #endif
 
 	pl.w_attack_next = 3.25f;

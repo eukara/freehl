@@ -247,7 +247,13 @@ w_mp5_reload(void)
 	Weapons_ViewAnimation(MP5_RELOAD);
 
 #ifdef SERVER
-	Weapons_ReloadWeapon(pl, player::mp5_mag, player::ammo_9mm, 50);
+	static void w_mp5_reload_done(void) {
+		player pl = (player)self;
+		Weapons_ReloadWeapon(pl, player::mp5_mag, player::ammo_9mm, 50);
+	}
+
+	pl.think = w_mp5_reload_done;
+	pl.nextthink = time + 1.5f;
 #endif
 
 	pl.w_attack_next = 1.5f;

@@ -189,7 +189,13 @@ void w_rpg_reload(void)
 
 	/* Audio-Visual Bit */
 #ifdef SERVER
-	Weapons_ReloadWeapon(pl, player::rpg_mag, player::ammo_rocket, 1);
+	static void w_rpg_reload_done(void) {
+		player pl = (player)self;
+		Weapons_ReloadWeapon(pl, player::rpg_mag, player::ammo_rocket, 1);
+	}
+
+	pl.think = w_rpg_reload_done;
+	pl.nextthink = time + 2.25f;
 #endif
 
 	pl.w_attack_next = 2.25f;

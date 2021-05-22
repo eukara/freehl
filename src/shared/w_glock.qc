@@ -256,7 +256,13 @@ w_glock_reload(void)
 	}
 
 #ifdef SERVER
-	Weapons_ReloadWeapon(pl, player::glock_mag, player::ammo_9mm, 18);
+	static void w_glock_reload_done(void) {
+		player pl = (player)self;
+		Weapons_ReloadWeapon(pl, player::glock_mag, player::ammo_9mm, 18);
+	}
+
+	pl.think = w_glock_reload_done;
+	pl.nextthink = time + 2.0f;
 #endif
 
 	pl.w_attack_next = 2.0f;

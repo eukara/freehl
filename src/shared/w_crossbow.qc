@@ -243,7 +243,13 @@ w_crossbow_reload(void)
 	}
 
 #ifdef SERVER
-	Weapons_ReloadWeapon(pl, player::crossbow_mag, player::ammo_bolt, 5);
+	static void w_crossbow_reload_done(void) {
+		player pl = (player)self;
+		Weapons_ReloadWeapon(pl, player::crossbow_mag, player::ammo_bolt, 5);
+	}
+
+	pl.think = w_crossbow_reload_done;
+	pl.nextthink = time + 4.5f;
 	Sound_Play(pl, CHAN_ITEM, "weapon_crossbow.reload");
 #endif
 
