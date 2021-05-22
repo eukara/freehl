@@ -94,6 +94,16 @@ void item_weaponbox::setup(player pl)
 	ammo_snark = pl.ammo_snark;
 	ammo_hornet = pl.ammo_hornet;
 	weapon_items = pl.g_items;
+
+	/* none of this! */
+	if (ammo_satchel == 0 && pl.g_items & ITEM_SATCHEL)
+		weapon_items &= ~ITEM_SATCHEL;
+	if (ammo_handgrenade == 0 && pl.g_items & ITEM_HANDGRENADE)
+		weapon_items &= ~ITEM_HANDGRENADE;
+	if (ammo_snark == 0 && pl.g_items & ITEM_SNARK)
+		weapon_items &= ~ITEM_SNARK;
+	if (ammo_tripmine == 0 && pl.g_items & ITEM_TRIPMINE)
+		weapon_items &= ~ITEM_TRIPMINE;
 }
 
 void item_weaponbox::item_weaponbox(void)
