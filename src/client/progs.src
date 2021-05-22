@@ -21,6 +21,7 @@ defs.h
 
 ../../../base/src/client/draw.qc
 init.qc
+flashlight.qc
 player.qc
 entities.qc
 cmds.qc
