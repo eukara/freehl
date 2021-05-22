@@ -93,6 +93,9 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 
 	Sound_Play(pl, CHAN_AUTO, "player.die");
 
+	/* explode all satchels */
+	s_satchel_detonate((entity)pl);
+
 	/* force respawn */
 	pl.think = PutClientInServer;
 	pl.nextthink = time + 4.0f;
