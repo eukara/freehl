@@ -1,0 +1,9 @@
+#pragma target fte
+#pragma progs_dat  "../../menu.dat"
+#define MENU
+#define GAME_DIR "valve"
+
+#includelist
+../../../src/menu-fn/includes.src
+#endlist
+ 

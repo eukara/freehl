@@ -1,2 +1,3 @@
 #pragma sourcefile client/progs.src
 #pragma sourcefile server/progs.src
+#pragma sourcefile menu/progs.src
