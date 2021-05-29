@@ -173,12 +173,11 @@ void w_gauss_draw(void)
 {
 	player pl = (player)self;
 	pl.mode_tempstate = 0;
-
-	/* link the FX class */
-#ifdef CLIENT
 	Weapons_SetModel("models/v_gauss.mdl");
 	Weapons_ViewAnimation(GAUSS_DRAW);
 
+	/* link the FX class */
+#ifdef CLIENT
 	entity eold = self;
 	self = pSeat->m_pWeaponFX;
 	spawnfunc_FXGauss();
