@@ -15,64 +15,68 @@
  */
 
 void
-GamePMove_WaterMove(player target)
+player::Physics_WaterMove(void)
 {
-	if (target.movetype == MOVETYPE_NOCLIP) {
+	if (movetype == MOVETYPE_NOCLIP) {
 		return;
 	}
 
 #ifdef SERVER
-	if (target.health < 0) {
+	if (health < 0) {
 		return;
 	}
 
 	/* we've just exited water */
-	if (target.waterlevel != 3) {
-		if (target.underwater_time < time) {
-			Sound_Play(target, CHAN_BODY, "player.gasplight");
-		} else if (target.underwater_time < time + 9) {
-			Sound_Play(target, CHAN_BODY, "player.gaspheavy");
+	if (waterlevel != 3) {
+		if (underwater_time < time) {
+			Sound_Play(this, CHAN_BODY, "player.gasplight");
+		} else if (underwater_time < time + 9) {
+			Sound_Play(this, CHAN_BODY, "player.gaspheavy");
 		}
-		target.underwater_time = time + 12;
-	} else if (target.underwater_time < time) {
+		underwater_time = time + 12;
+	} else if (underwater_time < time) {
 		/* we've been underwater... for too long. */
-		if (target.pain_time < time) {
-			Damage_Apply(target, world, 5, DMG_DROWN, 0);
-			target.pain_time = time + 1;
+		if (pain_time < time) {
+			Damage_Apply(this, world, 5, DMG_DROWN, 0);
+			pain_time = time + 1;
 		}
 	}
 #endif
 
-	if (!target.waterlevel){
-		if (target.flags & FL_INWATER) {
+	if (!waterlevel){
+		if (flags & FL_INWATER) {
 #ifdef SERVER
-			Sound_Play(target, CHAN_BODY, "player.waterexit");
+			Sound_Play(this, CHAN_BODY, "player.waterexit");
 #endif
-			target.flags &= ~FL_INWATER;
+			flags &= ~FL_INWATER;
 		}
 		return;
 	}
 
 #ifdef SERVER
-	if (target.watertype == CONTENT_LAVA) {
-		if (target.pain_time < time) {
-			target.pain_time = time + 0.2;
-			Damage_Apply(target, world, 10*target.waterlevel, DMG_BURN, 0);
+	if (watertype == CONTENT_LAVA) {
+		if (pain_time < time) {
+			pain_time = time + 0.2;
+			Damage_Apply(this, world, 10*waterlevel, DMG_BURN, 0);
 		}
-	} else if (target.watertype == CONTENT_SLIME) {
-		if (target.pain_time < time) {
-			target.pain_time = time + 1;
-			Damage_Apply(target, world, 4*target.waterlevel, DMG_ACID, 0);
+	} else if (watertype == CONTENT_SLIME) {
+		if (pain_time < time) {
+			pain_time = time + 1;
+			Damage_Apply(this, world, 4*waterlevel, DMG_ACID, 0);
 		}
 	}
 #endif
 
-	if (!(target.flags & FL_INWATER)) {
+	if (!(flags & FL_INWATER)) {
 #ifdef SERVER
-		Sound_Play(target, CHAN_BODY, "player.waterenter");
-		target.pain_time = 0;
+		Sound_Play(this, CHAN_BODY, "player.waterenter");
+		pain_time = 0;
 #endif
-		target.flags |= FL_INWATER;
+		flags |= FL_INWATER;
+	}
+
+	/* we might need to apply extra-velocity to get out of water-volumes */
+	if (waterlevel >= 2) {
+		Physics_WaterJump();
 	}
 }
- 

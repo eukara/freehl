@@ -80,6 +80,9 @@ class player:base_player
 	PREDICTED_INT(ammo_rpg_state);
 	PREDICTED_INT(mode_tempstate);
 
+	virtual void(void) Physics_Jump;
+	virtual void(void) Physics_WaterMove;
+
 #ifdef CLIENT
 	/* External model */
 	entity p_model;
