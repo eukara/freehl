@@ -19,7 +19,8 @@ void
 Game_RunClientCommand(void)
 {
 	Footsteps_Update();
-	PMove_Run();
+	player pl = (player)self;
+	pl.Physics_Run();
 }
 
 /* custom chat packet */
