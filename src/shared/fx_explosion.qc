@@ -17,6 +17,7 @@
 #ifdef CLIENT
 var int FX_EXPLOSION_MAIN;
 var int FX_EXPLOSION_BS;
+var int FX_EXPLOSION_SPARK;
 
 void
 FX_Explosion_Init(void)
@@ -25,6 +26,7 @@ FX_Explosion_Init(void)
 	precache_model("sprites/fexplo.spr");
 	FX_EXPLOSION_MAIN = particleeffectnum("fx_explosion.main");
 	FX_EXPLOSION_BS = particleeffectnum("fx_explosion.blacksmoke");
+	FX_EXPLOSION_SPARK = particleeffectnum("fx_spark.effect");
 }
 #endif
 
@@ -40,10 +42,23 @@ FX_Explosion(vector vecPos)
 	msg_entity = self;
 	multicast(vecPos, MULTICAST_PVS);
 #else
+	static void FX_Explosion_Spark(void)
+	{
+		if (self.alpha < 0) {
+			remove(self);
+			return;
+		}
+
+		pointparticles(FX_EXPLOSION_SPARK, self.origin, randomvec(), 1);
+		self.alpha--;
+		self.nextthink = time + 0.1f + (random() * 0.1f);
+	}
+
 	Decals_Place(vecPos, sprintf("{scorch%d", floor(random(1,4))));
 	vecPos[2] += 48;
 	env_sprite eExplosion = spawn(env_sprite);
-	setorigin(eExplosion, vecPos);
+	makevectors(view_angles);
+	setorigin(eExplosion, vecPos + [0,0,48] + (v_forward * -32));
 	setmodel(eExplosion, "sprites/fexplo.spr");
 	Sound_Play(eExplosion, CHAN_WEAPON, "fx.explosion");
 
@@ -54,6 +69,20 @@ FX_Explosion(vector vecPos)
 	eExplosion.loops = 0;
 	eExplosion.framerate = 20;
 	eExplosion.nextthink = time + 0.05f;
+	eExplosion.scale = 2.0f;
+
+	for (int i = 0; i < 2; i++) {
+		entity sparks = spawn();
+		sparks.alpha = 5;
+		sparks.movetype = MOVETYPE_TOSS;
+		sparks.think = FX_Explosion_Spark;
+		sparks.nextthink = time + 0.1f;
+		sparks.drawmask = MASK_ENGINE;
+		sparks.velocity[0] = random(-128,128);
+		sparks.velocity[1] = random(-128,128);
+		sparks.velocity[2] = (400 + random() * 64);
+		setorigin(sparks, vecPos);
+	}
 
 	pointparticles(FX_EXPLOSION_MAIN, vecPos, [0,0,0], 1);
 	pointparticles(FX_EXPLOSION_BS, vecPos, [0,0,0], 1);

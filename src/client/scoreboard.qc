@@ -159,7 +159,7 @@ Scores_Draw(void)
 {
 	vector pos;
 	player pl;
-	
+
 	pl = (player)pSeat->m_ePlayer;
 
 	if (autocvar_cl_centerscores) {
