@@ -26,6 +26,8 @@ player.qc
 entities.qc
 cmds.qc
 game_event.qc
+../../../valve/src/client/camera.qc
+../../../valve/src/client/viewmodel.qc
 view.qc
 obituary.qc
 hud.qc
