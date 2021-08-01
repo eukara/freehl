@@ -38,10 +38,14 @@ class HLMultiplayerRules:HLGameRules
 	int m_iIntermission;
 	int m_iIntermissionTime;
 
+	void(void) HLMultiplayerRules;
+
 	virtual void(void) FrameStart;
+	virtual void(void) CheckRules;
 
 	/* client */
 	virtual void(base_player) PlayerSpawn;
 	virtual void(base_player) PlayerDeath;
 	virtual float(base_player, string) ConsoleCommand;
+
 };
