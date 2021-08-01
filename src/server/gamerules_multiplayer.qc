@@ -67,7 +67,12 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 		IntermissionStart();
 	}
 
+#ifdef VALVE
+	/* explode all satchels */
+	s_satchel_detonate((entity)pl);
+	/* drop their posessions into a weaponbox item */
 	weaponbox_spawn((player)pl);
+#endif
 
 	/* either gib, or make a corpse */
 	if (pl.health < -50) {
@@ -97,9 +102,6 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 	pl.health = 0;
 
 	Sound_Play(pl, CHAN_AUTO, "player.die");
-
-	/* explode all satchels */
-	s_satchel_detonate((entity)pl);
 
 	/* force respawn */
 	pl.think = PutClientInServer;
@@ -147,10 +149,13 @@ HLMultiplayerRules::PlayerSpawn(base_player pp)
 
 	LevelNewParms();
 	LevelDecodeParms(pl);
+
+#if defined (VALVE) || defined (GEARBOX)
 	pl.g_items = ITEM_CROWBAR | ITEM_GLOCK | ITEM_SUIT;
 	pl.activeweapon = WEAPON_GLOCK;
 	pl.glock_mag = 18;
 	pl.ammo_9mm = 44;
+#endif
 
 	spot = Spawn_SelectRandom("info_player_deathmatch");
 	setorigin(pl, spot.origin);
