@@ -29,6 +29,12 @@ then either run Nuclide's ./build_game.sh shell script, or issue 'make' inside
 
 Obviously make sure that Nuclide has fteqw and fteqcc set-up for building and that you have some proficiency in QuakeC.
 
+## Notes
+If you're playing a mod that relies on FreeHL, selecting it from the Custom Game
+menu alone works fine. However if you want to launch it via the command-line
+you need to make sure to add `-game valve` before `-game modname`.
+The order is important.
+
 ## Community
 Join us on #freecs via irc.libera.chat and talk/lurk!
 
