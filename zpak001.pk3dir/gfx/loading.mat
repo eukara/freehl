@@ -1,0 +1,8 @@
+{
+	noMipmap
+	noPicmip
+	{
+		map gfx/lambda64.tga
+		blendFunc blend
+	}
+}
