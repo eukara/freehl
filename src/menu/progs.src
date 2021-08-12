@@ -1,4 +1,4 @@
-#pragma target fte
+#pragma target fte_5768
 #pragma progs_dat  "../../menu.dat"
 #define MENU
 #define GAME_DIR "valve"
