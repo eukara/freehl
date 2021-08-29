@@ -241,20 +241,21 @@ void w_egon_release(void)
 	p.alpha = 0.0f;
 #endif	
 
-	if (pl.mode_tempstate != 0) {
+	if (pl.mode_tempstate != 0 && pl.mode_tempstate < 3) {
 #ifdef SERVER
 		sound(pl, CHAN_WEAPON, "weapons/egon_off1.wav", 1, ATTN_NORM, 100, 0);
 #endif
-		pl.mode_tempstate = 0;
+		pl.mode_tempstate = 3;
 		Weapons_ViewPunchAngle([-2,0,0]);
 	}
 
 	pl.gflags &= ~GF_EGONBEAM;
 
-#ifndef SERVER
-	if (Weapons_GetAnimation() == EGON_ALTFIRECYCLE) {
+	if (pl.mode_tempstate == 3) {
 		Weapons_ViewAnimation(EGON_ALTFIREOFF);
 		pl.w_idle_next = 1.0f;
+		pl.w_attack_next = 1.1f;
+		pl.mode_tempstate = 0;
 	} else {
 		if (pl.w_idle_next > 0.0f) {
 			return;
@@ -267,8 +268,8 @@ void w_egon_release(void)
 			Weapons_ViewAnimation(EGON_IDLE1);
 			pl.w_idle_next = 2.0f;
 		}
+		pl.mode_tempstate = 0;
 	}
-#endif
 }
 void w_egon_crosshair(void)
 {
