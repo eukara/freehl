@@ -14,42 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*
-=================
-ClientGame_Init
-
-Comparable to worldspawn in SSQC in that it's mostly used for precaches
-=================
-*/
-void
-ClientGame_Init(float apilevel, string enginename, float engineversion)
+enum
 {
-	Obituary_Init();
-}
-
-void
-ClientGame_InitDone(void)
-{
-}
-
-void
-ClientGame_RendererRestart(string rstr)
-{
-	precache_model("models/shell.mdl");
-	precache_model("models/shotgunshell.mdl");
-	precache_model("sprites/muzzleflash1.spr");
-	precache_model("sprites/muzzleflash2.spr");
-	precache_model("sprites/muzzleflash2.spr");
-
-	Obituary_Precache();
-
-	FX_Blood_Init();
-	FX_BreakModel_Init();
-	FX_Explosion_Init();
-	FX_GibHuman_Init();
-	FX_Spark_Init();
-	FX_Impact_Init();
-	FX_GaussBeam_Init();
-
-	BEAM_TRIPMINE = particleeffectnum("weapon_tripmine.beam");
-}
+	EV_GAUSSBEAM = EV_SEPARATOR
+};

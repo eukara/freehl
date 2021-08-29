@@ -1,5 +1,6 @@
  #includelist
 entities.h
+events.h
 flags.h
 player.qc
 ../../../base/src/shared/weapon_common.h
@@ -9,6 +10,7 @@ pmove.qc
 pmove_water.qc
 
 fx_blood.qc
+fx_gaussbeam.qc
 fx_breakmodel.qc
 fx_explosion.qc
 fx_gibhuman.qc

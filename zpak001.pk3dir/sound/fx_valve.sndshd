@@ -4,4 +4,11 @@ fx.explosion
 	sample weapons/explode4.wav
 	sample weapons/explode5.wav
 	shakes 1.5
+}
+
+fx.gaussbeam
+{
+	sample weapons/electro4.wav
+	sample weapons/electro5.wav
+	sample weapons/electro6.wav
 } 

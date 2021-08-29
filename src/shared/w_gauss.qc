@@ -23,88 +23,8 @@ Gauss Weapon
 
 */
 
-#ifdef CLIENT
-#define FXGAUSS_BEAMCOLOR [1,0.5,0]
-class FXGauss:CBaseFX
-{
-	int m_iBeams;
-	vector m_vecStart;
-	vector m_vecAngle;
-
-	void(void) FXGauss;
-	virtual void(void) Draw;
-};
-
-void
-FXGauss::Draw(void)
-{
-	player pl = (player)self;
-	int iLoop = 6;
-	vector src, endpos;
-	vector gunpos = gettaginfo(pSeat->m_eViewModel, 33);
-
-	if (alpha <= 0.0f) {
-		return;
-	}
-
-	src = m_vecStart;
-	makevectors(input_angles);
-	endpos = src + v_forward * 1024;
-	traceline(src, endpos, FALSE, pl);
-
-	/* drawing the first bit */
-	vector fsize = [3,3];
-	makevectors(view_angles);
-	R_BeginPolygon("sprites/xbeam1.spr_0.tga", 1, 0);
-		R_PolygonVertex(gunpos + v_right * fsize[0] - v_up * fsize[1],
-			[1,1], FXGAUSS_BEAMCOLOR, alpha);
-		R_PolygonVertex(gunpos - v_right * fsize[0] - v_up * fsize[1],
-			[0,1], FXGAUSS_BEAMCOLOR, alpha);
-		R_PolygonVertex(trace_endpos - v_right * fsize[0] + v_up * fsize[1],
-			[0,0], FXGAUSS_BEAMCOLOR, alpha);
-		R_PolygonVertex(trace_endpos + v_right * fsize[0] + v_up * fsize[1],
-			[1,0], FXGAUSS_BEAMCOLOR, alpha);
-	R_EndPolygon();
-
-	if (m_iBeams == 0) {
-		alpha -= clframetime * 3;
-		return;
-	}
-
-	// reflection equation:
-	vector x = v_forward;
-	while (iLoop > 0) {
-		float n;
-		vector r;
-		n = -dotproduct(trace_plane_normal, x);
-		r = 2 * trace_plane_normal * n + x;
-		x = r;
-		src = trace_endpos + (x * 1);
-		endpos = trace_endpos + (x * 8192);
-		traceline(src, endpos, FALSE, pl);
-
-		makevectors(view_angles);
-		R_BeginPolygon("sprites/xbeam1.spr_0.tga", 1, 0);
-			R_PolygonVertex(src + v_right * fsize[0] - v_up * fsize[1],
-				[1,1], FXGAUSS_BEAMCOLOR, alpha);
-			R_PolygonVertex(src - v_right * fsize[0] - v_up * fsize[1],
-				[0,1], FXGAUSS_BEAMCOLOR, alpha);
-			R_PolygonVertex(trace_endpos - v_right * fsize[0] + v_up * fsize[1],
-				[0,0], FXGAUSS_BEAMCOLOR, alpha);
-			R_PolygonVertex(trace_endpos + v_right * fsize[0] + v_up * fsize[1],
-				[1,0], FXGAUSS_BEAMCOLOR, alpha);
-		R_EndPolygon();
-	
-		iLoop--;
-	}
-	alpha -= clframetime * 3;
-}
-
-void
-FXGauss::FXGauss(void)
-{
-	CBaseFX::CBaseFX();
-}
+#ifdef SERVER
+var float TRAIL_GAUSSBEAM;
 #endif
 
 enum
@@ -175,14 +95,6 @@ void w_gauss_draw(void)
 	pl.mode_tempstate = 0;
 	Weapons_SetModel("models/v_gauss.mdl");
 	Weapons_ViewAnimation(GAUSS_DRAW);
-
-	/* link the FX class */
-#ifdef CLIENT
-	entity eold = self;
-	self = pSeat->m_pWeaponFX;
-	spawnfunc_FXGauss();
-	self = eold;
-#endif
 }
 
 void w_gauss_holster(void)
@@ -200,17 +112,20 @@ void w_gauss_fire(int one)
 	vector src = Weapons_GetCameraPos();
 	vector endpos = src + v_forward * 1024;
 	traceline(src, endpos, FALSE, pl);
+
 	sound(pl, CHAN_WEAPON, "weapons/gauss2.wav", 1, ATTN_NORM);
 	int iDamage = one ? 20 : 200;
 
-	if (getsurfacetexture(trace_ent, getsurfacenearpoint(trace_ent, trace_endpos)) == "sky") {
-		return;
-	}
+	if (serverkeyfloat("*bspversion") == BSPVER_HL)
+		if (getsurfacetexture(trace_ent, getsurfacenearpoint(trace_ent, trace_endpos)) == "sky") {
+			return;
+		}
 
 	if (trace_ent.takedamage == DAMAGE_YES) {
 		Damage_Apply(trace_ent, self, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
 		sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
 	}
+
 	if (one) {
 		return;
 	} else {
@@ -233,17 +148,10 @@ void w_gauss_fire(int one)
 		src = trace_endpos + (dir * 1);
 		endpos = trace_endpos + (dir * 8192);
 		traceline(src, endpos, FALSE, pl);
-		te_beam(world, src, trace_endpos);
 		iLoop--;
 		if (trace_ent.takedamage == DAMAGE_YES) {
 			Damage_Apply(trace_ent, self, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
 			sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
-		}
-		
-		if (getsurfacetexture(trace_ent, getsurfacenearpoint(trace_ent, trace_endpos)) != "sky") {
-			Decals_Place(trace_endpos, "{gaussshot1");
-		} else {
-			break;
 		}
 	}
 }
@@ -257,28 +165,15 @@ void w_gauss_primary(void)
 	}
 
 	/* Ammo check */
-#ifdef CLIENT
-	if (pl.a_ammo2 < 2) {
-		return;
-	}
-#else
 	if (pl.ammo_uranium < 2) {
 		return;
 	}
-#endif
 
 	Weapons_ViewAnimation(GAUSS_FIRE2);
-#ifdef CLIENT
-	FXGauss p = (FXGauss)pSeat->m_pWeaponFX;
-	p.m_iBeams = 0;
-	p.m_vecAngle = input_angles;
-	p.m_vecStart = pl.origin + pl.view_ofs;
-	p.alpha = 1.0f;
-	pl.a_ammo2 -= 2;
 	Weapons_ViewPunchAngle([-2,0,0]);
-#else
-	pl.ammo_uranium -= 2;
+#ifdef SERVER
 	w_gauss_fire(1);
+	FX_GaussBeam(Weapons_GetCameraPos(), input_angles, 0, pl);
 #endif
 
 	if (self.flags & FL_CROUCHING)
@@ -289,6 +184,7 @@ void w_gauss_primary(void)
 	pl.w_attack_next = 0.2f;
 	pl.w_idle_next = 2.5f;
 }
+
 void w_gauss_secondary(void)
 {
 	player pl = (player)self;
@@ -304,29 +200,15 @@ void w_gauss_secondary(void)
 	pl.w_attack_next = 0.1f;
 
 	/* Ammo check */
-#ifdef CLIENT
-    if (pl.a_ammo2 <= 0) {
-        if (pl.mode_tempstate > 0) {
-			w_gauss_release();
+	if (pl.ammo_uranium <= 0) {
+		if (pl.mode_tempstate > 0) {
+		w_gauss_release();
 		}
-		return;
-    }
-#else
-    if (pl.ammo_uranium <= 0) {
-        if (pl.mode_tempstate > 0) {
-            w_gauss_release();
-        }
-		return;
-    }
-#endif
+			return;
+	}
 
-#ifdef CLIENT
-	if (pl.ammo_gauss_volume < 255)
-		pl.a_ammo2--;
-#else
 	if (pl.ammo_gauss_volume < 255)
 		pl.ammo_uranium--;
-#endif
 
 	/* Set pitch sound shift */
 	pl.ammo_gauss_volume += 16;
@@ -371,16 +253,12 @@ void w_gauss_release(void)
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
 	
-#ifdef CLIENT
-		FXGauss p = (FXGauss)pSeat->m_pWeaponFX;
-		p.m_iBeams = 1;
-		p.m_vecAngle = input_angles;
-		p.m_vecStart = pl.origin + pl.view_ofs;
-		p.alpha = 1.0f;
-		soundupdate(pl, CHAN_WEAPON, "", -1, ATTN_NORM, 0, 0, 0);
 		Weapons_ViewPunchAngle([-5,0,0]);
+#ifdef CLIENT
+		soundupdate(pl, CHAN_WEAPON, "", -1, ATTN_NORM, 0, 0, 0);
 #else
 		w_gauss_fire(0);
+		FX_GaussBeam(Weapons_GetCameraPos(), input_angles, 6, pl);
 #endif
 		pl.w_attack_next = 1.5f;
 		pl.w_idle_next = 4.0f;

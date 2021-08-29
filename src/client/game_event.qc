@@ -91,6 +91,9 @@ ClientGame_EventParse(float fHeader)
 
 		FX_Impact(iType, vOrigin, vNormal);
 		break;
+	case EV_GAUSSBEAM:
+		FX_GaussBeam_Parse();
+		break;
 	case EV_CHAT:
 		float fSender = readbyte();
 		float fTeam = readbyte();
