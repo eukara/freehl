@@ -61,12 +61,6 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 			g_dmg_eAttacker.frags++;
 	}
 
-	/* in DM we only care about the frags */
-	if (cvar("mp_fraglimit"))
-	if (g_dmg_eAttacker.frags >= cvar("mp_fraglimit")) {
-		IntermissionStart();
-	}
-
 #ifdef VALVE
 	/* explode all satchels */
 	s_satchel_detonate((entity)pl);
