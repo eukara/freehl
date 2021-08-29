@@ -208,13 +208,13 @@ HUD_DrawArmor(void)
 	);
 
 	if (pl.armor > 0) {
+		float perc = (pl.armor / 100);
 		drawsubpic(
-			pos + [-80,-9],
-			[40, 40 * (pl.armor / 100)],
+			pos + [-80,-9] + [0, 40 * (1.0-perc)],
+			[40, 40 * perc],
 			g_hud7_spr,
-			[spr_suit1[0],
-			spr_suit1[1]],
-			[spr_suit1[2], spr_suit1[3] * (pl.armor / 100)],
+			[spr_suit1[0],spr_suit1[1] + spr_suit1[3] * (1.0-perc)],
+			[spr_suit1[2], spr_suit1[3] * perc],
 			g_hud_color,
 			pSeatLocal->m_flArmorAlpha,
 			DRAWFLAG_ADDITIVE
