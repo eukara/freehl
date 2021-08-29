@@ -26,6 +26,13 @@ Egon/Gluon-Gun Weapon
 #ifdef CLIENT
 var float TRAIL_EGONBEAM;
 
+void
+w_egon_beamfx(vector vecPos, vector vecEndPos, entity eOwner)
+{
+	dynamiclight_add(vecPos + v_forward * -16, 128, [0.5, 0.5, 1.0]);
+	trailparticles(TRAIL_EGONBEAM, eOwner, vecPos, vecEndPos);
+}
+
 #define FXGAUSS_BEAMCOLOR [1,0.5,0]
 class FXEgon:CBaseFX
 {
@@ -65,9 +72,7 @@ FXEgon::Draw(void)
 	makevectors(input_angles);
 	endpos = src + v_forward * 1024;
 	traceline(src, endpos, FALSE, pl);
-
-	dynamiclight_add(trace_endpos + v_forward * -16, 128, [0.5, 0.5, 1.0]);
-	trailparticles(TRAIL_EGONBEAM, pl, gunpos, trace_endpos);
+	w_egon_beamfx(gunpos, endpos, pl);
 	setorigin(this, trace_endpos + v_forward * -16);
 
 	setmodel(this, "sprites/xspark1.spr");
@@ -195,6 +200,7 @@ void w_egon_primary(void)
 #endif
 
 	pl.ammo_uranium--;
+	pl.gflags |= GF_EGONBEAM;
 
 	if (pl.mode_tempstate == 0) {
 #ifdef SERVER
@@ -242,6 +248,8 @@ void w_egon_release(void)
 		pl.mode_tempstate = 0;
 		Weapons_ViewPunchAngle([-2,0,0]);
 	}
+
+	pl.gflags &= ~GF_EGONBEAM;
 
 #ifndef SERVER
 	if (Weapons_GetAnimation() == EGON_ALTFIRECYCLE) {

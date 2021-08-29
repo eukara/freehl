@@ -17,7 +17,7 @@
 /* game flags */
 #define GF_SEMI_TOGGLED		(1<<0)
 #define GF_FLASHLIGHT		(1<<1)
-#define GF_UNUSED3			(1<<2)
+#define GF_EGONBEAM			(1<<2)
 #define GF_UNUSED4			(1<<3)
 #define GF_UNUSED5			(1<<4)
 #define GF_UNUSED6			(1<<5)
