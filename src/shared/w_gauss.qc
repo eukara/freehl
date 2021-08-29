@@ -23,10 +23,6 @@ Gauss Weapon
 
 */
 
-#ifdef SERVER
-var float TRAIL_GAUSSBEAM;
-#endif
-
 enum
 {
 	GAUSS_IDLE1,
