@@ -262,7 +262,7 @@ w_glock_reload(void)
 	}
 
 	pl.think = w_glock_reload_done;
-	pl.nextthink = time + 2.0f;
+	pl.nextthink = time + 1.9f;
 #endif
 
 	pl.w_attack_next = 2.0f;

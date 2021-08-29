@@ -195,7 +195,7 @@ void w_rpg_reload(void)
 	}
 
 	pl.think = w_rpg_reload_done;
-	pl.nextthink = time + 2.25f;
+	pl.nextthink = time + 2.15f;
 #endif
 
 	pl.w_attack_next = 2.25f;

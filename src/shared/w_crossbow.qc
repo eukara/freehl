@@ -249,7 +249,7 @@ w_crossbow_reload(void)
 	}
 
 	pl.think = w_crossbow_reload_done;
-	pl.nextthink = time + 4.5f;
+	pl.nextthink = time + 4.4f;
 	Sound_Play(pl, CHAN_ITEM, "weapon_crossbow.reload");
 #endif
 

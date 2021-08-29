@@ -253,7 +253,7 @@ w_mp5_reload(void)
 	}
 
 	pl.think = w_mp5_reload_done;
-	pl.nextthink = time + 1.5f;
+	pl.nextthink = time + 1.4f;
 #endif
 
 	pl.w_attack_next = 1.5f;

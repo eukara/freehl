@@ -210,7 +210,7 @@ w_python_reload(void)
 	}
 
 	pl.think = w_python_reload_done;
-	pl.nextthink = time + 3.25f;
+	pl.nextthink = time + 3.15f;
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.reload");
 #endif
 

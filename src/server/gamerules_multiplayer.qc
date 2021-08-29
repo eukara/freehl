@@ -92,6 +92,7 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 	pl.SetSolid(SOLID_NOT);
 	pl.takedamage = DAMAGE_NO;
 	pl.gflags &= ~GF_FLASHLIGHT;
+	pl.gflags &= ~GF_EGONBEAM;
 	pl.armor = pl.activeweapon = pl.g_items = 0;
 	pl.health = 0;
 
