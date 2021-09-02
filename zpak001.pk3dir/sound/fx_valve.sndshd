@@ -1,9 +1,18 @@
 fx.explosion
 {
+	distshader fx.explosion_dist
 	sample weapons/explode3.wav
 	sample weapons/explode4.wav
 	sample weapons/explode5.wav
 	shakes 1.5
+}
+
+fx.explosion_dist
+{
+	sample ambience/distantmortar1.wav
+	sample ambience/distantmortar1.wav
+	sample ambience/distantmortar1.wav
+	volume 0.5
 }
 
 fx.gaussbeam
