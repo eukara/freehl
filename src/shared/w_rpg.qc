@@ -217,7 +217,7 @@ void w_rpg_release(void)
 		return;
 	}
 
-	int r = (float)input_sequence % 3;
+	int r = floor(pseudorandom() * 3.0f);
 
 	if (pl.rpg_mag > 0) {
 		if (r == 1) {
@@ -233,7 +233,7 @@ void w_rpg_release(void)
 		}
 	}
 
-	pl.w_idle_next = 6.0f;
+	pl.w_idle_next = 3.0f * 2.5f;
 }
 
 void w_rpg_secondary(void)

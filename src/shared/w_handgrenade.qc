@@ -210,7 +210,7 @@ void w_handgrenade_release(void)
 		pl.w_idle_next = 0.5f;
 		pl.mode_tempstate = 0;
 	} else {
-		int r = (float)input_sequence % 8;
+		int r = floor(pseudorandom() * 8.0f);
 		if (r == 1) {
 			Weapons_ViewAnimation(HANDGRENADE_FIDGET);
 			pl.w_idle_next = 2.5f;
@@ -218,6 +218,7 @@ void w_handgrenade_release(void)
 			Weapons_ViewAnimation(HANDGRENADE_IDLE);
 			pl.w_idle_next = 3.0f;
 		}
+		pl.w_idle_next *= 2.5f;
 	}
 }
 

@@ -275,7 +275,7 @@ w_crossbow_release(void)
 		return;
 	}
 
-	int r = (float)input_sequence % 2;
+	int r = floor(pseudorandom() * 2.0f);
 	if (r == 1) {
 		if (pl.crossbow_mag) {
 			Weapons_ViewAnimation(CROSSBOW_IDLE1);
@@ -290,7 +290,7 @@ w_crossbow_release(void)
 		}
 	}
 
-	pl.w_idle_next = 3.0f;
+	pl.w_idle_next = 3.0f * 2.5f;
 }
 
 void

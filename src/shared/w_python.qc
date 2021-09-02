@@ -234,7 +234,7 @@ w_python_release(void)
 		return;
 	}
 
-	int r = (float)input_sequence % 4;
+	int r = floor(pseudorandom() * 4.0f);
 
 	switch (r) {
 	case 1:
@@ -254,6 +254,7 @@ w_python_release(void)
 		pl.w_idle_next = 2.93f;
 		break;
 	}
+	pl.w_idle_next *= 2.5f;
 }
 
 void

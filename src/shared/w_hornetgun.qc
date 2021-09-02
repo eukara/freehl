@@ -147,7 +147,7 @@ w_hornetgun_release(void)
 	}
 
 	int r;
-	r = (float)input_sequence % 3;
+	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
 		Weapons_ViewAnimation(HORNETGUN_FIDGET1);
@@ -161,6 +161,7 @@ w_hornetgun_release(void)
 		Weapons_ViewAnimation(HORNETGUN_IDLE);
 		pl.w_idle_next = 1.875f;
 	}
+	pl.w_idle_next *= 2.5f;
 }
 
 void

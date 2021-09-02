@@ -26,65 +26,12 @@ Egon/Gluon-Gun Weapon
 #ifdef CLIENT
 var float TRAIL_EGONBEAM;
 
+string w_egon_sparkframes[11];
+
 void
 w_egon_beamfx(vector vecPos, vector vecEndPos, entity eOwner)
 {
-	dynamiclight_add(vecPos + v_forward * -16, 128, [0.5, 0.5, 1.0]);
 	trailparticles(TRAIL_EGONBEAM, eOwner, vecPos, vecEndPos);
-}
-
-#define FXGAUSS_BEAMCOLOR [1,0.5,0]
-class FXEgon:CBaseFX
-{
-	int m_iBeams;
-	vector m_vecStart;
-	vector m_vecAngle;
-
-	void(void) FXEgon;
-	virtual void(void) Draw;
-};
-
-void
-FXEgon::Animate_Next(void)
-{
-	frame++;
-
-	if (frame == 11)
-		frame = 0;
-
-	nextthink = time + 0.1f;
-}
-
-void
-FXEgon::Draw(void)
-{
-	player pl = (player)self;
-	int iLoop = 6;
-	vector src, endpos;
-	vector gunpos = gettaginfo(pSeat->m_eViewModel, 33);
-
-	if (alpha <= 0.0f) {
-		modelindex = 0;
-		return;
-	}
-
-	src = gettaginfo(pSeat->m_eViewModel, 0);
-	makevectors(input_angles);
-	endpos = src + v_forward * 1024;
-	traceline(src, endpos, FALSE, pl);
-	w_egon_beamfx(gunpos, endpos, pl);
-	setorigin(this, trace_endpos + v_forward * -16);
-
-	setmodel(this, "sprites/xspark1.spr");
-	effects = EF_ADDITIVE;
-}
-
-void
-FXEgon::FXEgon(void)
-{
-	CBaseFX::CBaseFX();
-	think = Animate_Next;
-	nextthink = time + 0.1f;
 }
 #endif
 
@@ -115,6 +62,9 @@ void w_egon_precache(void)
 	precache_model("models/v_egon.mdl");
 	precache_model("models/p_egon.mdl");
 	precache_model("sprites/xspark1.spr");
+
+	for (int i = 0; i < 11; i++)
+		w_egon_sparkframes[i] = spriteframe("sprites/xspark1.spr", i, 0.0f);
 #endif
 }
 void w_egon_updateammo(player pl)
@@ -155,14 +105,6 @@ void w_egon_draw(void)
 
 	Weapons_SetModel("models/v_egon.mdl");
 	Weapons_ViewAnimation(EGON_DRAW);
-
-	/* link the FX class */
-#ifdef CLIENT
-	entity eold = self;
-	self = pSeat->m_pWeaponFX;
-	spawnfunc_FXEgon();
-	self = eold;
-#endif
 }
 
 void w_egon_holster(void)
@@ -185,12 +127,7 @@ void w_egon_primary(void)
 		return;
 	}
 
-#ifdef CLIENT
-	FXEgon p = (FXEgon)pSeat->m_pWeaponFX;
-	p.m_vecAngle = input_angles;
-	p.m_vecStart = pl.origin + pl.view_ofs;
-	p.alpha = 1.0f;
-#else
+#ifdef SERVER
 	Weapons_MakeVectors();
 	vector src = Weapons_GetCameraPos();
 	vector endpos = src + v_forward * 1024;
@@ -234,13 +171,6 @@ void w_egon_release(void)
 {
 	player pl = (player)self;
 
-#ifdef CLIENT
-	FXEgon p = (FXEgon)pSeat->m_pWeaponFX;
-	p.m_vecAngle = input_angles;
-	p.m_vecStart = pl.origin + pl.view_ofs;
-	p.alpha = 0.0f;
-#endif	
-
 	if (pl.mode_tempstate != 0 && pl.mode_tempstate < 3) {
 #ifdef SERVER
 		sound(pl, CHAN_WEAPON, "weapons/egon_off1.wav", 1, ATTN_NORM, 100, 0);
@@ -260,7 +190,7 @@ void w_egon_release(void)
 		if (pl.w_idle_next > 0.0f) {
 			return;
 		}
-		int r = (float)input_sequence % 3;
+		int r = floor(pseudorandom() * 3.0f);
 		if (r == 1) {
 			Weapons_ViewAnimation(EGON_FIDGET1);
 			pl.w_idle_next = 2.666667f;
@@ -269,8 +199,56 @@ void w_egon_release(void)
 			pl.w_idle_next = 2.0f;
 		}
 		pl.mode_tempstate = 0;
+		pl.w_idle_next *= 2.5f;
 	}
 }
+
+void
+w_egon_postdraw(int thirdperson)
+{
+#ifdef CLIENT
+	player pl = (player)self;
+
+	if (!(pl.gflags & GF_EGONBEAM))
+		return;
+
+	vector src;
+	vector endpos;
+
+	if (thirdperson) {
+		makevectors(pl.v_angle);
+		src = pl.origin;
+		endpos = pl.origin + (v_forward * 1024);
+		traceline(src, endpos, MOVE_NORMAL, pl);
+		w_egon_beamfx(gettaginfo(pl.p_model, 10), trace_endpos, pl);
+	} else {
+		vector gunpos = gettaginfo(pSeat->m_eViewModel, 33);
+		src = gettaginfo(pSeat->m_eViewModel, 0);
+		makevectors(view_angles);
+		endpos = src + v_forward * 1024;
+		traceline(src, endpos, FALSE, pl);
+		w_egon_beamfx(gunpos, endpos, pl);
+	}
+
+	int i = (cltime*10) % 11;
+	vector fsize = [32,32];
+	makevectors(view_angles);
+	trace_endpos += v_forward * -16; /* nudge towards our camera */
+	dynamiclight_add(trace_endpos, 128, [0.5, 0.5, 1.0]);
+
+	R_BeginPolygon(w_egon_sparkframes[i], 1, 0);
+	R_PolygonVertex(trace_endpos + v_right * fsize[0] - v_up * fsize[1],
+		[1,1], [1,1,1], 1.0f);
+	R_PolygonVertex(trace_endpos - v_right * fsize[0] - v_up * fsize[1],
+		[0,1], [1,1,1], 1.0f);
+	R_PolygonVertex(trace_endpos - v_right * fsize[0] + v_up * fsize[1],
+		[0,0], [1,1,1], 1.0f);
+	R_PolygonVertex(trace_endpos + v_right * fsize[0] + v_up * fsize[1],
+		[1,0], [1,1,1], 1.0f);
+	R_EndPolygon();
+#endif
+}
+
 void w_egon_crosshair(void)
 {
 #ifdef CLIENT
@@ -330,7 +308,8 @@ weapon_t w_egon =
 	.pmodel		= w_egon_pmodel,
 	.deathmsg	= w_egon_deathmsg,
 	.aimanim	= w_egon_aimanim,
-	.hudpic		= w_egon_hudpic
+	.hudpic		= w_egon_hudpic,
+	.predraw	= w_egon_postdraw
 };
 
 #ifdef SERVER

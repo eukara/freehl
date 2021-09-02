@@ -286,7 +286,7 @@ w_glock_release(void)
 		return;
 	}
 
-	r = (float)input_sequence % 3;
+	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
 		Weapons_ViewAnimation(GLOCK_IDLE2);

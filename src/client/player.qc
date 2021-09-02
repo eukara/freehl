@@ -169,18 +169,7 @@ Player_PreDraw(base_player pp, int thirdperson)
 	/* Handle the flashlights... */
 	Player_Flashlight(pl);
 
-#ifdef VALVE
-	if (thirdperson && pl.gflags & GF_EGONBEAM) {
-		vector src;
-		vector endpos;
-
-		makevectors(pl.v_angle);
-		src = pl.origin;
-		endpos = pl.origin + (v_forward * 1024);
-		traceline(src, endpos, MOVE_NORMAL, pl);
-		w_egon_beamfx(gettaginfo(pl.p_model, 10), trace_endpos, pl);
-	}
-#endif
+	Weapons_PreDraw(thirdperson);
 
 	pl.Physics_SetViewParms();
 	Animation_PlayerUpdate((player)pl);

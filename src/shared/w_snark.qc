@@ -232,7 +232,7 @@ void w_snark_release(void)
 		return;
 	}
 
-	r = (float)input_sequence % 3;
+	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 0:
 		Weapons_ViewAnimation(SNARK_IDLE);
@@ -247,6 +247,8 @@ void w_snark_release(void)
 		pl.w_idle_next = 5.0f;
 		break;
 	}
+
+	pl.w_idle_next *= 2.5f;
 }
 
 void w_snark_precache(void)

@@ -262,7 +262,7 @@ void w_gauss_release(void)
 		return;
 	}
 
-	int r = (float)input_sequence % 3;
+	int r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
 		Weapons_ViewAnimation(GAUSS_IDLE2);
@@ -279,6 +279,7 @@ void w_gauss_release(void)
 		pl.w_idle_next = 4.0f;
 		break;
 	}
+	pl.w_idle_next *= 2.5f;
 }
 
 void w_gauss_crosshair(void)

@@ -275,7 +275,7 @@ w_mp5_release(void)
 		return;
 	}
 
-	int r = (float)input_sequence % 3;
+	int r = floor(pseudorandom() * 3.0f);
 	if (r == 1) {
 		Weapons_ViewAnimation(MP5_IDLE1);
 	} else {
