@@ -387,7 +387,7 @@ void
 HUD_DrawNotify(void)
 {
 	vector pos;
-	
+
 	if (pSeatLocal->m_flPickupAlpha <= 0.0f) {
 		return;
 	}

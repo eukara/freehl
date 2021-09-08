@@ -33,7 +33,7 @@ void Animation_Print(string sWow) {
 void
 Animation_TimerUpdate(player pl, float ftime)
 {
-	makevectors([0, pl.angles[1], 0]);
+	makevectors([0, pl.v_angle[1], 0]);
 
 	/* top animation is always just being incremented */
 	pl.anim_top_time += ftime;
@@ -94,7 +94,7 @@ Animation_PlayerUpdate(player pl)
 		pl.frame1time = 10.0f;
 	}
 
-	makevectors([0, pl.angles[1], 0]);
+	makevectors([0, pl.v_angle[1], 0]);
 	float fCorrect = dotproduct(pl.velocity, v_right) * 0.25f;
 
 	/* Turn torso */
@@ -104,15 +104,10 @@ Animation_PlayerUpdate(player pl)
 	pl.bonecontrol4 = pl.bonecontrol3 * 0.5;
 
 	/* Correct the legs */
-	pl.angles[1] -= fCorrect;
+	pl.angles[1] = pl.v_angle[1] - fCorrect;
 
-#ifdef SERVER
 	pl.subblendfrac = 
 	pl.subblend2frac = pl.v_angle[0] / 90;
-#else
-	pl.subblendfrac = 
-	pl.subblend2frac = pl.pitch / 90;
-#endif
 }
 
 void
