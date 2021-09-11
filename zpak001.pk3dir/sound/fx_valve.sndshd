@@ -12,7 +12,7 @@ fx.explosion_dist
 	sample ambience/distantmortar1.wav
 	sample ambience/distantmortar1.wav
 	sample ambience/distantmortar1.wav
-	volume 0.5
+	volume 1.0
 }
 
 fx.gaussbeam

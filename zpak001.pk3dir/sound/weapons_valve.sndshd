@@ -1,7 +1,15 @@
+
+
 weapon_357.shoot
 {
 	sample weapons/357_shot1.wav
 	sample weapons/357_shot2.wav
+	distshader weapon_357.shoot_dist
+}
+weapon_357.shoot_dist
+{
+	volume 0.1
+	sample ambience/rifle1.wav
 }
 
 weapon_357.reload
@@ -85,6 +93,13 @@ weapon_mp5.shoot
 {
 	sample weapons/hks1.wav
 	sample weapons/hks2.wav
+	distshader weapon_mp5.shoot_dist
+}
+
+weapon_mp5.shoot_dist
+{
+	volume 0.1
+	sample ambience/rifle2.wav
 }
 
 weapon_mp5.gl
@@ -124,11 +139,18 @@ weapon_rpg.shoot
 weapon_shotgun.single
 {
 	sample weapons/sbarrel1.wav
+	distshader weapon_shotgun.distance
 }
 
 weapon_shotgun.double
 {
 	sample weapons/dbarrel1.wav
+	distshader weapon_shotgun.distance
+}
+weapon_shotgun.distance
+{
+	volume 0.15
+	sample ambience/biggun3.wav
 }
 
 weapon_shotgun.reload
