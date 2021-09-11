@@ -125,7 +125,8 @@ monster_scientist::Pain(void)
 		return;
 	}
 
-	Sound_Speak(this, "monster_scientist.pain");
+	if (style != MONSTER_DEAD)
+		Sound_Speak(this, "monster_scientist.pain");
 
 	frame = SCIA_FLINCH + floor(random(0, 6));
 	m_iFlags |= MONSTER_FEAR;
