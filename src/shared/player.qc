@@ -42,7 +42,6 @@ enumflags
 	PLAYER_UNUSED2
 };
 
-noref int input_sequence;
 class player:base_player
 {
 	/* animation */
