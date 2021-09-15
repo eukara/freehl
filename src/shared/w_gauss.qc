@@ -279,7 +279,6 @@ void w_gauss_release(void)
 		pl.w_idle_next = 4.0f;
 		break;
 	}
-	pl.w_idle_next *= 2.5f;
 }
 
 void w_gauss_crosshair(void)

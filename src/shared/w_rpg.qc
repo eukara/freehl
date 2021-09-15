@@ -232,8 +232,6 @@ void w_rpg_release(void)
 			Weapons_ViewAnimation(RPG_IDLE_UL);
 		}
 	}
-
-	pl.w_idle_next = 3.0f * 2.5f;
 }
 
 void w_rpg_secondary(void)

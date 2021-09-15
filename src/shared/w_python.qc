@@ -254,7 +254,6 @@ w_python_release(void)
 		pl.w_idle_next = 2.93f;
 		break;
 	}
-	pl.w_idle_next *= 2.5f;
 }
 
 void

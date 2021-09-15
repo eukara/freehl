@@ -339,7 +339,6 @@ w_tripmine_release(void)
 		pl.w_idle_next = 3.34f;
 		break;
 	}
-	pl.w_idle_next *= 2.5f;
 }
 
 float

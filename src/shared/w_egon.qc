@@ -199,7 +199,6 @@ void w_egon_release(void)
 			pl.w_idle_next = 2.0f;
 		}
 		pl.mode_tempstate = 0;
-		pl.w_idle_next *= 2.5f;
 	}
 }
 

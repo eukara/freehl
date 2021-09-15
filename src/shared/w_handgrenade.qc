@@ -218,7 +218,6 @@ void w_handgrenade_release(void)
 			Weapons_ViewAnimation(HANDGRENADE_IDLE);
 			pl.w_idle_next = 3.0f;
 		}
-		pl.w_idle_next *= 2.5f;
 	}
 }
 

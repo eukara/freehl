@@ -161,7 +161,6 @@ w_hornetgun_release(void)
 		Weapons_ViewAnimation(HORNETGUN_IDLE);
 		pl.w_idle_next = 1.875f;
 	}
-	pl.w_idle_next *= 2.5f;
 }
 
 void

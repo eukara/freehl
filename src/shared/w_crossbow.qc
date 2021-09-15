@@ -290,7 +290,7 @@ w_crossbow_release(void)
 		}
 	}
 
-	pl.w_idle_next = 3.0f * 2.5f;
+	pl.w_idle_next = 3.0f;
 }
 
 void

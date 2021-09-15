@@ -247,8 +247,6 @@ void w_snark_release(void)
 		pl.w_idle_next = 5.0f;
 		break;
 	}
-
-	pl.w_idle_next *= 2.5f;
 }
 
 void w_snark_precache(void)

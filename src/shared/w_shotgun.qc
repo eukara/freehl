@@ -317,7 +317,6 @@ w_shotgun_release(void)
 			pl.w_idle_next = 2.222222f;
 			break;
 		}
-		pl.w_idle_next *= 2.5f;
 	} else if (pl.mode_tempstate == SHOTTY_RELOAD_START) {
 		Weapons_ViewAnimation(SHOTGUN_START_RELOAD);
 		pl.mode_tempstate = SHOTTY_RELOAD;
