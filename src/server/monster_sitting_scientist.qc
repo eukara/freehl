@@ -73,15 +73,16 @@ monster_sitting_scientist::Hide(void)
 void
 monster_sitting_scientist::Respawn(void)
 {
-	v_angle[0] = Math_FixDelta(m_oldAngle[0]);
-	v_angle[1] = Math_FixDelta(m_oldAngle[1]);
-	v_angle[2] = Math_FixDelta(m_oldAngle[2]);
+	v_angle = GetSpawnAngles();
+	v_angle[0] = Math_FixDelta(v_angle[0]);
+	v_angle[1] = Math_FixDelta(v_angle[1]);
+	v_angle[2] = Math_FixDelta(v_angle[2]);
 
-	SetOrigin(m_oldOrigin);
+	SetOrigin(GetSpawnOrigin());
 	angles = v_angle;
 	solid = SOLID_BBOX;
 	movetype = MOVETYPE_NONE;
-	SetModel(m_oldModel);
+	SetModel(GetSpawnModel());
 	setsize(this, [-14,-14,0],[14,14,36]);
 	takedamage = DAMAGE_YES;
 	health = 0;

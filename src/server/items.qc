@@ -43,7 +43,7 @@ void item_pickup::SetItem(int i)
 {
 	id = i;
 	m_oldModel = Weapons_GetWorldmodel(id);
-	SetModel(m_oldModel);
+	SetModel(GetSpawnModel());
 	SetSize([-16,-16,0], [16,16,16]);
 }
 
@@ -55,11 +55,11 @@ void item_pickup::SetFloating(int i)
 void item_pickup::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
-	SetOrigin(m_oldOrigin);
+	SetOrigin(GetSpawnOrigin());
 
 	/* At some points, the item id might not yet be set */
-	if (m_oldModel) {
-		SetModel(m_oldModel);
+	if (GetSpawnModel()) {
+		SetModel(GetSpawnModel());
 	}
 
 	SetSize([-16,-16,0], [16,16,16]);

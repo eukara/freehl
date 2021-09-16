@@ -52,15 +52,16 @@ monster_hgrunt_dead::Hide(void)
 void
 monster_hgrunt_dead::Respawn(void)
 {
-	v_angle[0] = Math_FixDelta(m_oldAngle[0]);
-	v_angle[1] = Math_FixDelta(m_oldAngle[1]);
-	v_angle[2] = Math_FixDelta(m_oldAngle[2]);
+	v_angle = GetSpawnAngles();
+	v_angle[0] = Math_FixDelta(v_angle[0]);
+	v_angle[1] = Math_FixDelta(v_angle[1]);
+	v_angle[2] = Math_FixDelta(v_angle[2]);
 
-	SetOrigin(m_oldOrigin);
+	SetOrigin(GetSpawnOrigin());
 	angles = v_angle;
 	solid = SOLID_CORPSE;
 	movetype = MOVETYPE_NONE;
-	SetModel(m_oldModel);
+	SetModel(GetSpawnModel());
 	setsize(this, VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
 	takedamage = DAMAGE_YES;
 	health = 0;

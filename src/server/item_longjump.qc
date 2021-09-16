@@ -71,8 +71,8 @@ item_longjump::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetOrigin(m_oldOrigin);
-	SetModel(m_oldModel);
+	SetOrigin(GetSpawnOrigin());
+	SetModel(GetSpawnModel());
 	SetSize([-16,-16,0],[16,16,16]);
 
 	think = __NULL__;

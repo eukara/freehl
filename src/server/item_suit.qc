@@ -74,8 +74,8 @@ item_suit::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetOrigin(m_oldOrigin);
-	SetModel(m_oldModel);
+	SetOrigin(GetSpawnOrigin());
+	SetModel(GetSpawnModel());
 	SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
 	m_iValue = FALSE;
 

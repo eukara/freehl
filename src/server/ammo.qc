@@ -45,8 +45,8 @@ void item_ammo::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	SetOrigin(m_oldOrigin);
-	SetModel(m_oldModel);
+	SetOrigin(GetSpawnOrigin());
+	SetModel(GetSpawnModel());
 	SetSize([-16,-16,0],[16,16,16]);
 
 	think = __NULL__;
@@ -64,7 +64,7 @@ void item_ammo::item_ammo(void)
 	Sound_Precache("ammo.respawn");
 	precache_model(model);
 	m_oldModel = model;
-	SetModel(m_oldModel);
+	SetModel(GetSpawnModel());
 	CBaseEntity::CBaseEntity();
 }
 
