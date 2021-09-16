@@ -47,7 +47,6 @@ FX_GaussBeam_Parse(void)
 	eowner = findfloat(world, ::entnum, readentitynum());
 
 	FX_GaussBeam(pos, angle, beams, eowner);
-	print(sprintf("Parsed: %v %v %i %s\n", pos, angle, beams, eowner.classname));
 }
 
 void
