@@ -135,6 +135,9 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	vector vecSrc;
 	vector vecEndPos;
 	vector vecDir;
+	vector vecFirstImpact;
+	int totalBeams = numBeams;
+
 	makevectors(vecAngle);
 	vecDir = v_forward;
 	vecSrc = vecPos;
@@ -142,6 +145,10 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	traceline(vecSrc, vecEndPos, FALSE, eOwner);
 	trailparticles(TRAIL_GAUSSBEAM, eOwner, vecSrc + (v_right * 8) + (v_up * -12), trace_endpos);
 	FX_GaussBeam_Piece(trace_endpos, vecDir * -1);
+
+	/* Decals_Place modifies trace_* globals, so cache */
+	if (totalBeams > 1)
+		vecFirstImpact = trace_endpos;
 
 	vecDir = v_forward;
 	while (numBeams > 0) {
@@ -164,6 +171,10 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 				break;
 			}
 	}
+
+	/* higher energy means the first impact will leave a hole as well */
+	if (totalBeams > 1)
+		Decals_Place(vecFirstImpact, "{gaussshot1");
 #endif
 }
 

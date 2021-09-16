@@ -172,6 +172,8 @@ void w_gauss_primary(void)
 	FX_GaussBeam(Weapons_GetCameraPos(), input_angles, 0, pl);
 #endif
 
+	pl.ammo_uranium -= 2;
+
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 	else
