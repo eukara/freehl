@@ -323,7 +323,6 @@ w_tripmine_release(void)
 		return;
 	}
 
-	print(sprintf("weapontime: %f\n", pl.weapontime));
 	int r = (float)input_sequence % 3;
 	switch (r) {
 	case 1:
