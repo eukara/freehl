@@ -14,6 +14,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#define PMOVE_AIRSTEPHEIGHT 0
+
 void
 player::Physics_Jump(void)
 {
