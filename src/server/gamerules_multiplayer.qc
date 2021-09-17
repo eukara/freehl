@@ -176,6 +176,12 @@ HLMultiplayerRules::ConsoleCommand(base_player pp, string cmd)
 	return (1);
 }
 
+int
+HLMultiplayerRules::MonstersSpawn(void)
+{
+	return (FALSE);
+}
+
 void
 HLMultiplayerRules::HLMultiplayerRules(void)
 {

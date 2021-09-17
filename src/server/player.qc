@@ -80,8 +80,11 @@ void Weapons_Draw(void);
 void CSEv_PlayerSwitchWeapon_i(int w)
 {
 	player pl = (player)self;
-	pl.activeweapon = w;
-	Weapons_Draw();
+
+	if (pl.activeweapon != w) {
+		pl.activeweapon = w;
+		Weapons_Draw();
+	}
 }
 
 void

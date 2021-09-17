@@ -42,6 +42,7 @@ class HLMultiplayerRules:HLGameRules
 
 	virtual void(void) FrameStart;
 	virtual void(void) CheckRules;
+	virtual int(void) MonstersSpawn;
 
 	/* client */
 	virtual void(base_player) PlayerSpawn;
