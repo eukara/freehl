@@ -34,6 +34,6 @@ player::Physics_Jump(void)
 			velocity[2] += 100;
 		}
 		if (flags & FL_ONGROUND)
-			velocity[2] += 240;
+			velocity[2] += 265;
 	}
 }
