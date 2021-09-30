@@ -68,7 +68,6 @@ monster_hevsuit_dead::Respawn(void)
 	velocity = [0,0,0];
 	iBleeds = TRUE;
 	SetFrame(73 + m_iPose);
-	SendFlags |= NPC_BODY;
 }
 
 void

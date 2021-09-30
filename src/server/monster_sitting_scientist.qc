@@ -88,7 +88,6 @@ monster_sitting_scientist::Respawn(void)
 	health = 0;
 	velocity = [0,0,0];
 	iBleeds = TRUE;
-	SendFlags |= NPC_BODY;
 	frame = 74;
 	droptofloor();
 }

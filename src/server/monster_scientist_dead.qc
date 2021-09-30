@@ -78,7 +78,6 @@ monster_scientist_dead::Respawn(void)
 	health = 0;
 	velocity = [0,0,0];
 	iBleeds = TRUE;
-	SendFlags |= NPC_BODY;
 	
 	switch (m_iPose) {
 	case 1:

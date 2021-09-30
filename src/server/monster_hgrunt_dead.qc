@@ -68,7 +68,6 @@ monster_hgrunt_dead::Respawn(void)
 	velocity = [0,0,0];
 	iBleeds = TRUE;
 	SetFrame(44 + m_iPose);
-	SendFlags |= NPC_BODY;
 }
 
 void
