@@ -40,8 +40,6 @@ enum
 	RADIO_HOLSTER
 };
 
-
-
 #ifdef SERVER
 void
 s_satchel_drop(entity master, vector src, vector vel)
