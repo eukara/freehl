@@ -40,7 +40,7 @@ enum
 	GMAN_LOOKDOWN2
 };
 
-class monster_gman:CBaseMonster
+class monster_gman:NSTalkMonster
 {
 	void(void) monster_gman;
 
@@ -71,7 +71,7 @@ monster_gman::AnimRun(void)
 void monster_gman::Respawn(void)
 {
 	/* he can't die, he's the G-Man! */
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(GMAN_IDLE);
 	takedamage = DAMAGE_NO;
 	iBleeds = FALSE;
@@ -83,5 +83,5 @@ void monster_gman::monster_gman(void)
 	model = "models/gman.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	CBaseMonster::CBaseMonster();
+	super::NSTalkMonster();
 }

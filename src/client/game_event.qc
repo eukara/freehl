@@ -108,9 +108,6 @@ ClientGame_EventParse(float fHeader)
 
 		CSQC_Parse_Print(sprintf("[TEAM] %s: %s", getplayerkeyvalue(fSender2, "name"), sMessage2), PRINT_CHAT);
 		break;
-	case EV_CHAT_VOX:
-		Vox_Play(readstring());
-		break;
 	case EV_VIEWMODEL:
 		View_PlayAnimation(readbyte());
 		break;

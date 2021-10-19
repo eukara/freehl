@@ -54,9 +54,9 @@ Game_ParseClientCommand(string cmd)
 		string timestring;
 		float timeleft;
 		timeleft = cvar("mp_timelimit") - (time / 60);
-		timestring = Vox_TimeToString(timeleft);
+		timestring = Util_TimeToString(timeleft);
 		msg = sprintf("we have %s minutes remaining", timestring);
-		Vox_Singlecast(self, msg);
+		bprint(PRINT_CHAT, msg);
 		return;
 	}
 
