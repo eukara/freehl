@@ -20,6 +20,8 @@ defs.h
 ../shared/include.src
 
 ../../../base/src/client/draw.qc
+
+damage.qc
 init.qc
 flashlight.qc
 player.qc

@@ -36,7 +36,17 @@ you need to make sure to add `-game valve` before `-game modname`.
 The order is important.
 
 ## Community
-Join us on #freecs via irc.libera.chat and talk/lurk!
+
+### Matrix
+If you're a fellow Matrix user, join the Nuclide Space to see live-updates and more!
+https://matrix.to/#/#nuclide:matrix.org
+
+### IRC
+Join us on #freecs via irc.libera.chat and talk/lurk or discuss bugs, issues
+and other such things. It's bridged with the Matrix room of the same name!
+
+### Others
+We've had people ask in the oddest of places for help, please don't do that.
 
 ## License
 ISC License
