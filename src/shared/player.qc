@@ -98,6 +98,8 @@ class player:base_player
 #else
 	virtual void(void) EvaluateEntity;
 	virtual float(entity, float) SendEntity;
+	virtual void(float) Save;
+	virtual void(string,string) Restore;
 #endif
 };
 
@@ -255,6 +257,139 @@ player::PredictPostFrame(void)
 }
 
 #else
+void
+player::Save(float handle)
+{
+	SaveInt(handle, "anim_top", anim_top);
+	SaveFloat(handle, "anim_top_time", anim_top_time);
+	SaveFloat(handle, "anim_top_delay", anim_top_delay);
+	SaveInt(handle, "anim_bottom", anim_bottom);
+	SaveFloat(handle, "anim_bottom_time", anim_bottom_time);
+
+	/* ammo 1 */
+	SaveInt(handle, "glock_mag", glock_mag);
+	SaveInt(handle, "mp5_mag", mp5_mag);
+	SaveInt(handle, "python_mag", python_mag);
+	SaveInt(handle, "shotgun_mag", shotgun_mag);
+	SaveInt(handle, "crossbow_mag", crossbow_mag);
+	SaveInt(handle, "rpg_mag", rpg_mag);
+	SaveInt(handle, "satchel_chg", satchel_chg);
+
+	/* ammo 2 */
+	SaveInt(handle, "ammo_9mm", ammo_9mm);
+	SaveInt(handle, "ammo_357", ammo_357);
+	SaveInt(handle, "ammo_buckshot", ammo_buckshot);
+	SaveInt(handle, "ammo_bolt", ammo_bolt);
+	SaveInt(handle, "ammo_rocket", ammo_rocket);
+	SaveInt(handle, "ammo_uranium", ammo_uranium);
+	SaveInt(handle, "ammo_handgrenade", ammo_handgrenade);
+	SaveInt(handle, "ammo_satchel", ammo_satchel);
+	SaveInt(handle, "ammo_tripmine", ammo_tripmine);
+	SaveInt(handle, "ammo_snark", ammo_snark);
+	SaveInt(handle, "ammo_hornet", ammo_hornet);
+
+	/* ammo 3 */
+	SaveInt(handle, "ammo_m203_grenade", ammo_m203_grenade);
+	SaveInt(handle, "ammo_gauss_volume", ammo_gauss_volume);
+	SaveInt(handle, "ammo_rpg_state", ammo_rpg_state);
+	SaveInt(handle, "mode_tempstate", mode_tempstate);
+
+	super::Save(handle);
+}
+
+void
+player::Restore(string strKey, string strValue)
+{
+	switch (strKey) {
+	case "anim_top":
+		anim_top = ReadInt(strValue);
+		break;
+	case "anim_top_time":
+		anim_top_time = ReadFloat(strValue);
+		break;
+	case "anim_top_delay":
+		anim_top_delay = ReadFloat(strValue);
+		break;
+	case "anim_bottom":
+		anim_bottom = ReadInt(strValue);
+		break;
+	case "anim_bottom_time":
+		anim_bottom_time = ReadFloat(strValue);
+		break;
+	/* AMMO 1 */
+	case "glock_mag":
+		glock_mag = ReadInt(strValue);
+		break;
+	case "mp5_mag":
+		mp5_mag = ReadInt(strValue);
+		break;
+	case "python_mag":
+		python_mag = ReadInt(strValue);
+		break;
+	case "shotgun_mag":
+		shotgun_mag = ReadInt(strValue);
+		break;
+	case "crossbow_mag":
+		crossbow_mag = ReadInt(strValue);
+		break;
+	case "rpg_mag":
+		rpg_mag = ReadInt(strValue);
+		break;
+	case "satchel_chg":
+		satchel_chg = ReadInt(strValue);
+		break;
+	/* AMMO 2 */
+	case "ammo_9mm":
+		ammo_9mm = ReadInt(strValue);
+		break;
+	case "ammo_357":
+		ammo_357 = ReadInt(strValue);
+		break;
+	case "ammo_buckshot":
+		ammo_buckshot = ReadInt(strValue);
+		break;
+	case "ammo_bolt":
+		ammo_bolt = ReadInt(strValue);
+		break;
+	case "ammo_rocket":
+		ammo_rocket = ReadInt(strValue);
+		break;
+	case "ammo_uranium":
+		ammo_uranium = ReadInt(strValue);
+		break;
+	case "ammo_handgrenade":
+		ammo_handgrenade = ReadInt(strValue);
+		break;
+	case "ammo_satchel":
+		ammo_satchel = ReadInt(strValue);
+		break;
+	case "ammo_tripmine":
+		ammo_tripmine = ReadInt(strValue);
+		break;
+	case "ammo_snark":
+		ammo_snark = ReadInt(strValue);
+		break;
+	case "ammo_hornet":
+		ammo_hornet = ReadInt(strValue);
+		break;
+	/* AMMO 3 */
+	case "ammo_m203_grenade":
+		ammo_m203_grenade = ReadInt(strValue);
+		break;
+	case "ammo_gauss_volume":
+		ammo_gauss_volume = ReadInt(strValue);
+		break;
+	case "ammo_rpg_state":
+		ammo_rpg_state = ReadInt(strValue);
+		break;
+	case "mode_tempstate":
+		mode_tempstate = ReadInt(strValue);
+		break;
+	default:
+		super::Restore(strKey, strValue);
+	}
+}
+
 void
 player::EvaluateEntity(void)
 {
