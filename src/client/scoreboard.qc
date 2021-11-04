@@ -31,7 +31,7 @@ Scores_DrawTeam(player pl, vector pos)
 {
 	drawfill(pos, [290, 1], SCORE_LINE_C, 1.0f, DRAWFLAG_ADDITIVE);
 
-	drawfont = FONT_20;
+	drawfont = Font_GetID(FONT_20);
 	drawstring(pos + [0,-18], "Teams", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
 	drawstring(pos + [124,-18], "kills / deaths", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
 	drawstring(pos + [240,-18], "latency", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
@@ -97,7 +97,7 @@ Scores_DrawTeam(player pl, vector pos)
 		pos[1] += 12;
 	}
 	
-	drawfont = FONT_CON;
+	drawfont = Font_GetID(FONT_CON);
 }
 
 void
@@ -105,7 +105,7 @@ Scores_DrawNormal(player pl, vector pos)
 {
 	drawfill(pos, [290, 1], SCORE_LINE_C, 1.0f, DRAWFLAG_ADDITIVE);
 
-	drawfont = FONT_20;
+	drawfont = Font_GetID(FONT_20);
 	drawstring(pos + [0,-18], "Player", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
 	drawstring(pos + [124,-18], "kills / deaths", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
 	drawstring(pos + [240,-18], "latency", [20,20], SCORE_HEADER_C, 1.0f, DRAWFLAG_ADDITIVE);
@@ -151,7 +151,7 @@ Scores_DrawNormal(player pl, vector pos)
 		pos[1] += 20;
 	}
 	
-	drawfont = FONT_CON;
+	drawfont = Font_GetID(FONT_CON);
 }
 
 void

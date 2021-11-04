@@ -1,3 +1,2 @@
-name "cr"
-font "creditsfont?fmt=h"
-size "20" 
+path "creditsfont?fmt=h"
+size 20

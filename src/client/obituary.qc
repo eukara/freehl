@@ -147,7 +147,7 @@ Obituary_Draw(void)
 	int i;
 	vector pos;
 	vector item;
-	drawfont = FONT_CON;
+	drawfont = Font_GetID(FONT_CON);
 	pos = g_hudmins + [g_hudres[0] - 18, 56];
 
 	if (g_obituary_time <= 0 && g_obituary_count > 0) {

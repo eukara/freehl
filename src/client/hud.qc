@@ -443,7 +443,7 @@ HUD_DrawSpectator(void)
 
 	spectator spec = (spectator)pSeat->m_ePlayer;
 
-	drawfont = FONT_20;
+	drawfont = Font_GetID(FONT_20);
 	vector vecPos;
 	string strText;
 
