@@ -29,6 +29,7 @@ void
 HLMultiplayerRules::CheckRules(void)
 {
 	/* last person who killed somebody has hit the limit */
+	if (cvar("fraglimit"))
 	if (g_dmg_eAttacker.frags >= cvar("fraglimit"))
 		IntermissionStart();
 }
