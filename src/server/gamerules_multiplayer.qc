@@ -73,8 +73,7 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 	if (pl.health < -50) {
 		FX_GibHuman(pl.origin);
 	} else {
-		NSRenderableEntity corpse = FX_Corpse_Spawn(pl);
-		corpse.SetFrame(ANIM_DIESIMPLE);
+		FX_Corpse_Spawn(pl, ANIM_DIESIMPLE);
 	}
 
 	/* now let's make the real client invisible */
