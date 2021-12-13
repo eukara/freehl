@@ -42,7 +42,7 @@ enum
  * Some maps, such as subtransit and a few singleplayer chapters have this. */
 
 #ifdef SERVER
-class monster_tripmine:CBaseMonster
+class monster_tripmine:NSMonster
 {
 	int m_iDist;
 	void(void) monster_tripmine;
@@ -172,6 +172,7 @@ csitem_tripmine::csitem_tripmine(void)
 	movetype = MOVETYPE_NONE;
 	drawmask = MASK_ENGINE;
 	frame = TRIPMINE_WORLD;
+	m_iActive = FALSE;
 }
 
 void w_tripmine_parse(void)
@@ -290,6 +291,7 @@ w_tripmine_primary(void)
 #ifdef SERVER
 	vector ang = vectoangles(trace_plane_normal);
 	monster_tripmine mine = spawn(monster_tripmine, real_owner: pl, angles: ang, spawnflags: MSF_MULTIPLAYER);
+	mine.health = 0;
 	mine.SetOrigin(trace_endpos - (v_forward * 8));
 
 	Sound_Play(pl, CHAN_WEAPON, "weapon_tripmine.deploy");

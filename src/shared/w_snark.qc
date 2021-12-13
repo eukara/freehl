@@ -34,7 +34,7 @@ enum
 };
 
 #ifdef SERVER
-class monster_snark:CBaseMonster
+class monster_snark:NSMonster
 {
 	float m_flJump;
 	entity m_eTarget;
@@ -177,6 +177,7 @@ void w_snark_deploy(void)
 {
 	monster_snark snark = spawn(monster_snark, real_owner: self, goalentity: self, spawnflags: MSF_MULTIPLAYER);
 	makevectors(self.v_angle);
+	snark.Respawn();
 	snark.SetOrigin(self.origin + v_forward * 32);
 }
 #endif
