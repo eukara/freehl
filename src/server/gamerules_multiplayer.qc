@@ -73,18 +73,8 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 	if (pl.health < -50) {
 		FX_GibHuman(pl.origin);
 	} else {
-		/* Let's handle corpses on the clientside */
-		entity corpse = spawn();
-		setorigin(corpse, pl.origin + [0,0,32]);
-		setmodel(corpse, pl.model);
-		setsize(corpse, VEC_HULL_MIN, VEC_HULL_MAX);
-		corpse.movetype = MOVETYPE_TOSS;
-		corpse.solid = SOLID_TRIGGER;
-		corpse.modelindex = pl.modelindex;
-		corpse.frame = ANIM_DIESIMPLE;
-		corpse.angles = pl.angles;
-		corpse.velocity = pl.velocity;
-		corpse.colormap = pl.colormap;
+		NSRenderableEntity corpse = FX_Corpse_Spawn(pl);
+		corpse.SetFrame(ANIM_DIESIMPLE);
 	}
 
 	/* now let's make the real client invisible */

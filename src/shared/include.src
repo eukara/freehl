@@ -15,6 +15,7 @@ fx_breakmodel.qc
 fx_explosion.qc
 fx_gibhuman.qc
 ../../../base/src/shared/fx_spark.qc
+../../../base/src/shared/fx_corpse.qc
 fx_impact.qc
 
 items.h
