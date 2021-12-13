@@ -53,7 +53,7 @@ Game_ParseClientCommand(string cmd)
 		string msg;
 		string timestring;
 		float timeleft;
-		timeleft = cvar("mp_timelimit") - (time / 60);
+		timeleft = cvar("timelimit") - (time / 60);
 		timestring = Util_TimeToString(timeleft);
 		msg = sprintf("we have %s minutes remaining", timestring);
 		bprint(PRINT_CHAT, msg);

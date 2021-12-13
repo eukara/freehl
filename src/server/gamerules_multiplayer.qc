@@ -17,8 +17,8 @@
 void
 HLMultiplayerRules::FrameStart(void)
 {
-	if (cvar("mp_timelimit"))
-	if (time >= (cvar("mp_timelimit") * 60)) {
+	if (cvar("timelimit"))
+	if (time >= (cvar("timelimit") * 60)) {
 		IntermissionStart();
 	}
 
@@ -29,7 +29,7 @@ void
 HLMultiplayerRules::CheckRules(void)
 {
 	/* last person who killed somebody has hit the limit */
-	if (g_dmg_eAttacker.frags >= cvar("mp_fraglimit"))
+	if (g_dmg_eAttacker.frags >= cvar("fraglimit"))
 		IntermissionStart();
 }
 
@@ -186,6 +186,6 @@ void
 HLMultiplayerRules::HLMultiplayerRules(void)
 {
 	/* these lines do nothing but tell the server to register those cvars */
-	autocvar(mp_timelimit, 15, "Timelimit for multiplayer rounds");
-	autocvar(mp_fraglimit, 15, "Points limit for multiplayer rounds");
+	autocvar(timelimit, 15, "Timelimit for multiplayer rounds");
+	autocvar(fraglimit, 15, "Points limit for multiplayer rounds");
 }
