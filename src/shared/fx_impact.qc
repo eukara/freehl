@@ -143,6 +143,8 @@ FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 		pointparticles(FX_IMPACT_BLACKBITS, vecPos, vNormal, 1);
 		pointparticles(FX_IMPACT_SMOKE_BROWN, vecPos, vNormal, 1);
 		break;
+	case IMPACT_GRATE:
+	case IMPACT_VENT:
 	case IMPACT_METAL:
 		pointparticles(FX_IMPACT_SPARK, vecPos, vNormal, 1);
 		pointparticles(FX_IMPACT_BLACKBITS, vecPos, vNormal, 1);
@@ -184,6 +186,7 @@ FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 		break;
 	case IMPACT_METAL:
 		Sound_PlayAt(vecPos, "sfx_impact.metal");
+		print("Metal shit\n");
 		break;
 	case IMPACT_SLOSH:
 		Sound_PlayAt(vecPos, "sfx_impact.slosh");

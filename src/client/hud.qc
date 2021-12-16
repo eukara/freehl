@@ -83,6 +83,7 @@ HUD_Init(void)
 	g_hud5_spr = spriteframe("sprites/640hud5.spr", 0, 0.0f);
 	g_hud6_spr = spriteframe("sprites/640hud6.spr", 0, 0.0f);
 	g_hud7_spr = spriteframe("sprites/640hud7.spr", 0, 0.0f);
+	HUD_AmmoNotify_Init();
 }
 
 /* seperator for mainly ammo */
@@ -387,21 +388,39 @@ void
 HUD_DrawNotify(void)
 {
 	vector pos;
+	float a;
+
+	pos = g_hudmins + [g_hudres[0] - 192, g_hudres[1] - 128];
 
 	if (pSeatLocal->m_flPickupAlpha <= 0.0f) {
+		pos[0] += 148;
+		pos[1] += 16;
+		HUD_AmmoNotify_Draw(pos);
 		return;
 	}
 
-	pos = g_hudmins + [g_hudres[0] - 192, g_hudres[1] - 128];
-	Weapons_HUDPic(pSeatLocal->m_iPickupWeapon, 1, pos, pSeatLocal->m_flPickupAlpha);
-	pSeatLocal->m_flPickupAlpha -= clframetime;
+	a = bound(0.0, pSeatLocal->m_flPickupAlpha, 1.0);
+	Weapons_HUDPic(pSeatLocal->m_iPickupWeapon, 1, pos, a);
+	pos[0] += 148;
+	pos[1] -= 32;
+	HUD_AmmoNotify_Draw(pos);
+	pSeatLocal->m_flPickupAlpha -= (clframetime * 0.5);
 }
 
 void
 HUD_WeaponPickupNotify(int w)
 {
+	switch (w) {
+		case WEAPON_SNARK:
+		case WEAPON_SATCHEL:
+		case WEAPON_HANDGRENADE:
+		case WEAPON_TRIPMINE:
+		return;
+		default:
+	}
+
 	pSeatLocal->m_iPickupWeapon = w;
-	pSeatLocal->m_flPickupAlpha = 1.0f;
+	pSeatLocal->m_flPickupAlpha = 2.5f;
 }
 
 /* main entry */

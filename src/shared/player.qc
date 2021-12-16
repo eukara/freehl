@@ -105,6 +105,7 @@ class player:base_player
 
 #ifdef CLIENT
 void Weapons_AmmoUpdate(entity);
+void HUD_AmmoNotify_Check(player pl);
 /*
 =================
 player::ReceiveEntity
@@ -162,6 +163,7 @@ player::ReceiveEntity(float new, float fl)
 		Weapons_AmmoUpdate(this);
 
 	setorigin(this, origin);
+	HUD_AmmoNotify_Check(this);
 }
 
 /*

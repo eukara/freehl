@@ -32,6 +32,7 @@ game_event.qc
 ../../../valve/src/client/viewmodel.qc
 view.qc
 obituary.qc
+hud_ammonotify.qc
 hud.qc
 hud_weaponselect.qc
 scoreboard.qc
