@@ -410,14 +410,19 @@ HUD_DrawNotify(void)
 void
 HUD_WeaponPickupNotify(int w)
 {
+#if defined (VALVE) || defined (GEARBOX)
 	switch (w) {
 		case WEAPON_SNARK:
 		case WEAPON_SATCHEL:
 		case WEAPON_HANDGRENADE:
 		case WEAPON_TRIPMINE:
+#if defined(GEARBOX)
+		case WEAPON_PENGUIN:
+#endif
 		return;
 		default:
 	}
+#endif
 
 	pSeatLocal->m_iPickupWeapon = w;
 	pSeatLocal->m_flPickupAlpha = 2.5f;

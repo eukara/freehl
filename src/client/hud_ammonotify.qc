@@ -1,4 +1,10 @@
 
+#ifndef GEARBOX
+#define AMMO_COUNT 12
+#else
+#define AMMO_COUNT 17
+#endif
+
 string g_ammo_spr;
 
 typedef struct
@@ -6,9 +12,9 @@ typedef struct
 	float alpha;
 	int count;
 } ammonote_t;
-ammonote_t g_ammonotify[12];
+ammonote_t g_ammonotify[AMMO_COUNT];
 
-vector g_ammotype[12] = {
+vector g_ammotype[AMMO_COUNT] = {
 	[0/256, 72/128], // pistol
 	[24/256, 72/128], // revolver
 	[48/256, 72/128], // grenade
@@ -21,6 +27,13 @@ vector g_ammotype[12] = {
 	[72/256, 96/128], // satchel
 	[96/256, 96/128], //  snark
 	[120/256, 96/128], // tripmine
+#ifdef GEARBOX
+	[24/256, 72/128], // 556 (same as 357)
+	[24/256, 72/128], // 762 (same as 357)
+	[200/256, 48/128], // spore
+	[224/256, 48/128], //  shock
+	[144/256, 72/128], // penguin
+#endif
 };
 
 void
@@ -34,7 +47,7 @@ HUD_AmmoNotify_Draw(vector startpos)
 {
 	vector pos = startpos;
 
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < AMMO_COUNT; i++) {
 		vector srcpos;
 		float a;
 
@@ -95,4 +108,12 @@ HUD_AmmoNotify_Check(player pl)
 	HUD_AmmoNotify_Insert(9, pl.ammo_satchel - pl.ammo_satchel_net);
 	HUD_AmmoNotify_Insert(10, pl.ammo_snark - pl.ammo_snark_net);
 	HUD_AmmoNotify_Insert(11, pl.ammo_tripmine - pl.ammo_tripmine_net);
+
+#ifdef GEARBOX
+	HUD_AmmoNotify_Insert(12, pl.ammo_556 - pl.ammo_556_net);
+	HUD_AmmoNotify_Insert(13, pl.ammo_762 - pl.ammo_762_net);
+	HUD_AmmoNotify_Insert(14, pl.ammo_spore - pl.ammo_spore_net);
+	HUD_AmmoNotify_Insert(15, pl.ammo_shock - pl.ammo_shock_net);
+	HUD_AmmoNotify_Insert(16, pl.ammo_penguin - pl.ammo_penguin_net);
+#endif
 }
