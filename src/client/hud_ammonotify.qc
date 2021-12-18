@@ -88,6 +88,9 @@ HUD_AmmoNotify_Insert(int type, int count)
 	if (count <= 0)
 		return;
 
+	if (type == 7 && count < 8) // hornet hack!
+		return;
+
 	g_ammonotify[type].count += count;
 	g_ammonotify[type].alpha = 2.5f;
 
