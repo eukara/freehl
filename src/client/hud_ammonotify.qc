@@ -43,9 +43,9 @@ HUD_AmmoNotify_Init(void)
 }
 
 void
-HUD_AmmoNotify_Draw(vector startpos)
+HUD_AmmoNotify_Draw(__inout vector pos)
 {
-	vector pos = startpos;
+	pos[0] = g_hudmins[0] + g_hudres[0] - 40;
 
 	for (int i = 0; i < AMMO_COUNT; i++) {
 		vector srcpos;
@@ -61,6 +61,8 @@ HUD_AmmoNotify_Draw(vector startpos)
 		srcpos = g_ammotype[i];
 		a = bound(0, g_ammonotify[i].alpha, 1.0);
 
+		/* we'll use the alpha to control the offset so it gently glides down when fading out */
+		pos -= [0, 32 * a]; /* go up a notch */
 		drawsubpic(pos,
 			[24,24],
 			g_ammo_spr,
@@ -77,7 +79,6 @@ HUD_AmmoNotify_Draw(vector startpos)
 		drawstring(pos + [-offs - 8,4], sprintf("%i", g_ammonotify[i].count), [20,20], g_hud_color, a, DRAWFLAG_ADDITIVE);
 
 		g_ammonotify[i].alpha -= (clframetime * 0.5);
-		pos -= [0, 32]; /* go up a notch */
 	}
 }
 

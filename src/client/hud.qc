@@ -84,6 +84,8 @@ HUD_Init(void)
 	g_hud6_spr = spriteframe("sprites/640hud6.spr", 0, 0.0f);
 	g_hud7_spr = spriteframe("sprites/640hud7.spr", 0, 0.0f);
 	HUD_AmmoNotify_Init();
+	HUD_DamageNotify_Init();
+	HUD_ItemNotify_Init();
 }
 
 /* seperator for mainly ammo */
@@ -393,16 +395,16 @@ HUD_DrawNotify(void)
 	pos = g_hudmins + [g_hudres[0] - 192, g_hudres[1] - 128];
 
 	if (pSeatLocal->m_flPickupAlpha <= 0.0f) {
-		pos[0] += 148;
-		pos[1] += 16;
+		pos[1] += 48;
+		HUD_ItemNotify_Draw(pos);
 		HUD_AmmoNotify_Draw(pos);
 		return;
 	}
 
 	a = bound(0.0, pSeatLocal->m_flPickupAlpha, 1.0);
+	pos[1] += 48 * (1.0 - a);
 	Weapons_HUDPic(pSeatLocal->m_iPickupWeapon, 1, pos, a);
-	pos[0] += 148;
-	pos[1] -= 32;
+	HUD_ItemNotify_Draw(pos);
 	HUD_AmmoNotify_Draw(pos);
 	pSeatLocal->m_flPickupAlpha -= (clframetime * 0.5);
 }
@@ -446,6 +448,7 @@ HUD_Draw(void)
 		return;
 	}
 
+	HUD_DamageNotify_Draw();
 	HUD_DrawHealth();
 	HUD_DrawArmor();
 	HUD_DrawFlashlight();

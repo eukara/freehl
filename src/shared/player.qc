@@ -106,6 +106,7 @@ class player:base_player
 #ifdef CLIENT
 void Weapons_AmmoUpdate(entity);
 void HUD_AmmoNotify_Check(player pl);
+void HUD_ItemNotify_Check(player pl);
 /*
 =================
 player::ReceiveEntity
@@ -159,12 +160,24 @@ player::ReceiveEntity(float new, float fl)
 		mode_tempstate = readbyte();
 	}
 
+	setorigin(this, origin);
+
+	/* these only concern the current player */
+	CSQC_UpdateSeat();
+	if (this != pSeat->m_ePlayer)
+		return;
+
+	/* do not notify us of updates when spawning initially */
+	if (fl == UPDATE_ALL)
+		PredictPreFrame();
+
 	if (fl & PLAYER_AMMO1 || fl & PLAYER_AMMO2 || fl & PLAYER_AMMO3) {
 		Weapons_AmmoUpdate(this);
 		HUD_AmmoNotify_Check(this);
 	}
 
-	setorigin(this, origin);
+	if (fl & PLAYER_ITEMS || fl & PLAYER_HEALTH || fl & PLAYER_ARMOR)
+		HUD_ItemNotify_Check(this);
 }
 
 /*

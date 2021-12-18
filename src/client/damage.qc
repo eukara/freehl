@@ -12,6 +12,7 @@ Damage_Precache(void)
 	g_damage_spr_l = spriteframe("sprites/640_pain.spr", 3, 0.0f);
 }
 
+void HUD_DamageNotify_Check();
 void
 Damage_Draw(void)
 {
@@ -23,6 +24,8 @@ Damage_Draw(void)
 	if (pSeat->m_flDamageAlpha <= 0.0) {
 		return;
 	}
+
+	HUD_DamageNotify_Check();
 
 	center = video_mins + (video_res / 2);
 

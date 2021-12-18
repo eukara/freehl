@@ -32,6 +32,8 @@ game_event.qc
 ../../../valve/src/client/viewmodel.qc
 view.qc
 obituary.qc
+hud_itemnotify.qc
+hud_dmgnotify.qc
 hud_ammonotify.qc
 hud.qc
 hud_weaponselect.qc
