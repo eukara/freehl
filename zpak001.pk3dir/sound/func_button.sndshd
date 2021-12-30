@@ -1,0 +1,101 @@
+func_button.qsfx_1
+{
+	sample buttons/airbut1.wav
+}
+func_button.qsfx_2
+{
+	sample buttons/switch21.wav
+}
+func_button.qsfx_3
+{
+	sample buttons/switch02.wav
+}
+func_button.qsfx_4
+{
+	sample buttons/switch04.wav
+}
+
+func_button.hlsfx_1
+{
+	sample common/null.wav
+}
+func_button.hlsfx_2
+{
+	sample buttons/button1.wav
+}
+func_button.hlsfx_3
+{
+	sample buttons/button2.wav
+}
+func_button.hlsfx_4
+{
+	sample buttons/button3.wav
+}
+func_button.hlsfx_5
+{
+	sample buttons/button4.wav
+}
+func_button.hlsfx_6
+{
+	sample buttons/button5.wav
+}
+func_button.hlsfx_7
+{
+	sample buttons/button6.wav
+}
+func_button.hlsfx_8
+{
+	sample buttons/button7.wav
+}
+func_button.hlsfx_9
+{
+	sample buttons/button8.wav
+}
+func_button.hlsfx_10
+{
+	sample buttons/button9.wav
+}
+func_button.hlsfx_11
+{
+	sample buttons/button10.wav
+}
+func_button.hlsfx_12
+{
+	sample buttons/button11.wav
+}
+func_button.hlsfx_13
+{
+	sample buttons/latchlocked1.wav
+}
+func_button.hlsfx_14
+{
+	sample buttons/latchunlocked1.wav
+}
+func_button.hlsfx_15
+{
+	sample buttons/lightswitch2.wav
+}
+func_button.hlsfx_16
+{
+	sample buttons/lever1.wav
+}
+func_button.hlsfx_17
+{
+	sample buttons/lever2.wav
+}
+func_button.hlsfx_18
+{
+	sample buttons/lever3.wav
+}
+func_button.hlsfx_19
+{
+	sample buttons/lever4.wav
+}
+func_button.hlsfx_20
+{
+	sample buttons/lever5.wav
+}
+func_button.hlsfx_21
+{
+	sample buttons/button9.wav
+}

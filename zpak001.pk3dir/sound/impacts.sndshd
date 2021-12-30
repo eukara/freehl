@@ -1,0 +1,164 @@
+sfx_impact.default
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.alien
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.flesh
+{
+	attenuation normal
+	sample debris/flesh1.wav
+	sample debris/flesh2.wav
+	sample debris/flesh3.wav
+	sample debris/flesh5.wav
+	sample debris/flesh6.wav
+	sample debris/flesh7.wav
+}
+
+sfx_impact.foliage
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.computer
+{
+	attenuation normal
+	sample debris/glass1.wav
+	sample debris/glass2.wav
+	sample debris/glass3.wav
+	sample debris/glass4.wav
+	sample buttons/spark1.wav
+	sample buttons/spark2.wav
+	sample buttons/spark3.wav
+	sample buttons/spark4.wav
+	sample buttons/spark5.wav
+	sample buttons/spark6.wav
+}
+
+sfx_impact.dirt
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.vent
+{
+	attenuation normal
+	sample debris/metal1.wav
+	sample debris/metal2.wav
+	sample debris/metal3.wav
+	sample debris/metal4.wav
+	sample debris/metal5.wav
+	sample debris/metal6.wav
+}
+
+sfx_impact.grate
+{
+	attenuation normal
+	sample debris/metal1.wav
+	sample debris/metal2.wav
+	sample debris/metal3.wav
+	sample debris/metal4.wav
+	sample debris/metal5.wav
+	sample debris/metal6.wav
+}
+
+sfx_impact.metal
+{
+	attenuation normal
+	sample debris/metal1.wav
+	sample debris/metal2.wav
+	sample debris/metal3.wav
+	sample debris/metal4.wav
+	sample debris/metal5.wav
+	sample debris/metal6.wav
+}
+
+sfx_impact.glass
+{
+	attenuation normal
+	sample debris/glass1.wav
+	sample debris/glass2.wav
+	sample debris/glass3.wav
+	sample debris/glass4.wav
+}
+
+sfx_impact.sand
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.slosh
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.snow
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.tile
+{
+	attenuation normal
+	sample weapons/ric1.wav
+	sample weapons/ric2.wav
+	sample weapons/ric3.wav
+	sample weapons/ric4.wav
+	sample weapons/ric5.wav
+}
+
+sfx_impact.wood
+{
+	attenuation normal
+	sample debris/wood1.wav
+	sample debris/wood2.wav
+	sample debris/wood3.wav
+	sample debris/wood4.wav
+}
+
+sfx_impact.concrete
+{
+	attenuation normal
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
+}

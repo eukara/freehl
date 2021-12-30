@@ -1,0 +1,5 @@
+damage_bullet.hit
+{
+	sample weapons/bullet_hit1.wav
+	sample weapons/bullet_hit2.wav
+}

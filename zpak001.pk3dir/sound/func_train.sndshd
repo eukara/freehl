@@ -1,0 +1,93 @@
+func_train.move_1
+{
+	sample common/null.wav
+}
+func_train.move_2
+{
+	sample plats/bigmove1.wav
+}
+func_train.move_3
+{
+	sample plats/bigmove2.wav
+}
+func_train.move_4
+{
+	sample plats/elevmove1.wav
+}
+func_train.move_5
+{
+	sample plats/elevmove2.wav
+}
+func_train.move_6
+{
+	sample plats/elevmove3.wav
+}
+func_train.move_7
+{
+	sample plats/freightmove1.wav
+}
+func_train.move_8
+{
+	sample plats/freightmove2.wav
+}
+func_train.move_9
+{
+	sample plats/heavymove1.wav
+}
+func_train.move_10
+{
+	sample plats/rackmove1.wav
+}
+func_train.move_11
+{
+	sample plats/railmove1.wav
+}
+func_train.move_12
+{
+	sample plats/squeekmove1.wav
+}
+func_train.move_13
+{
+	sample plats/talkmove1.wav
+}
+func_train.move_14
+{
+	sample plats/talkmove2.wav
+}
+
+func_train.stop_1
+{
+	sample common/null.wav
+}
+func_train.stop_2
+{
+	sample plats/bigstop1.wav
+}
+func_train.stop_3
+{
+	sample plats/bigstop2.wav
+}
+func_train.stop_4
+{
+	sample plats/freightstop1.wav
+}
+func_train.stop_5
+{
+	sample plats/heavystop2.wav
+}
+func_train.stop_6
+{
+	sample plats/rackstop1.wav
+}
+func_train.stop_7
+{
+	sample plats/railstop1.wav
+}
+func_train.stop_8
+{
+	sample plats/squeekstop1.wav
+}
+func_train.stop_9
+{
+	sample plats/talkstop1.wav
+}

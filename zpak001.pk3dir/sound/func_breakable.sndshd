@@ -1,0 +1,70 @@
+func_breakable.impact_glassunbreakable
+{
+	sample debris/glass1.wav
+	sample debris/glass2.wav
+	sample debris/glass3.wav
+	sample debris/glass4.wav
+}
+
+func_breakable.impact_computer
+{
+	sample debris/glass1.wav
+	sample debris/glass2.wav
+	sample debris/glass3.wav
+	sample debris/glass4.wav
+}
+
+func_breakable.impact_glass
+{
+	sample debris/glass1.wav
+	sample debris/glass2.wav
+	sample debris/glass3.wav
+	sample debris/glass4.wav
+}
+
+func_breakable.impact_wood
+{
+	sample debris/wood1.wav
+	sample debris/wood2.wav
+	sample debris/wood3.wav
+	sample debris/wood4.wav
+}
+
+func_breakable.impact_metal
+{
+	sample debris/metal1.wav
+	sample debris/metal2.wav
+	sample debris/metal3.wav
+	sample debris/metal4.wav
+}
+
+func_breakable.impact_flesh
+{
+	sample debris/flesh1.wav
+	sample debris/flesh2.wav
+	sample debris/flesh3.wav
+	sample debris/flesh5.wav
+	sample debris/flesh6.wav
+	sample debris/flesh7.wav
+}
+
+func_breakable.impact_cinder
+{
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
+}
+
+func_breakable.impact_concrete
+{
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
+}
+
+func_breakable.impact_rock
+{
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
+}

@@ -1,0 +1,277 @@
+step_default.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_default.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_alien.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_alien.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_computer.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_computer.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_concrete.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_concrete.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_dirt.left
+{
+	attenuation static
+	footstep
+	sample player/pl_dirt1.wav
+	sample player/pl_dirt2.wav
+}
+step_dirt.right
+{
+	attenuation static
+	footstep
+	sample player/pl_dirt3.wav
+	sample player/pl_dirt4.wav
+}
+
+step_flesh.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_flesh.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_foliage.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_foliage.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_glass.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_glass.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_grate.left
+{
+	attenuation static
+	footstep
+	sample player/pl_grate1.wav
+	sample player/pl_grate2.wav
+}
+step_grate.right
+{
+	attenuation static
+	footstep
+	sample player/pl_grate3.wav
+	sample player/pl_grate4.wav
+}
+
+step_metal.left
+{
+	attenuation static
+	footstep
+	sample player/pl_metal1.wav
+	sample player/pl_metal2.wav
+}
+step_metal.right
+{
+	attenuation static
+	footstep
+	sample player/pl_metal3.wav
+	sample player/pl_metal4.wav
+}
+
+step_slosh.left
+{
+	attenuation static
+	footstep
+	sample player/pl_slosh1.wav
+	sample player/pl_slosh2.wav
+}
+step_slosh.right
+{
+	attenuation static
+	footstep
+	sample player/pl_slosh3.wav
+	sample player/pl_slosh4.wav
+}
+
+step_sand.left
+{
+	attenuation static
+	footstep
+	sample player/pl_sand1.wav
+	sample player/pl_sand2.wav
+}
+step_sand.right
+{
+	attenuation static
+	footstep
+	sample player/pl_sand3.wav
+	sample player/pl_sand4.wav
+}
+
+step_snow.left
+{
+	attenuation static
+	footstep
+	sample player/pl_snow1.wav
+	sample player/pl_snow2.wav
+}
+step_snow.right
+{
+	attenuation static
+	footstep
+	sample player/pl_snow3.wav
+	sample player/pl_snow4.wav
+}
+
+step_tile.left
+{
+	attenuation static
+	footstep
+	sample player/pl_tile1.wav
+	sample player/pl_tile2.wav
+}
+step_tile.right
+{
+	attenuation static
+	footstep
+	sample player/pl_tile3.wav
+	sample player/pl_tile4.wav
+}
+
+step_vent.left
+{
+	attenuation static
+	footstep
+	sample player/pl_duct1.wav
+	sample player/pl_duct2.wav
+}
+step_vent.right
+{
+	attenuation static
+	footstep
+	sample player/pl_duct3.wav
+	sample player/pl_duct4.wav
+}
+
+step_wood.left
+{
+	attenuation static
+	footstep
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+}
+step_wood.right
+{
+	attenuation static
+	footstep
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+step_ladder.left
+{
+	attenuation static
+	footstep
+	sample player/pl_ladder1.wav
+	sample player/pl_ladder2.wav
+}
+step_ladder.right
+{
+	attenuation static
+	footstep
+	sample player/pl_ladder3.wav
+	sample player/pl_ladder4.wav
+}
+
+step_wade.left
+{
+	sample player/pl_wade1.wav
+	sample player/pl_wade2.wav
+}
+step_wade.right
+{
+	sample player/pl_wade3.wav
+	sample player/pl_wade4.wav
+}
+
+step_swim.left
+{
+	sample player/pl_swim1.wav
+	sample player/pl_swim2.wav
+}
+step_swim.right
+{
+	sample player/pl_swim3.wav
+	sample player/pl_swim4.wav
+}
+

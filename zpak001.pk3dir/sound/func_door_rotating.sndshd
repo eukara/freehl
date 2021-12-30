@@ -1,0 +1,81 @@
+func_door_rotating.move_0
+{
+	sample misc/null.wav
+}
+func_door_rotating.move_1
+{
+	sample doors/doormove1.wav
+}
+func_door_rotating.move_2
+{
+	sample doors/doormove2.wav
+}
+func_door_rotating.move_3
+{
+	sample doors/doormove3.wav
+}
+func_door_rotating.move_4
+{
+	sample doors/doormove4.wav
+}
+func_door_rotating.move_5
+{
+	sample doors/doormove5.wav
+}
+func_door_rotating.move_6
+{
+	sample doors/doormove6.wav
+}
+func_door_rotating.move_7
+{
+	sample doors/doormove7.wav
+}
+func_door_rotating.move_8
+{
+	sample doors/doormove8.wav
+}
+func_door_rotating.move_9
+{
+	sample doors/doormove9.wav
+}
+func_door_rotating.move_10
+{
+	sample doors/doormove10.wav
+}
+
+func_door_rotating.stop_0
+{
+	sample misc/null.wav
+}
+func_door_rotating.stop_1
+{
+	sample doors/doorstop1.wav
+}
+func_door_rotating.stop_2
+{
+	sample doors/doorstop2.wav
+}
+func_door_rotating.stop_3
+{
+	sample doors/doorstop3.wav
+}
+func_door_rotating.stop_4
+{
+	sample doors/doorstop4.wav
+}
+func_door_rotating.stop_5
+{
+	sample doors/doorstop5.wav
+}
+func_door_rotating.stop_6
+{
+	sample doors/doorstop6.wav
+}
+func_door_rotating.stop_7
+{
+	sample doors/doorstop7.wav
+}
+func_door_rotating.stop_8
+{
+	sample doors/doorstop8.wav
+}

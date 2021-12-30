@@ -186,7 +186,6 @@ FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 		break;
 	case IMPACT_METAL:
 		Sound_PlayAt(vecPos, "sfx_impact.metal");
-		print("Metal shit\n");
 		break;
 	case IMPACT_SLOSH:
 		Sound_PlayAt(vecPos, "sfx_impact.slosh");
