@@ -67,12 +67,14 @@ w_python_pickup(int new, int startammo)
 
 	if (new) {
 		pl.python_mag = 6;
+		return (1);
+	}
+
+	if (pl.ammo_357 < MAX_A_357) {
+		pl.ammo_357 = bound(0, pl.ammo_357 + 6, MAX_A_357);
 	} else {
-		if (pl.ammo_357 < MAX_A_357) {
-			pl.ammo_357 = bound(0, pl.ammo_357 + 6, MAX_A_357);
-		} else {
+		if (!new)
 			return (0);
-		}
 	}
 #endif
 	return (1);

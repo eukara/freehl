@@ -155,7 +155,8 @@ int w_snark_pickup(int new, int startammo)
 	if (pl.ammo_snark < MAX_A_SNARK) {
 		pl.ammo_snark = bound(0, pl.ammo_snark + 5, MAX_A_SNARK);
 	} else {
-		return (0);
+		if (!new)
+			return (0);
 	}
 #endif
 	return (1);

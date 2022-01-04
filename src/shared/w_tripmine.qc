@@ -240,7 +240,8 @@ int w_tripmine_pickup(int new, int startammo)
 	if (pl.ammo_tripmine < MAX_A_TRIPMINE) {
 		pl.ammo_tripmine = bound(0, pl.ammo_tripmine + 1, MAX_A_TRIPMINE);
 	} else {
-		return (0);
+		if (!new)
+			return (0);
 	}
 #endif
 	return (1);

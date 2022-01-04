@@ -70,7 +70,8 @@ int w_handgrenade_pickup(int new, int startammo)
 	if (pl.ammo_handgrenade < MAX_A_HANDGRENADE) {
 		pl.ammo_handgrenade = bound(0, pl.ammo_handgrenade + 1, MAX_A_HANDGRENADE);
 	} else {
-		return (0);
+		if (!new)
+			return (0);
 	}
 #endif
 	return (1);

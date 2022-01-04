@@ -72,12 +72,14 @@ w_mp5_pickup(int new, int startammo)
 
 	if (new) {
 		pl.mp5_mag = 25;
+		return (1);
+	}
+
+	if (pl.ammo_9mm < MAX_A_9MM) {
+		pl.ammo_9mm = bound(0, pl.ammo_9mm + 25, MAX_A_9MM);
 	} else {
-		if (pl.ammo_9mm < MAX_A_9MM) {
-			pl.ammo_9mm = bound(0, pl.ammo_9mm + 25, MAX_A_9MM);
-		} else {
+		if (!new)
 			return (0);
-		}
 	}
 #endif
 	return (1);

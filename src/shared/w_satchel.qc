@@ -130,7 +130,8 @@ w_satchel_pickup(int new, int startammo)
 	if (pl.ammo_satchel < MAX_A_SATCHEL) {
 		pl.ammo_satchel = bound(0, pl.ammo_satchel + 1, MAX_A_SATCHEL);
 	} else {
-		return (0);
+		if (!new)
+			return (0);
 	}
 #endif
 	return (1);

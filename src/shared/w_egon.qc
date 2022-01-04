@@ -92,7 +92,8 @@ int w_egon_pickup(int new, int startammo)
 	if (pl.ammo_uranium < MAX_A_URANIUM) {
 		pl.ammo_uranium = bound(0, pl.ammo_uranium + 20, MAX_A_URANIUM);
 	} else {
-		return (0);
+		if (!new)
+			return (0);
 	}
 #endif
 	return (1);

@@ -87,13 +87,16 @@ w_crossbow_pickup(int new, int startammo)
 
 	if (new) {
 		pl.crossbow_mag = 5;
-	} else {
-		if (pl.ammo_bolt < MAX_A_BOLT) {
-			pl.ammo_bolt = bound(0, pl.ammo_bolt + 5, MAX_A_BOLT);
-		} else {
-			return (0);
-		}
+		return (1);
 	}
+
+	if (pl.ammo_bolt < MAX_A_BOLT) {
+		pl.ammo_bolt = bound(0, pl.ammo_bolt + 5, MAX_A_BOLT);
+	} else {
+		if (!new)
+			return (0);
+	}
+	
 #endif
 	return (1);
 }
