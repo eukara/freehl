@@ -19,7 +19,8 @@
 UseWorkaround
 ====================
 */
-void UseWorkaround(entity eTarget)
+void
+UseWorkaround(entity eTarget)
 {
 	eActivator = self;
 	entity eOldSelf = self;
@@ -28,14 +29,27 @@ void UseWorkaround(entity eTarget)
 	self = eOldSelf;
 }
 
+void
+UnUseWorkaround(entity eTarget)
+{
+	eActivator = self;
+	entity eOldSelf = self;
+	self = eTarget;
+	if (self.PlayerUseUnpressed)
+		self.PlayerUseUnpressed();
+	self = eOldSelf;
+}
+
 /*
 ====================
 Player_UseDown
 ====================
 */
-void Player_UseDown(void)
+void
+Player_UseDown(void)
 {
 	vector vecSrc;
+	player pl = (player)self;
 
 	if (self.health <= 0) {
 		return;
@@ -46,14 +60,17 @@ void Player_UseDown(void)
 	makevectors(self.v_angle);
 	vecSrc = self.origin + self.view_ofs;
 
+	int oldmask = self.hitcontentsmaski;
 	self.hitcontentsmaski = CONTENTBITS_POINTSOLID;
 	traceline(vecSrc, vecSrc + (v_forward * 64), MOVE_HITMODEL, self);
+	self.hitcontentsmaski = oldmask;
 
 
 	if (trace_ent.PlayerUse) {
 		self.flags &= ~FL_USE_RELEASED;
-		
+
 		UseWorkaround(trace_ent);
+		pl.last_used = trace_ent;
 
 		/* Some entities want to support Use spamming */
 		if (!(self.flags & FL_USE_RELEASED)) {
@@ -70,14 +87,20 @@ void Player_UseDown(void)
 Player_UseUp
 ====================
 */
-void Player_UseUp(void) {
+void
+Player_UseUp(void) {
+	player pl = (player)self;
 	if (!(self.flags & FL_USE_RELEASED)) {
+		UnUseWorkaround(pl.last_used);
+		pl.last_used = world;
 		self.flags |= FL_USE_RELEASED;
 	}
 }
 
 void Weapons_Draw(void);
-void CSEv_PlayerSwitchWeapon_i(int w)
+
+void
+CSEv_PlayerSwitchWeapon_i(int w)
 {
 	player pl = (player)self;
 
