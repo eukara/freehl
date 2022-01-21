@@ -8,7 +8,6 @@
 
 #includelist
 ../../../src/shared/fteextensions.qc
-../../../src/gs-entbase/server/defs.h
 ../../../src/shared/defs.h
 ../../../src/server/defs.h
 

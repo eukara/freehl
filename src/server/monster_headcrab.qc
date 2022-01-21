@@ -47,7 +47,7 @@ enum
 	HC_STRUGGLE
 };
 
-class monster_headcrab:CBaseMonster
+class monster_headcrab:NSMonster
 {
 	float m_flIdleTime;
 
@@ -110,7 +110,7 @@ monster_headcrab::touch(void)
 void
 monster_headcrab::Pain(void)
 {
-	CBaseMonster::Pain();
+	NSMonster::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -135,7 +135,7 @@ monster_headcrab::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	NSMonster::Death();
 }
 
 void
@@ -177,5 +177,5 @@ monster_headcrab::monster_headcrab(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,36];
 	m_iAlliance = MAL_ALIEN;
-	CBaseMonster::CBaseMonster();
+	NSMonster::NSMonster();
 }

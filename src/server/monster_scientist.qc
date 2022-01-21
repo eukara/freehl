@@ -77,29 +77,9 @@ class monster_scientist:CBaseNPC
 	virtual void(void) OnPlayerUse;
 	virtual void(void) Pain;
 	virtual void(void) Death;
-	virtual int(void) AnimIdle;
-	virtual int(void) AnimWalk;
-	virtual int(void) AnimRun;
+
 	virtual void(string, string) SpawnKey;
 };
-
-int
-monster_scientist::AnimIdle(void)
-{
-	return SCIA_IDLE1;
-}
-
-int
-monster_scientist::AnimWalk(void)
-{
-	return SCIA_WALK;
-}
-
-int
-monster_scientist::AnimRun(void)
-{
-	return SCIA_RUN;
-}
 
 void
 monster_scientist::OnPlayerUse(void)
