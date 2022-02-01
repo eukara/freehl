@@ -23,7 +23,7 @@ Player_Flashlight(base_player pl)
 		
 		if (pl.entnum != player_localentnum) {
 			src = pl.origin + pl.view_ofs;
-			ang = [pl.pitch, pl.angles[1], pl.angles[2]];
+			ang = pl.v_angle;
 		} else {
 			src = pSeat->m_vecPredictedOrigin + [0,0,-8];
 			ang = view_angles;

@@ -105,6 +105,7 @@ Animation_PlayerUpdate(player pl)
 
 	/* Correct the legs */
 	pl.angles[1] = pl.v_angle[1] - fCorrect;
+	pl.angles[0] = pl.angles[2] = 0;
 
 	pl.subblendfrac = 
 	pl.subblend2frac = pl.v_angle[0] / 90;
