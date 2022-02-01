@@ -134,7 +134,7 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	vector vecSrc;
 	vector vecEndPos;
 	vector vecDir;
-	vector vecFirstImpact;
+	vector vecFirstImpact = [0,0,0];
 	int totalBeams = numBeams;
 
 	makevectors(vecAngle);
