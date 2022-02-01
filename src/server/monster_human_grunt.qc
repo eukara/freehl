@@ -161,7 +161,7 @@ monster_human_grunt::AttackMelee(void)
 
 	/* functional */
 	think = AttackKick;
-	nextthink = 0.25f;
+	nextthink = time + 0.25f;
 	return (1);
 }
 

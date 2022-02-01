@@ -121,7 +121,7 @@ monster_zombie::AttackMelee(void)
 
 	/* functional */
 	think = AttackFlail;
-	nextthink = 0.25f;
+	nextthink = time + 0.25f;
 	return (1);
 }
 
