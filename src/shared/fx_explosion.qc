@@ -63,7 +63,9 @@ FX_Explosion(vector vecPos)
 	Sound_Play(eExplosion, CHAN_WEAPON, "fx.explosion");
 
 	//eExplosion.think = FX_Explosion_Animate;
-	eExplosion.effects = EF_ADDITIVE;
+	eExplosion.SetRenderMode(RM_ADDITIVE);
+	eExplosion.SetRenderAmt(1.0f);
+	eExplosion.SetRenderColor(1,1,1);
 	eExplosion.drawmask = MASK_ENGINE;
 	eExplosion.maxframe = modelframecount(eExplosion.modelindex);
 	eExplosion.loops = 0;
