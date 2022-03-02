@@ -135,7 +135,11 @@ FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 	case IMPACT_MELEE:
 	case IMPACT_EXPLOSION:
 		break;
+	case IMPACT_DIRT:
 	case IMPACT_GLASS:
+	case IMPACT_FOLIAGE:
+	case IMPACT_SNOW:
+	case IMPACT_SAND:
 		pointparticles(FX_IMPACT_BLACKBITS, vecPos, vNormal, 1);
 		break;
 	case IMPACT_WOOD:

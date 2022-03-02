@@ -105,6 +105,7 @@ void
 w_crossbow_draw(void)
 {
 	player pl = (player)self;
+
 	Weapons_SetModel("models/v_crossbow.mdl");
 
 	if (pl.crossbow_mag <= 0)

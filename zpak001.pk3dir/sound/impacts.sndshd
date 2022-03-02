@@ -10,12 +10,15 @@ sfx_impact.default
 
 sfx_impact.alien
 {
+	pitch_min 1.5
+	pitch_max 2
 	attenuation normal
-	sample weapons/ric1.wav
-	sample weapons/ric2.wav
-	sample weapons/ric3.wav
-	sample weapons/ric4.wav
-	sample weapons/ric5.wav
+	sample debris/flesh1.wav
+	sample debris/flesh2.wav
+	sample debris/flesh3.wav
+	sample debris/flesh5.wav
+	sample debris/flesh6.wav
+	sample debris/flesh7.wav
 }
 
 sfx_impact.flesh
@@ -31,12 +34,11 @@ sfx_impact.flesh
 
 sfx_impact.foliage
 {
+	pitch 2
 	attenuation normal
-	sample weapons/ric1.wav
-	sample weapons/ric2.wav
-	sample weapons/ric3.wav
-	sample weapons/ric4.wav
-	sample weapons/ric5.wav
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
 }
 
 sfx_impact.computer
@@ -56,12 +58,11 @@ sfx_impact.computer
 
 sfx_impact.dirt
 {
+	pitch 2
 	attenuation normal
-	sample weapons/ric1.wav
-	sample weapons/ric2.wav
-	sample weapons/ric3.wav
-	sample weapons/ric4.wav
-	sample weapons/ric5.wav
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
 }
 
 sfx_impact.vent
@@ -108,12 +109,11 @@ sfx_impact.glass
 
 sfx_impact.sand
 {
+	pitch 2
 	attenuation normal
-	sample weapons/ric1.wav
-	sample weapons/ric2.wav
-	sample weapons/ric3.wav
-	sample weapons/ric4.wav
-	sample weapons/ric5.wav
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
 }
 
 sfx_impact.slosh
@@ -128,12 +128,11 @@ sfx_impact.slosh
 
 sfx_impact.snow
 {
+	pitch 2
 	attenuation normal
-	sample weapons/ric1.wav
-	sample weapons/ric2.wav
-	sample weapons/ric3.wav
-	sample weapons/ric4.wav
-	sample weapons/ric5.wav
+	sample debris/concrete1.wav
+	sample debris/concrete2.wav
+	sample debris/concrete3.wav
 }
 
 sfx_impact.tile
