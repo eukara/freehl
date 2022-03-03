@@ -77,14 +77,10 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 	}
 
 	/* now let's make the real client invisible */
-	pl.SetModelindex(0);
-	pl.SetMovetype(MOVETYPE_NONE);
-	pl.SetSolid(SOLID_NOT);
+	pl.Death();
 	pl.takedamage = DAMAGE_NO;
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
-	pl.armor = pl.activeweapon = pl.g_items = 0;
-	pl.health = 0;
 
 	Sound_Play(pl, CHAN_AUTO, "player.die");
 
