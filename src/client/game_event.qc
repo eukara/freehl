@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void
+int
 ClientGame_EventParse(float fHeader)
 {
 	switch (fHeader) {
@@ -120,5 +120,9 @@ ClientGame_EventParse(float fHeader)
 
 		HUD_WeaponPickupNotify(w);
 		break;
+	default:
+		return (0);
 	}
+
+	return (1);
 }
