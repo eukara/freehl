@@ -375,6 +375,23 @@ w_tripmine_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_tripmine_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.ammo_tripmine <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_tripmine_type(void)
+{
+	return WPNTYPE_CLOSE;
+}
+
 weapon_t w_tripmine =
 {
 	.name		= "tripmine",
@@ -396,6 +413,8 @@ weapon_t w_tripmine =
 	.pmodel		= w_tripmine_pmodel,
 	.deathmsg	= w_tripmine_deathmsg,
 	.aimanim	= w_tripmine_aimanim,
+	.isempty	= w_tripmine_isempty,
+	.type		= w_tripmine_type,
 	.hudpic		= w_tripmine_hudpic
 };
 

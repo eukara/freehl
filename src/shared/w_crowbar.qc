@@ -204,6 +204,17 @@ w_crowbar_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_crowbar_isempty(void)
+{
+	return 0;
+}
+
+weapontype_t w_crowbar_type(void)
+{
+	return WPNTYPE_CLOSE;
+}
+
 weapon_t w_crowbar =
 {
 	.name		= "crowbar",
@@ -225,6 +236,8 @@ weapon_t w_crowbar =
 	.pmodel		= w_crowbar_pmodel,
 	.deathmsg	= w_crowbar_deathmsg,
 	.aimanim	= w_crowbar_aimanim,
+	.isempty	= w_crowbar_isempty,
+	.type		= w_crowbar_type,
 	.hudpic		= w_crowbar_hudpic
 };
 

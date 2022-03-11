@@ -388,6 +388,23 @@ w_glock_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_glock_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.glock_mag <= 0 && pl.ammo_9mm <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_glock_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_glock =
 {
 	.name		= "9mmhandgun",
@@ -409,6 +426,8 @@ weapon_t w_glock =
 	.pmodel		= w_glock_pmodel,
 	.deathmsg	= w_glock_deathmsg,
 	.aimanim	= w_glock_aimanim,
+	.isempty	= w_glock_isempty,
+	.type		= w_glock_type,
 	.hudpic		= w_glock_hudpic
 };
 

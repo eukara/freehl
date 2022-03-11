@@ -287,6 +287,23 @@ void w_egon_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_egon_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.ammo_uranium <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_egon_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_egon =
 {
 	.name		= "egon",
@@ -309,6 +326,8 @@ weapon_t w_egon =
 	.deathmsg	= w_egon_deathmsg,
 	.aimanim	= w_egon_aimanim,
 	.hudpic		= w_egon_hudpic,
+	.isempty	= w_egon_isempty,
+	.type		= w_egon_type,
 	.predraw	= w_egon_postdraw
 };
 

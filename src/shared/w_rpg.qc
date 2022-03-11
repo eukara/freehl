@@ -338,10 +338,27 @@ void w_rpg_hud(void)
 #endif
 }
 
+int
+w_rpg_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.rpg_mag <= 0 && pl.ammo_rocket <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_rpg_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_rpg =
 {
 	.name		= "rpg_rocket",
-	.id		= ITEM_RPG,
+	.id			= ITEM_RPG,
 	.slot		= 3,
 	.slot_pos	= 0,
 	.weight		= 20,
@@ -359,6 +376,8 @@ weapon_t w_rpg =
 	.pmodel		= w_rpg_pmodel,
 	.deathmsg	= w_rpg_deathmsg,
 	.aimanim	= w_rpg_aimanim,
+	.isempty	= w_rpg_isempty,
+	.type		= w_rpg_type,
 	.hudpic		= w_rpg_hudpic
 };
 

@@ -319,6 +319,23 @@ void w_snark_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_snark_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.ammo_snark <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_snark_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_snark =
 {
 	.name		= "snark",
@@ -340,6 +357,8 @@ weapon_t w_snark =
 	.pmodel		= w_snark_pmodel,
 	.deathmsg	= w_snark_deathmsg,
 	.aimanim	= w_snark_aimanim,
+	.isempty	= w_snark_isempty,
+	.type		= w_snark_type,
 	.hudpic		= w_snark_hudpic
 };
 

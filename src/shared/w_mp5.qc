@@ -384,6 +384,23 @@ w_mp5_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_mp5_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.mp5_mag <= 0 && pl.ammo_9mm <= 0 && pl.ammo_m203_grenade <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_mp5_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_mp5 =
 {
 	.name		= "9mmAR",
@@ -405,6 +422,8 @@ weapon_t w_mp5 =
 	.pmodel		= w_mp5_pmodel,
 	.deathmsg	= w_mp5_deathmsg,
 	.aimanim	= w_mp5_aimanim,
+	.isempty	= w_mp5_isempty,
+	.type		= w_mp5_type,
 	.hudpic		= w_mp5_hudpic
 };
 

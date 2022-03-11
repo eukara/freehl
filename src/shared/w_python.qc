@@ -340,6 +340,23 @@ w_python_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_python_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.python_mag <= 0 && pl.ammo_357 <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_python_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_python =
 {
 	.name		= "357",
@@ -361,6 +378,8 @@ weapon_t w_python =
 	.pmodel		= w_python_pmodel,
 	.deathmsg	= w_python_deathmsg,
 	.aimanim	= w_python_aimanim,
+	.isempty	= w_python_isempty,
+	.type		= w_python_type,
 	.hudpic		= w_python_hudpic
 };
 

@@ -301,10 +301,22 @@ w_hornetgun_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_hornetgun_isempty(void)
+{
+	return 0;
+}
+
+weapontype_t
+w_hornetgun_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_hornetgun =
 {
 	.name		= "hornet",
-	.id		= ITEM_HORNETGUN,
+	.id			= ITEM_HORNETGUN,
 	.slot		= 3,
 	.slot_pos	= 3,
 	.weight		= 10,
@@ -322,6 +334,8 @@ weapon_t w_hornetgun =
 	.pmodel		= w_hornetgun_pmodel,
 	.deathmsg	= w_hornetgun_deathmsg,
 	.aimanim	= w_hornetgun_aimanim,
+	.isempty	= w_hornetgun_isempty,
+	.type		= w_hornetgun_type,
 	.hudpic		= w_hornetgun_hudpic
 };
 

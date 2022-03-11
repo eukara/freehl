@@ -309,6 +309,23 @@ w_satchel_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_satchel_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.satchel_chg <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_satchel_type(void)
+{
+	return WPNTYPE_THROW;
+}
+
 weapon_t w_satchel =
 {
 	.name		= "satchel",
@@ -330,6 +347,8 @@ weapon_t w_satchel =
 	.pmodel		= w_satchel_pmodel,
 	.deathmsg	= w_satchel_deathmsg,
 	.aimanim	= w_satchel_aimanim,
+	.isempty	= w_satchel_isempty,
+	.type		= w_satchel_type,
 	.hudpic		= w_satchel_hudpic
 };
 

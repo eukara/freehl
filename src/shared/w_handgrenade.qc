@@ -244,6 +244,23 @@ w_handgrenade_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_handgrenade_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.ammo_handgrenade <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_handgrenade_type(void)
+{
+	return WPNTYPE_THROW;
+}
+
 weapon_t w_handgrenade =
 {
 	.name		= "grenade",
@@ -265,6 +282,8 @@ weapon_t w_handgrenade =
 	.pmodel		= w_handgrenade_pmodel,
 	.deathmsg	= w_handgrenade_deathmsg,
 	.aimanim	= w_handgrenade_aimanim,
+	.isempty	= w_handgrenade_isempty,
+	.type		= w_handgrenade_type,
 	.hudpic		= w_handgrenade_hudpic
 };
 

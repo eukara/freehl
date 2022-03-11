@@ -363,6 +363,23 @@ void w_gauss_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_gauss_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.ammo_uranium <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_gauss_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_gauss =
 {
 	.name		= "gauss",
@@ -384,6 +401,8 @@ weapon_t w_gauss =
 	.pmodel		= w_gauss_pmodel,
 	.deathmsg	= w_gauss_deathmsg,
 	.aimanim	= w_gauss_aimanim,
+	.isempty	= w_gauss_isempty,
+	.type		= w_gauss_type,
 	.hudpic		= w_gauss_hudpic
 };
 

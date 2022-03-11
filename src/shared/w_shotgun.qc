@@ -397,6 +397,23 @@ w_shotgun_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_shotgun_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.shotgun_mag <= 0 && pl.ammo_buckshot <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t
+w_shotgun_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_shotgun =
 {
 	.name		= "shotgun",
@@ -418,6 +435,8 @@ weapon_t w_shotgun =
 	.pmodel		= w_shotgun_pmodel,
 	.deathmsg	= w_shotgun_deathmsg,
 	.aimanim	= w_shotgun_aimanim,
+	.isempty	= w_shotgun_isempty,
+	.type		= w_shotgun_type,
 	.hudpic		= w_shotgun_hudpic
 };
 

@@ -379,10 +379,26 @@ w_crossbow_hudpic(int selected, vector pos, float a)
 #endif
 }
 
+int
+w_crossbow_isempty(void)
+{
+	player pl = (player)self;
+
+	if (pl.crossbow_mag <= 0 && pl.ammo_bolt <= 0)
+		return 1;
+
+	return 0;
+}
+
+weapontype_t w_crossbow_type(void)
+{
+	return WPNTYPE_RANGED;
+}
+
 weapon_t w_crossbow =
 {
 	.name		= "crossbow",
-	.id		= ITEM_CROSSBOW,
+	.id			= ITEM_CROSSBOW,
 	.slot		= 2,
 	.slot_pos	= 2,
 	.weight		= 10,
@@ -400,6 +416,8 @@ weapon_t w_crossbow =
 	.pmodel		= w_crossbow_pmodel,
 	.deathmsg	= w_crossbow_deathmsg,
 	.aimanim	= w_crossbow_aimanim,
+	.isempty	= w_crossbow_isempty,
+	.type		= w_crossbow_type,
 	.hudpic		= w_crossbow_hudpic
 };
 
