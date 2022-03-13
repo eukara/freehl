@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2021 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2021 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -83,12 +83,6 @@ class player:base_player
 	virtual void(void) Physics_WaterMove;
 
 #ifdef CLIENT
-	/* External model */
-	entity p_model;
-	int p_hand_bone;
-	int p_model_bone;
-	float lastweapon;
-
 	virtual void(void) draw;
 	virtual float() predraw;
 	virtual void(void) postdraw;

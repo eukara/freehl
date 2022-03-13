@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -147,6 +147,7 @@ void item_weaponbox::item_weaponbox(void)
 	SetSize([-16,-16,0], [16,16,16]);
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
+	botinfo = BOTINFO_AMMO;
 }
 
 void weaponbox_spawn(player spawner)

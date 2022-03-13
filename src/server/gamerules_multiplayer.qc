@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -154,6 +154,11 @@ HLMultiplayerRules::ConsoleCommand(base_player pp, string cmd)
 	switch (argv(0)) {
 	case "bot_add":
 		Bot_AddQuick();
+		break;
+	case "jumptest":
+		makevectors(pp.v_angle);
+		traceline(pp.origin + pp.view_ofs, pp.origin + pp.view_ofs + v_forward * 1024, FALSE, pp);
+		pp.velocity = Route_GetJumpVelocity(pp.origin, trace_endpos, pp.gravity);
 		break;
 	default:
 		return (0);

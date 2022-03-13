@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -56,6 +56,7 @@ void item_pickup::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
 	SetOrigin(GetSpawnOrigin());
+	botinfo = BOTINFO_WEAPON;
 
 	/* At some points, the item id might not yet be set */
 	if (GetSpawnModel()) {

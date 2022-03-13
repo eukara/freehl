@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -53,6 +53,25 @@ FX_Explosion(vector vecPos)
 		self.alpha--;
 		self.nextthink = time + 0.1f + (random() * 0.1f);
 	}
+
+	static void FX_Explosion_DLight(void)
+	{
+		dynamiclight_add(self.origin, 256 * self.alpha, [1.0,0.45,0]);
+
+		self.alpha -= frametime;
+
+		if (self.alpha <= 0.0f) {
+			remove(self);
+		} else {
+			addentity(self);
+		}
+	}
+
+	entity dlight = spawn();
+	setorigin(dlight, vecPos);
+	dlight.predraw = FX_Explosion_DLight;
+	dlight.drawmask = MASK_ENGINE;
+	dlight.alpha = 2.0f;
 
 	Decals_Place(vecPos, sprintf("{scorch%d", floor(random(1,4))));
 	vecPos[2] += 48;

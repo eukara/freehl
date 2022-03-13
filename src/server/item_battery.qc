@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Hladik <marco@icculus.org>
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -71,7 +71,7 @@ void item_battery::Respawn(void)
 	SetOrigin(GetSpawnOrigin());
 	SetModel(GetSpawnModel());
 	SetSize([-16,-16,0],[16,16,16]);
-//	botinfo = BOTINFO_ARMOR;
+	botinfo = BOTINFO_ARMOR;
 
 	think = __NULL__;
 	nextthink = -1;

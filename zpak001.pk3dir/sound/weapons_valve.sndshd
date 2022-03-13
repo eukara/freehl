@@ -2,6 +2,7 @@
 
 weapon_357.shoot
 {
+	alerts
 	sample weapons/357_shot1.wav
 	sample weapons/357_shot2.wav
 	distshader weapon_357.shoot_dist
@@ -19,6 +20,7 @@ weapon_357.reload
 
 weapon_crossbow.fire
 {
+	alerts
 	sample weapons/xbow_fire1.wav
 }
 
@@ -40,12 +42,14 @@ weapon_crossbow.reload
 
 weapon_crowbar.hit
 {
+	alerts
 	sample weapons/cbar_hit1.wav
 	sample weapons/cbar_hit2.wav
 }
 
 weapon_crowbar.hitbody
 {
+	alerts
 	sample weapons/cbar_hitbod1.wav
 	sample weapons/cbar_hitbod2.wav
 	sample weapons/cbar_hitbod3.wav
@@ -58,6 +62,7 @@ weapon_crowbar.miss
 
 weapon_glock.fire
 {
+	alerts
 	sample weapons/pl_gun3.wav
 }
 
@@ -70,6 +75,7 @@ weapon_handgrenade.bounce
 
 weapon_hornetgun.fire
 {
+	alerts
 	sample agrunt/ag_fire1.wav
 	sample agrunt/ag_fire2.wav
 	sample agrunt/ag_fire3.wav
@@ -91,6 +97,7 @@ weapon_hornetgun.hit
 
 weapon_mp5.shoot
 {
+	alerts
 	sample weapons/hks1.wav
 	sample weapons/hks2.wav
 	distshader weapon_mp5.shoot_dist
@@ -104,6 +111,7 @@ weapon_mp5.shoot_dist
 
 weapon_mp5.gl
 {
+	alerts
 	sample weapons/glauncher.wav
 }
 
@@ -133,17 +141,20 @@ weapon_tripmine.activate
 
 weapon_rpg.shoot
 {
+	alerts
 	sample weapons/rocketfire1.wav
 }
 
 weapon_shotgun.single
 {
+	alerts
 	sample weapons/sbarrel1.wav
 	distshader weapon_shotgun.distance
 }
 
 weapon_shotgun.double
 {
+	alerts
 	sample weapons/dbarrel1.wav
 	distshader weapon_shotgun.distance
 }

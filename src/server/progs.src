@@ -10,6 +10,7 @@
 ../../../src/shared/fteextensions.qc
 ../../../src/shared/defs.h
 ../../../src/server/defs.h
+../../../src/botlib/botinfo.h
 
 ../../../src/gs-entbase/server.src
 ../../../src/gs-entbase/shared.src
