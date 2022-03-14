@@ -54,7 +54,7 @@ FX_Explosion(vector vecPos)
 		self.nextthink = time + 0.1f + (random() * 0.1f);
 	}
 
-	static void FX_Explosion_DLight(void)
+	static float FX_Explosion_DLight(void)
 	{
 		dynamiclight_add(self.origin, 256 * self.alpha, [1.0,0.45,0]);
 
@@ -65,6 +65,7 @@ FX_Explosion(vector vecPos)
 		} else {
 			addentity(self);
 		}
+		return PREDRAW_NEXT;
 	}
 
 	entity dlight = spawn();

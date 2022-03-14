@@ -383,7 +383,7 @@ w_gauss_type(void)
 weapon_t w_gauss =
 {
 	.name		= "gauss",
-	.id		= ITEM_GAUSS,
+	.id			= ITEM_GAUSS,
 	.slot		= 3,
 	.slot_pos	= 1,
 	.weight		= 20,

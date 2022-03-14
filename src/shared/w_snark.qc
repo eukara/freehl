@@ -339,7 +339,7 @@ w_snark_type(void)
 weapon_t w_snark =
 {
 	.name		= "snark",
-	.id		= ITEM_SNARK,
+	.id			= ITEM_SNARK,
 	.slot		= 4,
 	.slot_pos	= 3,
 	.weight		= 5,

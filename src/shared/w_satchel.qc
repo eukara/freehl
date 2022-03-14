@@ -329,7 +329,7 @@ w_satchel_type(void)
 weapon_t w_satchel =
 {
 	.name		= "satchel",
-	.id		= ITEM_SATCHEL,
+	.id			= ITEM_SATCHEL,
 	.slot		= 4,
 	.slot_pos	= 1,
 	.weight		= -20,

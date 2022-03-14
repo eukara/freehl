@@ -395,7 +395,7 @@ w_tripmine_type(void)
 weapon_t w_tripmine =
 {
 	.name		= "tripmine",
-	.id		= ITEM_TRIPMINE,
+	.id			= ITEM_TRIPMINE,
 	.slot		= 4,
 	.slot_pos	= 2,
 	.weight		= -10,

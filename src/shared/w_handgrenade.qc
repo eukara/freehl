@@ -264,7 +264,7 @@ w_handgrenade_type(void)
 weapon_t w_handgrenade =
 {
 	.name		= "grenade",
-	.id		= ITEM_HANDGRENADE,
+	.id			= ITEM_HANDGRENADE,
 	.slot		= 4,
 	.slot_pos	= 0,
 	.weight		= 5,

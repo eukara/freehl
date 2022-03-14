@@ -360,7 +360,7 @@ w_python_type(void)
 weapon_t w_python =
 {
 	.name		= "357",
-	.id		= ITEM_PYTHON,
+	.id			= ITEM_PYTHON,
 	.slot		= 1,
 	.slot_pos	= 1,
 	.weight		= 15,

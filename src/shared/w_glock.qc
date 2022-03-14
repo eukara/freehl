@@ -408,7 +408,7 @@ w_glock_type(void)
 weapon_t w_glock =
 {
 	.name		= "9mmhandgun",
-	.id		= ITEM_GLOCK,
+	.id			= ITEM_GLOCK,
 	.slot		= 1,
 	.slot_pos	= 0,
 	.weight		= 10,

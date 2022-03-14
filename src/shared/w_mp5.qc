@@ -405,7 +405,7 @@ w_mp5_type(void)
 weapon_t w_mp5 =
 {
 	.name		= "9mmAR",
-	.id		= ITEM_MP5,
+	.id			= ITEM_MP5,
 	.slot		= 2,
 	.slot_pos	= 0,
 	.weight		= 15,

@@ -307,7 +307,7 @@ w_egon_type(void)
 weapon_t w_egon =
 {
 	.name		= "egon",
-	.id		= ITEM_EGON,
+	.id			= ITEM_EGON,
 	.slot		= 3,
 	.slot_pos	= 2,
 	.weight		= 15,

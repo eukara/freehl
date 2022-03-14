@@ -417,7 +417,7 @@ w_shotgun_type(void)
 weapon_t w_shotgun =
 {
 	.name		= "shotgun",
-	.id		= ITEM_SHOTGUN,
+	.id			= ITEM_SHOTGUN,
 	.slot		= 2,
 	.slot_pos	= 1,
 	.weight		= 15,

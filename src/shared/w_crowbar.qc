@@ -218,7 +218,7 @@ weapontype_t w_crowbar_type(void)
 weapon_t w_crowbar =
 {
 	.name		= "crowbar",
-	.id		= ITEM_CROWBAR,
+	.id			= ITEM_CROWBAR,
 	.slot		= 0,
 	.slot_pos	= 0,
 	.weight		= 0,
