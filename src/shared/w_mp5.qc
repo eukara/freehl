@@ -50,6 +50,39 @@ enum
 	MP5_FIRE3
 };
 
+#ifdef CLIENT
+void w_mp5_ejectshell(void)
+{
+	static void w_mp5_ejectshell_death(void) {
+		remove(self);
+	}
+	static void w_mp5_ejectshell_touch(void) {
+		if (other == world)
+			Sound_Play(self, CHAN_BODY, "modelevent_shell.land");
+	}
+	entity eShell = spawn();
+	setmodel(eShell, "models/shell.mdl");
+	eShell.solid = SOLID_BBOX;
+	eShell.movetype = MOVETYPE_BOUNCE;
+	eShell.drawmask = MASK_ENGINE;
+	eShell.angles = [pSeat->m_eViewModel.angles[0], pSeat->m_eViewModel.angles[1], 0];
+	eShell.velocity = pSeat->m_vecPredictedVelocity;
+
+	float r = random(0.0, 50.0);
+	makevectors(pSeat->m_eViewModel.angles);
+	eShell.velocity += (v_forward * 0);
+	eShell.velocity += (v_right * 45);
+	eShell.velocity += (v_up * (145 + r));
+	eShell.touch = w_mp5_ejectshell_touch;
+
+	eShell.avelocity = [0,45,900];
+	eShell.think = w_mp5_ejectshell_death;
+	eShell.nextthink = time + 2.5f;
+	setsize(eShell, [0,0,0], [0,0,0]);
+	setorigin(eShell, pSeat->m_eViewModel.origin + (v_forward * 30) + (v_right * 8) + (v_up * -15));
+}
+#endif
+
 void
 w_mp5_precache(void)
 {
@@ -151,7 +184,7 @@ w_mp5_primary(void)
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_RIFLE);
-	View_AddEvent(w_glock_ejectshell, 0.0f);
+	View_AddEvent(w_mp5_ejectshell, 0.0f);
 #else
 	/* singleplayer is more accurate */
 	if (cvar("sv_playerslots") == 1) {
