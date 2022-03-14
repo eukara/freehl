@@ -61,6 +61,7 @@ w_mp5_precache(void)
 #else
 	precache_model("models/v_9mmar.mdl");
 	precache_model("models/p_9mmar.mdl");
+	Sound_Precache("modelevent_shell.land");
 #endif
 }
 
