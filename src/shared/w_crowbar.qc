@@ -62,7 +62,7 @@ w_crowbar_wmodel(void)
 	return "models/w_crowbar.mdl";
 }
 string
-w_crowbar_pmodel(void)
+w_crowbar_pmodel(player pl)
 {
 	return "models/p_crowbar.mdl";
 }
@@ -74,30 +74,29 @@ w_crowbar_deathmsg(void)
 }
 
 void
-w_crowbar_draw(void)
+w_crowbar_draw(player pl)
 {
 	Weapons_SetModel("models/v_crowbar.mdl");
-	Weapons_ViewAnimation(CBAR_DRAW);
+	Weapons_ViewAnimation(pl, CBAR_DRAW);
 }
 
 void
-w_crowbar_holster(void)
+w_crowbar_holster(player pl)
 {
-	Weapons_ViewAnimation(CBAR_HOLSTER);
+	Weapons_ViewAnimation(pl, CBAR_HOLSTER);
 }
 
 void
-w_crowbar_primary(void)
+w_crowbar_primary(player pl)
 {
 	int anim = 0;
 	vector src;
-	player pl = (player)self;
 
 	if (pl.w_attack_next) {
 		return;
 	}
 
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	src = pl.origin + pl.view_ofs;
 
 	/* make sure we can gib corpses */
@@ -116,13 +115,13 @@ w_crowbar_primary(void)
 	int r = (float)input_sequence % 3;
 	switch (r) {
 	case 0:
-		Weapons_ViewAnimation(trace_fraction >= 1 ? CBAR_ATTACK1MISS:CBAR_ATTACK1HIT);
+		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK1MISS:CBAR_ATTACK1HIT);
 		break;
 	case 1:
-		Weapons_ViewAnimation(trace_fraction >= 1 ? CBAR_ATTACK2MISS:CBAR_ATTACK2HIT);
+		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK2MISS:CBAR_ATTACK2HIT);
 		break;
 	default:
-		Weapons_ViewAnimation(trace_fraction >= 1 ? CBAR_ATTACK3MISS:CBAR_ATTACK3HIT);
+		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK3MISS:CBAR_ATTACK3HIT);
 	}
 
 	if (self.flags & FL_CROUCHING)
@@ -156,26 +155,25 @@ w_crowbar_primary(void)
 }
 
 void
-w_crowbar_release(void)
+w_crowbar_release(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_idle_next) {
 		return;
 	}
 
-	Weapons_ViewAnimation(CBAR_IDLE);
+	Weapons_ViewAnimation(pl, CBAR_IDLE);
 	pl.w_idle_next = 15.0f;
 }
 
 float
-w_crowbar_aimanim(void)
+w_crowbar_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
 }
 
 void
-w_crowbar_hudpic(int selected, vector pos, float a)
+w_crowbar_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
 	if (selected) {
@@ -205,12 +203,12 @@ w_crowbar_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_crowbar_isempty(void)
+w_crowbar_isempty(player pl)
 {
 	return 0;
 }
 
-weapontype_t w_crowbar_type(void)
+weapontype_t w_crowbar_type(player pl)
 {
 	return WPNTYPE_CLOSE;
 }
@@ -228,7 +226,7 @@ weapon_t w_crowbar =
 	.secondary	= __NULL__,
 	.reload		= __NULL__,
 	.release	= w_crowbar_release,
-	.crosshair	= __NULL__,
+	.postdraw	= __NULL__,
 	.precache	= w_crowbar_precache,
 	.pickup		= __NULL__,
 	.updateammo	= w_crowbar_updateammo,

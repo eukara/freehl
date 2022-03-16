@@ -97,7 +97,7 @@ Player_UseUp(void) {
 	}
 }
 
-void Weapons_Draw(void);
+void Weapons_Draw(player pl);
 
 void
 CSEv_PlayerSwitchWeapon_i(int w)
@@ -106,7 +106,7 @@ CSEv_PlayerSwitchWeapon_i(int w)
 
 	if (pl.activeweapon != w) {
 		pl.activeweapon = w;
-		Weapons_Draw();
+		Weapons_Draw(pl);
 	}
 }
 

@@ -75,7 +75,7 @@ string w_egon_wmodel(void)
 {
 	return "models/w_egon.mdl";
 }
-string w_egon_pmodel(void)
+string w_egon_pmodel(player pl)
 {
 	return "models/p_egon.mdl";
 }
@@ -84,10 +84,9 @@ string w_egon_deathmsg(void)
 	return "";
 }
 
-int w_egon_pickup(int new, int startammo)
+int w_egon_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_uranium < MAX_A_URANIUM) {
 		pl.ammo_uranium = bound(0, pl.ammo_uranium + 20, MAX_A_URANIUM);
@@ -99,38 +98,36 @@ int w_egon_pickup(int new, int startammo)
 	return (1);
 }
 
-void w_egon_draw(void)
+void w_egon_draw(player pl)
 {
-	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
 	Weapons_SetModel("models/v_egon.mdl");
-	Weapons_ViewAnimation(EGON_DRAW);
+	Weapons_ViewAnimation(pl, EGON_DRAW);
 }
 
-void w_egon_holster(void)
+void w_egon_holster(player pl)
 {
-	Weapons_ViewAnimation(EGON_HOLSTER);
+	Weapons_ViewAnimation(pl, EGON_HOLSTER);
 }
 
-void w_egon_release(void);
+void w_egon_release(player pl);
 
-void w_egon_primary(void)
+void w_egon_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.ammo_uranium <= 0) {
-		w_egon_release();
+		w_egon_release(pl);
 		return;
 	}
 
 #ifdef SERVER
-	Weapons_MakeVectors();
-	vector src = Weapons_GetCameraPos();
+	Weapons_MakeVectors(pl);
+	vector src = Weapons_GetCameraPos(pl);
 	vector endpos = src + v_forward * 1024;
 	traceline(src, endpos, FALSE, pl);
 	Damage_Radius(trace_endpos, pl, 14, 64, TRUE, DMG_ELECTRO);
@@ -145,13 +142,13 @@ void w_egon_primary(void)
 		sound(pl, CHAN_WEAPON, "weapons/egon_windup2.wav", 1, ATTN_NORM, 100, 0);
 #endif
 		pl.mode_tempstate = 1;
-		Weapons_ViewPunchAngle([-5,0,0]);
-		Weapons_ViewAnimation(EGON_ALTFIREON);
+		Weapons_ViewPunchAngle(pl, [-5,0,0]);
+		Weapons_ViewAnimation(pl, EGON_ALTFIREON);
 		pl.w_idle_next = 1.5f;
 	} else if not (pl.w_idle_next > 0.0f) {
 		/* wait 3 seconds (idle next) */
 		if (pl.mode_tempstate == 1) {
-			Weapons_ViewAnimation(EGON_ALTFIRECYCLE);
+			Weapons_ViewAnimation(pl, EGON_ALTFIRECYCLE);
 #ifdef SERVER
 			sound(pl, CHAN_WEAPON, "weapons/egon_run3.wav", 1, ATTN_NORM, 100);
 #endif
@@ -163,27 +160,26 @@ void w_egon_primary(void)
 	pl.w_attack_next = 0.2f;
 }
 
-void w_egon_reload(void)
+void w_egon_reload(player pl)
 {
 	
 }
 
-void w_egon_release(void)
+void w_egon_release(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.mode_tempstate != 0 && pl.mode_tempstate < 3) {
 #ifdef SERVER
 		sound(pl, CHAN_WEAPON, "weapons/egon_off1.wav", 1, ATTN_NORM, 100, 0);
 #endif
 		pl.mode_tempstate = 3;
-		Weapons_ViewPunchAngle([-2,0,0]);
+		Weapons_ViewPunchAngle(pl, [-2,0,0]);
 	}
 
 	pl.gflags &= ~GF_EGONBEAM;
 
 	if (pl.mode_tempstate == 3) {
-		Weapons_ViewAnimation(EGON_ALTFIREOFF);
+		Weapons_ViewAnimation(pl, EGON_ALTFIREOFF);
 		pl.w_idle_next = 1.0f;
 		pl.w_attack_next = 1.1f;
 		pl.mode_tempstate = 0;
@@ -193,10 +189,10 @@ void w_egon_release(void)
 		}
 		int r = floor(pseudorandom() * 3.0f);
 		if (r == 1) {
-			Weapons_ViewAnimation(EGON_FIDGET1);
+			Weapons_ViewAnimation(pl, EGON_FIDGET1);
 			pl.w_idle_next = 2.666667f;
 		} else {
-			Weapons_ViewAnimation(EGON_IDLE1);
+			Weapons_ViewAnimation(pl, EGON_IDLE1);
 			pl.w_idle_next = 2.0f;
 		}
 		pl.mode_tempstate = 0;
@@ -204,10 +200,9 @@ void w_egon_release(void)
 }
 
 void
-w_egon_postdraw(int thirdperson)
+w_egon_postdraw(player pl, int thirdperson)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (!(pl.gflags & GF_EGONBEAM))
 		return;
@@ -249,7 +244,7 @@ w_egon_postdraw(int thirdperson)
 #endif
 }
 
-void w_egon_crosshair(void)
+void w_egon_crosshair(player pl)
 {
 #ifdef CLIENT
 	static vector cross_pos;
@@ -261,15 +256,14 @@ void w_egon_crosshair(void)
 #endif
 }
 
-float w_egon_aimanim(void)
+float w_egon_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMEGON : ANIM_AIMEGON;
 }
 
-void w_egon_hudpic(int selected, vector pos, float a)
+void w_egon_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.ammo_uranium == 0)
@@ -288,9 +282,8 @@ void w_egon_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_egon_isempty(void)
+w_egon_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.ammo_uranium <= 0)
 		return 1;
@@ -299,9 +292,9 @@ w_egon_isempty(void)
 }
 
 weapontype_t
-w_egon_type(void)
+w_egon_type(player pl)
 {
-	return WPNTYPE_RANGED;
+	return WPNTYPE_FULLAUTO;
 }
 
 weapon_t w_egon =
@@ -317,7 +310,7 @@ weapon_t w_egon =
 	.secondary	= w_egon_release,
 	.reload		= w_egon_reload,
 	.release	= w_egon_release,
-	.crosshair	= w_egon_crosshair,
+	.postdraw	= w_egon_crosshair,
 	.precache	= w_egon_precache,
 	.pickup		= w_egon_pickup,
 	.updateammo	= w_egon_updateammo,

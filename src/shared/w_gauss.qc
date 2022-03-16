@@ -36,7 +36,7 @@ enum
 	GAUSS_DRAW
 };
 
-void w_gauss_release(void);
+void w_gauss_release(player pl);
 
 void w_gauss_precache(void)
 {
@@ -62,7 +62,7 @@ string w_gauss_wmodel(void)
 {
 	return "models/w_gauss.mdl";
 }
-string w_gauss_pmodel(void)
+string w_gauss_pmodel(player pl)
 {
 	return "models/p_gauss.mdl";
 }
@@ -71,10 +71,9 @@ string w_gauss_deathmsg(void)
 	return "";
 }
 
-int w_gauss_pickup(int new, int startammo)
+int w_gauss_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_uranium < MAX_A_URANIUM) {
 		pl.ammo_uranium = bound(0, pl.ammo_uranium + 20, MAX_A_URANIUM);
@@ -86,27 +85,25 @@ int w_gauss_pickup(int new, int startammo)
 	return (1);
 }
 
-void w_gauss_draw(void)
+void w_gauss_draw(player pl)
 {
-	player pl = (player)self;
 	pl.mode_tempstate = 0;
 	Weapons_SetModel("models/v_gauss.mdl");
-	Weapons_ViewAnimation(GAUSS_DRAW);
+	Weapons_ViewAnimation(pl, GAUSS_DRAW);
 }
 
-void w_gauss_holster(void)
+void w_gauss_holster(player pl)
 {
-	Weapons_ViewAnimation(GAUSS_HOLSTER);
+	Weapons_ViewAnimation(pl, GAUSS_HOLSTER);
 }
 
 #ifdef SERVER
-void w_gauss_fire(int one)
+void w_gauss_fire(player pl, int one)
 {
-	player pl = (player)self;
 	int iLoop = 6;
 
-	Weapons_MakeVectors();
-	vector src = Weapons_GetCameraPos();
+	Weapons_MakeVectors(pl);
+	vector src = Weapons_GetCameraPos(pl);
 	vector endpos = src + v_forward * 1024;
 	traceline(src, endpos, FALSE, pl);
 
@@ -154,9 +151,8 @@ void w_gauss_fire(int one)
 }
 #endif
 
-void w_gauss_primary(void)
+void w_gauss_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -166,11 +162,11 @@ void w_gauss_primary(void)
 		return;
 	}
 
-	Weapons_ViewAnimation(GAUSS_FIRE2);
-	Weapons_ViewPunchAngle([-2,0,0]);
+	Weapons_ViewAnimation(pl, GAUSS_FIRE2);
+	Weapons_ViewPunchAngle(pl, [-2,0,0]);
 #ifdef SERVER
-	w_gauss_fire(1);
-	FX_GaussBeam(Weapons_GetCameraPos(), input_angles, 0, pl);
+	w_gauss_fire(pl, 1);
+	FX_GaussBeam(Weapons_GetCameraPos(pl), input_angles, 0, pl);
 #endif
 
 	pl.ammo_uranium -= 2;
@@ -184,9 +180,8 @@ void w_gauss_primary(void)
 	pl.w_idle_next = 2.5f;
 }
 
-void w_gauss_secondary(void)
+void w_gauss_secondary(player pl)
 {
-	player pl = (player)self;
 
 #ifdef CLIENT
 	if (pl.mode_tempstate)
@@ -201,7 +196,7 @@ void w_gauss_secondary(void)
 	/* Ammo check */
 	if (pl.ammo_uranium <= 0) {
 		if (pl.mode_tempstate > 0) {
-		w_gauss_release();
+		w_gauss_release(pl);
 		}
 			return;
 	}
@@ -216,11 +211,11 @@ void w_gauss_secondary(void)
 	}
 
 	if (pl.mode_tempstate == 1) {
-		Weapons_ViewAnimation(GAUSS_SPIN);
+		Weapons_ViewAnimation(pl, GAUSS_SPIN);
 		pl.mode_tempstate = 2;
 		pl.w_idle_next = 0.0f;
 	} else if (!pl.mode_tempstate) {
-		Weapons_ViewAnimation(GAUSS_SPINUP);
+		Weapons_ViewAnimation(pl, GAUSS_SPINUP);
 #ifdef CLIENT
 		sound(pl, CHAN_WEAPON, "ambience/pulsemachine.wav", 2, ATTN_NORM);
 #endif
@@ -228,9 +223,8 @@ void w_gauss_secondary(void)
 	}
 }
 
-void w_gauss_release(void)
+void w_gauss_release(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
@@ -241,23 +235,23 @@ void w_gauss_release(void)
 	if (pl.mode_tempstate == 1) {
 		pl.w_attack_next = 0.0f;
 		pl.w_idle_next = 4.0f;
-		w_gauss_primary();
+		w_gauss_primary(pl);
 		pl.mode_tempstate = 0;
 		return;
 	} else if (pl.mode_tempstate == 2) {
-		Weapons_ViewAnimation(GAUSS_FIRE1);
+		Weapons_ViewAnimation(pl, GAUSS_FIRE1);
 
 		if (self.flags & FL_CROUCHING)
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
 	
-		Weapons_ViewPunchAngle([-5,0,0]);
+		Weapons_ViewPunchAngle(pl, [-5,0,0]);
 #ifdef CLIENT
 		soundupdate(pl, CHAN_WEAPON, "", -1, ATTN_NORM, 0, 0, 0);
 #else
-		w_gauss_fire(0);
-		FX_GaussBeam(Weapons_GetCameraPos(), input_angles, 6, pl);
+		w_gauss_fire(pl, 0);
+		FX_GaussBeam(Weapons_GetCameraPos(pl), input_angles, 6, pl);
 #endif
 		pl.w_attack_next = 1.5f;
 		pl.w_idle_next = 4.0f;
@@ -268,23 +262,23 @@ void w_gauss_release(void)
 	int r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
-		Weapons_ViewAnimation(GAUSS_IDLE2);
+		Weapons_ViewAnimation(pl, GAUSS_IDLE2);
 		pl.w_idle_next = 4.0f;
 		break;
 #ifndef GEARBOX
 	case 2:
-		Weapons_ViewAnimation(GAUSS_FIDGET);
+		Weapons_ViewAnimation(pl, GAUSS_FIDGET);
 		pl.w_idle_next = 3.0f;
 		break;
 #endif
 	default:
-		Weapons_ViewAnimation(GAUSS_IDLE1);
+		Weapons_ViewAnimation(pl, GAUSS_IDLE1);
 		pl.w_idle_next = 4.0f;
 		break;
 	}
 }
 
-void w_gauss_crosshair(void)
+void w_gauss_crosshair(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -319,15 +313,14 @@ void w_gauss_crosshair(void)
 #endif
 }
 
-float w_gauss_aimanim(void)
+float w_gauss_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMGAUSS : ANIM_AIMGAUSS;
 }
 
-void w_gauss_hudpic(int selected, vector pos, float a)
+void w_gauss_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.ammo_uranium == 0)
@@ -364,9 +357,8 @@ void w_gauss_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_gauss_isempty(void)
+w_gauss_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.ammo_uranium <= 0)
 		return 1;
@@ -375,7 +367,7 @@ w_gauss_isempty(void)
 }
 
 weapontype_t
-w_gauss_type(void)
+w_gauss_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -393,7 +385,7 @@ weapon_t w_gauss =
 	.secondary	= w_gauss_secondary,
 	.reload		= __NULL__,
 	.release	= w_gauss_release,
-	.crosshair	= w_gauss_crosshair,
+	.postdraw	= w_gauss_crosshair,
 	.precache	= w_gauss_precache,
 	.pickup		= w_gauss_pickup,
 	.updateammo	= w_gauss_updateammo,

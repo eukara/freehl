@@ -99,15 +99,8 @@ Player_HandleWeaponModel(base_player pp, float thirdperson)
 		pl.p_model = spawn();
 	}
 
-	/* only make it visible when it's a thirdperson drawcall */
-	pl.p_model.drawmask = (thirdperson) ? MASK_ENGINE:0;
-
-	/* let's not waste any time doing bone calculations then */
-	if (pl.p_model.drawmask == 0)
-		return;
-
 	/* what's the current weapon model supposed to be anyway? */
-	string wmodel = Weapons_GetPlayermodel(pl.activeweapon);
+	string wmodel = Weapons_GetPlayermodel(pl, pl.activeweapon);
 
 	/* we changed weapons, update skeletonindex */
 	if (pl.p_model.model != wmodel) {
@@ -152,15 +145,6 @@ Player_HandleWeaponModel(base_player pp, float thirdperson)
 	}	
 }
 
-/* we need to call this when a player entity gets removed */
-void
-Player_DestroyWeaponModel(entity pp)
-{
-	player pl = (player)pp;
-	if (pl.p_model)
-		remove(pl.p_model);
-}
-
 void
 Player_PreDraw(base_player pp, int thirdperson)
 {
@@ -169,10 +153,12 @@ Player_PreDraw(base_player pp, int thirdperson)
 	/* Handle the flashlights... */
 	Player_Flashlight(pl);
 
-	Weapons_PreDraw(thirdperson);
+	Weapons_PreDraw(pl, thirdperson);
 
 	pl.Physics_SetViewParms();
 	Animation_PlayerUpdate((player)pl);
 	Animation_TimerUpdate((player)pl, clframetime);
-	Player_HandleWeaponModel(pl, thirdperson);
+
+	if (thirdperson)
+		Player_HandleWeaponModel(pl, thirdperson);
 }

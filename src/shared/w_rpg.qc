@@ -58,7 +58,7 @@ string w_rpg_wmodel(void)
 {
 	return "models/w_rpg.mdl";
 }
-string w_rpg_pmodel(void)
+string w_rpg_pmodel(player pl)
 {
 	return "models/p_rpg.mdl";
 }
@@ -67,10 +67,9 @@ string w_rpg_deathmsg(void)
 	return "";
 }
 
-int w_rpg_pickup(int new, int startammo)
+int w_rpg_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (new) {
 		pl.rpg_mag = 1;
@@ -87,20 +86,19 @@ int w_rpg_pickup(int new, int startammo)
 	return (1);
 }
 
-void w_rpg_draw(void)
+void w_rpg_draw(player pl)
 {
 	Weapons_SetModel("models/v_rpg.mdl");
-	Weapons_ViewAnimation(RPG_DRAW1);
+	Weapons_ViewAnimation(pl, RPG_DRAW1);
 }
 
-void w_rpg_holster(void)
+void w_rpg_holster(player pl)
 {
 	
 }
 
-void w_rpg_primary(void)
+void w_rpg_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -134,10 +132,10 @@ void w_rpg_primary(void)
 		self.nextthink = time;
 	}
 
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	entity rocket = spawn();
 	setmodel(rocket, "models/rpgrocket.mdl");
-	setorigin(rocket, Weapons_GetCameraPos() + (v_forward * 16));
+	setorigin(rocket, Weapons_GetCameraPos(pl) + (v_forward * 16));
 	rocket.owner = self;
 	rocket.movetype = MOVETYPE_FLY;
 	rocket.solid = SOLID_BBOX;
@@ -159,8 +157,8 @@ void w_rpg_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.shoot");
 #endif
 
-	Weapons_ViewAnimation(RPG_FIRE2);
-	Weapons_ViewPunchAngle([-10,0,0]);
+	Weapons_ViewAnimation(pl, RPG_FIRE2);
+	Weapons_ViewPunchAngle(pl, [-10,0,0]);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTRPG, 0.43f);
@@ -171,9 +169,8 @@ void w_rpg_primary(void)
 	pl.w_idle_next = 2.5f;
 }
 
-void w_rpg_reload(void)
+void w_rpg_reload(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0) {
 		return;
@@ -187,7 +184,7 @@ void w_rpg_reload(void)
 		return;
 	}
 
-	Weapons_ViewAnimation(RPG_RELOAD);
+	Weapons_ViewAnimation(pl, RPG_RELOAD);
 
 	/* Audio-Visual Bit */
 #ifdef SERVER
@@ -204,14 +201,13 @@ void w_rpg_reload(void)
 	pl.w_idle_next = 10.0f;
 }
 
-void w_rpg_release(void)
+void w_rpg_release(player pl)
 {
-	player pl = (player)self;
 
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.rpg_mag == 0 && pl.ammo_rocket > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 
@@ -223,22 +219,21 @@ void w_rpg_release(void)
 
 	if (pl.rpg_mag > 0) {
 		if (r == 1) {
-			Weapons_ViewAnimation(RPG_FIDGET);
+			Weapons_ViewAnimation(pl, RPG_FIDGET);
 		} else {
-			Weapons_ViewAnimation(RPG_IDLE);
+			Weapons_ViewAnimation(pl, RPG_IDLE);
 		}
 	} else {
 		if (r == 1) {
-			Weapons_ViewAnimation(RPG_FIDGET_UL);
+			Weapons_ViewAnimation(pl, RPG_FIDGET_UL);
 		} else {
-			Weapons_ViewAnimation(RPG_IDLE_UL);
+			Weapons_ViewAnimation(pl, RPG_IDLE_UL);
 		}
 	}
 }
 
-void w_rpg_secondary(void)
+void w_rpg_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -248,18 +243,17 @@ void w_rpg_secondary(void)
 	pl.ammo_rpg_state = 1 - pl.ammo_rpg_state;
 
 	pl.w_attack_next = 0.25f;
-	w_rpg_release();
+	w_rpg_release(pl);
 }
 
-float w_rpg_aimanim(void)
+float w_rpg_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMRPG : ANIM_AIMRPG;
 }
 
-void w_rpg_hudpic(int selected, vector pos, float a)
+void w_rpg_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.rpg_mag == 0 && pl.ammo_rocket == 0)
@@ -277,10 +271,9 @@ void w_rpg_hudpic(int selected, vector pos, float a)
 #endif
 }
 
-void w_rpg_hud(void)
+void w_rpg_hud(player pl)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector cross_pos;
 	vector aicon_pos;
 
@@ -288,7 +281,7 @@ void w_rpg_hud(void)
 	if (pl.ammo_rpg_state == 1) {
 		float lerp;
 		vector jitter;
-		Weapons_MakeVectors();
+		Weapons_MakeVectors(pl);
 		vector src = pl.origin + pl.view_ofs;
 		traceline(src, src + (v_forward * 256), FALSE, pl);
 		lerp = Math_Lerp(18,6, trace_fraction);
@@ -339,9 +332,8 @@ void w_rpg_hud(void)
 }
 
 int
-w_rpg_isempty(void)
+w_rpg_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.rpg_mag <= 0 && pl.ammo_rocket <= 0)
 		return 1;
@@ -350,7 +342,7 @@ w_rpg_isempty(void)
 }
 
 weapontype_t
-w_rpg_type(void)
+w_rpg_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -368,7 +360,7 @@ weapon_t w_rpg =
 	.secondary	= w_rpg_secondary,
 	.reload		= w_rpg_reload,
 	.release	= w_rpg_release,
-	.crosshair	= w_rpg_hud,
+	.postdraw	= w_rpg_hud,
 	.precache	= w_rpg_precache,
 	.pickup		= w_rpg_pickup,
 	.updateammo	= w_rpg_updateammo,

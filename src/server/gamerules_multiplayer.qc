@@ -153,7 +153,14 @@ HLMultiplayerRules::ConsoleCommand(base_player pp, string cmd)
 
 	switch (argv(0)) {
 	case "bot_add":
-		Bot_AddQuick();
+		bot pete = Bot_AddQuick();
+		Bot_RandomColormap(pete);
+		searchhandle pm = search_begin("models/player/*/*.mdl", TRUE, TRUE);
+		int r = floor(random(0, search_getsize(pm)));
+		string mdl = substring(search_getfilename(pm, r), 0, -5);
+		tokenizebyseparator(mdl, "/");
+		forceinfokey(pete, "model", argv(2));
+		search_end(pm);
 		break;
 	case "jumptest":
 		makevectors(pp.v_angle);

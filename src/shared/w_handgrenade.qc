@@ -53,7 +53,7 @@ string w_handgrenade_wmodel(void)
 {
 	return "models/w_grenade.mdl";
 }
-string w_handgrenade_pmodel(void)
+string w_handgrenade_pmodel(player pl)
 {
 	return "models/p_grenade.mdl";
 }
@@ -62,10 +62,9 @@ string w_handgrenade_deathmsg(void)
 	return "";
 }
 
-int w_handgrenade_pickup(int new, int startammo)
+int w_handgrenade_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_handgrenade < MAX_A_HANDGRENADE) {
 		pl.ammo_handgrenade = bound(0, pl.ammo_handgrenade + 1, MAX_A_HANDGRENADE);
@@ -78,7 +77,7 @@ int w_handgrenade_pickup(int new, int startammo)
 }
 
 #ifdef SERVER
-void w_handgrenade_throw(void)
+void w_handgrenade_throw(player pl)
 {
 	static void WeaponFrag_Throw_Explode(void)
 	{
@@ -99,7 +98,6 @@ void w_handgrenade_throw(void)
 		self.frame = 0;
 	}
 
-	player pl = (player)self;
 	vector vPLAngle = pl.v_angle;
 	if (vPLAngle[0] < 0) {
 		vPLAngle[0] = -10 + vPLAngle[0] * ((90 - 10) / 90.0);
@@ -132,22 +130,20 @@ void w_handgrenade_throw(void)
 }
 #endif
 
-void w_handgrenade_draw(void)
+void w_handgrenade_draw(player pl)
 {
-	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
 	Weapons_SetModel("models/v_grenade.mdl");
-	Weapons_ViewAnimation(HANDGRENADE_DRAW);
+	Weapons_ViewAnimation(pl, HANDGRENADE_DRAW);
 }
 
-void w_handgrenade_holster(void)
+void w_handgrenade_holster(player pl)
 {
 	
 }
-void w_handgrenade_primary(void)
+void w_handgrenade_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -162,14 +158,14 @@ void w_handgrenade_primary(void)
 		return;
 	}
 
-	Weapons_ViewAnimation(HANDGRENADE_PULLPIN);
+	Weapons_ViewAnimation(pl, HANDGRENADE_PULLPIN);
 
 	pl.mode_tempstate = 1;
 	pl.w_attack_next = 0.5f;
 	pl.w_idle_next = 0.5f;
 }
 
-void w_handgrenade_hud(void)
+void w_handgrenade_hud(player pl)
 {
 #ifdef CLIENT
 	HUD_DrawAmmo2();
@@ -178,18 +174,17 @@ void w_handgrenade_hud(void)
 #endif
 }
 
-void w_handgrenade_release(void)
+void w_handgrenade_release(player pl)
 {
-	player pl = (player)self;
 	
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
 
 	if (pl.mode_tempstate == 1) {
-		Weapons_ViewAnimation(HANDGRENADE_THROW1);
+		Weapons_ViewAnimation(pl, HANDGRENADE_THROW1);
 #ifdef SERVER
-		w_handgrenade_throw();
+		w_handgrenade_throw(pl);
 #endif
 		pl.ammo_handgrenade--;
 		pl.mode_tempstate = 2;
@@ -201,7 +196,7 @@ void w_handgrenade_release(void)
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
 	} else if (pl.mode_tempstate == 2) {
-		Weapons_ViewAnimation(HANDGRENADE_DRAW);
+		Weapons_ViewAnimation(pl, HANDGRENADE_DRAW);
 #ifdef SERVER
 		if (!pl.ammo_handgrenade) {
 			Weapons_RemoveItem(pl, WEAPON_HANDGRENADE);
@@ -213,26 +208,25 @@ void w_handgrenade_release(void)
 	} else {
 		int r = floor(pseudorandom() * 8.0f);
 		if (r == 1) {
-			Weapons_ViewAnimation(HANDGRENADE_FIDGET);
+			Weapons_ViewAnimation(pl, HANDGRENADE_FIDGET);
 			pl.w_idle_next = 2.5f;
 		} else {
-			Weapons_ViewAnimation(HANDGRENADE_IDLE);
+			Weapons_ViewAnimation(pl, HANDGRENADE_IDLE);
 			pl.w_idle_next = 3.0f;
 		}
 	}
 }
 
 float
-w_handgrenade_aimanim(void)
+w_handgrenade_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
 }
 
 void
-w_handgrenade_hudpic(int selected, vector pos, float a)
+w_handgrenade_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr, [0,0], [170/256,45/256], g_hud_color, a, DRAWFLAG_ADDITIVE);
@@ -245,9 +239,8 @@ w_handgrenade_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_handgrenade_isempty(void)
+w_handgrenade_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.ammo_handgrenade <= 0)
 		return 1;
@@ -256,7 +249,7 @@ w_handgrenade_isempty(void)
 }
 
 weapontype_t
-w_handgrenade_type(void)
+w_handgrenade_type(player pl)
 {
 	return WPNTYPE_THROW;
 }
@@ -274,7 +267,7 @@ weapon_t w_handgrenade =
 	.secondary	= __NULL__,
 	.reload		= __NULL__,
 	.release	= w_handgrenade_release,
-	.crosshair	= w_handgrenade_hud,
+	.postdraw	= w_handgrenade_hud,
 	.precache	= w_handgrenade_precache,
 	.pickup		= w_handgrenade_pickup,
 	.updateammo	= w_handgrenade_updateammo,

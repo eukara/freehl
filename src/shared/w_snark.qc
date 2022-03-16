@@ -147,10 +147,9 @@ monster_snark::monster_snark(void)
 }
 #endif
 
-int w_snark_pickup(int new, int startammo)
+int w_snark_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_snark < MAX_A_SNARK) {
 		pl.ammo_snark = bound(0, pl.ammo_snark + 5, MAX_A_SNARK);
@@ -162,13 +161,13 @@ int w_snark_pickup(int new, int startammo)
 	return (1);
 }
 
-void w_snark_draw(void)
+void w_snark_draw(player pl)
 {
 	Weapons_SetModel("models/v_squeak.mdl");
-	Weapons_ViewAnimation(SNARK_DRAW);
+	Weapons_ViewAnimation(pl, SNARK_DRAW);
 }
 
-void w_snark_holster(void)
+void w_snark_holster(player pl)
 {
 	
 }
@@ -183,9 +182,8 @@ void w_snark_deploy(void)
 }
 #endif
 
-void w_snark_primary(void)
+void w_snark_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -198,7 +196,7 @@ void w_snark_primary(void)
 	pl.ammo_snark--;
 
 	/* Audio-Visual Bit */
-	Weapons_ViewAnimation(SNARK_THROW);
+	Weapons_ViewAnimation(pl, SNARK_THROW);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
@@ -217,18 +215,17 @@ void w_snark_primary(void)
 	pl.w_attack_next = 0.25f;
 
 }
-void w_snark_secondary(void)
+void w_snark_secondary(player pl)
 {
 	
 }
-void w_snark_reload(void)
+void w_snark_reload(player pl)
 {
 	
 }
-void w_snark_release(void)
+void w_snark_release(player pl)
 {
 	int r;
-	player pl = (player)self;
 
 	if (pl.w_idle_next > 0.0) {
 		return;
@@ -237,15 +234,15 @@ void w_snark_release(void)
 	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 0:
-		Weapons_ViewAnimation(SNARK_IDLE);
+		Weapons_ViewAnimation(pl, SNARK_IDLE);
 		pl.w_idle_next = 1.875f;
 		break;
 	case 1:
-		Weapons_ViewAnimation(SNARK_FIDGET1);
+		Weapons_ViewAnimation(pl, SNARK_FIDGET1);
 		pl.w_idle_next = 4.375f;
 		break;
 	default:
-		Weapons_ViewAnimation(SNARK_FIDGET2);
+		Weapons_ViewAnimation(pl, SNARK_FIDGET2);
 		pl.w_idle_next = 5.0f;
 		break;
 	}
@@ -276,7 +273,7 @@ string w_snark_wmodel(void)
 	return "models/w_sqknest.mdl";
 }
 
-string w_snark_pmodel(void)
+string w_snark_pmodel(player pl)
 {
 	return "models/p_squeak.mdl";
 }
@@ -286,12 +283,12 @@ string w_snark_deathmsg(void)
 	return "";
 }
 
-float w_snark_aimanim(void)
+float w_snark_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
-void w_snark_hud(void)
+void w_snark_hud(player pl)
 {
 #ifdef CLIENT
 	HUD_DrawAmmo2();
@@ -300,10 +297,9 @@ void w_snark_hud(void)
 #endif
 }
 
-void w_snark_hudpic(int selected, vector pos, float a)
+void w_snark_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr,
@@ -320,9 +316,8 @@ void w_snark_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_snark_isempty(void)
+w_snark_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.ammo_snark <= 0)
 		return 1;
@@ -331,7 +326,7 @@ w_snark_isempty(void)
 }
 
 weapontype_t
-w_snark_type(void)
+w_snark_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -349,7 +344,7 @@ weapon_t w_snark =
 	.secondary	= w_snark_secondary,
 	.reload		= w_snark_reload,
 	.release	= w_snark_release,
-	.crosshair	= w_snark_hud,
+	.postdraw	= w_snark_hud,
 	.precache	= w_snark_precache,
 	.pickup		= w_snark_pickup,
 	.updateammo	= w_snark_updateammo,

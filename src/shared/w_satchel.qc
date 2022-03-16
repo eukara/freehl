@@ -97,7 +97,7 @@ w_satchel_wmodel(void)
 }
 
 string
-w_satchel_pmodel(void)
+w_satchel_pmodel(player pl)
 {
 	return "models/p_satchel.mdl";
 }
@@ -122,10 +122,9 @@ w_satchel_precache(void)
 }
 
 int
-w_satchel_pickup(int new, int startammo)
+w_satchel_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_satchel < MAX_A_SATCHEL) {
 		pl.ammo_satchel = bound(0, pl.ammo_satchel + 1, MAX_A_SATCHEL);
@@ -138,29 +137,27 @@ w_satchel_pickup(int new, int startammo)
 }
 
 void
-w_satchel_draw(void)
+w_satchel_draw(player pl)
 {
-	player pl = (player)self;
 	if (pl.satchel_chg > 0) {
 		Weapons_SetModel("models/v_satchel_radio.mdl");
-		Weapons_ViewAnimation(RADIO_DRAW);
+		Weapons_ViewAnimation(pl, RADIO_DRAW);
 		
 	} else {
 		Weapons_SetModel("models/v_satchel.mdl");
-		Weapons_ViewAnimation(SATCHEL_DRAW);
+		Weapons_ViewAnimation(pl, SATCHEL_DRAW);
 	}
 }
 
 void
-w_satchel_holster(void)
+w_satchel_holster(player pl)
 {
 	
 }
 
 void
-w_satchel_primary(void)
+w_satchel_primary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next) {
 		return;
@@ -172,9 +169,9 @@ w_satchel_primary(void)
 	}
 
 	if (pl.satchel_chg <= 0) {
-		Weapons_ViewAnimation(RADIO_DRAW);
+		Weapons_ViewAnimation(pl, RADIO_DRAW);
 	} else {
-		Weapons_ViewAnimation(RADIO_USE);
+		Weapons_ViewAnimation(pl, RADIO_USE);
 	}
 
 #ifdef SERVER
@@ -182,7 +179,7 @@ w_satchel_primary(void)
 	if (!pl.satchel_chg) {
 		vector throw;
 		
-		Weapons_MakeVectors();
+		Weapons_MakeVectors(pl);
 		throw = pl.velocity + (v_forward * 274);
 		s_satchel_drop(self, pl.origin, throw);
 		pl.satchel_chg++;
@@ -219,9 +216,8 @@ w_satchel_primary(void)
 }
 
 void
-w_satchel_secondary(void)
+w_satchel_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next) {
 		return;
@@ -233,11 +229,11 @@ w_satchel_secondary(void)
 	}
 
 	Weapons_SetModel("models/v_satchel_radio.mdl");
-	Weapons_ViewAnimation(RADIO_DRAW);
+	Weapons_ViewAnimation(pl, RADIO_DRAW);
 
 #ifdef SERVER
 	vector throw;
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	throw = pl.velocity + (v_forward * 274);
 	s_satchel_drop(self, pl.origin, throw);
 #endif
@@ -255,36 +251,35 @@ w_satchel_secondary(void)
 }
 
 void
-w_satchel_reload(void)
+w_satchel_reload(player pl)
 {
 	
 }
 
 void
-w_satchel_release(void)
+w_satchel_release(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
 
 	if (pl.satchel_chg <= 0) {
-		Weapons_ViewAnimation(SATCHEL_FIDGET);
+		Weapons_ViewAnimation(pl, SATCHEL_FIDGET);
 	} else {
-		Weapons_ViewAnimation(RADIO_FIDGET);
+		Weapons_ViewAnimation(pl, RADIO_FIDGET);
 	}
 	pl.w_idle_next = 15.0f;
 }
 
 float
-w_satchel_aimanim(void)
+w_satchel_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
 void
-w_satchel_hud(void)
+w_satchel_hud(player pl)
 {
 #ifdef CLIENT
 	HUD_DrawAmmo2();
@@ -294,10 +289,9 @@ w_satchel_hud(void)
 }
 
 void
-w_satchel_hudpic(int selected, vector pos, float a)
+w_satchel_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr, [0,45/256], [170/256,45/256], g_hud_color, a, DRAWFLAG_ADDITIVE);
@@ -310,9 +304,8 @@ w_satchel_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_satchel_isempty(void)
+w_satchel_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.satchel_chg <= 0)
 		return 1;
@@ -321,7 +314,7 @@ w_satchel_isempty(void)
 }
 
 weapontype_t
-w_satchel_type(void)
+w_satchel_type(player pl)
 {
 	return WPNTYPE_THROW;
 }
@@ -339,7 +332,7 @@ weapon_t w_satchel =
 	.secondary	= w_satchel_secondary,
 	.reload		= w_satchel_reload,
 	.release	= w_satchel_release,
-	.crosshair	= w_satchel_hud,
+	.postdraw	= w_satchel_hud,
 	.precache	= w_satchel_precache,
 	.pickup		= w_satchel_pickup,
 	.updateammo	= w_satchel_updateammo,

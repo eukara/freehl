@@ -511,7 +511,7 @@ player::SendEntity(entity ePEnt, float fChanged)
 	}
 
 	/* other players don't need to know about these attributes */
-	if (ePEnt != self) {
+	if (ePEnt != self && ePEnt.classname != "spectator") {
 		fChanged &= ~PLAYER_ITEMS;
 		fChanged &= ~PLAYER_HEALTH;
 		fChanged &= ~PLAYER_ARMOR;

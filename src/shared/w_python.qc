@@ -60,10 +60,9 @@ w_python_precache(void)
 }
 
 int
-w_python_pickup(int new, int startammo)
+w_python_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (new) {
 		pl.python_mag = 6;
@@ -93,7 +92,7 @@ w_python_wmodel(void)
 }
 
 string
-w_python_pmodel(void)
+w_python_pmodel(player pl)
 {
 	return "models/p_357.mdl";
 }
@@ -105,7 +104,7 @@ w_python_deathmsg(void)
 }
 
 void
-w_python_draw(void)
+w_python_draw(player pl)
 {
 	Weapons_SetModel("models/v_357.mdl");
 
@@ -116,19 +115,18 @@ w_python_draw(void)
 		Weapons_SetGeomset("geomset 4 2\n");
 	}
 
-	Weapons_ViewAnimation(PYTHON_DRAW);
+	Weapons_ViewAnimation(pl, PYTHON_DRAW);
 }
 
 void
-w_python_holster(void)
+w_python_holster(player pl)
 {
-	Weapons_ViewAnimation(PYTHON_HOLSTER);
+	Weapons_ViewAnimation(pl, PYTHON_HOLSTER);
 }
 
 void
-w_python_primary(void)
+w_python_primary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -149,8 +147,8 @@ w_python_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.shoot");
 #endif
 
-	Weapons_ViewPunchAngle([-10,0,0]);
-	Weapons_ViewAnimation(PYTHON_FIRE1);
+	Weapons_ViewPunchAngle(pl, [-10,0,0]);
+	Weapons_ViewAnimation(pl, PYTHON_FIRE1);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTPYTHON, 0.43f);
@@ -162,9 +160,8 @@ w_python_primary(void)
 }
 
 void
-w_python_secondary(void)
+w_python_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -186,9 +183,8 @@ w_python_secondary(void)
 }
 
 void
-w_python_reload(void)
+w_python_reload(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -203,7 +199,7 @@ w_python_reload(void)
 	}
 
 	/* Audio-Visual bit */
-	Weapons_ViewAnimation(PYTHON_RELOAD);
+	Weapons_ViewAnimation(pl, PYTHON_RELOAD);
 
 #ifdef SERVER
 	static void w_python_reload_done(void) {
@@ -221,14 +217,13 @@ w_python_reload(void)
 }
 
 void
-w_python_release(void)
+w_python_release(player pl)
 {
-	player pl = (player)self;
 
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.python_mag == 0 && pl.ammo_357 > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 
@@ -240,26 +235,26 @@ w_python_release(void)
 
 	switch (r) {
 	case 1:
-		Weapons_ViewAnimation(PYTHON_IDLE1);
+		Weapons_ViewAnimation(pl, PYTHON_IDLE1);
 		pl.w_idle_next = 2.33f;
 		break;
 	case 2:
-		Weapons_ViewAnimation(PYTHON_FIDGET);
+		Weapons_ViewAnimation(pl, PYTHON_FIDGET);
 		pl.w_idle_next = 5.66f;
 		break;
 	case 3:
-		Weapons_ViewAnimation(PYTHON_IDLE2);
+		Weapons_ViewAnimation(pl, PYTHON_IDLE2);
 		pl.w_idle_next = 2.0f;
 		break;
 	default:
-		Weapons_ViewAnimation(PYTHON_IDLE3);
+		Weapons_ViewAnimation(pl, PYTHON_IDLE3);
 		pl.w_idle_next = 2.93f;
 		break;
 	}
 }
 
 void
-w_python_crosshair(void)
+w_python_crosshair(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -295,16 +290,15 @@ w_python_crosshair(void)
 }
 
 float
-w_python_aimanim(void)
+w_python_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMPYTHON : ANIM_AIMPYTHON;
 }
 
 void
-w_python_hudpic(int selected, vector pos, float a)
+w_python_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.python_mag == 0 && pl.ammo_357 == 0)
@@ -341,9 +335,8 @@ w_python_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_python_isempty(void)
+w_python_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.python_mag <= 0 && pl.ammo_357 <= 0)
 		return 1;
@@ -352,7 +345,7 @@ w_python_isempty(void)
 }
 
 weapontype_t
-w_python_type(void)
+w_python_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -370,7 +363,7 @@ weapon_t w_python =
 	.secondary	= w_python_secondary,
 	.reload		= w_python_reload,
 	.release	= w_python_release,
-	.crosshair	= w_python_crosshair,
+	.postdraw	= w_python_crosshair,
 	.precache	= w_python_precache,
 	.pickup		= w_python_pickup,
 	.updateammo	= w_python_updateammo,

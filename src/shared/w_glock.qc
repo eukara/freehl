@@ -107,7 +107,7 @@ w_glock_wmodel(void)
 }
 
 string
-w_glock_pmodel(void)
+w_glock_pmodel(player pl)
 {
 	return "models/p_9mmhandgun.mdl";
 }
@@ -119,10 +119,9 @@ w_glock_deathmsg(void)
 }
 
 int
-w_glock_pickup(int new, int startammo)
+w_glock_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (new) {
 		pl.glock_mag = 18;
@@ -140,22 +139,21 @@ w_glock_pickup(int new, int startammo)
 }
 
 void
-w_glock_draw(void)
+w_glock_draw(player pl)
 {
 	Weapons_SetModel("models/v_9mmhandgun.mdl");
-	Weapons_ViewAnimation(GLOCK_DRAW);
+	Weapons_ViewAnimation(pl, GLOCK_DRAW);
 }
 
 void
-w_glock_holster(void)
+w_glock_holster(player pl)
 {
-	Weapons_ViewAnimation(GLOCK_HOLSTER);
+	Weapons_ViewAnimation(pl, GLOCK_HOLSTER);
 }
 
 void
-w_glock_primary(void)
+w_glock_primary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -177,12 +175,12 @@ w_glock_primary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
 #endif
 
-	Weapons_ViewPunchAngle([-2,0,0]);
+	Weapons_ViewPunchAngle(pl, [-2,0,0]);
 
 	if (pl.glock_mag) {
-		Weapons_ViewAnimation(GLOCK_SHOOT);
+		Weapons_ViewAnimation(pl, GLOCK_SHOOT);
 	} else {
-		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
+		Weapons_ViewAnimation(pl, GLOCK_SHOOT_EMPTY);
 	}
 
 	if (self.flags & FL_CROUCHING)
@@ -195,9 +193,8 @@ w_glock_primary(void)
 }
 
 void
-w_glock_secondary(void)
+w_glock_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0) {
 		return;
@@ -218,12 +215,12 @@ w_glock_secondary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
 #endif
 
-	Weapons_ViewPunchAngle([-2,0,0]);
+	Weapons_ViewPunchAngle(pl, [-2,0,0]);
 
 	if (pl.glock_mag) {
-		Weapons_ViewAnimation(GLOCK_SHOOT);
+		Weapons_ViewAnimation(pl, GLOCK_SHOOT);
 	} else {
-		Weapons_ViewAnimation(GLOCK_SHOOT_EMPTY);
+		Weapons_ViewAnimation(pl, GLOCK_SHOOT_EMPTY);
 	}
 
 	if (self.flags & FL_CROUCHING)
@@ -236,9 +233,8 @@ w_glock_secondary(void)
 }
 
 void
-w_glock_reload(void)
+w_glock_reload(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -252,9 +248,9 @@ w_glock_reload(void)
 	}
 
 	if (pl.glock_mag) {
-		Weapons_ViewAnimation(GLOCK_RELOAD);
+		Weapons_ViewAnimation(pl, GLOCK_RELOAD);
 	} else {
-		Weapons_ViewAnimation(GLOCK_RELOAD_EMPTY);
+		Weapons_ViewAnimation(pl, GLOCK_RELOAD_EMPTY);
 	}
 
 #ifdef SERVER
@@ -272,15 +268,14 @@ w_glock_reload(void)
 }
 
 void
-w_glock_release(void)
+w_glock_release(player pl)
 {
-	player pl = (player)self;
 	int r;
 
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.glock_mag == 0 && pl.ammo_9mm > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 
@@ -291,28 +286,28 @@ w_glock_release(void)
 	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
-		Weapons_ViewAnimation(GLOCK_IDLE2);
+		Weapons_ViewAnimation(pl, GLOCK_IDLE2);
 		pl.w_idle_next = 2.5f;
 		break;
 	case 2:
-		Weapons_ViewAnimation(GLOCK_IDLE3);
+		Weapons_ViewAnimation(pl, GLOCK_IDLE3);
 		pl.w_idle_next = 3.5f;
 		break;
 	default:
-		Weapons_ViewAnimation(GLOCK_IDLE1);
+		Weapons_ViewAnimation(pl, GLOCK_IDLE1);
 		pl.w_idle_next = 3.75f;
 		break;
 	}
 }
 
 float
-w_glock_aimanim(void)
+w_glock_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIM1HAND : ANIM_AIM1HAND;
 }
 
 void
-w_glock_hud(void)
+w_glock_hud(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -349,10 +344,9 @@ w_glock_hud(void)
 }
 
 void
-w_glock_hudpic(int selected, vector pos, float a)
+w_glock_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.glock_mag == 0 && pl.ammo_9mm == 0)
@@ -389,9 +383,8 @@ w_glock_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_glock_isempty(void)
+w_glock_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.glock_mag <= 0 && pl.ammo_9mm <= 0)
 		return 1;
@@ -400,7 +393,7 @@ w_glock_isempty(void)
 }
 
 weapontype_t
-w_glock_type(void)
+w_glock_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -418,7 +411,7 @@ weapon_t w_glock =
 	.secondary	= w_glock_secondary,
 	.reload		= w_glock_reload,
 	.release	= w_glock_release,
-	.crosshair	= w_glock_hud,
+	.postdraw	= w_glock_hud,
 	.precache	= w_glock_precache,
 	.pickup		= w_glock_pickup,
 	.updateammo	= w_glock_updateammo,

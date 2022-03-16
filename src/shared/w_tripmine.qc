@@ -222,7 +222,7 @@ string w_tripmine_wmodel(void)
 	return "models/v_tripmine.mdl";
 }
 
-string w_tripmine_pmodel(void)
+string w_tripmine_pmodel(player pl)
 {
 	return "models/p_tripmine.mdl";
 }
@@ -232,10 +232,9 @@ string w_tripmine_deathmsg(void)
 	return "";
 }
 
-int w_tripmine_pickup(int new, int startammo)
+int w_tripmine_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (pl.ammo_tripmine < MAX_A_TRIPMINE) {
 		pl.ammo_tripmine = bound(0, pl.ammo_tripmine + 1, MAX_A_TRIPMINE);
@@ -247,21 +246,20 @@ int w_tripmine_pickup(int new, int startammo)
 	return (1);
 }
 
-void w_tripmine_draw(void)
+void w_tripmine_draw(player pl)
 {
 	Weapons_SetModel("models/v_tripmine.mdl");
-	Weapons_ViewAnimation(TRIPMINE_DRAW);
+	Weapons_ViewAnimation(pl, TRIPMINE_DRAW);
 }
 
-void w_tripmine_holster(void)
+void w_tripmine_holster(player pl)
 {
 	
 }
 
 void
-w_tripmine_primary(void)
+w_tripmine_primary(player pl)
 {
-	player pl = (player)self;
 	vector src;
 
 	if (pl.w_attack_next > 0.0) {
@@ -272,8 +270,8 @@ w_tripmine_primary(void)
 		return;
 	}
 
-	src = Weapons_GetCameraPos();
-	Weapons_MakeVectors();
+	src = Weapons_GetCameraPos(pl);
+	Weapons_MakeVectors(pl);
 	traceline(src, src + v_forward * 64, FALSE, pl);
 
 	if (trace_fraction >= 1.0) {
@@ -282,7 +280,7 @@ w_tripmine_primary(void)
 
 	pl.ammo_tripmine--;
 
-	Weapons_ViewAnimation(TRIPMINE_FIRE2);
+	Weapons_ViewAnimation(pl, TRIPMINE_FIRE2);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTTRIPMINE, 0.41f);
@@ -305,16 +303,15 @@ w_tripmine_primary(void)
 }
 
 void
-w_tripmine_release(void)
+w_tripmine_release(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
 
 	if (pl.a_ammo3 == 1) {
-		Weapons_ViewAnimation(TRIPMINE_DRAW);
+		Weapons_ViewAnimation(pl, TRIPMINE_DRAW);
 #ifdef SERVER
 		if (pl.ammo_tripmine <= 0) {
 			Weapons_RemoveItem(pl, WEAPON_TRIPMINE);
@@ -329,28 +326,28 @@ w_tripmine_release(void)
 	int r = (float)input_sequence % 3;
 	switch (r) {
 	case 1:
-		Weapons_ViewAnimation(TRIPMINE_IDLE1);
+		Weapons_ViewAnimation(pl, TRIPMINE_IDLE1);
 		pl.w_idle_next = 3.0f;
 		break;
 	case 2:
-		Weapons_ViewAnimation(TRIPMINE_IDLE2);
+		Weapons_ViewAnimation(pl, TRIPMINE_IDLE2);
 		pl.w_idle_next = 2.0f;
 		break;
 	default:
-		Weapons_ViewAnimation(TRIPMINE_FIDGET);
+		Weapons_ViewAnimation(pl, TRIPMINE_FIDGET);
 		pl.w_idle_next = 3.34f;
 		break;
 	}
 }
 
 float
-w_tripmine_aimanim(void)
+w_tripmine_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMTRIPMINE : ANIM_AIMTRIPMINE;
 }
 
 void
-w_tripmine_hud(void)
+w_tripmine_hud(player pl)
 {
 #ifdef CLIENT
 	HUD_DrawAmmo2();
@@ -360,10 +357,9 @@ w_tripmine_hud(void)
 }
 
 void
-w_tripmine_hudpic(int selected, vector pos, float a)
+w_tripmine_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr, [0,90/256], [170/256,45/256], g_hud_color, a, DRAWFLAG_ADDITIVE);
@@ -376,9 +372,8 @@ w_tripmine_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_tripmine_isempty(void)
+w_tripmine_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.ammo_tripmine <= 0)
 		return 1;
@@ -387,7 +382,7 @@ w_tripmine_isempty(void)
 }
 
 weapontype_t
-w_tripmine_type(void)
+w_tripmine_type(player pl)
 {
 	return WPNTYPE_CLOSE;
 }
@@ -405,7 +400,7 @@ weapon_t w_tripmine =
 	.secondary	= __NULL__,
 	.reload		= __NULL__,
 	.release	= w_tripmine_release,
-	.crosshair	= w_tripmine_hud,
+	.postdraw	= w_tripmine_hud,
 	.precache	= w_tripmine_precache,
 	.pickup		= w_tripmine_pickup,
 	.updateammo	= w_tripmine_updateammo,

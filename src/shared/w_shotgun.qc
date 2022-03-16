@@ -108,7 +108,7 @@ w_shotgun_wmodel(void)
 }
 
 string
-w_shotgun_pmodel(void)
+w_shotgun_pmodel(player pl)
 {
 	return "models/p_shotgun.mdl";
 }
@@ -120,10 +120,9 @@ w_shotgun_deathmsg(void)
 }
 
 int
-w_shotgun_pickup(int new, int startammo)
+w_shotgun_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (new) {
 		pl.shotgun_mag = 8;
@@ -141,46 +140,44 @@ w_shotgun_pickup(int new, int startammo)
 }
 
 void
-w_shotgun_draw(void)
+w_shotgun_draw(player pl)
 {
-	player pl = (player)self;
 	pl.mode_tempstate = 0;
 
 	Weapons_SetModel("models/v_shotgun.mdl");
-	Weapons_ViewAnimation(SHOTGUN_DRAW);
+	Weapons_ViewAnimation(pl, SHOTGUN_DRAW);
 }
 
 void 
-w_shotgun_holster(void)
+w_shotgun_holster(player pl)
 {
-	Weapons_ViewAnimation(SHOTGUN_HOLSTER);
+	Weapons_ViewAnimation(pl, SHOTGUN_HOLSTER);
 }
 
-void w_shotgun_release(void);
+void w_shotgun_release(player pl);
 
 void
-w_shotgun_primary(void)
+w_shotgun_primary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
 	/* interrupt reloading if no longer empty */
 	if (pl.mode_tempstate == SHOTTY_RELOAD && pl.shotgun_mag >= 1) {
 		pl.mode_tempstate = SHOTTY_RELOAD_END;
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	} else if (pl.mode_tempstate > SHOTTY_IDLE) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.shotgun_mag <= 0) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
@@ -197,8 +194,8 @@ w_shotgun_primary(void)
 	View_AddEvent(w_shotgun_ejectshell, 0.5f);
 #endif
 
-	Weapons_ViewAnimation(SHOTGUN_FIRE1);
-	Weapons_ViewPunchAngle([-5,0,0]);
+	Weapons_ViewAnimation(pl, SHOTGUN_FIRE1);
+	Weapons_ViewPunchAngle(pl, [-5,0,0]);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
@@ -215,33 +212,32 @@ w_shotgun_primary(void)
 }
 
 void
-w_shotgun_secondary(void)
+w_shotgun_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
 	/* interrupt reloading if no longer empty */
 	if (pl.mode_tempstate == SHOTTY_RELOAD && pl.shotgun_mag >= 2) {
 		pl.mode_tempstate = SHOTTY_RELOAD_END;
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	} else if (pl.mode_tempstate > SHOTTY_IDLE) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.shotgun_mag <= 1) {
-		w_shotgun_release();
+		w_shotgun_release(pl);
 		return;
 	}
 
-	Weapons_ViewAnimation(SHOTGUN_FIRE2);
-	Weapons_ViewPunchAngle([-10,0,0]);
+	Weapons_ViewAnimation(pl, SHOTGUN_FIRE2);
+	Weapons_ViewPunchAngle(pl, [-10,0,0]);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
@@ -269,9 +265,8 @@ w_shotgun_secondary(void)
 }
 
 void
-w_shotgun_reload(void)
+w_shotgun_reload(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.shotgun_mag >= 8) {
 		return;
@@ -288,14 +283,13 @@ w_shotgun_reload(void)
 }
 
 void
-w_shotgun_release(void)
+w_shotgun_release(player pl)
 {
-	player pl = (player)self;
 
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.mode_tempstate == SHOTTY_IDLE && pl.shotgun_mag == 0 && pl.ammo_buckshot > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 
@@ -307,24 +301,24 @@ w_shotgun_release(void)
 		int r = floor(pseudorandom() * 3.0f);
 		switch (r) {
 		case 1:
-			Weapons_ViewAnimation(SHOTGUN_IDLE2);
+			Weapons_ViewAnimation(pl, SHOTGUN_IDLE2);
 			pl.w_idle_next = 2.222222f;
 			break;
 		case 2:
-			Weapons_ViewAnimation(SHOTGUN_IDLE3);
+			Weapons_ViewAnimation(pl, SHOTGUN_IDLE3);
 			pl.w_idle_next = 5.0f;
 			break;
 		default:
-			Weapons_ViewAnimation(SHOTGUN_IDLE1);
+			Weapons_ViewAnimation(pl, SHOTGUN_IDLE1);
 			pl.w_idle_next = 2.222222f;
 			break;
 		}
 	} else if (pl.mode_tempstate == SHOTTY_RELOAD_START) {
-		Weapons_ViewAnimation(SHOTGUN_START_RELOAD);
+		Weapons_ViewAnimation(pl, SHOTGUN_START_RELOAD);
 		pl.mode_tempstate = SHOTTY_RELOAD;
 		pl.w_idle_next = 0.65f;
 	} else if (pl.mode_tempstate == SHOTTY_RELOAD) {
-		Weapons_ViewAnimation(SHOTGUN_RELOAD);
+		Weapons_ViewAnimation(pl, SHOTGUN_RELOAD);
 		pl.shotgun_mag++;
 		pl.ammo_buckshot--;
 #ifdef SERVER
@@ -336,7 +330,7 @@ w_shotgun_release(void)
 		Weapons_UpdateAmmo(pl, pl.shotgun_mag, pl.ammo_buckshot, pl.mode_tempstate);
 		pl.w_idle_next = 0.5f;	
 	} else if (pl.mode_tempstate == SHOTTY_RELOAD_END) {
-		Weapons_ViewAnimation(SHOTGUN_PUMP);
+		Weapons_ViewAnimation(pl, SHOTGUN_PUMP);
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.cock");
 #endif
@@ -356,7 +350,7 @@ w_shotgun_release(void)
 }
 
 void
-w_shotgun_crosshair(void)
+w_shotgun_crosshair(player pl)
 {
 #ifdef CLIENT
 	static vector cross_pos;
@@ -370,16 +364,15 @@ w_shotgun_crosshair(void)
 }
 
 float
-w_shotgun_aimanim(void)
+w_shotgun_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMSHOTGUN : ANIM_AIMSHOTGUN;
 }
 
 void
-w_shotgun_hudpic(int selected, vector pos, float a)
+w_shotgun_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.shotgun_mag == 0 && pl.ammo_buckshot == 0)
@@ -398,9 +391,8 @@ w_shotgun_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_shotgun_isempty(void)
+w_shotgun_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.shotgun_mag <= 0 && pl.ammo_buckshot <= 0)
 		return 1;
@@ -409,7 +401,7 @@ w_shotgun_isempty(void)
 }
 
 weapontype_t
-w_shotgun_type(void)
+w_shotgun_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -427,7 +419,7 @@ weapon_t w_shotgun =
 	.secondary	= w_shotgun_secondary,
 	.reload		= w_shotgun_reload,
 	.release	= w_shotgun_release,
-	.crosshair	= w_shotgun_crosshair,
+	.postdraw	= w_shotgun_crosshair,
 	.precache	= w_shotgun_precache,
 	.pickup		= w_shotgun_pickup,
 	.updateammo	= w_shotgun_updateammo,

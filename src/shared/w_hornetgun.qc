@@ -49,10 +49,9 @@ w_hornetgun_precache(void)
 }
 
 int
-w_hornetgun_pickup(int new, int startammo)
+w_hornetgun_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	/* only pick it up once */
 	if (new) {
@@ -72,7 +71,7 @@ string w_hornetgun_wmodel(void)
 {
 	return "models/w_hgun.mdl";
 }
-string w_hornetgun_pmodel(void)
+string w_hornetgun_pmodel(player pl)
 {
 	return "models/p_hgun.mdl";
 }
@@ -82,21 +81,21 @@ string w_hornetgun_deathmsg(void)
 }
 
 void
-w_hornetgun_draw(void)
+w_hornetgun_draw(player pl)
 {
 	Weapons_SetModel("models/v_hgun.mdl");
-	Weapons_ViewAnimation(HORNETGUN_DRAW);
+	Weapons_ViewAnimation(pl, HORNETGUN_DRAW);
 }
 
 void
-w_hornetgun_holster(void)
+w_hornetgun_holster(player pl)
 {
 	
 }
 
 #ifdef SERVER
 void
-w_hornetgun_shoothornet(void)
+w_hornetgun_shoothornet(player pl)
 {
 	static void Hornet_Touch(void) {
 		if (other.takedamage == DAMAGE_YES) {
@@ -108,10 +107,10 @@ w_hornetgun_shoothornet(void)
 		remove(self);
 	}
 
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	entity bolt = spawn();
 	setmodel(bolt, "models/hornet.mdl");
-	setorigin(bolt, Weapons_GetCameraPos() + (v_forward * 16) + (v_up * -8));
+	setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16) + (v_up * -8));
 	bolt.owner = self;
 	bolt.velocity = v_forward * 1000;
 	bolt.movetype = MOVETYPE_FLY;
@@ -126,9 +125,8 @@ w_hornetgun_shoothornet(void)
 #endif
 
 void
-w_hornetgun_release(void)
+w_hornetgun_release(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_idle_next > 0.0) {
 		return;
@@ -150,40 +148,39 @@ w_hornetgun_release(void)
 	r = floor(pseudorandom() * 3.0f);
 	switch (r) {
 	case 1:
-		Weapons_ViewAnimation(HORNETGUN_FIDGET1);
+		Weapons_ViewAnimation(pl, HORNETGUN_FIDGET1);
 		pl.w_idle_next = 2.5f;
 		break;
 	case 2:
-		Weapons_ViewAnimation(HORNETGUN_FIDGET2);
+		Weapons_ViewAnimation(pl, HORNETGUN_FIDGET2);
 		pl.w_idle_next = 2.1875f;
 		break;
 	default:
-		Weapons_ViewAnimation(HORNETGUN_IDLE);
+		Weapons_ViewAnimation(pl, HORNETGUN_IDLE);
 		pl.w_idle_next = 1.875f;
 	}
 }
 
 void
-w_hornetgun_primary(void)
+w_hornetgun_primary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
 
 	/* Ammo check */
 	if (pl.ammo_hornet <= 0) {
-		w_hornetgun_release();
+		w_hornetgun_release(pl);
 		return;
 	}
 
 #ifdef SERVER
-	w_hornetgun_shoothornet();
+	w_hornetgun_shoothornet(pl);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_hornetgun.fire");
 #endif
 
 	pl.ammo_hornet--;
-	Weapons_ViewAnimation(HORNETGUN_SHOOT);
+	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
@@ -195,26 +192,25 @@ w_hornetgun_primary(void)
 }
 
 void
-w_hornetgun_secondary(void)
+w_hornetgun_secondary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next) {
 		return;
 	}
 
     /* Ammo check */
 	if (pl.ammo_hornet <= 0) {
-		w_hornetgun_release();
+		w_hornetgun_release(pl);
 		return;
 	}
 
 #ifdef SERVER
-	w_hornetgun_shoothornet();
+	w_hornetgun_shoothornet(pl);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_hornetgun.fire");
 #endif
 
 	pl.ammo_hornet--;
-	Weapons_ViewAnimation(HORNETGUN_SHOOT);
+	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
@@ -226,7 +222,7 @@ w_hornetgun_secondary(void)
 }
 
 void
-w_hornetgun_crosshair(void)
+w_hornetgun_crosshair(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -262,16 +258,15 @@ w_hornetgun_crosshair(void)
 }
 
 float
-w_hornetgun_aimanim(void)
+w_hornetgun_aimanim(player pl)
 {
 	return self.flags & FL_CROUCHING ? ANIM_CR_AIMHIVE : ANIM_AIMHIVE;
 }
 
 void
-w_hornetgun_hudpic(int selected, vector pos, float a)
+w_hornetgun_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 
 	if (selected) {
 		drawsubpic(
@@ -302,13 +297,13 @@ w_hornetgun_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_hornetgun_isempty(void)
+w_hornetgun_isempty(player pl)
 {
 	return 0;
 }
 
 weapontype_t
-w_hornetgun_type(void)
+w_hornetgun_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -326,7 +321,7 @@ weapon_t w_hornetgun =
 	.secondary	= w_hornetgun_secondary,
 	.reload		= __NULL__,
 	.release	= w_hornetgun_release,
-	.crosshair	= w_hornetgun_crosshair,
+	.postdraw	= w_hornetgun_crosshair,
 	.precache	= w_hornetgun_precache,
 	.pickup		= w_hornetgun_pickup,
 	.updateammo	= w_hornetgun_updateammo,

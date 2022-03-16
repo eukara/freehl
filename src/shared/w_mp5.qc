@@ -99,10 +99,9 @@ w_mp5_precache(void)
 }
 
 int
-w_mp5_pickup(int new, int startammo)
+w_mp5_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
 
 	if (new) {
 		pl.mp5_mag = 25;
@@ -132,7 +131,7 @@ w_mp5_wmodel(void)
 }
 
 string
-w_mp5_pmodel(void)
+w_mp5_pmodel(player pl)
 {
 	return "models/p_9mmar.mdl";
 }
@@ -144,22 +143,21 @@ w_mp5_deathmsg(void)
 }
 
 void
-w_mp5_draw(void)
+w_mp5_draw(player pl)
 {
 	Weapons_SetModel("models/v_9mmar.mdl");
-	Weapons_ViewAnimation(MP5_DRAW);
+	Weapons_ViewAnimation(pl, MP5_DRAW);
 }
 
 void
-w_mp5_holster(void)
+w_mp5_holster(player pl)
 {
-	Weapons_ViewAnimation(MP5_DRAW);
+	Weapons_ViewAnimation(pl, MP5_DRAW);
 }
 
 void
-w_mp5_primary(void)
+w_mp5_primary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -175,12 +173,12 @@ w_mp5_primary(void)
 	/* Actual firing */
 	int r = (float)input_sequence % 2;
 	if (r) {
-		Weapons_ViewAnimation(MP5_FIRE1);
+		Weapons_ViewAnimation(pl, MP5_FIRE1);
 	} else {
-		Weapons_ViewAnimation(MP5_FIRE2);
+		Weapons_ViewAnimation(pl, MP5_FIRE2);
 	}
 
-	Weapons_ViewPunchAngle([-2,0,0]);
+	Weapons_ViewPunchAngle(pl, [-2,0,0]);
 
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_RIFLE);
@@ -188,9 +186,9 @@ w_mp5_primary(void)
 #else
 	/* singleplayer is more accurate */
 	if (cvar("sv_playerslots") == 1) {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5);
+		TraceAttack_FireBullets(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5);
 	} else {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5);
+		TraceAttack_FireBullets(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5);
 	}
 
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");
@@ -206,9 +204,8 @@ w_mp5_primary(void)
 }
 
 void
-w_mp5_secondary(void)
+w_mp5_secondary(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.w_attack_next > 0.0) {
 		return;
@@ -235,10 +232,10 @@ w_mp5_secondary(void)
 		remove(self);
 	}
 
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	entity gren = spawn();
 	setmodel(gren, "models/grenade.mdl");
-	setorigin(gren, Weapons_GetCameraPos() + (v_forward * 16));
+	setorigin(gren, Weapons_GetCameraPos(pl) + (v_forward * 16));
 	gren.owner = self;
 	gren.velocity = v_forward * 800;
 	gren.angles = vectoangles(gren.velocity);
@@ -252,8 +249,8 @@ w_mp5_secondary(void)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.gl");
 #endif
 
-	Weapons_ViewPunchAngle([-10,0,0]);
-	Weapons_ViewAnimation(MP5_GRENADE);
+	Weapons_ViewPunchAngle(pl, [-10,0,0]);
+	Weapons_ViewAnimation(pl, MP5_GRENADE);
 
 	if (self.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.45f);
@@ -265,9 +262,8 @@ w_mp5_secondary(void)
 }
 
 void
-w_mp5_reload(void)
+w_mp5_reload(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next) {
 		return;
 	}
@@ -280,7 +276,7 @@ w_mp5_reload(void)
 		return;
 	}
 
-	Weapons_ViewAnimation(MP5_RELOAD);
+	Weapons_ViewAnimation(pl, MP5_RELOAD);
 
 #ifdef SERVER
 	static void w_mp5_reload_done(void) {
@@ -297,14 +293,13 @@ w_mp5_reload(void)
 }
 
 void
-w_mp5_release(void)
+w_mp5_release(player pl)
 {
-	player pl = (player)self;
 
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.mp5_mag == 0 && pl.ammo_9mm > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 	if (pl.w_idle_next > 0.0) {
@@ -313,16 +308,16 @@ w_mp5_release(void)
 
 	int r = floor(pseudorandom() * 3.0f);
 	if (r == 1) {
-		Weapons_ViewAnimation(MP5_IDLE1);
+		Weapons_ViewAnimation(pl, MP5_IDLE1);
 	} else {
-		Weapons_ViewAnimation(MP5_IDLE2);
+		Weapons_ViewAnimation(pl, MP5_IDLE2);
 	}
 
 	pl.w_idle_next = 15.0f;
 }
 
 void
-w_mp5_crosshair(void)
+w_mp5_crosshair(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -372,16 +367,15 @@ w_mp5_crosshair(void)
 }
 
 float
-w_mp5_aimanim(void)
+w_mp5_aimanim(player pl)
 {
 	return self.flags & ANIM_CR_AIMMP5 ? ANIM_CR_AIMCROWBAR : ANIM_AIMMP5;
 }
 
 void
-w_mp5_hudpic(int selected, vector pos, float a)
+w_mp5_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.mp5_mag == 0 && pl.ammo_9mm == 0 && pl.ammo_m203_grenade == 0)
@@ -419,9 +413,8 @@ w_mp5_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_mp5_isempty(void)
+w_mp5_isempty(player pl)
 {
-	player pl = (player)self;
 
 	if (pl.mp5_mag <= 0 && pl.ammo_9mm <= 0 && pl.ammo_m203_grenade <= 0)
 		return 1;
@@ -430,7 +423,7 @@ w_mp5_isempty(void)
 }
 
 weapontype_t
-w_mp5_type(void)
+w_mp5_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -448,7 +441,7 @@ weapon_t w_mp5 =
 	.secondary	= w_mp5_secondary,
 	.reload		= w_mp5_reload,
 	.release	= w_mp5_release,
-	.crosshair	= w_mp5_crosshair,
+	.postdraw	= w_mp5_crosshair,
 	.precache	= w_mp5_precache,
 	.pickup		= w_mp5_pickup,
 	.updateammo	= w_mp5_updateammo,

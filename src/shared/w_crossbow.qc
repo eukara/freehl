@@ -68,7 +68,7 @@ w_crossbow_wmodel(void)
 }
 
 string
-w_crossbow_pmodel(void)
+w_crossbow_pmodel(player pl)
 {
 	return "models/p_crossbow.mdl";
 }
@@ -80,11 +80,9 @@ w_crossbow_deathmsg(void)
 }
 
 int
-w_crossbow_pickup(int new, int startammo)
+w_crossbow_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-	player pl = (player)self;
-
 	if (new) {
 		pl.crossbow_mag = 5;
 		return (1);
@@ -102,22 +100,20 @@ w_crossbow_pickup(int new, int startammo)
 }
 
 void
-w_crossbow_draw(void)
+w_crossbow_draw(player pl)
 {
-	player pl = (player)self;
-
 	Weapons_SetModel("models/v_crossbow.mdl");
 
 	if (pl.crossbow_mag <= 0)
-		Weapons_ViewAnimation(CROSSBOW_DRAW2);
+		Weapons_ViewAnimation(pl, CROSSBOW_DRAW2);
 	else
-		Weapons_ViewAnimation(CROSSBOW_DRAW1);
+		Weapons_ViewAnimation(pl, CROSSBOW_DRAW1);
 }
 
 void
-w_crossbow_holster(void)
+w_crossbow_holster(player pl)
 {
-	Weapons_ViewAnimation(CROSSBOW_HOLSTER1);
+	Weapons_ViewAnimation(pl, CROSSBOW_HOLSTER1);
 }
 
 #ifdef SERVER
@@ -158,10 +154,8 @@ void Crossbolt_Touch(void) {
 #endif
 
 void
-w_crossbow_primary(void)
+w_crossbow_primary(player pl)
 {
-	player pl = (player)self;
-
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -174,10 +168,10 @@ w_crossbow_primary(void)
 	pl.crossbow_mag--;
 
 #ifndef CLIENT
-	Weapons_MakeVectors();
+	Weapons_MakeVectors(pl);
 	entity bolt = spawn();
 	setmodel(bolt, "models/crossbow_bolt.mdl");
-	setorigin(bolt, Weapons_GetCameraPos() + (v_forward * 16));
+	setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16));
 	bolt.owner = self;
 	bolt.velocity = v_forward * 2000;
 	bolt.movetype = MOVETYPE_FLYMISSILE;
@@ -198,9 +192,9 @@ w_crossbow_primary(void)
 #endif
 
 	if (pl.crossbow_mag) {
-		Weapons_ViewAnimation(CROSSBOW_FIRE1);
+		Weapons_ViewAnimation(pl, CROSSBOW_FIRE1);
 	} else {
-		Weapons_ViewAnimation(CROSSBOW_FIRE3);
+		Weapons_ViewAnimation(pl, CROSSBOW_FIRE3);
 	}
 
 	if (self.flags & FL_CROUCHING)
@@ -208,16 +202,15 @@ w_crossbow_primary(void)
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTBOW, 0.25f);
 
-	Weapons_ViewPunchAngle([-2,0,0]);
+	Weapons_ViewPunchAngle(pl, [-2,0,0]);
 
 	pl.w_attack_next = 0.75f;
 	pl.w_idle_next = 10.0f;
 }
 
 void
-w_crossbow_secondary(void)
+w_crossbow_secondary(player pl)
 {
-	player pl = (player)self;
 	if (pl.w_attack_next) {
 		return;
 	}
@@ -231,10 +224,8 @@ w_crossbow_secondary(void)
 }
 
 void
-w_crossbow_reload(void)
+w_crossbow_reload(player pl)
 {
-	player pl = (player)self;
-
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -257,21 +248,19 @@ w_crossbow_reload(void)
 	Sound_Play(pl, CHAN_ITEM, "weapon_crossbow.reload");
 #endif
 
-	Weapons_ViewAnimation(CROSSBOW_RELOAD);
+	Weapons_ViewAnimation(pl, CROSSBOW_RELOAD);
 
 	pl.w_attack_next = 4.5f;
 	pl.w_idle_next = 10.0f;
 }
 
 void
-w_crossbow_release(void)
+w_crossbow_release(player pl)
 {
-	player pl = (player)self;
-
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.crossbow_mag == 0 && pl.ammo_bolt > 0) {
-		Weapons_Reload();
+		Weapons_Reload(pl);
 		return;
 	}
 
@@ -282,15 +271,15 @@ w_crossbow_release(void)
 	int r = floor(pseudorandom() * 2.0f);
 	if (r == 1) {
 		if (pl.crossbow_mag) {
-			Weapons_ViewAnimation(CROSSBOW_IDLE1);
+			Weapons_ViewAnimation(pl, CROSSBOW_IDLE1);
 		} else {
-			Weapons_ViewAnimation(CROSSBOW_IDLE2);
+			Weapons_ViewAnimation(pl, CROSSBOW_IDLE2);
 		}
 	} else {
 		if (pl.crossbow_mag) {
-			Weapons_ViewAnimation(CROSSBOW_FIDGET1);
+			Weapons_ViewAnimation(pl, CROSSBOW_FIDGET1);
 		} else {
-			Weapons_ViewAnimation(CROSSBOW_FIDGET2);
+			Weapons_ViewAnimation(pl, CROSSBOW_FIDGET2);
 		}
 	}
 
@@ -298,7 +287,7 @@ w_crossbow_release(void)
 }
 
 void
-w_crossbow_crosshair(void)
+w_crossbow_crosshair(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
@@ -334,16 +323,15 @@ w_crossbow_crosshair(void)
 }
 
 float
-w_crossbow_aimanim(void)
+w_crossbow_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMBOW : ANIM_AIMBOW;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMBOW : ANIM_AIMBOW;
 }
 
 void
-w_crossbow_hudpic(int selected, vector pos, float a)
+w_crossbow_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-	player pl = (player)self;
 	vector hud_col;
 
 	if (pl.crossbow_mag == 0 && pl.ammo_bolt == 0)
@@ -380,17 +368,15 @@ w_crossbow_hudpic(int selected, vector pos, float a)
 }
 
 int
-w_crossbow_isempty(void)
+w_crossbow_isempty(player pl)
 {
-	player pl = (player)self;
-
 	if (pl.crossbow_mag <= 0 && pl.ammo_bolt <= 0)
 		return 1;
 
 	return 0;
 }
 
-weapontype_t w_crossbow_type(void)
+weapontype_t w_crossbow_type(player pl)
 {
 	return WPNTYPE_RANGED;
 }
@@ -408,7 +394,7 @@ weapon_t w_crossbow =
 	.secondary	= w_crossbow_secondary,
 	.reload		= w_crossbow_reload,
 	.release	= w_crossbow_release,
-	.crosshair	= w_crossbow_crosshair,
+	.postdraw	= w_crossbow_crosshair,
 	.precache	= w_crossbow_precache,
 	.pickup		= w_crossbow_pickup,
 	.updateammo	= w_crossbow_updateammo,

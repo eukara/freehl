@@ -61,7 +61,7 @@ Animation_PlayerUpdate(player pl)
 	pl.basebone = gettagindex(pl, "Bip01 Spine1");
 
 	if (pl.anim_top_delay <= 0.0f) {
-		pl.anim_top = Weapons_GetAim(pl.activeweapon);
+		pl.anim_top = Weapons_GetAim(pl, pl.activeweapon);
 	}
 
 	if (vlen(pl.velocity) == 0) {

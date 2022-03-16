@@ -15,7 +15,7 @@
  */
 
 void
-Game_Input(void)
+Game_Input(player pl)
 {
 #ifdef SERVER
 	CGameRules rules = (CGameRules)g_grMode;
@@ -30,13 +30,11 @@ Game_Input(void)
 	else
 		Player_UseUp();
 
-	if (self.impulse == 100)
+	if (pl.impulse == 100)
 		Flashlight_Toggle();
 
 	if (cvar("sv_cheats") == 1) {
-		player pl = (player)self;
-
-		if (self.impulse == 101) {
+		if (pl.impulse == 101) {
 			pl.health = 100;
 			pl.armor = 100;
 			pl.g_items |= ITEM_SUIT;
@@ -69,15 +67,15 @@ Game_Input(void)
 		}
 	}
 
-	self.impulse = 0;
+	pl.impulse = 0;
 #endif
 
 	if (input_buttons & INPUT_BUTTON0)
-		Weapons_Primary();
+		Weapons_Primary(pl);
 	else if (input_buttons & INPUT_BUTTON4)
-		Weapons_Reload();
+		Weapons_Reload(pl);
 	else if (input_buttons & INPUT_BUTTON3)
-		Weapons_Secondary();
+		Weapons_Secondary(pl);
 	else
-		Weapons_Release();
+		Weapons_Release(pl);
 }
