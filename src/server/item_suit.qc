@@ -31,13 +31,13 @@ class item_suit:CBaseTrigger
 
 	void(void) item_suit;
 
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 	virtual void(void) Respawn;
 	virtual void(string, string) SpawnKey;
 };
 
 void
-item_suit::touch(void)
+item_suit::Touch(entity eToucher)
 {
 	if (other.classname != "player") {
 		return;

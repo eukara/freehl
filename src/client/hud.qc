@@ -474,11 +474,16 @@ HUD_DrawSpectator(void)
 	drawfont = Font_GetID(FONT_20);
 	vector vecPos;
 	string strText;
+	float palpha = 1.0f;
+
+	if (spec.spec_mode == SPECMODE_FREE) {
+		palpha = 0.5f;
+	}
 
 	strText = sprintf("Tracking: %s", getplayerkeyvalue(spec.spec_ent - 1, "name"));
 	vecPos[0] = g_hudmins[0] + (g_hudres[0] / 2) - (stringwidth(strText, TRUE, [20,20]) / 2);
 	vecPos[1] = g_hudmins[1] + g_hudres[1] - 60;
-	drawstring(vecPos, strText, [20,20], [1,1,1], 1.0f, DRAWFLAG_ADDITIVE);
+	drawstring(vecPos, strText, [20,20], [1,1,1], palpha, DRAWFLAG_ADDITIVE);
 
 	strText = sprintf("Mode: %s", g_specmodes[spec.spec_mode]);
 	vecPos[0] = g_hudmins[0] + (g_hudres[0] / 2) - (stringwidth(strText, TRUE, [20,20]) / 2);

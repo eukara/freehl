@@ -39,11 +39,11 @@ class item_weaponbox:CBaseEntity
 #endif
 
 	void(void) item_weaponbox;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 	virtual void(player) setup;
 };
 
-void item_weaponbox::touch(void)
+void item_weaponbox::Touch(entity eToucher)
 {
 	if (other.classname != "player") {
 		return;

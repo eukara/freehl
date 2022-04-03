@@ -29,13 +29,13 @@ class item_longjump:CBaseTrigger
 
 	void(void) item_longjump;
 
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 	virtual void(void) Respawn;
 	virtual void(string, string) SpawnKey;
 };
 
 void
-item_longjump::touch(void)
+item_longjump::Touch(entity eToucher)
 {
 	if (other.classname != "player") {
 		return;

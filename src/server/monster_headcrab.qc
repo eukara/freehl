@@ -60,7 +60,7 @@ class monster_headcrab:NSMonster
 	virtual int(void) AnimWalk;
 	virtual int(void) AnimRun;
 	virtual int(void) AttackRanged;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 int
@@ -100,11 +100,11 @@ monster_headcrab::AttackRanged(void)
 }
 
 void
-monster_headcrab::touch(void)
+monster_headcrab::Touch(entity eToucher)
 {
-	if (other.takedamage == DAMAGE_YES)
+	if (eToucher.takedamage == DAMAGE_YES)
 	if (frame == HC_JUMP || frame == HC_JUMP_VARIATION1)
-		Damage_Apply(other, this, 500, 0, 0);
+		Damage_Apply(eToucher, this, 500, 0, 0);
 }
 
 void

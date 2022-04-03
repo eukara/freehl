@@ -18,10 +18,10 @@ class item_ammo:CBaseEntity
 {
 	void(void) item_ammo;
 	virtual void(void) Respawn;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
-void item_ammo::touch(void)
+void item_ammo::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -79,7 +79,7 @@ A single ammo_357 will provide 6 bullets.
 class ammo_357:item_ammo
 {
 	void(void) ammo_357;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_357::ammo_357(void)
@@ -87,7 +87,7 @@ void ammo_357::ammo_357(void)
 	model = "models/w_357ammobox.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_357::touch(void)
+void ammo_357::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -96,7 +96,7 @@ void ammo_357::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_357 < MAX_A_357) {
 			pl.ammo_357 = bound(0, pl.ammo_357 + 6, MAX_A_357);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -112,7 +112,7 @@ A single ammo_9mmAR will provide 50 bullets.
 class ammo_9mmAR:item_ammo
 {
 	void(void) ammo_9mmAR;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_9mmAR::ammo_9mmAR(void)
@@ -120,7 +120,7 @@ void ammo_9mmAR::ammo_9mmAR(void)
 	model = "models/w_9mmarclip.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_9mmAR::touch(void)
+void ammo_9mmAR::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -129,7 +129,7 @@ void ammo_9mmAR::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_9mm < MAX_A_9MM) {
 			pl.ammo_9mm = bound(0, pl.ammo_9mm + 50, MAX_A_9MM);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -146,7 +146,7 @@ A single ammo_9mmbox will provide 200 bullets.
 class ammo_9mmbox:item_ammo
 {
 	void(void) ammo_9mmbox;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_9mmbox::ammo_9mmbox(void)
@@ -154,7 +154,7 @@ void ammo_9mmbox::ammo_9mmbox(void)
 	model = "models/w_chainammo.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_9mmbox::touch(void)
+void ammo_9mmbox::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -163,7 +163,7 @@ void ammo_9mmbox::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_9mm < MAX_A_9MM) {
 			pl.ammo_9mm = bound(0, pl.ammo_9mm + 200, MAX_A_9MM);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -179,7 +179,7 @@ A single ammo_9mmclip will provide 17 bullets.
 class ammo_9mmclip:item_ammo
 {
 	void(void) ammo_9mmclip;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_9mmclip::ammo_9mmclip(void)
@@ -187,7 +187,7 @@ void ammo_9mmclip::ammo_9mmclip(void)
 	model = "models/w_9mmclip.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_9mmclip::touch(void)
+void ammo_9mmclip::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -196,7 +196,7 @@ void ammo_9mmclip::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_9mm < MAX_A_9MM) {
 			pl.ammo_9mm = bound(0, pl.ammo_9mm + 17, MAX_A_9MM);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -212,7 +212,7 @@ A single ammo_ARgrenades will provide 2 AR grenades.
 class ammo_ARgrenades:item_ammo
 {
 	void(void) ammo_ARgrenades;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_ARgrenades::ammo_ARgrenades(void)
@@ -220,7 +220,7 @@ void ammo_ARgrenades::ammo_ARgrenades(void)
 	model = "models/w_argrenade.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_ARgrenades::touch(void)
+void ammo_ARgrenades::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -229,7 +229,7 @@ void ammo_ARgrenades::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_m203_grenade < MAX_A_M203_GRENADE) {
 			pl.ammo_m203_grenade = bound(0, pl.ammo_m203_grenade + 2, MAX_A_M203_GRENADE);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -246,7 +246,7 @@ A single ammo_buckshot will provide 12 shells.
 class ammo_buckshot:item_ammo
 {
 	void(void) ammo_buckshot;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_buckshot::ammo_buckshot(void)
@@ -254,7 +254,7 @@ void ammo_buckshot::ammo_buckshot(void)
 	model = "models/w_shotbox.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_buckshot::touch(void)
+void ammo_buckshot::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -263,7 +263,7 @@ void ammo_buckshot::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_buckshot < MAX_A_BUCKSHOT) {
 			pl.ammo_buckshot = bound(0, pl.ammo_buckshot + 12, MAX_A_BUCKSHOT);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -279,7 +279,7 @@ A single ammo_crossbow will provide 5 bolts.
 class ammo_crossbow:item_ammo
 {
 	void(void) ammo_crossbow;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_crossbow::ammo_crossbow(void)
@@ -287,7 +287,7 @@ void ammo_crossbow::ammo_crossbow(void)
 	model = "models/w_crossbow_clip.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_crossbow::touch(void)
+void ammo_crossbow::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -296,7 +296,7 @@ void ammo_crossbow::touch(void)
 		player pl = (player)other;
 		if (pl.ammo_bolt < MAX_A_BOLT) {
 			pl.ammo_bolt = bound(0, pl.ammo_bolt + 5, MAX_A_BOLT);
-			item_ammo::touch();
+			item_ammo::Touch(eToucher);
 		}
 	}
 }
@@ -312,7 +312,7 @@ A single ammo_gaussclip will provide 20 cells.
 class ammo_gaussclip:item_ammo
 {
 	void(void) ammo_gaussclip;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_gaussclip::ammo_gaussclip(void)
@@ -320,7 +320,7 @@ void ammo_gaussclip::ammo_gaussclip(void)
 	model = "models/w_gaussammo.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_gaussclip::touch(void)
+void ammo_gaussclip::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -329,7 +329,7 @@ void ammo_gaussclip::touch(void)
 	player pl = (player)other;
 	if (pl.ammo_uranium < MAX_A_URANIUM) {
 		pl.ammo_uranium = bound(0, pl.ammo_uranium + 20, MAX_A_URANIUM);
-		item_ammo::touch();
+		item_ammo::Touch(eToucher);
 	}
 }
 
@@ -344,7 +344,7 @@ A single ammo_rpgclip will provide 1 rocket.
 class ammo_rpgclip:item_ammo
 {
 	void(void) ammo_rpgclip;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
 void ammo_rpgclip::ammo_rpgclip(void)
@@ -352,7 +352,7 @@ void ammo_rpgclip::ammo_rpgclip(void)
 	model = "models/w_rpgammo.mdl";
 	item_ammo::item_ammo();
 }
-void ammo_rpgclip::touch(void)
+void ammo_rpgclip::Touch(entity eToucher)
 {
 	if not (other.flags & FL_CLIENT) {
 		return;
@@ -361,6 +361,6 @@ void ammo_rpgclip::touch(void)
 	player pl = (player)other;
 	if (pl.ammo_rocket < MAX_A_ROCKET) {
 		pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
-		item_ammo::touch();
+		item_ammo::Touch(eToucher);
 	}
 }

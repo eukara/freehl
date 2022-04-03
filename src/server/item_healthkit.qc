@@ -26,10 +26,10 @@ class item_healthkit:CBaseEntity
 {
 	void(void) item_healthkit;
 	virtual void(void) Respawn;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
-void item_healthkit::touch(void)
+void item_healthkit::Touch(entity eToucher)
 {
 	if (other.classname != "player") {
 		return;

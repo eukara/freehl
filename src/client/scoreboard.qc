@@ -178,7 +178,7 @@ Scores_Draw(void)
 		pos = video_mins + [(video_res[0] / 2) - 145, 30];
 	}
 
-	if (serverkeyfloat("teams") > 0) {
+	if (Util_IsTeamPlay()) {
 		Scores_DrawTeam(pl, pos);
 	} else {
 		Scores_DrawNormal(pl, pos);

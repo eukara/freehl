@@ -14,21 +14,21 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void item_pickup::touch(void)
+void item_pickup::Touch(entity eToucher)
 {
-	if (other.classname != "player") {
+	if (eToucher.classname != "player") {
 		return;
 	}
 
 	/* don't remove if AddItem fails */
-	if (Weapons_AddItem((player)other, id, m_iClip) == FALSE) {
+	if (Weapons_AddItem((player)eToucher, id, m_iClip) == FALSE) {
 		return;
 	}
 
-	Logging_Pickup(other, this, __NULL__);
+	Logging_Pickup(eToucher, this, __NULL__);
 	Sound_Play(other, CHAN_ITEM, "weapon.pickup");
 
-	UseTargets(other, TRIG_TOGGLE, m_flDelay);
+	UseTargets(eToucher, TRIG_TOGGLE, m_flDelay);
 
 	if (real_owner || m_iWasDropped == 1 || cvar("sv_playerslots") == 1) {
 		remove(self);

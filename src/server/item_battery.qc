@@ -32,10 +32,10 @@ class item_battery:CBaseEntity
 	void(void) item_battery;
 
 	virtual void(void) Respawn;
-	virtual void(void) touch;
+	virtual void(entity) Touch;
 };
 
-void item_battery::touch(void)
+void item_battery::Touch(entity eToucher)
 {
 	if (other.classname != "player") {
 		return;

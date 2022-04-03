@@ -153,7 +153,7 @@ HLMultiplayerRules::ConsoleCommand(base_player pp, string cmd)
 
 	switch (argv(0)) {
 	case "bot_add":
-		bot pete = Bot_AddQuick();
+		bot pete = (bot)Bot_AddQuick();
 		Bot_RandomColormap(pete);
 		searchhandle pm = search_begin("models/player/*/*.mdl", TRUE, TRUE);
 		int r = floor(random(0, search_getsize(pm)));
