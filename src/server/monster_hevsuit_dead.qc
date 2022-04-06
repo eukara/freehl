@@ -37,7 +37,7 @@ void
 monster_hevsuit_dead::Gib(void)
 {
 	takedamage = DAMAGE_NO;
-	FX_GibHuman(this.origin);
+	FX_GibHuman(origin, vectoangles(origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
 	Hide();
 }
 

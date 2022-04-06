@@ -36,16 +36,20 @@ FX_GibHuman_Init(void)
 #endif
 
 void
-FX_GibHuman(vector pos)
+FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
 {
 #ifdef SERVER
 	WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET);
 	WriteByte(MSG_MULTICAST, EV_GIBHUMAN);
-	WriteCoord(MSG_MULTICAST, pos[0]); 
-	WriteCoord(MSG_MULTICAST, pos[1]); 
-	WriteCoord(MSG_MULTICAST, pos[2]);
+	WriteCoord(MSG_MULTICAST, vecOrigin[0]);
+	WriteCoord(MSG_MULTICAST, vecOrigin[1]);
+	WriteCoord(MSG_MULTICAST, vecOrigin[2]);
+	WriteCoord(MSG_MULTICAST, vecDir[0]);
+	WriteCoord(MSG_MULTICAST, vecDir[1]);
+	WriteCoord(MSG_MULTICAST, vecDir[2]);
+	WriteFloat(MSG_MULTICAST, flForce);
 	msg_entity = __NULL__;
-	multicast(pos, MULTICAST_PVS);
+	multicast(vecOrigin, MULTICAST_PVS);
 #else
 	static void Gib_Remove(void) {
 		remove(self);
@@ -64,15 +68,19 @@ FX_GibHuman(vector pos)
 		return;
 	}
 
+
+	makevectors(vecDir);
+	vecDir = v_forward;
+
 	for (int i = 0; i < 5; i++) {
-		vector vel;
-		vel[0] = random(-128,128);
-		vel[1] = random(-128,128);
-		vel[2] = (300 + random() * 64);
+		vector vel = vecDir;
+		vel += random(-1,1) * v_right;
+		vel += random(-1,1) * v_up;
+		vel *= flForce + [0,0,80];
 
 		entity gibb = spawn();
 		setmodel(gibb, g_hgibs[i]);
-		setorigin(gibb, pos);
+		setorigin(gibb, vecOrigin);
 		gibb.movetype = MOVETYPE_BOUNCE;
 		gibb.solid = SOLID_BBOX;
 		setsize(gibb, [0,0,0], [0,0,0]);
@@ -83,6 +91,6 @@ FX_GibHuman(vector pos)
 		gibb.nextthink = time + 5.0f;
 		gibb.drawmask = MASK_ENGINE;
 	}
-	pointsound(pos, "common/bodysplat.wav", 1, ATTN_NORM);
+	pointsound(vecOrigin, "common/bodysplat.wav", 1, ATTN_NORM);
 #endif
 } 
