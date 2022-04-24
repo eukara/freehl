@@ -45,13 +45,17 @@ FX_Blood(vector pos, vector color)
 #else
 	static void Blood_Touch(void)
 	{
+		if (self.think != Util_Destroy) {
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
 			Decals_Place(self.origin, sprintf("{blood%d", floor(random(1,9))));
 		else {
 			decal_pickwall(self, self.origin);
 			pointparticles(DECAL_BLOOD, g_tracedDecal.endpos, g_tracedDecal.normal, 1);
 		}
-		remove(self);
+		}
+
+		self.think = Util_Destroy;
+		self.nextthink = time + 5.0f;
 	}
 
 	if (cvar("violence_hblood") <= 0) {
@@ -65,45 +69,36 @@ FX_Blood(vector pos, vector color)
 	eBlood.drawmask = MASK_ENGINE;
 	eBlood.maxframe = modelframecount(eBlood.modelindex);
 	eBlood.loops = 0;
-	eBlood.scale = 1.0f;
+	eBlood.scale = 0.25f;
 
-#ifdef GS_RENDERFX
 	eBlood.m_vecRenderColor = color;
 	eBlood.m_iRenderMode = RM_COLOR;
 	eBlood.m_flRenderAmt = 1.0f;
-#else
-	eBlood.colormod = color;
-#endif
+
 
 	eBlood.framerate = 20;
 	eBlood.nextthink = time + 0.05f;
 
 	for (int i = 0; i < 3; i++) {
-		env_sprite ePart = spawn(env_sprite);
+		NSRenderableEntity ePart = spawn(NSRenderableEntity);
 		setorigin(ePart, pos);
 		setmodel(ePart, "sprites/blood.spr");
 		ePart.movetype = MOVETYPE_BOUNCE;
 		ePart.gravity = 0.5f;
-		ePart.scale = 0.5f;
+		ePart.scale = 0.25f;
 		ePart.drawmask = MASK_ENGINE;
-		ePart.maxframe = modelframecount(ePart.modelindex);
-		ePart.loops = 0;
+		ePart.frame = (random() < 0.5) ? 0 : 1;
 
-#ifdef GS_RENDERFX
 		ePart.m_vecRenderColor = color;
 		ePart.m_iRenderMode = RM_COLOR;
 		ePart.m_flRenderAmt = 1.0f;
-#else
-		ePart.colormod = color;
-#endif
-		ePart.framerate = 15;
-		ePart.nextthink = time + 0.1f;
-		ePart.velocity = randomvec() * 64;
+		ePart.velocity = randomvec() * 96 + [0,0,64];
 		ePart.touch = Blood_Touch;
 		ePart.solid = SOLID_BBOX;
 		/* ignore player physics */
 		ePart.dimension_solid = 1;
 		ePart.dimension_hit = 1;
+		ePart.hitcontentsmaski = 0;
 		setsize(ePart, [0,0,0], [0,0,0]);
 	}
 #endif
