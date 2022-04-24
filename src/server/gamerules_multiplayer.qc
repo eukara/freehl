@@ -126,6 +126,7 @@ HLMultiplayerRules::PlayerSpawn(base_player pp)
 	pl.customphysics = Empty;
 	pl.iBleeds = TRUE;
 	forceinfokey(pl, "*spec", "0");
+	forceinfokey(pl, "*dead", "0");
 	forceinfokey(pl, "*deaths", ftos(pl.deaths));
 
 	LevelNewParms();
