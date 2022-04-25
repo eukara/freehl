@@ -26,9 +26,9 @@ Game_Input(player pl)
 	}
 
 	if (input_buttons & INPUT_BUTTON5)
-		Player_UseDown(); 
+		pl.InputUse_Down(); 
 	else
-		Player_UseUp();
+		pl.InputUse_Up(); 
 
 	if (pl.impulse == 100)
 		Flashlight_Toggle();
