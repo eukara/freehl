@@ -20,18 +20,28 @@ HALF-LIFE (1998) ENTITY
 
 Xen Hair
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/hair.mdl"
 */
-class xen_hair:CBaseEntity
+class xen_hair:NSRenderableEntity
 {
 	void(void) xen_hair;
+
+	virtual void(void) Respawn;
 };
 
-void xen_hair::xen_hair(void)
+void
+xen_hair::Respawn(void)
 {
-	CBaseEntity::CBaseEntity();
-	precache_model("models/hair.mdl");
-	solid = SOLID_SLIDEBOX;
-	movetype = MOVETYPE_WALK;
-	SetModel("models/hair.mdl");
-	SetOrigin(origin);
+	SetSolid(SOLID_SLIDEBOX);
+	SetMovetype(MOVETYPE_WALK);
+	SetModel(GetSpawnModel());
+	SetOrigin(GetSpawnOrigin());
+}
+
+void
+xen_hair::xen_hair(void)
+{
+	model = "models/hair.mdl";
+	super::NSRenderableEntity();
 }

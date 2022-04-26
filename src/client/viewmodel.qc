@@ -14,6 +14,12 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+/* very primitive bobbing code, similar to Quake. Some ideas:
+   - allow for a second bob that runs at a separate cycle speed
+	- second bob could be applied to the side, would give a Doom III/HL2/TS
+	  like viewmodel bob that people may like
+*/
+
 var float autocvar_v_bob = 0.01;
 var float autocvar_v_bobcycle = 0.8;
 var float autocvar_v_bobup = 0.5;
@@ -34,6 +40,7 @@ Viewmodel_CalcBob(void)
 {
 	vector vecVel;
 	float flBob;
+	int iCycle;
 	int s = (float)getproperty(VF_ACTIVESEAT);
 	pViewBob = &g_viewBobVars[s];
 
@@ -45,23 +52,30 @@ Viewmodel_CalcBob(void)
 	var_cycle = autocvar_v_bobcycle;
 	var_up = autocvar_v_bobup;
 
+	/* how many cycles have we done in total */
+	iCycle = (pViewBob->m_flBobTime / var_cycle);
+
+	/* increment the input value for our cycle */
 	pViewBob->m_flBobTime += clframetime;
-	pViewBob->m_flBobCycle = pViewBob->m_flBobTime - (int)(pViewBob->m_flBobTime / var_cycle) * var_cycle;
+
+	/* calculate the point in the cycle based on the input time */
+	pViewBob->m_flBobCycle = pViewBob->m_flBobTime - (iCycle * var_cycle);
 	pViewBob->m_flBobCycle /= var_cycle;
 
-	if (pViewBob->m_flBobCycle < var_up) {
-		pViewBob->m_flBobCycle = MATH_PI * pViewBob->m_flBobCycle / var_up;
-	} else {
-		pViewBob->m_flBobCycle = MATH_PI + MATH_PI * (pViewBob->m_flBobCycle - var_up)/(1.0 - var_up);
-	}
+	/* prepare for our cycle value to be placed into sin() to get the wave motion */
+	pViewBob->m_flBobCycle = MATH_PI * (pViewBob->m_flBobCycle / var_up);
 
+	/* we based the speed on the clients movement speed, but ignore any height/jump velocity */
 	vecVel = pSeat->m_vecPredictedVelocity;
 	vecVel[2] = 0;
+
 	pViewBob->m_flSpeed = vlen(vecVel);
 
-	flBob = pViewBob->m_flSpeed * var_bob;
-	flBob = flBob * 0.3 + flBob * 0.7 * sin(pViewBob->m_flBobCycle);
-	pViewBob->m_flBob = bound(-7, flBob, 4);
+	/* bob equals speed times strength times cycle */
+	flBob = ((pViewBob->m_flSpeed * var_bob) * sin(pViewBob->m_flBobCycle));
+
+	/* clamp between -8 and 4 units */
+	pViewBob->m_flBob = bound(-8, flBob, 4);
 
 	/* make sure it's adjusted for scale */
 	pViewBob->m_flBob *= autocvar_r_viewmodelscale;
@@ -75,6 +89,7 @@ Viewmodel_ApplyBob(entity gun)
 		gun.angles[2] = -pViewBob->m_flBob;
 	}
 
+	/* apply the gun offset based on our bob */
 	gun.origin += [0,0,-1] + (v_forward * (pViewBob->m_flBob * 0.4))
 		+ (v_forward * autocvar_v_gunofs[0])
 		+ (v_right * autocvar_v_gunofs[1])

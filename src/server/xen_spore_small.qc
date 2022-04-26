@@ -20,18 +20,28 @@ HALF-LIFE (1998) ENTITY
 
 Small Xen Spore
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/fungus(small).mdl"
 */
-class xen_spore_small:CBaseEntity
+class xen_spore_small:NSRenderableEntity
 {
 	void(void) xen_spore_small;
+
+	virtual void(void) Respawn;
 };
 
-void xen_spore_small::xen_spore_small(void)
+void
+xen_spore_small::Respawn(void)
 {
-	CBaseEntity::CBaseEntity();
-	precache_model("models/fungus(small).mdl");
-	solid = SOLID_SLIDEBOX;
-	movetype = MOVETYPE_WALK;
-	SetModel("models/fungus(small).mdl");
-	SetOrigin(origin);
+	SetSolid(SOLID_SLIDEBOX);
+	SetMovetype(MOVETYPE_WALK);
+	SetModel(GetSpawnModel());
+	SetOrigin(GetSpawnOrigin());
+}
+
+void
+xen_spore_small::xen_spore_small(void)
+{
+	model = "models/fungus(small).mdl";
+	super::NSRenderableEntity();
 }

@@ -20,18 +20,28 @@ HALF-LIFE (1998) ENTITY
 
 Medium Xen Spore
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/fungus.mdl"
 */
-class xen_spore_medium:CBaseEntity
+class xen_spore_medium:NSRenderableEntity
 {
 	void(void) xen_spore_medium;
+
+	virtual void(void) Respawn;
 };
 
-void xen_spore_medium::xen_spore_medium(void)
+void
+xen_spore_medium::Respawn(void)
 {
-	CBaseEntity::CBaseEntity();
-	precache_model("models/fungus.mdl");
-	solid = SOLID_SLIDEBOX;
-	movetype = MOVETYPE_WALK;
-	SetModel("models/fungus.mdl");
-	SetOrigin(origin);
+	SetSolid(SOLID_SLIDEBOX);
+	SetMovetype(MOVETYPE_WALK);
+	SetModel(GetSpawnModel());
+	SetOrigin(GetSpawnOrigin());
+}
+
+void
+xen_spore_medium::xen_spore_medium(void)
+{
+	model = "models/fungus.mdl";
+	super::NSRenderableEntity();
 }

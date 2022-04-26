@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-class item_weaponbox:CBaseEntity
+class item_weaponbox:NSRenderableEntity
 {
 	int ammo_9mm;
 	int ammo_357;
@@ -39,18 +39,20 @@ class item_weaponbox:CBaseEntity
 #endif
 
 	void(void) item_weaponbox;
+
 	virtual void(entity) Touch;
 	virtual void(player) setup;
 };
 
-void item_weaponbox::Touch(entity eToucher)
+void
+item_weaponbox::Touch(entity eToucher)
 {
-	if (other.classname != "player") {
+	if (eToucher.classname != "player") {
 		return;
 	}
 
-	player pl = (player)other;
-	Logging_Pickup(other, this, __NULL__);
+	player pl = (player)eToucher;
+	Logging_Pickup(eToucher, this, __NULL__);
 	sound(pl, CHAN_ITEM, "items/gunpickup2.wav", 1, ATTN_NORM);
 
 	pl.ammo_9mm += ammo_9mm;
@@ -97,10 +99,11 @@ void item_weaponbox::Touch(entity eToucher)
 	pl.g_items |= weapon_items;
 	Weapons_RefreshAmmo(pl);
 
-	remove(this);
+	Destroy();
 }
 
-void item_weaponbox::setup(player pl)
+void
+item_weaponbox::setup(player pl)
 {
 	/* TODO: Should the magazine bits be transferred too? */
 	ammo_9mm = pl.ammo_9mm;
@@ -141,16 +144,20 @@ void item_weaponbox::setup(player pl)
 #endif
 }
 
-void item_weaponbox::item_weaponbox(void)
+void
+item_weaponbox::item_weaponbox(void)
 {
 	SetModel("models/w_weaponbox.mdl");
 	SetSize([-16,-16,0], [16,16,16]);
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
 	botinfo = BOTINFO_AMMO;
+
+	super::NSRenderableEntity();
 }
 
-void weaponbox_spawn(player spawner)
+void
+weaponbox_spawn(player spawner)
 {
 	item_weaponbox weaponbox = spawn(item_weaponbox);
 	weaponbox.SetOrigin(spawner.origin);

@@ -33,12 +33,11 @@ enum
 	DSCIA_DEADHANG
 };
 
-class monster_sitting_scientist:CBaseMonster
+class monster_sitting_scientist:NSTalkMonster
 {
 	int m_iPose;
 	void(void) monster_sitting_scientist;
 
-	virtual void(void) Hide;
 	virtual void(void) Respawn;
 	virtual void(void) Death;
 	virtual void(void) Gib;
@@ -48,26 +47,18 @@ class monster_sitting_scientist:CBaseMonster
 void
 monster_sitting_scientist::Gib(void)
 {
-	takedamage = DAMAGE_NO;
-	FX_GibHuman(origin, vectoangles(origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
+	SetTakedamage(DAMAGE_NO);
+	FX_GibHuman(GetOrigin(), vectoangles(GetOrigin() - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
 	Hide();
 }
 
 void
 monster_sitting_scientist::Death(void)
 {
-	if (health < -50) {
+	if (GetHealth() < -50) {
 		Gib();
 		return;
 	}
-}
-
-void
-monster_sitting_scientist::Hide(void)
-{
-	SetModel("");
-	solid = SOLID_NOT;
-	movetype = MOVETYPE_NONE;
 }
 
 void
@@ -79,17 +70,17 @@ monster_sitting_scientist::Respawn(void)
 	v_angle[2] = Math_FixDelta(v_angle[2]);
 
 	SetOrigin(GetSpawnOrigin());
-	angles = v_angle;
-	solid = SOLID_BBOX;
-	movetype = MOVETYPE_NONE;
+	SetAngles(v_angle);
+	SetSolid(SOLID_BBOX);
+	SetMovetype(MOVETYPE_NONE);
 	SetModel(GetSpawnModel());
-	setsize(this, [-14,-14,0],[14,14,36]);
-	takedamage = DAMAGE_YES;
-	health = 0;
-	velocity = [0,0,0];
+	SetSize([-14,-14,0],[14,14,36]);
+	SetTakedamage(DAMAGE_YES);
+	SetHealth(0);
+	SetVelocity([0,0,0]);
+	SetFrame(74);
+	DropToFloor();
 	iBleeds = TRUE;
-	frame = 74;
-	droptofloor();
 }
 
 void
@@ -106,7 +97,7 @@ monster_sitting_scientist::SpawnKey(string strKey, string strValue)
 		SetSkin(stoi(strValue));
 		break;
 	default:
-		CBaseMonster::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -114,7 +105,7 @@ void
 monster_sitting_scientist::monster_sitting_scientist(void)
 {
 	model = "models/scientist.mdl";
-	CBaseMonster::CBaseMonster();
+	super::NSTalkMonster();
 
 	/* has the body not been overriden, etc. choose a character for us */
 	if (m_iBody == -1) {

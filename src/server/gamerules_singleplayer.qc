@@ -53,8 +53,8 @@ HLSingleplayerRules::PlayerSpawn(base_player pl)
 	pl.classname = "player";
 	pl.health = pl.max_health = 100;
 	pl.takedamage = DAMAGE_YES;
-	pl.solid = SOLID_SLIDEBOX;
-	pl.movetype = MOVETYPE_WALK;
+	pl.SetSolid(SOLID_SLIDEBOX);
+	pl.SetMovetype(MOVETYPE_WALK);
 	pl.flags = FL_CLIENT;
 	pl.viewzoom = 1.0;
 	pl.model = "models/player.mdl";

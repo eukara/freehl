@@ -21,30 +21,33 @@ HALF-LIFE (1998) ENTITY
 Healthkit item.
 Adds 20 of health to the player.
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/w_medkit.mdl"
 */
-class item_healthkit:CBaseEntity
+class item_healthkit:NSRenderableEntity
 {
 	void(void) item_healthkit;
+
 	virtual void(void) Respawn;
 	virtual void(entity) Touch;
 };
 
 void item_healthkit::Touch(entity eToucher)
 {
-	if (other.classname != "player") {
+	if (eToucher.classname != "player") {
 		return;
 	}
 
-	if (other.health >= other.max_health) {
+	if (eToucher.health >= eToucher.max_health) {
 		return;
 	}
 
-	Damage_Apply(other, this, -20, 0, DMG_GENERIC);
+	Damage_Apply(eToucher, this, -20, 0, DMG_GENERIC);
 	Sound_Play(this, CHAN_ITEM, "item.healthkit");
-	Logging_Pickup(other, this, __NULL__);
+	Logging_Pickup(eToucher, this, __NULL__);
 
 	if (real_owner || cvar("sv_playerslots") == 1) {
-		remove(self);
+		Destroy();
 	} else {
 		Hide();
 		think = Respawn;
@@ -67,7 +70,7 @@ void item_healthkit::Respawn(void)
 	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");
 
-	droptofloor();
+	DropToFloor();
 }
 
 void item_healthkit::item_healthkit(void)
@@ -75,5 +78,5 @@ void item_healthkit::item_healthkit(void)
 	Sound_Precache("item.healthkit");
 	Sound_Precache("item.respawn");
 	model = "models/w_medkit.mdl";
-	CBaseEntity::CBaseEntity();
+	super::NSRenderableEntity();
 }

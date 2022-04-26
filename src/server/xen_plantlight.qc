@@ -20,18 +20,28 @@ HALF-LIFE (1998) ENTITY
 
 Xen Plant Light
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/light.mdl"
 */
-class xen_plantlight:CBaseEntity
+class xen_plantlight:NSRenderableEntity
 {
 	void(void) xen_plantlight;
+
+	virtual void(void) Respawn;
 };
 
-void xen_plantlight::xen_plantlight(void)
+void
+xen_plantlight::Respawn(void)
 {
-	CBaseEntity::CBaseEntity();
-	precache_model("models/light.mdl");
-	solid = SOLID_SLIDEBOX;
-	movetype = MOVETYPE_WALK;
-	SetModel("models/light.mdl");
-	SetOrigin(origin);
+	SetSolid(SOLID_SLIDEBOX);
+	SetMovetype(MOVETYPE_WALK);
+	SetModel(GetSpawnModel());
+	SetOrigin(GetSpawnOrigin());
+}
+
+void
+xen_plantlight::xen_plantlight(void)
+{
+	model = "models/light.mdl";
+	super::NSRenderableEntity();
 }

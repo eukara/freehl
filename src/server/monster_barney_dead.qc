@@ -22,32 +22,15 @@ Barney's corpse
 
 */
 
-class monster_barney_dead:CBaseEntity
+class monster_barney_dead:NSTalkMonster
 {
 	int m_iPose;
+
 	void(void) monster_barney_dead;
 
-	virtual void(void) Hide;
 	virtual void(void) Respawn;
-	virtual void(void) Gib;
 	virtual void(string, string) SpawnKey;
 };
-
-void
-monster_barney_dead::Gib(void)
-{
-	takedamage = DAMAGE_NO;
-	FX_GibHuman(origin, vectoangles(origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
-	Hide();
-}
-
-void
-monster_barney_dead::Hide(void)
-{
-	SetModel("");
-	solid = SOLID_NOT;
-	movetype = MOVETYPE_NONE;
-}
 
 void
 monster_barney_dead::Respawn(void)
@@ -58,16 +41,17 @@ monster_barney_dead::Respawn(void)
 	v_angle[2] = Math_FixDelta(v_angle[2]);
 
 	SetOrigin(GetSpawnOrigin());
-	angles = v_angle;
-	solid = SOLID_CORPSE;
-	movetype = MOVETYPE_NONE;
+	SetAngles(v_angle);
+	SetSolid(SOLID_CORPSE);
+	SetMovetype(MOVETYPE_NONE);
 	SetModel(GetSpawnModel());
-	setsize(this, VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
-	takedamage = DAMAGE_YES;
-	health = 0;
-	velocity = [0,0,0];
-	iBleeds = TRUE;
+	SetSize(VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
+	SetTakedamage(DAMAGE_YES);
+	SetHealth(0);
+	SetVelocity([0,0,0]);
 	SetFrame(35 + m_iPose);
+
+	iBleeds = TRUE;
 }
 
 void
@@ -78,7 +62,7 @@ monster_barney_dead::SpawnKey(string strKey, string strValue)
 		m_iPose = stoi(strValue);
 		break;
 	default:
-		CBaseMonster::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -86,5 +70,5 @@ void
 monster_barney_dead::monster_barney_dead(void)
 {
 	model = "models/barney.mdl";
-	CBaseMonster::CBaseMonster();
+	super::NSTalkMonster();
 }

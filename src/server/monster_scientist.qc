@@ -69,27 +69,27 @@ enum
 	SCIA_DEADTABLE3
 };
 
-class monster_scientist:CBaseNPC
+class monster_scientist:NSTalkMonster
 {
 	void(void) monster_scientist;
 
 	virtual void(void) Respawn;
-	virtual void(void) OnPlayerUse;
 	virtual void(void) Pain;
 	virtual void(void) Death;
+	virtual void(void) PlayerUse;
 
 	virtual void(string, string) SpawnKey;
 };
 
 void
-monster_scientist::OnPlayerUse(void)
+monster_scientist::PlayerUse(void)
 {
 	if (spawnflags & MSF_PREDISASTER) {
 		Sentence("!SC_POK");
 		return;
 	}
 
-	CBaseNPC::OnPlayerUse();
+	super::OnPlayerUse();
 }
 
 void
@@ -105,12 +105,12 @@ monster_scientist::Pain(void)
 		return;
 	}
 
-	if (style != MONSTER_DEAD)
+	if (style != MONSTER_DEAD) {
 		Sound_Speak(this, "monster_scientist.pain");
-
-	frame = SCIA_FLINCH + floor(random(0, 6));
-	m_iFlags |= MONSTER_FEAR;
-	m_flAnimTime = time + 0.25f;
+		SetFrame(SCIA_FLINCH + floor(random(0, 6)));
+		m_iFlags |= MONSTER_FEAR;
+		m_flAnimTime = time + 0.25f;
+	}
 }
 
 void
@@ -124,15 +124,14 @@ monster_scientist::Death(void)
 	}
 
 	/* now mark our state as 'dead' */
-	CBaseNPC::Death();
+	super::Death();
 }
 
 void
 monster_scientist::Respawn(void)
 {
-	CBaseNPC::Respawn();
+	super::Respawn();
 	m_iFlags |= MONSTER_CANFOLLOW;
-	PlayerUse = OnPlayerUse;
 }
 
 void
@@ -143,7 +142,7 @@ monster_scientist::SpawnKey(string strKey, string strValue)
 		SetBody(stoi(strValue) + 1);
 		break;
 	default:
-		CBaseEntity::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -189,7 +188,7 @@ monster_scientist::monster_scientist(void)
 	base_maxs = [16,16,72];
 	base_health = Skill_GetValue("scientist_health", 20);
 
-	CBaseNPC::CBaseNPC();
+	super::NSTalkMonster();
 
 	/* has the body not been overriden, etc. choose a character for us */
 	if (m_iBody == -1) {

@@ -500,15 +500,11 @@ player::SendEntity
 float
 player::SendEntity(entity ePEnt, float fChanged)
 {
-	/* remove our entity to other clients if we're dead */
-	if (health <= 0 && ePEnt != this) {
+	/* don't broadcast invisible players */
+	if (IsFakeSpectator() && ePEnt != this)
 		return (0);
-	}
-
-	/* target client isn't real, they have no client-side. abandon */
-	if (clienttype(ePEnt) != CLIENTTYPE_REAL) {
+	if (!GetModelindex() && ePEnt != this)
 		return (0);
-	}
 
 	/* other players don't need to know about these attributes */
 	if (ePEnt != self && ePEnt.classname != "spectator") {

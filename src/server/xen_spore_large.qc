@@ -20,18 +20,28 @@ HALF-LIFE (1998) ENTITY
 
 Large Xen Spore
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/fungus(large).mdl"
 */
-class xen_spore_large:CBaseEntity
+class xen_spore_large:NSRenderableEntity
 {
 	void(void) xen_spore_large;
+
+	virtual void(void) Respawn;
 };
 
-void xen_spore_large::xen_spore_large(void)
+void
+xen_spore_large::Respawn(void)
 {
-	CBaseEntity::CBaseEntity();
-	precache_model("models/fungus(large).mdl");
-	solid = SOLID_SLIDEBOX;
-	movetype = MOVETYPE_WALK;
-	SetModel("models/fungus(large).mdl");
-	SetOrigin(origin);
+	SetSolid(SOLID_SLIDEBOX);
+	SetMovetype(MOVETYPE_WALK);
+	SetModel(GetSpawnModel());
+	SetOrigin(GetSpawnOrigin());
+}
+
+void
+xen_spore_large::xen_spore_large(void)
+{
+	model = "models/fungus(large).mdl";
+	super::NSRenderableEntity();
 }

@@ -26,8 +26,10 @@ Skill 3 (Hard):   10
 
 The values can be tweaked in the skill.cfg file.
 
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/w_battery.mdl"
 */
-class item_battery:CBaseEntity
+class item_battery:NSRenderableEntity
 {
 	void(void) item_battery;
 
@@ -37,11 +39,11 @@ class item_battery:CBaseEntity
 
 void item_battery::Touch(entity eToucher)
 {
-	if (other.classname != "player") {
+	if (eToucher.classname != "player") {
 		return;
 	}
 
-	base_player pl = (base_player)other;
+	base_player pl = (base_player)eToucher;
 	
 	if (pl.armor >= 100) {
 		return;
@@ -52,11 +54,11 @@ void item_battery::Touch(entity eToucher)
 		pl.armor = 100;
 	}
 
-	Logging_Pickup(other, this, __NULL__);
-	Sound_Play(other, CHAN_ITEM, "item.battery");
+	Logging_Pickup(eToucher, this, __NULL__);
+	Sound_Play(eToucher, CHAN_ITEM, "item.battery");
 
 	if (real_owner || cvar("sv_playerslots") == 1) {
-		remove(self);
+		Destroy();
 	} else {
 		Hide();
 		think = Respawn;
@@ -79,7 +81,7 @@ void item_battery::Respawn(void)
 	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");
 
-	droptofloor();
+	DropToFloor();
 }
 
 void item_battery::item_battery(void)
@@ -87,5 +89,5 @@ void item_battery::item_battery(void)
 	Sound_Precache("item.battery");
 	Sound_Precache("item.respawn");
 	model = "models/w_battery.mdl";
-	CBaseEntity::CBaseEntity();
+	super::NSRenderableEntity();
 }
