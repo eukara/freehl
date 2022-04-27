@@ -416,6 +416,9 @@ weapon_t w_tripmine =
 #ifdef SERVER
 void
 weapon_tripmine(void) {
+	item_pickup ip = (item_pickup)self;
 	Weapons_InitItem(WEAPON_TRIPMINE);
+	ip.SetBody(2);
+	ip.SetFrame(8);
 }
 #endif

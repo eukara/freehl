@@ -28,7 +28,7 @@ string g_pbones[] =
  "Dummy16",
  "Bip01 R Leg",
  "Bip01 R Leg1",
-"Bip01 R Foot",
+ "Bip01 R Foot",
  "Bip01 R Toe0",
  "Bip01 R Toe01",
  "Bip01 R Toe02",
@@ -89,6 +89,7 @@ string g_pbones[] =
  "Bone15"
 };
 
+.string oldmodel;
 void
 Player_HandleWeaponModel(base_player pp, float thirdperson)
 {
@@ -100,26 +101,26 @@ Player_HandleWeaponModel(base_player pp, float thirdperson)
 	}
 
 	/* what's the current weapon model supposed to be anyway? */
-	string wmodel = Weapons_GetPlayermodel(pl, pl.activeweapon);
+	pl.p_model.oldmodel = Weapons_GetPlayermodel(pl, pl.activeweapon);
 
 	/* we changed weapons, update skeletonindex */
-	if (pl.p_model.model != wmodel) {
+	if (pl.p_model.model != pl.p_model.oldmodel) {
 		/* free memory */
 		if (pl.p_model.skeletonindex)
 			skel_delete(pl.p_model.skeletonindex);
 
 		/* set the new model and mark us updated */
-		setmodel(pl.p_model, wmodel);
-		pl.p_model.model = wmodel;
+		setmodel(pl.p_model, pl.p_model.oldmodel);
+		pl.p_model.model = pl.p_model.oldmodel;
 		
 		/* set the new skeletonindex */
 		pl.p_model.skeletonindex = skel_create(pl.p_model.modelindex);
 
 		/* hack this thing in here FIXME: this should be done when popping in/out of a pvs */
 		if (autocvar(cl_himodels, 1, "Use high-quality player models over lower-definition ones"))
-			setcustomskin(self, "", "geomset 0 2\n");
+			setcustomskin(pl, "", "geomset 0 2\n");
 		else
-			setcustomskin(self, "", "geomset 0 1\n");
+			setcustomskin(pl, "", "geomset 0 1\n");
 	}
 
 	/* follow player at all times */

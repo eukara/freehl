@@ -180,49 +180,6 @@ void w_gauss_primary(player pl)
 	pl.w_idle_next = 2.5f;
 }
 
-void w_gauss_secondary(player pl)
-{
-
-#ifdef CLIENT
-	if (pl.mode_tempstate)
-		soundupdate(pl, CHAN_WEAPON, "", 2, ATTN_NORM, 100 + (200 * (pl.ammo_gauss_volume/255)), 0, 0);
-#endif
-	
-	if (pl.w_attack_next) {
-		return;
-	}
-	pl.w_attack_next = 0.1f;
-
-	/* Ammo check */
-	if (pl.ammo_uranium <= 0) {
-		if (pl.mode_tempstate > 0) {
-		w_gauss_release(pl);
-		}
-			return;
-	}
-
-	if (pl.ammo_gauss_volume < 255)
-		pl.ammo_uranium--;
-
-	/* Set pitch sound shift */
-	pl.ammo_gauss_volume += 16;
-	if (pl.ammo_gauss_volume > 255) {
-		pl.ammo_gauss_volume = 255;
-	}
-
-	if (pl.mode_tempstate == 1) {
-		Weapons_ViewAnimation(pl, GAUSS_SPIN);
-		pl.mode_tempstate = 2;
-		pl.w_idle_next = 0.0f;
-	} else if (!pl.mode_tempstate) {
-		Weapons_ViewAnimation(pl, GAUSS_SPINUP);
-#ifdef CLIENT
-		sound(pl, CHAN_WEAPON, "ambience/pulsemachine.wav", 2, ATTN_NORM);
-#endif
-		pl.mode_tempstate = 1;
-	}
-}
-
 void w_gauss_release(player pl)
 {
 	if (pl.w_idle_next > 0.0) {
@@ -247,9 +204,7 @@ void w_gauss_release(player pl)
 			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
 	
 		Weapons_ViewPunchAngle(pl, [-5,0,0]);
-#ifdef CLIENT
-		soundupdate(pl, CHAN_WEAPON, "", -1, ATTN_NORM, 0, 0, 0);
-#else
+#ifdef SERVER
 		w_gauss_fire(pl, 0);
 		FX_GaussBeam(Weapons_GetCameraPos(pl), input_angles, 6, pl);
 #endif
@@ -275,6 +230,47 @@ void w_gauss_release(player pl)
 		Weapons_ViewAnimation(pl, GAUSS_IDLE1);
 		pl.w_idle_next = 4.0f;
 		break;
+	}
+}
+
+void w_gauss_secondary(player pl)
+{
+	if (pl.w_attack_next) {
+		return;
+	}
+	pl.w_attack_next = 0.1f;
+
+	/* Ammo check */
+	if (pl.ammo_uranium <= 0) {
+		if (pl.mode_tempstate > 0) {
+		w_gauss_release(pl);
+		}
+			return;
+	}
+
+	if (pl.ammo_gauss_volume < 10)
+		pl.ammo_uranium--;
+
+	/* Set pitch sound shift */
+	pl.ammo_gauss_volume += 1;
+	if (pl.ammo_gauss_volume > 100) {
+		pl.ammo_gauss_volume = 100;
+#ifdef SERVER
+		Damage_Apply(pl, pl, 10, DMG_ELECTRO, WEAPON_GAUSS);
+#endif
+		pl.mode_tempstate = 0;
+		pl.w_attack_next = 0.5f;
+		pl.w_idle_next = 0.5f;
+		pl.ammo_gauss_volume = 0;
+		Weapons_ViewAnimation(pl, GAUSS_IDLE1);
+	}
+
+	if (pl.mode_tempstate == 1) {
+		Weapons_ViewAnimation(pl, GAUSS_SPIN);
+		pl.mode_tempstate = 2;
+	} else if (!pl.mode_tempstate) {
+		Weapons_ViewAnimation(pl, GAUSS_SPINUP);
+		pl.mode_tempstate = 1;
 	}
 }
 
