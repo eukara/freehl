@@ -76,7 +76,7 @@ item_suit::Respawn(void)
 	SetMovetype(MOVETYPE_TOSS);
 	SetOrigin(GetSpawnOrigin());
 	SetModel(GetSpawnModel());
-	SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
+	SetSize(VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
 	m_iValue = FALSE;
 
 	think = __NULL__;
@@ -84,6 +84,8 @@ item_suit::Respawn(void)
 
 	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");
+
+	DropToFloor();
 }
 
 void
