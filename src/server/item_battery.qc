@@ -44,10 +44,16 @@ void item_battery::Touch(entity eToucher)
 	}
 
 	base_player pl = (base_player)eToucher;
-	
+
+	/* don't pick up if we don't have a suit */
+	if (!(pl.g_items & ITEM_SUIT))
+		return;
+
+	/* maxxed out */
 	if (pl.armor >= 100) {
 		return;
 	}
+
 	/* Move this somewhere else? */
 	pl.armor += Skill_GetValue("battery", 15);
 	if (pl.armor > 100) {
