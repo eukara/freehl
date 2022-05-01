@@ -14,6 +14,12 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+bool
+HLGameRules::IsMultiplayer(void)
+{
+	return false;
+}
+
 void
 HLGameRules::LevelDecodeParms(base_player pp)
 {

@@ -24,6 +24,8 @@ class HLGameRules:CGameRules
 	virtual void(base_player) LevelDecodeParms;
 	virtual void(base_player) LevelChangeParms;
 	virtual void(void) LevelNewParms;
+
+	virtual bool(void) IsMultiplayer;
 };
 
 class HLSingleplayerRules:HLGameRules
@@ -31,6 +33,7 @@ class HLSingleplayerRules:HLGameRules
 	/* client */
 	virtual void(base_player) PlayerSpawn;
 	virtual void(base_player) PlayerDeath;
+	virtual bool(void) IsMultiplayer;
 };
 
 class HLMultiplayerRules:HLGameRules
@@ -48,5 +51,5 @@ class HLMultiplayerRules:HLGameRules
 	virtual void(base_player) PlayerSpawn;
 	virtual void(base_player) PlayerDeath;
 	virtual float(base_player, string) ConsoleCommand;
-
+	virtual bool(void) IsMultiplayer;
 };

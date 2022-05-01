@@ -14,6 +14,12 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+bool
+HLSingleplayerRules::IsMultiplayer(void)
+{
+	return false;
+}
+
 void
 HLSingleplayerRules::PlayerDeath(base_player pl)
 {

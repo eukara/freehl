@@ -168,6 +168,7 @@ w_crossbow_primary(player pl)
 	pl.crossbow_mag--;
 
 #ifndef CLIENT
+	HLGameRules rules = (HLGameRules) g_grMode;
 	Weapons_MakeVectors(pl);
 	entity bolt = spawn();
 	setmodel(bolt, "models/crossbow_bolt.mdl");
@@ -181,7 +182,10 @@ w_crossbow_primary(player pl)
 	bolt.angles = vectoangles(bolt.velocity);
 	bolt.avelocity[2] = 10;
 	bolt.touch = Crossbolt_Touch;
-	bolt.weapon = pl.viewzoom == 1.0 ? 1 : 0;
+
+	if (rules.IsMultiplayer() == true)
+		bolt.weapon = pl.viewzoom == 1.0 ? 1 : 0;
+
 	setsize(bolt, [0,0,0], [0,0,0]);
 
 	if (pl.crossbow_mag > 0) {

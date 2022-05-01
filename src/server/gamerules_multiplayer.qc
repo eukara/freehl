@@ -14,6 +14,12 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+bool
+HLMultiplayerRules::IsMultiplayer(void)
+{
+	return true;
+}
+
 void
 HLMultiplayerRules::FrameStart(void)
 {
