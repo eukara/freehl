@@ -102,9 +102,12 @@ int
 w_mp5_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-
 	if (new) {
+#ifdef GEARBOX
+		pl.mp5_mag = 50;
+#else
 		pl.mp5_mag = 25;
+#endif
 		return (1);
 	}
 
