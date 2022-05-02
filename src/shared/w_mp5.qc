@@ -171,11 +171,13 @@ w_mp5_primary(player pl)
 	pl.mp5_mag--;
 
 	/* Actual firing */
-	int r = (float)input_sequence % 2;
-	if (r) {
+	int r = (float)input_sequence % 3;
+	if (r == 0) {
 		Weapons_ViewAnimation(pl, MP5_FIRE1);
-	} else {
+	} else if (r = 2) {
 		Weapons_ViewAnimation(pl, MP5_FIRE2);
+	} else {
+		Weapons_ViewAnimation(pl, MP5_FIRE3);
 	}
 
 	Weapons_ViewPunchAngle(pl, [-2,0,0]);
@@ -329,7 +331,7 @@ w_mp5_crosshair(player pl)
 		cross_pos,
 		[24,24],
 		g_cross_spr,
-		[24/128,48/128],
+		[0,48/128],
 		[0.1875, 0.1875],
 		[1,1,1],
 		1.0f,

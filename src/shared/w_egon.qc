@@ -142,13 +142,22 @@ void w_egon_primary(player pl)
 		sound(pl, CHAN_WEAPON, "weapons/egon_windup2.wav", 1, ATTN_NORM, 100, 0);
 #endif
 		pl.mode_tempstate = 1;
-		Weapons_ViewPunchAngle(pl, [-5,0,0]);
-		Weapons_ViewAnimation(pl, EGON_ALTFIREON);
+		//Weapons_ViewPunchAngle(pl, [-5,0,0]);
+		int r = (float)input_sequence % 2;
+		if (r) {
+			Weapons_ViewAnimation(pl, EGON_FIRE3);
+		} else {
+			Weapons_ViewAnimation(pl, EGON_FIRE4);
+		}
 		pl.w_idle_next = 1.5f;
 	} else if not (pl.w_idle_next > 0.0f) {
 		/* wait 3 seconds (idle next) */
 		if (pl.mode_tempstate == 1) {
-			Weapons_ViewAnimation(pl, EGON_ALTFIRECYCLE);
+			if (r) {
+				Weapons_ViewAnimation(pl, EGON_FIRE3);
+			} else {
+				Weapons_ViewAnimation(pl, EGON_FIRE4);
+			} 
 #ifdef SERVER
 			sound(pl, CHAN_WEAPON, "weapons/egon_run3.wav", 1, ATTN_NORM, 100);
 #endif
@@ -173,13 +182,14 @@ void w_egon_release(player pl)
 		sound(pl, CHAN_WEAPON, "weapons/egon_off1.wav", 1, ATTN_NORM, 100, 0);
 #endif
 		pl.mode_tempstate = 3;
-		Weapons_ViewPunchAngle(pl, [-2,0,0]);
+		//Weapons_ViewPunchAngle(pl, [-2,0,0]);
 	}
 
 	pl.gflags &= ~GF_EGONBEAM;
 
 	if (pl.mode_tempstate == 3) {
-		Weapons_ViewAnimation(pl, EGON_ALTFIREOFF);
+		/* This is hack that is unwise for custom content, but it needs to terminate. */
+		Weapons_ViewAnimation(pl, EGON_FIRE1);
 		pl.w_idle_next = 1.0f;
 		pl.w_attack_next = 1.1f;
 		pl.mode_tempstate = 0;

@@ -275,6 +275,7 @@ void w_rpg_hud(player pl)
 {
 #ifdef CLIENT
 	vector cross_pos;
+	vector laser_pos;
 	vector aicon_pos;
 
 	/* crosshair/laser */
@@ -287,9 +288,11 @@ void w_rpg_hud(player pl)
 		lerp = Math_Lerp(18,6, trace_fraction);
 		jitter[0] = (random(0,2) - 2) * (1 - trace_fraction);
 		jitter[1] = (random(0,2) - 2) * (1 - trace_fraction);
-		cross_pos = g_hudmins + (g_hudres / 2) + ([-lerp,-lerp] / 2);
+		laser_pos = g_hudmins + (g_hudres / 2) + ([-lerp,-lerp] / 2);
+		cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
+
 		drawsubpic(
-			cross_pos + jitter,
+			laser_pos + jitter,
 			[lerp,lerp],
 			g_laser_spr,
 			[0,0],
@@ -298,16 +301,27 @@ void w_rpg_hud(player pl)
 			1.0f,
 			DRAWFLAG_ADDITIVE
 		);
+
+		drawsubpic(
+			cross_pos,
+			[24,24],
+			g_cross_spr,
+			[24/128,48/128],
+			[0.1875, 0.1875],
+			[1,1,1],
+			1.0f,
+			DRAWFLAG_NORMAL
+		);
 	} else {
 		cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
 		drawsubpic(
 			cross_pos,
 			[24,24],
 			g_cross_spr,
-			[0,0],
+			[24/128,48/128],
 			[0.1875, 0.1875],
 			[1,1,1],
-			1,
+			1.0f,
 			DRAWFLAG_NORMAL
 		);
 	}

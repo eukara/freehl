@@ -297,17 +297,31 @@ w_crossbow_crosshair(player pl)
 	vector cross_pos;
 	vector aicon_pos;
 
-	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
-	drawsubpic(
-		cross_pos,
-		[24,24],
-		g_cross_spr,
-		[72/128,0],
-		[0.1875, 0.1875],
-		[1,1,1],
-		1,
-		DRAWFLAG_NORMAL
-	);
+	if (pl.viewzoom == 1) {
+		cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
+		drawsubpic(
+			cross_pos,
+			[24,24],
+			g_cross_spr,
+			[72/128,0],
+			[0.1875, 0.1875],
+			[1,1,1],
+			1,
+			DRAWFLAG_NORMAL
+		);
+	} else {
+		cross_pos = g_hudmins + (g_hudres / 2) + [-52,-8];
+		drawsubpic(
+			cross_pos,
+			[104,16],
+			g_cross_spr,
+			[24/128,96/128],
+			[104/128, 16/128],
+			[1,1,1],
+			1,
+			DRAWFLAG_NORMAL
+		);
+	}
 
 	HUD_DrawAmmo1();
 	HUD_DrawAmmo2();

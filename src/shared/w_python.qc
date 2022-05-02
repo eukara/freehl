@@ -261,16 +261,30 @@ w_python_crosshair(player pl)
 	vector aicon_pos;
 
 	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
-	drawsubpic(
-		cross_pos,
-		[24,24],
-		g_cross_spr,
-		[48/128,0],
-		[0.1875, 0.1875],
-		[1,1,1],
-		1,
-		DRAWFLAG_NORMAL
-	);
+
+	if (pl.viewzoom == 1) {
+		drawsubpic(
+			cross_pos,
+			[24,24],
+			g_cross_spr,
+			[48/128,0],
+			[0.1875, 0.1875],
+			[1,1,1],
+			1,
+			DRAWFLAG_NORMAL
+		);
+	} else {
+		drawsubpic(
+			cross_pos,
+			[24,24],
+			g_cross_spr,
+			[96/128,0],
+			[0.1875, 0.1875],
+			[1,1,1],
+			1,
+			DRAWFLAG_NORMAL
+		);
+	}
 
 	HUD_DrawAmmo1();
 	HUD_DrawAmmo2();
