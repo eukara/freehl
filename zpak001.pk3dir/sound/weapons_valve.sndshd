@@ -100,6 +100,7 @@ weapon_mp5.shoot
 	alerts
 	sample weapons/hks1.wav
 	sample weapons/hks2.wav
+	sample weapons/hks3.wav
 	distshader weapon_mp5.shoot_dist
 }
 

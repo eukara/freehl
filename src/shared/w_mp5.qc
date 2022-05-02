@@ -102,12 +102,13 @@ int
 w_mp5_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+
 	if (new) {
-#ifdef GEARBOX
-		pl.mp5_mag = 50;
-#else
-		pl.mp5_mag = 25;
-#endif
+		#ifdef GEARBOX
+			pl.mp5_mag = 50;
+		#else
+			pl.mp5_mag = 25;
+		#endif
 		return (1);
 	}
 
@@ -208,7 +209,7 @@ w_mp5_primary(player pl)
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTMP5, 0.1f);
 
-	pl.w_attack_next = 0.1f;
+	pl.w_attack_next = 0.085f;
 	pl.w_idle_next = 10.0f;
 }
 

@@ -1,45 +1,56 @@
 func_door.move_0
 {
+	follow
 	sample misc/null.wav
 }
 func_door.move_1
 {
+	follow
 	sample doors/doormove1.wav
 }
 func_door.move_2
 {
+	follow
 	sample doors/doormove2.wav
 }
 func_door.move_3
 {
+	follow
 	sample doors/doormove3.wav
 }
 func_door.move_4
 {
+	follow
 	sample doors/doormove4.wav
 }
 func_door.move_5
 {
+	follow
 	sample doors/doormove5.wav
 }
 func_door.move_6
 {
+	follow
 	sample doors/doormove6.wav
 }
 func_door.move_7
 {
+	follow
 	sample doors/doormove7.wav
 }
 func_door.move_8
 {
+	follow
 	sample doors/doormove8.wav
 }
 func_door.move_9
 {
+	follow
 	sample doors/doormove9.wav
 }
 func_door.move_10
 {
+	follow
 	sample doors/doormove10.wav
 }
 
@@ -49,33 +60,41 @@ func_door.stop_0
 }
 func_door.stop_1
 {
+	follow
 	sample doors/doorstop1.wav
 }
 func_door.stop_2
 {
+	follow
 	sample doors/doorstop2.wav
 }
 func_door.stop_3
 {
+	follow
 	sample doors/doorstop3.wav
 }
 func_door.stop_4
 {
+	follow
 	sample doors/doorstop4.wav
 }
 func_door.stop_5
 {
+	follow
 	sample doors/doorstop5.wav
 }
 func_door.stop_6
 {
+	follow
 	sample doors/doorstop6.wav
 }
 func_door.stop_7
 {
+	follow
 	sample doors/doorstop7.wav
 }
 func_door.stop_8
 {
+	follow
 	sample doors/doorstop8.wav
 }

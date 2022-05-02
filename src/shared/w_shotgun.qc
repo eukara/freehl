@@ -157,6 +157,24 @@ w_shotgun_holster(player pl)
 void w_shotgun_release(player pl);
 
 void
+w_shotgun_reload(player pl)
+{
+
+	if (pl.shotgun_mag >= 8) {
+		return;
+	}
+	if (pl.ammo_buckshot <= 0) {
+		return;
+	}
+
+	if (pl.mode_tempstate > SHOTTY_IDLE) {
+		return;
+	}
+	pl.mode_tempstate = SHOTTY_RELOAD_START;
+	pl.w_idle_next = 0.0f;
+}
+
+void
 w_shotgun_primary(player pl)
 {
 
@@ -232,7 +250,7 @@ w_shotgun_secondary(player pl)
 
 	/* Ammo check */
 	if (pl.shotgun_mag <= 1) {
-		w_shotgun_release(pl);
+		w_shotgun_reload(pl);
 		return;
 	}
 
@@ -262,24 +280,6 @@ w_shotgun_secondary(player pl)
 
 	pl.shotgun_mag -= 2;
 	pl.w_attack_next = 1.5f;
-}
-
-void
-w_shotgun_reload(player pl)
-{
-
-	if (pl.shotgun_mag >= 8) {
-		return;
-	}
-	if (pl.ammo_buckshot <= 0) {
-		return;
-	}
-
-	if (pl.mode_tempstate > SHOTTY_IDLE) {
-		return;
-	}
-	pl.mode_tempstate = SHOTTY_RELOAD_START;
-	pl.w_idle_next = 0.0f;
 }
 
 void

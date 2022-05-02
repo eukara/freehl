@@ -90,6 +90,7 @@ void w_rpg_draw(player pl)
 {
 	Weapons_SetModel("models/v_rpg.mdl");
 	Weapons_ViewAnimation(pl, RPG_DRAW1);
+	pl.ammo_rpg_state = 1;
 }
 
 void w_rpg_holster(player pl)
