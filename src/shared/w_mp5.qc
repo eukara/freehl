@@ -171,13 +171,17 @@ w_mp5_primary(player pl)
 	pl.mp5_mag--;
 
 	/* Actual firing */
-	int r = (float)input_sequence % 3;
-	if (r == 0) {
+	int r = floor(pseudorandom() * 3.0f);
+	switch (r) {
+	case 1:
 		Weapons_ViewAnimation(pl, MP5_FIRE1);
-	} else if (r = 2) {
+		break;
+	case 2:
 		Weapons_ViewAnimation(pl, MP5_FIRE2);
-	} else {
+		break;
+	default:
 		Weapons_ViewAnimation(pl, MP5_FIRE3);
+		break;
 	}
 
 	Weapons_ViewPunchAngle(pl, [-2,0,0]);

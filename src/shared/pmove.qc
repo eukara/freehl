@@ -30,7 +30,7 @@ player::Physics_Jump(void)
 	} else {
 		/* Half-Life: Longjump module */
 		if (flags & FL_CROUCHING && g_items & 0x00008000i) {
-			makevectors(v_angle);
+			makevectors([0, v_angle[1], 0]);
 			velocity = v_forward * 512;
 			velocity[2] += 100;
 		}
