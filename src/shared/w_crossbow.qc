@@ -240,6 +240,9 @@ w_crossbow_reload(player pl)
 	if (pl.crossbow_mag >= 5) {
 		return;
 	}
+	
+	/* undo our zoom */
+	pl.viewzoom = 1.0f;
 
 #ifdef SERVER
 	static void w_crossbow_reload_done(void) {

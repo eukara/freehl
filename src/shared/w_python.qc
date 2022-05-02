@@ -198,6 +198,9 @@ w_python_reload(player pl)
 		return;
 	}
 
+	/* undo our zoom */
+	pl.viewzoom = 1.0f;
+
 	/* Audio-Visual bit */
 	Weapons_ViewAnimation(pl, PYTHON_RELOAD);
 
