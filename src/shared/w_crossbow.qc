@@ -136,7 +136,15 @@ void Crossbolt_Touch(void) {
 	if (other.takedamage != DAMAGE_YES) {
 		FX_Spark(self.origin, trace_plane_normal);
 		Sound_Play(self, 1, "weapon_crossbow.hit");
-		remove(self);
+
+		/* disappear bolt after ~ 10 seconds */
+		self.velocity = [0,0,0];
+		self.movetype = MOVETYPE_NONE;
+		self.solid = SOLID_NOT;
+		self.think = Util_Destroy;
+		self.nextthink = time + 15.0f;
+		makevectors(self.angles);
+		setorigin(self, self.origin + v_forward * -16);
 		return;
 	}
 
@@ -149,6 +157,8 @@ void Crossbolt_Touch(void) {
 	} else {
 		FX_Blood(self.origin, [1,0,0]);
 	}
+
+	/* disappear... immediately */
 	remove(self);
 }
 #endif
@@ -185,6 +195,19 @@ w_crossbow_primary(player pl)
 			FX_Spark(trace_endpos, trace_plane_normal);
 		else
 			FX_Blood(trace_endpos, [1,0,0]);
+
+		/* fake bolt */
+		if (trace_ent == world) {
+			NSRenderableEntity bolt_used = spawn(NSRenderableEntity);
+			bolt_used.SetSolid(SOLID_NOT);
+			bolt_used.SetMovetype(MOVETYPE_NONE);
+			bolt_used.SetModel("models/crossbow_bolt.mdl");
+			bolt_used.SetSize([0,0,0], [0,0,0]);
+			bolt_used.SetAngles(pl.v_angle);
+			bolt_used.SetOrigin(trace_endpos + v_forward * -16);
+			bolt_used.think = Util_Destroy;
+			bolt_used.nextthink = time + 10.0f;
+		}
 	} else {
 		entity bolt = spawn();
 		setmodel(bolt, "models/crossbow_bolt.mdl");
