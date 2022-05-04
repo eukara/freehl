@@ -170,23 +170,41 @@ w_crossbow_primary(player pl)
 #ifndef CLIENT
 	HLGameRules rules = (HLGameRules) g_grMode;
 	Weapons_MakeVectors(pl);
-	entity bolt = spawn();
-	setmodel(bolt, "models/crossbow_bolt.mdl");
-	setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16));
-	bolt.owner = self;
-	bolt.velocity = v_forward * 2000;
-	bolt.movetype = MOVETYPE_FLYMISSILE;
-	bolt.solid = SOLID_BBOX;
-	//bolt.flags |= FL_LAGGEDMOVE;
-	bolt.gravity = 0.5f;
-	bolt.angles = vectoangles(bolt.velocity);
-	bolt.avelocity[2] = 10;
-	bolt.touch = Crossbolt_Touch;
 
-	if (rules.IsMultiplayer() == true)
-		bolt.weapon = pl.viewzoom == 1.0 ? 1 : 0;
+	/* multiplayer uses hitscan when zoomed in */
+	if (rules.IsMultiplayer() == true && pl.viewzoom < 1.0) {
+		vector src, dest;
+		src = pl.origin + pl.view_ofs;
+		dest = src + v_forward * 4096;
+		traceline(src, dest, MOVE_LAGGED, pl);
 
-	setsize(bolt, [0,0,0], [0,0,0]);
+		if (trace_ent.takedamage == DAMAGE_YES)
+			Damage_Apply(trace_ent, pl, Skill_GetValue("plr_xbow_bolt_monster", 50), WEAPON_CROSSBOW, DMG_BLUNT);
+
+		if (other.iBleeds == FALSE)
+			FX_Spark(trace_endpos, trace_plane_normal);
+		else
+			FX_Blood(trace_endpos, [1,0,0]);
+	} else {
+		entity bolt = spawn();
+		setmodel(bolt, "models/crossbow_bolt.mdl");
+		setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16));
+		bolt.owner = self;
+		bolt.velocity = v_forward * 2000;
+		bolt.movetype = MOVETYPE_FLYMISSILE;
+		bolt.solid = SOLID_BBOX;
+		//bolt.flags |= FL_LAGGEDMOVE;
+		bolt.gravity = 0.5f;
+		bolt.angles = vectoangles(bolt.velocity);
+		bolt.avelocity[2] = 10;
+		bolt.touch = Crossbolt_Touch;
+
+		/* zoomed out = explosive */
+		if (rules.IsMultiplayer() == true)
+			bolt.weapon = 1;
+
+		setsize(bolt, [0,0,0], [0,0,0]);
+	}
 
 	if (pl.crossbow_mag > 0) {
 		Sound_Play(pl, 8, "weapon_crossbow.hitbody");
