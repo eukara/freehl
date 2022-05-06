@@ -78,9 +78,9 @@ HUD_ItemNotify_Insert(int type, int count)
 void
 HUD_ItemNotify_Check(player pl)
 {
-	int healthdiff = bound(0, pl.health - pl.health_net, 100);
-	int armordiff = bound(0, pl.armor - pl.armor_net, 100);
-	int longjumpdiff = ((pl.g_items & ITEM_LONGJUMP) > (pl.g_items_net & ITEM_LONGJUMP)) == TRUE;
+	int healthdiff = bound(0, pl.health - pSeatLocal->m_iHealthOld, 100);
+	int armordiff = bound(0, pl.armor - pSeatLocal->m_iArmorOld, 100);
+	int longjumpdiff = ((pl.g_items & ITEM_LONGJUMP) > (pSeatLocal->m_iItemsOld & ITEM_LONGJUMP)) == TRUE;
 
 	if (healthdiff > 1)
 		HUD_ItemNotify_Insert(1, 1);
@@ -88,4 +88,6 @@ HUD_ItemNotify_Check(player pl)
 		HUD_ItemNotify_Insert(0, 1);
 	if (longjumpdiff)
 		HUD_ItemNotify_Insert(2, 1);
+
+	pSeatLocal->m_iItemsOld = pl.g_items;
 }

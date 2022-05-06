@@ -50,6 +50,7 @@ struct
 	float m_flPickupAlpha;
 	int m_iHUDWeaponSelected;
 	float m_flHUDWeaponSelectTime;
+	int m_iItemsOld;
 } g_seatslocal[4], *pSeatLocal;
 
 void HUD_DrawAmmo1(void);
