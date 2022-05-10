@@ -45,7 +45,7 @@ enum
 	CON_DIE
 };
 
-class monster_alien_controller:CBaseMonster
+class monster_alien_controller:NSMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
@@ -61,7 +61,7 @@ class monster_alien_controller:CBaseMonster
 void
 monster_alien_controller::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flPainTime > time) {
 		return;
@@ -86,7 +86,7 @@ monster_alien_controller::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
@@ -108,7 +108,7 @@ monster_alien_controller::IdleNoise(void)
 void
 monster_alien_controller::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(CON_IDLE);
 }
 
@@ -124,5 +124,5 @@ monster_alien_controller::monster_alien_controller(void)
 	model = "models/controller.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

@@ -22,7 +22,7 @@ Human Grunt's corpse
 
 */
 
-class monster_hgrunt_dead:CBaseMonster
+class monster_hgrunt_dead:NSMonster
 {
 	int m_iPose;
 	void(void) monster_hgrunt_dead;
@@ -84,7 +84,7 @@ monster_hgrunt_dead::SpawnKey(string strKey, string strValue)
 		skin = stoi(strValue);
 		break;
 	default:
-		CBaseMonster::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -92,5 +92,5 @@ void
 monster_hgrunt_dead::monster_hgrunt_dead(void)
 {
 	model = "models/hgrunt.mdl";
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

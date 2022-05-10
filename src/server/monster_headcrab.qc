@@ -110,7 +110,7 @@ monster_headcrab::Touch(entity eToucher)
 void
 monster_headcrab::Pain(void)
 {
-	NSMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -135,7 +135,7 @@ monster_headcrab::Death(void)
 	}
 
 	/* set the functional differences */
-	NSMonster::Death();
+	super::Death();
 }
 
 void
@@ -177,5 +177,5 @@ monster_headcrab::monster_headcrab(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,36];
 	m_iAlliance = MAL_ALIEN;
-	NSMonster::NSMonster();
+	super::NSMonster();
 }

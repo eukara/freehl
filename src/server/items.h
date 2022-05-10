@@ -15,7 +15,7 @@
  */
 
 /* PICKUP ITEMS */
-class item_pickup:CBaseTrigger
+class item_pickup:NSRenderableEntity
 {
 	int m_bFloating;
 	int m_iClip;

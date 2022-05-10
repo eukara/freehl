@@ -68,7 +68,6 @@ FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
 		return;
 	}
 
-
 	makevectors(vecDir);
 	vecDir = v_forward;
 
@@ -76,7 +75,8 @@ FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
 		vector vel = vecDir;
 		vel += random(-1,1) * v_right;
 		vel += random(-1,1) * v_up;
-		vel *= flForce + [0,0,80];
+		vel *= flForce;
+		vel += [0,0,80];
 
 		entity gibb = spawn();
 		setmodel(gibb, g_hgibs[i]);

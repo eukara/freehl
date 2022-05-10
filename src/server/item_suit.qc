@@ -25,7 +25,7 @@ When SUIT_LONGINTRO is set, the intro dialog will be longer.
 
 */
 
-class item_suit:CBaseTrigger
+class item_suit:NSRenderableEntity
 {
 	string m_strOnPlayerTouch;
 
@@ -97,7 +97,7 @@ item_suit::SpawnKey(string strKey, string strValue)
 		m_strOnPlayerTouch = strcat(m_strOnPlayerTouch, ",_", strValue);
 		break;
 	default:
-		CBaseTrigger::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 		break;
 	}
 }
@@ -110,7 +110,7 @@ item_suit::item_suit(void)
 	precache_sound("fvox/hev_logon.wav");
 	precache_sound("fvox/bell.wav");
 	Sound_Precache("item.respawn");
-	CBaseTrigger::CBaseTrigger();
+	super::NSRenderableEntity();
 
 	m_strOnPlayerTouch = CreateOutput(m_strOnPlayerTouch);
 }

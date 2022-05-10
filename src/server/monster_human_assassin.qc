@@ -43,7 +43,7 @@ enum
 	HAS_LAND
 };
 
-class monster_human_assassin:CBaseMonster
+class monster_human_assassin:NSMonster
 {
 	float m_flIdleTime;
 
@@ -72,13 +72,13 @@ monster_human_assassin::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_human_assassin::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	frame = HAS_IDLE;
 }
 
@@ -90,5 +90,5 @@ monster_human_assassin::monster_human_assassin(void)
 	base_health = Skill_GetValue("hassassin_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

@@ -47,7 +47,7 @@ enum
 	NIL_SHOOT
 };
 
-class monster_nihilanth:CBaseMonster
+class monster_nihilanth:NSMonster
 {
 	float m_flIdleTime;
 
@@ -80,7 +80,7 @@ monster_nihilanth::IdleNoise(void)
 void
 monster_nihilanth::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -106,13 +106,13 @@ monster_nihilanth::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_nihilanth::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(NIL_IDLE);
 }
 
@@ -130,5 +130,5 @@ void monster_nihilanth::monster_nihilanth(void)
 	base_health = Skill_GetValue("nihilanth_health", 800);
 	base_mins = [-192,-192,-32];
 	base_maxs = [192,192,384];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

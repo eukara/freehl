@@ -54,7 +54,7 @@ enum
  * for close range attacks
  */
 
-class monster_bullchicken:CBaseMonster
+class monster_bullchicken:NSMonster
 {
 	float m_flIdleTime;
 
@@ -106,7 +106,7 @@ monster_bullchicken::IdleNoise(void)
 void
 monster_bullchicken::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -134,7 +134,7 @@ monster_bullchicken::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void monster_bullchicken::monster_bullchicken(void)
@@ -151,5 +151,5 @@ void monster_bullchicken::monster_bullchicken(void)
 	base_health = Skill_GetValue("bullsquid_health", 40);
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

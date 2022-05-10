@@ -85,5 +85,5 @@ void item_pickup::item_pickup(void)
 {
 	Sound_Precache("item.respawn");
 	Sound_Precache("weapon.pickup");
-	CBaseTrigger::CBaseTrigger();
+	super::NSRenderableEntity();
 }

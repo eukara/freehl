@@ -44,7 +44,7 @@ enum
 	BA_FLINCH_SML
 };
 
-class monster_barney:CBaseNPC
+class monster_barney:NSTalkMonster
 {
 	void(void) monster_barney;
 
@@ -122,13 +122,13 @@ monster_barney::OnPlayerUse(void)
 		return;
 	}
 
-	CBaseNPC::OnPlayerUse();
+	super::OnPlayerUse();
 }
 
 void
 monster_barney::Pain(void)
 {
-	CBaseNPC::Pain();
+	super::Pain();
 
 	WarnAllies();
 
@@ -158,13 +158,13 @@ monster_barney::Death(void)
 	}
 
 	/* now mark our state as 'dead' */
-	CBaseNPC::Death();
+	super::Death();
 }
 
 void
 monster_barney::Respawn(void)
 {
-	CBaseNPC::Respawn();
+	super::Respawn();
 	m_iFlags |= MONSTER_CANFOLLOW;
 	PlayerUse = OnPlayerUse;
 }
@@ -205,5 +205,5 @@ monster_barney::monster_barney(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_FRIEND;
-	CBaseNPC::CBaseNPC();
+	super::NSTalkMonster();
 }

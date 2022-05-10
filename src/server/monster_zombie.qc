@@ -70,7 +70,7 @@ enum
 	ZO_RISESNACK
 };
 
-class monster_zombie:CBaseMonster
+class monster_zombie:NSMonster
 {
 	float m_flIdleTime;
 
@@ -142,7 +142,7 @@ monster_zombie::AttackFlail(void)
 void
 monster_zombie::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -177,7 +177,7 @@ monster_zombie::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
@@ -199,7 +199,7 @@ monster_zombie::IdleNoise(void)
 void
 monster_zombie::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(ZO_IDLE);
 }
 
@@ -218,5 +218,5 @@ monster_zombie::monster_zombie(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ALIEN;
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

@@ -32,7 +32,7 @@ enum
 	TUR_DIE
 };
 
-class monster_miniturret:CBaseMonster
+class monster_miniturret:NSMonster
 {
 	void(void) monster_miniturret;
 };
@@ -43,5 +43,5 @@ void monster_miniturret::monster_miniturret(void)
 	model = "models/miniturret.mdl";
 	base_mins = [-16,-16,-32];
 	base_maxs = [16,16,32];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

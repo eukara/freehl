@@ -22,7 +22,7 @@ Bell Boeing VV-22 Osprey
 
 */
 
-class monster_osprey:CBaseMonster
+class monster_osprey:NSMonster
 {
 	void(void) monster_osprey;
 	virtual void(void) Respawn;
@@ -30,7 +30,7 @@ class monster_osprey:CBaseMonster
 
 void monster_osprey::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	takedamage = DAMAGE_NO;
 	iBleeds = FALSE;
 }
@@ -41,5 +41,5 @@ void monster_osprey::monster_osprey(void)
 	model = "models/osprey.mdl";
 	base_mins = [-480,-480,-112];
 	base_maxs = [480,480,24];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

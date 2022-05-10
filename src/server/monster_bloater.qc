@@ -22,7 +22,7 @@ Flocking Floater
 
 */
 
-class monster_bloater:CBaseMonster
+class monster_bloater:NSMonster
 {
 	void(void) monster_bloater;
 };
@@ -33,5 +33,5 @@ void monster_bloater::monster_bloater(void)
 	model = "models/floater.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

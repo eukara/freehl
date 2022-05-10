@@ -59,7 +59,7 @@ enum
 	HE_JUMPWINDOW
 };
 
-class monster_houndeye:CBaseMonster
+class monster_houndeye:NSMonster
 {
 	float m_flIdleTime;
 
@@ -131,7 +131,7 @@ monster_houndeye::AttackBlast(void)
 void
 monster_houndeye::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -157,7 +157,7 @@ monster_houndeye::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
@@ -179,7 +179,7 @@ monster_houndeye::IdleNoise(void)
 void
 monster_houndeye::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(HE_IDLE);
 }
 
@@ -198,5 +198,5 @@ monster_houndeye::monster_houndeye(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,36];
 	m_iAlliance = MAL_ALIEN;
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

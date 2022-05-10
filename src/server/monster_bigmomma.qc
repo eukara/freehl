@@ -46,7 +46,7 @@ enum
 	GON_FALLDIE
 };
 
-class monster_bigmomma:CBaseMonster
+class monster_bigmomma:NSMonster
 {
 	float m_flIdleTime;
 
@@ -78,7 +78,7 @@ monster_bigmomma::IdleNoise(void)
 void
 monster_bigmomma::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -103,13 +103,13 @@ monster_bigmomma::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_bigmomma::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(GON_IDLE);
 }
 
@@ -128,5 +128,5 @@ void monster_bigmomma::monster_bigmomma(void)
 	base_health = Skill_GetValue("bigmomma_health_factor", 1.5) * 300;
 	base_mins = [-95,-95,0];
 	base_maxs = [95,95,190];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

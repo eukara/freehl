@@ -33,7 +33,7 @@ enum
 };
 
 
-class monster_sentry:CBaseMonster
+class monster_sentry:NSMonster
 {
 	void(void) monster_sentry;
 	
@@ -52,13 +52,13 @@ monster_sentry::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_sentry::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(SENT_IDLE);
 	iBleeds = FALSE;
 }
@@ -74,5 +74,5 @@ void monster_sentry::monster_sentry(void)
 	base_health = Skill_GetValue("sentry_health", 40);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

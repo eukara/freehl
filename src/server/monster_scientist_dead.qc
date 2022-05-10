@@ -33,7 +33,7 @@ enum
 	DSCIA_DEADHANG
 };
 
-class monster_scientist_dead:CBaseMonster
+class monster_scientist_dead:NSMonster
 {
 	int m_iPose;
 	void(void) monster_scientist_dead;
@@ -119,7 +119,7 @@ monster_scientist_dead::SpawnKey(string strKey, string strValue)
 		SetSkin(stoi(strValue));
 		break;
 	default:
-		CBaseMonster::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -127,5 +127,5 @@ void
 monster_scientist_dead::monster_scientist_dead(void)
 {
 	model = "models/scientist.mdl";
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

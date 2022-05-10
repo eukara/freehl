@@ -34,7 +34,7 @@ enum
 	LEECH_DIEEND
 };
 
-class monster_leech:CBaseMonster
+class monster_leech:NSMonster
 {
 	float m_flIdleTime;
 
@@ -62,13 +62,13 @@ monster_leech::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_leech::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(LEECH_SWIM);
 }
 
@@ -80,5 +80,5 @@ void monster_leech::monster_leech(void)
 	model = "models/leech.mdl";
 	base_mins = [-6,-6,0];
 	base_maxs = [6,6,6];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

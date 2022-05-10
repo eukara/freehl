@@ -58,7 +58,7 @@ enum
 	AG_LAND
 };
 
-class monster_alien_grunt:CBaseMonster
+class monster_alien_grunt:NSMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
@@ -74,7 +74,7 @@ class monster_alien_grunt:CBaseMonster
 void
 monster_alien_grunt::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flPainTime > time) {
 		return;
@@ -109,7 +109,7 @@ monster_alien_grunt::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
@@ -131,7 +131,7 @@ monster_alien_grunt::IdleNoise(void)
 void
 monster_alien_grunt::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(AG_IDLE);
 }
 
@@ -149,5 +149,5 @@ monster_alien_grunt::monster_alien_grunt(void)
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
 	base_health = Skill_GetValue("agrunt_health", 90);
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

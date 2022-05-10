@@ -80,7 +80,7 @@ enum
 	TE_GRAB
 };
 
-class monster_tentacle:CBaseMonster
+class monster_tentacle:NSMonster
 {
 	float m_flIdleTime;
 
@@ -110,7 +110,7 @@ monster_tentacle::IdleNoise(void)
 void
 monster_tentacle::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	/* not entirely true, takes damage then retreats and reheals */
 	takedamage = DAMAGE_NO;
 	iBleeds = FALSE;
@@ -128,5 +128,5 @@ monster_tentacle::monster_tentacle(void)
 	model = "models/tentacle2.mdl";
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

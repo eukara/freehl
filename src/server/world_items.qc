@@ -15,7 +15,7 @@
  */
 
 /* This is one of those leftovers from trying to get a game out in time */
-class world_items:CBaseTrigger
+class world_items:NSRenderableEntity
 {
 	void(void) world_items;
 };

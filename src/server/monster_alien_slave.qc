@@ -56,7 +56,7 @@ enum
 	SLV_JABBER
 };
 
-class monster_alien_slave:CBaseNPC
+class monster_alien_slave:NSTalkMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
@@ -169,7 +169,7 @@ monster_alien_slave::IdleChat(void)
 void
 monster_alien_slave::Pain(void)
 {
-	CBaseNPC::Pain();
+	super::Pain();
 
 	if (m_flPainTime > time) {
 		return;
@@ -204,13 +204,13 @@ monster_alien_slave::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseNPC::Death();
+	super::Death();
 }
 
 void
 monster_alien_slave::Respawn(void)
 {
-	CBaseNPC::Respawn();
+	super::Respawn();
 	SetFrame(SLV_IDLE);
 }
 
@@ -250,5 +250,5 @@ monster_alien_slave::monster_alien_slave(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ALIEN;
-	CBaseNPC::CBaseNPC();
+	super::NSTalkMonster();
 }

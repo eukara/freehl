@@ -22,7 +22,7 @@ Boeing AH-64 Apache
 
 */
 
-class monster_apache:CBaseMonster
+class monster_apache:NSMonster
 {
 	void(void) monster_apache;
 	virtual void(void) Respawn;
@@ -30,7 +30,7 @@ class monster_apache:CBaseMonster
 
 void monster_apache::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	movetype = MOVETYPE_NONE;
 	takedamage = DAMAGE_NO;
 	iBleeds = FALSE;
@@ -44,5 +44,5 @@ void monster_apache::monster_apache(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	base_health = Skill_GetValue("apache_health", 250);
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

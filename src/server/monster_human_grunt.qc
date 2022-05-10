@@ -109,7 +109,7 @@ enum
 	GR_PLUNGER
 };
 
-class monster_human_grunt:CBaseNPC
+class monster_human_grunt:NSTalkMonster
 {
 	float m_flIdleTime;
 	int m_iMP5Burst;
@@ -229,7 +229,7 @@ void monster_human_grunt::IdleChat(void)
 void
 monster_human_grunt::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -265,13 +265,13 @@ monster_human_grunt::Death(void)
 	Sound_Play(this, CHAN_VOICE, "monster_human_grunt.die");
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_human_grunt::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(GR_IDLE);
 }
 
@@ -315,5 +315,5 @@ void monster_human_grunt::monster_human_grunt(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ENEMY;
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

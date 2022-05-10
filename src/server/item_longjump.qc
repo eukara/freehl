@@ -23,7 +23,7 @@ Allows the player to jump longer distance by holding crouch
 and pressing jump.
 
 */
-class item_longjump:CBaseTrigger
+class item_longjump:NSRenderableEntity
 {
 	string m_strOnPlayerTouch;
 
@@ -91,7 +91,7 @@ item_longjump::SpawnKey(string strKey, string strValue)
 		m_strOnPlayerTouch = strcat(m_strOnPlayerTouch, ",_", strValue);
 		break;
 	default:
-		CBaseTrigger::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 		break;
 	}
 }
@@ -103,5 +103,5 @@ item_longjump::item_longjump(void)
 	precache_sound("items/suitchargeok1.wav");
 	precache_sound("fvox/powermove_on.wav");
 	precache_sound("fvox/blip.wav");
-	CBaseTrigger::CBaseTrigger();
+	super::NSRenderableEntity();
 }

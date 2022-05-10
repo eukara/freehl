@@ -22,7 +22,7 @@ Cockroach
 
 */
 
-class monster_cockroach:CBaseMonster
+class monster_cockroach:NSMonster
 {
 	void(void) monster_cockroach;
 	virtual void(void) Death;
@@ -40,7 +40,7 @@ monster_cockroach::Death(void)
 	health = -100;
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void monster_cockroach::monster_cockroach(void)
@@ -50,5 +50,5 @@ void monster_cockroach::monster_cockroach(void)
 	model = "models/roach.mdl";
 	base_mins = [-1,-1,0];
 	base_maxs = [1,1,1];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

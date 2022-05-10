@@ -42,7 +42,7 @@ enum
 	ICHY_JUMP
 };
 
-class monster_ichthyosaur:CBaseMonster
+class monster_ichthyosaur:NSMonster
 {
 	float m_flIdleTime;
 
@@ -57,7 +57,7 @@ class monster_ichthyosaur:CBaseMonster
 void
 monster_ichthyosaur::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -95,7 +95,7 @@ monster_ichthyosaur::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
@@ -117,7 +117,7 @@ monster_ichthyosaur::IdleNoise(void)
 void
 monster_ichthyosaur::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(ICHY_IDLE);
 }
 
@@ -133,5 +133,5 @@ monster_ichthyosaur::monster_ichthyosaur(void)
 	model = "models/icky.mdl";
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

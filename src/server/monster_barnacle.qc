@@ -33,7 +33,7 @@ enum
 	BCL_DIE
 };
 
-class monster_barnacle:CBaseMonster
+class monster_barnacle:NSMonster
 {
 	void(void) monster_barnacle;
 
@@ -58,13 +58,13 @@ monster_barnacle::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_barnacle::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(BCL_IDLE);
 }
 
@@ -79,5 +79,5 @@ void monster_barnacle::monster_barnacle(void)
 	base_mins = [-16,-16,-36];
 	base_maxs = [16,16,0];
 	base_health = Skill_GetValue("barnacle_health", 25);
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

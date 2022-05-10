@@ -22,7 +22,7 @@ HEV-Suit/Player's corpse
 
 */
 
-class monster_hevsuit_dead:CBaseMonster
+class monster_hevsuit_dead:NSMonster
 {
 	int m_iPose;
 	void(void) monster_hevsuit_dead;
@@ -84,7 +84,7 @@ monster_hevsuit_dead::SpawnKey(string strKey, string strValue)
 		SetSkin(stoi(strValue));
 		break;
 	default:
-		CBaseMonster::SpawnKey(strKey, strValue);
+		super::SpawnKey(strKey, strValue);
 	}
 }
 
@@ -93,5 +93,5 @@ monster_hevsuit_dead::monster_hevsuit_dead(void)
 {
 	model = "models/player.mdl";
 	m_iBody = 2;
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }

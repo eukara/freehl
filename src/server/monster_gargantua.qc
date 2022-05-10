@@ -48,7 +48,7 @@ enum
 	GARG_BUST
 };
 
-class monster_gargantua:CBaseMonster
+class monster_gargantua:NSMonster
 {
 	float m_flIdleTime;
 
@@ -80,7 +80,7 @@ monster_gargantua::IdleNoise(void)
 void
 monster_gargantua::Pain(void)
 {
-	CBaseMonster::Pain();
+	super::Pain();
 
 	if (m_flAnimTime > time) {
 		return;
@@ -105,13 +105,13 @@ monster_gargantua::Death(void)
 	}
 
 	/* set the functional differences */
-	CBaseMonster::Death();
+	super::Death();
 }
 
 void
 monster_gargantua::Respawn(void)
 {
-	CBaseMonster::Respawn();
+	super::Respawn();
 	SetFrame(GARG_IDLE);
 	/* takes damage from explosives only
 	 * takedamage = DAMAGE_NO; */
@@ -134,5 +134,5 @@ void monster_gargantua::monster_gargantua(void)
 	base_health = Skill_GetValue("gargantua_health", 800);
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,128];
-	CBaseMonster::CBaseMonster();
+	super::NSMonster();
 }
