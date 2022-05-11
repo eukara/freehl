@@ -41,7 +41,7 @@ HLMultiplayerRules::CheckRules(void)
 }
 
 void
-HLMultiplayerRules::PlayerDeath(base_player pl)
+HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 {
 	/* obituary networking */
 	WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET);
@@ -99,7 +99,7 @@ HLMultiplayerRules::PlayerDeath(base_player pl)
 }
 
 void
-HLMultiplayerRules::PlayerSpawn(base_player pp)
+HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 {
 	player pl = (player)pp;
 	/* this is where the mods want to deviate */
@@ -154,7 +154,7 @@ HLMultiplayerRules::PlayerSpawn(base_player pp)
 }
 
 float
-HLMultiplayerRules::ConsoleCommand(base_player pp, string cmd)
+HLMultiplayerRules::ConsoleCommand(NSClientPlayer pp, string cmd)
 {
 	tokenize(cmd);
 

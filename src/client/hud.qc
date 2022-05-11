@@ -469,7 +469,7 @@ HUD_DrawSpectator(void)
 {
 	Textmenu_Draw();
 
-	spectator spec = (spectator)pSeat->m_ePlayer;
+	NSClientSpectator spec = (NSClientSpectator)pSeat->m_ePlayer;
 
 	drawfont = Font_GetID(FONT_20);
 	vector vecPos;

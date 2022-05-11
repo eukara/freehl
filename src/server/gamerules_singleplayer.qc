@@ -21,7 +21,7 @@ HLSingleplayerRules::IsMultiplayer(void)
 }
 
 void
-HLSingleplayerRules::PlayerDeath(base_player pl)
+HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 {
 	pl.movetype = MOVETYPE_NONE;
 	pl.solid = SOLID_NOT;
@@ -54,7 +54,7 @@ HLSingleplayerRules::PlayerDeath(base_player pl)
 }
 
 void
-HLSingleplayerRules::PlayerSpawn(base_player pl)
+HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 {
 	pl.classname = "player";
 	pl.health = pl.max_health = 100;

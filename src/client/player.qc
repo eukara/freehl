@@ -91,7 +91,7 @@ string g_pbones[] =
 
 .string oldmodel;
 void
-Player_HandleWeaponModel(base_player pp, float thirdperson)
+Player_HandleWeaponModel(NSClientPlayer pp, float thirdperson)
 {
 	player pl = (player)pp;
 
@@ -147,7 +147,7 @@ Player_HandleWeaponModel(base_player pp, float thirdperson)
 }
 
 void
-Player_PreDraw(base_player pp, int thirdperson)
+Player_PreDraw(NSClientPlayer pp, int thirdperson)
 {
 	player pl = (player)pp;
 

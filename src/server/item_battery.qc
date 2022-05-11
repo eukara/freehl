@@ -43,7 +43,7 @@ void item_battery::Touch(entity eToucher)
 		return;
 	}
 
-	base_player pl = (base_player)eToucher;
+	NSClientPlayer pl = (NSClientPlayer)eToucher;
 
 	/* don't pick up if we don't have a suit */
 	if (!(pl.g_items & ITEM_SUIT))

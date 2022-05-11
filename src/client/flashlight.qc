@@ -15,7 +15,7 @@
  */
 
 void
-Player_Flashlight(base_player pl)
+Player_Flashlight(NSClientPlayer pl)
 {
 	if (pl.gflags & GF_FLASHLIGHT) {
 		vector src;
