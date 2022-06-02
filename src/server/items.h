@@ -23,6 +23,7 @@ class item_pickup:NSRenderableEntity
 	int id;
 	void(void) item_pickup;
 
+	virtual void(void) Spawned;
 	virtual void(entity) Touch;
 	virtual void(int i) SetItem;
 	virtual void(void) Respawn;

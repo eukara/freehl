@@ -44,6 +44,8 @@ enumflags
 
 class player:NSClientPlayer
 {
+	void(void) player;
+
 	/* animation */
 	PREDICTED_INT(anim_top);
 	PREDICTED_FLOAT(anim_top_time);
@@ -567,3 +569,9 @@ player::SendEntity(entity ePEnt, float fChanged)
 	return (1);
 }
 #endif
+
+void
+player::player(void)
+{
+	print("foobar!!!!!\n");
+}

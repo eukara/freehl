@@ -118,15 +118,21 @@ monster_tentacle::Respawn(void)
 }
 
 void
-monster_tentacle::monster_tentacle(void)
+monster_tentacle::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_tentacle.alert");
 	Sound_Precache("monster_tentacle.attack");
 	Sound_Precache("monster_tentacle.die");
 	Sound_Precache("monster_tentacle.idle");
+}
+
+void
+monster_tentacle::monster_tentacle(void)
+{
 	netname = "Tentacle";
 	model = "models/tentacle2.mdl";
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	super::NSMonster();
 }

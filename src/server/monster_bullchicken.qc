@@ -151,5 +151,4 @@ void monster_bullchicken::monster_bullchicken(void)
 	base_health = Skill_GetValue("bullsquid_health", 40);
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	super::NSMonster();
 }

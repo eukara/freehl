@@ -70,5 +70,4 @@ void
 monster_barney_dead::monster_barney_dead(void)
 {
 	model = "models/barney.mdl";
-	super::NSTalkMonster();
 }

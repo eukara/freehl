@@ -43,5 +43,4 @@ void
 xen_hair::xen_hair(void)
 {
 	model = "models/hair.mdl";
-	super::NSRenderableEntity();
 }

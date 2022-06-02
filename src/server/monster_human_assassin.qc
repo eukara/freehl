@@ -90,5 +90,4 @@ monster_human_assassin::monster_human_assassin(void)
 	base_health = Skill_GetValue("hassassin_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	super::NSMonster();
 }

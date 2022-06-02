@@ -275,12 +275,17 @@ monster_human_grunt::Respawn(void)
 	SetFrame(GR_IDLE);
 }
 
+void
+monster_human_grunt::Spawned(void)
+{
+	super::Spawned();
+
+	Sound_Precache("monster_human_grunt.die");
+	Sound_Precache("monster_human_grunt.pain");
+}
 
 void monster_human_grunt::monster_human_grunt(void)
 {
-	Sound_Precache("monster_human_grunt.die");
-	Sound_Precache("monster_human_grunt.pain");
-
 	/* Adding some into other slots in hopes it feels right
 	 * listed below are other setences that might need their own:
 	 * !HG_MONST - Monster HG_ALERT
@@ -308,12 +313,10 @@ void monster_human_grunt::monster_human_grunt(void)
 	m_talkFollow = "";
 	m_talkStopFollow = "";
 
-	
 	netname = "Grunt";
 	model = "models/hgrunt.mdl";
 	base_health = Skill_GetValue("hgrunt_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ENEMY;
-	super::NSMonster();
 }

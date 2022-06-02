@@ -155,15 +155,21 @@ monster_headcrab::IdleNoise(void)
 }
 
 void
-monster_headcrab::monster_headcrab(void)
+monster_headcrab::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_headcrab.alert");
 	Sound_Precache("monster_headcrab.attack");
 	Sound_Precache("monster_headcrab.attackhit");
 	Sound_Precache("monster_headcrab.die");
 	Sound_Precache("monster_headcrab.idle");
 	Sound_Precache("monster_headcrab.pain");
+}
 
+void
+monster_headcrab::monster_headcrab(void)
+{
 	if (classname == "monster_babycrab") {
 		netname = "Baby Headcrab";
 		model = "models/baby_headcrab.mdl";
@@ -177,5 +183,4 @@ monster_headcrab::monster_headcrab(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,36];
 	m_iAlliance = MAL_ALIEN;
-	super::NSMonster();
 }

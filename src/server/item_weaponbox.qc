@@ -40,6 +40,7 @@ class item_weaponbox:NSRenderableEntity
 
 	void(void) item_weaponbox;
 
+	virtual void(void) Spawned;
 	virtual void(entity) Touch;
 	virtual void(player) setup;
 };
@@ -145,15 +146,20 @@ item_weaponbox::setup(player pl)
 }
 
 void
-item_weaponbox::item_weaponbox(void)
+item_weaponbox::Spawned(void)
 {
+	super::Spawned();
+
 	SetModel("models/w_weaponbox.mdl");
 	SetSize([-16,-16,0], [16,16,16]);
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
-	botinfo = BOTINFO_AMMO;
+}
 
-	super::NSRenderableEntity();
+void
+item_weaponbox::item_weaponbox(void)
+{
+	botinfo = BOTINFO_AMMO;
 }
 
 void

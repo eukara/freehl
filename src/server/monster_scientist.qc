@@ -73,6 +73,7 @@ class monster_scientist:NSTalkMonster
 {
 	void(void) monster_scientist;
 
+	virtual void(void) Spawned;
 	virtual void(void) Respawn;
 	virtual void(void) Pain;
 	virtual void(void) Death;
@@ -147,11 +148,41 @@ monster_scientist::SpawnKey(string strKey, string strValue)
 }
 
 void
-monster_scientist::monster_scientist(void)
+monster_scientist::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_scientist.die");
 	Sound_Precache("monster_scientist.pain");
 
+	/* has the body not been overriden, etc. choose a character for us */
+	if (m_iBody == -1) {
+		SetBody((int)floor(random(1,5)));
+	}
+
+	switch (m_iBody) {
+	case 1:
+		m_flPitch = 105;
+		netname = "Walter";
+		break;
+	case 2:
+		m_flPitch = 100;
+		netname = "Einstein";
+		break;
+	case 3:
+		m_flPitch = 95;
+		netname = "Luther";
+		SetSkin(1);
+		break;
+	default:
+		m_flPitch = 100;
+		netname = "Slick";
+	}
+}
+
+void
+monster_scientist::monster_scientist(void)
+{
 	if (spawnflags & MSF_PREDISASTER) {
 		m_talkAsk = "";
 		m_talkPlayerAsk = "!SC_PQUEST";
@@ -187,30 +218,4 @@ monster_scientist::monster_scientist(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	base_health = Skill_GetValue("scientist_health", 20);
-
-	super::NSTalkMonster();
-
-	/* has the body not been overriden, etc. choose a character for us */
-	if (m_iBody == -1) {
-		SetBody((int)floor(random(1,5)));
-	}
-
-	switch (m_iBody) {
-	case 1:
-		m_flPitch = 105;
-		netname = "Walter";
-		break;
-	case 2:
-		m_flPitch = 100;
-		netname = "Einstein";
-		break;
-	case 3:
-		m_flPitch = 95;
-		netname = "Luther";
-		SetSkin(1);
-		break;
-	default:
-		m_flPitch = 100;
-		netname = "Slick";
-	}
 }

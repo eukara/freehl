@@ -76,6 +76,7 @@ class monster_zombie:NSMonster
 
 	void(void) monster_zombie;
 
+	virtual void(void) Spawned;
 	virtual void(void) Pain;
 	virtual void(void) Death;
 	virtual void(void) IdleNoise;
@@ -204,19 +205,25 @@ monster_zombie::Respawn(void)
 }
 
 void
-monster_zombie::monster_zombie(void)
+monster_zombie::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_zombie.alert");
 	Sound_Precache("monster_zombie.attack");
 	Sound_Precache("monster_zombie.attackhit");
 	Sound_Precache("monster_zombie.attackmiss");
 	Sound_Precache("monster_zombie.idle");
 	Sound_Precache("monster_zombie.pain");
+}
+
+void
+monster_zombie::monster_zombie(void)
+{
 	netname = "Zombie";
 	model = "models/zombie.mdl";
 	base_health = Skill_GetValue("zombie_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ALIEN;
-	super::NSMonster();
 }

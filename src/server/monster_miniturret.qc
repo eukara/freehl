@@ -43,5 +43,4 @@ void monster_miniturret::monster_miniturret(void)
 	model = "models/miniturret.mdl";
 	base_mins = [-16,-16,-32];
 	base_maxs = [16,16,32];
-	super::NSMonster();
 }

@@ -92,5 +92,4 @@ void
 monster_hgrunt_dead::monster_hgrunt_dead(void)
 {
 	model = "models/hgrunt.mdl";
-	super::NSMonster();
 }

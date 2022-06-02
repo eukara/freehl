@@ -65,6 +65,7 @@ class monster_houndeye:NSMonster
 
 	void(void) monster_houndeye;
 
+	virtual void(void) Spawned;
 	virtual void(void) Pain;
 	virtual void(void) Death;
 	virtual void(void) IdleNoise;
@@ -184,19 +185,25 @@ monster_houndeye::Respawn(void)
 }
 
 void
-monster_houndeye::monster_houndeye(void)
+monster_houndeye::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_houndeye.alert");
 	Sound_Precache("monster_houndeye.attack");
 	Sound_Precache("monster_houndeye.blast");
 	Sound_Precache("monster_houndeye.die");
 	Sound_Precache("monster_houndeye.idle");
 	Sound_Precache("monster_houndeye.pain");
+}
+
+void
+monster_houndeye::monster_houndeye(void)
+{
 	netname = "Houndeye";
 	model = "models/houndeye.mdl";
 	base_health = Skill_GetValue("houndeye_health", 20);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,36];
 	m_iAlliance = MAL_ALIEN;
-	super::NSMonster();
 }

@@ -134,6 +134,8 @@ void w_egon_primary(player pl)
 	Client_ShakeOnce(trace_endpos, 128, 0.2, 1.0, 1.0f);
 #endif
 
+	int r = (float)input_sequence % 2;
+
 	pl.ammo_uranium--;
 	pl.gflags |= GF_EGONBEAM;
 
@@ -143,7 +145,6 @@ void w_egon_primary(player pl)
 #endif
 		pl.mode_tempstate = 1;
 		//Weapons_ViewPunchAngle(pl, [-5,0,0]);
-		int r = (float)input_sequence % 2;
 		if (r) {
 			Weapons_ViewAnimation(pl, EGON_FIRE3);
 		} else {

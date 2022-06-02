@@ -43,5 +43,4 @@ void
 xen_plantlight::xen_plantlight(void)
 {
 	model = "models/light.mdl";
-	super::NSRenderableEntity();
 }

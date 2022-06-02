@@ -18,6 +18,7 @@ class item_ammo:NSRenderableEntity
 {
 	void(void) item_ammo;
 
+	virtual void(void) Spawned;
 	virtual void(void) Respawn;
 	virtual void(entity) Touch;
 };
@@ -62,14 +63,19 @@ item_ammo::Respawn(void)
 }
 
 void
-item_ammo::item_ammo(void)
+item_ammo::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("ammo.pickup");
 	Sound_Precache("ammo.respawn");
 	precache_model(model);
+}
+
+void
+item_ammo::item_ammo(void)
+{
 	m_oldModel = model;
-	SetModel(GetSpawnModel());
-	super::NSRenderableEntity();
 }
 
 /*QUAKED ammo_357 (0 0 0.8) (-16 -16 0) (16 16 32)
@@ -93,7 +99,6 @@ void
 ammo_357::ammo_357(void)
 {
 	model = "models/w_357ammobox.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -132,7 +137,6 @@ void
 ammo_9mmAR::ammo_9mmAR(void)
 {
 	model = "models/w_9mmarclip.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -172,7 +176,6 @@ void
 ammo_9mmbox::ammo_9mmbox(void)
 {
 	model = "models/w_chainammo.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -211,7 +214,6 @@ void
 ammo_9mmclip::ammo_9mmclip(void)
 {
 	model = "models/w_9mmclip.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -250,7 +252,6 @@ void
 ammo_ARgrenades::ammo_ARgrenades(void)
 {
 	model = "models/w_argrenade.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -290,7 +291,6 @@ void
 ammo_buckshot::ammo_buckshot(void)
 {
 	model = "models/w_shotbox.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -329,7 +329,6 @@ void
 ammo_crossbow::ammo_crossbow(void)
 {
 	model = "models/w_crossbow_clip.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -368,7 +367,6 @@ void
 ammo_gaussclip::ammo_gaussclip(void)
 {
 	model = "models/w_gaussammo.mdl";
-	item_ammo::item_ammo();
 }
 
 void
@@ -406,7 +404,6 @@ void
 ammo_rpgclip::ammo_rpgclip(void)
 {
 	model = "models/w_rpgammo.mdl";
-	item_ammo::item_ammo();
 }
 
 void

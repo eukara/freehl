@@ -83,5 +83,4 @@ void monster_gman::monster_gman(void)
 	model = "models/gman.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	super::NSTalkMonster();
 }

@@ -81,9 +81,15 @@ void item_pickup::Respawn(void)
 	}
 }
 
-void item_pickup::item_pickup(void)
+void
+item_pickup::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("item.respawn");
 	Sound_Precache("weapon.pickup");
-	super::NSRenderableEntity();
+}
+
+void item_pickup::item_pickup(void)
+{
 }

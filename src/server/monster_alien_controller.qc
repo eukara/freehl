@@ -124,5 +124,4 @@ monster_alien_controller::monster_alien_controller(void)
 	model = "models/controller.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	super::NSMonster();
 }

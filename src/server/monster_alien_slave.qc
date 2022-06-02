@@ -250,5 +250,4 @@ monster_alien_slave::monster_alien_slave(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ALIEN;
-	super::NSTalkMonster();
 }

@@ -102,10 +102,9 @@ monster_sitting_scientist::SpawnKey(string strKey, string strValue)
 }
 
 void
-monster_sitting_scientist::monster_sitting_scientist(void)
+monster_sitting_scientist::Spawned(void)
 {
-	model = "models/scientist.mdl";
-	super::NSTalkMonster();
+	super::Spawned();
 
 	/* has the body not been overriden, etc. choose a character for us */
 	if (m_iBody == -1) {
@@ -130,4 +129,10 @@ monster_sitting_scientist::monster_sitting_scientist(void)
 		m_flPitch = 100;
 		netname = "Slick";
 	}
+}
+
+void
+monster_sitting_scientist::monster_sitting_scientist(void)
+{
+	model = "models/scientist.mdl";
 }

@@ -33,6 +33,7 @@ class item_battery:NSRenderableEntity
 {
 	void(void) item_battery;
 
+	virtual void(void) Spawned;
 	virtual void(void) Respawn;
 	virtual void(entity) Touch;
 };
@@ -90,10 +91,16 @@ void item_battery::Respawn(void)
 	DropToFloor();
 }
 
-void item_battery::item_battery(void)
+void
+item_battery::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("item.battery");
 	Sound_Precache("item.respawn");
+}
+
+void item_battery::item_battery(void)
+{
 	model = "models/w_battery.mdl";
-	super::NSRenderableEntity();
 }

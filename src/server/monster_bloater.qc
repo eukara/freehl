@@ -33,5 +33,4 @@ void monster_bloater::monster_bloater(void)
 	model = "models/floater.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	super::NSMonster();
 }

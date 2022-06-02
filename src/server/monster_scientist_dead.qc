@@ -102,7 +102,7 @@ monster_scientist_dead::Respawn(void)
 		SetFrame(DSCIA_LYING1);
 	}
 
-	droptofloor();
+	DropToFloor();
 }
 
 void
@@ -127,5 +127,4 @@ void
 monster_scientist_dead::monster_scientist_dead(void)
 {
 	model = "models/scientist.mdl";
-	super::NSMonster();
 }

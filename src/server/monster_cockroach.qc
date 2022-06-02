@@ -50,5 +50,4 @@ void monster_cockroach::monster_cockroach(void)
 	model = "models/roach.mdl";
 	base_mins = [-1,-1,0];
 	base_maxs = [1,1,1];
-	super::NSMonster();
 }

@@ -48,6 +48,7 @@ class monster_ichthyosaur:NSMonster
 
 	void(void) monster_ichthyosaur;
 
+	virtual void(void) Spawned;
 	virtual void(void) Pain;
 	virtual void(void) Death;
 	virtual void(void) IdleNoise;
@@ -122,16 +123,22 @@ monster_ichthyosaur::Respawn(void)
 }
 
 void
-monster_ichthyosaur::monster_ichthyosaur(void)
+monster_ichthyosaur::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_ichthyosaur.alert");
 	Sound_Precache("monster_ichthyosaur.attack");
 	Sound_Precache("monster_ichthyosaur.die");
 	Sound_Precache("monster_ichthyosaur.idle");
 	Sound_Precache("monster_ichthyosaur.pain");
+}
+
+void
+monster_ichthyosaur::monster_ichthyosaur(void)
+{
 	netname = "Ichthyosaur";
 	model = "models/icky.mdl";
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
-	super::NSMonster();
 }

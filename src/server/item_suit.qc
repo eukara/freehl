@@ -31,6 +31,7 @@ class item_suit:NSRenderableEntity
 
 	void(void) item_suit;
 
+	virtual void(void) Spawned;
 	virtual void(entity) Touch;
 	virtual void(void) Respawn;
 	virtual void(string, string) SpawnKey;
@@ -103,14 +104,21 @@ item_suit::SpawnKey(string strKey, string strValue)
 }
 
 void
-item_suit::item_suit(void)
+item_suit::Spawned(void)
 {
-	model = "models/w_suit.mdl";
+	super::Spawned();
+
 	precache_sound("items/suitchargeok1.wav");
 	precache_sound("fvox/hev_logon.wav");
 	precache_sound("fvox/bell.wav");
 	Sound_Precache("item.respawn");
-	super::NSRenderableEntity();
 
-	m_strOnPlayerTouch = CreateOutput(m_strOnPlayerTouch);
+	if (m_strOnPlayerTouch)
+		m_strOnPlayerTouch = CreateOutput(m_strOnPlayerTouch);
+}
+
+void
+item_suit::item_suit(void)
+{
+	model = "models/w_suit.mdl";
 }

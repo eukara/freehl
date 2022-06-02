@@ -43,5 +43,4 @@ void
 xen_spore_large::xen_spore_large(void)
 {
 	model = "models/fungus(large).mdl";
-	super::NSRenderableEntity();
 }

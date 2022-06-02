@@ -205,5 +205,4 @@ monster_barney::monster_barney(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_FRIEND;
-	super::NSTalkMonster();
 }

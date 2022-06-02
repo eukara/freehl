@@ -36,7 +36,8 @@ enum
 class monster_sentry:NSMonster
 {
 	void(void) monster_sentry;
-	
+
+	virtual void(void) Spawned;
 	virtual void(void) Death;
 	virtual void(void) Respawn;
 
@@ -59,20 +60,27 @@ void
 monster_sentry::Respawn(void)
 {
 	super::Respawn();
+
 	SetFrame(SENT_IDLE);
 	iBleeds = FALSE;
 }
 
-void monster_sentry::monster_sentry(void)
+void
+monster_sentry::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_sentry.alert");
 	Sound_Precache("monster_sentry.die");
 	Sound_Precache("monster_sentry.idle");
 	Sound_Precache("monster_sentry.retract");
+}
+
+void monster_sentry::monster_sentry(void)
+{
 	netname = "Sentry";
 	model = "models/sentry.mdl";
 	base_health = Skill_GetValue("sentry_health", 40);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
-	super::NSMonster();
 }

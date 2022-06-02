@@ -53,6 +53,7 @@ class monster_nihilanth:NSMonster
 
 	void(void) monster_nihilanth;
 
+	virtual void(void) Spawned;
 	virtual void(void) Death;
 	virtual void(void) Pain;
 	virtual void(void) IdleNoise;
@@ -116,8 +117,11 @@ monster_nihilanth::Respawn(void)
 	SetFrame(NIL_IDLE);
 }
 
-void monster_nihilanth::monster_nihilanth(void)
+void
+monster_nihilanth::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_nihilanth.attack");
 	Sound_Precache("monster_nihilanth.attackball");
 	Sound_Precache("monster_nihilanth.attackballmove");
@@ -125,10 +129,14 @@ void monster_nihilanth::monster_nihilanth(void)
 	Sound_Precache("monster_nihilanth.idle");
 	Sound_Precache("monster_nihilanth.pain");
 	Sound_Precache("monster_nihilanth.recharge");
+}
+
+void
+monster_nihilanth::monster_nihilanth(void)
+{
 	netname = "Nihilanth";
 	model = "models/nihilanth.mdl";
 	base_health = Skill_GetValue("nihilanth_health", 800);
 	base_mins = [-192,-192,-32];
 	base_maxs = [192,192,384];
-	super::NSMonster();
 }

@@ -41,5 +41,4 @@ void monster_osprey::monster_osprey(void)
 	model = "models/osprey.mdl";
 	base_mins = [-480,-480,-112];
 	base_maxs = [480,480,24];
-	super::NSMonster();
 }

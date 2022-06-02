@@ -128,5 +128,4 @@ void monster_bigmomma::monster_bigmomma(void)
 	base_health = Skill_GetValue("bigmomma_health_factor", 1.5) * 300;
 	base_mins = [-95,-95,0];
 	base_maxs = [95,95,190];
-	super::NSMonster();
 }

@@ -33,5 +33,4 @@ void monster_flyer_flock::monster_flyer_flock(void)
 	model = "models/aflock.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,16];
-	super::NSMonster();
 }

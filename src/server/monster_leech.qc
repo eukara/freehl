@@ -40,6 +40,7 @@ class monster_leech:NSMonster
 
 	void(void) monster_leech;
 
+	virtual void(void) Spawned;
 	virtual void(void) Death;
 	virtual void(void) DeathEnd;
 	virtual void(void) Respawn;
@@ -72,13 +73,19 @@ monster_leech::Respawn(void)
 	SetFrame(LEECH_SWIM);
 }
 
-void monster_leech::monster_leech(void)
+void
+monster_leech::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_leech.alert");
 	Sound_Precache("monster_leech.attack");
+}
+
+void monster_leech::monster_leech(void)
+{
 	netname = "Leech";
 	model = "models/leech.mdl";
 	base_mins = [-6,-6,0];
 	base_maxs = [6,6,6];
-	super::NSMonster();
 }

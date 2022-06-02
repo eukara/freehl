@@ -29,6 +29,7 @@ class item_longjump:NSRenderableEntity
 
 	void(void) item_longjump;
 
+	virtual void(void) Spawned;
 	virtual void(entity) Touch;
 	virtual void(void) Respawn;
 	virtual void(string, string) SpawnKey;
@@ -97,11 +98,17 @@ item_longjump::SpawnKey(string strKey, string strValue)
 }
 
 void
-item_longjump::item_longjump(void)
+item_longjump::Spawned(void)
 {
-	model = "models/w_longjump.mdl";
+	super::Spawned();
+
 	precache_sound("items/suitchargeok1.wav");
 	precache_sound("fvox/powermove_on.wav");
 	precache_sound("fvox/blip.wav");
-	super::NSRenderableEntity();
+}
+
+void
+item_longjump::item_longjump(void)
+{
+	model = "models/w_longjump.mdl";
 }

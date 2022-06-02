@@ -28,6 +28,7 @@ class item_healthkit:NSRenderableEntity
 {
 	void(void) item_healthkit;
 
+	virtual void(void) Spawned;
 	virtual void(void) Respawn;
 	virtual void(entity) Touch;
 };
@@ -73,10 +74,16 @@ void item_healthkit::Respawn(void)
 	DropToFloor();
 }
 
-void item_healthkit::item_healthkit(void)
+void
+item_healthkit::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("item.healthkit");
 	Sound_Precache("item.respawn");
+}
+
+void item_healthkit::item_healthkit(void)
+{
 	model = "models/w_medkit.mdl";
-	super::NSRenderableEntity();
 }

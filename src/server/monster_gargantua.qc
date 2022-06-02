@@ -118,8 +118,11 @@ monster_gargantua::Respawn(void)
 	iBleeds = FALSE;
 }
 
-void monster_gargantua::monster_gargantua(void)
+void
+monster_gargantua::Spawned(void)
 {
+	super::Spawned();
+
 	Sound_Precache("monster_gargantua.alert");
 	Sound_Precache("monster_gargantua.attack");
 	Sound_Precache("monster_gargantua.attackflame");
@@ -129,10 +132,13 @@ void monster_gargantua::monster_gargantua(void)
 	Sound_Precache("monster_gargantua.idle");
 	Sound_Precache("monster_gargantua.pain");
 	Sound_Precache("monster_gargantua.step");
+}
+
+void monster_gargantua::monster_gargantua(void)
+{
 	netname = "Gargantua";
 	model = "models/garg.mdl";
 	base_health = Skill_GetValue("gargantua_health", 800);
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,128];
-	super::NSMonster();
 }

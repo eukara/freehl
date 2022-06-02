@@ -30,5 +30,4 @@ class monster_babycrab:monster_headcrab
 void
 monster_babycrab::monster_babycrab(void)
 {
-	monster_headcrab::monster_headcrab();
 }

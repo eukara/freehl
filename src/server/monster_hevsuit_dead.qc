@@ -93,5 +93,4 @@ monster_hevsuit_dead::monster_hevsuit_dead(void)
 {
 	model = "models/player.mdl";
 	m_iBody = 2;
-	super::NSMonster();
 }
