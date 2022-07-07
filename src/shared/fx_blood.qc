@@ -63,43 +63,38 @@ FX_Blood(vector pos, vector color)
 	}
 
 	env_sprite eBlood = spawn(env_sprite);
-	setorigin(eBlood, pos);
-	setmodel(eBlood, "sprites/bloodspray.spr");
-
-	eBlood.drawmask = MASK_ENGINE;
-	eBlood.maxframe = modelframecount(eBlood.modelindex);
-	eBlood.loops = 0;
-	eBlood.scale = 0.25f;
-
-	eBlood.m_vecRenderColor = color;
-	eBlood.m_iRenderMode = RM_COLOR;
-	eBlood.m_flRenderAmt = 1.0f;
-
-
-	eBlood.framerate = 20;
+	eBlood.SetOrigin(pos);
+	eBlood.SetModel("sprites/bloodspray.spr");
+	eBlood.SetMaxFrame(modelframecount(eBlood.modelindex));
+	eBlood.SetFramerate(20);
+	eBlood.SetLoopFlag(false);
+	eBlood.SetScale(0.25f);
+	eBlood.SetRenderColor(color);
+	eBlood.SetRenderMode(RM_COLOR);
+	eBlood.SetRenderAmt(1.0f);
 	eBlood.nextthink = time + 0.05f;
 
 	for (int i = 0; i < 3; i++) {
 		NSRenderableEntity ePart = spawn(NSRenderableEntity);
-		setorigin(ePart, pos);
-		setmodel(ePart, "sprites/blood.spr");
-		ePart.movetype = MOVETYPE_BOUNCE;
-		ePart.gravity = 0.5f;
-		ePart.scale = 0.25f;
-		ePart.drawmask = MASK_ENGINE;
-		ePart.frame = (random() < 0.5) ? 0 : 1;
+		ePart.SetOrigin(pos);
+		ePart.SetModel("sprites/blood.spr");
+		ePart.SetMovetype(MOVETYPE_BOUNCE);
+		ePart.SetGravity(0.5f);
+		ePart.SetScale(0.25f);
+		ePart.SetFrame((random() < 0.5) ? 0 : 1);
+		ePart.SetRenderColor(color);
+		ePart.SetRenderMode(RM_COLOR);
+		ePart.SetRenderAmt(1.0f);
+		ePart.SetVelocity(randomvec() * 96 + [0,0,64]);
+		ePart.SetSolid(SOLID_BBOX);
+		ePart.SetSize([0,0,0], [0,0,0]);
 
-		ePart.m_vecRenderColor = color;
-		ePart.m_iRenderMode = RM_COLOR;
-		ePart.m_flRenderAmt = 1.0f;
-		ePart.velocity = randomvec() * 96 + [0,0,64];
 		ePart.touch = Blood_Touch;
-		ePart.solid = SOLID_BBOX;
+
 		/* ignore player physics */
 		ePart.dimension_solid = 1;
 		ePart.dimension_hit = 1;
 		ePart.hitcontentsmaski = 0;
-		setsize(ePart, [0,0,0], [0,0,0]);
 	}
 #endif
 }

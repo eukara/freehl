@@ -154,6 +154,7 @@ ammo_9mmAR::Touch(entity eToucher)
 	}
 }
 CLASSEXPORT(ammo_mp5clip, ammo_9mmAR)
+CLASSEXPORT(ammo_9mmARclip, ammo_9mmAR)
 
 /*QUAKED ammo_9mmbox (0 0 0.8) (-16 -16 0) (16 16 32)
 
@@ -230,6 +231,7 @@ ammo_9mmclip::Touch(entity eToucher)
 		}
 	}
 }
+CLASSEXPORT(ammo_glockclip, ammo_9mmclip)
 
 /*QUAKED ammo_ARgrenades (0 0 0.8) (-16 -16 0) (16 16 32)
 

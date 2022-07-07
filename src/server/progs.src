@@ -4,7 +4,6 @@
 #define QWSSQC
 #define SERVER
 #define VALVE
-#define GS_RENDERFX
 
 #includelist
 ../../../src/shared/fteextensions.qc

@@ -573,5 +573,4 @@ player::SendEntity(entity ePEnt, float fChanged)
 void
 player::player(void)
 {
-	print("foobar!!!!!\n");
 }

@@ -164,9 +164,9 @@ FX_Impact(impactType_t iType, vector vecPos, vector vNormal)
 		splash.SetRenderAmt(1.0f);
 		splash.SetRenderColor([1,1,1]);
 		splash.drawmask = MASK_ENGINE;
-		splash.maxframe = modelframecount(splash.modelindex);
-		splash.loops = 0;
-		splash.framerate = 20;
+		splash.m_iMaxFrame = modelframecount(splash.modelindex);
+		splash.m_bLoops = 0;
+		splash.m_flFramerate = 20;
 		splash.nextthink = time + 0.05f;
 
 		break;

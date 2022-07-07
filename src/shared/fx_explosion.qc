@@ -87,9 +87,9 @@ FX_Explosion(vector vecPos)
 	eExplosion.SetRenderAmt(1.0f);
 	eExplosion.SetRenderColor([1,1,1]);
 	eExplosion.drawmask = MASK_ENGINE;
-	eExplosion.maxframe = modelframecount(eExplosion.modelindex);
-	eExplosion.loops = 0;
-	eExplosion.framerate = 20;
+	eExplosion.m_iMaxFrame = modelframecount(eExplosion.modelindex);
+	eExplosion.m_bLoops = 0;
+	eExplosion.m_flFramerate = 20;
 	eExplosion.nextthink = time + 0.05f;
 	eExplosion.scale = 2.0f;
 
