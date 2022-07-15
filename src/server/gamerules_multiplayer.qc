@@ -14,10 +14,47 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+var string autocvar_mp_teamlist = "robo;hgrunt";
+const string mp_teamlist_fallback = "robo;hgrunt";
+
 bool
 HLMultiplayerRules::IsMultiplayer(void)
 {
 	return true;
+}
+
+bool
+HLMultiplayerRules::IsTeamPlay(void)
+{
+	return cvar("mp_teamplay") == 1 ? true : false;
+}
+
+void
+HLMultiplayerRules::InitPostEnts(void)
+{
+	if (IsTeamPlay() == true) {
+		int c;
+
+		/* get the segments from our cvar */
+		m_strTeamList = autocvar_mp_teamlist;
+		c = tokenizebyseparator(m_strTeamList, ";");
+
+		/* if we've got less than 2 teams, use the fallback... */
+		if (c < 2) {
+			m_strTeamList = mp_teamlist_fallback;
+			c = tokenizebyseparator(m_strTeamList, ";");
+		}
+
+		forceinfokey(world, "teams", itos(c));
+
+		/* initialize all dem teams */
+		for (int i = 0; i < c; i++) {
+			forceinfokey(world, sprintf("team_%i", i+1i), argv(i));
+			forceinfokey(world, sprintf("teamscore_%i", i+1i), "0");
+		}
+	} else {
+		forceinfokey(world, "teams", "0");
+	}
 }
 
 void
@@ -143,6 +180,25 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	pl.activeweapon = WEAPON_GLOCK;
 	pl.glock_mag = 18;
 	pl.ammo_9mm = 44;
+
+	if (IsTeamPlay() == true) {
+		int c = tokenizebyseparator(m_strTeamList, ";");
+
+		/* not part of a team? pick one of the ones we have */
+		/* TODO: this should sort us into the lowest team */
+		if (pl.team == 0) {
+			pl.team = 1 + floor(random(0, c));
+			forceinfokey(pl, "*team", sprintf("%d", pl.team));
+		}
+
+		/* assign our player model */
+		mymodel = sprintf("models/player/%s/%s.mdl", argv(pl.team - 1), argv(pl.team - 1));
+
+		if (whichpack(mymodel))
+			pl.model = mymodel;
+
+		setmodel(pl, pl.model);
+	}
 #endif
 
 	spot = Spawn_SelectRandom("info_player_deathmatch");
@@ -193,4 +249,31 @@ HLMultiplayerRules::HLMultiplayerRules(void)
 	/* these lines do nothing but tell the server to register those cvars */
 	autocvar(timelimit, 15, "Timelimit for multiplayer rounds");
 	autocvar(fraglimit, 15, "Points limit for multiplayer rounds");
+}
+
+void
+CSEv_HLDM_Chooseteam_s(string teamname)
+{
+	HLGameRules rules = (HLGameRules)g_grMode;
+	player pl = (player)self;
+
+	if (!teamname)
+		return;
+	if (rules.IsMultiplayer() == false)
+		return;
+	if (rules.IsTeamPlay() == false)
+		return;
+	if (pl.health <= 0)
+		return;
+
+	HLMultiplayerRules mprules = (HLMultiplayerRules)rules;
+	int c = tokenizebyseparator(mprules.m_strTeamList, ";");
+
+	for (int i = 0; i < c; i++) {
+		if (argv(i) == teamname) {
+			pl.team = (float)i + 1;
+			forceinfokey(pl, "*team", sprintf("%d", pl.team));
+			Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
+		}
+	}
 }

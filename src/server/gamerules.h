@@ -40,6 +40,7 @@ class HLMultiplayerRules:HLGameRules
 {
 	int m_iIntermission;
 	int m_iIntermissionTime;
+	string m_strTeamList;
 
 	void(void) HLMultiplayerRules;
 
@@ -52,4 +53,6 @@ class HLMultiplayerRules:HLGameRules
 	virtual void(NSClientPlayer) PlayerDeath;
 	virtual float(NSClientPlayer, string) ConsoleCommand;
 	virtual bool(void) IsMultiplayer;
+	virtual bool(void) IsTeamPlay;
+	virtual void(void) InitPostEnts;
 };

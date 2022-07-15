@@ -18,7 +18,10 @@ int
 ClientGame_ConsoleCommand(void)
 {
 	switch(argv(0)) {
-		default:
+	case "chooseteam":
+		sendevent("HLDM_Chooseteam", "s", argv(1));
+		break;
+	default:
 		return (0);
 	}
 	return (1);
