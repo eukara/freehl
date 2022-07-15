@@ -7,7 +7,6 @@ player.qc
 animations.h
 animations.qc
 pmove.qc
-pmove_water.qc
 
 fx_blood.qc
 fx_gaussbeam.qc
