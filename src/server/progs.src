@@ -77,7 +77,6 @@ gamerules_multiplayer.qc
 client.qc
 server.qc
 ../../../base/src/server/damage.qc
-rules.qc
 flashlight.qc
 ../../../base/src/server/modelevent.qc
 

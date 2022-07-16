@@ -24,7 +24,7 @@ HLMultiplayerRules::IsMultiplayer(void)
 }
 
 bool
-HLMultiplayerRules::IsTeamPlay(void)
+HLMultiplayerRules::IsTeamplay(void)
 {
 	return cvar("mp_teamplay") == 1 ? true : false;
 }
@@ -32,7 +32,7 @@ HLMultiplayerRules::IsTeamPlay(void)
 void
 HLMultiplayerRules::InitPostEnts(void)
 {
-	if (IsTeamPlay() == true) {
+	if (IsTeamplay() == true) {
 		int c;
 
 		/* get the segments from our cvar */
@@ -181,7 +181,7 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	pl.glock_mag = 18;
 	pl.ammo_9mm = 44;
 
-	if (IsTeamPlay() == true) {
+	if (IsTeamplay() == true) {
 		int c = tokenizebyseparator(m_strTeamList, ";");
 
 		/* not part of a team? pick one of the ones we have */
@@ -209,7 +209,7 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	Client_FixAngle(pl, pl.angles);
 }
 
-float
+bool
 HLMultiplayerRules::ConsoleCommand(NSClientPlayer pp, string cmd)
 {
 	tokenize(cmd);
@@ -231,16 +231,16 @@ HLMultiplayerRules::ConsoleCommand(NSClientPlayer pp, string cmd)
 		pp.velocity = Route_GetJumpVelocity(pp.origin, trace_endpos, pp.gravity);
 		break;
 	default:
-		return (0);
+		return (false);
 	}
 
-	return (1);
+	return (true);
 }
 
-int
+bool
 HLMultiplayerRules::MonstersSpawn(void)
 {
-	return (FALSE);
+	return (false);
 }
 
 void
@@ -261,7 +261,7 @@ CSEv_HLDM_Chooseteam_s(string teamname)
 		return;
 	if (rules.IsMultiplayer() == false)
 		return;
-	if (rules.IsTeamPlay() == false)
+	if (rules.IsTeamplay() == false)
 		return;
 	if (pl.health <= 0)
 		return;
@@ -274,6 +274,7 @@ CSEv_HLDM_Chooseteam_s(string teamname)
 			pl.team = (float)i + 1;
 			forceinfokey(pl, "*team", sprintf("%d", pl.team));
 			Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
+			return;
 		}
 	}
 }

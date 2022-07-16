@@ -46,13 +46,13 @@ class HLMultiplayerRules:HLGameRules
 
 	virtual void(void) FrameStart;
 	virtual void(void) CheckRules;
-	virtual int(void) MonstersSpawn;
+	virtual bool(void) MonstersSpawn;
 
 	/* client */
 	virtual void(NSClientPlayer) PlayerSpawn;
 	virtual void(NSClientPlayer) PlayerDeath;
-	virtual float(NSClientPlayer, string) ConsoleCommand;
+	virtual bool(NSClientPlayer, string) ConsoleCommand;
 	virtual bool(void) IsMultiplayer;
-	virtual bool(void) IsTeamPlay;
+	virtual bool(void) IsTeamplay;
 	virtual void(void) InitPostEnts;
 };
