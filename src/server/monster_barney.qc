@@ -60,6 +60,8 @@ class monster_barney:NSTalkMonster
 	virtual void(void) AttackHolster;
 	virtual int(void) AttackMelee;
 	virtual int(void) AttackRanged;
+
+	virtual void(monsterState_e, monsterState_e) StateChanged;
 };
 
 int
@@ -114,6 +116,25 @@ monster_barney::AttackRanged(void)
 	return (1);
 }
 
+
+void
+monster_barney::StateChanged(monsterState_e oldState, monsterState_e newState)
+{
+	super::StateChanged(oldState, newState);
+
+	switch (newState) {
+	case MONSTER_AIMING:
+		if (oldState == MONSTER_ALERT)
+			AttackDraw();
+		break;
+	case MONSTER_ALERT:
+		if (oldState == MONSTER_AIMING)
+			AttackHolster();
+		break;
+	}
+}
+
+
 void
 monster_barney::OnPlayerUse(void)
 {
@@ -128,31 +149,30 @@ monster_barney::OnPlayerUse(void)
 void
 monster_barney::Pain(void)
 {
+	/* don't bother if we're fully dead */
+	if (IsAlive() == false)
+		return;
+
 	super::Pain();
 
-	WarnAllies();
-
-	if (m_flAnimTime > time) {
+#if 0
+	if (m_flAnimTime > time)
 		return;
-	}
 
-	if (random() < 0.25f) {
+	if (random() < 0.25f)
 		return;
-	}
+#endif
 
 	Sound_Speak(this, "monster_barney.pain");
 
 	AnimPlay(BA_FLINCH_LA + floor(random(0, 5)));
 	m_flAttackThink = m_flAnimTime;
-	m_iFlags |= MONSTER_FEAR;
 }
 
 void 
 monster_barney::Death(void)
 {
-	WarnAllies();
-
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(25 + floor(random(0, 6)));
 		Sound_Speak(this, "monster_barney.die");
 	}
