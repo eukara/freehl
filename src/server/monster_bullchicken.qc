@@ -90,7 +90,7 @@ void
 monster_bullchicken::IdleNoise(void)
 {
 	/* don't make noise if we're dead (corpse) */
-	if (style == MONSTER_DEAD) {
+	if (IsAlive() == false) {
 		return;
 	}
 
@@ -125,7 +125,7 @@ void
 monster_bullchicken::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 
 	/* two different animations */
 	SetFrame((random() < 0.5) ? BULL_DIE : BULL_DIE2);

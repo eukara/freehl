@@ -248,7 +248,7 @@ void
 monster_human_grunt::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		/* headshots == different animation */
 		/* this animation may not have been used, but it looks cool */
 		if (g_dmg_iHitBody == BODY_HEAD) {

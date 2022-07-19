@@ -155,13 +155,11 @@ monster_barney::Pain(void)
 
 	super::Pain();
 
-#if 0
-	if (m_flAnimTime > time)
+	if (InAnimation() == true)
 		return;
 
 	if (random() < 0.25f)
 		return;
-#endif
 
 	Sound_Speak(this, "monster_barney.pain");
 

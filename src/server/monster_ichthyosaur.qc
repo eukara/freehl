@@ -77,7 +77,7 @@ void
 monster_ichthyosaur::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		int r = floor(random(0,3));
 
 		switch (r) {
@@ -103,7 +103,7 @@ void
 monster_ichthyosaur::IdleNoise(void)
 {
 	/* don't make noise if we're dead (corpse) */
-	if (style == MONSTER_DEAD) {
+	if (IsAlive() == false) {
 		return;
 	}
 

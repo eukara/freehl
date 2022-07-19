@@ -62,7 +62,7 @@ void
 monster_bigmomma::IdleNoise(void)
 {
 	/* don't make noise if we're dead (corpse) */
-	if (style == MONSTER_DEAD) {
+	if (IsAlive() == false) {
 		return;
 	}
 
@@ -97,7 +97,7 @@ void
 monster_bigmomma::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(GON_DIE);
 		Sound_Play(this, CHAN_VOICE, "monster_bigmomma.die");
 	}

@@ -47,7 +47,7 @@ void
 monster_sentry::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(SENT_DIE);
 		Sound_Play(this, CHAN_VOICE, "monster_sentry.die");
 	}

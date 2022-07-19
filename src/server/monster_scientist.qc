@@ -106,7 +106,7 @@ monster_scientist::Pain(void)
 		return;
 	}
 
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		Sound_Speak(this, "monster_scientist.pain");
 		SetFrame(SCIA_FLINCH + floor(random(0, 6)));
 		m_iFlags |= MONSTER_FEAR;
@@ -119,7 +119,7 @@ monster_scientist::Death(void)
 {
 	WarnAllies();
 
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(SCIA_DIE_SIMPLE + floor(random(0, 6)));
 		Sound_Speak(this, "monster_scientist.die");
 	}

@@ -32,7 +32,7 @@ void
 monster_cockroach::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		Sound_Play(this, CHAN_VOICE, "monster_cockroach.die");
 	}
 

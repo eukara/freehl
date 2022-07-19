@@ -151,7 +151,7 @@ void
 monster_houndeye::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(HE_DIE + floor(random(0, 4)));
 
 		Sound_Play(this, CHAN_VOICE, "monster_houndeye.die");
@@ -165,7 +165,7 @@ void
 monster_houndeye::IdleNoise(void)
 {
 	/* don't make noise if we're dead (corpse) */
-	if (style == MONSTER_DEAD) {
+	if (IsAlive() == false) {
 		return;
 	}
 

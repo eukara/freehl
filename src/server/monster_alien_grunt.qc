@@ -93,7 +93,7 @@ void
 monster_alien_grunt::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		/* headshots == different animation */
 		if (g_dmg_iHitBody == BODY_HEAD) {
 			if (random() < 0.5) {
@@ -116,7 +116,7 @@ void
 monster_alien_grunt::IdleNoise(void)
 {
 	/* don't make noise if we're dead (corpse) */
-	if (style == MONSTER_DEAD) {
+	if (IsAlive() == false) {
 		return;
 	}
 

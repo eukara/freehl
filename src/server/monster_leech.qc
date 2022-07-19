@@ -56,7 +56,7 @@ void
 monster_leech::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(LEECH_DIE);
 		think = DeathEnd;
 		nextthink = time + 1.0f;

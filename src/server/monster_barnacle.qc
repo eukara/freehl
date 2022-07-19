@@ -52,7 +52,7 @@ void
 monster_barnacle::Death(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (style != MONSTER_DEAD) {
+	if (IsAlive() == true) {
 		SetFrame(BCL_DIE);
 		Sound_Play(this, CHAN_VOICE, "monster_barnacle.die");
 	}
