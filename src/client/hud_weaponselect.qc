@@ -82,9 +82,12 @@ void
 HUD_DrawWeaponSelect_Trigger(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
+
+	if (pl.activeweapon != pSeat->m_iHUDWeaponSelected)
+		sendevent("PlayerSwitchWeapon", "i", pSeat->m_iHUDWeaponSelected);
+
 	pl.activeweapon = pSeat->m_iHUDWeaponSelected;
-	
-	sendevent("PlayerSwitchWeapon", "i", pSeat->m_iHUDWeaponSelected);
+
 	sound(pSeat->m_ePlayer, CHAN_ITEM, "common/wpn_select.wav", 0.5f, ATTN_NONE);
 	pSeat->m_iHUDWeaponSelected = pSeat->m_flHUDWeaponSelectTime = 0;
 }

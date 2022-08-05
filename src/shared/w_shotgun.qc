@@ -82,6 +82,7 @@ void w_shotgun_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_shotgun.single");
+	Sound_Precache("weapon_shotgun.empty");
 	Sound_Precache("weapon_shotgun.double");
 	Sound_Precache("weapon_shotgun.reload");
 	Sound_Precache("weapon_shotgun.cock");
@@ -177,6 +178,17 @@ w_shotgun_reload(player pl)
 void
 w_shotgun_primary(player pl)
 {
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
+
+	/* Ammo check */
+	if ((pl.shotgun_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
+		return;
+	}
 
 	if (pl.w_attack_next) {
 		w_shotgun_release(pl);
@@ -232,6 +244,17 @@ w_shotgun_primary(player pl)
 void
 w_shotgun_secondary(player pl)
 {
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
+
+	/* Ammo check */
+	if ((pl.shotgun_mag <= 1) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
+		return;
+	}
 
 	if (pl.w_attack_next) {
 		w_shotgun_release(pl);

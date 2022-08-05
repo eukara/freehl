@@ -184,14 +184,12 @@ void w_snark_deploy(void)
 
 void w_snark_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0) {
+	if (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)
 		return;
-	}
-
-	/* Ammo check */
-	if (pl.ammo_snark <= 0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.ammo_snark <= 0)
+		return;
 
 	pl.ammo_snark--;
 

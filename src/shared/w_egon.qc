@@ -115,12 +115,11 @@ void w_egon_release(player pl);
 
 void w_egon_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
 
 	/* Ammo check */
-	if (pl.ammo_uranium <= 0) {
+	if ((pl.ammo_uranium <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 		w_egon_release(pl);
 		return;
 	}

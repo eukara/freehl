@@ -89,6 +89,7 @@ w_mp5_precache(void)
 #ifdef SERVER
 	Sound_Precache("weapon_mp5.shoot");
 	Sound_Precache("weapon_mp5.gl");
+	Sound_Precache("weapon_mp5.empty");
 	precache_model("models/w_9mmar.mdl");
 	precache_model("models/grenade.mdl");
 #else
@@ -162,13 +163,17 @@ w_mp5_holster(player pl)
 void
 w_mp5_primary(player pl)
 {
-
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* Ammo check */
-	if (pl.mp5_mag <= 0) {
+	if ((pl.mp5_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 
@@ -216,13 +221,17 @@ w_mp5_primary(player pl)
 void
 w_mp5_secondary(player pl)
 {
-
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
-
-	if (pl.ammo_m203_grenade <= 0) {
+	/* Ammo check */
+	if ((pl.ammo_m203_grenade <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 

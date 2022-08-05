@@ -51,6 +51,7 @@ w_python_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_357.shoot");
+	Sound_Precache("weapon_357.empty");
 	Sound_Precache("weapon_357.reload");
 	precache_model("models/w_357.mdl");
 #else
@@ -127,13 +128,17 @@ w_python_holster(player pl)
 void
 w_python_primary(player pl)
 {
-
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* Ammo check */
-	if (pl.python_mag <= 0) {
+	if ((pl.python_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_357.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 

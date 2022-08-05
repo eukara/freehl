@@ -7,6 +7,10 @@ weapon_357.shoot
 	sample weapons/357_shot2.wav
 	distshader weapon_357.shoot_dist
 }
+weapon_357.empty
+{
+	sample weapons/357_cock1.wav
+}
 weapon_357.shoot_dist
 {
 	volume 0.1
@@ -115,6 +119,10 @@ weapon_mp5.gl
 	alerts
 	sample weapons/glauncher.wav
 }
+weapon_mp5.empty
+{
+	sample weapons/357_cock1.wav
+}
 
 weapon_satchel.bounce
 {
@@ -159,6 +167,10 @@ weapon_shotgun.double
 	sample weapons/dbarrel1.wav
 	distshader weapon_shotgun.distance
 }
+weapon_shotgun.empty
+{
+	sample weapons/357_cock1.wav
+}
 weapon_shotgun.distance
 {
 	volume 0.15
@@ -197,4 +209,9 @@ weapon_snark.hunt
 	sample squeek/sqk_hunt1.wav
 	sample squeek/sqk_hunt2.wav
 	sample squeek/sqk_hunt3.wav
+}
+
+weapon_gauss.empty
+{
+	sample weapons/357_cock1.wav
 }

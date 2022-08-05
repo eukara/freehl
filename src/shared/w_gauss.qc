@@ -48,6 +48,7 @@ void w_gauss_precache(void)
 	precache_sound("weapons/electro5.wav");
 	precache_sound("weapons/electro6.wav");
 	precache_sound("weapons/gauss2.wav");
+	Sound_Precache("weapon_gauss.empty");
 #else
 	precache_sound("ambience/pulsemachine.wav");
 	precache_model("models/v_gauss.mdl");
@@ -116,7 +117,7 @@ void w_gauss_fire(player pl, int one)
 		}
 
 	if (trace_ent.takedamage == DAMAGE_YES) {
-		Damage_Apply(trace_ent, self, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
+		Damage_Apply(trace_ent, pl, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
 		sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
 	}
 
@@ -144,7 +145,7 @@ void w_gauss_fire(player pl, int one)
 		traceline(src, endpos, FALSE, pl);
 		iLoop--;
 		if (trace_ent.takedamage == DAMAGE_YES) {
-			Damage_Apply(trace_ent, self, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
+			Damage_Apply(trace_ent, pl, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
 			sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
 		}
 	}
@@ -153,12 +154,17 @@ void w_gauss_fire(player pl, int one)
 
 void w_gauss_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* Ammo check */
-	if (pl.ammo_uranium < 2) {
+	if ((pl.ammo_uranium < 2) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_gauss.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 
@@ -171,7 +177,7 @@ void w_gauss_primary(player pl)
 
 	pl.ammo_uranium -= 2;
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
@@ -198,7 +204,7 @@ void w_gauss_release(player pl)
 	} else if (pl.mode_tempstate == 2) {
 		Weapons_ViewAnimation(pl, GAUSS_FIRE1);
 
-		if (self.flags & FL_CROUCHING)
+		if (pl.flags & FL_CROUCHING)
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
@@ -235,9 +241,20 @@ void w_gauss_release(player pl)
 
 void w_gauss_secondary(player pl)
 {
-	if (pl.w_attack_next) {
+	if (pl.w_attack_next > 0.0)
+		return;
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
+
+	/* Ammo check */
+	if ((pl.ammo_uranium <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_gauss.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
+
 	pl.w_attack_next = 0.1f;
 
 	/* Ammo check */
@@ -311,7 +328,7 @@ void w_gauss_crosshair(player pl)
 
 float w_gauss_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMGAUSS : ANIM_AIMGAUSS;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMGAUSS : ANIM_AIMGAUSS;
 }
 
 void w_gauss_hudpic(player pl, int selected, vector pos, float a)
