@@ -33,6 +33,11 @@ var string g_hud7_spr;
 var string g_cross_spr;
 var string g_laser_spr;
 
+/* muzzleflash indices */
+var int MUZZLE_SMALL;
+var int MUZZLE_RIFLE;
+var int MUZZLE_WEIRD;
+
 struct
 {
 	/* hud.c */
