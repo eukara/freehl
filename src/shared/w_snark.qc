@@ -213,14 +213,17 @@ void w_snark_primary(player pl)
 	pl.w_attack_next = 0.25f;
 
 }
+
 void w_snark_secondary(player pl)
 {
 	
 }
+
 void w_snark_reload(player pl)
 {
 	
 }
+
 void w_snark_release(player pl)
 {
 	int r;
@@ -298,7 +301,6 @@ void w_snark_hud(player pl)
 void w_snark_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr,
 			[0,135/256], [170/256,45/256],

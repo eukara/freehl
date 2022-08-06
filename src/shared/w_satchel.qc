@@ -158,7 +158,6 @@ w_satchel_holster(player pl)
 void
 w_satchel_primary(player pl)
 {
-
 	if (pl.w_attack_next) {
 		return;
 	}
@@ -184,6 +183,7 @@ w_satchel_primary(player pl)
 		s_satchel_drop(pl, pl.origin, throw);
 		pl.satchel_chg++;
 		pl.ammo_satchel--;
+		pl.mode_tempstate = 1; /* mark us as having deployed something */
 
 		if (pl.flags & FL_CROUCHING)
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
@@ -218,7 +218,6 @@ w_satchel_primary(player pl)
 void
 w_satchel_secondary(player pl)
 {
-
 	if (pl.w_attack_next) {
 		return;
 	}
@@ -245,9 +244,10 @@ w_satchel_secondary(player pl)
 
 	pl.satchel_chg++;
 	pl.ammo_satchel--;
+	pl.mode_tempstate = 1; /* mark us as having deployed something */
 
 	pl.w_attack_next = 1.0f;
-	pl.w_idle_next = 2.5f;
+	pl.w_idle_next = 0.5f;
 }
 
 void
@@ -259,8 +259,16 @@ w_satchel_reload(player pl)
 void
 w_satchel_release(player pl)
 {
-
 	if (pl.w_idle_next > 0.0) {
+		return;
+	}
+
+	/* keep track of the model via tempstates */
+	if (pl.satchel_chg < 1i && pl.mode_tempstate != 0) {
+		pl.mode_tempstate = 0;
+		Weapons_SetModel("models/v_satchel.mdl");
+		Weapons_ViewAnimation(pl, SATCHEL_DRAW);
+		pl.w_idle_next = 15.0f;
 		return;
 	}
 
@@ -321,7 +329,7 @@ w_satchel_type(player pl)
 weapon_t w_satchel =
 {
 	.name		= "satchel",
-	.id			= ITEM_SATCHEL,
+	.id		= ITEM_SATCHEL,
 	.slot		= 4,
 	.slot_pos	= 1,
 	.weight		= -20,

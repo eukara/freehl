@@ -124,7 +124,6 @@ int
 w_shotgun_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-
 	if (new) {
 		pl.shotgun_mag = 8;
 		return (1);
@@ -160,7 +159,6 @@ void w_shotgun_release(player pl);
 void
 w_shotgun_reload(player pl)
 {
-
 	if (pl.shotgun_mag >= 8) {
 		return;
 	}
@@ -308,7 +306,6 @@ w_shotgun_secondary(player pl)
 void
 w_shotgun_release(player pl)
 {
-
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.mode_tempstate == SHOTTY_IDLE && pl.shotgun_mag == 0 && pl.ammo_buckshot > 0) {
@@ -416,7 +413,6 @@ w_shotgun_hudpic(player pl, int selected, vector pos, float a)
 int
 w_shotgun_isempty(player pl)
 {
-
 	if (pl.shotgun_mag <= 0 && pl.ammo_buckshot <= 0)
 		return 1;
 

@@ -305,7 +305,6 @@ w_tripmine_primary(player pl)
 void
 w_tripmine_release(player pl)
 {
-
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
@@ -360,7 +359,6 @@ void
 w_tripmine_hudpic(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
-
 	if (selected) {
 		drawsubpic(pos, [170,45], g_hud6_spr, [0,90/256], [170/256,45/256], g_hud_color, a, DRAWFLAG_ADDITIVE);
 	} else {
@@ -374,7 +372,6 @@ w_tripmine_hudpic(player pl, int selected, vector pos, float a)
 int
 w_tripmine_isempty(player pl)
 {
-
 	if (pl.ammo_tripmine <= 0)
 		return 1;
 
