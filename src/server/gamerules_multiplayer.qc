@@ -240,7 +240,7 @@ HLMultiplayerRules::ConsoleCommand(NSClientPlayer pp, string cmd)
 bool
 HLMultiplayerRules::MonstersSpawn(void)
 {
-	return (false);
+	return (autocvar(mp_allowmonsters, 0)) ? true : false;
 }
 
 void
