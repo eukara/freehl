@@ -46,11 +46,11 @@ HUD_DrawWeaponSelect_Forward(void)
 
 	pSeat->m_flHUDWeaponSelectTime = time + 3;
 
-	if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty) {
+	if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
+		HUD_DrawWeaponSelect_Forward();
+	else if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty)
 		if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty(pl))
 			HUD_DrawWeaponSelect_Forward();
-	} else if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
-		HUD_DrawWeaponSelect_Forward();
 }
 
 void
@@ -75,11 +75,11 @@ HUD_DrawWeaponSelect_Back(void)
 
 	pSeat->m_flHUDWeaponSelectTime = time + 3;
 
-	if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty) {
+	if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
+		HUD_DrawWeaponSelect_Back();
+	else if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty)
 		if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty(pl))
 			HUD_DrawWeaponSelect_Back();
-	} else if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
-		HUD_DrawWeaponSelect_Back();
 }
 
 void
