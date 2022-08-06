@@ -88,6 +88,7 @@ FX_GaussBeam_Piece(vector vecPos, vector vecFlyDir)
 	piece.alpha = 1.0f;
 	piece.predraw = FX_GaussBeam_Piece_Fade;
 	piece.effects = EF_ADDITIVE;
+	Decals_Place(vecPos, sprintf("{shot%d", floor(random(1,6))));
 
 	float r = random();
 
