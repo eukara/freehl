@@ -306,8 +306,7 @@ w_satchel_hudpic(player pl, int selected, vector pos, float a)
 int
 w_satchel_isempty(player pl)
 {
-
-	if (pl.satchel_chg <= 0)
+	if (pl.ammo_satchel <= 0)
 		return 1;
 
 	return 0;
