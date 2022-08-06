@@ -181,11 +181,11 @@ w_satchel_primary(player pl)
 		
 		Weapons_MakeVectors(pl);
 		throw = pl.velocity + (v_forward * 274);
-		s_satchel_drop(self, pl.origin, throw);
+		s_satchel_drop(pl, pl.origin, throw);
 		pl.satchel_chg++;
 		pl.ammo_satchel--;
 
-		if (self.flags & FL_CROUCHING)
+		if (pl.flags & FL_CROUCHING)
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
@@ -235,10 +235,10 @@ w_satchel_secondary(player pl)
 	vector throw;
 	Weapons_MakeVectors(pl);
 	throw = pl.velocity + (v_forward * 274);
-	s_satchel_drop(self, pl.origin, throw);
+	s_satchel_drop(pl, pl.origin, throw);
 #endif
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
@@ -275,7 +275,7 @@ w_satchel_release(player pl)
 float
 w_satchel_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
 void

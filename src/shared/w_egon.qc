@@ -278,7 +278,7 @@ void w_egon_crosshair(player pl)
 
 float w_egon_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMEGON : ANIM_AIMEGON;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMEGON : ANIM_AIMEGON;
 }
 
 void w_egon_hudpic(player pl, int selected, vector pos, float a)

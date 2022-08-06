@@ -218,7 +218,7 @@ w_crossbow_primary(player pl)
 		entity bolt = spawn();
 		setmodel(bolt, "models/crossbow_bolt.mdl");
 		setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16));
-		bolt.owner = self;
+		bolt.owner = pl;
 		bolt.velocity = v_forward * 2000;
 		bolt.movetype = MOVETYPE_FLYMISSILE;
 		bolt.solid = SOLID_BBOX;
@@ -248,7 +248,7 @@ w_crossbow_primary(player pl)
 		Weapons_ViewAnimation(pl, CROSSBOW_FIRE3);
 	}
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTBOW, 0.25f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTBOW, 0.25f);

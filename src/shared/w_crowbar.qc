@@ -100,10 +100,10 @@ w_crowbar_primary(player pl)
 	src = pl.origin + pl.view_ofs;
 
 	/* make sure we can gib corpses */
-	int oldhitcontents = self.hitcontentsmaski;
-	self.hitcontentsmaski = CONTENTBITS_POINTSOLID | CONTENTBIT_CORPSE;
+	int oldhitcontents = pl.hitcontentsmaski;
+	pl.hitcontentsmaski = CONTENTBITS_POINTSOLID | CONTENTBIT_CORPSE;
 	traceline(src, src + (v_forward * 32), FALSE, pl);
-	self.hitcontentsmaski = oldhitcontents;
+	pl.hitcontentsmaski = oldhitcontents;
 
 	if (trace_fraction >= 1.0) {
 		pl.w_attack_next = 0.5f;
@@ -124,13 +124,13 @@ w_crowbar_primary(player pl)
 		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK3MISS:CBAR_ATTACK3HIT);
 	}
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTCROWBAR, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
 
 #ifdef SERVER
-	Sound_Play(self, CHAN_WEAPON, "weapon_crowbar.miss");
+	Sound_Play(pl, CHAN_WEAPON, "weapon_crowbar.miss");
 
 	if (trace_fraction >= 1.0) {
 		return;
@@ -146,10 +146,10 @@ w_crowbar_primary(player pl)
 	if (trace_ent.takedamage) {
 		Damage_Apply(trace_ent, pl, Skill_GetValue("plr_crowbar", 10), WEAPON_CROWBAR, DMG_BLUNT);
 		if (trace_ent.iBleeds) {
-			Sound_Play(self, CHAN_WEAPON, "weapon_crowbar.hitbody");
+			Sound_Play(pl, CHAN_WEAPON, "weapon_crowbar.hitbody");
 		}
 	} else {
-		Sound_Play(self, CHAN_WEAPON, "weapon_crowbar.hit");
+		Sound_Play(pl, CHAN_WEAPON, "weapon_crowbar.hit");
 	}
 #endif
 }
@@ -157,7 +157,6 @@ w_crowbar_primary(player pl)
 void
 w_crowbar_release(player pl)
 {
-
 	if (pl.w_idle_next) {
 		return;
 	}
@@ -169,7 +168,7 @@ w_crowbar_release(player pl)
 float
 w_crowbar_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
 }
 
 void

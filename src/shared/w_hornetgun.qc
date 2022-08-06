@@ -111,7 +111,7 @@ w_hornetgun_shoothornet(player pl)
 	entity bolt = spawn();
 	setmodel(bolt, "models/hornet.mdl");
 	setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16) + (v_up * -8));
-	bolt.owner = self;
+	bolt.owner = pl;
 	bolt.velocity = v_forward * 1000;
 	bolt.movetype = MOVETYPE_FLY;
 	bolt.solid = SOLID_BBOX;
@@ -182,7 +182,7 @@ w_hornetgun_primary(player pl)
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
@@ -212,7 +212,7 @@ w_hornetgun_secondary(player pl)
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
@@ -260,7 +260,7 @@ w_hornetgun_crosshair(player pl)
 float
 w_hornetgun_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMHIVE : ANIM_AIMHIVE;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMHIVE : ANIM_AIMHIVE;
 }
 
 void

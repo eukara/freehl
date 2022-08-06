@@ -282,7 +282,7 @@ w_tripmine_primary(player pl)
 
 	Weapons_ViewAnimation(pl, TRIPMINE_FIRE2);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTTRIPMINE, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTTRIPMINE, 0.5f);
@@ -343,7 +343,7 @@ w_tripmine_release(player pl)
 float
 w_tripmine_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMTRIPMINE : ANIM_AIMTRIPMINE;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMTRIPMINE : ANIM_AIMTRIPMINE;
 }
 
 void

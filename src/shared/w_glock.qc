@@ -188,7 +188,7 @@ w_glock_primary(player pl)
 		Weapons_ViewAnimation(pl, GLOCK_SHOOT_EMPTY);
 	}
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOT1HAND, 0.2f);
@@ -232,7 +232,7 @@ w_glock_secondary(player pl)
 		Weapons_ViewAnimation(pl, GLOCK_SHOOT_EMPTY);
 	}
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOT1HAND, 0.2f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOT1HAND, 0.2f);
@@ -312,7 +312,7 @@ w_glock_release(player pl)
 float
 w_glock_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIM1HAND : ANIM_AIM1HAND;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIM1HAND : ANIM_AIM1HAND;
 }
 
 void

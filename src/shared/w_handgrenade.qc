@@ -191,7 +191,7 @@ void w_handgrenade_release(player pl)
 		pl.w_attack_next = 1.0f;
 		pl.w_idle_next = 0.5f;
 
-		if (self.flags & FL_CROUCHING)
+		if (pl.flags & FL_CROUCHING)
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTCROWBAR, 0.41f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
@@ -220,7 +220,7 @@ void w_handgrenade_release(player pl)
 float
 w_handgrenade_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
 }
 
 void

@@ -173,12 +173,12 @@ void w_snark_holster(player pl)
 }
 
 #ifdef SERVER
-void w_snark_deploy(void)
+void w_snark_deploy(entity snark_owner)
 {
-	monster_snark snark = spawn(monster_snark, real_owner: self, goalentity: self, spawnflags: MSF_MULTIPLAYER);
-	makevectors(self.v_angle);
+	monster_snark snark = spawn(monster_snark, real_owner: snark_owner, goalentity: snark_owner, spawnflags: MSF_MULTIPLAYER);
+	makevectors(snark_owner.v_angle);
 	snark.Respawn();
-	snark.SetOrigin(self.origin + v_forward * 32);
+	snark.SetOrigin(snark_owner.origin + v_forward * 32);
 }
 #endif
 
@@ -196,13 +196,13 @@ void w_snark_primary(player pl)
 	/* Audio-Visual Bit */
 	Weapons_ViewAnimation(pl, SNARK_THROW);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
 
 #ifdef SERVER
-	w_snark_deploy();
+	w_snark_deploy(pl);
 
 	if (pl.ammo_snark <= 0) {
 		Weapons_RemoveItem(pl, WEAPON_SNARK);
@@ -283,7 +283,7 @@ string w_snark_deathmsg(void)
 
 float w_snark_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
 void w_snark_hud(player pl)

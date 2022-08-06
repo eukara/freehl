@@ -143,7 +143,7 @@ void w_rpg_primary(player pl)
 	entity rocket = spawn();
 	setmodel(rocket, "models/rpgrocket.mdl");
 	setorigin(rocket, Weapons_GetCameraPos(pl) + (v_forward * 16));
-	rocket.owner = self;
+	rocket.owner = pl;
 	rocket.movetype = MOVETYPE_FLY;
 	rocket.solid = SOLID_BBOX;
 	//bolt.flags |= FL_LAGGEDMOVE;
@@ -167,7 +167,7 @@ void w_rpg_primary(player pl)
 	Weapons_ViewAnimation(pl, RPG_FIRE2);
 	Weapons_ViewPunchAngle(pl, [-10,0,0]);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTRPG, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTRPG, 0.43f);
@@ -253,7 +253,7 @@ void w_rpg_secondary(player pl)
 
 float w_rpg_aimanim(player pl)
 {
-	return self.flags & FL_CROUCHING ? ANIM_CR_AIMRPG : ANIM_AIMRPG;
+	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMRPG : ANIM_AIMRPG;
 }
 
 void w_rpg_hudpic(player pl, int selected, vector pos, float a)
