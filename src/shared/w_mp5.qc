@@ -163,13 +163,13 @@ w_mp5_holster(player pl)
 void
 w_mp5_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0)
+	if (pl.w_attack_next > 0.0f)
 		return;
 	if (pl.gflags & GF_SEMI_TOGGLED)
 		return;
 
 	/* Ammo check */
-	if ((pl.mp5_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+	if ((pl.mp5_mag <= 0i) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
 #endif
@@ -209,7 +209,7 @@ w_mp5_primary(player pl)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");
 #endif
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.1f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTMP5, 0.1f);
@@ -221,13 +221,13 @@ w_mp5_primary(player pl)
 void
 w_mp5_secondary(player pl)
 {
-	if (pl.w_attack_next > 0.0)
+	if (pl.w_attack_next > 0.0f)
 		return;
 	if (pl.gflags & GF_SEMI_TOGGLED)
 		return;
 
 	/* Ammo check */
-	if ((pl.ammo_m203_grenade <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+	if ((pl.ammo_m203_grenade <= 0i) ? true : false || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
 #endif
@@ -254,11 +254,11 @@ w_mp5_secondary(player pl)
 	Weapons_MakeVectors(pl);
 	entity gren = spawn();
 	setmodel(gren, "models/grenade.mdl");
-	setorigin(gren, Weapons_GetCameraPos(pl) + (v_forward * 16));
-	gren.owner = self;
-	gren.velocity = v_forward * 800;
+	setorigin(gren, Weapons_GetCameraPos(pl) + (v_forward * 16.0f));
+	gren.owner = pl;
+	gren.velocity = v_forward * 800.0f;
 	gren.angles = vectoangles(gren.velocity);
-	gren.avelocity[0] = random(-100, -500);
+	gren.avelocity[0] = random(-100.0f, -500.0f);
 	gren.gravity = 0.5f;
 	gren.movetype = MOVETYPE_BOUNCE;
 	//gren.flags |= FL_LAGGEDMOVE;
@@ -268,10 +268,10 @@ w_mp5_secondary(player pl)
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.gl");
 #endif
 
-	Weapons_ViewPunchAngle(pl, [-10,0,0]);
+	Weapons_ViewPunchAngle(pl, [-10.0f, 0.0f, 0.0f]);
 	Weapons_ViewAnimation(pl, MP5_GRENADE);
 
-	if (self.flags & FL_CROUCHING)
+	if (pl.flags & FL_CROUCHING)
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTMP5, 0.45f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTMP5, 0.45f);
@@ -388,7 +388,7 @@ w_mp5_crosshair(player pl)
 float
 w_mp5_aimanim(player pl)
 {
-	return self.flags & ANIM_CR_AIMMP5 ? ANIM_CR_AIMCROWBAR : ANIM_AIMMP5;
+	return pl.flags & ANIM_CR_AIMMP5 ? ANIM_CR_AIMCROWBAR : ANIM_AIMMP5;
 }
 
 void

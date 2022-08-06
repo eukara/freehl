@@ -57,6 +57,7 @@ void w_egon_precache(void)
 	precache_sound("weapons/egon_run3.wav");
 	precache_sound("weapons/egon_off1.wav");
 	precache_model("models/w_egon.mdl");
+	Sound_Precache("weapon_egon.empty");
 #else
 	TRAIL_EGONBEAM = particleeffectnum("weapon_egon.beam");
 	precache_model("models/v_egon.mdl");
@@ -115,11 +116,20 @@ void w_egon_release(player pl);
 
 void w_egon_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0)
+	if (pl.w_attack_next > 0.0f) {
 		return;
+	}
+	if (pl.gflags & GF_SEMI_TOGGLED) {
+		w_egon_release(pl);
+		return;
+	}
 
 	/* Ammo check */
-	if ((pl.ammo_uranium <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+	if ((pl.ammo_uranium <= 0i) ? true : false || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_egon.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		w_egon_release(pl);
 		return;
 	}

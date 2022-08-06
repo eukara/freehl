@@ -41,6 +41,7 @@ void w_rpg_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_rpg.shoot");
+	Sound_Precache("weapon_rpg.empty");
 	precache_model("models/w_rpg.mdl");
 	precache_model("models/rpgrocket.mdl");
 #else
@@ -100,12 +101,17 @@ void w_rpg_holster(player pl)
 
 void w_rpg_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
-	/* Ammo check */
-	if (pl.rpg_mag <= 0) {
+	/* ammo check */
+	if ((pl.rpg_mag <= 0i) ? true : false) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 
@@ -172,7 +178,6 @@ void w_rpg_primary(player pl)
 
 void w_rpg_reload(player pl)
 {
-
 	if (pl.w_attack_next > 0) {
 		return;
 	}
@@ -204,7 +209,6 @@ void w_rpg_reload(player pl)
 
 void w_rpg_release(player pl)
 {
-
 	/* auto-reload if need be */
 	if (pl.w_attack_next <= 0.0)
 	if (pl.rpg_mag == 0 && pl.ammo_rocket > 0) {

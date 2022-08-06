@@ -84,6 +84,7 @@ w_glock_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_glock.fire");
+	Sound_Precache("weapon_glock.empty");
 	precache_model("models/w_9mmhandgun.mdl");
 	precache_model("models/shell.mdl");
 #else
@@ -154,13 +155,17 @@ w_glock_holster(player pl)
 void
 w_glock_primary(player pl)
 {
-
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* ammo check */
-	if (!pl.glock_mag) {
+	if ((pl.glock_mag <= 0i) ? true : false) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_glock.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 
@@ -195,13 +200,17 @@ w_glock_primary(player pl)
 void
 w_glock_secondary(player pl)
 {
-
-	if (pl.w_attack_next > 0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* ammo check */
-	if (!pl.glock_mag) {
+	if ((pl.glock_mag <= 0i) ? true : false) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_glock.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 

@@ -44,6 +44,7 @@ w_crossbow_precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_crossbow.fire");
+	Sound_Precache("weapon_crossbow.empty");
 	Sound_Precache("weapon_crossbow.hit");
 	Sound_Precache("weapon_crossbow.hitbody");
 	Sound_Precache("weapon_crossbow.reload");
@@ -166,12 +167,17 @@ void Crossbolt_Touch(void) {
 void
 w_crossbow_primary(player pl)
 {
-	if (pl.w_attack_next > 0.0) {
+	if (pl.w_attack_next > 0.0)
 		return;
-	}
+	if (pl.gflags & GF_SEMI_TOGGLED)
+		return;
 
 	/* ammo check */
-	if (pl.crossbow_mag <= 0) {
+	if ((pl.crossbow_mag <= 0i) ? true : false) {
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_crossbow.empty");
+#endif
+		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
 	}
 
