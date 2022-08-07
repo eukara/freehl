@@ -103,7 +103,6 @@ int
 w_mp5_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-
 	if (new) {
 		#ifdef GEARBOX
 			pl.mp5_mag = 50;
@@ -169,7 +168,8 @@ w_mp5_primary(player pl)
 		return;
 
 	/* Ammo check */
-	if ((pl.mp5_mag <= 0i) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
+	bool out_of_ammo = (pl.mp5_mag <= 0i) ? true : false;
+	if (out_of_ammo || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
 #endif
@@ -227,7 +227,8 @@ w_mp5_secondary(player pl)
 		return;
 
 	/* Ammo check */
-	if ((pl.ammo_m203_grenade <= 0i) ? true : false || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
+	bool out_of_ammo = (pl.ammo_m203_grenade <= 0i) ? true : false;
+	if (out_of_ammo || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
 #endif

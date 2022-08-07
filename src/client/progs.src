@@ -1,4 +1,4 @@
-#pragma target fte
+#pragma target fte_6301
 #pragma progs_dat  "../../csprogs.dat"
 
 #define CSQC

@@ -45,18 +45,22 @@ void w_handgrenade_precache(void)
 	precache_model("models/p_grenade.mdl");
 #endif
 }
+
 void w_handgrenade_updateammo(player pl)
 {
 	Weapons_UpdateAmmo(pl, -1, pl.ammo_handgrenade, -1);
 }
+
 string w_handgrenade_wmodel(void)
 {
 	return "models/w_grenade.mdl";
 }
+
 string w_handgrenade_pmodel(player pl)
 {
 	return "models/p_grenade.mdl";
 }
+
 string w_handgrenade_deathmsg(void)
 {
 	return "";

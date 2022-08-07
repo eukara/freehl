@@ -17,29 +17,14 @@
 /* all potential SendFlags bits we can possibly send */
 enumflags
 {
-	PLAYER_KEEPALIVE,
-	PLAYER_MODELINDEX,
-	PLAYER_ORIGIN,
-	PLAYER_ORIGIN_Z,
-	PLAYER_ANGLES_X,
-	PLAYER_ANGLES_Y,
-	PLAYER_COLORMAP,
-	PLAYER_VELOCITY,
-	PLAYER_VELOCITY_Z,
-	PLAYER_FLAGS,
-	PLAYER_WEAPON,
-	PLAYER_ITEMS,
-	PLAYER_HEALTH,
-	PLAYER_ARMOR,
-	PLAYER_MOVETYPE,
-	PLAYER_VIEWOFS,
-	PLAYER_TOPFRAME,
+	PLAYER_TOPFRAME = PLAYER_CUSTOMFIELDSTART,
 	PLAYER_BOTTOMFRAME,
 	PLAYER_AMMO1,
 	PLAYER_AMMO2,
 	PLAYER_AMMO3,
-	PLAYER_UNUSED1,
-	PLAYER_UNUSED2
+	PLAYER_UNUSED5,
+	PLAYER_UNUSED6,
+	PLAYER_UNUSED7
 };
 
 class player:NSClientPlayer
@@ -171,7 +156,7 @@ player::ReceiveEntity(float new, float fl)
 		HUD_AmmoNotify_Check(this);
 	}
 
-	if (fl & PLAYER_ITEMS || fl & PLAYER_HEALTH || fl & PLAYER_ARMOR)
+	if (fl & PLAYER_ITEMS || fl & PLAYER_HEALTH)
 		HUD_ItemNotify_Check(this);
 }
 
@@ -511,11 +496,14 @@ player::SendEntity(entity ePEnt, float fChanged)
 	if (ePEnt != self && ePEnt.classname != "spectator") {
 		fChanged &= ~PLAYER_ITEMS;
 		fChanged &= ~PLAYER_HEALTH;
-		fChanged &= ~PLAYER_ARMOR;
-		fChanged &= ~PLAYER_VIEWOFS;
+		fChanged &= ~PLAYER_TIMINGS;
 		fChanged &= ~PLAYER_AMMO1;
 		fChanged &= ~PLAYER_AMMO2;
 		fChanged &= ~PLAYER_AMMO3;
+		fChanged &= ~PLAYER_FLAGS;
+		fChanged &= ~PLAYER_PUNCHANGLE;
+		fChanged &= ~PLAYER_VIEWZOOM;
+		fChanged &= ~PLAYER_SPECTATE;
 	}
 
 	WriteByte(MSG_ENTITY, ENT_PLAYER);

@@ -1,4 +1,4 @@
 CC=fteqcc
 
 all:
-	$(CC) progs.src
+	$(CC) -fwasm progs.src

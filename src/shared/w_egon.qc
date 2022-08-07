@@ -68,18 +68,22 @@ void w_egon_precache(void)
 		w_egon_sparkframes[i] = spriteframe("sprites/xspark1.spr", i, 0.0f);
 #endif
 }
+
 void w_egon_updateammo(player pl)
 {
 	Weapons_UpdateAmmo(pl, -1, pl.ammo_uranium, -1);
 }
+
 string w_egon_wmodel(void)
 {
 	return "models/w_egon.mdl";
 }
+
 string w_egon_pmodel(player pl)
 {
 	return "models/p_egon.mdl";
 }
+
 string w_egon_deathmsg(void)
 {
 	return "";
@@ -88,7 +92,6 @@ string w_egon_deathmsg(void)
 int w_egon_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-
 	if (pl.ammo_uranium < MAX_A_URANIUM) {
 		pl.ammo_uranium = bound(0, pl.ammo_uranium + 20, MAX_A_URANIUM);
 	} else {
@@ -125,7 +128,8 @@ void w_egon_primary(player pl)
 	}
 
 	/* Ammo check */
-	if ((pl.ammo_uranium <= 0i) ? true : false || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
+	bool out_of_ammo = (pl.ammo_uranium <= 0i) ? true : false;
+	if (out_of_ammo || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
 #ifdef SERVER
 		Sound_Play(pl, CHAN_WEAPON, "weapon_egon.empty");
 #endif
@@ -186,7 +190,6 @@ void w_egon_reload(player pl)
 
 void w_egon_release(player pl)
 {
-
 	if (pl.mode_tempstate != 0 && pl.mode_tempstate < 3) {
 #ifdef SERVER
 		sound(pl, CHAN_WEAPON, "weapons/egon_off1.wav", 1, ATTN_NORM, 100, 0);
@@ -223,7 +226,6 @@ void
 w_egon_postdraw(player pl, int thirdperson)
 {
 #ifdef CLIENT
-
 	if (!(pl.gflags & GF_EGONBEAM))
 		return;
 
@@ -304,7 +306,6 @@ void w_egon_hudpic(player pl, int selected, vector pos, float a)
 int
 w_egon_isempty(player pl)
 {
-
 	if (pl.ammo_uranium <= 0)
 		return 1;
 

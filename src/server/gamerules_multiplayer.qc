@@ -14,8 +14,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-var string autocvar_mp_teamlist = "robo;hgrunt";
 const string mp_teamlist_fallback = "robo;hgrunt";
+var string autocvar_mp_teamlist = mp_teamlist_fallback;
 
 bool
 HLMultiplayerRules::IsMultiplayer(void)

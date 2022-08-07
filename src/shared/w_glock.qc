@@ -123,7 +123,6 @@ int
 w_glock_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
-
 	if (new) {
 		pl.glock_mag = 18;
 		return (1);
@@ -244,7 +243,6 @@ w_glock_secondary(player pl)
 void
 w_glock_reload(player pl)
 {
-
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -394,7 +392,6 @@ w_glock_hudpic(player pl, int selected, vector pos, float a)
 int
 w_glock_isempty(player pl)
 {
-
 	if (pl.glock_mag <= 0 && pl.ammo_9mm <= 0)
 		return 1;
 
