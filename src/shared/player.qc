@@ -484,7 +484,7 @@ player::SendEntity
 =================
 */
 float
-player::SendEntity(entity ePEnt, float fChanged)
+player::SendEntity(entity ePEnt, float flChanged)
 {
 	/* don't broadcast invisible players */
 	if (IsFakeSpectator() && ePEnt != this)
@@ -492,37 +492,25 @@ player::SendEntity(entity ePEnt, float fChanged)
 	if (!GetModelindex() && ePEnt != this)
 		return (0);
 
-	/* other players don't need to know about these attributes */
-	if (ePEnt != self && ePEnt.classname != "spectator") {
-		fChanged &= ~PLAYER_ITEMS;
-		fChanged &= ~PLAYER_HEALTH;
-		fChanged &= ~PLAYER_TIMINGS;
-		fChanged &= ~PLAYER_AMMO1;
-		fChanged &= ~PLAYER_AMMO2;
-		fChanged &= ~PLAYER_AMMO3;
-		fChanged &= ~PLAYER_FLAGS;
-		fChanged &= ~PLAYER_PUNCHANGLE;
-		fChanged &= ~PLAYER_VIEWZOOM;
-		fChanged &= ~PLAYER_SPECTATE;
-	}
+	flChanged = OptimiseChangedFlags(ePEnt, flChanged);
 
 	WriteByte(MSG_ENTITY, ENT_PLAYER);
-	WriteFloat(MSG_ENTITY, fChanged);
+	WriteFloat(MSG_ENTITY, flChanged);
 
 	/* the generic client attributes */
-	NSClientPlayer::SendEntity(ePEnt, fChanged);
+	NSClientPlayer::SendEntity(ePEnt, flChanged);
 
-	if (fChanged & PLAYER_TOPFRAME) {
+	if (flChanged & PLAYER_TOPFRAME) {
 		WriteByte(MSG_ENTITY, anim_top);
 		WriteFloat(MSG_ENTITY, anim_top_time);
 		WriteFloat(MSG_ENTITY, anim_top_delay);
 	}
-	if (fChanged & PLAYER_BOTTOMFRAME) {
+	if (flChanged & PLAYER_BOTTOMFRAME) {
 		WriteByte(MSG_ENTITY, anim_bottom);
 		WriteFloat(MSG_ENTITY, anim_bottom_time);
 	}
 
-	if (fChanged & PLAYER_AMMO1) {
+	if (flChanged & PLAYER_AMMO1) {
 		WriteByte(MSG_ENTITY, glock_mag);
 		WriteByte(MSG_ENTITY, mp5_mag);
 		WriteByte(MSG_ENTITY, python_mag);
@@ -532,7 +520,7 @@ player::SendEntity(entity ePEnt, float fChanged)
 		WriteByte(MSG_ENTITY, satchel_chg);
 	}
 
-	if (fChanged & PLAYER_AMMO2) {
+	if (flChanged & PLAYER_AMMO2) {
 		WriteByte(MSG_ENTITY, ammo_9mm);
 		WriteByte(MSG_ENTITY, ammo_357);
 		WriteByte(MSG_ENTITY, ammo_buckshot);
@@ -546,7 +534,7 @@ player::SendEntity(entity ePEnt, float fChanged)
 		WriteByte(MSG_ENTITY, ammo_hornet);
 	}
 
-	if (fChanged & PLAYER_AMMO3) {
+	if (flChanged & PLAYER_AMMO3) {
 		WriteByte(MSG_ENTITY, ammo_m203_grenade);
 		WriteByte(MSG_ENTITY, ammo_gauss_volume);
 		WriteByte(MSG_ENTITY, ammo_rpg_state);
