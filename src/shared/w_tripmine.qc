@@ -322,7 +322,7 @@ w_tripmine_release(player pl)
 		return;
 	}
 
-	int r = (float)input_sequence % 3;
+	int r = (float)input_sequence % 3.0f;
 	switch (r) {
 	case 1:
 		Weapons_ViewAnimation(pl, TRIPMINE_IDLE1);

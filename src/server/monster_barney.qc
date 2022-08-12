@@ -61,7 +61,7 @@ class monster_barney:NSTalkMonster
 	virtual int(void) AttackMelee;
 	virtual int(void) AttackRanged;
 
-	virtual void(monsterState_e, monsterState_e) StateChanged;
+	virtual void(monsterState_t, monsterState_t) StateChanged;
 };
 
 int
@@ -118,7 +118,7 @@ monster_barney::AttackRanged(void)
 
 
 void
-monster_barney::StateChanged(monsterState_e oldState, monsterState_e newState)
+monster_barney::StateChanged(monsterState_t oldState, monsterState_t newState)
 {
 	super::StateChanged(oldState, newState);
 

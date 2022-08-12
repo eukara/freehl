@@ -36,6 +36,13 @@ enum
 	GAUSS_DRAW
 };
 
+enum
+{
+	GAUSSTATE_IDLE,
+	GAUSSTATE_REVVINGUP,
+	GAUSSTATE_FULL
+};
+
 void w_gauss_release(player pl);
 
 void w_gauss_precache(void)
@@ -88,7 +95,7 @@ int w_gauss_pickup(player pl, int new, int startammo)
 
 void w_gauss_draw(player pl)
 {
-	pl.mode_tempstate = 0;
+	pl.mode_tempstate = GAUSSTATE_IDLE;
 	Weapons_SetModel("models/v_gauss.mdl");
 	Weapons_ViewAnimation(pl, GAUSS_DRAW);
 }
@@ -102,14 +109,22 @@ void w_gauss_holster(player pl)
 void w_gauss_fire(player pl, int one)
 {
 	int iLoop = 6;
+	vector vecCurPlane;
+	vector vecCurPos;
+	vector vecSrc;
+	vector vecEndPos;
+	vector vecDir;
 
 	Weapons_MakeVectors(pl);
-	vector src = Weapons_GetCameraPos(pl);
-	vector endpos = src + v_forward * 1024;
-	traceline(src, endpos, FALSE, pl);
+	vecDir = v_forward;
+	vecSrc = Weapons_GetCameraPos(pl);
+	vecEndPos = vecSrc + v_forward * 1024;
+	traceline(vecSrc, vecEndPos, FALSE, pl);
+	vecCurPlane = trace_plane_normal;
+	vecCurPos = trace_endpos;
 
 	sound(pl, CHAN_WEAPON, "weapons/gauss2.wav", 1, ATTN_NORM);
-	int iDamage = one ? 20 : 200;
+	int iDamage = one ? 20 : (int)rint((bound(0, pl.ammo_gauss_volume, 10) * 20));
 
 	if (serverkeyfloat("*bspversion") == BSPVER_HL)
 		if (getsurfacetexture(trace_ent, getsurfacenearpoint(trace_ent, trace_endpos)) == "sky") {
@@ -126,24 +141,31 @@ void w_gauss_fire(player pl, int one)
 	} else {
 		/* Apply force */
 		if (pl.flags & FL_ONGROUND) {
-			pl.velocity += v_forward * -400;
+			pl.velocity += v_forward * (-iDamage * 2);
 		} else {
-			pl.velocity += v_forward * -800;
+			pl.velocity += v_forward * (-iDamage * 4);
 		}
 	}
 
 	// reflection equation:
-	vector dir = v_forward;
+	Weapons_MakeVectors(pl);
+	vecDir = v_forward;
+	trace_plane_normal = vecCurPlane;
+	trace_endpos = vecCurPos;
+
 	while (iLoop > 0) {
-		float n;
-		vector r;
-		n = -dotproduct(trace_plane_normal, dir);
-		r = 2 * trace_plane_normal * n + dir;
-		dir = r;
-		src = trace_endpos + (dir * 1);
-		endpos = trace_endpos + (dir * 8192);
-		traceline(src, endpos, FALSE, pl);
+		vector newDir;
+		trace_plane_normal = vecCurPlane;
+		trace_endpos = vecCurPos;
+		newDir = vecDir - 2 * (vecDir * trace_plane_normal) * trace_plane_normal;
+		vecDir = newDir;
+		vecSrc = trace_endpos + (vecDir * -1);
+		vecEndPos = trace_endpos + (vecDir * 8192);
+		traceline(vecSrc, vecEndPos, FALSE, pl);
+		vecCurPlane = trace_plane_normal;
+		vecCurPos = trace_endpos;
 		iLoop--;
+
 		if (trace_ent.takedamage == DAMAGE_YES) {
 			Damage_Apply(trace_ent, pl, iDamage, WEAPON_GAUSS, DMG_ELECTRO);
 			sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
@@ -162,7 +184,7 @@ void w_gauss_primary(player pl)
 	/* Ammo check */
 	if ((pl.ammo_uranium < 2) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_gauss.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_gauss.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -192,16 +214,14 @@ void w_gauss_release(player pl)
 		return;
 	}
 
-	/* Reset the pitch sound shift */
-	pl.ammo_gauss_volume = 0;
-
-	if (pl.mode_tempstate == 1) {
+	if (pl.mode_tempstate == GAUSSTATE_REVVINGUP) {
 		pl.w_attack_next = 0.0f;
-		pl.w_idle_next = 4.0f;
+		pl.w_idle_next = 0.5f;
 		w_gauss_primary(pl);
-		pl.mode_tempstate = 0;
+		pl.ammo_gauss_volume = 0;
+		pl.mode_tempstate = GAUSSTATE_IDLE;
 		return;
-	} else if (pl.mode_tempstate == 2) {
+	} else if (pl.mode_tempstate == GAUSSTATE_FULL) {
 		Weapons_ViewAnimation(pl, GAUSS_FIRE1);
 
 		if (pl.flags & FL_CROUCHING)
@@ -212,11 +232,12 @@ void w_gauss_release(player pl)
 		Weapons_ViewPunchAngle(pl, [-5,0,0]);
 #ifdef SERVER
 		w_gauss_fire(pl, 0);
+		pl.ammo_gauss_volume = 0;
 		FX_GaussBeam(Weapons_GetCameraPos(pl), input_angles, 6, pl);
 #endif
 		pl.w_attack_next = 1.5f;
 		pl.w_idle_next = 4.0f;
-		pl.mode_tempstate = 0;
+		pl.mode_tempstate = GAUSSTATE_IDLE;
 		return;
 	}
 
@@ -246,10 +267,18 @@ void w_gauss_secondary(player pl)
 	if (pl.gflags & GF_SEMI_TOGGLED)
 		return;
 
-	/* Ammo check */
+	/* release gauss when out of ammo and revving */
+	if (pl.ammo_uranium <= 0) {
+		if (pl.mode_tempstate > GAUSSTATE_IDLE) {
+			w_gauss_release(pl);
+			return;
+		}
+	}
+
+	/* regular ammo check */
 	if ((pl.ammo_uranium <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_gauss.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_gauss.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -257,37 +286,39 @@ void w_gauss_secondary(player pl)
 
 	pl.w_attack_next = 0.1f;
 
-	/* Ammo check */
-	if (pl.ammo_uranium <= 0) {
-		if (pl.mode_tempstate > 0) {
-		w_gauss_release(pl);
-		}
-			return;
-	}
-
+	/* take away 10 uranium max */
 	if (pl.ammo_gauss_volume < 10)
 		pl.ammo_uranium--;
 
 	/* Set pitch sound shift */
 	pl.ammo_gauss_volume += 1;
+
+	/* holding it for too long, damage our owner */
 	if (pl.ammo_gauss_volume > 100) {
 		pl.ammo_gauss_volume = 100;
 #ifdef SERVER
 		Damage_Apply(pl, pl, 10, DMG_ELECTRO, WEAPON_GAUSS);
 #endif
-		pl.mode_tempstate = 0;
+		pl.mode_tempstate = GAUSSTATE_IDLE;
 		pl.w_attack_next = 0.5f;
 		pl.w_idle_next = 0.5f;
 		pl.ammo_gauss_volume = 0;
 		Weapons_ViewAnimation(pl, GAUSS_IDLE1);
 	}
 
-	if (pl.mode_tempstate == 1) {
+	if (pl.mode_tempstate == GAUSSTATE_REVVINGUP) {
 		Weapons_ViewAnimation(pl, GAUSS_SPIN);
-		pl.mode_tempstate = 2;
+		pl.mode_tempstate = GAUSSTATE_FULL;
+		pl.w_idle_next = 0.5f;
+		pl.w_attack_next = 0.5f;
 	} else if (!pl.mode_tempstate) {
 		Weapons_ViewAnimation(pl, GAUSS_SPINUP);
-		pl.mode_tempstate = 1;
+		pl.mode_tempstate = GAUSSTATE_REVVINGUP;
+#ifdef SERVER
+		sound(pl, CHAN_WEAPON, "ambience/pulsemachine.wav", 2, ATTN_NORM);
+#endif
+		pl.w_idle_next = 0.5f;
+		pl.w_attack_next = 0.5f;
 	}
 }
 

@@ -175,7 +175,7 @@ w_crossbow_primary(player pl)
 	/* ammo check */
 	if ((pl.crossbow_mag <= 0i) ? true : false) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_crossbow.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_crossbow.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;

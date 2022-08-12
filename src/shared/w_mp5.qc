@@ -171,7 +171,7 @@ w_mp5_primary(player pl)
 	bool out_of_ammo = (pl.mp5_mag <= 0i) ? true : false;
 	if (out_of_ammo || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_mp5.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -230,7 +230,7 @@ w_mp5_secondary(player pl)
 	bool out_of_ammo = (pl.ammo_m203_grenade <= 0i) ? true : false;
 	if (out_of_ammo || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_mp5.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;

@@ -109,7 +109,7 @@ void w_rpg_primary(player pl)
 	/* ammo check */
 	if ((pl.rpg_mag <= 0i) ? true : false) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_rpg.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;

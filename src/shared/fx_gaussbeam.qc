@@ -135,7 +135,8 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	vector vecSrc;
 	vector vecEndPos;
 	vector vecDir;
-	vector vecFirstImpact = [0,0,0];
+	vector vecCurPlane;
+	vector vecCurPos;
 	int totalBeams = numBeams;
 
 	makevectors(vecAngle);
@@ -143,38 +144,43 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	vecSrc = vecPos;
 	vecEndPos = vecSrc + v_forward * 1024;
 	traceline(vecSrc, vecEndPos, FALSE, eOwner);
+	vecCurPlane = trace_plane_normal;
+	vecCurPos = trace_endpos;
 	trailparticles(TRAIL_GAUSSBEAM, eOwner, vecSrc + (v_right * 8) + (v_up * -12), trace_endpos);
 	FX_GaussBeam_Piece(trace_endpos, vecDir * -1);
+	Decals_Place(trace_endpos, "{gaussshot1");
 
-	/* Decals_Place modifies trace_* globals, so cache */
-	if (totalBeams > 1)
-		vecFirstImpact = trace_endpos;
-
+	makevectors(vecAngle);
 	vecDir = v_forward;
+	trace_plane_normal = vecCurPlane;
+	trace_endpos = vecCurPos;
+
 	while (numBeams > 0) {
-		float n;
-		vector r;
-		n = -dotproduct(trace_plane_normal, vecDir);
-		r = 2 * trace_plane_normal * n + vecDir;
-		vecDir = r;
-		vecSrc = trace_endpos + (vecDir * 1);
+		vector newDir;
+		trace_plane_normal = vecCurPlane;
+		trace_endpos = vecCurPos;
+		newDir = vecDir - 2 * (vecDir * trace_plane_normal) * trace_plane_normal;
+		vecDir = newDir;
+		vecSrc = trace_endpos + (vecDir * -1);
 		vecEndPos = trace_endpos + (vecDir * 8192);
 		traceline(vecSrc, vecEndPos, FALSE, eOwner);
+		vecCurPlane = trace_plane_normal;
+		vecCurPos = trace_endpos;
+
 		trailparticles(TRAIL_GAUSSBEAM, eOwner, vecSrc, trace_endpos);
 		FX_GaussBeam_Piece(trace_endpos, vecDir);
 		numBeams--;
 
+#if 1
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
 			if (getsurfacetexture(trace_ent, getsurfacenearpoint(trace_ent, trace_endpos)) != "sky") {
 				Decals_Place(trace_endpos, "{gaussshot1");
 			} else {
 				break;
 			}
+#endif
 	}
 
-	/* higher energy means the first impact will leave a hole as well */
-	if (totalBeams > 1)
-		Decals_Place(vecFirstImpact, "{gaussshot1");
 #endif
 }
 

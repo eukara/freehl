@@ -256,6 +256,8 @@ player::PredictPostFrame(void)
 void
 player::Save(float handle)
 {
+	super::Save(handle);
+
 	SaveInt(handle, "anim_top", anim_top);
 	SaveFloat(handle, "anim_top_time", anim_top_time);
 	SaveFloat(handle, "anim_top_delay", anim_top_delay);
@@ -289,8 +291,6 @@ player::Save(float handle)
 	SaveInt(handle, "ammo_gauss_volume", ammo_gauss_volume);
 	SaveInt(handle, "ammo_rpg_state", ammo_rpg_state);
 	SaveInt(handle, "mode_tempstate", mode_tempstate);
-
-	super::Save(handle);
 }
 
 void

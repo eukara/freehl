@@ -136,7 +136,7 @@ w_python_primary(player pl)
 	/* Ammo check */
 	if ((pl.python_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_357.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_357.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;

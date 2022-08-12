@@ -182,7 +182,7 @@ w_shotgun_primary(player pl)
 	/* Ammo check */
 	if ((pl.shotgun_mag <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_shotgun.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -248,7 +248,7 @@ w_shotgun_secondary(player pl)
 	/* Ammo check */
 	if ((pl.shotgun_mag <= 1) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_shotgun.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;

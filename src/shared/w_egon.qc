@@ -131,7 +131,7 @@ void w_egon_primary(player pl)
 	bool out_of_ammo = (pl.ammo_uranium <= 0i) ? true : false;
 	if (out_of_ammo || pl.WaterLevel() >= WATERLEVEL_SUBMERGED) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_egon.empty");
+		Sound_Play(pl, CHAN_AUTO, "weapon_egon.empty");
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		w_egon_release(pl);
@@ -147,7 +147,7 @@ void w_egon_primary(player pl)
 	Client_ShakeOnce(trace_endpos, 128, 0.2, 1.0, 1.0f);
 #endif
 
-	int r = (float)input_sequence % 2;
+	int r = (float)input_sequence % 2.0f;
 
 	pl.ammo_uranium--;
 	pl.gflags |= GF_EGONBEAM;
@@ -247,7 +247,7 @@ w_egon_postdraw(player pl, int thirdperson)
 		w_egon_beamfx(gunpos, endpos, pl);
 	}
 
-	int i = (cltime*10) % 11;
+	int i = (cltime*10.0f) % 11.0f;
 	vector fsize = [32,32];
 	makevectors(view_angles);
 	trace_endpos += v_forward * -16; /* nudge towards our camera */

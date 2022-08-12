@@ -112,7 +112,7 @@ w_crowbar_primary(player pl)
 	}
 	pl.w_idle_next = 2.5f;
 
-	int r = (float)input_sequence % 3;
+	int r = (float)input_sequence % 3.0f;
 	switch (r) {
 	case 0:
 		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK1MISS:CBAR_ATTACK1HIT);

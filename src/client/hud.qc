@@ -124,7 +124,7 @@ HUD_DrawNums(float fNumber, vector vecPos, float fAlpha, vector vColor)
 	int i = fNumber;
 	if (i > 0) {
 		while (i > 0) {
-			HUD_DrawNumber((float)i % 10, vecPos, fAlpha, vColor);
+			HUD_DrawNumber((float)i % 10.0f, vecPos, fAlpha, vColor);
 			i = i / 10;
 			vecPos[0] -= 20;
 		}
