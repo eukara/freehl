@@ -139,11 +139,13 @@ void w_gauss_fire(player pl, int one)
 	if (one) {
 		return;
 	} else {
+		int iForce = (int)rint((bound(5, pl.ammo_gauss_volume, 10) * 20));
+
 		/* Apply force */
 		if (pl.flags & FL_ONGROUND) {
-			pl.velocity += v_forward * (-iDamage * 2);
+			pl.velocity += v_forward * (-iForce * 2);
 		} else {
-			pl.velocity += v_forward * (-iDamage * 4);
+			pl.velocity += v_forward * (-iForce * 4);
 		}
 	}
 
