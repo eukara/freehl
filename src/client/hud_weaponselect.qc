@@ -24,12 +24,29 @@ vector g_vecHUDNums[6] =
 	[208 / 256, 92 / 128]
 };
 
+bool
+HUD_DrawWeaponSelect_CanSwitch(player pl)
+{
+	if (!pl.activeweapon)
+		return false;
+
+	for (int i = 1; i < g_weapons.length; i++) {
+		if (pl.g_items & g_weapons[i].id && g_weapons[i].isempty(pl) == false) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void
 HUD_DrawWeaponSelect_Forward(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
 
-	if (!pl.activeweapon) {
+	if (HUD_DrawWeaponSelect_CanSwitch(pl) == false) {
+		pSeat->m_flHUDWeaponSelectTime = time + 3;
+		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
 		return;
 	}
 
@@ -58,7 +75,9 @@ HUD_DrawWeaponSelect_Back(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
 
-	if (!pl.activeweapon) {
+	if (HUD_DrawWeaponSelect_CanSwitch(pl) == false) {
+		pSeat->m_flHUDWeaponSelectTime = time + 3;
+		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
 		return;
 	}
 
