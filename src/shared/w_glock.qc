@@ -151,6 +151,15 @@ w_glock_holster(player pl)
 	Weapons_ViewAnimation(pl, GLOCK_HOLSTER);
 }
 
+int
+w_glock_isempty(player pl)
+{
+	if (pl.glock_mag <= 0 && pl.ammo_9mm <= 0)
+		return 1;
+
+	return 0;
+}
+
 void
 w_glock_primary(player pl)
 {
@@ -286,6 +295,9 @@ w_glock_release(player pl)
 		return;
 	}
 
+	if (w_glock_isempty(pl))
+		return;
+
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
@@ -387,15 +399,6 @@ w_glock_hudpic(player pl, int selected, vector pos, float a)
 
 	HUD_DrawAmmoBar(pos, pl.ammo_9mm, MAX_A_9MM, a);
 #endif
-}
-
-int
-w_glock_isempty(player pl)
-{
-	if (pl.glock_mag <= 0 && pl.ammo_9mm <= 0)
-		return 1;
-
-	return 0;
 }
 
 weapontype_t
