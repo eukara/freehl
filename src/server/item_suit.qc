@@ -62,11 +62,10 @@ item_suit::Touch(entity eToucher)
 	}
 	
 	if (real_owner || cvar("sv_playerslots") == 1) {
-		remove(self);
+		Destroy();
 	} else {
-		Hide();
-		think = Respawn;
-		nextthink = time + 30.0f;
+		Disappear();
+		ScheduleThink(Respawn, 30.0f);
 	}
 }
 
@@ -80,8 +79,7 @@ item_suit::Respawn(void)
 	SetSize(VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
 	m_iValue = FALSE;
 
-	think = __NULL__;
-	nextthink = -1;
+	ReleaseThink();
 
 	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");

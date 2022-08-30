@@ -67,9 +67,8 @@ void item_battery::Touch(entity eToucher)
 	if (real_owner || cvar("sv_playerslots") == 1) {
 		Destroy();
 	} else {
-		Hide();
-		think = Respawn;
-		nextthink = time + 20.0f;
+		Disappear();
+		ScheduleThink(Respawn, 30.0f);
 	}
 }
 
@@ -82,8 +81,7 @@ void item_battery::Respawn(void)
 	SetSize([-16,-16,0],[16,16,16]);
 	botinfo = BOTINFO_ARMOR;
 
-	think = __NULL__;
-	nextthink = -1;
+	ReleaseThink();
 
 	if (!real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "item.respawn");

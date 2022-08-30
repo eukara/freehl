@@ -38,9 +38,8 @@ item_ammo::Touch(entity eToucher)
 	if (real_owner || cvar("sv_playerslots") == 1) {
 		Destroy();
 	} else {
-		Hide();
-		think = Respawn;
-		nextthink = time + 20.0f;
+		Disappear();
+		ScheduleThink(Respawn, 30.0f);
 	}
 }
 
@@ -53,8 +52,7 @@ item_ammo::Respawn(void)
 	SetModel(GetSpawnModel());
 	SetSize([-16,-16,0],[16,16,16]);
 
-	think = __NULL__;
-	nextthink = -1;
+	ReleaseThink();
 
 	if (real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "ammo.respawn");

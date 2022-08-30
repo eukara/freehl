@@ -49,7 +49,7 @@ monster_sitting_scientist::Gib(void)
 {
 	SetTakedamage(DAMAGE_NO);
 	FX_GibHuman(GetOrigin(), vectoangles(GetOrigin() - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
-	Hide();
+	Disappear();
 }
 
 void

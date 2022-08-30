@@ -31,11 +31,10 @@ void item_pickup::Touch(entity eToucher)
 	UseTargets(eToucher, TRIG_TOGGLE, m_flDelay);
 
 	if (real_owner || m_iWasDropped == 1 || cvar("sv_playerslots") == 1) {
-		remove(self);
+		Destroy();
 	} else {
-		Hide();
-		think = Respawn;
-		nextthink = time + 30.0f;
+		Disappear();
+		ScheduleThink(Respawn, 30.0f);
 	}
 }
 
@@ -64,9 +63,7 @@ void item_pickup::Respawn(void)
 	}
 
 	SetSize([-16,-16,0], [16,16,16]);
-
-	think = __NULL__;
-	nextthink = -1;
+	ReleaseThink();
 
 	if (!m_iWasDropped && cvar("sv_playerslots") > 1) {
 		if (!real_owner && time > 30.0f)
@@ -76,7 +73,7 @@ void item_pickup::Respawn(void)
 	}
 
 	if (!m_bFloating) {
-		droptofloor();
+		DropToFloor();
 		SetMovetype(MOVETYPE_TOSS);
 	}
 }

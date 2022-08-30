@@ -38,7 +38,6 @@ class monster_scientist_dead:NSMonster
 	int m_iPose;
 	void(void) monster_scientist_dead;
 
-	virtual void(void) Hide;
 	virtual void(void) Respawn;
 	virtual void(void) Gib;
 	virtual void(string, string) SpawnKey;
@@ -49,15 +48,7 @@ monster_scientist_dead::Gib(void)
 {
 	takedamage = DAMAGE_NO;
 	FX_GibHuman(origin, vectoangles(origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
-	Hide();
-}
-
-void
-monster_scientist_dead::Hide(void)
-{
-	SetModel("");
-	solid = SOLID_NOT;
-	movetype = MOVETYPE_NONE;
+	Disappear();
 }
 
 void
