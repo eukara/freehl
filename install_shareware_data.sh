@@ -65,6 +65,11 @@ echo "makes up for it in server-side content."
 echo "============================================================="
 grab_patch hlds 05_hlds
 
+# Valve once had music tracks available on YouTube, however due to rights
+# issues this is no more. As I'm not comfortable with unofficial uploads
+# due to the nature of this project, this ends here.
+exit 1
+
 if ! [ -x "$(command -v yt-dlp)" ]; then
 	printf "Error: yt-dlp is not installed.\nUnable to download music\n" >&2
 	exit 1
