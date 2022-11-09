@@ -52,6 +52,7 @@ Game_Input(player pl)
 			Weapons_AddItem(pl, WEAPON_SATCHEL, -1);
 			Weapons_AddItem(pl, WEAPON_TRIPMINE, -1);
 			Weapons_AddItem(pl, WEAPON_SNARK, -1);
+			pl.ammo_m203_grenade = 10;
 #ifdef GEARBOX
 			Weapons_AddItem(pl, WEAPON_PIPEWRENCH, -1);
 			Weapons_AddItem(pl, WEAPON_KNIFE, -1);
