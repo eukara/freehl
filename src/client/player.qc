@@ -156,9 +156,7 @@ Player_PreDraw(NSClientPlayer pp, int thirdperson)
 
 	Weapons_PreDraw(pl, thirdperson);
 
-	pl.Physics_SetViewParms();
-	Animation_PlayerUpdate((player)pl);
-	Animation_TimerUpdate((player)pl, clframetime);
+	//pl.Physics_SetViewParms();
 
 	if (thirdperson)
 		Player_HandleWeaponModel(pl, thirdperson);

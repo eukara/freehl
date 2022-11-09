@@ -67,11 +67,13 @@ class player:NSClientPlayer
 	PREDICTED_INT(mode_tempstate);
 
 	virtual void(void) Physics_Jump;
+	virtual void UpdatePlayerAnimation(void);
 
 #ifdef CLIENT
 	////virtual void(void) draw;
 	//virtual float() predraw;
 	//virtual void(void) postdraw;
+	virtual void UpdatePlayerAttachments(bool);
 	virtual void(float,float) ReceiveEntity;
 	virtual void(void) PredictPreFrame;
 	virtual void(void) PredictPostFrame;
@@ -84,6 +86,35 @@ class player:NSClientPlayer
 };
 
 #ifdef CLIENT
+void Animation_PlayerUpdate(player); 
+void Animation_TimerUpdate(player, float); 
+#endif
+
+void
+player::UpdatePlayerAnimation(void)
+{
+#ifdef CLIENT
+	/* calculate our skeletal progression */
+	Animation_PlayerUpdate(this);
+	/* advance animation timers */
+	Animation_TimerUpdate(this, clframetime);
+#endif
+}
+
+#ifdef CLIENT
+void Player_HandleWeaponModel(NSClientPlayer pp, float thirdperson);
+void Player_Flashlight(NSClientPlayer);
+
+void
+player::UpdatePlayerAttachments(bool visible)
+{
+	Player_Flashlight(this);
+
+	/* FIXME: this needs to be incorporated and simplified, now that we can handle it all in-class */
+	if (visible)
+		Player_HandleWeaponModel(this, visible ? 1:0);
+}
+
 void Weapons_AmmoUpdate(entity);
 void HUD_AmmoNotify_Check(player pl);
 void HUD_ItemNotify_Check(player pl);
