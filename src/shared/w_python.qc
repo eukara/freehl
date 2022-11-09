@@ -148,7 +148,7 @@ w_python_primary(player pl)
 #ifdef CLIENT
 	View_SetMuzzleflash(MUZZLE_SMALL);
 #else
-	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_357_bullet", 40), [0.008, 0.008], WEAPON_PYTHON);
+	TraceAttack_FireBulletsWithDecal(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_357_bullet", 40), [0.008, 0.008], WEAPON_PYTHON, "Impact.BigShot");
 	Sound_Play(pl, CHAN_WEAPON, "weapon_357.shoot");
 #endif
 

@@ -39,6 +39,7 @@ class monster_sitting_scientist:NSTalkMonster
 	void(void) monster_sitting_scientist;
 
 	virtual void(void) Respawn;
+	virtual void(void) Spawned;
 	virtual void(void) Death;
 	virtual void(void) Gib;
 	virtual void(string, string) SpawnKey;

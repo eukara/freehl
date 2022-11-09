@@ -472,8 +472,8 @@ HUD_DrawSpectator(void)
 	NSClientSpectator spec = (NSClientSpectator)pSeat->m_ePlayer;
 
 	drawfont = Font_GetID(FONT_20);
-	vector vecPos;
-	string strText;
+	vector vecPos = [0.0f, 0.0f, 0.0f];
+	string strText = __NULL__;
 	float palpha = 1.0f;
 
 	if (spec.spec_mode == SPECMODE_FREE) {

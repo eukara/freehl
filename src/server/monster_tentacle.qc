@@ -88,6 +88,7 @@ class monster_tentacle:NSMonster
 
 	virtual void(void) IdleNoise;
 	virtual void(void) Respawn;
+	virtual void(void) Spawned;
 };
 
 void

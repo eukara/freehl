@@ -1,0 +1,31 @@
+Impact.Shot
+{
+	"{shot1" "1"
+	"{shot2" "1"
+	"{shot3" "1"
+	"{shot3" "1"
+	"{shot3" "1"
+}
+
+Impact.BigShot
+{
+	"{bigshot1" "1"
+	"{bigshot2" "1"
+	"{bigshot3" "1"
+	"{bigshot4" "1"
+	"{bigshot5" "1"
+}
+
+Impact.Break
+{
+	"{break1" "1"
+	"{break1" "1"
+	"{break1" "1"
+}
+
+ExplosionScorch
+{
+	"{scorch1" "1"
+	"{scorch2" "1"
+	"{scorch3" "1"
+}

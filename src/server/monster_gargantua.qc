@@ -54,6 +54,7 @@ class monster_gargantua:NSMonster
 
 	void(void) monster_gargantua;
 
+	virtual void(void) Spawned;
 	virtual void(void) Death;
 	virtual void(void) Pain;
 	virtual void(void) IdleNoise;

@@ -69,9 +69,9 @@ class player:NSClientPlayer
 	virtual void(void) Physics_Jump;
 
 #ifdef CLIENT
-	virtual void(void) draw;
-	virtual float() predraw;
-	virtual void(void) postdraw;
+	////virtual void(void) draw;
+	//virtual float() predraw;
+	//virtual void(void) postdraw;
 	virtual void(float,float) ReceiveEntity;
 	virtual void(void) PredictPreFrame;
 	virtual void(void) PredictPostFrame;

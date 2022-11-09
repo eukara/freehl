@@ -184,7 +184,7 @@ w_glock_primary(player pl)
 	View_SetMuzzleflash(MUZZLE_SMALL);
 	View_AddEvent(w_glock_ejectshell, 0.0f);
 #else
-	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK);
+	TraceAttack_FireBulletsWithDecal(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.01,0.01], WEAPON_GLOCK, "Impact.BigShot");
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
 #endif
 
@@ -228,7 +228,7 @@ w_glock_secondary(player pl)
 	View_SetMuzzleflash(MUZZLE_SMALL);
 	View_AddEvent(w_glock_ejectshell, 0.0f);
 #else
-	TraceAttack_FireBullets(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK);
+	TraceAttack_FireBulletsWithDecal(1, pl.origin + pl.view_ofs, Skill_GetValue("plr_9mm_bullet", 8), [0.1,0.1], WEAPON_GLOCK, "Impact.BigShot");
 	Sound_Play(pl, CHAN_WEAPON, "weapon_glock.fire");
 #endif
 
@@ -297,10 +297,8 @@ w_glock_release(player pl)
 
 	if (w_glock_isempty(pl))
 		return;
-
-	if (pl.w_idle_next > 0.0) {
+	if (pl.w_idle_next > 0.0)
 		return;
-	}
 
 	r = floor(pseudorandom() * 3.0f);
 	switch (r) {

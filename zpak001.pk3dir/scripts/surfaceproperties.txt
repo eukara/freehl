@@ -1,0 +1,175 @@
+default
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.default"
+	stepleft "step_default.left"
+	stepright "step_default.right"
+}
+
+gs_material_glass
+{
+	gamematerial Y
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.glass"
+	stepleft "step_glass.left"
+	stepright "step_glass.right"
+}
+
+gs_material_wood
+{
+	gamematerial W
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.wood"
+	stepleft "step_wood.left"
+	stepright "step_wood.right"
+}
+
+gs_material_metal
+{
+	gamematerial M
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.metal"
+	stepleft "step_metal.left"
+	stepright "step_metal.right"
+}
+
+gs_material_flesh
+{
+	gamematerial F
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.flesh"
+	stepleft "step_flesh.left"
+	stepright "step_flesh.right"
+}
+
+gs_material_cinderblock
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.concrete"
+	stepleft "step_default.left"
+	stepright "step_default.right"
+}
+
+gs_material_tile
+{
+	gamematerial T
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.tile"
+	stepleft "step_tile.left"
+	stepright "step_tile.right"
+}
+
+gs_material_computer
+{
+	gamematerial P
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.computer"
+	stepleft "step_computer.left"
+	stepright "step_computer.right"
+}
+
+gs_material_unbreakableglass
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.glass"
+	stepleft "step_glass.left"
+	stepright "step_glass.right"
+}
+
+gs_material_rock
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.rock"
+	stepleft "step_default.left"
+	stepright "step_default.right"
+}
+
+gs_material_flesh
+{
+	gamematerial F
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.flesh"
+	stepleft "step_flesh.left"
+	stepright "step_flesh.right"
+}
+
+gs_material_concrete
+{
+	gamematerial C
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.concrete"
+	stepleft "step_concrete.left"
+	stepright "step_concrete.right"
+}
+
+gs_material_dirt
+{
+	gamematerial D
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.dirt"
+	stepleft "step_dirt.left"
+	stepright "step_dirt.right"
+}
+
+gs_material_grate
+{
+	gamematerial G
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.grate"
+	stepleft "step_grate.left"
+	stepright "step_grate.right"
+}
+
+gs_material_alien
+{
+	gamematerial H
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.alien"
+	stepleft "step_alien.left"
+	stepright "step_alien.right"
+}
+
+gs_material_snow
+{
+	gamematerial K
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.snow"
+	stepleft "step_snow.left"
+	stepright "step_snow.right"
+}
+
+gs_material_sand
+{
+	gamematerial N
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.sand"
+	stepleft "step_sand.left"
+	stepright "step_sand.right"
+}
+
+gs_material_foliage
+{
+	gamematerial O
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.foliage"
+	stepleft "step_foliage.left"
+	stepright "step_foliage.right"
+}
+
+gs_material_slosh
+{
+	gamematerial S
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.slosh"
+	stepleft "step_slosh.left"
+	stepright "step_slosh.right"
+}
+
+gs_material_vent
+{
+	gamematerial V
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.snow"
+	stepleft "step_vent.left"
+	stepright "step_vent.right"
+}

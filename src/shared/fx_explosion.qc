@@ -74,7 +74,8 @@ FX_Explosion(vector vecPos)
 	dlight.drawmask = MASK_ENGINE;
 	dlight.alpha = 2.0f;
 
-	Decals_Place(vecPos, sprintf("{scorch%d", floor(random(1,4))));
+	DecalGroups_Place("ExplosionScorch", vecPos);
+
 	vecPos[2] += 48;
 	env_sprite eExplosion = spawn(env_sprite);
 	makevectors(view_angles);

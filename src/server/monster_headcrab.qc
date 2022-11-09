@@ -53,6 +53,7 @@ class monster_headcrab:NSMonster
 
 	void(void) monster_headcrab;
 
+	virtual void(void) Spawned;
 	virtual void(void) Pain;
 	virtual void(void) Death;
 	virtual void(void) IdleNoise;

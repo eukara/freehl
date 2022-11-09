@@ -18,7 +18,6 @@
 void
 Game_RunClientCommand(void)
 {
-	Footsteps_Update();
 	player pl = (player)self;
 	pl.Physics_Run();
 }

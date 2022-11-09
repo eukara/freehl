@@ -201,9 +201,9 @@ w_mp5_primary(player pl)
 #else
 	/* singleplayer is more accurate */
 	if (cvar("sv_playerslots") == 1) {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5);
+		TraceAttack_FireBulletsWithDecal(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.025,0.025], WEAPON_MP5, "Impact.BigShot");
 	} else {
-		TraceAttack_FireBullets(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5);
+		TraceAttack_FireBulletsWithDecal(1, Weapons_GetCameraPos(pl), Skill_GetValue("plr_9mmAR_bullet", 5), [0.05,0.05], WEAPON_MP5, "Impact.BigShot");
 	}
 
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.shoot");

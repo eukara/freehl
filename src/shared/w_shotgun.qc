@@ -212,9 +212,9 @@ w_shotgun_primary(player pl)
 #ifdef SERVER
 	/* Singleplayer is more accurate */
 	if (serverkeyfloat("sv_playerslots") == 1) {
-		TraceAttack_FireBullets(6, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.08716], WEAPON_SHOTGUN);
+		TraceAttack_FireBulletsWithDecal(6, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.08716], WEAPON_SHOTGUN, "Impact.BigShot");
 	} else {
-		TraceAttack_FireBullets(4, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.04362], WEAPON_SHOTGUN);
+		TraceAttack_FireBulletsWithDecal(4, pl.origin + pl.view_ofs, Skill_GetValue("plr_buckshot", 5), [0.08716,0.04362], WEAPON_SHOTGUN, "Impact.BigShot");
 	}
 	Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.single");
 #else
@@ -286,9 +286,9 @@ w_shotgun_secondary(player pl)
 #ifdef SERVER
 	/* Singleplayer is more accurate */
 	if (serverkeyfloat("sv_playerslots") == 1) {
-		TraceAttack_FireBullets(12, pl.origin + pl.view_ofs, 5, [0.08716,0.08716], WEAPON_SHOTGUN);
+		TraceAttack_FireBulletsWithDecal(12, pl.origin + pl.view_ofs, 5, [0.08716,0.08716], WEAPON_SHOTGUN, "Impact.BigShot");
 	} else {
-		TraceAttack_FireBullets(8, pl.origin + pl.view_ofs, 5, [0.17365,0.04362], WEAPON_SHOTGUN);
+		TraceAttack_FireBulletsWithDecal(8, pl.origin + pl.view_ofs, 5, [0.17365,0.04362], WEAPON_SHOTGUN, "Impact.BigShot");
 	}
 	Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.double");
 #else

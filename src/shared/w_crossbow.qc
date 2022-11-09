@@ -277,6 +277,8 @@ w_crossbow_secondary(player pl)
 void
 w_crossbow_reload(player pl)
 {
+	NSTimer reload = __NULL__;
+
 	if (pl.w_attack_next > 0.0) {
 		return;
 	}
@@ -297,8 +299,7 @@ w_crossbow_reload(player pl)
 		Weapons_ReloadWeapon(pl, player::crossbow_mag, player::ammo_bolt, 5);
 	}
 
-	pl.think = w_crossbow_reload_done;
-	pl.nextthink = time + 4.4f;
+	reload.TemporaryTimer(pl, w_crossbow_reload_done, 4.4f, false);
 	Sound_Play(pl, CHAN_ITEM, "weapon_crossbow.reload");
 #endif
 

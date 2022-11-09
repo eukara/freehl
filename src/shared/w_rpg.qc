@@ -148,7 +148,7 @@ void w_rpg_primary(player pl)
 	rocket.solid = SOLID_BBOX;
 	//bolt.flags |= FL_LAGGEDMOVE;
 	rocket.gravity = 0.5f;
-	rocket.velocity = (v_forward * 250);
+	rocket.velocity = (pl.WaterLevel() >= WATERLEVEL_SUBMERGED) ? (v_forward * 100): (v_forward * 250);
 	rocket.angles = vectoangles(rocket.velocity);
 	rocket.avelocity[2] = 10;
 	rocket.touch = Rocket_Touch;
@@ -286,7 +286,7 @@ void w_rpg_hud(player pl)
 	/* crosshair/laser */
 	if (pl.ammo_rpg_state == 1) {
 		float lerp;
-		vector jitter;
+		vector jitter = [0.0f, 0.0f, 0.0f];
 		Weapons_MakeVectors(pl);
 		vector src = pl.origin + pl.view_ofs;
 		traceline(src, src + (v_forward * 256), FALSE, pl);

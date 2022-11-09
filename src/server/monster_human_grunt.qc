@@ -119,6 +119,7 @@ class monster_human_grunt:NSTalkMonster
 	virtual void(void) Scream;
 	virtual void(void) IdleChat;
 	virtual void(void) Respawn;
+	virtual void(void) Spawned;
 	virtual void(void) Pain;
 	virtual void(void) Death;
 
