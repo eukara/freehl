@@ -242,7 +242,7 @@ w_mp5_secondary(player pl)
 	static void Grenade_ExplodeTouch(void) {
 		float dmg = Skill_GetValue("plr_9mmAR_grenade", 100);
 		FX_Explosion(self.origin);
-		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_MP5);
+		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_HANDGRENADE);
 
 		if (random() < 0.5) {
 			sound(self, 1, "weapons/explode3.wav", 1, ATTN_NORM);
