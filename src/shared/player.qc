@@ -124,52 +124,42 @@ player::ReceiveEntity
 =================
 */
 void
-player::ReceiveEntity(float new, float fl)
+player::ReceiveEntity(float new, float flChanged)
 {
 	/* the generic client attributes */
-	NSClientPlayer::ReceiveEntity(new, fl);
+	NSClientPlayer::ReceiveEntity(new, flChanged);
 
 	/* animation */
-	if (fl & PLAYER_TOPFRAME) {
-		anim_top = readbyte();
-		anim_top_time = readfloat();
-		anim_top_delay = readfloat();
-	}
-	if (fl & PLAYER_BOTTOMFRAME) {
-		anim_bottom = readbyte();
-		anim_bottom_time = readfloat();
-	}
+	READENTITY_BYTE(anim_top, PLAYER_TOPFRAME)
+	READENTITY_FLOAT(anim_top_time, PLAYER_TOPFRAME)
+	READENTITY_FLOAT(anim_top_delay, PLAYER_TOPFRAME)
+	READENTITY_BYTE(anim_bottom, PLAYER_BOTTOMFRAME)
+	READENTITY_FLOAT(anim_bottom_time, PLAYER_BOTTOMFRAME)
 
-	if (fl & PLAYER_AMMO1) {
-		glock_mag = readbyte();
-		mp5_mag = readbyte();
-		python_mag = readbyte();
-		shotgun_mag = readbyte();
-		crossbow_mag = readbyte();
-		rpg_mag = readbyte();
-		satchel_chg = readbyte();
-	}
-	
-	if (fl & PLAYER_AMMO2) {
-		ammo_9mm = readbyte();
-		ammo_357 = readbyte();
-		ammo_buckshot = readbyte();
-		ammo_bolt = readbyte();
-		ammo_rocket = readbyte();
-		ammo_uranium = readbyte();
-		ammo_handgrenade = readbyte();
-		ammo_satchel = readbyte();
-		ammo_tripmine = readbyte();
-		ammo_snark = readbyte();
-		ammo_hornet = readbyte();
-	}
+	READENTITY_BYTE(glock_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(mp5_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(python_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(shotgun_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(crossbow_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(rpg_mag, PLAYER_AMMO1)
+	READENTITY_BYTE(satchel_chg, PLAYER_AMMO1)
 
-	if (fl & PLAYER_AMMO3) {
-		ammo_m203_grenade = readbyte();
-		ammo_gauss_volume = readbyte();
-		ammo_rpg_state = readbyte();
-		mode_tempstate = readbyte();
-	}
+	READENTITY_BYTE(ammo_9mm, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_357, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_buckshot, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_bolt, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_rocket, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_uranium, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_handgrenade, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_satchel, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_tripmine, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_snark, PLAYER_AMMO2)
+	READENTITY_BYTE(ammo_hornet, PLAYER_AMMO2)
+
+	READENTITY_BYTE(ammo_m203_grenade, PLAYER_AMMO3)
+	READENTITY_BYTE(ammo_gauss_volume, PLAYER_AMMO3)
+	READENTITY_BYTE(ammo_rpg_state, PLAYER_AMMO3)
+	READENTITY_BYTE(mode_tempstate, PLAYER_AMMO3)
 
 	setorigin(this, origin);
 
@@ -179,15 +169,15 @@ player::ReceiveEntity(float new, float fl)
 		return;
 
 	/* do not notify us of updates when spawning initially */
-	if (fl == UPDATE_ALL)
+	if (flChanged == UPDATE_ALL)
 		PredictPreFrame();
 
-	if (fl & PLAYER_AMMO1 || fl & PLAYER_AMMO2 || fl & PLAYER_AMMO3) {
+	if (flChanged & PLAYER_AMMO1 || flChanged & PLAYER_AMMO2 || flChanged & PLAYER_AMMO3) {
 		Weapons_AmmoUpdate(this);
 		HUD_AmmoNotify_Check(this);
 	}
 
-	if (fl & PLAYER_ITEMS || fl & PLAYER_HEALTH)
+	if (flChanged & PLAYER_ITEMS || flChanged & PLAYER_HEALTH)
 		HUD_ItemNotify_Check(this);
 }
 
@@ -423,90 +413,36 @@ player::EvaluateEntity(void)
 	/* the generic client attributes */
 	NSClientPlayer::EvaluateEntity();
 
-	/* animation */
-	if (ATTR_CHANGED(anim_bottom) || ATTR_CHANGED(anim_bottom_time))
-		SendFlags |= PLAYER_BOTTOMFRAME;
-	if (ATTR_CHANGED(anim_top) || ATTR_CHANGED(anim_top_time) || ATTR_CHANGED(anim_top_delay))
-		SendFlags |= PLAYER_TOPFRAME;
+	EVALUATE_FIELD(anim_top, PLAYER_TOPFRAME);
+	EVALUATE_FIELD(anim_top_time, PLAYER_TOPFRAME);
+	EVALUATE_FIELD(anim_top_delay, PLAYER_TOPFRAME  );
+	EVALUATE_FIELD(anim_bottom, PLAYER_BOTTOMFRAME);
+	EVALUATE_FIELD(anim_bottom_time, PLAYER_BOTTOMFRAME);
 
-	/* ammo 1 type updates */
-	if (ATTR_CHANGED(glock_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(mp5_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(python_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(shotgun_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(crossbow_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(rpg_mag))
-		SendFlags |= PLAYER_AMMO1;
-	if (ATTR_CHANGED(satchel_chg))
-		SendFlags |= PLAYER_AMMO1;
+	EVALUATE_FIELD(glock_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(mp5_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(python_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(shotgun_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(crossbow_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(rpg_mag, PLAYER_AMMO1)
+	EVALUATE_FIELD(satchel_chg, PLAYER_AMMO1)
 
-	/* ammo 2 type updates */
-	if (ATTR_CHANGED(ammo_9mm))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_357))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_buckshot))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_bolt))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_rocket))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_uranium))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_handgrenade))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_satchel))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_tripmine))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_snark))
-		SendFlags |= PLAYER_AMMO2;
-	if (ATTR_CHANGED(ammo_hornet))
-		SendFlags |= PLAYER_AMMO2;
+	EVALUATE_FIELD(ammo_9mm, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_357, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_buckshot, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_bolt, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_rocket, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_uranium, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_handgrenade, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_satchel, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_tripmine, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_snark, PLAYER_AMMO2)
+	EVALUATE_FIELD(ammo_hornet, PLAYER_AMMO2)
 
-	if (ATTR_CHANGED(ammo_m203_grenade))
-		SendFlags |= PLAYER_AMMO3;
-	if (ATTR_CHANGED(ammo_gauss_volume))
-		SendFlags |= PLAYER_AMMO3;
-	if (ATTR_CHANGED(ammo_rpg_state))
-		SendFlags |= PLAYER_AMMO3;
-	if (ATTR_CHANGED(mode_tempstate))
-		SendFlags |= PLAYER_AMMO3;
-
-	SAVE_STATE(glock_mag);
-	SAVE_STATE(mp5_mag);
-	SAVE_STATE(python_mag);
-	SAVE_STATE(shotgun_mag);
-	SAVE_STATE(crossbow_mag);
-	SAVE_STATE(rpg_mag);
-	SAVE_STATE(satchel_chg);
-	SAVE_STATE(ammo_9mm);
-	SAVE_STATE(ammo_357);
-	SAVE_STATE(ammo_buckshot);
-	SAVE_STATE(ammo_bolt);
-	SAVE_STATE(ammo_rocket);
-	SAVE_STATE(ammo_uranium);
-	SAVE_STATE(ammo_handgrenade);
-	SAVE_STATE(ammo_satchel);
-	SAVE_STATE(ammo_tripmine);
-	SAVE_STATE(ammo_snark);
-	SAVE_STATE(ammo_hornet);
-
-	SAVE_STATE(ammo_m203_grenade);
-	SAVE_STATE(ammo_gauss_volume);
-	SAVE_STATE(ammo_rpg_state);
-	SAVE_STATE(mode_tempstate);
-
-	SAVE_STATE(anim_top);
-	SAVE_STATE(anim_top_delay);
-	SAVE_STATE(anim_top_time);
-	SAVE_STATE(anim_bottom);
-	SAVE_STATE(anim_bottom_time);
+	EVALUATE_FIELD(ammo_m203_grenade, PLAYER_AMMO3)
+	EVALUATE_FIELD(ammo_gauss_volume, PLAYER_AMMO3)
+	EVALUATE_FIELD(ammo_rpg_state, PLAYER_AMMO3)
+	EVALUATE_FIELD(mode_tempstate, PLAYER_AMMO3)
 }
 
 /*
@@ -531,46 +467,36 @@ player::SendEntity(entity ePEnt, float flChanged)
 	/* the generic client attributes */
 	NSClientPlayer::SendEntity(ePEnt, flChanged);
 
-	if (flChanged & PLAYER_TOPFRAME) {
-		WriteByte(MSG_ENTITY, anim_top);
-		WriteFloat(MSG_ENTITY, anim_top_time);
-		WriteFloat(MSG_ENTITY, anim_top_delay);
-	}
-	if (flChanged & PLAYER_BOTTOMFRAME) {
-		WriteByte(MSG_ENTITY, anim_bottom);
-		WriteFloat(MSG_ENTITY, anim_bottom_time);
-	}
+	SENDENTITY_BYTE(anim_top, PLAYER_TOPFRAME)
+	SENDENTITY_FLOAT(anim_top_time, PLAYER_TOPFRAME)
+	SENDENTITY_FLOAT(anim_top_delay, PLAYER_TOPFRAME)
+	SENDENTITY_BYTE(anim_bottom, PLAYER_BOTTOMFRAME)
+	SENDENTITY_FLOAT(anim_bottom_time, PLAYER_BOTTOMFRAME)
 
-	if (flChanged & PLAYER_AMMO1) {
-		WriteByte(MSG_ENTITY, glock_mag);
-		WriteByte(MSG_ENTITY, mp5_mag);
-		WriteByte(MSG_ENTITY, python_mag);
-		WriteByte(MSG_ENTITY, shotgun_mag);
-		WriteByte(MSG_ENTITY, crossbow_mag);
-		WriteByte(MSG_ENTITY, rpg_mag);
-		WriteByte(MSG_ENTITY, satchel_chg);
-	}
+	SENDENTITY_BYTE(glock_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(mp5_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(python_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(shotgun_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(crossbow_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(rpg_mag, PLAYER_AMMO1)
+	SENDENTITY_BYTE(satchel_chg, PLAYER_AMMO1)
 
-	if (flChanged & PLAYER_AMMO2) {
-		WriteByte(MSG_ENTITY, ammo_9mm);
-		WriteByte(MSG_ENTITY, ammo_357);
-		WriteByte(MSG_ENTITY, ammo_buckshot);
-		WriteByte(MSG_ENTITY, ammo_bolt);
-		WriteByte(MSG_ENTITY, ammo_rocket);
-		WriteByte(MSG_ENTITY, ammo_uranium);
-		WriteByte(MSG_ENTITY, ammo_handgrenade);
-		WriteByte(MSG_ENTITY, ammo_satchel);
-		WriteByte(MSG_ENTITY, ammo_tripmine);
-		WriteByte(MSG_ENTITY, ammo_snark);
-		WriteByte(MSG_ENTITY, ammo_hornet);
-	}
+	SENDENTITY_BYTE(ammo_9mm, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_357, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_buckshot, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_bolt, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_rocket, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_uranium, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_handgrenade, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_satchel, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_tripmine, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_snark, PLAYER_AMMO2)
+	SENDENTITY_BYTE(ammo_hornet, PLAYER_AMMO2)
 
-	if (flChanged & PLAYER_AMMO3) {
-		WriteByte(MSG_ENTITY, ammo_m203_grenade);
-		WriteByte(MSG_ENTITY, ammo_gauss_volume);
-		WriteByte(MSG_ENTITY, ammo_rpg_state);
-		WriteByte(MSG_ENTITY, mode_tempstate);
-	}
+	SENDENTITY_BYTE(ammo_m203_grenade, PLAYER_AMMO3)
+	SENDENTITY_BYTE(ammo_gauss_volume, PLAYER_AMMO3)
+	SENDENTITY_BYTE(ammo_rpg_state, PLAYER_AMMO3)
+	SENDENTITY_BYTE(mode_tempstate, PLAYER_AMMO3)
 
 	return (1);
 }
