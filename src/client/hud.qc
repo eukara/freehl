@@ -431,6 +431,30 @@ HUD_WeaponPickupNotify(int w)
 	pSeatLocal->m_flPickupAlpha = 2.5f;
 }
 
+void
+HUD_DrawDamageIndicator(void)
+{
+	vector cross_pos;
+
+	if (pSeatLocal->m_flDamageIndicator <= 0.0)
+		return;
+
+	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
+
+	/*drawsubpic(
+		cross_pos,
+		[24,24],
+		g_cross_spr,
+		[0.0, 72/128],
+		[0.1875, 0.1875],
+		[1,1,1] * pSeatLocal->m_flDamageIndicator,
+		1.0f,
+		DRAWFLAG_ADDITIVE
+	);*/
+
+	pSeatLocal->m_flDamageIndicator -= clframetime;
+}
+
 /* main entry */
 void
 HUD_Draw(void)
@@ -441,6 +465,7 @@ HUD_Draw(void)
 
 	/* little point in not drawing these, even if you don't have a suit */
 	Weapons_DrawCrosshair(pl);
+	HUD_DrawDamageIndicator();
 	HUD_DrawWeaponSelect();
 	Obituary_Draw();
 	Textmenu_Draw();

@@ -24,7 +24,6 @@ defs.h
 damage.qc
 init.qc
 flashlight.qc
-player.qc
 entities.qc
 cmds.qc
 game_event.qc

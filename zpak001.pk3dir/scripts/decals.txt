@@ -3,8 +3,8 @@ Impact.Shot
 	"{shot1" "1"
 	"{shot2" "1"
 	"{shot3" "1"
-	"{shot3" "1"
-	"{shot3" "1"
+	"{shot4" "1"
+	"{shot5" "1"
 }
 
 Impact.BigShot

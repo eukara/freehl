@@ -150,6 +150,7 @@ w_crowbar_primary(player pl)
 		}
 	} else {
 		Sound_Play(pl, CHAN_WEAPON, "weapon_crowbar.hit");
+		DecalGroups_Place("Impact.Shot", trace_endpos + (v_forward * -2));
 	}
 #endif
 }

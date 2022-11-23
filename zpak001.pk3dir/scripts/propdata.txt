@@ -1,0 +1,76 @@
+"PropData.txt"
+{
+	"gs_material_glass"
+	{
+		"breakable_model" "gibs_glass"
+	}
+	"gs_material_wood"
+	{
+		"breakable_model" "gibs_wood"
+	}
+	"gs_material_metal"
+	{
+		"breakable_model" "gibs_metalplate"
+	}
+	"gs_material_flesh"
+	{
+		"breakable_model" "gibs_flesh"
+	}
+	"gs_material_cinderblock"
+	{
+		"breakable_model" "gibs_cinder"
+	}
+	"gs_material_tile"
+	{
+		"breakable_model" "gibs_ceiling"
+	}
+	"gs_material_computer"
+	{
+		"breakable_model" "gibs_computer"
+	}
+	"gs_material_unbreakableglass"
+	{
+		"breakable_model" "gibs_glass"
+	}
+	"gs_material_rocks"
+	{
+		"breakable_model" "gibs_rock"
+	}
+	
+	
+	"BreakableModels"
+	{
+		"gibs_glass"
+		{
+			"models/glassgibs.mdl#submodels=8#rendermode=5" "5.0"
+		}
+		"gibs_wood"
+		{
+			"models/woodgibs.mdl#submodels=3" "5.0"
+		}
+		"gibs_metalplate"
+		{
+			"models/metalplategibs.mdl#submodels=13" "5.0"
+		}
+		"gibs_flesh"
+		{
+			"models/fleshgibs.mdl#submodels=4" "5.0"
+		}
+		"gibs_ceiling"
+		{
+			"models/ceilinggibs.mdl#submodels=4" "5.0"
+		}
+		"gibs_computer"
+		{
+			"models/computergibs.mdl#submodels=15" "5.0"
+		}
+		"gibs_rock"
+		{
+			"models/rockgibs.mdl#submodels=3" "5.0"
+		}
+		"gibs_cinder"
+		{
+			"models/cindergibs.mdl#submodels=9" "5.0"
+		}
+	}
+}

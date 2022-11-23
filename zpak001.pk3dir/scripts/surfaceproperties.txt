@@ -33,6 +33,14 @@ gs_material_metal
 	stepright "step_metal.right"
 }
 
+gs_material_ladder
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.metal"
+	stepleft "step_ladder.left"
+	stepright "step_ladder.right"
+}
+
 gs_material_flesh
 {
 	gamematerial F
