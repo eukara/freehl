@@ -342,36 +342,36 @@ player::PredictPreFrame(void)
 	/* the generic client attributes */
 	NSClientPlayer::PredictPreFrame();
 
-	SAVE_STATE(anim_top);
-	SAVE_STATE(anim_top_delay);
-	SAVE_STATE(anim_top_time);
-	SAVE_STATE(anim_bottom);
-	SAVE_STATE(anim_bottom_time);
+	SAVE_STATE(anim_top)
+	SAVE_STATE(anim_top_delay)
+	SAVE_STATE(anim_top_time)
+	SAVE_STATE(anim_bottom)
+	SAVE_STATE(anim_bottom_time)
 
-	SAVE_STATE(glock_mag);
-	SAVE_STATE(mp5_mag);
-	SAVE_STATE(python_mag);
-	SAVE_STATE(shotgun_mag);
-	SAVE_STATE(crossbow_mag);
-	SAVE_STATE(rpg_mag);
-	SAVE_STATE(satchel_chg);
+	SAVE_STATE(glock_mag)
+	SAVE_STATE(mp5_mag)
+	SAVE_STATE(python_mag)
+	SAVE_STATE(shotgun_mag)
+	SAVE_STATE(crossbow_mag)
+	SAVE_STATE(rpg_mag)
+	SAVE_STATE(satchel_chg)
 
-	SAVE_STATE(ammo_9mm);
-	SAVE_STATE(ammo_357);
-	SAVE_STATE(ammo_buckshot);
-	SAVE_STATE(ammo_bolt);
-	SAVE_STATE(ammo_rocket);
-	SAVE_STATE(ammo_uranium);
-	SAVE_STATE(ammo_handgrenade);
-	SAVE_STATE(ammo_satchel);
-	SAVE_STATE(ammo_tripmine);
-	SAVE_STATE(ammo_snark);
-	SAVE_STATE(ammo_hornet);
+	SAVE_STATE(ammo_9mm)
+	SAVE_STATE(ammo_357)
+	SAVE_STATE(ammo_buckshot)
+	SAVE_STATE(ammo_bolt)
+	SAVE_STATE(ammo_rocket)
+	SAVE_STATE(ammo_uranium)
+	SAVE_STATE(ammo_handgrenade)
+	SAVE_STATE(ammo_satchel)
+	SAVE_STATE(ammo_tripmine)
+	SAVE_STATE(ammo_snark)
+	SAVE_STATE(ammo_hornet)
 
-	SAVE_STATE(ammo_m203_grenade);
-	SAVE_STATE(ammo_gauss_volume);
-	SAVE_STATE(ammo_rpg_state);
-	SAVE_STATE(mode_tempstate);
+	SAVE_STATE(ammo_m203_grenade)
+	SAVE_STATE(ammo_gauss_volume)
+	SAVE_STATE(ammo_rpg_state)
+	SAVE_STATE(mode_tempstate)
 }
 
 /*
@@ -387,37 +387,37 @@ player::PredictPostFrame(void)
 	/* the generic client attributes */
 	NSClientPlayer::PredictPostFrame();
 
-	ROLL_BACK(anim_top);
-	ROLL_BACK(anim_top_delay);
-	ROLL_BACK(anim_top_time);
-	ROLL_BACK(anim_bottom);
-	ROLL_BACK(anim_bottom_time);
+	ROLL_BACK(anim_top)
+	ROLL_BACK(anim_top_delay)
+	ROLL_BACK(anim_top_time)
+	ROLL_BACK(anim_bottom)
+	ROLL_BACK(anim_bottom_time)
 
-	ROLL_BACK(glock_mag);
-	ROLL_BACK(mp5_mag);
-	ROLL_BACK(python_mag);
-	ROLL_BACK(shotgun_mag);
-	ROLL_BACK(crossbow_mag);
-	ROLL_BACK(rpg_mag);
-	ROLL_BACK(satchel_chg);
+	ROLL_BACK(glock_mag)
+	ROLL_BACK(mp5_mag)
+	ROLL_BACK(python_mag)
+	ROLL_BACK(shotgun_mag)
+	ROLL_BACK(crossbow_mag)
+	ROLL_BACK(rpg_mag)
+	ROLL_BACK(satchel_chg)
 
-	ROLL_BACK(ammo_9mm);
-	ROLL_BACK(ammo_357);
-	ROLL_BACK(ammo_buckshot);
-	ROLL_BACK(ammo_m203_grenade);
-	ROLL_BACK(ammo_bolt);
-	ROLL_BACK(ammo_rocket);
-	ROLL_BACK(ammo_uranium);
-	ROLL_BACK(ammo_handgrenade);
-	ROLL_BACK(ammo_satchel);
-	ROLL_BACK(ammo_tripmine);
-	ROLL_BACK(ammo_snark);
-	ROLL_BACK(ammo_hornet);
+	ROLL_BACK(ammo_9mm)
+	ROLL_BACK(ammo_357)
+	ROLL_BACK(ammo_buckshot)
+	ROLL_BACK(ammo_m203_grenade)
+	ROLL_BACK(ammo_bolt)
+	ROLL_BACK(ammo_rocket)
+	ROLL_BACK(ammo_uranium)
+	ROLL_BACK(ammo_handgrenade)
+	ROLL_BACK(ammo_satchel)
+	ROLL_BACK(ammo_tripmine)
+	ROLL_BACK(ammo_snark)
+	ROLL_BACK(ammo_hornet)
 
-	ROLL_BACK(ammo_m203_grenade);
-	ROLL_BACK(ammo_gauss_volume);
-	ROLL_BACK(ammo_rpg_state);
-	ROLL_BACK(mode_tempstate);
+	ROLL_BACK(ammo_m203_grenade)
+	ROLL_BACK(ammo_gauss_volume)
+	ROLL_BACK(ammo_rpg_state)
+	ROLL_BACK(mode_tempstate)
 }
 
 #else
