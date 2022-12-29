@@ -6,7 +6,7 @@ BASEGAME valve
 
 // you don't really want to change these
 RTCBROKER master.frag-net.com:27950
-PROTOCOLNAME "FreeHL"
+PROTOCOLNAME "Nuclide"
 MAINCONFIG game.cfg
 DOWNLOADSURL "http://www.frag-net.com/dl/packages"
 

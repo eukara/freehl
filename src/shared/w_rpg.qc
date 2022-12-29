@@ -279,7 +279,6 @@ void w_rpg_hudpic(player pl, int selected, vector pos, float a)
 void w_rpg_hud(player pl)
 {
 #ifdef CLIENT
-	vector cross_pos;
 	vector laser_pos;
 	vector aicon_pos;
 
@@ -294,7 +293,6 @@ void w_rpg_hud(player pl)
 		jitter[0] = (random(0,2) - 2) * (1 - trace_fraction);
 		jitter[1] = (random(0,2) - 2) * (1 - trace_fraction);
 		laser_pos = g_hudmins + (g_hudres / 2) + ([-lerp,-lerp] / 2);
-		cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
 
 		drawsubpic(
 			laser_pos + jitter,
@@ -307,28 +305,9 @@ void w_rpg_hud(player pl)
 			DRAWFLAG_ADDITIVE
 		);
 
-		drawsubpic(
-			cross_pos,
-			[24,24],
-			g_cross_spr,
-			[24/128,48/128],
-			[0.1875, 0.1875],
-			[1,1,1],
-			1.0f,
-			DRAWFLAG_NORMAL
-		);
+		Cross_DrawSub(g_cross_spr, [24,24], [24/128,48/128], [0.1875, 0.1875]);
 	} else {
-		cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
-		drawsubpic(
-			cross_pos,
-			[24,24],
-			g_cross_spr,
-			[24/128,48/128],
-			[0.1875, 0.1875],
-			[1,1,1],
-			1.0f,
-			DRAWFLAG_NORMAL
-		);
+		Cross_DrawSub(g_cross_spr, [24,24], [24/128,48/128], [0.1875, 0.1875]);
 	}
 
 	/* ammo counters */

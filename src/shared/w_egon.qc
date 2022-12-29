@@ -269,9 +269,8 @@ w_egon_postdraw(player pl, int thirdperson)
 void w_egon_crosshair(player pl)
 {
 #ifdef CLIENT
-	static vector cross_pos;
-	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
-	drawsubpic(cross_pos, [24,24], g_cross_spr, [72/128,48/128], [0.1875, 0.1875], [1,1,1], 1, DRAWFLAG_NORMAL);
+	Cross_DrawSub(g_cross_spr, [24,24], [72/128,48/128], [0.1875, 0.1875]);
+
 	HUD_DrawAmmo2();
 	vector aicon_pos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 42];
 	drawsubpic(aicon_pos, [24,24], g_hud7_spr, [0,96/128], [24/256, 24/128], g_hud_color, pSeatLocal->m_flAmmo2Alpha, DRAWFLAG_ADDITIVE);

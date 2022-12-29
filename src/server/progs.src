@@ -55,7 +55,6 @@ monster_turret.qc
 monster_zombie.qc
 
 player.qc
-spectator.qc
 items.qc
 item_longjump.qc
 item_suit.qc
@@ -75,7 +74,6 @@ ammo.qc
 gamerules.qc
 gamerules_singleplayer.qc
 gamerules_multiplayer.qc
-client.qc
 server.qc
 ../../../base/src/server/damage.qc
 flashlight.qc

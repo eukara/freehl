@@ -327,22 +327,10 @@ void w_gauss_secondary(player pl)
 void w_gauss_crosshair(player pl)
 {
 #ifdef CLIENT
-	vector cross_pos;
 	vector aicon_pos;
+	Cross_DrawSub(g_cross_spr, [24,24], [48/128,48/128], [0.1875, 0.1875]);
 
-	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
 	aicon_pos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 42];
-
-	drawsubpic(
-		cross_pos,
-		[24,24],
-		g_cross_spr,
-		[48/128,48/128],
-		[0.1875, 0.1875],
-		[1,1,1],
-		1,
-		DRAWFLAG_NORMAL
-	);
 
 	drawsubpic(
 		aicon_pos,

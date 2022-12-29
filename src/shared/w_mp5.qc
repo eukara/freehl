@@ -340,21 +340,9 @@ void
 w_mp5_crosshair(player pl)
 {
 #ifdef CLIENT
-	vector cross_pos;
 	vector aicon_pos;
 
-	cross_pos = g_hudmins + (g_hudres / 2) + [-12,-12];
-
-	drawsubpic(
-		cross_pos,
-		[24,24],
-		g_cross_spr,
-		[0,48/128],
-		[0.1875, 0.1875],
-		[1,1,1],
-		1.0f,
-		DRAWFLAG_NORMAL
-	);
+	Cross_DrawSub(g_cross_spr, [24,24], [0,48/128], [0.1875, 0.1875]);
 
 	HUD_DrawAmmo1();
 	HUD_DrawAmmo2();

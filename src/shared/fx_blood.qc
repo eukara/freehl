@@ -45,7 +45,7 @@ FX_Blood(vector pos, vector color)
 #else
 	static void Blood_Touch(void)
 	{
-		if (self.think != Util_Destroy) {
+		if (self.think != NSEntity::Destroy) {
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
 			Decals_Place(self.origin, sprintf("{blood%d", floor(random(1,9))));
 		else {
@@ -54,7 +54,7 @@ FX_Blood(vector pos, vector color)
 		}
 		}
 
-		self.think = Util_Destroy;
+		self.think = NSEntity::Destroy;
 		self.nextthink = time + 5.0f;
 	}
 
