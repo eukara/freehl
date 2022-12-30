@@ -11,3 +11,5 @@ MAINCONFIG game.cfg
 DOWNLOADSURL "http://www.frag-net.com/dl/packages"
 
 -exec platform_default.cfg
+
+-set gameinfo_chatroom "halflife"
