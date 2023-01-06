@@ -74,11 +74,12 @@ int w_rpg_pickup(player pl, int new, int startammo)
 
 	if (new) {
 		pl.rpg_mag = 1;
+		pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
 		return (1);
 	}
 
 	if (pl.ammo_rocket < MAX_A_ROCKET) {
-		pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
+		pl.ammo_rocket = bound(0, pl.ammo_rocket + 2, MAX_A_ROCKET);
 	} else {
 		if (!new)
 			return (0);
