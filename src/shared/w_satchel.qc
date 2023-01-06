@@ -64,7 +64,7 @@ s_satchel_drop(entity master, vector src, vector vel)
 	satch.avelocity = [0,400,0];
 	satch.touch = s_satchel_touch;
 	setmodel(satch, "models/w_satchel.mdl");
-	setsize(satch, [-4,-4,-4], [4,4,4]);
+	setsize(satch, [-1,-1,-4], [1,1,4]);
 	setorigin(satch, src);
 }
 
