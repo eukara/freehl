@@ -78,7 +78,7 @@ Viewmodel_CalcBob(void)
 	pViewBob->m_flBob = bound(-8, flBob, 4);
 
 	/* make sure it's adjusted for scale */
-	pViewBob->m_flBob *= autocvar_r_viewmodelscale;
+	pViewBob->m_flBob *= autocvar_cg_viewmodelScale;
 }
 
 void
@@ -91,7 +91,7 @@ Viewmodel_ApplyBob(entity gun)
 
 	/* apply the gun offset based on our bob */
 	gun.origin += [0,0,-1] + (v_forward * (pViewBob->m_flBob * 0.4))
-		+ (v_forward * autocvar_v_gunofs[0])
-		+ (v_right * autocvar_v_gunofs[1])
-		+ (v_up * autocvar_v_gunofs[2]);
+		+ (v_forward * autocvar_cg_viewmodelOffset[0])
+		+ (v_right * autocvar_cg_viewmodelOffset[1])
+		+ (v_up * autocvar_cg_viewmodelOffset[2]);
 }

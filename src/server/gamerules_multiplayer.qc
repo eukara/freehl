@@ -94,7 +94,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 
 	/* death-counter */
 	pl.deaths++;
-	forceinfokey(pl, "*deaths", ftos(pl.deaths));
+	pl.SetInfoKey("*deaths", ftos(pl.deaths));
 
 	/* update score-counter */
 	if (pl.flags & FL_CLIENT || pl.flags & FL_MONSTER)
@@ -121,15 +121,14 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 
 	/* now let's make the real client invisible */
 	pl.Death();
-	pl.takedamage = DAMAGE_NO;
+	pl.SetTakedamage(DAMAGE_NO);
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
 
 	Sound_Play(pl, CHAN_AUTO, "player.die");
 
 	/* force respawn */
-	pl.think = PutClientInServer;
-	pl.nextthink = time + 4.0f;
+	pl.ScheduleThink(PutClientInServer, 4.0f);
 
 	/* have we gone over the fraglimit? */
 	CheckRules();
@@ -139,38 +138,57 @@ void
 HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 {
 	player pl = (player)pp;
+	string playerModel;
 	/* this is where the mods want to deviate */
 	entity spot;
 
 	pl.classname = "player";
-	pl.health = pl.max_health = 100;
-	pl.takedamage = DAMAGE_YES;
+	pl.SetMaxHealth(100);
+	pl.SetHealth(100);
+	pl.SetTakedamage(DAMAGE_YES);
 	pl.SetSolid(SOLID_SLIDEBOX);
 	pl.SetMovetype(MOVETYPE_WALK);
-	pl.flags = FL_CLIENT;
+	pl.AddFlags(FL_CLIENT);
 	pl.viewzoom = 1.0;
-	pl.model = "models/player.mdl";
-	string mymodel = infokey(pl, "model");
 
-	if (mymodel) {
-		mymodel = sprintf("models/player/%s/%s.mdl", mymodel, mymodel);
-		if (whichpack(mymodel)) {
-			pl.model = mymodel;
+	/* player model selection */
+	if (IsTeamplay() == true) {
+		int teamCount = tokenizebyseparator(m_strTeamList, ";");
+		int playerTeam = (int)pl.GetTeam();
+
+		/* not part of a team? pick one of the ones we have */
+		/* TODO: this should sort us into the lowest team */
+		if (playerTeam == 0) {
+			playerTeam = 1i + (int)floor(random(0, (float)teamCount)); /* teams start at 1 after all */
+			pl.SetTeam(playerTeam);
+		}
+
+		/* assign our player model */
+		playerModel = sprintf("models/player/%s/%s.mdl", argv(playerTeam - 1i), argv(playerTeam - 1i));
+	} else {
+		/* interpret the 'model' InfoKey */
+		playerModel = pl.GetInfoKey("model");
+
+		if (playerModel) {
+			playerModel = sprintf("models/player/%s/%s.mdl", playerModel, playerModel);
 		}
 	}
-	setmodel(pl, pl.model);
 
-	setsize(pl, VEC_HULL_MIN, VEC_HULL_MAX);
-	pl.velocity = [0,0,0];
+	/* fallback is always models/player.mdl for Half-Life */
+	if not (whichpack(playerModel)) {
+		playerModel = "models/player.mdl";
+	}
+	
+	pl.SetModel(playerModel);
+	pl.SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
+	pl.ClearVelocity();
 	pl.gravity = __NULL__;
-	pl.frame = 1;
-	//pl.SendEntity = Player_SendEntity;
+	pl.SetFrame(1);
 	pl.SendFlags = UPDATE_ALL;
-	pl.customphysics = Empty;
 	pl.iBleeds = TRUE;
-	forceinfokey(pl, "*spec", "0");
-	forceinfokey(pl, "*dead", "0");
-	forceinfokey(pl, "*deaths", ftos(pl.deaths));
+	pl.SetInfoKey("*spec", "0");
+	pl.SetInfoKey("*dead", "0");
+	pl.SetInfoKey("*deaths", ftos(pl.deaths));
 
 	LevelNewParms();
 	LevelDecodeParms(pl);
@@ -180,30 +198,11 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	pl.activeweapon = WEAPON_GLOCK;
 	pl.glock_mag = 18;
 	pl.ammo_9mm = 44;
-
-	if (IsTeamplay() == true) {
-		int c = tokenizebyseparator(m_strTeamList, ";");
-
-		/* not part of a team? pick one of the ones we have */
-		/* TODO: this should sort us into the lowest team */
-		if (pl.team == 0) {
-			pl.team = 1 + floor(random(0, c));
-			forceinfokey(pl, "*team", sprintf("%d", pl.team));
-		}
-
-		/* assign our player model */
-		mymodel = sprintf("models/player/%s/%s.mdl", argv(pl.team - 1), argv(pl.team - 1));
-
-		if (whichpack(mymodel))
-			pl.model = mymodel;
-
-		setmodel(pl, pl.model);
-	}
 #endif
 
 	spot = Spawn_SelectRandom("info_player_deathmatch");
-	setorigin(pl, spot.origin);
-	pl.angles = spot.angles;
+	pl.SetOrigin(spot.origin);
+	pl.SetAngles(spot.angles);
 	Weapons_RefreshAmmo(pl);
 
 	Client_FixAngle(pl, pl.angles);
@@ -252,27 +251,26 @@ HLMultiplayerRules::HLMultiplayerRules(void)
 }
 
 void
-CSEv_HLDM_Chooseteam_s(string teamname)
+CSEv_HLDM_Chooseteam_s(string teamName)
 {
 	HLGameRules rules = (HLGameRules)g_grMode;
 	player pl = (player)self;
 
-	if (!teamname)
+	if (!teamName)
 		return;
 	if (rules.IsMultiplayer() == false)
 		return;
 	if (rules.IsTeamplay() == false)
 		return;
-	if (pl.health <= 0)
+	if (pl.IsDead() == true)
 		return;
 
 	HLMultiplayerRules mprules = (HLMultiplayerRules)rules;
 	int c = tokenizebyseparator(mprules.m_strTeamList, ";");
 
 	for (int i = 0; i < c; i++) {
-		if (argv(i) == teamname) {
-			pl.team = (float)i + 1;
-			forceinfokey(pl, "*team", sprintf("%d", pl.team));
+		if (argv(i) == teamName) {
+			pl.SetTeam((float)i + 1);
 			Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
 			return;
 		}
