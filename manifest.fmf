@@ -12,4 +12,8 @@ DOWNLOADSURL "http://www.frag-net.com/dl/packages"
 
 -exec platform_default.cfg
 
+// load ffmpeg for the logo.avi file
+-plug_load ffmpeg
+
+// override some liblist.gam entries
 -set gameinfo_chatroom "halflife"
