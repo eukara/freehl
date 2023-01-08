@@ -23,6 +23,11 @@ Game_Input(player pl)
 	if (rules.m_iIntermission) {
 		rules.IntermissionEnd();
 		return;
+	} else {
+			if (input_buttons & INPUT_BUTTON0)
+				if (pl.IsAlive() == false)
+					if (pl.TimeSinceDeath() > 0.5f) /* allow for some time to pass */
+						pl.ScheduleThink(PutClientInServer, 0.0f);
 	}
 
 	if (input_buttons & INPUT_BUTTON5)
