@@ -97,7 +97,12 @@ monster_snark::customphysics(void)
 	}
 
 	m_flJump -= frametime;
+
+	mins = [0,0,0];
+	maxs = [0,0,0];
 	runstandardplayerphysics(this);
+	mins = [-8.0f, -8.0f, 0.0f];
+	mins = [8.0f, 8.0f, 8.0f];
 }
 
 void
@@ -119,7 +124,7 @@ monster_snark::Death(void)
 	Sound_Play(this, CHAN_VOICE, "weapon_snark.die");
 	Sound_Play(this, CHAN_BODY, "weapon_snark.blast");
 	customphysics = __NULL__;
-	remove(this);
+	Destroy();
 }
 
 void
@@ -130,7 +135,7 @@ monster_snark::Respawn(void)
 	flags |= FL_MONSTER;
 	SetSolid(SOLID_CORPSE);
 	SetMovetype(MOVETYPE_WALK);
-	SetSize([-8,-8,0], [8,8,16]);
+	SetSize([-8,-8,0], [8,8,8]);
 	SetFrame(3); /* running like crazy. */
 	angles = goalentity.angles;
 	health = 20;
