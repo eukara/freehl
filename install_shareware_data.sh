@@ -17,7 +17,7 @@ SCRPATH="$( cd "$( dirname $(readlink -nf $0) )" && pwd )"
 
 if ! [ -x "$(command -v wget)" ]; then
 	printf "Error: wget is not installed.\n" >&2
-	exit 1
+	exit 0
 fi
 
 cd "$SCRPATH"
@@ -72,7 +72,7 @@ exit 1
 
 if ! [ -x "$(command -v yt-dlp)" ]; then
 	printf "Error: yt-dlp is not installed.\nUnable to download music\n" >&2
-	exit 1
+	exit 0
 fi
 
 cd "$SCRPATH"
