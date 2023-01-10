@@ -17,7 +17,7 @@ SCRPATH="$( cd "$( dirname $(readlink -nf $0) )" && pwd )"
 
 if ! [ -x "$(command -v wget)" ]; then
 	printf "Error: wget is not installed.\n" >&2
-	exit 0
+	exit 1
 fi
 
 cd "$SCRPATH"
@@ -68,11 +68,11 @@ grab_patch hlds 05_hlds
 # Valve once had music tracks available on YouTube, however due to rights
 # issues this is no more. As I'm not comfortable with unofficial uploads
 # due to the nature of this project, this ends here.
-exit 1
+exit 0
 
 if ! [ -x "$(command -v yt-dlp)" ]; then
 	printf "Error: yt-dlp is not installed.\nUnable to download music\n" >&2
-	exit 0
+	exit 1
 fi
 
 cd "$SCRPATH"
