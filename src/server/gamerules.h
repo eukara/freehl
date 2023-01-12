@@ -26,6 +26,7 @@ class HLGameRules:CGameRules
 	virtual void(void) LevelNewParms;
 
 	virtual bool(void) IsMultiplayer;
+	virtual bool ImpulseCommand(NSClient, float);
 };
 
 class HLSingleplayerRules:HLGameRules
@@ -34,6 +35,7 @@ class HLSingleplayerRules:HLGameRules
 	virtual void(NSClientPlayer) PlayerSpawn;
 	virtual void(NSClientPlayer) PlayerDeath;
 	virtual bool(void) IsMultiplayer;
+	virtual bool ImpulseCommand(NSClient, float);
 };
 
 class HLMultiplayerRules:HLGameRules

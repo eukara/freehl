@@ -35,5 +35,4 @@ w_snark.qc
 w_tripmine.qc
 weapons.qc
 ../../../base/src/shared/weapon_common.qc
-input.qc
 #endlist

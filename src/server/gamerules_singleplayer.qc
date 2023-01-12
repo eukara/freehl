@@ -106,3 +106,49 @@ HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 	Weapons_RefreshAmmo(pl);
 	Client_FixAngle(pl, pl.angles);
 } 
+
+
+
+bool
+HLSingleplayerRules::ImpulseCommand(NSClient bp, float num)
+{
+	switch (num) {
+	case 101:
+		player pl = (player)bp;
+		pl.health = 100;
+		pl.armor = 100;
+		pl.g_items |= ITEM_SUIT;
+		Weapons_AddItem(pl, WEAPON_CROWBAR, -1);
+		Weapons_AddItem(pl, WEAPON_GLOCK, -1);
+		Weapons_AddItem(pl, WEAPON_PYTHON, -1);
+		Weapons_AddItem(pl, WEAPON_MP5, -1);
+		Weapons_AddItem(pl, WEAPON_SHOTGUN, -1);
+		Weapons_AddItem(pl, WEAPON_CROSSBOW, -1);
+		Weapons_AddItem(pl, WEAPON_RPG, -1);
+		Weapons_AddItem(pl, WEAPON_GAUSS, -1);
+		Weapons_AddItem(pl, WEAPON_EGON, -1);
+		Weapons_AddItem(pl, WEAPON_HORNETGUN, -1);
+		Weapons_AddItem(pl, WEAPON_HANDGRENADE, -1);
+		Weapons_AddItem(pl, WEAPON_SATCHEL, -1);
+		Weapons_AddItem(pl, WEAPON_TRIPMINE, -1);
+		Weapons_AddItem(pl, WEAPON_SNARK, -1);
+		pl.ammo_m203_grenade = 10;
+#ifdef GEARBOX
+		Weapons_AddItem(pl, WEAPON_PIPEWRENCH, -1);
+		Weapons_AddItem(pl, WEAPON_KNIFE, -1);
+		Weapons_AddItem(pl, WEAPON_GRAPPLE, -1);
+		Weapons_AddItem(pl, WEAPON_EAGLE, -1);
+		Weapons_AddItem(pl, WEAPON_PENGUIN, -1);
+		Weapons_AddItem(pl, WEAPON_M249, -1);
+		Weapons_AddItem(pl, WEAPON_DISPLACER, -1);
+		Weapons_AddItem(pl, WEAPON_SNIPERRIFLE, -1);
+		Weapons_AddItem(pl, WEAPON_SPORELAUNCHER, -1);
+		Weapons_AddItem(pl, WEAPON_SHOCKRIFLE, -1);
+#endif
+		break;
+	default:
+		return super::ImpulseCommand(bp, num);
+	}
+
+	return true;
+}
