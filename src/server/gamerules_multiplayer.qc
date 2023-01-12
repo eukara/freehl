@@ -24,6 +24,17 @@ HLMultiplayerRules::IsMultiplayer(void)
 }
 
 bool
+HLMultiplayerRules::PlayerRequestRespawn(NSClientPlayer bp)
+{
+	if (bp.TimeSinceDeath() > 0.5f) {
+		bp.ScheduleThink(PutClientInServer, 0.0f);
+		return true;
+	}
+
+	return false;
+}
+
+bool
 HLMultiplayerRules::IsTeamplay(void)
 {
 	return cvar("mp_teamplay") == 1 ? true : false;

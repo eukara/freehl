@@ -16,16 +16,17 @@
 
 class HLGameRules:CGameRules
 {
-	virtual void(NSClientPlayer) PlayerConnect;
-	virtual void(NSClientPlayer) PlayerDisconnect;
-	virtual void(NSClientPlayer) PlayerKill;
-	virtual void(NSClientPlayer) PlayerPostFrame;
+	virtual void PlayerConnect(NSClientPlayer);
+	virtual void PlayerDisconnect(NSClientPlayer);
+	virtual void PlayerKill(NSClientPlayer);
+	virtual void PlayerPostFrame(NSClientPlayer);
 
-	virtual void(NSClientPlayer) LevelDecodeParms;
-	virtual void(NSClientPlayer) LevelChangeParms;
-	virtual void(void) LevelNewParms;
+	virtual void LevelDecodeParms(NSClientPlayer);
+	virtual void LevelChangeParms(NSClientPlayer);
+	virtual void LevelNewParms(void);
 
-	virtual bool(void) IsMultiplayer;
+	virtual bool IsMultiplayer(void);
+
 	virtual bool ImpulseCommand(NSClient, float);
 };
 
@@ -57,4 +58,5 @@ class HLMultiplayerRules:HLGameRules
 	virtual bool(void) IsMultiplayer;
 	virtual bool(void) IsTeamplay;
 	virtual void(void) InitPostEnts;
+	virtual bool PlayerRequestRespawn(NSClientPlayer);
 };
