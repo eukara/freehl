@@ -77,3 +77,15 @@ Camera_StrafeRoll(__inout vector camera_angle)
 
 	camera_angle[2] += roll;
 }
+
+float Viewmodel_GetBob(void);
+
+/* tilts the camera for a head-bob like effect when moving */
+void
+Camera_RunPosBob(vector angles, __inout vector camera_pos)
+{
+	int s = (float)getproperty(VF_ACTIVESEAT);
+	pCamBob = &g_camBobVars[s];
+	makevectors(view_angles);
+	camera_pos += (v_up * Viewmodel_GetBob());
+}

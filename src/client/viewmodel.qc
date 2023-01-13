@@ -81,6 +81,14 @@ Viewmodel_CalcBob(void)
 	pViewBob->m_flBob *= autocvar_cg_viewmodelScale;
 }
 
+float
+Viewmodel_GetBob(void)
+{
+	int s = (float)getproperty(VF_ACTIVESEAT);
+	pViewBob = &g_viewBobVars[s];
+	return pViewBob->m_flBob;
+}
+
 void
 Viewmodel_ApplyBob(entity gun)
 {
