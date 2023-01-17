@@ -136,16 +136,25 @@ void w_gauss_fire(player pl, int one)
 		sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
 	}
 
-	if (one) {
-		return;
-	} else {
-		int iForce = (int)rint((bound(5, pl.ammo_gauss_volume, 10) * 20));
+	HLGameRules rules = (HLGameRules) g_grMode;
 
-		/* Apply force */
-		if (pl.flags & FL_ONGROUND) {
-			pl.velocity += v_forward * (-iForce * 2);
+	/* You should not be able to fling yourself in single player */
+	if (rules.IsMultiplayer() == true) {
+		if (one) {
+			return;
 		} else {
-			pl.velocity += v_forward * (-iForce * 4);
+			int iForce = (int)rint((bound(5, pl.ammo_gauss_volume, 10) * 20));
+
+			/* Apply force */
+			if (pl.flags & FL_ONGROUND) {
+				pl.velocity += v_forward * (-iForce * 2);
+			} else {
+				pl.velocity += v_forward * (-iForce * 4);
+			}
+		}
+	} else {
+		if (one) {
+			return;
 		}
 	}
 
