@@ -227,11 +227,14 @@ w_crossbow_primary(player pl)
 		bolt.angles = vectoangles(bolt.velocity);
 		bolt.avelocity[2] = 10;
 		bolt.touch = Crossbolt_Touch;
-
+		
 		/* zoomed out = explosive */
-		if (rules.IsMultiplayer() == true)
+		if (rules.IsMultiplayer() == true) {
 			bolt.weapon = 1;
-
+			/* Turok's explosive bolt had a trail; assumed the same with HL considering documented cut content. */
+			bolt.traileffectnum = particleeffectnum("weapon_crossbow.trail");
+		}
+		
 		setsize(bolt, [0,0,0], [0,0,0]);
 	}
 
