@@ -72,6 +72,11 @@ item_suit::Touch(entity eToucher)
 void
 item_suit::Respawn(void)
 {
+	if (cvar_string("fs_game") == "bshift") {
+		Destroy();
+		return;
+	}
+
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
 	SetOrigin(GetSpawnOrigin());
