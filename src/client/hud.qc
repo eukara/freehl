@@ -461,7 +461,9 @@ HUD_Draw(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
 
+#ifndef TFC
 	g_hud_color = autocvar_con_color * (1 / 255);
+#endif
 
 	/* little point in not drawing these, even if you don't have a suit */
 	Weapons_DrawCrosshair(pl);
