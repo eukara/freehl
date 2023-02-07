@@ -105,6 +105,8 @@ monster_sitting_scientist::SpawnKey(string strKey, string strValue)
 void
 monster_sitting_scientist::Spawned(void)
 {
+	model = "models/scientist.mdl";
+
 	super::Spawned();
 
 	/* has the body not been overriden, etc. choose a character for us */
@@ -135,5 +137,4 @@ monster_sitting_scientist::Spawned(void)
 void
 monster_sitting_scientist::monster_sitting_scientist(void)
 {
-	model = "models/scientist.mdl";
 }

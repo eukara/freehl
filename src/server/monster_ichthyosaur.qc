@@ -125,6 +125,10 @@ monster_ichthyosaur::Respawn(void)
 void
 monster_ichthyosaur::Spawned(void)
 {
+	netname = "Ichthyosaur";
+	model = "models/icky.mdl";
+	base_mins = [-32,-32,0];
+	base_maxs = [32,32,64];
 	super::Spawned();
 
 	Sound_Precache("monster_ichthyosaur.alert");
@@ -137,8 +141,4 @@ monster_ichthyosaur::Spawned(void)
 void
 monster_ichthyosaur::monster_ichthyosaur(void)
 {
-	netname = "Ichthyosaur";
-	model = "models/icky.mdl";
-	base_mins = [-32,-32,0];
-	base_maxs = [32,32,64];
 }

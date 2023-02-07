@@ -113,23 +113,26 @@ class monster_human_grunt:NSTalkMonster
 {
 	float m_flIdleTime;
 	int m_iMP5Burst;
+	float m_flAlertNoiseTime;
 	
-	void(void) monster_human_grunt;
-	
-	virtual void(void) Scream;
-	virtual void(void) IdleChat;
-	virtual void(void) Respawn;
-	virtual void(void) Spawned;
-	virtual void(void) Pain;
-	virtual void(void) Death;
+	void monster_human_grunt(void);
 
-	virtual int(void) AnimIdle;
-	virtual int(void) AnimWalk;
-	virtual int(void) AnimRun;
+	virtual void Scream(void);
+	virtual void IdleChat(void);
+	virtual void Respawn(void);
+	virtual void Spawned(void);
+	virtual void Pain(void);
+	virtual void Death(void);
 
-	virtual int(void) AttackRanged;
-	virtual int(void) AttackMelee;
-	virtual void(void) AttackKick;
+	virtual int AnimIdle(void);
+	virtual int AnimWalk(void);
+	virtual int AnimRun(void);
+
+	virtual int AttackRanged(void);
+	virtual int AttackMelee(void);
+	virtual void AttackKick(void);
+
+	virtual void AlertNoise(void);
 
 };
 
@@ -149,6 +152,15 @@ int
 monster_human_grunt::AnimRun(void)
 {
 	return GR_RUN;
+}
+
+void
+monster_human_grunt::AlertNoise(void)
+{
+	if (m_flAlertNoiseTime > time)
+		return;
+	Sentence("!HG_CHECK");
+	m_flAlertNoiseTime = time + 15.0f;
 }
 
 int
@@ -196,7 +208,6 @@ monster_human_grunt::AttackRanged(void)
 	}
 
 	/* functional */
-	v_angle = vectoangles(m_eEnemy.origin - origin);
 	TraceAttack_FireBullets(1, origin + [0,0,16], 8, [0.01,0.01], 2);
 	return (1);
 }
@@ -279,14 +290,6 @@ monster_human_grunt::Respawn(void)
 void
 monster_human_grunt::Spawned(void)
 {
-	super::Spawned();
-
-	Sound_Precache("monster_human_grunt.die");
-	Sound_Precache("monster_human_grunt.pain");
-}
-
-void monster_human_grunt::monster_human_grunt(void)
-{
 	/* Adding some into other slots in hopes it feels right
 	 * listed below are other setences that might need their own:
 	 * !HG_MONST - Monster HG_ALERT
@@ -320,4 +323,12 @@ void monster_human_grunt::monster_human_grunt(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ENEMY;
+	super::Spawned();
+
+	Sound_Precache("monster_human_grunt.die");
+	Sound_Precache("monster_human_grunt.pain");
+}
+
+void monster_human_grunt::monster_human_grunt(void)
+{
 }

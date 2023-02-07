@@ -63,17 +63,49 @@ class monster_houndeye:NSMonster
 {
 	float m_flIdleTime;
 
-	void(void) monster_houndeye;
+	void monster_houndeye(void);
 
-	virtual void(void) Spawned;
-	virtual void(void) Pain;
-	virtual void(void) Death;
-	virtual void(void) IdleNoise;
-	virtual void(void) Respawn;
+	virtual void Spawned(void);
+	virtual void Pain(void);
+	virtual void Death(void);
+	virtual void IdleNoise(void);
+	virtual void Respawn(void);
 
-	virtual int(void) AttackMelee;
-	virtual void(void) AttackBlast;
+	virtual int AnimIdle(void);
+	virtual int AnimWalk(void);
+	virtual int AnimRun(void);
+
+	virtual int AttackMelee(void);
+	virtual void AttackBlast(void);
+
+	virtual float MeleeMaxDistance(void);
 };
+
+
+/* The maximum distance to which we should attempt an attack */
+float
+monster_houndeye::MeleeMaxDistance(void)
+{
+	return HE_BLAST_RADIUS/2;
+}
+
+int
+monster_houndeye::AnimIdle(void)
+{
+	return HE_IDLE;
+}
+
+int
+monster_houndeye::AnimWalk(void)
+{
+	return HE_WALK2;
+}
+
+int
+monster_houndeye::AnimRun(void)
+{
+	return HE_RUN;
+}
 
 int
 monster_houndeye::AttackMelee(void)
@@ -187,6 +219,12 @@ monster_houndeye::Respawn(void)
 void
 monster_houndeye::Spawned(void)
 {
+	netname = "Houndeye";
+	model = "models/houndeye.mdl";
+	base_health = Skill_GetValue("houndeye_health", 20);
+	base_mins = [-16,-16,0];
+	base_maxs = [16,16,36];
+	m_iAlliance = MAL_ALIEN;
 	super::Spawned();
 
 	Sound_Precache("monster_houndeye.alert");
@@ -200,10 +238,4 @@ monster_houndeye::Spawned(void)
 void
 monster_houndeye::monster_houndeye(void)
 {
-	netname = "Houndeye";
-	model = "models/houndeye.mdl";
-	base_health = Skill_GetValue("houndeye_health", 20);
-	base_mins = [-16,-16,0];
-	base_maxs = [16,16,36];
-	m_iAlliance = MAL_ALIEN;
 }

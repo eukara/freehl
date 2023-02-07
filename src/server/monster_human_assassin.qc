@@ -51,7 +51,13 @@ class monster_human_assassin:NSMonster
 
 	virtual void(void) Death;
 	virtual void(void) Respawn;
+	virtual void Spawned(void);
 };
+
+void 
+monster_human_assassin::monster_human_assassin(void)
+{
+}
 
 void
 monster_human_assassin::Death(void)
@@ -75,19 +81,22 @@ monster_human_assassin::Death(void)
 	super::Death();
 }
 
-void
-monster_human_assassin::Respawn(void)
-{
-	super::Respawn();
-	frame = HAS_IDLE;
-}
-
 void 
-monster_human_assassin::monster_human_assassin(void)
+monster_human_assassin::Spawned(void)
 {
 	netname = "Assassin";
 	model = "models/hassassin.mdl";
 	base_health = Skill_GetValue("hassassin_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
+	m_iAlliance = MAL_ENEMY;
+
+	super::Spawned();
+}
+
+void
+monster_human_assassin::Respawn(void)
+{
+	super::Respawn();
+	frame = HAS_IDLE;
 }

@@ -76,6 +76,10 @@ monster_leech::Respawn(void)
 void
 monster_leech::Spawned(void)
 {
+	netname = "Leech";
+	model = "models/leech.mdl";
+	base_mins = [-6,-6,0];
+	base_maxs = [6,6,6];
 	super::Spawned();
 
 	Sound_Precache("monster_leech.alert");
@@ -84,8 +88,4 @@ monster_leech::Spawned(void)
 
 void monster_leech::monster_leech(void)
 {
-	netname = "Leech";
-	model = "models/leech.mdl";
-	base_mins = [-6,-6,0];
-	base_maxs = [6,6,6];
 }

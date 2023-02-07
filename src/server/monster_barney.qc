@@ -48,6 +48,7 @@ class monster_barney:NSTalkMonster
 {
 	void(void) monster_barney;
 
+	virtual void(void) Spawned;
 	virtual void(void) Respawn;
 	virtual void(void) OnPlayerUse;
 	virtual void(void) Pain;
@@ -188,7 +189,7 @@ monster_barney::Respawn(void)
 }
 
 void
-monster_barney::monster_barney(void)
+monster_barney::Spawned(void)
 {
 	Sound_Precache("monster_barney.die");
 	Sound_Precache("monster_barney.pain");
@@ -223,4 +224,12 @@ monster_barney::monster_barney(void)
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_FRIEND;
+
+	super::Spawned();
+}
+
+
+void
+monster_barney::monster_barney(void)
+{
 }

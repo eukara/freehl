@@ -88,7 +88,30 @@ class monster_zombie:NSMonster
 
 	virtual int(void) AttackMelee;
 	virtual void(void) AttackFlail;
+
+	virtual float GetWalkSpeed(void);
+	virtual float GetChaseSpeed(void);
+	virtual float GetRunSpeed(void);
 };
+
+float
+monster_zombie::GetWalkSpeed(void)
+{
+	return 64;
+}
+
+float
+monster_zombie::GetChaseSpeed(void)
+{
+	return 64;
+}
+
+
+float
+monster_zombie::GetRunSpeed(void)
+{
+	return 64;
+}
 
 int
 monster_zombie::AnimIdle(void)
@@ -207,23 +230,23 @@ monster_zombie::Respawn(void)
 void
 monster_zombie::Spawned(void)
 {
-	super::Spawned();
-
 	Sound_Precache("monster_zombie.alert");
 	Sound_Precache("monster_zombie.attack");
 	Sound_Precache("monster_zombie.attackhit");
 	Sound_Precache("monster_zombie.attackmiss");
 	Sound_Precache("monster_zombie.idle");
 	Sound_Precache("monster_zombie.pain");
-}
-
-void
-monster_zombie::monster_zombie(void)
-{
 	netname = "Zombie";
 	model = "models/zombie.mdl";
 	base_health = Skill_GetValue("zombie_health", 50);
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
 	m_iAlliance = MAL_ALIEN;
+
+	super::Spawned();
+}
+
+void
+monster_zombie::monster_zombie(void)
+{
 }

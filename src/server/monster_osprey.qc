@@ -26,19 +26,27 @@ class monster_osprey:NSMonster
 {
 	void(void) monster_osprey;
 	virtual void(void) Respawn;
+
+	virtual void Spawned(void);
 };
+
+void monster_osprey::monster_osprey(void)
+{
+}
+
+void monster_osprey::Spawned(void)
+{
+	netname = "Osprey";
+	model = "models/osprey.mdl";
+	base_mins = [-480,-480,-112];
+	base_maxs = [480,480,24];
+	super::Spawned();
+}
+
 
 void monster_osprey::Respawn(void)
 {
 	super::Respawn();
 	takedamage = DAMAGE_NO;
 	iBleeds = FALSE;
-}
-
-void monster_osprey::monster_osprey(void)
-{
-	netname = "Osprey";
-	model = "models/osprey.mdl";
-	base_mins = [-480,-480,-112];
-	base_maxs = [480,480,24];
 }

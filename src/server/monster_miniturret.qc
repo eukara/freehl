@@ -35,12 +35,21 @@ enum
 class monster_miniturret:NSMonster
 {
 	void(void) monster_miniturret;
+
+	virtual void Spawned(void);
 };
 
 void monster_miniturret::monster_miniturret(void)
+{
+}
+
+
+void monster_miniturret::Spawned(void)
 {
 	netname = "Mini-Turret";
 	model = "models/miniturret.mdl";
 	base_mins = [-16,-16,-32];
 	base_maxs = [16,16,32];
+
+	super::Spawned();
 }

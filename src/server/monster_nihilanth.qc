@@ -120,6 +120,11 @@ monster_nihilanth::Respawn(void)
 void
 monster_nihilanth::Spawned(void)
 {
+	netname = "Nihilanth";
+	model = "models/nihilanth.mdl";
+	base_health = Skill_GetValue("nihilanth_health", 800);
+	base_mins = [-192,-192,-32];
+	base_maxs = [192,192,384];
 	super::Spawned();
 
 	Sound_Precache("monster_nihilanth.attack");
@@ -134,9 +139,4 @@ monster_nihilanth::Spawned(void)
 void
 monster_nihilanth::monster_nihilanth(void)
 {
-	netname = "Nihilanth";
-	model = "models/nihilanth.mdl";
-	base_health = Skill_GetValue("nihilanth_health", 800);
-	base_mins = [-192,-192,-32];
-	base_maxs = [192,192,384];
 }

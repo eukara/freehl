@@ -25,6 +25,8 @@ Rat
 class monster_rat:NSMonster
 {
 	void(void) monster_rat;
+
+	virtual void Spawned(void);
 };
 
 void monster_rat::monster_rat(void)
@@ -33,4 +35,14 @@ void monster_rat::monster_rat(void)
 	model = "models/bigrat.mdl";
 	base_mins = [-6,-6,-0];
 	base_maxs = [6,6,6];
+}
+
+void monster_rat::Spawned(void)
+{
+	netname = "Rat";
+	model = "models/bigrat.mdl";
+	base_mins = [-6,-6,-0];
+	base_maxs = [6,6,6];
+
+	super::Spawned();
 }
