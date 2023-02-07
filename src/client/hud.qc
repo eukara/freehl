@@ -211,7 +211,7 @@ HUD_DrawArmor(void)
 	);
 
 	if (pl.armor > 0) {
-		float perc = (pl.armor / 100);
+		float perc = bound(0, (pl.armor / 100), 1.0);
 		drawsubpic(
 			pos + [-80,-9] + [0, 40 * (1.0-perc)],
 			[40, 40 * perc],
