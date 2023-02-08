@@ -34,7 +34,7 @@ void item_pickup::Touch(entity eToucher)
 		Destroy();
 	} else {
 		Disappear();
-		ScheduleThink(Respawn, 30.0f);
+		ScheduleThink(PickupRespawn, 30.0f);
 	}
 }
 
@@ -51,6 +51,13 @@ void item_pickup::SetFloating(int i)
 	m_bFloating = rint(bound(0, m_bFloating, 1));
 }
 
+void
+item_pickup::PickupRespawn(void)
+{
+	Respawn();
+	Sound_Play(this, CHAN_ITEM, "item.respawn");
+}
+
 void item_pickup::Respawn(void)
 {
 	SetSolid(SOLID_TRIGGER);
@@ -64,13 +71,6 @@ void item_pickup::Respawn(void)
 
 	SetSize([-16,-16,0], [16,16,16]);
 	ReleaseThink();
-
-	if (!m_iWasDropped && cvar("sv_playerslots") > 1) {
-		if (!real_owner && time > 30.0f)
-			Sound_Play(this, CHAN_ITEM, "item.respawn");
-
-		m_iClip = -1;
-	}
 
 	if (!m_bFloating) {
 		DropToFloor();

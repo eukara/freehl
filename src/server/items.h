@@ -21,11 +21,12 @@ class item_pickup:NSRenderableEntity
 	int m_iClip;
 	int m_iWasDropped;
 	int id;
-	void(void) item_pickup;
+	void item_pickup(void);
 
-	virtual void(void) Spawned;
-	virtual void(entity) Touch;
-	virtual void(int i) SetItem;
-	virtual void(void) Respawn;
-	virtual void(int) SetFloating;
+	virtual void Spawned(void);
+	virtual void Touch(entity);
+	virtual void SetItem(int i);
+	virtual void Respawn(void);
+	virtual void SetFloating(int);
+	virtual void PickupRespawn(void);
 };
