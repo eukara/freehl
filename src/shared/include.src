@@ -3,7 +3,7 @@ entities.h
 events.h
 flags.h
 player.qc
-../../../base/src/shared/weapon_common.h
+weapon_common.h
 animations.h
 animations.qc
 pmove.qc
@@ -13,8 +13,8 @@ fx_gaussbeam.qc
 fx_breakmodel.qc
 fx_explosion.qc
 fx_gibhuman.qc
-../../../base/src/shared/fx_spark.qc
-../../../base/src/shared/fx_corpse.qc
+fx_spark.qc
+fx_corpse.qc
 fx_impact.qc
 
 items.h
@@ -34,5 +34,5 @@ w_shotgun.qc
 w_snark.qc
 w_tripmine.qc
 weapons.qc
-../../../base/src/shared/weapon_common.qc
+weapon_common.qc
 #endlist

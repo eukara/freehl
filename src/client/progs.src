@@ -19,7 +19,7 @@ defs.h
 ../../../src/gs-entbase/shared.src
 ../shared/include.src
 
-../../../base/src/client/draw.qc
+draw.qc
 
 damage.qc
 init.qc
@@ -37,7 +37,7 @@ hud_ammonotify.qc
 hud.qc
 hud_weaponselect.qc
 scoreboard.qc
-../../../base/src/client/modelevent.qc
+modelevent.qc
 
 ../../../src/client/include.src
 ../../../src/shared/include.src

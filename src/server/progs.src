@@ -75,9 +75,9 @@ gamerules.qc
 gamerules_singleplayer.qc
 gamerules_multiplayer.qc
 server.qc
-../../../base/src/server/damage.qc
+damage.qc
 flashlight.qc
-../../../base/src/server/modelevent.qc
+modelevent.qc
 
 spawn.qc
 
