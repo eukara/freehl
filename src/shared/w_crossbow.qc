@@ -348,7 +348,6 @@ void
 w_crossbow_crosshair(player pl)
 {
 #ifdef CLIENT
-	vector cross_pos;
 	vector aicon_pos;
 
 	if (pl.viewzoom == 1) {

@@ -57,10 +57,11 @@ void w_gauss_precache(void)
 	precache_sound("weapons/gauss2.wav");
 	Sound_Precache("weapon_gauss.empty");
 #else
-	precache_sound("ambience/pulsemachine.wav");
 	precache_model("models/v_gauss.mdl");
 	precache_model("models/p_gauss.mdl");
 #endif
+
+	precache_sound("ambience/pulsemachine.wav");
 }
 void w_gauss_updateammo(player pl)
 {

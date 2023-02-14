@@ -596,7 +596,7 @@ player::EvaluateEntity(void)
 
 	EVALUATE_FIELD(anim_top, PLAYER_TOPFRAME);
 	EVALUATE_FIELD(anim_top_time, PLAYER_TOPFRAME);
-	EVALUATE_FIELD(anim_top_delay, PLAYER_TOPFRAME  );
+	EVALUATE_FIELD(anim_top_delay, PLAYER_TOPFRAME);
 	EVALUATE_FIELD(anim_bottom, PLAYER_BOTTOMFRAME);
 	EVALUATE_FIELD(anim_bottom_time, PLAYER_BOTTOMFRAME);
 
