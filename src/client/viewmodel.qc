@@ -56,7 +56,7 @@ Viewmodel_CalcBob(void)
 	iCycle = (pViewBob->m_flBobTime / var_cycle);
 
 	/* increment the input value for our cycle */
-	pViewBob->m_flBobTime += clframetime;
+	pViewBob->m_flBobTime += frametime;
 
 	/* calculate the point in the cycle based on the input time */
 	pViewBob->m_flBobCycle = pViewBob->m_flBobTime - (iCycle * var_cycle);
@@ -92,6 +92,9 @@ Viewmodel_GetBob(void)
 void
 Viewmodel_ApplyBob(entity gun)
 {
+	int s = (float)getproperty(VF_ACTIVESEAT);
+	pViewBob = &g_viewBobVars[s];
+
 	// Give the gun a tilt effect like in old HL/CS versions
 	if (autocvar(v_bobclassic, 1, "Viewmodel bob classic tilt switch") == 1) {
 		gun.angles[2] = -pViewBob->m_flBob;
