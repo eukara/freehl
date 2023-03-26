@@ -40,5 +40,6 @@ scoreboard.qc
 modelevent.qc
 
 ../../../src/client/include.src
+vgui_motd.qc
 ../../../src/shared/include.src
 #endlist

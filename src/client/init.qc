@@ -28,9 +28,12 @@ ClientGame_Init(float apilevel, string enginename, float engineversion)
 	registercommand("chooseteam");
 }
 
+void VGUI_ShowMOTD();
+
 void
 ClientGame_InitDone(void)
 {
+	VGUI_ShowMOTD();
 }
 
 void

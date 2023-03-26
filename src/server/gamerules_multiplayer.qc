@@ -43,6 +43,8 @@ HLMultiplayerRules::IsTeamplay(void)
 void
 HLMultiplayerRules::InitPostEnts(void)
 {
+	MOTD_LoadDefault();
+
 	if (IsTeamplay() == true) {
 		int c;
 
