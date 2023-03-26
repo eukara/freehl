@@ -1,0 +1,115 @@
+func_plat.move_0
+{
+	follow
+	sample misc/null.wav
+}
+func_plat.move_1
+{
+	follow
+	sample plats/bigmove1.wav
+}
+func_plat.move_2
+{
+	follow
+	sample plats/bigmove2.wav
+}
+func_plat.move_3
+{
+	follow
+	sample plats/elevmove1.wav
+}
+func_plat.move_4
+{
+	follow
+	sample plats/elevmove2.wav
+}
+func_plat.move_5
+{
+	follow
+	sample plats/elevmove3.wav
+}
+func_plat.move_6
+{
+	follow
+	sample plats/freightmove1.wav
+}
+func_plat.move_7
+{
+	follow
+	sample plats/freightmove2.wav
+}
+func_plat.move_8
+{
+	follow
+	sample plats/heavymove1.wav
+}
+func_plat.move_9
+{
+	follow
+	sample plats/rackmove1.wav
+}
+func_plat.move_10
+{
+	follow
+	sample plats/railmove1.wav
+}
+func_plat.move_11
+{
+	follow
+	sample plats/squeekmove1.wav
+}
+func_plat.move_12
+{
+	follow
+	sample plats/talkmove1.wav
+}
+func_plat.move_13
+{
+	follow
+	sample plats/talkmove2.wav
+}
+
+func_plat.stop_0
+{
+	sample misc/null.wav
+}
+func_plat.stop_1
+{
+	follow
+	sample plats/bigstop1.wav
+}
+func_plat.stop_2
+{
+	follow
+	sample plats/bigstop2.wav
+}
+func_plat.stop_3
+{
+	follow
+	sample plats/freightstop1.wav
+}
+func_plat.stop_4
+{
+	follow
+	sample plats/heavystop2.wav
+}
+func_plat.stop_5
+{
+	follow
+	sample plats/rackstop1.wav
+}
+func_plat.stop_6
+{
+	follow
+	sample plats/railstop1.wav
+}
+func_plat.stop_7
+{
+	follow
+	sample plats/squeekstop1.wav
+}
+func_plat.stop_8
+{
+	follow
+	sample plats/talkstop1.wav
+}
