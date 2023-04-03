@@ -107,8 +107,6 @@ HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 	Client_FixAngle(pl, pl.angles);
 } 
 
-
-
 bool
 HLSingleplayerRules::ImpulseCommand(NSClient bp, float num)
 {
