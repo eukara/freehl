@@ -91,7 +91,8 @@ monster_snark::customphysics(void)
 			FX_Blood(origin + [0,0,16], [1,0,0]);
 		}
 
-		if (m_eTarget.health <= 0) {
+		/* TODO this needs to be cleaned up and use isAlive in the future */
+		if (m_eTarget.solid == SOLID_CORPSE) {
 			m_eTarget = __NULL__;
 		}
 	}
