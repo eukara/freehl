@@ -137,28 +137,6 @@ void w_gauss_fire(player pl, int one)
 		sound(trace_ent, CHAN_ITEM, sprintf("weapons/electro%d.wav", random(0,3)+4), 1, ATTN_NORM);
 	}
 
-	HLGameRules rules = (HLGameRules) g_grMode;
-
-	/* You should not be able to fling yourself in single player */
-	if (rules.IsMultiplayer() == true) {
-		if (one) {
-			return;
-		} else {
-			int iForce = (int)rint((bound(5, pl.ammo_gauss_volume, 10) * 20));
-
-			/* Apply force */
-			if (pl.flags & FL_ONGROUND) {
-				pl.velocity += v_forward * (-iForce * 2);
-			} else {
-				pl.velocity += v_forward * (-iForce * 4);
-			}
-		}
-	} else {
-		if (one) {
-			return;
-		}
-	}
-
 	// reflection equation:
 	Weapons_MakeVectors(pl);
 	vecDir = v_forward;
@@ -224,6 +202,18 @@ void w_gauss_release(player pl)
 {
 	if (pl.w_idle_next > 0.0) {
 		return;
+	}
+
+	/* if multiplayer then always fling the player
+	 * FIXME need a check for coop */
+	if (serverkeyfloat("sv_playerslots") > 1) {
+		if (pl.mode_tempstate != GAUSSTATE_IDLE) {
+			int iForce = (int)rint((bound(5, pl.ammo_gauss_volume, 10) * 20));
+			Weapons_MakeVectors(pl);
+
+			/* Apply force */
+			pl.velocity += v_forward * (-iForce * 4);
+		}
 	}
 
 	if (pl.mode_tempstate == GAUSSTATE_REVVINGUP) {
@@ -321,7 +311,7 @@ void w_gauss_secondary(player pl)
 	if (pl.mode_tempstate == GAUSSTATE_REVVINGUP) {
 		Weapons_ViewAnimation(pl, GAUSS_SPIN);
 		pl.mode_tempstate = GAUSSTATE_FULL;
-		pl.w_idle_next = 0.5f;
+		pl.w_idle_next = 0.0f; // fire immediately if we let go
 		pl.w_attack_next = 0.5f;
 	} else if (!pl.mode_tempstate) {
 		Weapons_ViewAnimation(pl, GAUSS_SPINUP);
@@ -329,7 +319,7 @@ void w_gauss_secondary(player pl)
 #ifdef SERVER
 		sound(pl, CHAN_WEAPON, "ambience/pulsemachine.wav", 2, ATTN_NORM);
 #endif
-		pl.w_idle_next = 0.5f;
+		pl.w_idle_next = 0.5f; // delay if we let go
 		pl.w_attack_next = 0.5f;
 	}
 }
