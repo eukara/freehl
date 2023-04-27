@@ -32,7 +32,7 @@ void info_player_deathmatch(void)
 
 void info_player_team1(void)
 {
-	self.classname = "info_player_deathmatch";
+	self.solid = SOLID_TRIGGER;
 	self.botinfo = BOTINFO_SPAWNPOINT;
 	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
 	setorigin_safe(self, self.origin);
@@ -40,7 +40,7 @@ void info_player_team1(void)
 
 void info_player_team2(void)
 {
-	self.classname = "info_player_deathmatch";
+	self.solid = SOLID_TRIGGER;
 	self.botinfo = BOTINFO_SPAWNPOINT;
 	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
 	setorigin_safe(self, self.origin);
