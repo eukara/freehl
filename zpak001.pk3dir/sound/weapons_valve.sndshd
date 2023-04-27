@@ -224,6 +224,14 @@ weapon_gauss.empty
 {
 	sample weapons/357_cock1.wav
 }
+weapon_gauss.fire
+{
+	sample weapons/gauss2.wav
+}
+weapon_gauss.overcharge
+{
+	sample weapons/electro4.wav
+}
 weapon_egon.empty
 {
 	sample weapons/357_cock1.wav

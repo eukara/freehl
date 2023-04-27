@@ -54,8 +54,9 @@ void w_gauss_precache(void)
 	precache_sound("weapons/electro4.wav");
 	precache_sound("weapons/electro5.wav");
 	precache_sound("weapons/electro6.wav");
-	precache_sound("weapons/gauss2.wav");
 	Sound_Precache("weapon_gauss.empty");
+	Sound_Precache("weapon_gauss.fire");
+	Sound_Precache("weapon_gauss.overcharge");
 #else
 	precache_model("models/v_gauss.mdl");
 	precache_model("models/p_gauss.mdl");
@@ -124,7 +125,7 @@ void w_gauss_fire(player pl, int one)
 	vecCurPlane = trace_plane_normal;
 	vecCurPos = trace_endpos;
 
-	sound(pl, CHAN_WEAPON, "weapons/gauss2.wav", 1, ATTN_NORM);
+	pl.StartSoundDef("weapon_gauss.fire", CHAN_WEAPON, true);
 	int iDamage = one ? 20 : (int)rint((bound(0, pl.ammo_gauss_volume, 10) * 20));
 
 	if (serverkeyfloat("*bspversion") == BSPVER_HL)
@@ -174,7 +175,7 @@ void w_gauss_primary(player pl)
 	/* Ammo check */
 	if ((pl.ammo_uranium < 2) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_AUTO, "weapon_gauss.empty");
+		pl.StartSoundDef("weapon_gauss.fire", CHAN_WEAPON, true);
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -201,6 +202,11 @@ void w_gauss_primary(player pl)
 void w_gauss_release(player pl)
 {
 	if (pl.w_idle_next > 0.0) {
+		return;
+	}
+
+	/* do nothing if we overcharged */
+	if (pl.ammo_gauss_volume == 100) {
 		return;
 	}
 
@@ -264,6 +270,7 @@ void w_gauss_release(player pl)
 
 void w_gauss_secondary(player pl)
 {
+
 	if (pl.w_attack_next > 0.0)
 		return;
 	if (pl.gflags & GF_SEMI_TOGGLED)
@@ -280,7 +287,7 @@ void w_gauss_secondary(player pl)
 	/* regular ammo check */
 	if ((pl.ammo_uranium <= 0) || (pl.WaterLevel() >= WATERLEVEL_SUBMERGED)) {
 #ifdef SERVER
-		Sound_Play(pl, CHAN_AUTO, "weapon_gauss.empty");
+		pl.StartSoundDef("weapon_gauss.empty", CHAN_AUTO, true);
 #endif
 		pl.gflags |= GF_SEMI_TOGGLED;
 		return;
@@ -295,17 +302,21 @@ void w_gauss_secondary(player pl)
 	/* Set pitch sound shift */
 	pl.ammo_gauss_volume += 1;
 
-	/* holding it for too long, damage our owner */
+	/* holding it for too long, damage our owner (overcharge) */
 	if (pl.ammo_gauss_volume > 100) {
 		pl.ammo_gauss_volume = 100;
+		w_gauss_release(pl);
 #ifdef SERVER
-		Damage_Apply(pl, pl, 10, DMG_ELECTRO, WEAPON_GAUSS);
+		Damage_Apply(pl, pl, 50, WEAPON_GAUSS, DMG_ELECTRO);
+		pl.StartSoundDef("weapon_gauss.overcharge", CHAN_AUTO, true);
+		pl.StopSound(CHAN_WEAPON, true);
 #endif
 		pl.mode_tempstate = GAUSSTATE_IDLE;
 		pl.w_attack_next = 0.5f;
 		pl.w_idle_next = 0.5f;
 		pl.ammo_gauss_volume = 0;
 		Weapons_ViewAnimation(pl, GAUSS_IDLE1);
+		return;
 	}
 
 	if (pl.mode_tempstate == GAUSSTATE_REVVINGUP) {
@@ -323,6 +334,10 @@ void w_gauss_secondary(player pl)
 		pl.w_attack_next = 0.5f;
 	}
 }
+
+/* set globals for the overcharge's overlay */
+.float overlay_state;
+.float overlay_alpha;
 
 void w_gauss_crosshair(player pl)
 {
@@ -344,6 +359,32 @@ void w_gauss_crosshair(player pl)
 	);
 
 	HUD_DrawAmmo2();
+
+	/* overchage flashes the player */
+	if (pl.ammo_gauss_volume == 100) {
+		/* check for the state, give a default alpha */
+		if (pl.overlay_state == 0)
+		pl.overlay_alpha = 0.8f;
+
+		pl.overlay_state = 1;
+	}
+
+	if (pl.overlay_state == 1) {
+		/* give us a nice fadeout about 3 seconds */
+		pl.overlay_alpha -= frametime * 0.3;
+
+		drawfill(
+			video_mins,
+			video_res,
+			[0.6,0.3,0],
+			pl.overlay_alpha,
+			DRAWFLAG_ADDITIVE
+		);
+
+		if (pl.overlay_alpha < 0.1f) {
+			pl.overlay_state = 0;
+		}
+	}
 #endif
 }
 
