@@ -23,20 +23,21 @@ HLSingleplayerRules::IsMultiplayer(void)
 void
 HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 {
-	pl.movetype = MOVETYPE_NONE;
-	pl.solid = SOLID_NOT;
-	pl.takedamage = DAMAGE_NO;
+	pl.SetMovetype(MOVETYPE_NONE);
+	pl.SetSolid(SOLID_NOT);
+	pl.SetTakedamage(DAMAGE_NO);
+	pl.SetHealth(0);
+	pl.StartSoundDef("player.die", CHAN_AUTO, true);
+
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.armor = pl.activeweapon = pl.g_items = pl.weapon = 0;
-	pl.health = 0;
-	Sound_Play(pl, CHAN_AUTO, "player.die");
 
 	if (cvar("coop") == 1) {
-		pl.think = PutClientInServer;
-		pl.nextthink = time + 4.0f;
+		pl.ScheduleThink(PutClientInServer, 4.0f);
 	}
 
-	if (pl.health < -50) {
+	/* so much damage we're gonna gib */
+	if (pl.GetHealth() < -50) {
 		FX_GibHuman(pl.origin, vectoangles(pl.origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
 	}
 
@@ -56,51 +57,43 @@ HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 void
 HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 {
+	string playerModel = "models/player.mdl";
+
 	pl.classname = "player";
-	pl.health = pl.max_health = 100;
-	pl.takedamage = DAMAGE_YES;
+	pl.SetHealth(100);
+	pl.SetMaxHealth(100);
+	pl.SetTakedamage(DAMAGE_YES);
 	pl.SetSolid(SOLID_SLIDEBOX);
 	pl.SetMovetype(MOVETYPE_WALK);
-	pl.flags = FL_CLIENT;
+	pl.AddFlags(FL_CLIENT);
 	pl.viewzoom = 1.0;
-	pl.model = "models/player.mdl";
 
-
+	/* if in cooperative mode, we want to respect the player model */
 	if (cvar("coop") == 1) {
-		string mymodel = infokey(pl, "model");
-		if (mymodel) {
-			mymodel = sprintf("models/player/%s/%s.mdl", mymodel, mymodel);
-			if (whichpack(mymodel)) {
-				pl.model = mymodel;
+		string testModel = infokey(pl, "model");
+		if (testModel) {
+			testModel = sprintf("models/player/%s/%s.mdl", testModel, testModel);
+			if (whichpack(testModel)) {
+				playerModel = testModel;
 			}
 		}
 	}
 
-	setmodel(pl, pl.model);
-
-	setsize(pl, VEC_HULL_MIN, VEC_HULL_MAX);
-	pl.velocity = [0,0,0];
-	pl.gravity = __NULL__;
-	pl.frame = 1;
-	//pl.SendEntity = Player_SendEntity;
-	pl.SendFlags = UPDATE_ALL;
-	pl.customphysics = Empty;
-	pl.iBleeds = TRUE;
-	forceinfokey(pl, "*spec", "0");
-	forceinfokey(pl, "*deaths", ftos(pl.deaths));
-
-	/* this is where the mods want to deviate */
-	entity spot;
+	pl.SetModel(playerModel);
+	pl.SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
+	pl.ClearVelocity();
+	pl.SetInfoKey("*spec", "0");
+	pl.SetInfoKey("*deaths", ftos(pl.deaths));
+	pl.SetCanBleed(true);
 
 	if (startspot != "") {
-		dprint(sprintf("^3Gamerules_Spawn^7: Startspot is %s\n", startspot));
 		LevelDecodeParms(pl);
-		setorigin(pl, Landmark_GetSpot());
+		pl.SetOrigin(Landmark_GetSpot());
 	} else {
+		entity spawnPoint;
 		LevelNewParms();
-		spot = find(world, ::classname, "info_player_start");
-		setorigin(pl, spot.origin);
-		pl.angles = spot.angles;
+		spawnPoint = find(world, ::classname, "info_player_start");
+		pl.Transport(spawnPoint.origin, spawnPoint.angles);
 	}
 
 	Weapons_RefreshAmmo(pl);
@@ -113,8 +106,9 @@ HLSingleplayerRules::ImpulseCommand(NSClient bp, float num)
 	switch (num) {
 	case 101:
 		player pl = (player)bp;
-		pl.health = 100;
-		pl.armor = 100;
+		pl.SetHealth(100);
+		pl.SetMaxHealth(100);
+		pl.SetArmor(100);
 		pl.g_items |= ITEM_SUIT;
 		Weapons_AddItem(pl, WEAPON_CROWBAR, -1);
 		Weapons_AddItem(pl, WEAPON_GLOCK, -1);

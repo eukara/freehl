@@ -214,10 +214,8 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 #endif
 
 	spot = Spawn_SelectRandom("info_player_deathmatch");
-	pl.SetOrigin(spot.origin);
-	pl.SetAngles(spot.angles);
+	pl.Transport(spot.origin, spot.angles);
 	Weapons_RefreshAmmo(pl);
-
 	Client_FixAngle(pl, pl.angles);
 }
 
@@ -234,7 +232,7 @@ HLMultiplayerRules::ConsoleCommand(NSClientPlayer pp, string cmd)
 		int r = floor(random(0, search_getsize(pm)));
 		string mdl = substring(search_getfilename(pm, r), 0, -5);
 		tokenizebyseparator(mdl, "/");
-		forceinfokey(pete, "model", argv(2));
+		pete.SetInfoKey("model", argv(2));
 		search_end(pm);
 		break;
 	case "jumptest":

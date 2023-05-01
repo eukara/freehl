@@ -1,70 +1,39 @@
-func_breakable.impact_glassunbreakable
+func_breakable.break_cinder
 {
-	sample debris/glass1.wav
-	sample debris/glass2.wav
-	sample debris/glass3.wav
-	sample debris/glass4.wav
+	sample debris/bustconcrete1.wav
+	sample debris/bustconcrete2.wav
 }
-
-func_breakable.impact_computer
+func_breakable.break_computer
 {
-	sample debris/glass1.wav
-	sample debris/glass2.wav
-	sample debris/glass3.wav
-	sample debris/glass4.wav
+	sample debris/bustmetal1.wav
+	sample debris/bustmetal2.wav
 }
-
-func_breakable.impact_glass
+func_breakable.break_flesh
 {
-	sample debris/glass1.wav
-	sample debris/glass2.wav
-	sample debris/glass3.wav
-	sample debris/glass4.wav
+	sample debris/bustflesh1.wav
+	sample debris/bustflesh2.wav
 }
-
-func_breakable.impact_wood
+func_breakable.break_glass
 {
-	sample debris/wood1.wav
-	sample debris/wood2.wav
-	sample debris/wood3.wav
-	sample debris/wood4.wav
+	sample debris/bustglass1.wav
+	sample debris/bustglass2.wav
 }
-
-func_breakable.impact_metal
+func_breakable.break_metal
 {
-	sample debris/metal1.wav
-	sample debris/metal2.wav
-	sample debris/metal3.wav
-	sample debris/metal4.wav
+	sample debris/bustmetal1.wav
+	sample debris/bustmetal2.wav
 }
-
-func_breakable.impact_flesh
+func_breakable.break_rocks
 {
-	sample debris/flesh1.wav
-	sample debris/flesh2.wav
-	sample debris/flesh3.wav
-	sample debris/flesh5.wav
-	sample debris/flesh6.wav
-	sample debris/flesh7.wav
+	sample debris/bustconcrete1.wav
+	sample debris/bustconcrete2.wav
 }
-
-func_breakable.impact_cinder
+func_breakable.break_tile
 {
-	sample debris/concrete1.wav
-	sample debris/concrete2.wav
-	sample debris/concrete3.wav
+	sample debris/bustceiling.wav
 }
-
-func_breakable.impact_concrete
+func_breakable.break_wood
 {
-	sample debris/concrete1.wav
-	sample debris/concrete2.wav
-	sample debris/concrete3.wav
-}
-
-func_breakable.impact_rock
-{
-	sample debris/concrete1.wav
-	sample debris/concrete2.wav
-	sample debris/concrete3.wav
+	sample debris/bustcrate1.wav
+	sample debris/bustcrate2.wav
 }

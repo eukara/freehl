@@ -13,6 +13,7 @@ gs_material_glass
 	bulletimpact "sfx_impact.glass"
 	stepleft "step_glass.left"
 	stepright "step_glass.right"
+	break "func_breakable.break_glass"
 }
 
 gs_material_wood
@@ -22,6 +23,7 @@ gs_material_wood
 	bulletimpact "sfx_impact.wood"
 	stepleft "step_wood.left"
 	stepright "step_wood.right"
+	break "func_breakable.break_wood"
 }
 
 gs_material_metal
@@ -31,6 +33,7 @@ gs_material_metal
 	bulletimpact "sfx_impact.metal"
 	stepleft "step_metal.left"
 	stepright "step_metal.right"
+	break "func_breakable.break_metal"
 }
 
 gs_material_ladder
@@ -48,6 +51,7 @@ gs_material_flesh
 	bulletimpact "sfx_impact.flesh"
 	stepleft "step_flesh.left"
 	stepright "step_flesh.right"
+	break "func_breakable.break_flesh"
 }
 
 gs_material_cinderblock
@@ -56,6 +60,7 @@ gs_material_cinderblock
 	bulletimpact "sfx_impact.concrete"
 	stepleft "step_default.left"
 	stepright "step_default.right"
+	break "func_breakable.break_cinder"
 }
 
 gs_material_tile
@@ -65,6 +70,7 @@ gs_material_tile
 	bulletimpact "sfx_impact.tile"
 	stepleft "step_tile.left"
 	stepright "step_tile.right"
+	break "func_breakable.break_cinder"
 }
 
 gs_material_computer
@@ -74,6 +80,7 @@ gs_material_computer
 	bulletimpact "sfx_impact.computer"
 	stepleft "step_computer.left"
 	stepright "step_computer.right"
+	break "func_breakable.break_computer"
 }
 
 gs_material_unbreakableglass
@@ -82,14 +89,16 @@ gs_material_unbreakableglass
 	bulletimpact "sfx_impact.glass"
 	stepleft "step_glass.left"
 	stepright "step_glass.right"
+	break "func_breakable.break_glass"
 }
 
-gs_material_rock
+gs_material_rocks
 {
 	part_bulletimpact "impact_default.main"
 	bulletimpact "sfx_impact.rock"
 	stepleft "step_default.left"
 	stepright "step_default.right"
+	break "func_breakable.break_cinder"
 }
 
 gs_material_flesh
@@ -99,6 +108,7 @@ gs_material_flesh
 	bulletimpact "sfx_impact.flesh"
 	stepleft "step_flesh.left"
 	stepright "step_flesh.right"
+	break "func_breakable.break_flesh"
 }
 
 gs_material_concrete
@@ -108,6 +118,7 @@ gs_material_concrete
 	bulletimpact "sfx_impact.concrete"
 	stepleft "step_concrete.left"
 	stepright "step_concrete.right"
+	break "func_breakable.break_cinder"
 }
 
 gs_material_dirt
@@ -117,6 +128,7 @@ gs_material_dirt
 	bulletimpact "sfx_impact.dirt"
 	stepleft "step_dirt.left"
 	stepright "step_dirt.right"
+	break "func_breakable.break_rocks"
 }
 
 gs_material_grate
@@ -126,6 +138,7 @@ gs_material_grate
 	bulletimpact "sfx_impact.grate"
 	stepleft "step_grate.left"
 	stepright "step_grate.right"
+	break "func_breakable.break_metal"
 }
 
 gs_material_alien
@@ -135,6 +148,7 @@ gs_material_alien
 	bulletimpact "sfx_impact.alien"
 	stepleft "step_alien.left"
 	stepright "step_alien.right"
+	break "func_breakable.break_flesh"
 }
 
 gs_material_snow
@@ -180,4 +194,5 @@ gs_material_vent
 	bulletimpact "sfx_impact.snow"
 	stepleft "step_vent.left"
 	stepright "step_vent.right"
+	break "func_breakable.break_metal"
 }
