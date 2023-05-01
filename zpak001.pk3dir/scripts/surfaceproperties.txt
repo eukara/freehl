@@ -95,7 +95,7 @@ gs_material_unbreakableglass
 gs_material_rocks
 {
 	part_bulletimpact "impact_default.main"
-	bulletimpact "sfx_impact.rock"
+	bulletimpact "sfx_impact.concrete"
 	stepleft "step_default.left"
 	stepright "step_default.right"
 	break "func_breakable.break_cinder"
