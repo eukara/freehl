@@ -472,9 +472,3 @@ weapon_t w_gauss =
 	.type		= w_gauss_type,
 	.hudpic		= w_gauss_hudpic
 };
-
-#ifdef SERVER
-void weapon_gauss(void) {
-	Weapons_InitItem(WEAPON_GAUSS);
-}
-#endif

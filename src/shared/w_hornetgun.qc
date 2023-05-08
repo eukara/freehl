@@ -321,11 +321,3 @@ weapon_t w_hornetgun =
 	.type		= w_hornetgun_type,
 	.hudpic		= w_hornetgun_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_hornetgun(void)
-{
-	Weapons_InitItem(WEAPON_HORNETGUN);
-}
-#endif

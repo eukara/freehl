@@ -419,18 +419,3 @@ weapon_t w_glock =
 	.type		= w_glock_type,
 	.hudpic		= w_glock_hudpic
 };
-
-/* pickups */
-#ifdef SERVER
-void
-weapon_9mmhandgun(void)
-{
-	Weapons_InitItem(WEAPON_GLOCK);
-}
-
-void
-weapon_glock(void)
-{
-	Weapons_InitItem(WEAPON_GLOCK);
-}
-#endif

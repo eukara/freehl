@@ -238,12 +238,3 @@ weapon_t w_crowbar =
 	.type		= w_crowbar_type,
 	.hudpic		= w_crowbar_hudpic
 };
-
-/* entity definitions for pickups */
-#ifdef SERVER
-void
-weapon_crowbar(void)
-{
-	Weapons_InitItem(WEAPON_CROWBAR);
-}
-#endif

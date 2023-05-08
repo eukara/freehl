@@ -362,9 +362,3 @@ weapon_t w_snark =
 	.type		= w_snark_type,
 	.hudpic		= w_snark_hudpic
 };
-
-#ifdef SERVER
-void weapon_snark(void) {
-	Weapons_InitItem(WEAPON_SNARK);
-}
-#endif

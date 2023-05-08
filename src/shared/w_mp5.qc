@@ -461,17 +461,3 @@ weapon_t w_mp5 =
 	.type		= w_mp5_type,
 	.hudpic		= w_mp5_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_9mmAR(void)
-{
-	Weapons_InitItem(WEAPON_MP5);
-}
-
-void
-weapon_mp5(void)
-{
-	Weapons_InitItem(WEAPON_MP5);
-}
-#endif

@@ -457,11 +457,3 @@ weapon_t w_crossbow =
 	.type		= w_crossbow_type,
 	.hudpic		= w_crossbow_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_crossbow(void)
-{
-	Weapons_InitItem(WEAPON_CROSSBOW);
-}
-#endif

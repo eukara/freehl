@@ -351,11 +351,3 @@ weapon_t w_satchel =
 	.type		= w_satchel_type,
 	.hudpic		= w_satchel_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_satchel(void)
-{
-	Weapons_InitItem(WEAPON_SATCHEL);
-}
-#endif

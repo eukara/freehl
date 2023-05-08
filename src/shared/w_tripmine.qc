@@ -409,13 +409,3 @@ weapon_t w_tripmine =
 	.type		= w_tripmine_type,
 	.hudpic		= w_tripmine_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_tripmine(void) {
-	item_pickup ip = (item_pickup)self;
-	Weapons_InitItem(WEAPON_TRIPMINE);
-	ip.SetBody(2);
-	ip.SetFrame(8);
-}
-#endif

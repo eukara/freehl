@@ -376,18 +376,3 @@ weapon_t w_python =
 	.type		= w_python_type,
 	.hudpic		= w_python_hudpic
 };
-
-/* pickups */
-#ifdef SERVER
-void
-weapon_357(void)
-{
-	Weapons_InitItem(WEAPON_PYTHON);
-}
-
-void
-weapon_python(void)
-{
-	Weapons_InitItem(WEAPON_PYTHON);
-}
-#endif

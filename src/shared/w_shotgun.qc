@@ -448,11 +448,3 @@ weapon_t w_shotgun =
 	.type		= w_shotgun_type,
 	.hudpic		= w_shotgun_hudpic
 };
-
-#ifdef SERVER
-void
-weapon_shotgun(void)
-{
-	Weapons_InitItem(WEAPON_SHOTGUN);
-}
-#endif

@@ -371,9 +371,3 @@ weapon_t w_rpg =
 	.type		= w_rpg_type,
 	.hudpic		= w_rpg_hudpic
 };
-
-#ifdef SERVER
-void weapon_rpg(void) {
-	Weapons_InitItem(WEAPON_RPG);
-}
-#endif

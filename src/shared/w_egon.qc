@@ -343,9 +343,3 @@ weapon_t w_egon =
 	.type		= w_egon_type,
 	.predraw	= w_egon_postdraw
 };
-
-#ifdef SERVER
-void weapon_egon(void) {
-	Weapons_InitItem(WEAPON_EGON);
-}
-#endif

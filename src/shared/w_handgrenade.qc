@@ -283,9 +283,3 @@ weapon_t w_handgrenade =
 	.type		= w_handgrenade_type,
 	.hudpic		= w_handgrenade_hudpic
 };
-
-#ifdef SERVER
-void weapon_handgrenade(void) {
-	Weapons_InitItem(WEAPON_HANDGRENADE);
-}
-#endif
