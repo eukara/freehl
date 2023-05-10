@@ -166,6 +166,7 @@ void
 weaponbox_spawn(player spawner)
 {
 	item_weaponbox weaponbox = spawn(item_weaponbox);
+	weaponbox.Spawned();
 	weaponbox.SetOrigin(spawner.origin);
 	weaponbox.setup(spawner);
 }
