@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+to avoid naming conflicts, the tools are assumed to be named 'hlcsg', 'hlbsp', 'hlvis' and 'hlrad' in your path
+-->
+<project version="2.0">
+  <var name="csg">"hlcsg"</var>
+  <var name="bsp">"hlbsp"</var>
+  <var name="vis">"hlvis"</var>
+  <var name="light">"hlrad"</var>
+
+  <var name="qbsp">qbsp -hlbsp -basedir "[EnginePath]" -gamedir "[GameName]" -path "[UserEnginePath]"</var>
+  <var name="qvis">qvis -basedir "[EnginePath]" -gamedir "[GameName]" -path "[UserEnginePath]"</var>
+  <var name="qlight">qlight -basedir "[EnginePath]" -gamedir "[GameName]" -path "[UserEnginePath]"</var>
+
+  <build name="extra fidelity">
+    <command>[csg] "[MapFile]"</command>
+    <command>[bsp] "[MapFile]"</command>
+    <command>[vis] -full "[MapFile]"</command>
+    <command>[light] -extra "[MapFile]"</command>
+  </build>
+  <build name="standard fidelity">
+    <command>[csg] "[MapFile]"</command>
+    <command>[bsp] "[MapFile]"</command>
+    <command>[vis] "[MapFile]"</command>
+    <command>[light] "[MapFile]"</command>
+  </build>
+  <build name="quick compile">
+    <command>[csg] "[MapFile]"</command>
+    <command>[bsp] "[MapFile]"</command>
+    <command>[vis] -fast "[MapFile]"</command>
+    <command>[light] -fast "[MapFile]"</command>
+  </build>
+  <build name="fast vis only">
+    <command>[csg] "[MapFile]"</command>
+    <command>[bsp] "[MapFile]"</command>
+    <command>[vis] -fast "[MapFile]"</command>
+  </build>
+  <build name="no vis, no lighting">
+    <command>[csg] "[MapFile]"</command>
+    <command>[bsp] "[MapFile]"</command>
+  </build>
+  <build name="only entities">
+    <command>[csg] -onlyents "[MapFile]"</command>
+    <command>[bsp]"[MapFile]"</command>
+  </build>
+
+  <!--
+  in case you want to use free-software tools
+  -->
+  <build name="tyrutils extra fidelity">
+    <command>[qbsp] "[MapFile]"</command>
+    <command>[qvis] "[MapFile]"</command>
+    <command>[qlight] -extra "[MapFile]"</command>
+  </build>
+  <build name="tyrutils standard fidelity">
+    <command>[qbsp] "[MapFile]"</command>
+    <command>[qvis] "[MapFile]"</command>
+    <command>[qlight] "[MapFile]"</command>
+  </build>
+  <build name="tyrutils quick compile">
+    <command>[qbsp] "[MapFile]"</command>
+    <command>[qvis] -fast "[MapFile]"</command>
+    <command>[qlight] -fast "[MapFile]"</command>
+  </build>
+  <build name="tyrutils fast vis only">
+    <command>[qbsp] "[MapFile]"</command>
+    <command>[qvis] -fast "[MapFile]"</command>
+  </build>
+  <build name="tyrutils no vis, no lighting">
+    <command>[qbsp] "[MapFile]"</command>
+  </build>
+  <build name="tyrutils only entities">
+    <command>[qbsp] -onlyents "[MapFile]"</command>
+  </build>
+</project>
+
