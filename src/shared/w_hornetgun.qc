@@ -14,15 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*QUAKED weapon_hornetgun (0 0 1) (-16 -16 0) (16 16 32)
-"model" "models/w_hgun.mdl"
-
-HALF-LIFE (1998) ENTITY
-
-Hornetgun Weapon
-
-*/
-
 enum
 {
 	HORNETGUN_IDLE,

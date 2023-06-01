@@ -14,26 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*QUAKED weapon_9mmhandgun (0 0 1) (-16 -16 0) (16 16 32)
-"model" "models/w_9mmhandgun.mdl"
-
-HALF-LIFE (1998) ENTITY
-
-9mm Handgun/Glock Weapon
-Same as weapon_glock
-
-*/
-
-/*QUAKED weapon_glock (0 0 1) (-16 -16 0) (16 16 32)
-"model" "models/w_9mmhandgun.mdl"
-
-HALF-LIFE (1998) ENTITY
-
-9mm Handgun/Glock Weapon
-Same as weapon_9mmhandgun
-
-*/
-
 enum
 {
 	GLOCK_IDLE1,

@@ -14,26 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*QUAKED weapon_357 (0 0 1) (-16 -16 0) (16 16 32)
-"model" "models/w_357.mdl"
-
-HALF-LIFE (1998) ENTITY
-
-357/Python Weapon
-Same as weapon_python
-
-*/
-
-/*QUAKED weapon_python (0 0 1) (-16 -16 0) (16 16 32)
-"model" "models/w_357.mdl"
-
-HALF-LIFE (1998) ENTITY
-
-357/Python Weapon
-Same as weapon_357
-
-*/
-
 enum
 {
 	PYTHON_IDLE1,
