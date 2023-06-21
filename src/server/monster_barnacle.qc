@@ -37,7 +37,8 @@ class monster_barnacle:NSMonster
 {
 	void(void) monster_barnacle;
 
-	virtual void(void) Death;
+	/* overrides */
+	virtual void(void) HasBeenKilled;
 	virtual void(void) Respawn;
 	virtual void(void) Physics;
 };
@@ -49,16 +50,10 @@ monster_barnacle::Physics(void)
 }
 
 void
-monster_barnacle::Death(void)
+monster_barnacle::HasBeenKilled(void)
 {
-	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
-		SetFrame(BCL_DIE);
-		Sound_Play(this, CHAN_VOICE, "monster_barnacle.die");
-	}
-
-	/* set the functional differences */
-	super::Death();
+	SetFrame(BCL_DIE);
+	StartSoundDef("monster_barnacle.die", CHAN_VOICE, true);
 }
 
 void

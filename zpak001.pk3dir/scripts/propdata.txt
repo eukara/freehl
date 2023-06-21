@@ -36,6 +36,14 @@
 	{
 		"breakable_model" "gibs_rock"
 	}
+	"actor_alien"
+	{
+		"breakable_model" "gibs_alien"
+	}
+	"actor_human"
+	{
+		"breakable_model" "gibs_human"
+	}
 	
 	
 	"BreakableModels"
@@ -71,6 +79,22 @@
 		"gibs_cinder"
 		{
 			"models/cindergibs.mdl#submodels=9" "5.0"
+		}
+		"gibs_alien"
+		{
+			"models/agibs.mdl#submodels=4" "5.0"
+			"models/agibs.mdl#submodels=4" "5.0"
+			"models/agibs.mdl#submodels=4" "5.0"
+			"models/agibs.mdl#submodels=4" "5.0"
+			"models/agibs.mdl#submodels=4" "5.0"
+		}
+		"gibs_human"
+		{
+			"models/gib_b_bone.mdl" "5.0"
+			"models/gib_legbone.mdl" "5.0"
+			"models/gib_lung.mdl" "5.0"
+			"models/gib_skull.mdl" "5.0"
+			"models/gib_b_gib.mdl" "5.0"
 		}
 	}
 }

@@ -1,0 +1,70 @@
+entityDef monster_scientist
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/scientist.mdl"
+	"netname"		"Scientist"
+	"health"		"skill:scientist_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"0"
+	"propdata"		"actor_human"
+
+	"follow_on_use"		"1"
+	"speed_walk"		"64"
+	"speed_run"		"364"
+
+	"snd_pain"		"monster_scientist.pain"
+	"snd_death"		"monster_scientist.die"
+	"snd_thud"		"monster_scientist.thud"
+
+	"talk_answer"		"!SC_ANSWER"
+	"talk_ask"		"!SC_QUESTION"
+	"talk_ally_shoot"	"!SC_PLFEAR"
+	"talk_idle"		"!SC_IDLE"
+	"talk_hearing"		"!SC_HEAR"
+	"talk_smelling"		"!SC_SMELL"
+	"talk_stare"		"!SC_STARE"
+	"talk_survived"		"!SC_WOUND"
+	"talk_wounded"		"!SC_MORTAL"
+	"talk_player_ask"	"!SC_QUESTION"
+	"talk_player_greet"	"!SC_HELLO"
+	"talk_player_idle"	"!SC_PIDLE"
+	"talk_player_wounded1"	"!SC_CUREA"
+	"talk_player_wounded2"	"!SC_CUREB"
+	"talk_player_wounded3"	"!SC_CUREC"
+	"talk_unfollow"		"!SC_WAIT"
+	"talk_follow"		"!SC_OK"
+	"talk_stop_follow"	"!SC_STOP"
+	"talk_deny_follow"	"!SC_POK"
+
+	when "body" equals "1" {
+		"pitch"	"105"
+		"netname"	"Walter"
+	}
+
+	when "body" equals "2" {
+		"pitch"	"100"
+		"netname"	"Einstein"
+	}
+
+	when "body" equals "3" {
+		"pitch"	"95"
+		"netname"	"Luther"
+		"skin"	"1"
+	}
+
+	when "body" equals "4" {
+		"pitch"	"105"
+		"netname"	"Slick"
+	}
+
+	// pre-disaster
+	when "spawnflags" equals "256" {
+		"talk_ask"		""
+		"talk_player_ask"	"!SC_PQUEST"
+		"talk_player_greet"	"!SC_PHELLO"
+		"talk_player_idle"	"!SC_PIDLE"
+		"follow_on_use"		"0"
+	}
+}

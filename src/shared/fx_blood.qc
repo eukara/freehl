@@ -57,6 +57,20 @@ FX_Blood(vector pos, vector color)
 		self.think = NSEntity::Destroy;
 		self.nextthink = time + 5.0f;
 	}
+	static void ABlood_Touch(void)
+	{
+		if (self.think != NSEntity::Destroy) {
+		if (serverkeyfloat("*bspversion") == BSPVER_HL)
+			Decals_Place(self.origin, sprintf("{yblood%d", floor(random(1,9))));
+		else {
+			decal_pickwall(self, self.origin);
+			pointparticles(DECAL_BLOOD, g_tracedDecal.endpos, g_tracedDecal.normal, 1);
+		}
+		}
+
+		self.think = NSEntity::Destroy;
+		self.nextthink = time + 5.0f;
+	}
 
 	if (cvar("violence_hblood") <= 0) {
 		return;
@@ -89,7 +103,10 @@ FX_Blood(vector pos, vector color)
 		ePart.SetSolid(SOLID_BBOX);
 		ePart.SetSize([0,0,0], [0,0,0]);
 
-		ePart.touch = Blood_Touch;
+		if (color[1] != 0 && color[2] != 0)
+			ePart.touch = ABlood_Touch;
+		else
+			ePart.touch = Blood_Touch;
 
 		/* ignore player physics */
 		ePart.dimension_solid = 1;

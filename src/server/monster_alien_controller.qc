@@ -45,24 +45,22 @@ enum
 	CON_DIE
 };
 
-class monster_alien_controller:NSMonster
+class monster_alien_controller:HLXenMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
 
 	void(void) monster_alien_controller;
 
-	virtual void(void) Pain;
-	virtual void(void) Death;
+	virtual void(void) HasBeenHit;
+	virtual void(void) HasBeenKilled;
 	virtual void(void) IdleNoise;
 	virtual void(void) Respawn;
 };
 
 void
-monster_alien_controller::Pain(void)
+monster_alien_controller::HasBeenHit(void)
 {
-	super::Pain();
-
 	if (m_flPainTime > time) {
 		return;
 	}
@@ -77,16 +75,11 @@ monster_alien_controller::Pain(void)
 }
 
 void
-monster_alien_controller::Death(void)
+monster_alien_controller::HasBeenKilled(void)
 {
 	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
-		SetFrame(CON_DIE);
-		Sound_Play(this, CHAN_VOICE, "monster_alien_controller.die");
-	}
-
-	/* set the functional differences */
-	super::Death();
+	SetFrame(CON_DIE);
+	Sound_Play(this, CHAN_VOICE, "monster_alien_controller.die");
 }
 
 void
@@ -124,4 +117,5 @@ monster_alien_controller::monster_alien_controller(void)
 	model = "models/controller.mdl";
 	base_mins = [-16,-16,0];
 	base_maxs = [16,16,72];
+	m_iAlliance = MAL_ALIEN;
 }

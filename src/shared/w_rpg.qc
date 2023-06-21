@@ -120,8 +120,9 @@ void w_rpg_primary(player pl)
 	static void Rocket_BuildSpeed(void){
 		/* Calculate new direction */
 		if (self.weapon) {
+			vector ownerTarget = self.owner.origin + self.owner.view_ofs;
 			makevectors(self.owner.v_angle);
-			traceline(self.owner.origin, self.owner.origin + v_forward * 8096, FALSE, self.owner);
+			traceline(ownerTarget, ownerTarget + v_forward * 8096, FALSE, self.owner);
 			self.angles = vectoangles(trace_endpos - self.origin);
 		}
 

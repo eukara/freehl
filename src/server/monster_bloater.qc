@@ -22,7 +22,7 @@ Flocking Floater
 
 */
 
-class monster_bloater:NSMonster
+class monster_bloater:HLXenMonster
 {
 	void(void) monster_bloater;
 };

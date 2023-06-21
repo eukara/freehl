@@ -44,6 +44,7 @@ enum
 	BA_FLINCH_SML
 };
 
+#if 0
 class monster_barney:NSTalkMonster
 {
 	void(void) monster_barney;
@@ -233,3 +234,4 @@ void
 monster_barney::monster_barney(void)
 {
 }
+#endif

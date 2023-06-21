@@ -1,0 +1,77 @@
+entityDef monster_alien_grunt
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/agrunt.mdl"
+	"netname"		"Zombie"
+	"health"		"skill:zombie_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"46"
+	"speed_run"		"292"
+
+	"def_attack_melee"	"melee_agrunt_punch"
+	"attack_melee_range"	"96"
+	"attack_ranged_range"	"512"
+
+	"snd_idle"		"monster_alien_grunt.idle"
+	"snd_pain"		"monster_alien_grunt.pain"
+	"snd_death"		"monster_alien_grunt.pain"
+	"snd_melee_attack"	"monster_alien_grunt.attack"
+	"snd_melee_attack_hit"	"monster_zombie.attackhit"
+	"snd_melee_attack_miss"	"monster_zombie.attackmiss"
+	"snd_thud"		"monster_generic.thud"
+
+	// animation event callbacks
+	events {
+		1 "SpawnProjectileDef" "ranged_agrunt_shot"
+		1 "StartSoundDef" "weapon_hornetgun.fire"
+
+		2 "SpawnProjectileDef" "ranged_agrunt_shot"
+		2 "StartSoundDef" "weapon_hornetgun.fire"
+
+		3 "SpawnProjectileDef" "ranged_agrunt_shot"
+		3 "StartSoundDef" "weapon_hornetgun.fire"
+
+		4 "SpawnProjectileDef" "ranged_agrunt_shot"
+		4 "StartSoundDef" "weapon_hornetgun.fire"
+
+		5 "SpawnProjectileDef" "ranged_agrunt_shot"
+		5 "StartSoundDef" "weapon_hornetgun.fire"
+
+		10 "StartSoundDef" "monster_alien_grunt.step_left"
+		11 "StartSoundDef" "monster_alien_grunt.step_right"
+	}
+}
+
+entityDef melee_agrunt_punch
+{
+	"damage"	"skill:agrunt_dmg_punch"
+	"delay"	"0.25f"
+}
+
+
+entityDef ranged_agrunt_shot
+{
+	"spawnclass"		"NSProjectile"
+	"model"		"models/hornet.mdl"
+
+	"def_damage"		"damage_hornetDirect"
+
+	"health"		"0"
+	"velocity"		"300"
+	"fuse"		"10"
+	"detonate_on_fuse"	"0"
+	"detonate_on_death"	"0"
+	"detonate_on_world"	"0"
+	"detonate_on_actor"	"1"
+	"impact_damage_effect"	"1"
+	"impact_gib"		"0"
+}
+
+entityDef damage_hornetDirect
+{
+	damage "skill:hornet_dmg"
+}

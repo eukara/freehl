@@ -54,7 +54,7 @@ enum
  * for close range attacks
  */
 
-class monster_bullchicken:NSMonster
+class monster_bullchicken:HLXenMonster
 {
 	float m_flIdleTime;
 

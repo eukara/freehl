@@ -47,43 +47,30 @@ enum
 	HC_STRUGGLE
 };
 
-class monster_headcrab:NSMonster
+class monster_headcrab:HLXenMonster
 {
+	bool m_bBiting;
 	float m_flIdleTime;
 
-	void(void) monster_headcrab;
+	void monster_headcrab(void);
 
-	virtual void(void) Spawned;
-	virtual void(void) Pain;
-	virtual void(void) Death;
-	virtual void(void) IdleNoise;
-	virtual int(void) AnimIdle;
-	virtual int(void) AnimWalk;
-	virtual int(void) AnimRun;
-	virtual int(void) AttackRanged;
-	virtual void(entity) Touch;
+	virtual void Spawned(void);
+	virtual void HasBeenHit(void);
+	virtual void HasBeenKilled(void);
+	virtual void IdleNoise(void);
+	virtual int AttackMelee(void);
+	virtual void Touch(entity);
+	virtual float MeleeMaxDistance(void);
 };
 
-int
-monster_headcrab::AnimIdle(void)
+float
+monster_headcrab:: MeleeMaxDistance(void)
 {
-	return HC_IDLE1;
+	return 256;
 }
 
 int
-monster_headcrab::AnimWalk(void)
-{
-	return HC_WALK;
-}
-
-int
-monster_headcrab::AnimRun(void)
-{
-	return HC_RUN;
-}
-
-int
-monster_headcrab::AttackRanged(void)
+monster_headcrab::AttackMelee(void)
 {
 	/* visual */
 	if (random() < 0.5)
@@ -91,28 +78,33 @@ monster_headcrab::AttackRanged(void)
 	else
 		AnimPlay(HC_JUMP_VARIATION1);
 
-	m_flAttackThink = m_flAnimTime;
+	m_flAttackThink = m_flAnimTime + 0.25;
 	Sound_Play(this, CHAN_VOICE, "monster_headcrab.attack");
 
 	/* functional */
+	vector jumpVelocity;
 	makevectors(vectoangles(m_eEnemy.origin - origin));
-	velocity = v_forward * 512 + [0,0,250];
+	jumpVelocity = (v_forward * 512) + [0, 0, 250];
+	SetVelocity(jumpVelocity);
+	m_bBiting = true;
 	return (1);
 }
 
 void
 monster_headcrab::Touch(entity eToucher)
 {
+	if (m_bBiting)
 	if (eToucher.takedamage == DAMAGE_YES)
-	if (frame == HC_JUMP || frame == HC_JUMP_VARIATION1)
-		Damage_Apply(eToucher, this, 500, 0, 0);
+	if (frame == HC_JUMP || frame == HC_JUMP_VARIATION1) {
+		Damage_Apply(eToucher, this, Skill_GetValue("headcrab_dmg_bite", 10), 0, 0);
+		StartSoundDef("monster_headcrab.attackhit", CHAN_VOICE, true);
+		m_bBiting = false;
+	}
 }
 
 void
-monster_headcrab::Pain(void)
+monster_headcrab::HasBeenHit(void)
 {
-	super::Pain();
-
 	if (m_flAnimTime > time) {
 		return;
 	}
@@ -127,16 +119,10 @@ monster_headcrab::Pain(void)
 }
 
 void
-monster_headcrab::Death(void)
+monster_headcrab::HasBeenKilled(void)
 {
-	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
-		SetFrame(HC_DIE);
-		Sound_Play(this, CHAN_VOICE, "monster_headcrab.die");
-	}
-
-	/* set the functional differences */
-	super::Death();
+	SetFrame(HC_DIE);
+	Sound_Play(this, CHAN_VOICE, "monster_headcrab.die");
 }
 
 void
@@ -152,7 +138,7 @@ monster_headcrab::IdleNoise(void)
 	}
 	m_flIdleTime = time + random(2,10);
 
-	Sound_Play(this, CHAN_VOICE, "monster_headcrab.idle");
+	StartSoundDef("monster_headcrab.idle", CHAN_VOICE, true);
 }
 
 void

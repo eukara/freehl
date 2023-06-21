@@ -455,6 +455,18 @@ HUD_DrawDamageIndicator(void)
 	pSeatLocal->m_flDamageIndicator -= clframetime;
 }
 
+void
+HUD_TimeRemaining(void)
+{
+	vector iconPos = g_hudmins + [16, g_hudres[1] - 64];
+
+	/* display time if timelimit is being hit */
+	if (serverkeyfloat("timelimit")) {
+		string tempstr = strcat("Time Remaining: ", Util_GetTime());
+		Font_DrawText_RGB(iconPos, tempstr, g_hud_color, FONT_20);
+	}
+}
+
 /* main entry */
 void
 HUD_Draw(void)
@@ -462,7 +474,16 @@ HUD_Draw(void)
 	player pl = (player)pSeat->m_ePlayer;
 
 #ifndef TFC
+	#ifndef GEARBOX
 	g_hud_color = autocvar_con_color * (1 / 255);
+	#else
+	if (getplayerkeyfloat(pl.entnum-1, "*team") == 1)
+		g_hud_color = [255, 150, 0] / 255;
+	else if (getplayerkeyfloat(pl.entnum-1, "*team") == 2)
+		g_hud_color = [0, 1, 0];
+	else
+		g_hud_color = autocvar_con_color * (1 / 255);
+	#endif
 #endif
 
 	/* little point in not drawing these, even if you don't have a suit */
@@ -471,6 +492,8 @@ HUD_Draw(void)
 	HUD_DrawWeaponSelect();
 	Obituary_Draw();
 	Textmenu_Draw();
+
+	HUD_TimeRemaining();
 
 	if (!(pl.g_items & ITEM_SUIT)) {
 		return;

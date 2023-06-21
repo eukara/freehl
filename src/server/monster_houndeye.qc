@@ -59,7 +59,7 @@ enum
 	HE_JUMPWINDOW
 };
 
-class monster_houndeye:NSMonster
+class monster_houndeye:HLXenMonster
 {
 	float m_flIdleTime;
 

@@ -46,7 +46,7 @@ enum
 	GON_FALLDIE
 };
 
-class monster_bigmomma:NSMonster
+class monster_bigmomma:HLXenMonster
 {
 	float m_flIdleTime;
 

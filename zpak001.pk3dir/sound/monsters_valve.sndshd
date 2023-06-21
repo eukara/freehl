@@ -1,3 +1,11 @@
+monster_generic.thud
+{
+	sample common/bodydrop1.wav
+	sample common/bodydrop2.wav
+	sample common/bodydrop3.wav
+	sample common/bodydrop4.wav
+}
+
 monster_alien_grunt.alert
 {
 	sample agrunt/ag_alert1.wav
@@ -39,6 +47,20 @@ monster_alien_grunt.pain
 	sample agrunt/ag_pain3.wav
 	sample agrunt/ag_pain4.wav
 	sample agrunt/ag_pain5.wav
+}
+
+monster_alien_grunt.step_left
+{
+	pitch 0.7
+	sample player/pl_ladder2.wav
+	sample player/pl_ladder4.wav
+}
+
+monster_alien_grunt.step_right
+{
+	pitch 0.7
+	sample player/pl_ladder1.wav
+	sample player/pl_ladder3.wav
 }
 
 monster_alien_controller.alert
@@ -392,6 +414,13 @@ monster_houndeye.pain
 	sample houndeye/he_pain5.wav
 }
 
+monster_human_grunt.idle
+{
+	sample hgrunt/gr_idle1.wav
+	sample hgrunt/gr_idle2.wav
+	sample hgrunt/gr_idle3.wav
+}
+
 monster_human_grunt.die
 {
 	sample hgrunt/gr_die1.wav
@@ -406,6 +435,16 @@ monster_human_grunt.pain
 	sample hgrunt/gr_pain3.wav
 	sample hgrunt/gr_pain4.wav
 	sample hgrunt/gr_pain5.wav
+}
+
+monster_human_grunt.kick
+{
+	sample zombie/claw_miss2.wav
+}
+
+monster_human_grunt.reload
+{
+	sample hgrunt/gr_reload1.wav
 }
 
 monster_ichthyosaur.alert

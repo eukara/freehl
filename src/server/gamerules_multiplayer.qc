@@ -44,6 +44,8 @@ void
 HLMultiplayerRules::InitPostEnts(void)
 {
 	MOTD_LoadDefault();
+	
+	forceinfokey(world, "scorepoints", "0");
 
 	if (IsTeamplay() == true) {
 		int c;

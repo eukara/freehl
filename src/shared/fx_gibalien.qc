@@ -15,30 +15,30 @@
  */
 
 #ifdef CLIENT
-string g_hgibs[] = {
-	"models/gib_b_bone.mdl",
-	"models/gib_legbone.mdl",
-	"models/gib_lung.mdl",
-	"models/gib_skull.mdl",
-	"models/gib_b_gib.mdl"
+string g_agibs[] = {
+	"models/agibs.mdl",
+	"models/agibs.mdl",
+	"models/agibs.mdl",
+	"models/agibs.mdl",
+	"models/agibs.mdl"
 };
 
 void
-FX_GibHuman_Init(void)
+FX_GibAlien_Init(void)
 {
-	for (int i = 0; i < g_hgibs.length; i++)
-		precache_model(g_hgibs[i]);
+	for (int i = 0; i < g_agibs.length; i++)
+		precache_model(g_agibs[i]);
 
 	precache_sound("common/bodysplat.wav");
 }
 #endif
 
 void
-FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
+FX_GibAlien(vector vecOrigin, vector vecDir, float flForce)
 {
 #ifdef SERVER
 	WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET);
-	WriteByte(MSG_MULTICAST, EV_GIBHUMAN);
+	WriteByte(MSG_MULTICAST, EV_GIBALIEN);
 	WriteCoord(MSG_MULTICAST, vecOrigin[0]);
 	WriteCoord(MSG_MULTICAST, vecOrigin[1]);
 	WriteCoord(MSG_MULTICAST, vecOrigin[2]);
@@ -55,14 +55,14 @@ FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
 	static void Gib_Touch(void)
 	{
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
-			Decals_Place(self.origin, sprintf("{blood%d", floor(random(1,9))));
+			Decals_Place(self.origin, sprintf("{yblood%d", floor(random(1,7))));
 		else {
 			decal_pickwall(self, self.origin);
 			pointparticles(DECAL_BLOOD, g_tracedDecal.endpos, g_tracedDecal.normal, 1);
 		}
 	}
 
-	if (cvar("violence_hgibs") <= 0) {
+	if (cvar("violence_agibs") <= 0) {
 		return;
 	}
 
@@ -77,7 +77,7 @@ FX_GibHuman(vector vecOrigin, vector vecDir, float flForce)
 		vel += [0,0,80];
 
 		entity gibb = spawn();
-		setmodel(gibb, g_hgibs[i]);
+		setmodel(gibb, g_agibs[i]);
 		setorigin(gibb, vecOrigin);
 		gibb.movetype = MOVETYPE_BOUNCE;
 		gibb.solid = SOLID_BBOX;

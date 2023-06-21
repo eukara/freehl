@@ -47,7 +47,7 @@ enum
 	NIL_SHOOT
 };
 
-class monster_nihilanth:NSMonster
+class monster_nihilanth:HLXenMonster
 {
 	float m_flIdleTime;
 

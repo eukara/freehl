@@ -48,15 +48,15 @@ enum
 	GARG_BUST
 };
 
-class monster_gargantua:NSMonster
+class monster_gargantua:HLXenMonster
 {
 	float m_flIdleTime;
 
 	void(void) monster_gargantua;
 
 	virtual void(void) Spawned;
-	virtual void(void) Death;
-	virtual void(void) Pain;
+	virtual void(void) HasBeenKilled;
+	virtual void(void) HasBeenHit;
 	virtual void(void) IdleNoise;
 	virtual void(void) Respawn;
 };
@@ -79,10 +79,8 @@ monster_gargantua::IdleNoise(void)
 }
 
 void
-monster_gargantua::Pain(void)
+monster_gargantua::HasBeenHit(void)
 {
-	super::Pain();
-
 	if (m_flAnimTime > time) {
 		return;
 	}
@@ -97,16 +95,10 @@ monster_gargantua::Pain(void)
 }
 
 void
-monster_gargantua::Death(void)
+monster_gargantua::HasBeenKilled(void)
 {
-	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
-		SetFrame(GARG_DIE);
-		Sound_Play(this, CHAN_VOICE, "monster_gargantua.die");
-	}
-
-	/* set the functional differences */
-	super::Death();
+	SetFrame(GARG_DIE);
+	Sound_Play(this, CHAN_VOICE, "monster_gargantua.die");
 }
 
 void

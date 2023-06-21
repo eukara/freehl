@@ -58,24 +58,22 @@ enum
 	AG_LAND
 };
 
-class monster_alien_grunt:NSMonster
+class monster_alien_grunt:HLXenMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
 
 	void(void) monster_alien_grunt;
 
-	virtual void(void) Pain;
-	virtual void(void) Death;
+	virtual void(void) HasBeenHit;
+	virtual void(void) HasBeenKilled;
 	virtual void(void) IdleNoise;
 	virtual void(void) Respawn;
 };
 
 void
-monster_alien_grunt::Pain(void)
+monster_alien_grunt::HasBeenHit(void)
 {
-	super::Pain();
-
 	if (m_flPainTime > time) {
 		return;
 	}
@@ -90,26 +88,21 @@ monster_alien_grunt::Pain(void)
 }
 
 void
-monster_alien_grunt::Death(void)
+monster_alien_grunt::HasBeenKilled(void)
 {
-	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
-		/* headshots == different animation */
-		if (g_dmg_iHitBody == BODY_HEAD) {
-			if (random() < 0.5) {
-				SetFrame(AG_DIEHS);
-			} else {
-				SetFrame(AG_DIEFORWARD);
-			}
-		} else {
-			SetFrame(AG_DIE + floor(random(0, 2)));
-		}
 
-		Sound_Play(this, CHAN_VOICE, "monster_alien_grunt.die");
+	/* headshots == different animation */
+	if (g_dmg_iHitBody == BODY_HEAD) {
+		if (random() < 0.5) {
+			SetFrame(AG_DIEHS);
+		} else {
+			SetFrame(AG_DIEFORWARD);
+		}
+	} else {
+		SetFrame(AG_DIE + floor(random(0, 2)));
 	}
 
-	/* set the functional differences */
-	super::Death();
+	Sound_Play(this, CHAN_VOICE, "monster_alien_grunt.die");
 }
 
 void
@@ -149,4 +142,5 @@ monster_alien_grunt::monster_alien_grunt(void)
 	base_mins = [-32,-32,0];
 	base_maxs = [32,32,64];
 	base_health = Skill_GetValue("agrunt_health", 90);
+	m_iAlliance = MAL_ALIEN;
 }

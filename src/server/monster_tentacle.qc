@@ -80,7 +80,7 @@ enum
 	TE_GRAB
 };
 
-class monster_tentacle:NSMonster
+class monster_tentacle:HLXenMonster
 {
 	float m_flIdleTime;
 

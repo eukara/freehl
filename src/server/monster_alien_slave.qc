@@ -56,15 +56,15 @@ enum
 	SLV_JABBER
 };
 
-class monster_alien_slave:NSTalkMonster
+class monster_alien_slave:HLXenTalkMonster
 {
 	float m_flIdleTime;
 	float m_flPainTime;
 
 	void(void) monster_alien_slave;
 	
-	virtual void(void) Death;
-	virtual void(void) Pain;
+	virtual void(void) HasBeenKilled;
+	virtual void(void) HasBeenHit;
 	virtual void(void) IdleChat;
 	virtual void(void) Respawn;
 
@@ -167,10 +167,8 @@ monster_alien_slave::IdleChat(void)
 }
 
 void
-monster_alien_slave::Pain(void)
+monster_alien_slave::HasBeenHit(void)
 {
-	super::Pain();
-
 	if (m_flPainTime > time) {
 		return;
 	}
@@ -185,10 +183,8 @@ monster_alien_slave::Pain(void)
 }
 
 void
-monster_alien_slave::Death(void)
+monster_alien_slave::HasBeenKilled(void)
 {
-	/* if we're already dead (corpse) don't change animations */
-	if (IsAlive() == true) {
 		/* headshots == different animation */
 		if (g_dmg_iHitBody == BODY_HEAD) {
 			if (random() < 0.5) {
@@ -201,10 +197,7 @@ monster_alien_slave::Death(void)
 		}
 
 		Sound_Play(this, CHAN_VOICE, "monster_alien_slave.die");
-	}
 
-	/* set the functional differences */
-	super::Death();
 }
 
 void
@@ -227,7 +220,7 @@ monster_alien_slave::monster_alien_slave(void)
 	m_talkAnswer = "";
 	m_talkAsk = "";
 	m_talkAllyShot = "";
-	m_talkGreet = "SLV_ALERT";
+	m_talkGreet = "!SLV_ALERT";
 	m_talkIdle = "!SLV_IDLE";
 	m_talkSmelling = "";
 	m_talkStare = "";

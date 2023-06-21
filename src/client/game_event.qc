@@ -46,6 +46,18 @@ ClientGame_EventParse(float fHeader)
 		float flForce = readfloat();
 		FX_GibHuman(vGibPos, vDir, flForce);
 		break;
+	case EV_GIBALIEN:
+		vector vGibPos2;
+		vGibPos[0] = readcoord();
+		vGibPos[1] = readcoord();
+		vGibPos[2] = readcoord();
+		vector vDir2;
+		vDir[0] = readcoord();
+		vDir[1] = readcoord();
+		vDir[2] = readcoord();
+		float flForce2 = readfloat();
+		FX_GibAlien(vGibPos2, vDir2, flForce2);
+		break;
 	case EV_BLOOD:
 		vector vBloodPos;
 		vector vBloodColor;

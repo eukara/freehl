@@ -22,7 +22,7 @@ Boid
 
 */
 
-class monster_flyer_flock:NSMonster
+class monster_flyer_flock:HLXenMonster
 {
 	void(void) monster_flyer_flock;
 };

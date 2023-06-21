@@ -1,0 +1,5 @@
+include "monsters/monster_barney.def"
+include "monsters/monster_human_grunt.def"
+include "monsters/monster_zombie.def"
+include "monsters/monster_scientist.def"
+include "monsters/monster_alien_grunt.def"
