@@ -115,13 +115,15 @@ int
 w_shotgun_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 8 : startammo;
+
 	if (new) {
-		pl.shotgun_mag = 8;
+		pl.shotgun_mag = addAmmo;
 		return (1);
 	}
 
 	if (pl.ammo_buckshot < MAX_A_BUCKSHOT) {
-		pl.ammo_buckshot = bound(0, pl.ammo_buckshot + 8, MAX_A_BUCKSHOT);
+		pl.ammo_buckshot = bound(0, pl.ammo_buckshot + addAmmo, MAX_A_BUCKSHOT);
 	} else {
 		if (!new)
 			return (0);

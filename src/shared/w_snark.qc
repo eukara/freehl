@@ -147,9 +147,10 @@ monster_snark::monster_snark(void)
 int w_snark_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 5 : startammo;
 
 	if (pl.ammo_snark < MAX_A_SNARK) {
-		pl.ammo_snark = bound(0, pl.ammo_snark + 5, MAX_A_SNARK);
+		pl.ammo_snark = bound(0, pl.ammo_snark + addAmmo, MAX_A_SNARK);
 	} else {
 		if (!new)
 			return (0);

@@ -103,13 +103,15 @@ int
 w_glock_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 18 : startammo;
+
 	if (new) {
-		pl.glock_mag = 18;
+		pl.glock_mag = addAmmo;
 		return (1);
 	}
 
 	if (pl.ammo_9mm < MAX_A_9MM) {
-		pl.ammo_9mm = bound(0, pl.ammo_9mm + 18, MAX_A_9MM);
+		pl.ammo_9mm = bound(0, pl.ammo_9mm + addAmmo, MAX_A_9MM);
 	} else {
 		if (!new)
 			return (0);

@@ -116,9 +116,10 @@ int
 w_satchel_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 1 : startammo;
 
 	if (pl.ammo_satchel < MAX_A_SATCHEL) {
-		pl.ammo_satchel = bound(0, pl.ammo_satchel + 1, MAX_A_SATCHEL);
+		pl.ammo_satchel = bound(0, pl.ammo_satchel + addAmmo, MAX_A_SATCHEL);
 	} else {
 		if (!new)
 			return (0);

@@ -60,9 +60,10 @@ string w_handgrenade_deathmsg(void)
 int w_handgrenade_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 1 : startammo;
 
 	if (pl.ammo_handgrenade < MAX_A_HANDGRENADE) {
-		pl.ammo_handgrenade = bound(0, pl.ammo_handgrenade + 1, MAX_A_HANDGRENADE);
+		pl.ammo_handgrenade = bound(0, pl.ammo_handgrenade + addAmmo, MAX_A_HANDGRENADE);
 	} else {
 		if (!new)
 			return (0);

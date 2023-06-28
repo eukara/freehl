@@ -62,10 +62,15 @@ string w_rpg_deathmsg(void)
 int w_rpg_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 2 : startammo;
 
 	if (new) {
-		pl.rpg_mag = 1;
-		pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
+		if (addAmmo > 1) {
+			pl.rpg_mag = 1;
+			pl.ammo_rocket = bound(0, pl.ammo_rocket + 1, MAX_A_ROCKET);
+		} else {
+			pl.rpg_mag = addAmmo;
+		}
 		return (1);
 	}
 

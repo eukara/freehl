@@ -82,17 +82,19 @@ int
 w_mp5_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+#ifdef GEARBOX
+	int addAmmo = (startammo == -1) ? 50 : startammo;
+#else
+	int addAmmo = (startammo == -1) ? 25 : startammo;
+#endif
+
 	if (new) {
-		#ifdef GEARBOX
-			pl.mp5_mag = 50;
-		#else
-			pl.mp5_mag = 25;
-		#endif
+		pl.mp5_mag = addAmmo;
 		return (1);
 	}
 
 	if (pl.ammo_9mm < MAX_A_9MM) {
-		pl.ammo_9mm = bound(0, pl.ammo_9mm + 25, MAX_A_9MM);
+		pl.ammo_9mm = bound(0, pl.ammo_9mm + addAmmo, MAX_A_9MM);
 	} else {
 		if (!new)
 			return (0);

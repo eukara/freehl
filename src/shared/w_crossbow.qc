@@ -75,13 +75,15 @@ int
 w_crossbow_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 5 : startammo;
+
 	if (new) {
-		pl.crossbow_mag = 5;
+		pl.crossbow_mag = addAmmo;
 		return (1);
 	}
 
 	if (pl.ammo_bolt < MAX_A_BOLT) {
-		pl.ammo_bolt = bound(0, pl.ammo_bolt + 5, MAX_A_BOLT);
+		pl.ammo_bolt = bound(0, pl.ammo_bolt + addAmmo, MAX_A_BOLT);
 	} else {
 		if (!new)
 			return (0);

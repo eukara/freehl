@@ -226,9 +226,10 @@ string w_tripmine_deathmsg(void)
 int w_tripmine_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 1 : startammo;
 
 	if (pl.ammo_tripmine < MAX_A_TRIPMINE) {
-		pl.ammo_tripmine = bound(0, pl.ammo_tripmine + 1, MAX_A_TRIPMINE);
+		pl.ammo_tripmine = bound(0, pl.ammo_tripmine + addAmmo, MAX_A_TRIPMINE);
 	} else {
 		if (!new)
 			return (0);

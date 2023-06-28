@@ -44,14 +44,15 @@ int
 w_python_pickup(player pl, int new, int startammo)
 {
 #ifdef SERVER
+	int addAmmo = (startammo == -1) ? 6 : startammo;
 
 	if (new) {
-		pl.python_mag = 6;
+		pl.python_mag = addAmmo;
 		return (1);
 	}
 
 	if (pl.ammo_357 < MAX_A_357) {
-		pl.ammo_357 = bound(0, pl.ammo_357 + 6, MAX_A_357);
+		pl.ammo_357 = bound(0, pl.ammo_357 + addAmmo, MAX_A_357);
 	} else {
 		if (!new)
 			return (0);
