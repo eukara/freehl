@@ -35,18 +35,18 @@ entityDef monster_human_grunt
 	"snd_thud"		"monster_generic.thud"
 	"weapons"		"3"
 
-	"squad_leader_body"	"2"
+	"squad_leader_body"	"1:2"
 
 	// grenade launcher
 	when "weapons" contains 4 {
-		"body" "4"
+		"body1" "4"
 		"def_attack_special_1"	"projectile_hgrunt_ARgrenade"
-		skin 1
+		"skin" "1"
 	}
 
 	// shotgun grunt
 	when "weapons" contains 8 {
-		"body" "35"
+		"body2" "2"
 		"reload_count" "8"
 		"snd_ranged_attack"	"weapon_shotgun.single"
 		"def_attack_ranged"	"ranged_hgrunt_shot"
