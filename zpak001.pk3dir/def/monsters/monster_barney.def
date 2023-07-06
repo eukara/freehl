@@ -14,7 +14,7 @@ entityDef monster_barney
 	"reload_count"		"18"
 	"follow_on_use"		"1"
 	"weapon_drawn"		"0"
-	"body_on_draw"		"2"
+	"body_on_draw"		"1:2"
 	"speed_walk"		"64"
 	"speed_run"		"364"
 
