@@ -12,8 +12,6 @@ fx_blood.qc
 fx_gaussbeam.qc
 fx_breakmodel.qc
 fx_explosion.qc
-fx_gibalien.qc
-fx_gibhuman.qc
 fx_spark.qc
 fx_corpse.qc
 fx_impact.qc

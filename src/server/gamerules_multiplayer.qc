@@ -128,8 +128,10 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 #endif
 
 	/* either gib, or make a corpse */
-	if (pl.health < -50) {
-		FX_GibHuman(pl.origin, vectoangles(pl.origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
+	if (pl.health < 0) {
+		vector gibDir = vectoangles(pl.origin - g_dmg_eAttacker.origin);
+		float gibStrength = g_dmg_iDamage * 2.0f;
+		BreakModel_Entity(pl, gibDir, gibStrength, 8);
 	} else {
 		FX_Corpse_Spawn((player)pl, ANIM_DIESIMPLE);
 	}
@@ -204,6 +206,7 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	pl.SetInfoKey("*spec", "0");
 	pl.SetInfoKey("*dead", "0");
 	pl.SetInfoKey("*deaths", ftos(pl.deaths));
+	pl.SetPropData("actor_human");
 
 	LevelNewParms();
 	LevelDecodeParms(pl);

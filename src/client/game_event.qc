@@ -34,30 +34,6 @@ ClientGame_EventParse(float fHeader)
 		vSparkAngle[2] = readcoord();
 		FX_Spark(vSparkPos, vSparkAngle);
 		break;
-	case EV_GIBHUMAN:
-		vector vGibPos = g_vec_null;
-		vGibPos[0] = readcoord();
-		vGibPos[1] = readcoord();
-		vGibPos[2] = readcoord();
-		vector vDir = g_vec_null;
-		vDir[0] = readcoord();
-		vDir[1] = readcoord();
-		vDir[2] = readcoord();
-		float flForce = readfloat();
-		FX_GibHuman(vGibPos, vDir, flForce);
-		break;
-	case EV_GIBALIEN:
-		vector vGibPos2 = g_vec_null;
-		vGibPos[0] = readcoord();
-		vGibPos[1] = readcoord();
-		vGibPos[2] = readcoord();
-		vector vDir2 = g_vec_null;
-		vDir[0] = readcoord();
-		vDir[1] = readcoord();
-		vDir[2] = readcoord();
-		float flForce2 = readfloat();
-		FX_GibAlien(vGibPos2, vDir2, flForce2);
-		break;
 	case EV_BLOOD:
 		vector vBloodPos = g_vec_null;
 		vector vBloodColor = g_vec_null;

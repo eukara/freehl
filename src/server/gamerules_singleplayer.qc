@@ -38,7 +38,8 @@ HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 
 	/* so much damage we're gonna gib */
 	if (pl.GetHealth() < -50) {
-		FX_GibHuman(pl.origin, vectoangles(pl.origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
+		//pl.Gib();
+		//FX_GibHuman(pl.origin, vectoangles(pl.origin - g_dmg_eAttacker.origin), g_dmg_iDamage * 2.0f);
 	}
 
 	/* Let's handle corpses on the clientside */
