@@ -1,0 +1,20 @@
+entityDef monster_houndeye
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/houndeye.mdl"
+	"netname"		"Houndeye"
+	"health"		"skill:houndeye_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"32"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"32"
+	"speed_run"		"72"
+
+	"attack_ranged_range"	"192"
+
+	"snd_idle"		"monster_houndeye.idle"
+	"snd_pain"		"monster_houndeye.pain"
+	"snd_death"		"monster_houndeye.death"
+}

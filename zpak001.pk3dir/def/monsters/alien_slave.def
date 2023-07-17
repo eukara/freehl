@@ -1,0 +1,31 @@
+entityDef monster_alien_slave
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/islave.mdl"
+	"netname"		"Vortigaunt"
+	"health"		"skill:islave_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"72"
+	"speed_run"		"72"
+
+	"def_attack_melee"	"melee_islave_claw"
+	"melee_range"		"96"
+	"attack_ranged_range"	"512"
+
+	"snd_idle"		"monster_alien_slave.idle"
+	"snd_pain"		"monster_alien_slave.pain"
+	"snd_death"		"monster_alien_slave.die"
+	"snd_thud"		"monster_generic.thud"
+}
+
+entityDef melee_islave_claw
+{
+	"damage"	"skill:islave_dmg_claw"
+	"delay"	"0.25f"
+	"wait"	"0.5"
+	"attempts"	"2"
+}

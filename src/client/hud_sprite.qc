@@ -32,6 +32,7 @@ HLSprite_Init(void)
 	vector imgSize;
 	int spriteCount = 0i;
 	int i = 0i;
+	int c = 0i;
 	string line;
 
 	hudFile = fopen("sprites/hud.txt", FILE_READ);
@@ -43,7 +44,7 @@ HLSprite_Init(void)
 
 	/* count valid entries */
 	while ((line = fgets(hudFile))) {
-		int c = tokenize_console(line);
+		c = tokenize_console(line);
 
 		if (c != 7)
 			continue;
@@ -70,7 +71,7 @@ HLSprite_Init(void)
 
 	/* read the data into our banks */
 	while ((line = fgets(hudFile))) {
-		int c = tokenize_console(line);
+		c = tokenize_console(line);
 
 		if (c != 7)
 			continue;

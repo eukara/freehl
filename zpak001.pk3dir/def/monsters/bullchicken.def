@@ -1,0 +1,75 @@
+entityDef monster_bullchicken
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/bullsquid.mdl"
+	"netname"		"Bullsquid"
+	"health"		"skill:bullsquid_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"32"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"32"
+	"speed_run"		"72"
+
+	"attack_ranged_range"	"512"
+	"attack_melee1_range"	"86"	// tailwhip
+	"attack_melee2_range"	"86"	// bite
+	"def_attack_melee"	"melee_bullchicken_tailwhip"
+	"def_attack_melee2"	"melee_bullchicken_bite"
+
+	"snd_idle"		"monster_bullchicken.idle"
+	"snd_pain"		"monster_bullchicken.pain"
+	"snd_death"		"monster_bullchicken.die"
+
+	events {
+		1 "SpawnProjectileDef" "ranged_bullchicken_spit"
+		1 "StartSoundDef" "monster_bullchicken.attackshoot"
+
+		2 "StartSoundDef" "monster_bullchicken.attackbite"
+
+		3 "SetSkin" "1"
+
+		4 "StartSoundDef" "monster_bullchicken.attackwhip"
+
+		5 "SetVelocity" "0 0 256"
+
+		6 "StartSoundDef" "monster_bullchicken.attackthrow"
+	}
+}
+
+entityDef melee_bullchicken_bite
+{
+	"damage"	"skill:bullsquid_dmg_bite"
+	"delay"	"0.25f"
+}
+
+
+entityDef melee_bullchicken_tailwhip
+{
+	"damage"	"skill:bullsquid_dmg_whip"
+	"delay"	"0.25f"
+}
+
+entityDef ranged_bullchicken_spit
+{
+	"spawnclass"		"NSProjectile"
+	"model"		"sprites/bigspit.spr"
+
+	"def_damage"		"damage_spitDirect"
+
+	"health"		"0"
+	"velocity"		"900"
+	"fuse"		"10"
+	"detonate_on_fuse"	"0"
+	"detonate_on_death"	"0"
+	"detonate_on_world"	"1"
+	"detonate_on_actor"	"1"
+	"impact_damage_effect"	"1"
+	"impact_gib"		"0"
+}
+
+entityDef damage_spitDirect
+{
+	damage "skill:bullsquid_dmg_spit"
+}

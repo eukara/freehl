@@ -1,0 +1,15 @@
+entityDef weapon_snark
+{
+	"editor_color"		".3 .3 1"
+	"editor_mins"		"-16 -16 -16"
+	"editor_maxs"		"16 16 16"
+	"editor_usage"		"Snark"
+	"editor_rotatable"	"1"
+
+	"spawnclass"		"NSItem"
+	"model"		"models/w_sqknest.mdl"
+	"frame"		"1"
+	"inv_item"		"$WEAPON_SNARK"
+	"snd_acquire"		"weapon.pickup"
+	"snd_respawn"		"item.respawn"
+}

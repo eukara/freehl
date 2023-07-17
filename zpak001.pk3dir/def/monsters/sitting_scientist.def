@@ -1,0 +1,43 @@
+entityDef monster_sitting_scientist
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/scientist.mdl"
+	"netname"		"Scientist"
+	"health"		"50"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"0"
+	"propdata"		"actor_human"
+
+	when "body" equals "1" {
+		"pitch"	"105"
+		"netname"	"Walter"
+		"body1"	"1"
+	}
+
+	when "body" equals "2" {
+		"pitch"	"100"
+		"netname"	"Einstein"
+		"body1"	"2"
+	}
+
+	when "body" equals "3" {
+		"pitch"	"95"
+		"netname"	"Luther"
+		"skin"	"1"
+		"body1"	"3"
+	}
+
+	when "body" equals "4" {
+		"pitch"	"105"
+		"netname"	"Slick"
+		"body1"	"4"
+	}
+
+	"talk_ask"		""
+	"talk_player_ask"	"!SC_PQUEST"
+	"talk_player_greet"	"!SC_PHELLO"
+	"talk_player_idle"	"!SC_PIDLE"
+	"follow_on_use"		"0"	
+}

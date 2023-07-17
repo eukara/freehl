@@ -218,6 +218,10 @@ monster_bullchicken.attack
 monster_bullchicken.attackbite
 {
 	sample bullchicken/bc_bite1.wav
+}
+
+monster_bullchicken.attackthrow
+{
 	sample bullchicken/bc_bite2.wav
 	sample bullchicken/bc_bite3.wav
 }

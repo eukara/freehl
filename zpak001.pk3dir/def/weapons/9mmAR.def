@@ -1,0 +1,19 @@
+entityDef weapon_9mmAR
+{
+	"editor_color"		".3 .3 1"
+	"editor_mins"		"-16 -16 -16"
+	"editor_maxs"		"16 16 16"
+	"editor_usage"		"9mm AR"
+	"editor_rotatable"	"1"
+
+	"spawnclass"		"NSItem"
+	"model"		"models/w_9mmAR.mdl"
+	"inv_item"		"$WEAPON_MP5"
+	"snd_acquire"		"weapon.pickup"
+	"snd_respawn"		"item.respawn"
+}
+
+entityDef weapon_mp5
+{
+	"spawnclass" "weapon_9mmAR"
+}
