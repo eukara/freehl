@@ -39,8 +39,8 @@ s_satchel_detonate(entity master)
 		if (b.owner != master)
 			continue;
 
-		NSProjectile satchelEnt = (NSProjectile)b;
-		satchelEnt._Explode();
+		NSEntity satchelEnt = (NSEntity)b;
+		satchelEnt.Trigger(master, TRIG_TOGGLE);
 	}
 }
 #endif
