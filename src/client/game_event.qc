@@ -24,16 +24,6 @@ ClientGame_EventParse(float fHeader)
 	case EV_HITNOTIFY:
 		pSeatLocal->m_flDamageIndicator = 1.0f;
 		break;
-	case EV_SPARK:
-		vector vSparkPos, vSparkAngle;
-		vSparkPos[0] = readcoord();
-		vSparkPos[1] = readcoord();
-		vSparkPos[2] = readcoord();
-		vSparkAngle[0] = readcoord();
-		vSparkAngle[1] = readcoord();
-		vSparkAngle[2] = readcoord();
-		FX_Spark(vSparkPos, vSparkAngle);
-		break;
 	case EV_BLOOD:
 		vector vBloodPos = g_vec_null;
 		vector vBloodColor = g_vec_null;
@@ -47,45 +37,6 @@ ClientGame_EventParse(float fHeader)
 		vBloodColor[2] = readbyte() / 255;
 
 		FX_Blood(vBloodPos, vBloodColor);
-		break;
-	case EV_EXPLOSION:
-		vector vExploPos = g_vec_null;
-
-		vExploPos[0] = readcoord();
-		vExploPos[1] = readcoord();
-		vExploPos[2] = readcoord();
-
-		FX_Explosion(vExploPos);
-		break;
-	case EV_MODELGIB:
-		vector vecPos = g_vec_null;
-		vecPos[0] = readcoord();
-		vecPos[1] = readcoord();
-		vecPos[2] = readcoord();
-
-		vector vSize = g_vec_null;
-		vSize[0] = readcoord();
-		vSize[1] = readcoord();
-		vSize[2] = readcoord();
-
-		float fStyle = readbyte();
-		int count = readbyte();
-		FX_BreakModel(count, vecPos, vSize, [0,0,0], fStyle);
-		break;
-	case EV_IMPACT:
-		int iType;
-		vector vOrigin, vNormal;
-
-		iType = (int)readbyte();
-		vOrigin[0] = readcoord();
-		vOrigin[1] = readcoord();
-		vOrigin[2] = readcoord();
-
-		vNormal[0] = readcoord();
-		vNormal[1] = readcoord();
-		vNormal[2] = readcoord();
-
-		FX_Impact(iType, vOrigin, vNormal);
 		break;
 	case EV_GAUSSBEAM:
 		FX_GaussBeam_Parse();

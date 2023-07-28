@@ -33,44 +33,14 @@ enum
 
 #ifdef SERVER
 void
-s_satchel_drop(entity master, vector src, vector vel)
-{
-	static void s_satchel_touch(void)
-	{
-		if (other != world)
-			return;
-		
-		Sound_Play(self, CHAN_BODY, "weapon_satchel.bounce");
-	}
-	entity satch;
-	satch = spawn();
-	satch.owner = master;
-	satch.classname = "satchel";
-	satch.movetype = MOVETYPE_BOUNCE;
-	satch.solid = SOLID_BBOX;
-	satch.frame = 1;
-	satch.gravity = 0.5f;
-	satch.friction = 0.8f;
-	satch.velocity = vel;
-	satch.avelocity = [0,400,0];
-	satch.touch = s_satchel_touch;
-	setmodel(satch, "models/w_satchel.mdl");
-	setsize(satch, [-1,-1,-4], [1,1,4]);
-	setorigin(satch, src);
-}
-
-void
 s_satchel_detonate(entity master)
 {
-	for (entity b = world; (b = find(b, ::classname, "satchel"));) {
+	for (entity b = world; (b = find(b, ::classname, "projectile_satchel"));) {
 		if (b.owner != master)
 			continue;
 
-		float dmg = Skill_GetValue("plr_satchel", 150);
-		FX_Explosion(b.origin);
-		Damage_Radius(b.origin, master, dmg, dmg * 2.5f, TRUE, WEAPON_SATCHEL);
-		sound(b, CHAN_WEAPON, sprintf("weapons/explode%d.wav", floor(random() * 2) + 3), 1, ATTN_NORM);
-		remove(b);
+		NSProjectile satchelEnt = (NSProjectile)b;
+		satchelEnt._Explode();
 	}
 }
 #endif
@@ -168,11 +138,7 @@ w_satchel_primary(player pl)
 #ifdef SERVER
 	/* if we don't have any satchels placed yet, place one */
 	if (!pl.satchel_chg) {
-		vector throw;
-		
-		Weapons_MakeVectors(pl);
-		throw = pl.velocity + (v_forward * 274);
-		s_satchel_drop(pl, pl.origin, throw);
+		NSProjectile_SpawnDef("projectile_satchel", pl);
 		pl.satchel_chg++;
 		pl.ammo_satchel--;
 		pl.mode_tempstate = 1; /* mark us as having deployed something */
@@ -223,10 +189,7 @@ w_satchel_secondary(player pl)
 	Weapons_ViewAnimation(pl, RADIO_DRAW);
 
 #ifdef SERVER
-	vector throw;
-	Weapons_MakeVectors(pl);
-	throw = pl.velocity + (v_forward * 274);
-	s_satchel_drop(pl, pl.origin, throw);
+	NSProjectile_SpawnDef("projectile_satchel", pl);
 #endif
 
 	if (pl.flags & FL_CROUCHING)

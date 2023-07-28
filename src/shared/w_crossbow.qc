@@ -110,53 +110,6 @@ w_crossbow_holster(player pl)
 	Weapons_ViewAnimation(pl, CROSSBOW_HOLSTER1);
 }
 
-#ifdef SERVER
-void Crossbolt_Touch(void) {
-	/* explode mode, multiplayer */
-	if (self.weapon) {
-		float dmg = Skill_GetValue("plr_xbow_bolt_monster", 50);
-		FX_Explosion(self.origin);
-		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_CROSSBOW);
-		if (random() < 0.5) {
-			sound(self, 1, "weapons/explode3.wav", 1.0f, ATTN_NORM);
-		} else {
-			sound(self, 1, "weapons/explode4.wav", 1.0f, ATTN_NORM);
-		}
-		remove(self);
-		return;
-	}
-
-	/* walls, etc. */
-	if (other.takedamage != DAMAGE_YES) {
-		FX_Spark(self.origin, trace_plane_normal);
-		Sound_Play(self, 1, "weapon_crossbow.hit");
-
-		/* disappear bolt after ~ 10 seconds */
-		self.velocity = [0,0,0];
-		self.movetype = MOVETYPE_NONE;
-		self.solid = SOLID_NOT;
-		self.think = Util_Destroy;
-		self.nextthink = time + 15.0f;
-		makevectors(self.angles);
-		setorigin(self, self.origin + v_forward * -16);
-		return;
-	}
-
-	/* anything else that can take damage */
-	Damage_Apply(other, self.owner, Skill_GetValue("plr_xbow_bolt_monster", 50), WEAPON_CROSSBOW, DMG_BLUNT);
-	Sound_Play(self, 1, "weapon_crossbow.hitbody");
-
-	if (other.iBleeds == FALSE) {
-		FX_Spark(self.origin, trace_plane_normal);
-	} else {
-		FX_Blood(self.origin, [1,0,0]);
-	}
-
-	/* disappear... immediately */
-	remove(self);
-}
-#endif
-
 void
 w_crossbow_primary(player pl)
 {
@@ -178,12 +131,12 @@ w_crossbow_primary(player pl)
 
 #ifndef CLIENT
 	HLGameRules rules = (HLGameRules) g_grMode;
-	Weapons_MakeVectors(pl);
 
 	/* multiplayer uses hitscan when zoomed in */
 	if (rules.IsMultiplayer() == true && pl.viewzoom < 1.0) {
 		vector src, dest;
 		src = pl.origin + pl.view_ofs;
+		Weapons_MakeVectors(pl);
 		dest = src + v_forward * 4096;
 		traceline(src, dest, MOVE_LAGGED, pl);
 
@@ -191,7 +144,7 @@ w_crossbow_primary(player pl)
 			Damage_Apply(trace_ent, pl, Skill_GetValue("plr_xbow_bolt_monster", 50), WEAPON_CROSSBOW, DMG_BLUNT);
 
 		if (other.iBleeds == FALSE)
-			FX_Spark(trace_endpos, trace_plane_normal);
+			pointparticles(particleeffectnum("platform.spark"), self.origin, trace_plane_normal, 1);
 		else
 			FX_Blood(trace_endpos, [1,0,0]);
 
@@ -208,27 +161,12 @@ w_crossbow_primary(player pl)
 			bolt_used.nextthink = time + 10.0f;
 		}
 	} else {
-		entity bolt = spawn();
-		setmodel(bolt, "models/crossbow_bolt.mdl");
-		setorigin(bolt, Weapons_GetCameraPos(pl) + (v_forward * 16));
-		bolt.owner = pl;
-		bolt.velocity = v_forward * 2000;
-		bolt.movetype = MOVETYPE_FLYMISSILE;
-		bolt.solid = SOLID_BBOX;
-		//bolt.flags |= FL_LAGGEDMOVE;
-		bolt.gravity = 0.5f;
-		bolt.angles = vectoangles(bolt.velocity);
-		bolt.avelocity[2] = 10;
-		bolt.touch = Crossbolt_Touch;
-		
 		/* zoomed out = explosive */
 		if (rules.IsMultiplayer() == true) {
-			bolt.weapon = 1;
-			/* Turok's explosive bolt had a trail; assumed the same with HL considering documented cut content. */
-			bolt.traileffectnum = particleeffectnum("weapon_crossbow.trail");
+			NSProjectile_SpawnDef("projectile_arrowExplosive", pl);
+		} else {
+			NSProjectile_SpawnDef("projectile_arrow", pl);
 		}
-		
-		setsize(bolt, [0,0,0], [0,0,0]);
 	}
 
 	if (pl.crossbow_mag > 0) {

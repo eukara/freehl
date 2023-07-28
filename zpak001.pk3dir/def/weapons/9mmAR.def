@@ -17,3 +17,37 @@ entityDef weapon_mp5
 {
 	"spawnclass" "weapon_9mmAR"
 }
+
+entityDef projectile_ARgrenade
+{
+	"spawnclass"		"NSProjectile"
+	"model"		"models/grenade.mdl"
+	"offset"		"16 0 0"
+	"velocity"		"800 0 0"
+	"angular_velocity"	"-300 0 0"
+	"gravity"		"0.5"
+	"bounce"		"1"
+	"mins"		"0 0 0"
+	"maxs"		"0 0 0"
+	"detonate_on_fuse"	"0"
+	"detonate_on_death"	"1"
+	"detonate_on_world"	"1"
+	"detonate_on_actor"	"1"
+	"snd_explode"		"fx.explosion"
+	"model_detonate"		"fx_explosion.main"
+
+	"def_damage"		"damage_ARgrneadeDirect"
+	"def_splash_damage"	"damage_ARgrneadeSplash"
+}
+
+
+entityDef damage_ARgrneadeDirect
+{
+	"damage"	"50"
+}
+
+entityDef damage_ARgrneadeSplash
+{
+	"damage"	"skill:plr_9mmAR_grenade"
+	"radius"	"160"
+}

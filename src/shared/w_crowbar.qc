@@ -131,7 +131,7 @@ w_crowbar_primary(player pl)
 	if (trace_ent.iBleeds) {
 		FX_Blood(trace_endpos, [1,0,0]);
 	} else {
-		FX_Impact(IMPACT_MELEE, trace_endpos, trace_plane_normal);
+		SurfData_Impact(trace_ent, trace_endpos, trace_plane_normal);
 	}
 
 	if (trace_ent.takedamage) {

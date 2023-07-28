@@ -196,3 +196,27 @@ gs_material_vent
 	stepright "step_vent.right"
 	break "func_breakable.break_metal"
 }
+
+water
+{
+	part_bulletimpact "fx_impact.water"
+	bulletimpact "sfx_impact.slosh"
+	stepleft "step_slosh.left"
+	stepright "step_slosh.right"
+}
+
+lava
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.slosh"
+	stepleft "step_slosh.left"
+	stepright "step_slosh.right"
+}
+
+slime
+{
+	part_bulletimpact "impact_default.main"
+	bulletimpact "sfx_impact.slosh"
+	stepleft "step_slosh.left"
+	stepright "step_slosh.right"
+}

@@ -35,6 +35,7 @@ void w_rpg_precache(void)
 	Sound_Precache("weapon_rpg.empty");
 	precache_model("models/w_rpg.mdl");
 	precache_model("models/rpgrocket.mdl");
+	Sound_Precache("fx.explosion");
 #else
 	precache_model("models/v_rpg.mdl");
 	precache_model("models/p_rpg.mdl");
@@ -115,50 +116,12 @@ void w_rpg_primary(player pl)
 	pl.rpg_mag--;
 
 #ifdef SERVER
-	static void Rocket_Touch(void) {
-		float dmg = Skill_GetValue("plr_rpg", 100);
-		FX_Explosion(self.origin);
-		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_RPG);
-		sound(self, CHAN_WEAPON, sprintf("weapons/explode%d.wav", floor(random() * 2) + 3), 1, ATTN_NORM);
-		remove(self);
-	}
-	static void Rocket_BuildSpeed(void){
-		/* Calculate new direction */
-		if (self.weapon) {
-			vector ownerTarget = self.owner.origin + self.owner.view_ofs;
-			makevectors(self.owner.v_angle);
-			traceline(ownerTarget, ownerTarget + v_forward * 8096, FALSE, self.owner);
-			self.angles = vectoangles(trace_endpos - self.origin);
-		}
-
-		/* Increase speed towards it */
-		makevectors(self.angles);
-		self.velocity += (v_forward * 2000) * frametime;
-		self.nextthink = time;
-	}
-
-	Weapons_MakeVectors(pl);
-	entity rocket = spawn();
-	setmodel(rocket, "models/rpgrocket.mdl");
-	setorigin(rocket, Weapons_GetCameraPos(pl) + (v_forward * 16));
-	rocket.owner = pl;
-	rocket.movetype = MOVETYPE_FLY;
-	rocket.solid = SOLID_BBOX;
-	//bolt.flags |= FL_LAGGEDMOVE;
-	rocket.gravity = 0.5f;
-	rocket.velocity = (pl.WaterLevel() >= WATERLEVEL_SUBMERGED) ? (v_forward * 100): (v_forward * 250);
-	rocket.angles = vectoangles(rocket.velocity);
-	rocket.avelocity[2] = 10;
-	rocket.touch = Rocket_Touch;
-	rocket.think = Rocket_BuildSpeed;
-	rocket.nextthink = time + 0.15f;
-	rocket.traileffectnum = particleeffectnum("weapon_rpg.trail");
-
 	if (pl.ammo_rpg_state > 0) {
-		rocket.weapon = 1;
+		NSProjectile_SpawnDef("projectile_rocket_homing", pl);
+	} else {
+		NSProjectile_SpawnDef("projectile_rocket", pl);
 	}
 
-	setsize(rocket, [0,0,0], [0,0,0]);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_rpg.shoot");
 #endif
 

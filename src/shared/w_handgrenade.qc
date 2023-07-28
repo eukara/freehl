@@ -31,6 +31,8 @@ void w_handgrenade_precache(void)
 #ifdef SERVER
 	Sound_Precache("weapon_handgrenade.bounce");
 	precache_model("models/w_grenade.mdl");
+	particleeffectnum("fx_explosion.main");
+	precache_model("sprites/fexplo.spr");
 #else
 	precache_model("models/v_grenade.mdl");
 	precache_model("models/p_grenade.mdl");
@@ -78,9 +80,10 @@ void w_handgrenade_throw(player pl)
 	static void WeaponFrag_Throw_Explode(void)
 	{
 		float dmg = Skill_GetValue("plr_hand_grenade", 150);
-		FX_Explosion(self.origin);
+
+		pointparticles(particleeffectnum("fx_explosion.main"), self.origin, [0,0,0], 1);
 		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_HANDGRENADE);
-		sound(self, CHAN_WEAPON, sprintf("weapons/explode%d.wav", floor(random() * 2) + 3), 1, ATTN_NORM);
+		Sound_Play(self, CHAN_VOICE, "fx.explosion");
 		remove(self);
 	}
 	

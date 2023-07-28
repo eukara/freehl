@@ -73,9 +73,10 @@ monster_tripmine::Trip(int walkthrough)
 	Pain = __NULL__;
 	takedamage = DAMAGE_NO;
 	dmg = Skill_GetValue("plr_tripmine", 150);
-	FX_Explosion(origin);
+
+	pointparticles(particleeffectnum("fx_explosion.main"), origin, [0,0,0], 1);
 	Damage_Radius(origin, real_owner, dmg, dmg * 2.5f, TRUE, WEAPON_TRIPMINE);
-	sound(this, CHAN_WEAPON, sprintf("weapons/explode%d.wav", floor(random() * 2) + 3), 1, ATTN_NORM);
+	Sound_Play(self, CHAN_VOICE, "fx.explosion");
 	Destroy();
 }
 
@@ -283,7 +284,7 @@ w_tripmine_primary(player pl)
 	vector ang = vectoangles(trace_plane_normal);
 	monster_tripmine mine = spawn(monster_tripmine, real_owner: pl, angles: ang, spawnflags: MSF_MULTIPLAYER);
 	mine.health = 0;
-	mine.SetOrigin(trace_endpos - (v_forward * 8));
+	mine.SetOrigin(trace_endpos + (trace_plane_normal * 8));
 
 	Sound_Play(pl, CHAN_WEAPON, "weapon_tripmine.deploy");
 	Sound_Play(mine, CHAN_WEAPON, "weapon_tripmine.charge");

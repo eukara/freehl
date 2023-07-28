@@ -220,33 +220,7 @@ w_mp5_secondary(player pl)
 	pl.ammo_m203_grenade--;
 
 #ifdef SERVER
-	static void Grenade_ExplodeTouch(void) {
-		float dmg = Skill_GetValue("plr_9mmAR_grenade", 100);
-		FX_Explosion(self.origin);
-		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_HANDGRENADE);
-
-		if (random() < 0.5) {
-			sound(self, 1, "weapons/explode3.wav", 1, ATTN_NORM);
-		} else {
-			sound(self, 1, "weapons/explode4.wav", 1, ATTN_NORM);
-		}
-		remove(self);
-	}
-
-	Weapons_MakeVectors(pl);
-	entity gren = spawn();
-	setmodel(gren, "models/grenade.mdl");
-	setorigin(gren, Weapons_GetCameraPos(pl) + (v_forward * 16.0f));
-	gren.owner = pl;
-	gren.velocity = v_forward * 800.0f;
-	gren.angles = vectoangles(gren.velocity);
-	gren.avelocity[0] = random(-100.0f, -500.0f);
-	gren.gravity = 0.5f;
-	gren.movetype = MOVETYPE_BOUNCE;
-	//gren.flags |= FL_LAGGEDMOVE;
-	gren.solid = SOLID_BBOX;
-	setsize(gren, [0,0,0], [0,0,0]);
-	gren.touch = Grenade_ExplodeTouch;
+	NSProjectile_SpawnDef("projectile_ARgrenade", pl);
 	Sound_Play(pl, CHAN_WEAPON, "weapon_mp5.gl");
 #endif
 
