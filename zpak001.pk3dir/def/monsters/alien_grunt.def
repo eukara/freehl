@@ -69,6 +69,7 @@ entityDef ranged_agrunt_shot
 	"detonate_on_actor"	"1"
 	"impact_damage_effect"	"1"
 	"impact_gib"		"0"
+	"smoke_fly"		"weapon_hornet.trail"
 }
 
 entityDef damage_hornetDirect
