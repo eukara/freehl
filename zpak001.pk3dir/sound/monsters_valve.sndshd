@@ -367,6 +367,57 @@ monster_headcrab.pain
 	sample headcrab/hc_pain3.wav
 }
 
+
+monster_babycrab.alert
+{
+	sample headcrab/hc_alert1.wav
+	sample headcrab/hc_alert2.wav
+}
+
+monster_babycrab.attack
+{
+	pitch_min 140
+	pitch_max 150
+	sample headcrab/hc_attack1.wav
+	sample headcrab/hc_attack2.wav
+	sample headcrab/hc_attack3.wav
+}
+
+monster_babycrab.attackhit
+{
+	pitch_min 140
+	pitch_max 150
+	sample headcrab/hc_headbite.wav
+}
+
+monster_babycrab.die
+{
+	pitch_min 140
+	pitch_max 150
+	sample headcrab/hc_die1.wav
+	sample headcrab/hc_die2.wav
+}
+
+monster_babycrab.idle
+{
+	pitch_min 140
+	pitch_max 150
+	sample headcrab/hc_idle1.wav
+	sample headcrab/hc_idle2.wav
+	sample headcrab/hc_idle3.wav
+	sample headcrab/hc_idle4.wav
+	sample headcrab/hc_idle5.wav
+}
+
+monster_babycrab.pain
+{
+	pitch_min 140
+	pitch_max 150
+	sample headcrab/hc_pain1.wav
+	sample headcrab/hc_pain2.wav
+	sample headcrab/hc_pain3.wav
+}
+
 monster_houndeye.alert
 {
 	sample houndeye/he_alert1.wav

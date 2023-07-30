@@ -1,0 +1,18 @@
+entityDef monster_babycrab
+{
+	"spawnclass"	"NSMonster"
+	"inherit"	"monster_headcrab"
+	"model"	"models/baby_headcrab.mdl"
+	"health"	"skill:babycrab_health"
+	"leap_damage"	"skill:babycrab_dmg_bite"
+
+	"snd_idle"		"monster_babycrab.idle"
+	"snd_pain"		"monster_babycrab.pain"
+	"snd_death"		"monster_babycrab.death"
+
+	events {
+		jump "AddVelocity" "512 0 250"
+		jump_variation1 "AddVelocity" "512 0 250"
+		jump_variation2 "AddVelocity" "512 0 250"
+	}
+}
