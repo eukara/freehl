@@ -11,6 +11,7 @@ entityDef monster_barney
 	"propdata"		"actor_human"
 
 	"def_attack_ranged"	"ranged_barney_shot"
+	"attack_ranged_range"	"1024"
 	"reload_count"		"18"
 	"follow_on_use"		"1"
 	"weapon_drawn"		"0"
