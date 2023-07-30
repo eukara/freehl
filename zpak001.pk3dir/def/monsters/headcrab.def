@@ -17,10 +17,14 @@ entityDef monster_headcrab
 	"snd_idle"		"monster_headcrab.idle"
 	"snd_pain"		"monster_headcrab.pain"
 	"snd_death"		"monster_headcrab.death"
+	"leap_damage"		"skill:headcrab_dmg_bite"
 
 	events {
 		jump "AddVelocity" "512 0 250"
+		jump "StartSoundDef" "monster_headcrab.attack"
 		jump_variation1 "AddVelocity" "512 0 250"
+		jump_variation1 "StartSoundDef" "monster_headcrab.attack"
 		jump_variation2 "AddVelocity" "512 0 250"
+		jump_variation2 "StartSoundDef" "monster_headcrab.attack"
 	}
 }
