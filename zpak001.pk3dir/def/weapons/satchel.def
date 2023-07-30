@@ -31,6 +31,7 @@ entityDef projectile_satchel
 	"def_splash_damage"	"damage_satchelExplosion"
 	"model_detonate"		"fx_explosion.main"
 	"snd_explode"		"fx.explosion"
+	"decal_detonate"		"ExplosionScorch"
 	
 }
 

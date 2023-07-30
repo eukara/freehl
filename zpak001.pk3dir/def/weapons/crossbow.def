@@ -43,6 +43,7 @@ entityDef projectile_arrowExplosive
 	"def_splash_damage"	"damage_arrowSplash"
 	"model_detonate"		"fx_explosion.main"
 	"snd_explode"		"fx.explosion"
+	"decal_detonate"		"ExplosionScorch"
 }
 
 entityDef damage_arrowSplash

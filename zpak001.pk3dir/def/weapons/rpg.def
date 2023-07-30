@@ -37,6 +37,7 @@ entityDef projectile_rocket
 	"thrust_end"		"2"
 
 	"smoke_fly"		"weapon_rpg.trail"
+	"decal_detonate"		"ExplosionScorch"
 	"model_detonate"		"fx_explosion.main"
 	"light_color"		"1 0.8 0.4"
 	"light_radius"		"160"
