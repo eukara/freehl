@@ -44,6 +44,16 @@ FX_Corpse_Next(void)
 	return r;
 }
 
+void
+FX_Corpse_Update(void)
+{
+	NSEntity meSelf = (NSEntity)self;
+	meSelf.frame1time += frametime;
+
+	if (meSelf.frame1time < 10.0)
+		meSelf.ScheduleThink(FX_Corpse_Update, 0.0f);
+}
+
 entity
 FX_Corpse_Spawn(player pl, float anim)
 {
@@ -58,6 +68,7 @@ FX_Corpse_Spawn(player pl, float anim)
 	body_next.velocity = (pl.velocity) + [0,0,120];
 	body_next.colormap = pl.colormap;
 	body_next.SetFrame(anim);
+	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
 	return (entity)body_next;
 }
 #endif
