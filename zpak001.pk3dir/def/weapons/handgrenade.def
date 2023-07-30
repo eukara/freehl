@@ -12,3 +12,32 @@ entityDef weapon_handgrenade
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }
+
+entityDef projectile_handgrenade
+{
+	"spawnclass"		"NSProjectile"
+	"model"		"models/w_grenade.mdl"
+	"frame"		"1"
+	"fuse"		"4"
+	"detonate_on_fuse"	"1"
+	"bounce"		"1"
+	"angular_velocity"	"-350 0 0"
+	"model_detonate"		"fx_explosion.main"
+	"snd_explode"		"fx.explosion"
+	"snd_bounce"		"weapon_handgrenade.bounce"
+	"decal_detonate"		"ExplosionScorch"
+
+	"def_damage"		"damage_handgrenadeDirect"
+	"def_splash_damage"	"damage_handgrenadeSplash"
+}
+
+entityDef damage_handgrenadeDirect
+{
+	"damage"	"1"
+}
+
+entityDef damage_handgrenadeSplash
+{
+	"damage"	"skill:plr_hand_grenade"
+	"radius"	"250"
+}

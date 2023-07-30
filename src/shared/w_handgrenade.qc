@@ -14,6 +14,10 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifdef SERVER
+.float nadeCookingTime;
+#endif
+
 enum
 {
 	HANDGRENADE_IDLE,
@@ -74,61 +78,6 @@ int w_handgrenade_pickup(player pl, int new, int startammo)
 	return (1);
 }
 
-#ifdef SERVER
-void w_handgrenade_throw(player pl)
-{
-	static void WeaponFrag_Throw_Explode(void)
-	{
-		float dmg = Skill_GetValue("plr_hand_grenade", 150);
-
-		pointparticles(particleeffectnum("fx_explosion.main"), self.origin, [0,0,0], 1);
-		Damage_Radius(self.origin, self.owner, dmg, dmg * 2.5f, TRUE, WEAPON_HANDGRENADE);
-		Sound_Play(self, CHAN_VOICE, "fx.explosion");
-		remove(self);
-	}
-	
-	static void WeaponFrag_Throw_Touch(void)
-	{
-		if (other.takedamage == DAMAGE_YES) {
-			Damage_Apply(other, self.owner, 15, WEAPON_HANDGRENADE, DMG_BLUNT);
-		} else {
-			Sound_Play(self, CHAN_BODY, "weapon_handgrenade.bounce");
-		}
-		self.frame = 0;
-	}
-
-	vector vPLAngle = pl.v_angle;
-	if (vPLAngle[0] < 0) {
-		vPLAngle[0] = -10 + vPLAngle[0] * ((90 - 10) / 90.0);
-	} else {
-		vPLAngle[0] = -10 + vPLAngle[0] * ((90 + 10) / 90.0);
-	}
-
-	float flVel = (90 - vPLAngle[0]) * 5;
-	if (flVel > 1000) {
-		flVel = 1000;
-	}
-
-	makevectors(vPLAngle);
-	vector vecSrc = pl.origin + pl.view_ofs + v_forward * 16;
-	vector vecThrow = v_forward * flVel + pl.velocity;
-
-	entity eGrenade = spawn();
-	eGrenade.owner = pl;
-	eGrenade.classname = "remove_me";
-	eGrenade.solid = SOLID_BBOX;
-	eGrenade.frame = 1;
-	eGrenade.velocity = vecThrow;
-	eGrenade.movetype = MOVETYPE_BOUNCE;
-	eGrenade.think = WeaponFrag_Throw_Explode;
-	eGrenade.touch = WeaponFrag_Throw_Touch;
-	eGrenade.nextthink = time + 4.0f;
-	setmodel(eGrenade, "models/w_grenade.mdl");
-	setsize(eGrenade, [0,0,0], [0,0,0]);
-	setorigin(eGrenade, vecSrc);
-}
-#endif
-
 void w_handgrenade_draw(player pl)
 {
 	pl.mode_tempstate = 0;
@@ -162,6 +111,10 @@ void w_handgrenade_primary(player pl)
 	pl.mode_tempstate = 1;
 	pl.w_attack_next = 0.5f;
 	pl.w_idle_next = 0.5f;
+
+#ifdef SERVER
+	pl.nadeCookingTime = time;
+#endif
 }
 
 void w_handgrenade_hud(player pl)
@@ -175,7 +128,6 @@ void w_handgrenade_hud(player pl)
 
 void w_handgrenade_release(player pl)
 {
-	
 	if (pl.w_idle_next > 0.0) {
 		return;
 	}
@@ -183,7 +135,27 @@ void w_handgrenade_release(player pl)
 	if (pl.mode_tempstate == 1) {
 		Weapons_ViewAnimation(pl, HANDGRENADE_THROW1);
 #ifdef SERVER
-		w_handgrenade_throw(pl);
+		vector throwDirection;
+		float throwingStrength;
+
+		NSProjectile nade = (NSProjectile )EntityDef_CreateClassname("projectile_handgrenade");
+		nade.SetOwner(pl);
+
+		throwDirection = pl.v_angle;
+		throwDirection[0] = -10.0f; /* always aim a bit up */
+
+		/* diminish when aiming up */
+		if (pl.v_angle[0] < 0) {
+			throwDirection[0] += (pl.v_angle[0] * 0.9f);
+		} else { /* increase when aiming down */
+			throwDirection[0] += (pl.v_angle[0] * 1.1f);
+		}
+
+		throwingStrength = bound(0, (90 - throwDirection[0]) * 5.0f, 1000);
+
+		nade.Launch(pl.GetEyePos(), pl.v_angle, time - pl.nadeCookingTime, 0.0f, 0.0f);
+		makevectors(throwDirection);
+		nade.SetVelocity((v_forward * throwingStrength) + pl.GetVelocity());
 #endif
 		pl.ammo_handgrenade--;
 		pl.mode_tempstate = 2;
