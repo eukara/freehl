@@ -146,7 +146,7 @@ player::UpdatePlayerAttachments(bool visible)
 			src = origin + view_ofs;
 			ang = v_angle;
 		} else {
-			src = pSeat->m_vecPredictedOrigin + [0,0,-8];
+			src = pSeat->m_vecPredictedOrigin + view_ofs;
 			ang = view_angles;
 		}
 
@@ -154,7 +154,7 @@ player::UpdatePlayerAttachments(bool visible)
 		traceline(src, src + (v_forward * 8096), MOVE_NORMAL, this);
 
 		if (serverkeyfloat("*bspversion") == BSPVER_HL) {
-			dynamiclight_add(trace_endpos + (v_forward * -2), 128, [1,1,1]);
+			dynamiclight_add(trace_endpos + (trace_plane_normal * 4), 128, [1,1,1]);
 		} else {
 			float p = dynamiclight_add(src, 512, [1,1,1], 0, "textures/flashlight");
 			dynamiclight_set(p, LFIELD_ANGLES, ang);
