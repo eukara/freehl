@@ -1,0 +1,15 @@
+entityDef monster_leech
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/leech.mdl"
+	"netname"		"Leech"
+	"health"		"0"
+	"mins"		"-8 -8 0"
+	"maxs"		"8 8 8"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_alien"
+
+	"speed_walk"		"0"
+	"speed_run"		"0"
+}

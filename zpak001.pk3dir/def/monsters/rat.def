@@ -1,0 +1,15 @@
+entityDef monster_rat
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/bigrat.mdl"
+	"netname"		"Rat"
+	"health"		"0"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 16"
+	"eye_height"		"64"
+	"team"		"0"
+	"propdata"		"actor_human"
+
+	"speed_walk"		"0"
+	"speed_run"		"0"
+}

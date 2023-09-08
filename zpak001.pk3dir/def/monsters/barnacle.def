@@ -1,0 +1,15 @@
+entityDef monster_barnacle
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/barnacle.mdl"
+	"netname"		"Barnacle"
+	"health"		"0"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_human"
+
+	"speed_walk"		"64"
+	"speed_run"		"364" // day one only
+}

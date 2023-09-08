@@ -1,0 +1,14 @@
+entityDef monster_bigmomma
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/big_mom.mdl"
+	"netname"		"Big Momma"
+	"health"		"100"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"46"
+	"speed_run"		"292"
+}

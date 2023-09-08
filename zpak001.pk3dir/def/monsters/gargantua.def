@@ -1,0 +1,14 @@
+entityDef monster_gargantua
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/garg.mdl"
+	"netname"		"Gargantua"
+	"health"		"skill:gargantua_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"46"
+	"speed_run"		"292"
+}

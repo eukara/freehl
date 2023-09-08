@@ -1,0 +1,15 @@
+entityDef monster_miniturret
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/miniturret.mdl"
+	"netname"		"Mini-Turret"
+	"health"		"skill:miniturret_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 16"
+	"eye_height"		"64"
+	"team"		"2"
+	"propdata"		"actor_robot"
+
+	"speed_walk"		"0"
+	"speed_run"		"0"
+}
