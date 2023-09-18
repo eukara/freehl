@@ -1,0 +1,24 @@
+entityDef monster_barney_dead
+{
+	"spawnclass"		"NSTalkMonster"
+	"model"		"models/barney.mdl"
+	"netname"		"Barney"
+	"health"		"50"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"64"
+	"team"		"0"
+	"propdata"		"actor_human"
+
+	"weapon_drawn"		"0"
+	"body_on_draw"		"1:2"
+	"dead"		"1"
+	"frame"	"35"
+
+	when "pose" equals "1" {
+		"frame"	"36"
+	}
+	when "pose" equals "2" {
+		"frame"	"37"
+	}
+}
