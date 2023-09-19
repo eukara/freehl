@@ -43,6 +43,9 @@ ClientGame_RendererRestart(string rstr)
 	precache_model("models/shotgunshell.mdl");
 
 	/* there's also muzzleflash.spr, but that's just MUZZLE_SMALL again */
+	precache_model("sprites/muzzleflash1.spr");
+	precache_model("sprites/muzzleflash2.spr");
+	precache_model("sprites/muzzleflash3.spr");
 	MUZZLE_RIFLE = (int)getmodelindex("sprites/muzzleflash1.spr");
 	MUZZLE_SMALL = (int)getmodelindex("sprites/muzzleflash2.spr");
 	MUZZLE_WEIRD = (int)getmodelindex("sprites/muzzleflash3.spr");
