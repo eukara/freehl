@@ -10,6 +10,6 @@ entityDef monster_gman
 	"team"		"0"
 	"propdata"		"actor_human"
 
-	"speed_walk"		"64"
+	"speed_walk"		"77"
 	"speed_run"		"364" // day one only
 }
