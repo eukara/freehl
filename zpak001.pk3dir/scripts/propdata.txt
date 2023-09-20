@@ -84,19 +84,19 @@
 		}
 		"gibs_alien"
 		{
-			"models/agibs.mdl#submodels=4" "5.0"
-			"models/agibs.mdl#submodels=4" "5.0"
-			"models/agibs.mdl#submodels=4" "5.0"
-			"models/agibs.mdl#submodels=4" "5.0"
-			"models/agibs.mdl#submodels=4" "5.0"
+			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
+			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
+			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
+			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
+			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
 		}
 		"gibs_human"
 		{
-			"models/gib_b_bone.mdl" "5.0"
-			"models/gib_legbone.mdl" "5.0"
-			"models/gib_lung.mdl" "5.0"
-			"models/gib_skull.mdl" "5.0"
-			"models/gib_b_gib.mdl" "5.0"
+			"models/gib_b_bone.mdl#impactdecal=Blood.Human" "5.0"
+			"models/gib_legbone.mdl#impactdecal=Blood.Human" "5.0"
+			"models/gib_lung.mdl#impactdecal=Blood.Human" "5.0"
+			"models/gib_skull.mdl#impactdecal=Blood.Human" "5.0"
+			"models/gib_b_gib.mdl#impactdecal=Blood.Human" "5.0"
 		}
 	}
 }

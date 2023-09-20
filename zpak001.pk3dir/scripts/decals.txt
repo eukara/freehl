@@ -29,3 +29,27 @@ ExplosionScorch
 	"{scorch2" "1"
 	"{scorch3" "1"
 }
+
+Blood.Human
+{
+	"{blood1" "1"
+	"{blood2" "1"
+	"{blood3" "1"
+	"{blood4" "1"
+	"{blood5" "1"
+	"{blood6" "1"
+	"{blood7" "1"
+	"{blood8" "1"
+}
+
+Blood.Alien
+{
+	"{yblood1" "1"
+	"{yblood2" "1"
+	"{yblood3" "1"
+	"{yblood4" "1"
+	"{yblood5" "1"
+	"{yblood6" "1"
+	"{yblood7" "1"
+	"{yblood8" "1"
+}
