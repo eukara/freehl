@@ -1,0 +1,43 @@
+entityDef monster_hgrunt_dead
+{
+	"spawnclass"	"NSMonster"
+	"model"		"models/hgrunt.mdl"
+	"netname"	"Dead Human Grunt"
+	"health"	"skill:hgrunt_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"	"64"
+	"team"		"0"
+	"propdata"	"actor_human"
+
+	"dead"		"1"
+	"frame"		"44"
+
+	// Side
+	when "pose" equals "1" {
+		"frame"	"45"
+	}
+
+	// Seated
+	when "pose" equals "1" {
+		"frame"	"46"
+	}
+
+	when "body" equals "1" {
+		"body1"	"1"
+	}
+
+	when "body" equals "2" {
+		"body1"	"2"
+	}
+
+	when "body" equals "3" {
+		"skin"	"1"
+		"body1"	"3"
+	}
+
+	when "body" equals "4" {
+		"body1"	"4"
+	}
+
+}

@@ -1,13 +1,13 @@
 entityDef monster_bullchicken
 {
 	"spawnclass"		"NSMonster"
-	"model"		"models/bullsquid.mdl"
+	"model"			"models/bullsquid.mdl"
 	"netname"		"Bullsquid"
 	"health"		"skill:bullsquid_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
 	"eye_height"		"32"
-	"team"		"2"
+	"team"			"2"
 	"propdata"		"actor_alien"
 	"speed_walk"		"32"
 	"speed_run"		"72"
@@ -54,13 +54,13 @@ entityDef melee_bullchicken_tailwhip
 entityDef ranged_bullchicken_spit
 {
 	"spawnclass"		"NSProjectile"
-	"model"		"sprites/bigspit.spr"
+	"model"			"sprites/bigspit.spr"
 
 	"def_damage"		"damage_spitDirect"
 
 	"health"		"0"
 	"velocity"		"900"
-	"fuse"		"10"
+	"fuse"			"10"
 	"detonate_on_fuse"	"0"
 	"detonate_on_death"	"0"
 	"detonate_on_world"	"1"

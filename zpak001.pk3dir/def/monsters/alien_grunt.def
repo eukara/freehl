@@ -2,8 +2,8 @@ entityDef monster_alien_grunt
 {
 	"spawnclass"		"NSMonster"
 	"model"		"models/agrunt.mdl"
-	"netname"		"Zombie"
-	"health"		"skill:zombie_health"
+	"netname"		"Alien Grunt"
+	"health"		"skill:alien_grunt_health"
 	"mins"		"-16 -16 0"
 	"maxs"		"16 16 72"
 	"eye_height"		"64"
@@ -56,13 +56,13 @@ entityDef melee_agrunt_punch
 entityDef ranged_agrunt_shot
 {
 	"spawnclass"		"NSProjectile"
-	"model"		"models/hornet.mdl"
+	"model"			"models/hornet.mdl"
 
 	"def_damage"		"damage_hornetDirect"
 
 	"health"		"0"
 	"velocity"		"300"
-	"fuse"		"10"
+	"fuse"			"10"
 	"detonate_on_fuse"	"0"
 	"detonate_on_death"	"0"
 	"detonate_on_world"	"0"

@@ -1,0 +1,65 @@
+entityDef monster_scientist_dead
+{
+	"spawnclass"	"NSMonster"
+	"model"		"models/scientist.mdl"
+	"netname"	"Dead Scientist"
+	"health"	"skill:scientist_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"team"		"0"
+	"propdata"	"actor_human"
+
+	"dead"		"1"
+	"frame"		"38"
+
+	// Stomach
+	when "pose" equals "1" {
+		"frame"	"39"
+	}
+
+	// Sitting
+	when "pose" equals "2" {
+		"frame"	"40"
+	}
+
+	// Hanging
+	when "pose" equals "3" {
+		"frame"	"41"
+	}
+
+	// Table1
+	when "pose" equals "4" {
+		"frame"	"42"
+	}
+
+	// Table2
+	when "pose" equals "5" {
+		"frame"	"43"
+	}
+
+	// Table3
+	when "pose" equals "6" {
+		"frame"	"44"
+	}
+
+	when "body" equals "1" {
+		"netname"	"Dead Walter"
+		"body1"	"1"
+	}
+
+	when "body" equals "2" {
+		"netname"	"Dead Einstein"
+		"body1"	"2"
+	}
+
+	when "body" equals "3" {
+		"netname"	"Dead Luther"
+		"skin"	"1"
+		"body1"	"3"
+	}
+
+	when "body" equals "4" {
+		"netname"	"Dead Slick"
+		"body1"	"4"
+	}
+}

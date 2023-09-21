@@ -1,13 +1,13 @@
 entityDef monster_alien_slave
 {
 	"spawnclass"		"NSMonster"
-	"model"		"models/islave.mdl"
+	"model"			"models/islave.mdl"
 	"netname"		"Vortigaunt"
 	"health"		"skill:islave_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
 	"eye_height"		"64"
-	"team"		"2"
+	"team"			"2"
 	"propdata"		"actor_alien"
 	"speed_walk"		"72"
 	"speed_run"		"72"

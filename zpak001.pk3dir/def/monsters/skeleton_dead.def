@@ -1,32 +1,29 @@
-entityDef monster_hevsuit_dead
+entityDef monster_skeleton_dead
 {
 	"spawnclass"	"NSMonster"
-	"model"		"models/player.mdl"
-	"body1"		"1"
-	"netname"	"Dead H.E.V. Scientist"
+	"model"		"models/skeleton.mdl"
+	"netname"	"Skeleton"
 	"health"	"50"
 	"mins"		"-16 -16 0"
 	"maxs"		"16 16 72"
-	"eye_height"	"64"
 	"team"		"0"
 	"propdata"	"actor_human"
 
 	"dead"		"1"
-	"frame"		"73"
-	"body1"		"1"
+	"frame"		"0"
 
 	// Seated
 	when "pose" equals "1" {
-		"frame"	"74"
+		"frame"	"1"
+	}
+
+	// Against Wall
+	when "pose" equals "2" {
+		"frame"	"2"
 	}
 
 	// Stomach
-	when "pose" equals "2" {
-		"frame"	"75"
-	}
-
-	// On Table
 	when "pose" equals "3" {
-		"frame"	"76"
+		"frame"	"3"
 	}
 }

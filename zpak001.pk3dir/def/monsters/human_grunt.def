@@ -1,13 +1,13 @@
 entityDef monster_human_grunt
 {
 	"spawnclass"		"NSSquadMonster"
-	"model"		"models/hgrunt.mdl"
+	"model"			"models/hgrunt.mdl"
 	"netname"		"Grunt"
 	"health"		"skill:hgrunt_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
 	"eye_height"		"64"
-	"team"		"1"
+	"team"			"1"
 	"propdata"		"actor_human"
 	"speed_walk"		"41"
 	"speed_run"		"304"
