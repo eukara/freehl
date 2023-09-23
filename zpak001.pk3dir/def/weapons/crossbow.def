@@ -19,7 +19,6 @@ entityDef projectile_arrow
 	"model"		"models/crossbow_bolt.mdl"
 	"velocity"		"2000 0 0"
 	"angular_velocity"	"0 0 20"
-	"smoke_fly"		"weapon_crossbow.trail"
 	"mins"		"0 0 0"
 	"maxs"		"0 0 0"
 	"def_damage"		"damage_arrowDirect"
@@ -39,6 +38,7 @@ entityDef damage_arrowDirect
 entityDef projectile_arrowExplosive
 {
 	"inherit"		"projectile_arrow"
+	"smoke_fly"		"weapon_crossbow.trail"
 	"def_damage"		""
 	"def_splash_damage"	"damage_arrowSplash"
 	"model_detonate"		"fx_explosion.main"
