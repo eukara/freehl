@@ -58,6 +58,7 @@ struct
 	int m_iItemsOld;
 
 	float m_flDamageIndicator;
+	float m_flTitleAlpha;
 } g_seatslocal[4], *pSeatLocal;
 
 void HUD_DrawAmmo1(void);

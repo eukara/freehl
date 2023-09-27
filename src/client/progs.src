@@ -23,7 +23,7 @@ draw.qc
 
 damage.qc
 init.qc
-flashlight.qc
+../../../valve/src/client/flashlight.qc
 entities.qc
 cmds.qc
 game_event.qc

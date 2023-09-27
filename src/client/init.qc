@@ -34,6 +34,12 @@ void
 ClientGame_InitDone(void)
 {
 	VGUI_ShowMOTD();
+
+	bool gameTitle = serverkeyfloat("gametitle");
+
+	if (gameTitle == true) {
+		pSeatLocal->m_flTitleAlpha = 4.0f;
+	}
 }
 
 void
