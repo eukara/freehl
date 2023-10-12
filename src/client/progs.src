@@ -29,7 +29,6 @@ cmds.qc
 game_event.qc
 ../../../valve/src/client/camera.qc
 ../../../valve/src/client/viewmodel.qc
-view.qc
 obituary.qc
 hud_sprite.qc
 hud_itemnotify.qc
@@ -38,7 +37,6 @@ hud_ammonotify.qc
 hud.qc
 hud_weaponselect.qc
 scoreboard.qc
-modelevent.qc
 
 ../../../src/client/include.src
 vgui_motd.qc
