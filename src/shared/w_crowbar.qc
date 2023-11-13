@@ -130,8 +130,6 @@ w_crowbar_primary(player pl)
 	/* don't bother with decals, we got squibs */
 	if (trace_ent.iBleeds) {
 		FX_Blood(trace_endpos, [1,0,0]);
-	} else {
-		SurfData_Impact(trace_ent, trace_endpos, trace_plane_normal);
 	}
 
 	if (trace_ent.takedamage) {
