@@ -85,6 +85,38 @@ class player:NSClientPlayer
 #endif
 };
 
+void
+player::player(void)
+{
+	anim_top = 0;
+	anim_top_time = 0;
+	anim_top_delay = 0;
+	anim_bottom = 0;
+	anim_bottom_time = 0;
+	glock_mag = 0;
+	mp5_mag = 0;
+	python_mag = 0;
+	shotgun_mag = 0;
+	crossbow_mag = 0;
+	rpg_mag = 0;
+	satchel_chg = 0;
+	ammo_9mm = 0;
+	ammo_357 = 0;
+	ammo_buckshot = 0;
+	ammo_bolt = 0;
+	ammo_rocket = 0;
+	ammo_uranium = 0;
+	ammo_handgrenade = 0;
+	ammo_satchel = 0;
+	ammo_tripmine = 0;
+	ammo_snark = 0;
+	ammo_hornet = 0;
+	ammo_m203_grenade = 0;
+	ammo_gauss_volume = 0;
+	ammo_rpg_state = 0;
+	mode_tempstate = 0;
+}
+
 void Animation_PlayerUpdate(player); 
 void Animation_TimerUpdate(player, float); 
 
@@ -598,35 +630,3 @@ player::SendEntity(entity ePEnt, float flChanged)
 	return (1);
 }
 #endif
-
-void
-player::player(void)
-{
-	anim_top = 0;
-	anim_top_time = 0;
-	anim_top_delay = 0;
-	anim_bottom = 0;
-	anim_bottom_time = 0;
-	glock_mag = 0;
-	mp5_mag = 0;
-	python_mag = 0;
-	shotgun_mag = 0;
-	crossbow_mag = 0;
-	rpg_mag = 0;
-	satchel_chg = 0;
-	ammo_9mm = 0;
-	ammo_357 = 0;
-	ammo_buckshot = 0;
-	ammo_bolt = 0;
-	ammo_rocket = 0;
-	ammo_uranium = 0;
-	ammo_handgrenade = 0;
-	ammo_satchel = 0;
-	ammo_tripmine = 0;
-	ammo_snark = 0;
-	ammo_hornet = 0;
-	ammo_m203_grenade = 0;
-	ammo_gauss_volume = 0;
-	ammo_rpg_state = 0;
-	mode_tempstate = 0;
-}

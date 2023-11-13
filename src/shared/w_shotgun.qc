@@ -47,6 +47,7 @@ void w_shotgun_ejectshell(void)
 		if (other == world)
 			Sound_Play(self, CHAN_BODY, "modelevent_shotgunshell.land");
 	}
+
 	entity eShell = spawn();
 	setmodel(eShell, "models/shotgunshell.mdl");
 	eShell.solid = SOLID_BBOX;
@@ -181,7 +182,7 @@ w_shotgun_primary(player pl)
 		return;
 	}
 
-	if (pl.w_attack_next) {
+	if (pl.w_attack_next > 0.0f) {
 		w_shotgun_release(pl);
 		return;
 	}
@@ -247,7 +248,7 @@ w_shotgun_secondary(player pl)
 		return;
 	}
 
-	if (pl.w_attack_next) {
+	if (pl.w_attack_next > 0.0f) {
 		w_shotgun_release(pl);
 		return;
 	}
@@ -310,7 +311,44 @@ w_shotgun_release(player pl)
 		return;
 	}
 
-	if (pl.mode_tempstate == SHOTTY_IDLE) {
+	switch (pl.mode_tempstate) {
+	case SHOTTY_RELOAD_START:
+		Weapons_ViewAnimation(pl, SHOTGUN_START_RELOAD);
+		pl.mode_tempstate = SHOTTY_RELOAD;
+		pl.w_idle_next = 0.65f;
+		break;
+	case SHOTTY_RELOAD:
+		Weapons_ViewAnimation(pl, SHOTGUN_RELOAD);
+		pl.shotgun_mag++;
+		pl.ammo_buckshot--;
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.reload");
+#endif
+		if (pl.ammo_buckshot <= 0 || pl.shotgun_mag >= 8) {
+			pl.mode_tempstate = SHOTTY_RELOAD_END;
+		}
+		Weapons_UpdateAmmo(pl, pl.shotgun_mag, pl.ammo_buckshot, pl.mode_tempstate);
+		pl.w_idle_next = 0.5f;
+		break;
+	case SHOTTY_RELOAD_END:
+		Weapons_ViewAnimation(pl, SHOTGUN_PUMP);
+#ifdef SERVER
+		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.cock");
+#endif
+		pl.mode_tempstate = SHOTTY_IDLE;
+		pl.w_idle_next = 10.0f;
+		pl.w_attack_next = 0.5f;
+		break;
+	case SHOTTY_COCKSOUND:
+#ifdef SERVER
+		Sound_Play(pl, CHAN_AUTO, "weapon_shotgun.cock");
+#endif
+		pl.mode_tempstate = SHOTTY_IDLE;
+		pl.w_idle_next = 10.0f;
+		pl.w_attack_next = 0.5f;
+		break;
+	case SHOTTY_IDLE:
+	default:
 		int r = floor(pseudorandom() * 3.0f);
 		switch (r) {
 		case 1:
@@ -326,39 +364,7 @@ w_shotgun_release(player pl)
 			pl.w_idle_next = 2.222222f;
 			break;
 		}
-	} else if (pl.mode_tempstate == SHOTTY_RELOAD_START) {
-		Weapons_ViewAnimation(pl, SHOTGUN_START_RELOAD);
-		pl.mode_tempstate = SHOTTY_RELOAD;
-		pl.w_idle_next = 0.65f;
-	} else if (pl.mode_tempstate == SHOTTY_RELOAD) {
-		Weapons_ViewAnimation(pl, SHOTGUN_RELOAD);
-		pl.shotgun_mag++;
-		pl.ammo_buckshot--;
-#ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.reload");
-#endif
-		if (pl.ammo_buckshot <= 0 || pl.shotgun_mag >= 8) {
-			pl.mode_tempstate = SHOTTY_RELOAD_END;
-		}
-		Weapons_UpdateAmmo(pl, pl.shotgun_mag, pl.ammo_buckshot, pl.mode_tempstate);
-		pl.w_idle_next = 0.5f;	
-	} else if (pl.mode_tempstate == SHOTTY_RELOAD_END) {
-		Weapons_ViewAnimation(pl, SHOTGUN_PUMP);
-#ifdef SERVER
-		Sound_Play(pl, CHAN_WEAPON, "weapon_shotgun.cock");
-#endif
-		pl.mode_tempstate = SHOTTY_IDLE;
-		pl.w_idle_next = 10.0f;
-		pl.w_attack_next = 0.5f;
-	} else if (pl.mode_tempstate == SHOTTY_COCKSOUND) {
-#ifdef CLIENT
-
-#else
-		Sound_Play(pl, CHAN_AUTO, "weapon_shotgun.cock");
-#endif
-		pl.mode_tempstate = SHOTTY_IDLE;
-		pl.w_idle_next = 10.0f;
-		pl.w_attack_next = 0.5f;
+		break;
 	}
 }
 
