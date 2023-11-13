@@ -145,7 +145,9 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 	Sound_Play(pl, CHAN_AUTO, "player.die");
 
 	/* force respawn */
-	pl.ScheduleThink(PutClientInServer, 4.0f);
+	if (cvar("mp_forcerespawn") == 1) {
+		pl.ScheduleThink(PutClientInServer, 4.0f);
+	}
 
 	/* have we gone over the fraglimit? */
 	CheckRules();
