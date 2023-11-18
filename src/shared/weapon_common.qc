@@ -383,9 +383,6 @@ Weapons_GetCameraPos(player pl)
 void
 Weapons_ViewAnimation(player pl, int i)
 {
-#if 0
-	View_PlayAnimation(i);
-#endif
 	pl.weaponframe = i;
 	pl.weapontime = 0.0f;
 }

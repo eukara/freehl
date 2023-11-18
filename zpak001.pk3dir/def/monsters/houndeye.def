@@ -10,11 +10,28 @@ entityDef monster_houndeye
 	"team"		"2"
 	"propdata"		"actor_alien"
 	"speed_walk"		"32"
-	"speed_run"		"72"
+	"speed_run"		"192"
 
 	"attack_ranged_range"	"192"
 
 	"snd_idle"		"monster_houndeye.idle"
 	"snd_pain"		"monster_houndeye.pain"
 	"snd_death"		"monster_houndeye.death"
+
+	events {
+		1 "StartSoundDef" "monster_houndeye.alert"
+
+		2 "StartSoundDef" "monster_houndeye.attack"
+
+		3 "Shockwave" "sprites/shockwave.spr 192 0 0 2 16 0 255 255 255 255 0"
+		3 "StartSoundDef" "monster_houndeye.blast"
+
+		4 "AddVelocity" "-200 0 250"
+
+		5 "StartSoundDef" "monster_houndeye.pain"
+
+		6 "StartSoundDef" "monster_houndeye.pain"
+
+		7 "SetSkin" "0"
+	}
 }

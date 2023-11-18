@@ -27,9 +27,8 @@ Game_InitRules(void)
 void
 Game_Worldspawn(void)
 {
-	Sound_Precache("player.die");
-	Sound_Precache("player.fall");
-	Sound_Precache("player.lightfall");
+	Sound_Precache("Player.FlashLightOff");
+	Sound_Precache("Player.FlashLightOn");
 
 	precache_model("models/player.mdl");
 	precache_model("models/w_weaponbox.mdl");

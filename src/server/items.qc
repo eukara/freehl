@@ -60,8 +60,21 @@ item_pickup::PickupRespawn(void)
 
 void item_pickup::Respawn(void)
 {
-	SetSolid(SOLID_TRIGGER);
+	/* we need to delay the DropToFloor() by at least a frame.
+	   otherwise they may just fall through an entity (func_wall, func_train etc.)
+	   that came after this entity in the lump. */
+	static void AdjustSpawnPos(void) {
+		RestoreAngles();
+		SetOrigin(GetSpawnOrigin());
+
+		if (!m_bFloating) {
+			DropToFloor();
+			SetMovetype(MOVETYPE_TOSS);
+		}
+	}
+
 	SetOrigin(GetSpawnOrigin());
+	SetSolid(SOLID_TRIGGER);
 	botinfo = BOTINFO_WEAPON;
 
 	/* At some points, the item id might not yet be set */
@@ -70,12 +83,7 @@ void item_pickup::Respawn(void)
 	}
 
 	SetSize([-16,-16,0], [16,16,16]);
-	ReleaseThink();
-
-	if (!m_bFloating) {
-		DropToFloor();
-		SetMovetype(MOVETYPE_TOSS);
-	}
+	ScheduleThink(AdjustSpawnPos, 0.0f);
 }
 
 void

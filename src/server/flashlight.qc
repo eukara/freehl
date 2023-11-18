@@ -35,8 +35,9 @@ void Flashlight_Toggle(void)
 
 	if (self.gflags & GF_FLASHLIGHT) {
 		self.gflags &= ~GF_FLASHLIGHT;
+		Sound_Play(self, CHAN_ITEM, "Player.FlashLightOff");
 	} else {
 		self.gflags |= GF_FLASHLIGHT;
+		Sound_Play(self, CHAN_ITEM, "Player.FlashLightOn");
 	}
-	sound(self, CHAN_ITEM, "items/flashlight1.wav", 1, ATTN_IDLE);
 }

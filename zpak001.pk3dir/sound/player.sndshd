@@ -1,34 +1,100 @@
-player.fall
+Player.FallDamage
 {
 	sample player/pl_fallpain3.wav
 }
-player.spraylogo
-{
-	sample player/sprayer.wav
-}
-player.lightfall
+
+Player.LightFall
 {
 	sample player/pl_fallpain1.wav
 }
-player.die
+
+Player.Death
 {
 	sample fvox/flatline.wav
 }
-player.gasplight
+
+Player.GaspLight
 {
 	sample misc/null.wav
 }
-player.gaspheavy
+
+Player.GaspHeavy
 {
 	sample misc/null.wav
 }
-player.waterexit
+
+Player.WaterExit
 {
 	sample player/pl_wade1.wav
 	sample player/pl_wade3.wav
 }
-player.waterenter
+
+Player.WaterEnter
 {
 	sample player/pl_wade2.wav
 	sample player/pl_wade4.wav
+}
+
+Player.DenyWeaponSelection
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_denyselect.wav
+}
+
+Player.WeaponSelected
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_select.wav
+}
+
+Player.WeaponSelectionMoveSlot
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_moveselect.wav
+}
+
+Player.WeaponSelectionOpen
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_hudon.wav
+}
+
+Player.WeaponSelectionClose
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_hudoff.wav
+}
+
+Player.FlashLightOn
+{
+	follow
+	volume 0.8
+	sample items/flashlight1.wav
+}
+
+Player.FlashLightOff
+{
+	follow
+	volume 0.8
+	sample items/flashlight1.wav
+}
+
+SprayCan.Paint
+{
+	sample player/sprayer.wav
 }
