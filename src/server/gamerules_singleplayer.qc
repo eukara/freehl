@@ -27,7 +27,7 @@ HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 	pl.SetSolid(SOLID_NOT);
 	pl.SetTakedamage(DAMAGE_NO);
 	pl.SetHealth(0);
-	pl.StartSoundDef("player.die", CHAN_AUTO, true);
+	pl.StartSoundDef("Player.Death", CHAN_AUTO, true);
 
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.armor = pl.activeweapon = pl.g_items = pl.weapon = 0;

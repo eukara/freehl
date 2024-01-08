@@ -142,7 +142,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
 
-	Sound_Play(pl, CHAN_AUTO, "player.die");
+	Sound_Play(pl, CHAN_AUTO, "Player.Death");
 
 	/* force respawn */
 	if (cvar("mp_forcerespawn") == 1) {
