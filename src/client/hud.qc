@@ -507,12 +507,6 @@ HUD_Draw(void)
 	Damage_Draw();
 }
 
-string g_specmodes[] = {
-	"Free Camera",
-	"Third Person",
-	"First Person"
-};
-
 /* specatator main entry */
 void
 HUD_DrawSpectator(void)
