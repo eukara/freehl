@@ -1,0 +1,63 @@
+{
+	name Barney
+	model barney
+	topcolor 0xeff
+	bottomcolor 0xff0020
+}
+{
+	name Gina
+	model gina
+	topcolor 0xff6b00
+	bottomcolor 0xff0b00
+}
+{
+	name GMan
+	funname G-Man
+	model gman
+	topcolor 0x9200ff
+	bottomcolor 0xc800ff
+}
+{
+	name Gordon
+	model gordon
+	topcolor 0xa8ff00
+	bottomcolor 0xf3ff00
+}
+{
+	name Helmet
+	funname HelmetSci
+	model helmet
+	topcolor 0xffaf
+	bottomcolor 0xffb600
+}
+{
+	name HGrunt
+	funname H-Grunt
+	model hgrunt
+	topcolor 0xff24
+	bottomcolor 0xff4000
+}
+{
+	name Recon
+	model recon
+	topcolor 0x8fff
+	bottomcolor 0xff0076
+}
+{
+	name Robot
+	model robo
+	topcolor 0xff0076
+	bottomcolor 0xa4ff
+}
+{
+	name Scientist
+	model scientist
+	topcolor 0xfffa
+	bottomcolor 0xffcb00
+}
+{
+	name Zombie
+	model zombie
+	topcolor 0xa4ff
+	bottomcolor 0xffab00
+}
