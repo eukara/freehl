@@ -29,6 +29,7 @@ Game_Worldspawn(void)
 {
 	Sound_Precache("Player.FlashLightOff");
 	Sound_Precache("Player.FlashLightOn");
+	Sound_Precache("item_weaponbox.Pickup");
 
 	precache_model("models/player.mdl");
 	precache_model("models/w_weaponbox.mdl");

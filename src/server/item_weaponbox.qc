@@ -54,7 +54,7 @@ item_weaponbox::Touch(entity eToucher)
 
 	player pl = (player)eToucher;
 	Logging_Pickup(eToucher, this, __NULL__);
-	sound(pl, CHAN_ITEM, "items/gunpickup2.wav", 1, ATTN_NORM);
+	StartSoundDef("item_weaponbox.Pickup", CHAN_ITEM, true);
 
 	pl.ammo_9mm += ammo_9mm;
 	pl.ammo_357 += ammo_357;
