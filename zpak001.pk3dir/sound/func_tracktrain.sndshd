@@ -1,0 +1,33 @@
+func_tracktrain.move_1
+{
+	sample plats/ttrain1.wav
+}
+func_tracktrain.move_2
+{
+	sample plats/ttrain2.wav
+}
+func_tracktrain.move_3
+{
+	sample plats/ttrain3.wav
+}
+func_tracktrain.move_4
+{
+	sample plats/ttrain4.wav
+}
+func_tracktrain.move_5
+{
+	sample plats/ttrain5.wav
+}
+func_tracktrain.move_6
+{
+	sample plats/ttrain6.wav
+}
+func_tracktrain.move_7
+{
+	sample plats/ttrain7.wav
+}
+
+func_tracktrain.stop_1
+{
+	sample plats/ttrain_brake1.wav
+}
