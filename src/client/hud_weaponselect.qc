@@ -102,14 +102,16 @@ HUD_DrawWeaponSelect_Back(void)
 }
 
 void
+View_ForceChange(player pl, int targetWeapon);
+
+void
 HUD_DrawWeaponSelect_Trigger(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
 
 	if (pl.activeweapon != pSeat->m_iHUDWeaponSelected)
-		sendevent("PlayerSwitchWeapon", "i", pSeat->m_iHUDWeaponSelected);
+		View_ForceChange(pl, pSeat->m_iHUDWeaponSelected);
 
-	pl.activeweapon = pSeat->m_iHUDWeaponSelected;
 
 	Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelected");
 	pSeat->m_iHUDWeaponSelected = pSeat->m_flHUDWeaponSelectTime = 0;
@@ -120,8 +122,7 @@ HUD_DrawWeaponSelect_Last(void)
 {
 	player pl = (player)pSeat->m_ePlayer;
 	if (pl.g_items & g_weapons[pSeat->m_iOldWeapon].id) {
-		pl.activeweapon = pSeat->m_iOldWeapon;
-		sendevent("PlayerSwitchWeapon", "i", pSeat->m_iOldWeapon);
+		View_ForceChange(pl, pSeat->m_iOldWeapon);
 	}
 }
 

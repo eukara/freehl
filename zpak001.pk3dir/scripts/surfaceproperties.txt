@@ -4,12 +4,14 @@ default
 	bulletimpact "sfx_impact.default"
 	stepleft "step_default.left"
 	stepright "step_default.right"
+	scraperough "scrape.default"
+	scrapesmooth "scrape.default"
 }
 
 gs_material_glass
 {
 	gamematerial Y
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "impact_glass.main"
 	bulletimpact "sfx_impact.glass"
 	stepleft "step_glass.left"
 	stepright "step_glass.right"
@@ -29,7 +31,7 @@ gs_material_wood
 gs_material_metal
 {
 	gamematerial M
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "impact_unbreakable.main"
 	bulletimpact "sfx_impact.metal"
 	stepleft "step_metal.left"
 	stepright "step_metal.right"
@@ -85,7 +87,7 @@ gs_material_computer
 
 gs_material_unbreakableglass
 {
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "impact_unbreakable.main"
 	bulletimpact "sfx_impact.glass"
 	stepleft "step_glass.left"
 	stepright "step_glass.right"

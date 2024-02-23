@@ -172,9 +172,14 @@ Weapons_Draw(player pl)
 	/* In case the previous weapon hid the model */
 	Weapons_EnableModel();
 
+#ifdef CLIENT
+	View_SetMuzzleflash(0);
+#endif
+
 	pl.w_attack_next = 0.5f;
 	pl.w_idle_next = 2.5f;
 	pl.viewzoom = 1.0f;
+	pl.weapontime = 0.0f;
 
 	/* we're meant to respawn when we're dead, don't unset! */
 	if (pl.health > 0) {

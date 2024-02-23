@@ -35,6 +35,8 @@ entityDef projectile_ARgrenade
 	"detonate_on_actor"	"1"
 	"snd_explode"		"fx.explosion"
 	"model_detonate"		"fx_explosion.main"
+	"decal_detonate"		"ExplosionScorch"
+	"smoke_fly"		"weapon_9mmAR.nadetrail"
 
 	"def_damage"		"damage_ARgrneadeDirect"
 	"def_splash_damage"	"damage_ARgrneadeSplash"
