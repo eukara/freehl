@@ -35,7 +35,7 @@ enum
 #ifdef SERVER
 class monster_tripmine:NSMonster
 {
-	int m_iDist;
+	vector m_vecEndPos;
 	void(void) monster_tripmine;
 
 	virtual float(entity, float) SendEntity;
@@ -55,8 +55,10 @@ monster_tripmine::SendEntity(entity pvsent, float flags)
 	WriteCoord(MSG_ENTITY, angles[0]);
 	WriteCoord(MSG_ENTITY, angles[1]);
 	WriteCoord(MSG_ENTITY, angles[2]);
+	WriteCoord(MSG_ENTITY, m_vecEndPos[0]);
+	WriteCoord(MSG_ENTITY, m_vecEndPos[1]);
+	WriteCoord(MSG_ENTITY, m_vecEndPos[2]);
 	WriteByte(MSG_ENTITY, health);
-	WriteShort(MSG_ENTITY, modelindex);
 	return (1);
 }
 
@@ -89,45 +91,44 @@ monster_tripmine::Damaged(void)
 void
 monster_tripmine::Ready(void)
 {
-	makevectors(angles);
-	traceline(origin, origin + v_forward * 2048, FALSE, this);
-	SetSolid(SOLID_BBOX);
+	traceline(origin, origin + GetForward() * 2048, FALSE, this);
 
 	/* first time we're marked as ready, we play a sound and set the distance */
-	if (!health) {
-		SendFlags = -1;
-		health = 1;
+	if (takedamage == DAMAGE_NO) {
+		/* Laser calibrated to N units! */
+		m_vecEndPos = trace_endpos;
+		SetHealth(1);
+		SetTakedamage(DAMAGE_YES);
+		StartSoundDef("weapon_tripmine.activate", CHAN_WEAPON, true);
+		SetSolid(SOLID_BBOX);
 		Death =
 		Pain = Damaged;
-		takedamage = DAMAGE_YES;
-		m_iDist = (int)trace_plane_dist;
-		Sound_Play(this, CHAN_WEAPON, "weapon_tripmine.activate");
+		SendFlags = -1;
 	}
 
-	if ((int)trace_plane_dist != m_iDist) {
+	/* laser shorter than when calibrated, explode! */
+	if (trace_endpos != m_vecEndPos) {
 		Trip(1);
+		return;
 	}
-	nextthink = time;
+
+	/* run this method again next frame */
+	ScheduleThink(Ready, 0.0f);
 }
 
 void
 monster_tripmine::Respawn(void)
 {
-	SetModel("models/v_tripmine.mdl");
+	SetTakedamage(DAMAGE_NO);
 	SetSolid(SOLID_NOT);
 	SetMovetype(MOVETYPE_NONE);
 	SetSize([-8,-8,-8], [8,8,8]);
-	SetOrigin(origin);
-	SendFlags = 1; /* force update */
-
-	/* ready in 4 seconds flat */
-	think = Ready;
 
 	/* fast beam */
-	if (spawnflags & 1) {
-		nextthink = time;
+	if (HasSpawnFlags(1)) {
+		ScheduleThink(Ready, 0.0f);
 	} else {
-		nextthink = time + 4.0f;
+		ScheduleThink(Ready, 4.0f);
 	}
 }
 
@@ -140,6 +141,7 @@ monster_tripmine::monster_tripmine(void)
 class csitem_tripmine
 {
 	int m_iActive;
+	vector m_vecEndPos;
 
 	void(void) csitem_tripmine;
 	virtual float(void) predraw;
@@ -148,9 +150,7 @@ class csitem_tripmine
 float csitem_tripmine::predraw(void)
 {
 	if (m_iActive) {
-		makevectors(angles);
-		traceline(origin, origin + v_forward * 8196, FALSE, this);
-		trailparticles(BEAM_TRIPMINE, this, origin, trace_endpos);
+		trailparticles(BEAM_TRIPMINE, this, origin, m_vecEndPos);
 	}
 
 	addentity(this);
@@ -178,8 +178,11 @@ void w_tripmine_parse(void)
 	tm.angles[0] = readcoord();
 	tm.angles[1] = readcoord();
 	tm.angles[2] = readcoord();
+	tm.m_vecEndPos[0] = readcoord();
+	tm.m_vecEndPos[1] = readcoord();
+	tm.m_vecEndPos[2] = readcoord();
 	tm.m_iActive = readbyte();
-	tm.modelindex = readshort();
+	setmodel(tm, "models/v_tripmine.mdl");
 
 	setcustomskin(tm, "", "geomset 0 2\ngeomset 1 2\n");
 	setorigin(tm, tm.origin);
