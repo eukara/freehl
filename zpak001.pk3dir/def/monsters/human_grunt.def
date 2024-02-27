@@ -97,9 +97,6 @@ entityDef projectile_hgrunt_ARgrenade
 	"impact_gib"		"1"
 
 	"model_detonate"		"fx_explosion.main"
-	"light_color"		"1 0.8 0.4"
-	"light_radius"		"160"
-	"light_offset"		"0 0 0"
 
 	"explode_light_color"	"2 1.6 0.8"
 	"explode_light_radius"	"320"
@@ -129,9 +126,6 @@ entityDef projectile_hgrunt_grenade
 	"impact_gib"		"1"
 
 	"model_detonate"		"fx_explosion.main"
-	"light_color"		"1 0.8 0.4"
-	"light_radius"		"160"
-	"light_offset"		"0 0 0"
 
 	"explode_light_color"	"2 1.6 0.8"
 	"explode_light_radius"	"320"
