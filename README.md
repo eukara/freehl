@@ -11,29 +11,29 @@ are present.
 This is 100% original code, feel free to audit however you wish.
 No proprietary SDKs have been looked at or taken apart, unlike similar projects.
 
-The engine you want to use to run this is FTEQW (https://www.fteqw.org), which is a project
-unrelated to this. It just happens to support the file-formats FreeHL needs.
-
 ![Preview 1](img/preview1.jpg)
 ![Preview 2](img/preview2.jpg)
 ![Preview 3](img/preview3.jpg)
 ![Preview 4](img/preview4.jpg)
 
+## Installing 
+To run it, all you need is [FTEQW](https://www.fteqw.org) and [the latest release .pk3 file](https://www.frag-net.com/pkgs/package_valve.pk3), which you save into `Half-Life/valve/`. That's about it. You can install updates through the **Configuration > Updates** menu.
+
 ## Building
-Clone the repository into the Nuclide-SDK:
+Clone the repository into the Nuclide-SDK and build it:
 
-> git clone REPOURL valve
+```
+$ git clone https://code.idtech.space/fn/valve valve
+$ SKIP_UPDATE=1 SKIP_RADIANT=1 ./build_game.sh valve
+```
 
-then either run Nuclide's ./build_game.sh shell script, or issue 'make' inside
-./valve/src!
-
-Obviously make sure that Nuclide has fteqw and fteqcc set-up for building and that you have some proficiency in QuakeC.
+You can also issue `make` inside `valve/src/`, but it won't build an `entities.def` file for use in Radiant (level editor family).
 
 ## Notes
-If you're playing a mod that relies on FreeHL, selecting it from the Custom Game
-menu alone works fine. However if you want to launch it via the command-line
-you need to make sure to add `-game valve` before `-game modname`.
-The order is important.
+The engine should automatically detect Half-Life when placed within the game directory, however you may need to pass `-halflife` just in case you have one massive directory with multiple FTE-supported games in it for example.
+
+You can also launch mods like this: `fteqw -halflife -game cstrike`
+Useful for development, so you don't always have to use the **Custom Game** menu.
 
 ## Community
 
@@ -48,10 +48,17 @@ and other such things. It's bridged with the Matrix room of the same name!
 ### Others
 We've had people ask in the oddest of places for help, please don't do that.
 
+## Special Thanks
+
+- Spike for FTEQW and for being the most helpful person all around!
+- Xylemon for the hundreds of test maps, verifying entity and game-logic behaviour
+- To my supporters on Patreon, who are always eager to follow what I do.
+- Any and all people trying it, tinkering with it etc. :)
+
 ## License
 ISC License
 
-Copyright (c) 2016-2021 Marco Hladik <marco@icculus.org>
+Copyright (c) 2016-2024 Marco Hladik <marco@icculus.org>
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
