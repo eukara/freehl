@@ -582,6 +582,10 @@ player::SendEntity
 float
 player::SendEntity(entity ePEnt, float flChanged)
 {
+	/* just-in-case. */
+	if (classname != "player")
+		return (0);
+
 	/* don't broadcast invisible players */
 	if (IsFakeSpectator() && ePEnt != this)
 		return (0);

@@ -38,7 +38,7 @@ HLSprite_Init(void)
 	hudFile = fopen("sprites/hud.txt", FILE_READ);
 
 	if (hudFile < 0) {
-		error("hud.txt was not found.");
+		NSError("Missing file sprites/hud.txt");
 		return;
 	}
 
@@ -91,7 +91,7 @@ HLSprite_Init(void)
 		i++;
 	}
 
-	print(sprintf("initialized %i HL sprites.\n", spriteCount));
+	NSLog("...initialized %i HL sprites.", spriteCount);
 }
 
 void
@@ -102,7 +102,7 @@ HLSprite_Draw_RGBA(string spriteName, vector spritePos, vector spriteColor, floa
 	spriteNum = (int)hash_get(g_hashhlsprite, spriteName, -1i);
 
 	if (spriteNum == -1i) {
-		print(sprintf("cannot draw sprite %S!\n", spriteName));
+		NSError("Cannot draw sprite %S!", spriteName);
 		return;
 	}
 

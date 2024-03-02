@@ -7,8 +7,8 @@ entityDef weapon_rpg
 	"editor_rotatable"	"1"
 
 	"spawnclass"		"NSItem"
-	"model"		"models/w_rpg.mdl"
-	"inv_item"		"$WEAPON_RPG"
+	"model"				"models/w_rpg.mdl"
+	"inv_item"			"$WEAPON_RPG"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }
@@ -16,49 +16,49 @@ entityDef weapon_rpg
 entityDef projectile_rocket
 {
 	"spawnclass"		"NSProjectile"
-	"model"		"models/rpgrocket.mdl"
+	"model"				"models/rpgrocket.mdl"
 
 	"def_damage"		"damage_rocketDirect"
 	"def_splash_damage"	"damage_rocketSplash"
 
-	"health"		"0"
-	"velocity"		"250"
-	"angular_velocity"	"0 0 200"
-	"fuse"		"10"
-	"detonate_on_fuse"	"0"
-	"detonate_on_death"	"1"
-	"detonate_on_world"	"1"
-	"detonate_on_actor"	"1"
+	"health"				"0"
+	"velocity"				"250"
+	"angular_velocity"		"0 0 200"
+	"fuse"					"10"
+	"detonate_on_fuse"		"0"
+	"detonate_on_death"		"1"
+	"detonate_on_world"		"1"
+	"detonate_on_actor"		"1"
 	"impact_damage_effect"	"1"
-	"impact_gib"		"1"
+	"impact_gib"			"1"
 
-	"thrust"		"2000"
+	"thrust"			"2000"
 	"thrust_start"		"0.1"
 	"thrust_end"		"2"
 
-	"smoke_fly"		"weapon_rpg.trail"
-	"decal_detonate"		"ExplosionScorch"
-	"model_detonate"		"fx_explosion.main"
+	"smoke_fly"			"weapon_rpg.trail"
+	"decal_detonate"	"ExplosionScorch"
+	"model_detonate"	"fx_explosion.main"
 	"light_color"		"1 0.8 0.4"
 	"light_radius"		"160"
 	"light_offset"		"0 0 0"
 
-	"explode_light_color"	"2 1.6 0.8"
-	"explode_light_radius"	"320"
+	"explode_light_color"		"2 1.6 0.8"
+	"explode_light_radius"		"320"
 	"explode_light_fadetime"	"0.5"
 
-	"snd_explode"		"fx.explosion"
+	"snd_explode"	"fx.explosion"
 }
 
 entityDef projectile_rocket_homing
 {
-	"inherit"	"projectile_rocket"
+	"inherit"		"projectile_rocket"
 	"thrust_homing"	"1"
 }
 
 entityDef damage_rocketDirect
 {
-	"damage"	"skill:plr_rocketlauncher_impact"
+	"damage"		"skill:plr_rocketlauncher_impact"
 	"damage_random"	"skill:plr_rocketlauncher_impact_rand"
 }
 

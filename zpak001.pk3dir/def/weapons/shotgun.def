@@ -7,8 +7,8 @@ entityDef weapon_shotgun
 	"editor_rotatable"	"1"
 
 	"spawnclass"		"NSItem"
-	"model"		"models/w_shotgun.mdl"
-	"inv_item"		"$WEAPON_SHOTGUN"
+	"model"				"models/w_shotgun.mdl"
+	"inv_item"			"$WEAPON_SHOTGUN"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }

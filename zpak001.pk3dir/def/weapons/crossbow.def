@@ -7,8 +7,8 @@ entityDef weapon_crossbow
 	"editor_rotatable"	"1"
 
 	"spawnclass"		"NSItem"
-	"model"		"models/w_crossbow.mdl"
-	"inv_item"		"$WEAPON_CROSSBOW"
+	"model"				"models/w_crossbow.mdl"
+	"inv_item"			"$WEAPON_CROSSBOW"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }
@@ -16,13 +16,13 @@ entityDef weapon_crossbow
 entityDef projectile_arrow
 {
 	"spawnclass"		"NSProjectile"
-	"model"		"models/crossbow_bolt.mdl"
-	"velocity"		"2000 0 0"
+	"model"				"models/crossbow_bolt.mdl"
+	"velocity"			"2000 0 0"
 	"angular_velocity"	"0 0 20"
-	"mins"		"0 0 0"
-	"maxs"		"0 0 0"
+	"mins"				"0 0 0"
+	"maxs"				"0 0 0"
 	"def_damage"		"damage_arrowDirect"
-	"model_detonate"		"fx_spark.main"
+	"model_detonate"	"fx_spark.main"
 	"snd_explode"		"fx.spark"
 	"detonate_on_fuse"	"0"
 	"detonate_on_death"	"1"
@@ -37,13 +37,13 @@ entityDef damage_arrowDirect
 
 entityDef projectile_arrowExplosive
 {
-	"inherit"		"projectile_arrow"
-	"smoke_fly"		"weapon_crossbow.trail"
+	"inherit"			"projectile_arrow"
+	"smoke_fly"			"weapon_crossbow.trail"
 	"def_damage"		""
 	"def_splash_damage"	"damage_arrowSplash"
-	"model_detonate"		"fx_explosion.main"
+	"model_detonate"	"fx_explosion.main"
 	"snd_explode"		"fx.explosion"
-	"decal_detonate"		"ExplosionScorch"
+	"decal_detonate"	"ExplosionScorch"
 }
 
 entityDef damage_arrowSplash

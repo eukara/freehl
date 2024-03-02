@@ -65,20 +65,22 @@ monster_tripmine::SendEntity(entity pvsent, float flags)
 void
 monster_tripmine::Trip(int walkthrough)
 {
-	float dmg;
+	vector explosionPos = GetOrigin();
+	float explosionDamage = Skill_GetValue("plr_tripmine", 150);
+	float explosionRadius = explosionDamage * 2.5f;
+
 	if (!walkthrough) {
 		real_owner = g_dmg_eAttacker;
 	}
 
 	/* This is to prevent infinite loops in Damage_Radius */
-	Death =
-	Pain = __NULL__;
-	takedamage = DAMAGE_NO;
-	dmg = Skill_GetValue("plr_tripmine", 150);
+	SetPainCallback(__NULL__);
+	SetDeathCallback(__NULL__);
+	SetTakedamage(DAMAGE_NO);
 
-	pointparticles(particleeffectnum("fx_explosion.main"), origin, [0,0,0], 1);
-	Damage_Radius(origin, real_owner, dmg, dmg * 2.5f, TRUE, WEAPON_TRIPMINE);
-	Sound_Play(self, CHAN_VOICE, "fx.explosion");
+	pointparticles(particleeffectnum("fx_explosion.main"), GetOrigin(), [0,0,0], 1);
+	Damage_Radius(explosionPos, real_owner, explosionDamage, explosionRadius, true, WEAPON_TRIPMINE);
+	StartSoundDef("fx.explosion", CHAN_VOICE, true);
 	Destroy();
 }
 
@@ -94,16 +96,16 @@ monster_tripmine::Ready(void)
 	traceline(origin, origin + GetForward() * 2048, FALSE, this);
 
 	/* first time we're marked as ready, we play a sound and set the distance */
-	if (takedamage == DAMAGE_NO) {
+	if (CanBeDamaged() == false) {
 		/* Laser calibrated to N units! */
 		m_vecEndPos = trace_endpos;
 		SetHealth(1);
 		SetTakedamage(DAMAGE_YES);
 		StartSoundDef("weapon_tripmine.activate", CHAN_WEAPON, true);
 		SetSolid(SOLID_BBOX);
-		Death =
-		Pain = Damaged;
-		SendFlags = -1;
+		SetPainCallback(Damaged);
+		SetDeathCallback(Damaged);
+		ForceNetworkUpdate();
 	}
 
 	/* laser shorter than when calibrated, explode! */
@@ -204,6 +206,7 @@ void w_tripmine_precache(void)
 	precache_model("models/v_tripmine.mdl");
 #else
 	precache_model("models/p_tripmine.mdl");
+	precache_model("models/v_tripmine.mdl");
 #endif
 }
 

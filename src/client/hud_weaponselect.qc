@@ -14,6 +14,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+void View_ForceChange(player pl, int targetWeapon);
+
 vector g_vecHUDNums[6] =
 {
 	[168 / 256, 72 / 128],
@@ -52,9 +54,10 @@ HUD_DrawWeaponSelect_Forward(void)
 
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
 		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionOpen");
+		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
 	} else {
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionMoveSlot");
+		pl.StartSoundDef("Player.WeaponSelectionMoveSlot", CHAN_ITEM, false);
+
 		pSeat->m_iHUDWeaponSelected--;
 		if (pSeat->m_iHUDWeaponSelected <= 0) {
 			pSeat->m_iHUDWeaponSelected = g_weapons.length - 1;
@@ -83,9 +86,10 @@ HUD_DrawWeaponSelect_Back(void)
 
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
 		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionOpen");
+		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
 	} else {
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionMoveSlot");
+		pl.StartSoundDef("Player.WeaponSelectionMoveSlot", CHAN_ITEM, false);
+
 		pSeat->m_iHUDWeaponSelected++;
 		if (pSeat->m_iHUDWeaponSelected >= g_weapons.length) {
 			pSeat->m_iHUDWeaponSelected = 1;
@@ -100,9 +104,6 @@ HUD_DrawWeaponSelect_Back(void)
 		if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty(pl))
 			HUD_DrawWeaponSelect_Back();
 }
-
-void
-View_ForceChange(player pl, int targetWeapon);
 
 void
 HUD_DrawWeaponSelect_Trigger(void)
@@ -166,9 +167,9 @@ HUD_SlotSelect(int slot)
 	}
 
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionOpen");
+		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
 	} else {
-		Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionMoveSlot");
+		pl.StartSoundDef("Player WeaponSelectionMoveSlot", CHAN_ITEM, false);
 	}
 
 	/* weren't in that slot? select the first one then */
@@ -211,7 +212,7 @@ HUD_DrawWeaponSelect(void)
 	}
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
 		if (pSeat->m_iHUDWeaponSelected) {
-			Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelectionClose");
+			pl.StartSoundDef("Player WeaponSelectionClose", CHAN_ITEM, false);
 			pSeat->m_iHUDWeaponSelected = 0;
 		}
 		return;

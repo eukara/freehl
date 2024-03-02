@@ -68,6 +68,7 @@ FX_Corpse_Spawn(player pl, float anim)
 	body_next.velocity = (pl.velocity) + [0,0,120];
 	body_next.colormap = pl.colormap;
 	body_next.SetFrame(anim);
+	body_next.frame1time = 0.0f;
 	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
 	return (entity)body_next;
 }

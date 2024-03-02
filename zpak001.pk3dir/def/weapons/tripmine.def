@@ -7,11 +7,11 @@ entityDef weapon_tripmine
 	"editor_rotatable"	"1"
 
 	"spawnclass"		"NSItem"
-	"model"		"models/v_tripmine.mdl"
-	"body0"		"2"
-	"body1"		"2"
-	"frame"		"8"
-	"inv_item"		"$WEAPON_TRIPMINE"
+	"model"				"models/v_tripmine.mdl"
+	"body0"				"2"
+	"body1"				"2"
+	"frame"				"8"
+	"inv_item"			"$WEAPON_TRIPMINE"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }

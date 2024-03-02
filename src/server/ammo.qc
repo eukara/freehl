@@ -46,6 +46,13 @@ item_ammo::Touch(entity eToucher)
 void
 item_ammo::Respawn(void)
 {
+	static void AdjustSpawnPos(void) {
+		RestoreAngles();
+		SetOrigin(GetSpawnOrigin());
+		DropToFloor();
+		SetMovetype(MOVETYPE_TOSS);
+	}
+
 	SetSolid(SOLID_TRIGGER);
 	SetMovetype(MOVETYPE_TOSS);
 	SetOrigin(GetSpawnOrigin());
@@ -57,7 +64,7 @@ item_ammo::Respawn(void)
 	if (real_owner && time > 30.0f)
 		Sound_Play(this, CHAN_ITEM, "ammo.respawn");
 
-	droptofloor();
+	ScheduleThink(AdjustSpawnPos, 0.0f);
 }
 
 void

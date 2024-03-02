@@ -63,7 +63,7 @@ entityDef monster_scientist
 	}
 
 	// pre-disaster
-	when "spawnflags" equals "256" {
+	when "spawnflags" contains "256" {
 		"talk_ask"		""
 		"talk_player_ask"	"!SC_PQUEST"
 		"talk_player_greet"	"!SC_PHELLO"

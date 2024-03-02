@@ -7,8 +7,8 @@ entityDef weapon_satchel
 	"editor_rotatable"	"1"
 
 	"spawnclass"		"NSItem"
-	"model"		"models/w_satchel.mdl"
-	"inv_item"		"$WEAPON_SATCHEL"
+	"model"				"models/w_satchel.mdl"
+	"inv_item"			"$WEAPON_SATCHEL"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 }
@@ -16,22 +16,22 @@ entityDef weapon_satchel
 entityDef projectile_satchel
 {
 	"spawnclass"		"NSProjectile"
-	"model"		"models/w_satchel.mdl"
-	"velocity"		"274 0 0"
+	"model"				"models/w_satchel.mdl"
+	"velocity"			"274 0 0"
 	"angular_velocity"	"0 400 0"
-	"friction"		"0.8"
-	"gravity"		"0.5"
-	"bounce"		"1"
-	"frame"		"1"
-	"mins"		"-1 -1 -4"
-	"maxs"		"1 1 4"
+	"friction"			"0.8"
+	"gravity"			"0.5"
+	"bounce"			"1"
+	"frame"				"1"
+	"mins"				"-1 -1 -4"
+	"maxs"				"1 1 4"
 	"snd_bounce"		"weapon_satchel.bounce"
 	"inherit_velocity"	"1"
 
 	"def_splash_damage"	"damage_satchelExplosion"
-	"model_detonate"		"fx_explosion.main"
+	"model_detonate"	"fx_explosion.main"
 	"snd_explode"		"fx.explosion"
-	"decal_detonate"		"ExplosionScorch"
+	"decal_detonate"	"ExplosionScorch"
 	
 }
 

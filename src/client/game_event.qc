@@ -46,14 +46,14 @@ ClientGame_EventParse(float fHeader)
 		float fTeam = readbyte();
 		string sMessage = readstring();
 
-		CSQC_Parse_Print(sprintf("%s: %s", getplayerkeyvalue(fSender, "name"), sMessage), PRINT_CHAT);
+		CSQC_Parse_Print(Util_ChatFormat(fSender, 0, sMessage), PRINT_CHAT);
 		break;
 	case EV_CHAT_TEAM:
 		float fSender2 = readbyte();
 		float fTeam2 = readbyte();
 		string sMessage2 = readstring();
 
-		CSQC_Parse_Print(sprintf("[TEAM] %s: %s", getplayerkeyvalue(fSender2, "name"), sMessage2), PRINT_CHAT);
+		CSQC_Parse_Print(Util_ChatFormat(fSender2, fTeam2, sMessage2), PRINT_CHAT);
 		break;
 	case EV_VIEWMODEL:
 		View_PlayAnimation(readbyte());

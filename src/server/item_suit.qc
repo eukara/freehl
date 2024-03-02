@@ -45,17 +45,19 @@ item_suit::Touch(entity eToucher)
 	}
 
 	player pl = (player)other;
+
 	if (pl.g_items & ITEM_SUIT) {
 		return;
 	}
 
 	Logging_Pickup(other, this, __NULL__);
-	sound(other, CHAN_ITEM, "fvox/bell.wav", 1, ATTN_NORM);
-	sound(other, CHAN_VOICE, "fvox/hev_logon.wav", 1, ATTN_NORM);
+	StartSound("fvox/bell.wav", CHAN_ITEM, 0, true);
+	StartSound("fvox/hev_logon.wav", CHAN_VOICE, 0, true);
+
 	pl.g_items |= ITEM_SUIT;
 	m_iValue = TRUE;
 
-	if (!target) {
+	if (HasTriggerTarget() == false) {
 		UseOutput(other, m_strOnPlayerTouch);
 	} else {
 		UseTargets(other, TRIG_TOGGLE, m_flDelay);
@@ -72,36 +74,45 @@ item_suit::Touch(entity eToucher)
 void
 item_suit::Respawn(void)
 {
+	/* we need to delay the DropToFloor() by at least a frame.
+	   otherwise they may just fall through an entity (func_wall, func_train etc.)
+	   that came after this entity in the lump. */
+	static void AdjustSpawnPos(void) {
+		RestoreAngles();
+		SetOrigin(GetSpawnOrigin());
+		DropToFloor();
+		SetMovetype(MOVETYPE_TOSS);
+	}
+
 	if (cvar_string("fs_game") == "bshift") {
 		Destroy();
 		return;
 	}
 
 	SetSolid(SOLID_TRIGGER);
-	SetMovetype(MOVETYPE_TOSS);
 	SetOrigin(GetSpawnOrigin());
+	SetMovetype(MOVETYPE_TOSS);
 	SetModel(GetSpawnModel());
 	SetSize(VEC_HULL_MIN + [0,0,36], VEC_HULL_MAX + [0,0,36]);
 	m_iValue = FALSE;
 
-	ReleaseThink();
+	if (!real_owner && time > 30.0f) {
+		StartSoundDef("item.respawn", CHAN_ITEM, true);
+	}
 
-	if (!real_owner && time > 30.0f)
-		Sound_Play(this, CHAN_ITEM, "item.respawn");
-
-	DropToFloor();
+	ScheduleThink(AdjustSpawnPos, 0.0f);
 }
 
 void
-item_suit::SpawnKey(string strKey, string strValue)
+item_suit::SpawnKey(string keyName, string setValue)
 {
-	switch (strKey) {
+	switch (keyName) {
 	case "OnPlayerTouch":
-		strValue = strreplace(",", ",_", strValue);
-		m_strOnPlayerTouch = strcat(m_strOnPlayerTouch, ",_", strValue);
+		setValue = strreplace(",", ",_", setValue);
+		m_strOnPlayerTouch = strcat(m_strOnPlayerTouch, ",_", setValue);
 		break;
 	default:
-		super::SpawnKey(strKey, strValue);
+		super::SpawnKey(keyName, setValue);
 		break;
 	}
 }

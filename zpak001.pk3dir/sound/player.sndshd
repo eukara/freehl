@@ -98,3 +98,19 @@ SprayCan.Paint
 {
 	sample player/sprayer.wav
 }
+
+Player.Wade
+{
+	sample player/pl_wade1.wav
+	sample player/pl_wade2.wav
+	sample player/pl_wade3.wav
+	sample player/pl_wade4.wav
+}
+
+Player.Swim
+{
+	sample player/pl_swim1.wav
+	sample player/pl_swim2.wav
+	sample player/pl_swim3.wav
+	sample player/pl_swim4.wav
+}
