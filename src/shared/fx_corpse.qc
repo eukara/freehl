@@ -59,7 +59,7 @@ FX_Corpse_Spawn(player pl, float anim)
 {
 	NSRenderableEntity body_next = (NSRenderableEntity)FX_Corpse_Next();
 	setorigin(body_next, pl.origin + [0,0,32]);
-	body_next.SetMovetype(MOVETYPE_TOSS);
+	body_next.SetMovetype(MOVETYPE_BOUNCE);
 	body_next.SetSolid(SOLID_CORPSE);
 	setmodel(body_next, pl.model);
 	setsize(body_next, VEC_HULL_MIN, [16, 16, -16]);
