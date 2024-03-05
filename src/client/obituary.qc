@@ -110,6 +110,10 @@ Obituary_Add(string attacker, string victim, float weapon, float flags)
 	int x, y;
 	x = OBITUARY_LINES;
 
+	if (attacker == "worldspawn" || attacker == victim) {
+		attacker = "";
+	}
+
 	/* we're not full yet, so fill up the buffer */
 	if (g_obituary_count < x) {
 		y = g_obituary_count;
@@ -157,6 +161,8 @@ Obituary_Draw(void)
 			g_obituary[i].icon = g_obituary[i+1].icon;
 		}
 		g_obituary[OBITUARY_LINES-1].attacker = "";
+		g_obituary[OBITUARY_LINES-1].victim = "";
+		g_obituary[OBITUARY_LINES-1].icon = 0;
 
 		g_obituary_time = OBITUARY_TIME;
 		g_obituary_count--;
@@ -170,7 +176,7 @@ Obituary_Draw(void)
 	for (i = 0; i < OBITUARY_LINES; i++) {
 		string a, v;
 
-		if (!g_obituary[i].attacker) {
+		if (!g_obituary[i].victim) {
 			break;
 		}
 

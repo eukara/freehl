@@ -58,18 +58,23 @@ entity
 FX_Corpse_Spawn(player pl, float anim)
 {
 	NSRenderableEntity body_next = (NSRenderableEntity)FX_Corpse_Next();
-	setorigin(body_next, pl.origin + [0,0,32]);
+
+	if (pl.flags & FL_CROUCHING) {
+		body_next.SetOrigin(pl.GetOrigin() + [0,0,32]);
+	} else {
+		body_next.SetOrigin(pl.GetOrigin());
+	}
+
 	body_next.SetMovetype(MOVETYPE_BOUNCE);
 	body_next.SetSolid(SOLID_CORPSE);
-	setmodel(body_next, pl.model);
-	setsize(body_next, VEC_HULL_MIN, [16, 16, -16]);
-	body_next.SetModelindex(pl.modelindex);
-	body_next.SetAngles(pl.angles);
-	body_next.velocity = (pl.velocity) + [0,0,120];
-	body_next.colormap = pl.colormap;
+	body_next.SetModel(pl.GetModel());
+	body_next.SetSize(VEC_HULL_MIN, [16, 16, -16]);
+	body_next.SetAngles(pl.GetAngles());
+	body_next.SetVelocity(pl.GetVelocity() + [0,0,120]);
 	body_next.SetFrame(anim);
-	body_next.frame1time = 0.0f;
 	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
+	body_next.colormap = pl.colormap;
+	body_next.frame1time = 0.0f;
 	return (entity)body_next;
 }
 #endif

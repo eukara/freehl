@@ -3,7 +3,7 @@ entityDef monster_alien_grunt
 	"spawnclass"	"NSMonster"
 	"model"			"models/agrunt.mdl"
 	"netname"		"Alien Grunt"
-	"health"		"skill:alien_grunt_health"
+	"health"		"skill:agrunt_health"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 72"
 	"eye_height"	"64"

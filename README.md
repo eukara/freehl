@@ -52,6 +52,7 @@ We've had people ask in the oddest of places for help, please don't do that.
 
 - Spike for FTEQW and for being the most helpful person all around!
 - Xylemon for the hundreds of test maps, verifying entity and game-logic behaviour
+- Theuaredead`, preston22, dqus for various patches
 - To my supporters on Patreon, who are always eager to follow what I do.
 - Any and all people trying it, tinkering with it etc. :)
 

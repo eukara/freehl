@@ -1,8 +1,12 @@
-monster_generic.thud
+BodyDrop.Light
 {
-	sample common/bodydrop1.wav
 	sample common/bodydrop2.wav
 	sample common/bodydrop3.wav
+}
+
+BodyDrop.Heavy
+{
+	sample common/bodydrop1.wav
 	sample common/bodydrop4.wav
 }
 

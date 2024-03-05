@@ -123,15 +123,13 @@ HLGameRules::PlayerPostFrame(NSClientPlayer pl)
 void
 HLGameRules::PlayerConnect(NSClientPlayer pl)
 {
-	if (Plugin_PlayerConnect(pl) == FALSE)
-		bprint(PRINT_HIGH, sprintf("%s connected\n", pl.netname));
+	super::PlayerConnect(pl);
 }
 
 void
 HLGameRules::PlayerDisconnect(NSClientPlayer pl)
 {
-	if (Plugin_PlayerDisconnect(pl) == FALSE)
-		bprint(PRINT_HIGH, sprintf("%s disconnected\n", pl.netname));
+	super::PlayerDisconnect(pl);
 }
 
 void
