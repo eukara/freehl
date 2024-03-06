@@ -13,35 +13,3 @@
  * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-
-void info_player_start(void)
-{
-	self.solid = SOLID_TRIGGER;
-	self.botinfo = BOTINFO_SPAWNPOINT;
-	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
-	setorigin_safe(self, self.origin);
-}
-
-void info_player_deathmatch(void)
-{
-	self.solid = SOLID_TRIGGER;
-	self.botinfo = BOTINFO_SPAWNPOINT;
-	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
-	setorigin_safe(self, self.origin);
-}
-
-void info_player_team1(void)
-{
-	self.solid = SOLID_TRIGGER;
-	self.botinfo = BOTINFO_SPAWNPOINT;
-	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
-	setorigin_safe(self, self.origin);
-}
-
-void info_player_team2(void)
-{
-	self.solid = SOLID_TRIGGER;
-	self.botinfo = BOTINFO_SPAWNPOINT;
-	setsize(self, VEC_HULL_MIN, VEC_HULL_MAX);
-	setorigin_safe(self, self.origin);
-}

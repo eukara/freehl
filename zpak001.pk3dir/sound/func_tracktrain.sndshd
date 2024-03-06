@@ -1,29 +1,43 @@
 func_tracktrain.move_1
 {
+	follow
+	looping
 	sample plats/ttrain1.wav
 }
 func_tracktrain.move_2
 {
+	follow
+	looping
 	sample plats/ttrain2.wav
 }
 func_tracktrain.move_3
 {
+	follow
+	looping
 	sample plats/ttrain3.wav
 }
 func_tracktrain.move_4
 {
+	follow
+	looping
 	sample plats/ttrain4.wav
 }
 func_tracktrain.move_5
 {
+	follow
+	looping
 	sample plats/ttrain5.wav
 }
 func_tracktrain.move_6
 {
+	follow
+	looping
 	sample plats/ttrain6.wav
 }
 func_tracktrain.move_7
 {
+	follow
+	looping
 	sample plats/ttrain7.wav
 }
 

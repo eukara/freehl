@@ -169,7 +169,7 @@ HUD_SlotSelect(int slot)
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
 		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
 	} else {
-		pl.StartSoundDef("Player WeaponSelectionMoveSlot", CHAN_ITEM, false);
+		pl.StartSoundDef("Player.WeaponSelectionMoveSlot", CHAN_ITEM, false);
 	}
 
 	/* weren't in that slot? select the first one then */
@@ -212,7 +212,7 @@ HUD_DrawWeaponSelect(void)
 	}
 	if (pSeat->m_flHUDWeaponSelectTime < time) {
 		if (pSeat->m_iHUDWeaponSelected) {
-			pl.StartSoundDef("Player WeaponSelectionClose", CHAN_ITEM, false);
+			pl.StartSoundDef("Player.WeaponSelectionClose", CHAN_ITEM, false);
 			pSeat->m_iHUDWeaponSelected = 0;
 		}
 		return;
