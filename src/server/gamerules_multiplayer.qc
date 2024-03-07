@@ -133,7 +133,32 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 		float gibStrength = g_dmg_iDamage * 2.0f;
 		BreakModel_Entity(pl, gibDir, gibStrength);
 	} else {
-		FX_Corpse_Spawn((player)pl, ANIM_DIESIMPLE);
+		float deathAnimation;
+
+		switch (g_dmg_iHitBody) {
+		case BODY_HEAD:
+			deathAnimation = ANIM_DIEHEADSHOT;
+			break;
+		case BODY_CHEST:
+			deathAnimation = ANIM_DIESPIN;
+			break;
+		case BODY_STOMACH:
+			deathAnimation = ANIM_DIEGUTSHOT;
+			break;
+		default:
+			bool isFacing = pl.IsFacingPosition(g_dmg_vecLocation);
+			deathAnimation = ANIM_DIESIMPLE;
+
+			if (isFacing == false) {
+				deathAnimation = ANIM_DIEFORWARD;
+			} else {
+				deathAnimation = random() < 0.5 ? ANIM_DIEBACKWARDS1 : ANIM_DIEBACKWARDS1;
+			}
+
+			break;
+		}
+
+		FX_Corpse_Spawn((player)pl, deathAnimation);
 	}
 
 	/* now let's make the real client invisible */
@@ -142,7 +167,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
 
-	Sound_Play(pl, CHAN_AUTO, "Player.Death");
+	pl.StartSoundDef("Player.Death", CHAN_AUTO, true);
 
 	/* force respawn */
 	if (cvar("mp_forcerespawn") == 1) {
