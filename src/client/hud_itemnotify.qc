@@ -78,16 +78,33 @@ HUD_ItemNotify_Insert(int type, int count)
 void
 HUD_ItemNotify_Check(player pl)
 {
-	int healthdiff = bound(0, pl.health - pSeatLocal->m_iHealthOld, 100);
-	int armordiff = bound(0, pl.armor - pSeatLocal->m_iArmorOld, 100);
-	int longjumpdiff = ((pl.g_items & ITEM_LONGJUMP) > (pSeatLocal->m_iItemsOld & ITEM_LONGJUMP)) == TRUE;
+	int healthdiff = (int)bound(0, pl.health - pSeatLocal->m_iHealthOld, 100);
+	int armordiff = (int)bound(0, pl.armor - pSeatLocal->m_iArmorOld, 100);
+	bool ljDiff = ((pl.g_items & ITEM_LONGJUMP) > (pSeatLocal->m_iItemsOld & ITEM_LONGJUMP)) ? true : false;
+	bool suitDiff = ((pl.g_items & ITEM_SUIT) > (pSeatLocal->m_iItemsOld & ITEM_SUIT)) ? true : false;
 
-	if (healthdiff > 1)
-		HUD_ItemNotify_Insert(1, 1);
-	if (armordiff > 1)
-		HUD_ItemNotify_Insert(0, 1);
-	if (longjumpdiff)
-		HUD_ItemNotify_Insert(2, 1);
+	if ((pl.g_items & ITEM_SUIT)) {
+		if (suitDiff == false) {
+			if (healthdiff > 1i) {
+				HUD_ItemNotify_Insert(1, 1);
+			}
+			if (armordiff > 1i) {
+				HUD_ItemNotify_Insert(0, 1);
+			}
+			if (ljDiff) {
+				HUD_ItemNotify_Insert(2, 1);
+			}
+		} else {
+			/* just picked up a suit, reset display values */
+			pSeatLocal->m_iHealthOld = (int)pl.health;
+			pSeatLocal->m_iArmorOld = (int)pl.armor;
+			pSeatLocal->m_iAmmo1Old = (int)pl.a_ammo1;
+			pSeatLocal->m_iAmmo2Old = (int)pl.a_ammo2;
+			pSeatLocal->m_iAmmo3Old = (int)pl.a_ammo3;
+			pSeatLocal->m_iPickupWeapon = 0i;
+			pSeatLocal->m_flPickupAlpha = 0.0f;
+		}
+	}
 
 	pSeatLocal->m_iItemsOld = pl.g_items;
 }
