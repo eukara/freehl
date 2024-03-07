@@ -3,6 +3,8 @@ var string g_damage_spr_b;
 var string g_damage_spr_l;
 var string g_damage_spr_r;
 
+var float autocvar_cg_damageFill = 0.25f;
+
 void
 Damage_Precache(void)
 {
@@ -11,6 +13,8 @@ Damage_Precache(void)
 	g_damage_spr_b = spriteframe("sprites/640_pain.spr", 2, 0.0f);
 	g_damage_spr_l = spriteframe("sprites/640_pain.spr", 3, 0.0f);
 }
+
+
 
 void HUD_DamageNotify_Check();
 void
@@ -56,6 +60,12 @@ Damage_Draw(void)
 	} else if (rt < -0.25f) {
 		drawpic(center + [-102,-64], g_damage_spr_l,
 			[48,128], [1,1,1], rt_alpha, DRAWFLAG_ADDITIVE);
+	}
+
+	if (autocvar_cg_damageFill > 0.0) {
+		vector finalColor = [1,1,1];
+		finalColor[1] = finalColor[2] = 1.0 - (pSeat->m_flDamageAlpha * autocvar_cg_damageFill);
+		drawpic(video_mins, "fade_modulate", video_res, finalColor, 1.0, DRAWFLAG_NORMAL);
 	}
 
 	pSeat->m_flDamageAlpha -= clframetime;
