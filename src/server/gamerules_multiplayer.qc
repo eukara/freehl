@@ -158,7 +158,12 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 			break;
 		}
 
-		FX_Corpse_Spawn((player)pl, deathAnimation);
+		NSEntity newCorpse = (NSEntity)FX_Corpse_Spawn((player)pl, deathAnimation);
+
+		/* if we were crouching, adjust the bbox (thx 2 lack of crouch death animation) */
+		if (pl.flags & FL_CROUCHING) {
+			newCorpse.SetSize(VEC_HULL_MIN, [16, 16, -16]);
+		}
 	}
 
 	/* now let's make the real client invisible */
