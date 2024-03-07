@@ -133,7 +133,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 		float gibStrength = g_dmg_iDamage * 2.0f;
 		BreakModel_Entity(pl, gibDir, gibStrength);
 	} else {
-		float deathAnimation;
+		float deathAnimation = ANIM_DIESIMPLE;
 
 		switch (g_dmg_iHitBody) {
 		case BODY_HEAD:
@@ -147,8 +147,9 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 			break;
 		default:
 			bool isFacing = pl.IsFacingPosition(g_dmg_vecLocation);
-			deathAnimation = ANIM_DIESIMPLE;
 
+			/* we still want a change to play ANIM_DIESIMPLE */
+			if (random() < 0.5)
 			if (isFacing == false) {
 				deathAnimation = ANIM_DIEFORWARD;
 			} else {
