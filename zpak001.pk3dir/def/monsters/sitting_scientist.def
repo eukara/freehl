@@ -4,13 +4,12 @@ entityDef monster_sitting_scientist
 	"model"			"models/scientist.mdl"
 	"netname"		"Seated Scientist"
 	"health"		"skill:scientist_health"
-	"mins"			"-16 -16 0"
+	"mins"			"-16 -16 -8"
 	"maxs"			"16 16 72"
 	"eye_height"		"64"
 	"team"			"0"
 	"propdata"		"actor_human"
-
-	"frame"			"75"
+	"sequence"			"75"
 
 	when "body" equals "1" {
 		"pitch"	"105"
