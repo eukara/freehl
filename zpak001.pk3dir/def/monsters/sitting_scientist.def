@@ -11,26 +11,28 @@ entityDef monster_sitting_scientist
 	"propdata"		"actor_human"
 	"sequence"			"75"
 
-	when "body" equals "1" {
+	// Body Types
+
+	when "body" equals "0" {
 		"pitch"	"105"
 		"netname"	"Walter"
 		"body1"	"1"
 	}
 
-	when "body" equals "2" {
+	when "body" equals "1" {
 		"pitch"	"100"
 		"netname"	"Einstein"
 		"body1"	"2"
 	}
 
-	when "body" equals "3" {
+	when "body" equals "2" {
 		"pitch"	"95"
 		"netname"	"Luther"
 		"skin"	"1"
 		"body1"	"3"
 	}
 
-	when "body" equals "4" {
+	when "body" equals "3" {
 		"pitch"	"105"
 		"netname"	"Slick"
 		"body1"	"4"

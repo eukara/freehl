@@ -9,10 +9,11 @@ entityDef monster_scientist
 	"eye_height"		"64"
 	"team"		"0"
 	"propdata"		"actor_human"
-	
-	// When body equals 0, this is our default Scientist.
-	"netname"	"Walter"
+
+	// Until Randomization is functional
+	// we need to do this hack
 	"pitch"	"105"
+	"netname"	"Walter"
 	"body1"	"1"
 
 	"follow_on_use"		"1"
@@ -42,6 +43,14 @@ entityDef monster_scientist
 	"talk_follow"		"!SC_OK"
 	"talk_stop_follow"	"!SC_STOP"
 	"talk_deny_follow"	"!SC_POK"
+
+	// Body Types
+
+	when "body" equals "0" {
+		"pitch"	"105"
+		"netname"	"Walter"
+		"body1"	"1"
+	}
 
 	when "body" equals "1" {
 		"pitch"	"100"
