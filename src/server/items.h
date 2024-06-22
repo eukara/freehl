@@ -14,6 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if 0
 /* PICKUP ITEMS */
 class item_pickup:NSRenderableEntity
 {
@@ -30,3 +31,4 @@ class item_pickup:NSRenderableEntity
 	virtual void SetFloating(int);
 	virtual void PickupRespawn(void);
 };
+#endif

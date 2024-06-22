@@ -16,6 +16,7 @@
 
 #include "obituary.h"
 #include "particles.h"
+#include "hud_sprite.h"
 
 var int autocvar_cl_autoweaponswitch = TRUE;
 
@@ -66,3 +67,5 @@ void HUD_DrawAmmo2(void);
 void HUD_DrawAmmo3(void);
 void HUD_DrawAmmoBar(vector pos, float val, float max, float a);
 void HUD_WeaponPickupNotify(int);
+
+NSWeapon HLWeapon_SortWeaponChain(NSClientPlayer targetPlayer);

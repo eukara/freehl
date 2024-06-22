@@ -6,11 +6,52 @@ entityDef weapon_crossbow
 	"editor_usage"		"Crossbow"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_crossbow.mdl"
-	"inv_item"			"$WEAPON_CROSSBOW"
+	"model_view"		"models/v_crossbow.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"	"fireInfo_crossbow"
+	"inv_name"		"Crossbow"
+	"clipSize"		"5"
+
+	"actFire"			"4"
+	"actFireLast"		"6"
+	"actHolster"		"10"
+	"actHolsterEmpty"	"11"
+	"actReload"			"7"
+	"actDraw"			"8"
+	"actDrawEmpty"		"9"
+	"actIdle"			"0,2"
+	"actIdleEmpty"		"1,3"
+
+	"snd_fire"		"weapon_crossbow.fire"
+	"snd_empty"		"weapon_crossbow.empty"
+	"snd_reload"	"weapon_crossbow.reload"
+
+	// HLWeapon specific
+	"hudSlot"		"2"
+	"hudSlotPos"	"2"
+	"weight"		"10"
+	"zoomFov"		"18"
+}
+
+entityDef fireInfo_crossbow
+{
+	"def_onFire"	"projectile_arrow"
+	"ammoType"			"ammo_bolt"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"1.0"
+	"punchAngle"		"-2 0 0"
+}
+
+entityDef debris_arrow
+{
+	"spawnclass"		"NSProjectile"
+	"model"				"models/crossbow_bolt.mdl"
 }
 
 entityDef projectile_arrow
@@ -28,6 +69,10 @@ entityDef projectile_arrow
 	"detonate_on_death"	"1"
 	"detonate_on_world"	"1"
 	"detonate_on_actor"	"1"
+	"projectile_debris" "debris_arrow"
+	"debris_count"		"1"
+	"debris_stick"		"1"
+	"debris_offset"		"-16 0 0"
 }
 
 entityDef damage_arrowDirect

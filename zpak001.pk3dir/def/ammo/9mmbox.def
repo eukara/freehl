@@ -1,0 +1,6 @@
+entityDef ammo_9mmbox
+{
+	"inherit"		"ammo_base"
+	"model"			"models/w_chainammo.mdl"
+	"inv_ammo_9mm"	"200"
+}

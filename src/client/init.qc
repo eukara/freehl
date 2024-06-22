@@ -26,6 +26,7 @@ ClientGame_Init(float apilevel, string enginename, float engineversion)
 {
 	Obituary_Init();
 	registercommand("chooseteam");
+	registercommand("hudSort");
 }
 
 void VGUI_ShowMOTD();
@@ -55,6 +56,8 @@ ClientGame_RendererRestart(string rstr)
 	MUZZLE_RIFLE = (int)getmodelindex("sprites/muzzleflash1.spr");
 	MUZZLE_SMALL = (int)getmodelindex("sprites/muzzleflash2.spr");
 	MUZZLE_WEIRD = (int)getmodelindex("sprites/muzzleflash3.spr");
+
+	HLSprite_Init();
 
 	Damage_Precache();
 	Obituary_Precache();

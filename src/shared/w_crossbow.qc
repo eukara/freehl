@@ -48,7 +48,7 @@ w_crossbow_precache(void)
 }
 
 void
-w_crossbow_updateammo(player pl)
+w_crossbow_updateammo(NSClientPlayer pl)
 {
 	Weapons_UpdateAmmo(pl, pl.crossbow_mag, pl.ammo_bolt, -1);
 }
@@ -60,7 +60,7 @@ w_crossbow_wmodel(void)
 }
 
 string
-w_crossbow_pmodel(player pl)
+w_crossbow_pmodel(NSClientPlayer pl)
 {
 	return "models/p_crossbow.mdl";
 }
@@ -72,7 +72,7 @@ w_crossbow_deathmsg(void)
 }
 
 int
-w_crossbow_pickup(player pl, int new, int startammo)
+w_crossbow_pickup(NSClientPlayer pl, int new, int startammo)
 {
 #ifdef SERVER
 	int addAmmo = (startammo == -1) ? 5 : startammo;
@@ -94,7 +94,7 @@ w_crossbow_pickup(player pl, int new, int startammo)
 }
 
 void
-w_crossbow_draw(player pl)
+w_crossbow_draw(NSClientPlayer pl)
 {
 	Weapons_SetModel("models/v_crossbow.mdl");
 
@@ -105,13 +105,13 @@ w_crossbow_draw(player pl)
 }
 
 void
-w_crossbow_holster(player pl)
+w_crossbow_holster(NSClientPlayer pl)
 {
 	Weapons_ViewAnimation(pl, CROSSBOW_HOLSTER1);
 }
 
 void
-w_crossbow_primary(player pl)
+w_crossbow_primary(NSClientPlayer pl)
 {
 	if (pl.w_attack_next > 0.0)
 		return;
@@ -182,7 +182,7 @@ w_crossbow_primary(player pl)
 		Weapons_ViewAnimation(pl, CROSSBOW_FIRE3);
 	}
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTBOW, 0.25f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTBOW, 0.25f);
@@ -307,7 +307,7 @@ w_crossbow_crosshair(player pl)
 float
 w_crossbow_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMBOW : ANIM_AIMBOW;
+	return pl.IsCrouching() ? ANIM_CR_AIMBOW : ANIM_AIMBOW;
 }
 
 void

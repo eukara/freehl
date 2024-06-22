@@ -1,3 +1,4 @@
+// gives 20 ammo
 entityDef weapon_egon
 {
 	"editor_color"		".3 .3 1"
@@ -6,9 +7,33 @@ entityDef weapon_egon
 	"editor_usage"		"Gluon Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_egon.mdl"
-	"inv_item"			"$WEAPON_EGON"
+	"model_view"		"models/v_egon.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+	"def_onFire"		"projectile_egonbeam"
+
+	"inv_ammo_uranium"	"20"
+	"ammoType"			"ammo_uranium"
+	"ammoRequired"		"1"
+	"actIdle"			"0,1"
+	"actDraw"			"9"
+	"actFire"			"7,8"
+	"actFireLoop"		"7,8"
+	"actHolster"		"10"
+	"fireRate"			"0.2"
+
+	"snd_fire"			"weapon_egon.fire"
+	"snd_fire_loop"		"weapon_egon.fire_loop"
+	"fx_trail"			"weapon_egon.trail"
+	"fx_trail_world"	"weapon_egon.trail_world"
+
+	"joint_view_trail"	"Gauss"
+	"joint_world_trail"	"Gauss"
+
+	// HLWeapon specific
+	"hudSlot"		"3"
+	"hudSlotPos"	"2"
+	"weight"		"15"
 }

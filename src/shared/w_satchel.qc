@@ -143,7 +143,7 @@ w_satchel_primary(player pl)
 		pl.ammo_satchel--;
 		pl.mode_tempstate = 1; /* mark us as having deployed something */
 
-		if (pl.flags & FL_CROUCHING)
+		if (pl.IsCrouching())
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
@@ -192,7 +192,7 @@ w_satchel_secondary(player pl)
 	NSProjectile_SpawnDef("projectile_satchel", pl);
 #endif
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
@@ -238,7 +238,7 @@ w_satchel_release(player pl)
 float
 w_satchel_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
+	return pl.IsCrouching() ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
 void

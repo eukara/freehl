@@ -23,15 +23,20 @@
 #define PMOVE_AIRACCELERATE 10
 #define PMOVE_WATERACCELERATE 10
 #define PMOVE_ACCELERATE 10
-#define PMOVE_MAXSPEED 270
-#define PMOVE_STEP_WALKSPEED 135
-#define PMOVE_STEP_RUNSPEED 220
-#define PHY_VIEWPOS [0,0,28]
-#define PHY_VIEWPOS_CROUCHED [0,0,12]
+#define PMOVE_STEP_WALKSPEED 270
+#define PMOVE_STEP_CROUCHSPEED 90
+#define PMOVE_BOXCENTER true
+#define PMOVE_NORMAL_HEIGHT 72
+#define PMOVE_NORMAL_VIEWHEIGHT 64
+#define PMOVE_CROUCH_HEIGHT 36
+#define PMOVE_CROUCH_VIEWHEIGHT 30
 
+/* disable prone, run and lean */
+#define PMOVE_STEP_RUNSPEED 0
+#define PMOVE_PRONE_HEIGHT 0
 
 void
-player::Physics_Jump(void)
+HLPlayer::Physics_Jump(void)
 {
 	if (waterlevel >= 2) {
 		if (watertype == CONTENT_WATER) {
@@ -43,7 +48,7 @@ player::Physics_Jump(void)
 		}
 	} else {
 		/* Half-Life: Longjump module */
-		if (flags & FL_CROUCHING && g_items & 0x00008000i) {
+		if (IsCrouching() && HasItem("item_longjump")) {
 			makevectors([0, v_angle[1], 0]);
 			velocity = v_forward * 512;
 			velocity[2] += 100;

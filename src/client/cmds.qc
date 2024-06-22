@@ -21,6 +21,9 @@ ClientGame_ConsoleCommand(void)
 	case "chooseteam":
 		sendevent("HLDM_Chooseteam", "s", argv(1));
 		break;
+	case "hudSort":
+		HLWeapon_SortWeaponChain((NSClientPlayer)pSeat->m_ePlayer);
+		break;
 	default:
 		return (0);
 	}

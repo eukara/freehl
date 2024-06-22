@@ -1,0 +1,33 @@
+entityDef item_battery
+{
+	"spawnclass"	"NSItem"
+	"model"			"models/w_battery.mdl"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"snd_acquire"	"item.battery"
+	"snd_respawn"	"item.respawn"
+	"inv_armor"		"skill:battery"
+	"requires"		"item_suit"
+}
+
+entityDef item_healthkit
+{
+	"spawnclass"	"NSItem"
+	"model"			"models/w_medkit.mdl"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"snd_acquire"	"item.healthkit"
+	"snd_respawn"	"item.respawn"
+	"inv_health"	"skill:healthkit"
+}
+
+entityDef item_suit
+{
+	"spawnclass"	"NSItem"
+	"model"			"models/w_suit.mdl"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"snd_acquire"	"item.suit"
+	"snd_respawn"	"item.respawn"
+	"inv_carry"		"1"
+}

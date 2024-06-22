@@ -1,6 +1,6 @@
 #pragma target fte_5768
 //#pragma flag enable assumeint
-#pragma progs_dat  "../../progs.dat"
+#pragma progs_dat  "../../zpak001.pk3dir/progs.dat"
 
 #define QWSSQC
 #define SERVER
@@ -20,19 +20,19 @@ defs.h
 ../shared/include.src
 
 player.qc
-items.qc
-item_longjump.qc
-item_suit.qc
-item_healthkit.qc
-item_battery.qc
-item_weaponbox.qc
-world_items.qc
+//items.qc
+//item_longjump.qc
+//item_suit.qc
+//item_healthkit.qc
+//item_battery.qc
+//item_weaponbox.qc
+//world_items.qc
 xen_spore_small.qc
 xen_spore_medium.qc
 xen_spore_large.qc
 xen_hair.qc
 xen_plantlight.qc
-ammo.qc
+//ammo.qc
 
 ../../../src/botlib/include.src
 
@@ -42,7 +42,6 @@ gamerules_multiplayer.qc
 server.qc
 damage.qc
 flashlight.qc
-modelevent.qc
 
 spawn.qc
 

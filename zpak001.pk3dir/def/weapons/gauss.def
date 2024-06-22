@@ -6,9 +6,61 @@ entityDef weapon_gauss
 	"editor_usage"		"Tau Cannon"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_gauss.mdl"
-	"inv_item"			"$WEAPON_GAUSS"
+	"model_view"		"models/v_gauss.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"		"fireInfo_gauss"
+	"def_altFireInfo"	"fireInfo_gausscharge"
+	"inv_ammo_uranium"	"20"
+	"ammoType"			"ammo_uranium"
+	"ammoRequired"		"1"
+	"actIdle"			"0,1,2"
+	"actDraw"			"8"
+	"actHolster"		"7"
+	"actLoop"			"4"
+	"powerAmmo"			"1"
+	"snd_fire"			"weapon_gauss.fire"
+
+	// HLWeapon specific
+	"hudSlot"		"3"
+	"hudSlotPos"	"1"
+	"weight"		"20"
+}
+
+entityDef projectile_gauss
+{
+	"spawnclass"		"HLGaussBeam"
+}
+
+
+entityDef projectile_gausscharge
+{
+	"spawnclass"		"HLGaussBeam"
+	"charged"			"1"
+}
+
+entityDef fireInfo_gauss
+{
+	"def_onFire"	"projectile_gauss"
+	"ammoPerShot" 		"2"
+	"fireRate" 			".2"
+	"punchAngle"		"-2 0 0"
+	"actFire"			"5,6"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+entityDef fireInfo_gausscharge
+{
+	"def_onRelease"		"projectile_gausscharge"
+	"ammoPerShot" 		"5"
+	"fireRate" 			"2"
+	"punchAngle"		"-2 0 0"
+	"model_flash"		"sprites/muzzleflash2.spr"
+	"primed_fuse"		"5"
+	"actRelease"		"5,6"
+	"actFire"			"3"
 }

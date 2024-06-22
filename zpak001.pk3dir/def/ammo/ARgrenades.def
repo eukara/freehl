@@ -1,0 +1,6 @@
+entityDef ammo_ARgrenades
+{
+	"inherit"				"ammo_base"
+	"model"					"models/w_argrenade.mdl"
+	"inv_ammo_m203_grenade"	"2"
+}

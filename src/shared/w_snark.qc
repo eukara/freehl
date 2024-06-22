@@ -194,7 +194,7 @@ void w_snark_primary(player pl)
 	/* Audio-Visual Bit */
 	Weapons_ViewAnimation(pl, SNARK_THROW);
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSQUEAK, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSQUEAK, 0.5f);
@@ -284,7 +284,7 @@ string w_snark_deathmsg(void)
 
 float w_snark_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
+	return pl.IsCrouching() ? ANIM_CR_AIMSQUEAK : ANIM_AIMSQUEAK;
 }
 
 void w_snark_hud(player pl)

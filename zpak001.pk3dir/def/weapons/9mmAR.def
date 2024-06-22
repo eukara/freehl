@@ -6,16 +6,62 @@ entityDef weapon_9mmAR
 	"editor_usage"		"9mm AR"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_9mmAR.mdl"
-	"inv_item"			"$WEAPON_MP5"
+	"model_view"		"models/v_9mmAR.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// NSWeapon specific
+	"def_fireInfo"		"fireInfo_9mmAR"
+	"def_altFireInfo"	"fireInfo_ARGrenade"
+	"inv_name"			"9mm AR"
+	"clipSize"			"50"
+	"clipSizeDefault"	"25"
+
+	"actFire"		"5,6,7"
+	"actHolster"	"4"
+	"actReload"		"3"
+	"actDraw"		"4"
+	"actIdle"		"0,1"
+
+	"snd_fire"		"weapon_mp5.shoot"
+	"snd_empty"		"weapon_mp5.empty"
+
+	// HLWeapon specific
+	"hudSlot"		"2"
+	"hudSlotPos"	"0"
+	"weight"		"15"
 }
 
-entityDef weapon_mp5
+entityDef projectile_9mmAR
 {
-	"spawnclass" "weapon_9mmAR"
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_9mmAR_bullet"
+	"spread"		"0.025 0.025"
+}
+
+entityDef fireInfo_9mmAR
+{
+	"def_onFire"	"projectile_9mmAR"
+	"ammoType"			"ammo_9mm"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"0.085"
+	"punchAngle"		"-2 0 0"
+	"model_flash"		"sprites/muzzleflash1.spr"
+}
+
+entityDef fireInfo_ARGrenade
+{
+	"def_onFire"	"projectile_ARgrenade"
+	"ammoType"			"ammo_m203_grenade"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"1"
+	"punchAngle"		"-10 0 0"
+	"snd_fire"			"weapon_mp5.gl"
+	"actFire"			"2"
 }
 
 entityDef projectile_ARgrenade
@@ -38,18 +84,42 @@ entityDef projectile_ARgrenade
 	"decal_detonate"	"ExplosionScorch"
 	"smoke_fly"			"weapon_9mmAR.nadetrail"
 
-	"def_damage"		"damage_ARgrneadeDirect"
-	"def_splash_damage"	"damage_ARgrneadeSplash"
+	"def_damage"		"damage_ARgrenadeDirect"
+	"def_splash_damage"	"damage_ARgrenadeSplash"
 }
 
-
-entityDef damage_ARgrneadeDirect
+entityDef damage_ARgrenadeDirect
 {
 	"damage"	"50"
 }
 
-entityDef damage_ARgrneadeSplash
+entityDef damage_ARgrenadeSplash
 {
 	"damage"	"skill:plr_9mmAR_grenade"
 	"radius"	"160"
+}
+
+// multiplayer version
+entityDef projectile_9mmAR_mp
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_9mmAR_bullet"
+	"spread"		"0.5 0.5"
+}
+
+entityDef fireInfo_9mmAR_mp
+{
+	"def_onFire"	"projectile_9mmAR_mp"
+	"ammoType"			"ammo_9mm"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"0.085"
+	"punchAngle"		"-2 0 0"
+	"model_flash"		"sprites/muzzleflash1.spr"
+}
+
+entityDef weapon_9mmAR_mp
+{
+	"inherit"			"weapon_9mmAR"
+	"def_fireInfo"		"fireInfo_9mmAR_mp"
 }

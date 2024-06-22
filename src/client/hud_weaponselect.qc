@@ -14,7 +14,80 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void View_ForceChange(player pl, int targetWeapon);
+.NSWeapon m_nextWeapon;
+.NSWeapon m_prevWeapon;
+
+void View_ForceChange(NSClientPlayer pl, int targetWeapon);
+
+NSWeapon
+HLWeapon_SortWeaponChain(NSClientPlayer targetPlayer)
+{
+	NSWeapon itemChain = targetPlayer.m_itemList;
+	int heighestSlot = -1i;
+	int heighestPos = -1i;
+	NSWeapon firstWeapon, lastWeapon;
+
+	firstWeapon = lastWeapon = __NULL__;
+
+	if (!targetPlayer.m_itemList) {
+		return __NULL__;
+	}
+
+	/* first we determine the range of our hud buckets. */
+	while (itemChain) {
+		if (itemChain.IsWeapon() == true) {
+			int hudSlot = itemChain.GetDefInt("hudSlot");
+			int hudPos = itemChain.GetDefInt("hudSlotPos");
+
+			if (hudSlot > heighestSlot) {
+				heighestSlot = hudSlot;
+			}
+			if (hudPos > heighestPos) {
+				heighestPos = hudPos;
+			}
+		}
+
+		itemChain = itemChain.chain;
+	}
+
+	for (int hS = 0i; hS <= heighestSlot; hS++) {
+		for (int hP = 0i; hP <= heighestPos; hP++) {
+			itemChain = targetPlayer.m_itemList;
+
+			while (itemChain) {
+				if (itemChain.IsWeapon() == true) {
+					int hudSlot = itemChain.GetDefInt("hudSlot");
+					int hudPos = itemChain.GetDefInt("hudSlotPos");
+
+					if (hudSlot == hS && hudPos == hP) {
+						/* first weapon in the chain? */
+						if (!lastWeapon) {
+							firstWeapon = itemChain;
+							lastWeapon = firstWeapon;
+						} else {
+							/* assign this weapon to the last weapon of our chain. */
+							lastWeapon.m_nextWeapon = itemChain;
+							itemChain.m_prevWeapon = lastWeapon;
+							lastWeapon = itemChain;
+						}
+					}
+				}
+
+				itemChain = itemChain.chain;
+			}
+		}
+	}
+
+	/* test */
+	NSWeapon weaponTest = firstWeapon;
+	while (weaponTest) {
+		weaponTest = weaponTest.m_nextWeapon;
+	}
+
+	firstWeapon.m_prevWeapon = lastWeapon;
+
+	return (firstWeapon);
+}
 
 vector g_vecHUDNums[6] =
 {
@@ -27,104 +100,74 @@ vector g_vecHUDNums[6] =
 };
 
 bool
-HUD_DrawWeaponSelect_CanSwitch(player pl)
+HUD_DrawWeaponSelect_CanSwitch(NSClientPlayer pl)
 {
-	if (!pl.activeweapon)
+	if (!pl.m_activeWeapon)
 		return false;
 
-	for (int i = 1; i < g_weapons.length; i++) {
-		if (pl.g_items & g_weapons[i].id && g_weapons[i].isempty(pl) == false) {
-			return true;
-		}
-	}
-
-	return false;
+	return true;
 }
 
 void
-HUD_DrawWeaponSelect_Forward(void)
+HUD_SelectWeapon(NSWeapon nextWeapon)
 {
-	player pl = (player)pSeat->m_ePlayer;
-
-	if (HUD_DrawWeaponSelect_CanSwitch(pl) == false) {
-		pSeat->m_flHUDWeaponSelectTime = time + 3;
-		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
+	if (!nextWeapon) {
+		pSeat->m_iHUDWeaponSelected = 0i;
 		return;
 	}
 
-	if (pSeat->m_flHUDWeaponSelectTime < time) {
-		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
-		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
-	} else {
-		pl.StartSoundDef("Player.WeaponSelectionMoveSlot", CHAN_ITEM, false);
+	pSeat->m_iHUDWeaponSelected = nextWeapon.GetSharedID();
+}
 
-		pSeat->m_iHUDWeaponSelected--;
-		if (pSeat->m_iHUDWeaponSelected <= 0) {
-			pSeat->m_iHUDWeaponSelected = g_weapons.length - 1;
-		}
+/* Select the next item in the list. */
+void
+HUD_DrawWeaponSelect_Forward(void)
+{
+	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	NSWeapon firstWeapon;
+
+	if (HUD_DrawWeaponSelect_CanSwitch(pl) = false) {
+		return;
 	}
 
-	pSeat->m_flHUDWeaponSelectTime = time + 3;
+	firstWeapon = HLWeapon_SortWeaponChain(pl);
 
-	if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
-		HUD_DrawWeaponSelect_Forward();
-	else if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty)
-		if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty(pl))
-			HUD_DrawWeaponSelect_Forward();
+	if (pl.m_activeWeapon.m_nextWeapon) {
+		HUD_SelectWeapon(pl.m_activeWeapon.m_nextWeapon);
+	} else {
+		HUD_SelectWeapon(firstWeapon);
+	}
 }
 
 void
 HUD_DrawWeaponSelect_Back(void)
 {
-	player pl = (player)pSeat->m_ePlayer;
+	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	NSWeapon firstWeapon;
 
-	if (HUD_DrawWeaponSelect_CanSwitch(pl) == false) {
-		pSeat->m_flHUDWeaponSelectTime = time + 3;
-		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
+	if (HUD_DrawWeaponSelect_CanSwitch(pl) = false) {
 		return;
 	}
 
-	if (pSeat->m_flHUDWeaponSelectTime < time) {
-		pSeat->m_iHUDWeaponSelected = pl.activeweapon;
-		pl.StartSoundDef("Player.WeaponSelectionOpen", CHAN_ITEM, false);
+	firstWeapon = HLWeapon_SortWeaponChain(pl);
+
+	if (pl.m_activeWeapon.m_prevWeapon) {
+		HUD_SelectWeapon(pl.m_activeWeapon.m_prevWeapon);
 	} else {
-		pl.StartSoundDef("Player.WeaponSelectionMoveSlot", CHAN_ITEM, false);
-
-		pSeat->m_iHUDWeaponSelected++;
-		if (pSeat->m_iHUDWeaponSelected >= g_weapons.length) {
-			pSeat->m_iHUDWeaponSelected = 1;
-		}
+		HUD_SelectWeapon(firstWeapon);
 	}
-
-	pSeat->m_flHUDWeaponSelectTime = time + 3;
-
-	if not (pl.g_items & g_weapons[pSeat->m_iHUDWeaponSelected].id)
-		HUD_DrawWeaponSelect_Back();
-	else if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty)
-		if (g_weapons[pSeat->m_iHUDWeaponSelected].isempty(pl))
-			HUD_DrawWeaponSelect_Back();
 }
 
 void
 HUD_DrawWeaponSelect_Trigger(void)
 {
-	player pl = (player)pSeat->m_ePlayer;
 
-	if (pl.activeweapon != pSeat->m_iHUDWeaponSelected)
-		View_ForceChange(pl, pSeat->m_iHUDWeaponSelected);
-
-
-	Sound_Play(pSeat->m_ePlayer, CHAN_ITEM, "Player.WeaponSelected");
-	pSeat->m_iHUDWeaponSelected = pSeat->m_flHUDWeaponSelectTime = 0;
 }
 
 void
 HUD_DrawWeaponSelect_Last(void)
 {
-	player pl = (player)pSeat->m_ePlayer;
-	if (pl.g_items & g_weapons[pSeat->m_iOldWeapon].id) {
-		View_ForceChange(pl, pSeat->m_iOldWeapon);
-	}
+
 }
 
 void
@@ -136,23 +179,15 @@ HUD_DrawWeaponSelect_Num(vector vecPos, float fValue)
 int
 HUD_InSlotPos(int slot, int pos)
 {
-	player pl = (player)pSeat->m_ePlayer;
-	for (int i = 1; i < g_weapons.length; i++) {
-		if (g_weapons[i].slot == slot && g_weapons[i].slot_pos == pos) {
-			if (pl.g_items & g_weapons[i].id) {
-				return i;
-			} else {
-				return (-1);
-			}
-		}
-	}
+
 	return (-1);
 }
 
 void
 HUD_SlotSelect(int slot)
 {
-	player pl = (player)pSeat->m_ePlayer;
+#if 0
+	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
 	int curslot = g_weapons[pSeat->m_iHUDWeaponSelected].slot;
 	int i;
 
@@ -201,12 +236,14 @@ HUD_SlotSelect(int slot)
 			pSeat->m_flHUDWeaponSelectTime = time + 3;
 		}
 	}
+#endif
 }
 
 void
 HUD_DrawWeaponSelect(void)
 {
-	player pl = (player)pSeat->m_ePlayer;
+#if 0
+	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
 	if (!pl.activeweapon) {
 		return;
 	}
@@ -254,4 +291,5 @@ HUD_DrawWeaponSelect(void)
 			vecPos[0] += 25;
 		}
 	}
+#endif
 }

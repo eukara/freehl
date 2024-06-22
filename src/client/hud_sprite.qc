@@ -14,35 +14,61 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-typedef struct
-{
-	string m_strImage;
-	vector m_vecSize;
-	vector m_vecCanvasSize;
-	vector m_vecCanvasPos;
-} hlsprite_t;
-
 hlsprite_t *g_hlsprites;
 var hashtable g_hashhlsprite;
+var int g_hlSpriteCount;
 
-void
-HLSprite_Init(void)
+static int
+HLSprite_CountEntriesInFile(string fileName)
 {
-	filestream hudFile;
-	vector imgSize;
 	int spriteCount = 0i;
-	int i = 0i;
-	int c = 0i;
+	filestream hudFile;
 	string line;
+	int c = 0i;
 
-	hudFile = fopen("sprites/hud.txt", FILE_READ);
+	hudFile = fopen(fileName, FILE_READ);
 
 	if (hudFile < 0) {
-		NSError("Missing file sprites/hud.txt");
-		return;
+		NSError("Missing file %S", fileName);
+		return (-1i);
 	}
 
 	/* count valid entries */
+	while ((line = fgets(hudFile))) {
+		c = tokenize_console(line);
+
+		if (c != 7) {
+			continue;
+		}
+
+		if (argv(1) != "640") {
+			continue;
+		}
+
+		spriteCount += 1i;
+	}
+
+	fclose(hudFile);
+
+	return (spriteCount);
+}
+
+static bool
+HLSprite_LoadFromFile(string fileName, string prefix)
+{
+	filestream hudFile;
+	int c = 0i;
+	vector imgSize = g_vec_null;
+	string line = "";
+	string sheetName;
+
+	hudFile = fopen(fileName, FILE_READ);
+
+	if (hudFile < 0) {
+		NSError("Missing file %S", fileName);
+		return (false);
+	}
+
 	while ((line = fgets(hudFile))) {
 		c = tokenize_console(line);
 
@@ -52,7 +78,45 @@ HLSprite_Init(void)
 		if (argv(1) != "640")
 			continue;
 
-		spriteCount++;
+		if (prefix != "")
+			sheetName = strcat(prefix, argv(0));
+		else
+			sheetName = argv(0);
+
+		//printf("%S %S\n", sheetName, prefix);
+
+		g_hlsprites[g_hlSpriteCount].m_strImage = spriteframe(sprintf("sprites/%s.spr", argv(2)), 0, 0.0f);
+		g_hlsprites[g_hlSpriteCount].m_vecSize[0] = stof(argv(5));
+		g_hlsprites[g_hlSpriteCount].m_vecSize[1] = stof(argv(6));
+		imgSize = drawgetimagesize(g_hlsprites[g_hlSpriteCount].m_strImage);
+		g_hlsprites[g_hlSpriteCount].m_vecCanvasPos[0] = stof(argv(3)) / imgSize[0];
+		g_hlsprites[g_hlSpriteCount].m_vecCanvasPos[1] = stof(argv(4)) / imgSize[1];
+		g_hlsprites[g_hlSpriteCount].m_vecCanvasSize[0] = g_hlsprites[g_hlSpriteCount].m_vecSize[0] / imgSize[0];
+		g_hlsprites[g_hlSpriteCount].m_vecCanvasSize[1] = g_hlsprites[g_hlSpriteCount].m_vecSize[1] / imgSize[1];
+		hash_add(g_hashhlsprite, sheetName, (int)g_hlSpriteCount);
+		g_hlSpriteCount += 1i;
+	}
+
+	fclose(hudFile);
+	return (true);
+}
+
+void
+HLSprite_Init(void)
+{
+	int spriteCount = 0i;
+	searchhandle sh;
+	string hudFile;
+	string prefix;
+
+	g_hlSpriteCount = 0i;
+	spriteCount = HLSprite_CountEntriesInFile("sprites/hud.txt");
+
+	sh = search_begin("sprites/weapon_*.txt", TRUE, TRUE);
+
+	for (int i = 0; i < search_getsize(sh); i++) {
+		hudFile = search_getfilename(sh, i);
+		spriteCount += HLSprite_CountEntriesInFile(hudFile);
 	}
 
 	/* if we couldn't find anything, don't bother */
@@ -64,33 +128,19 @@ HLSprite_Init(void)
 		g_hashhlsprite = hash_createtab(2, HASH_ADD);
 	}
 
-	/* to the beginning we go. */
-	fseek(hudFile, 0);
 	/* allocate valid entries */
 	g_hlsprites = memalloc(sizeof(hlsprite_t) * spriteCount);
 
 	/* read the data into our banks */
-	while ((line = fgets(hudFile))) {
-		c = tokenize_console(line);
+	HLSprite_LoadFromFile("sprites/hud.txt", "");
 
-		if (c != 7)
-			continue;
-
-		if (argv(1) != "640")
-			continue;
-
-		g_hlsprites[i].m_strImage = spriteframe(sprintf("sprites/%s.spr", argv(2)), 0, 0.0f);
-		g_hlsprites[i].m_vecSize[0] = stof(argv(5));
-		g_hlsprites[i].m_vecSize[1] = stof(argv(6));
-		imgSize = drawgetimagesize(g_hlsprites[i].m_strImage);
-		g_hlsprites[i].m_vecCanvasPos[0] = stof(argv(3)) / imgSize[0];
-		g_hlsprites[i].m_vecCanvasPos[1] = stof(argv(4)) / imgSize[1];
-		g_hlsprites[i].m_vecCanvasSize[0] = g_hlsprites[i].m_vecSize[0] / imgSize[0];
-		g_hlsprites[i].m_vecCanvasSize[1] = g_hlsprites[i].m_vecSize[1] / imgSize[1];
-		hash_add(g_hashhlsprite, argv(0), (int)i);
-		i++;
+	for (int i = 0; i < search_getsize(sh); i++) {
+		hudFile = search_getfilename(sh, i);
+		prefix = substring(hudFile, 8, -4);
+		HLSprite_LoadFromFile(hudFile, prefix);
 	}
-
+	
+	search_end(sh);
 	NSLog("...initialized %i HL sprites.", spriteCount);
 }
 
@@ -134,4 +184,23 @@ void
 HLSprite_Draw_RGB(string spriteName, vector spritePos, vector spriteColor, bool isAdditive)
 {
 	HLSprite_Draw_RGBA(spriteName, spritePos, spriteColor, 1.0f, isAdditive);
+}
+
+void
+HLSprite_DrawCrosshair(string spriteName)
+{
+	int spriteNum = -1i;
+
+	if (!spriteName) {
+		return;
+	}
+
+	spriteNum = (int)hash_get(g_hashhlsprite, spriteName, -1i);
+
+	if (spriteNum == -1i) {
+		NSError("Cannot draw sprite %S!", spriteName);
+		return;
+	}
+
+	Cross_DrawSub(g_hlsprites[spriteNum].m_strImage, g_hlsprites[spriteNum].m_vecSize, g_hlsprites[spriteNum].m_vecCanvasPos, g_hlsprites[spriteNum].m_vecCanvasSize);
 }

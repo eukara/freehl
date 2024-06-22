@@ -98,26 +98,26 @@ HUD_AmmoNotify_Insert(int type, int count)
 
 /* called whenever we should check for pickup updates */
 void
-HUD_AmmoNotify_Check(player pl)
+HUD_AmmoNotify_Check(NSClientPlayer pl)
 {
-	HUD_AmmoNotify_Insert(0, pl.ammo_9mm - pl.ammo_9mm_net);
-	HUD_AmmoNotify_Insert(1, pl.ammo_357 - pl.ammo_357_net);
-	HUD_AmmoNotify_Insert(2, pl.ammo_m203_grenade - pl.ammo_m203_grenade_net);
-	HUD_AmmoNotify_Insert(3, pl.ammo_buckshot - pl.ammo_buckshot_net);
-	HUD_AmmoNotify_Insert(4, pl.ammo_bolt - pl.ammo_bolt_net);
-	HUD_AmmoNotify_Insert(5, pl.ammo_rocket - pl.ammo_rocket_net);
-	HUD_AmmoNotify_Insert(6, pl.ammo_uranium - pl.ammo_uranium_net);
-	HUD_AmmoNotify_Insert(7, pl.ammo_hornet - pl.ammo_hornet_net);
-	HUD_AmmoNotify_Insert(8, pl.ammo_handgrenade - pl.ammo_handgrenade_net);
-	HUD_AmmoNotify_Insert(9, pl.ammo_satchel - pl.ammo_satchel_net);
-	HUD_AmmoNotify_Insert(10, pl.ammo_snark - pl.ammo_snark_net);
-	HUD_AmmoNotify_Insert(11, pl.ammo_tripmine - pl.ammo_tripmine_net);
+	HUD_AmmoNotify_Insert(0, pl.m_iAmmoTypes[1] - pl.m_iAmmoTypes_net[1]);
+	HUD_AmmoNotify_Insert(1, pl.m_iAmmoTypes[2] - pl.m_iAmmoTypes_net[2]);
+	HUD_AmmoNotify_Insert(2, pl.m_iAmmoTypes[12] - pl.m_iAmmoTypes_net[12]);
+	HUD_AmmoNotify_Insert(3, pl.m_iAmmoTypes[3] - pl.m_iAmmoTypes_net[3]);
+	HUD_AmmoNotify_Insert(4, pl.m_iAmmoTypes[4] - pl.m_iAmmoTypes_net[4]);
+	HUD_AmmoNotify_Insert(5, pl.m_iAmmoTypes[5] - pl.m_iAmmoTypes_net[5]);
+	HUD_AmmoNotify_Insert(6, pl.m_iAmmoTypes[6] - pl.m_iAmmoTypes_net[6]);
+	HUD_AmmoNotify_Insert(7, pl.m_iAmmoTypes[11] - pl.m_iAmmoTypes_net[11]);
+	HUD_AmmoNotify_Insert(8, pl.m_iAmmoTypes[7] - pl.m_iAmmoTypes_net[7]);
+	HUD_AmmoNotify_Insert(9, pl.m_iAmmoTypes[8] - pl.m_iAmmoTypes_net[8]);
+	HUD_AmmoNotify_Insert(10, pl.m_iAmmoTypes[10] - pl.m_iAmmoTypes_net[10]);
+	HUD_AmmoNotify_Insert(11, pl.m_iAmmoTypes[9] - pl.m_iAmmoTypes_net[9]);
 
 #ifdef GEARBOX
-	HUD_AmmoNotify_Insert(12, pl.ammo_556 - pl.ammo_556_net);
-	HUD_AmmoNotify_Insert(13, pl.ammo_762 - pl.ammo_762_net);
-	HUD_AmmoNotify_Insert(14, pl.ammo_spore - pl.ammo_spore_net);
-	HUD_AmmoNotify_Insert(15, pl.ammo_shock - pl.ammo_shock_net);
-	HUD_AmmoNotify_Insert(16, pl.ammo_penguin - pl.ammo_penguin_net);
+	HUD_AmmoNotify_Insert(12, pl.m_iAmmoTypes[13] - pl.m_iAmmoTypes_net[13]);
+	HUD_AmmoNotify_Insert(13, pl.m_iAmmoTypes[14] - pl.m_iAmmoTypes_net[14]);
+	HUD_AmmoNotify_Insert(14, pl.m_iAmmoTypes[15] - pl.m_iAmmoTypes_net[15]);
+	HUD_AmmoNotify_Insert(15, pl.m_iAmmoTypes[16] - pl.m_iAmmoTypes_net[16]);
+	HUD_AmmoNotify_Insert(16, pl.m_iAmmoTypes[17] - pl.m_iAmmoTypes_net[17]);
 #endif
 }

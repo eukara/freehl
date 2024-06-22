@@ -18,7 +18,6 @@ class HLGameRules:CGameRules
 {
 	virtual void PlayerConnect(NSClientPlayer);
 	virtual void PlayerDisconnect(NSClientPlayer);
-	virtual void PlayerKill(NSClientPlayer);
 	virtual void PlayerPostFrame(NSClientPlayer);
 
 	virtual void LevelDecodeParms(NSClientPlayer);

@@ -14,19 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void Weapons_Draw(player pl);
-
-void
-CSEv_PlayerSwitchWeapon_i(int w)
-{
-	player pl = (player)self;
-
-	if (pl.activeweapon != w) {
-		pl.activeweapon = w;
-		Weapons_Draw(pl);
-	}
-}
-
 void
 Player_Precache(void)
 {

@@ -21,9 +21,8 @@ HLGameRules::IsMultiplayer(void)
 }
 
 void
-HLGameRules::LevelDecodeParms(NSClientPlayer pp)
+HLGameRules::LevelDecodeParms(NSClientPlayer pl)
 {
-	player pl = (player)pp;
 	g_landmarkpos[0] = parm1;
 	g_landmarkpos[1] = parm2;
 	g_landmarkpos[2] = parm3;
@@ -36,6 +35,7 @@ HLGameRules::LevelDecodeParms(NSClientPlayer pp)
 	pl.activeweapon = parm11;
 	pl.flags = parm64;
 
+#if 0
 	pl.ammo_9mm = parm12;
 	pl.ammo_357 = parm13;
 	pl.ammo_buckshot = parm14;
@@ -56,19 +56,12 @@ HLGameRules::LevelDecodeParms(NSClientPlayer pp)
 	pl.crossbow_mag = parm28;
 	pl.rpg_mag = parm29;
 	pl.satchel_chg = parm30;
-
-	/* reset bounds */
-	if (pl.HasFlags(FL_CROUCHING)) {
-		pl.SetSize(VEC_CHULL_MIN, VEC_CHULL_MAX);
-	} else {
-		pl.SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
-	}
+#endif
 }
 
 void
-HLGameRules::LevelChangeParms(NSClientPlayer pp)
+HLGameRules::LevelChangeParms(NSClientPlayer pl)
 {
-	player pl = (player)pp;
 	parm1 = g_landmarkpos[0];
 	parm2 = g_landmarkpos[1];
 	parm3 = g_landmarkpos[2];
@@ -81,6 +74,8 @@ HLGameRules::LevelChangeParms(NSClientPlayer pp)
 	parm64 = pl.GetFlags();
 	parm10 = pl.g_items;
 	parm11 = pl.activeweapon;
+
+#if 0
 	parm12 = pl.ammo_9mm;
 	parm13 = pl.ammo_357;
 	parm14 = pl.ammo_buckshot;
@@ -100,6 +95,7 @@ HLGameRules::LevelChangeParms(NSClientPlayer pp)
 	parm28 = pl.crossbow_mag;
 	parm29 = pl.rpg_mag;
 	parm30 = pl.satchel_chg;
+#endif
 }
 
 void
@@ -130,12 +126,6 @@ void
 HLGameRules::PlayerDisconnect(NSClientPlayer pl)
 {
 	super::PlayerDisconnect(pl);
-}
-
-void
-HLGameRules::PlayerKill(NSClientPlayer pl)
-{
-	Damage_Apply(pl, pl, pl.health, WEAPON_NONE, DMG_SKIP_ARMOR);
 }
 
 void

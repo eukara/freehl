@@ -1,3 +1,4 @@
+
 entityDef weapon_handgrenade
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +7,35 @@ entityDef weapon_handgrenade
 	"editor_usage"		"Hand Grenade"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_grenade.mdl"
-	"inv_item"			"$WEAPON_HANDGRENADE"
+	"model_view"		"models/v_grenade.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	"inv_name"				"Hand Grenade"
+	"inv_weapon"			"weapon_handgrenade"
+	"inv_ammo_handgrenade"	"5"
+	"def_onRelease"		"projectile_handgrenade"
+	"def_explode_inhand"	"env_handgrenade_explodeinhand"
+	"def_damage_inhand"		"damage_handgrenadeSplash"
+	"ammoType"				"ammo_handgrenade"
+	"ammoRequired"			"1"
+	"silent_fire"			"1"
+	"primed_fuse"			"4"
+	"removeOnEmpty"			"1"
+
+	"actIdle"		"0,1"
+	"actDraw"		"7"
+	"actHolster"	"6"
+	"actFire"		"2"
+	"actRelease"	"3,4,5"
+
+	// HLWeapon specific
+	"hudSlot"		"4"
+	"hudSlotPos"	"0"
+	"weight"		"5"
+	"crosshair"		"none"
 }
 
 entityDef projectile_handgrenade
@@ -22,6 +47,7 @@ entityDef projectile_handgrenade
 	"detonate_on_fuse"	"1"
 	"bounce"			"1"
 	"angular_velocity"	"-350 0 0"
+	"velocity"			"300 0 40"
 	"model_detonate"	"fx_explosion.main"
 	"snd_explode"		"fx.explosion"
 	"snd_bounce"		"weapon_handgrenade.bounce"
@@ -40,4 +66,10 @@ entityDef damage_handgrenadeSplash
 {
 	"damage"	"skill:plr_hand_grenade"
 	"radius"	"250"
+}
+
+entityDef env_handgrenade_explodeinhand
+{
+	"spawnclass"				"idAnimatedEntity"
+	"model"						"grenadeExplosion.prt"
 }

@@ -6,9 +6,47 @@ entityDef weapon_crowbar
 	"editor_usage"		"Crowbar"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_crowbar.mdl"
-	"inv_item"			"$WEAPON_CROWBAR"
+	"model_view"		"models/v_crowbar.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_melee"			"damage_crowbar"
+	"melee_distance"	"32"
+	"inv_name"			"Crowbar"
+	"clipSize"			"6"
+	"ammoType"			""
+	"ammoRequired"		"0"
+	"clipSize"			"0"
+	"silent_fire"		"1"
+
+	"meleeRateMiss"		"0.5"
+	"meleeRateHit"		"0.25"
+
+	"actIdle"			"0"
+	"actDraw"			"1"
+	"actHolster"		"2"
+	"actMeleeMiss"		"4,5,7"
+	"actMeleeHit"		"3,6,8"
+
+	// HLWeapon specific
+	"hudSlot"		"0"
+	"hudSlotPos"	"0"
+	"weight"		"0"
+	"crosshair"		"none"
+	"ammoIcon"		"none"
+}
+
+entityDef damage_crowbar
+{
+	"damage"			"skill:plr_crowbar"
+//	"kickDir"			"-1 0 0"
+//	"knockback"			"20"
+//	"push"				"20000"
+	"gib"				"1"
+
+	"snd_hit"			"weapon_crowbar.hit"
+	"snd_miss"			"weapon_crowbar.miss"
 }

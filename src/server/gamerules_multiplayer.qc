@@ -122,9 +122,9 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 
 #ifdef VALVE
 	/* explode all satchels */
-	s_satchel_detonate((entity)pl);
+	//s_satchel_detonate((entity)pl);
 	/* drop their posessions into a weaponbox item */
-	weaponbox_spawn((player)pl);
+	//weaponbox_spawn(pl);
 #endif
 
 	/* either gib, or make a corpse */
@@ -133,6 +133,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 		float gibStrength = g_dmg_iDamage * 2.0f;
 		BreakModel_Entity(pl, gibDir, gibStrength);
 	} else {
+#if 0
 		float deathAnimation = ANIM_DIESIMPLE;
 
 		switch (g_dmg_iHitBody) {
@@ -159,16 +160,16 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 			break;
 		}
 
-		NSEntity newCorpse = (NSEntity)FX_Corpse_Spawn((player)pl, deathAnimation);
+		NSEntity newCorpse = (NSEntity)FX_Corpse_Spawn(pl, deathAnimation);
 
 		/* if we were crouching, adjust the bbox (thx 2 lack of crouch death animation) */
-		if (pl.flags & FL_CROUCHING) {
+		if (pl.IsCrouching()) {
 			newCorpse.SetSize(VEC_HULL_MIN, [16, 16, -16]);
 		}
+#endif
 	}
 
 	/* now let's make the real client invisible */
-	pl.Death();
 	pl.SetTakedamage(DAMAGE_NO);
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
@@ -185,9 +186,8 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 }
 
 void
-HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
+HLMultiplayerRules::PlayerSpawn(NSClientPlayer pl)
 {
-	player pl = (player)pp;
 	string playerModel;
 	/* this is where the mods want to deviate */
 	entity spot;
@@ -239,21 +239,20 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pp)
 	pl.SetInfoKey("*dead", "0");
 	pl.SetInfoKey("*deaths", ftos(pl.deaths));
 	pl.SetPropData("actor_human");
-	pl.SetCanBleed(true);
+	pl.EnableBleeding();
 
 	LevelNewParms();
 	LevelDecodeParms(pl);
 
 #if defined (VALVE) || defined (GEARBOX)
-	pl.g_items = ITEM_CROWBAR | ITEM_GLOCK | ITEM_SUIT;
-	pl.activeweapon = WEAPON_GLOCK;
-	pl.glock_mag = 18;
-	pl.ammo_9mm = 44;
+	pl.GiveItem("item_suit");
+	pl.GiveItem("weapon_9mmhandgun");
+	pl.GiveItem("weapon_crowbar");
+	//pl.ammo_9mm = 44;
 #endif
 
 	spot = Spawn_SelectRandom("info_player_deathmatch");
 	pl.Transport(spot.origin, spot.angles);
-	Weapons_RefreshAmmo(pl);
 	Client_FixAngle(pl, pl.angles);
 }
 
@@ -293,7 +292,7 @@ void
 CSEv_HLDM_Chooseteam_s(string teamName)
 {
 	HLGameRules rules = (HLGameRules)g_grMode;
-	player pl = (player)self;
+	NSClientPlayer pl = (NSClientPlayer)self;
 
 	if (!teamName)
 		return;
@@ -310,7 +309,9 @@ CSEv_HLDM_Chooseteam_s(string teamName)
 	for (int i = 0; i < c; i++) {
 		if (argv(i) == teamName) {
 			pl.SetTeam((float)i + 1);
-			Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
+			pl.SetHealth(-100);
+			pl.Death(pl, pl, 100i, g_vec_null, 0i);
+			//Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
 			return;
 		}
 	}

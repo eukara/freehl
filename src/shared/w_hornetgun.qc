@@ -173,7 +173,7 @@ w_hornetgun_primary(player pl)
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
@@ -203,7 +203,7 @@ w_hornetgun_secondary(player pl)
 	pl.ammo_hornet--;
 	Weapons_ViewAnimation(pl, HORNETGUN_SHOOT);
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTHIVE, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTHIVE, 0.43f);
@@ -239,7 +239,7 @@ w_hornetgun_crosshair(player pl)
 float
 w_hornetgun_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMHIVE : ANIM_AIMHIVE;
+	return pl.IsCrouching() ? ANIM_CR_AIMHIVE : ANIM_AIMHIVE;
 }
 
 void

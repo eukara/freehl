@@ -18,6 +18,11 @@ item.healthkit
 	sample items/smallmedkit1.wav
 }
 
+item.suit
+{
+	sample fvox/bell.wav
+}
+
 item.respawn
 {
 	sample items/suitchargeok1.wav

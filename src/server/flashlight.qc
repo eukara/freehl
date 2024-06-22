@@ -22,7 +22,7 @@ void Flashlight_Toggle(void)
 		}
 	}
 
-#ifdef VALVE
+#if 0
 	player pl = (player)self;
 	if (!(pl.g_items & ITEM_SUIT)) {
 		return;

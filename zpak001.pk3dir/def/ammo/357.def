@@ -1,0 +1,6 @@
+entityDef ammo_357
+{
+	"inherit"		"ammo_base"
+	"model"			"models/w_357ammobox.mdl"
+	"inv_ammo_357"	"6"
+}

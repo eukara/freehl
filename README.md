@@ -1,5 +1,6 @@
-# FreeHL
-Clean-room reimplementation of Half-Life: Deathmatch and Half-Life (Experimental, this means Singleplayer is NOT complete).
+# Rad-Therapy (FreeHL)
+
+Clean-room reimplementation of Valve Corporation's Half-Life: Deathmatch and Half-Life (Experimental, this means Singleplayer is NOT complete).
 
 Similar to FreeCS, this aims to recreate the feeling of the original game.
 It's designed to work with the content from the CD version of the game.

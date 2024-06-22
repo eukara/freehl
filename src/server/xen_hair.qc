@@ -33,10 +33,9 @@ class xen_hair:NSRenderableEntity
 void
 xen_hair::Respawn(void)
 {
+	super::Respawn();
 	SetSolid(SOLID_SLIDEBOX);
 	SetMovetype(MOVETYPE_WALK);
-	SetModel(GetSpawnModel());
-	SetOrigin(GetSpawnOrigin());
 }
 
 void

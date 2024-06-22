@@ -28,7 +28,7 @@ enum
 };
 
 void
-w_crowbar_precache(void)
+HLCrowbar::Precache(void)
 {
 #ifdef SERVER
 	Sound_Precache("weapon_crowbar.hit");
@@ -65,20 +65,20 @@ w_crowbar_deathmsg(void)
 }
 
 void
-w_crowbar_draw(player pl)
+HLCrowbar::Draw(player pl)
 {
 	Weapons_SetModel("models/v_crowbar.mdl");
 	Weapons_ViewAnimation(pl, CBAR_DRAW);
 }
 
 void
-w_crowbar_holster(player pl)
+HLCrowbar::Holster(player pl)
 {
 	Weapons_ViewAnimation(pl, CBAR_HOLSTER);
 }
 
 void
-w_crowbar_primary(player pl)
+HLCrowbar::Primary(player pl)
 {
 	int anim = 0;
 	vector src;
@@ -115,7 +115,7 @@ w_crowbar_primary(player pl)
 		Weapons_ViewAnimation(pl, trace_fraction >= 1 ? CBAR_ATTACK3MISS:CBAR_ATTACK3HIT);
 	}
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTCROWBAR, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTCROWBAR, 0.5f);
@@ -145,7 +145,7 @@ w_crowbar_primary(player pl)
 }
 
 void
-w_crowbar_release(player pl)
+HLCrowbar::Release(player pl)
 {
 	if (pl.w_idle_next) {
 		return;
@@ -156,13 +156,13 @@ w_crowbar_release(player pl)
 }
 
 float
-w_crowbar_aimanim(player pl)
+HLCrowbar::PlayerAnim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
+	return pl.IsCrouching() ? ANIM_CR_AIMCROWBAR : ANIM_AIMCROWBAR;
 }
 
 void
-w_crowbar_hudpic(player pl, int selected, vector pos, float a)
+HLCrowbar::WeaponIcon(player pl, int selected, vector pos, float a)
 {
 #ifdef CLIENT
 	if (selected) {
@@ -192,12 +192,13 @@ w_crowbar_hudpic(player pl, int selected, vector pos, float a)
 }
 
 int
-w_crowbar_isempty(player pl)
+HLCrowbar::IsEmpty(player pl)
 {
 	return 0;
 }
 
-weapontype_t w_crowbar_type(player pl)
+weapontype_t
+HLCrowbar::Type(player pl)
 {
 	return WPNTYPE_CLOSE;
 }

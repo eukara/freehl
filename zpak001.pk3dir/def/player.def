@@ -1,0 +1,4 @@
+entityDef player
+{
+	"spawnclass" "HLPlayer"
+}

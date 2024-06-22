@@ -55,14 +55,14 @@ FX_Corpse_Update(void)
 }
 
 entity
-FX_Corpse_Spawn(player pl, float anim)
+FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 {
 	NSRenderableEntity body_next = (NSRenderableEntity)FX_Corpse_Next();
 	body_next.SetMovetype(MOVETYPE_BOUNCE);
 	body_next.SetSolid(SOLID_CORPSE);
 	body_next.SetModel(pl.GetModel());
 
-	if (pl.flags & FL_CROUCHING) {
+	if (pl.IsCrouching()) {
 		body_next.SetOrigin(pl.GetOrigin() + [0,0,32]);
 	} else {
 		body_next.SetOrigin(pl.GetOrigin());

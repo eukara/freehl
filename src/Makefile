@@ -1,4 +1,4 @@
-CC=fteqcc
+QCC=fteqcc
 
 all:
 	cd client && $(MAKE)

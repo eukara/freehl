@@ -1,0 +1,6 @@
+entityDef ammo_gaussclip
+{
+	"inherit"			"ammo_base"
+	"model"				"models/w_gaussammo.mdl"
+	"inv_ammo_uranium"	"20"
+}

@@ -1,0 +1,5 @@
+entityDef monster_tripmine
+{
+	"spawnclass"		"HLTripmine"
+	"snd_activate"		"weapon_tripmine.activate"
+}

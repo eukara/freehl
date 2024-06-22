@@ -33,10 +33,9 @@ class xen_spore_small:NSRenderableEntity
 void
 xen_spore_small::Respawn(void)
 {
+	super::Respawn();
 	SetSolid(SOLID_SLIDEBOX);
 	SetMovetype(MOVETYPE_WALK);
-	SetModel(GetSpawnModel());
-	SetOrigin(GetSpawnOrigin());
 }
 
 void

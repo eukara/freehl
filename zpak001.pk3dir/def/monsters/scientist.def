@@ -45,7 +45,6 @@ entityDef monster_scientist
 	"talk_deny_follow"	"!SC_POK"
 
 	// Body Types
-
 	when "body" equals "0" {
 		"pitch"	"105"
 		"netname"	"Walter"

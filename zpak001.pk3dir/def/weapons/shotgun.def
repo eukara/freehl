@@ -6,9 +6,111 @@ entityDef weapon_shotgun
 	"editor_usage"		"Shotgun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_shotgun.mdl"
-	"inv_item"			"$WEAPON_SHOTGUN"
+	"model_view"		"models/v_shotgun.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"		"fireInfo_shotgun"
+	"def_altFireInfo"	"fireInfo_altShotgun"
+	"inv_name"			"Shotgun"
+	"clipSize"			"8"
+	"inv_ammo_buckshot"	"4"
+	"ammoType"			"ammo_buckshot"
+	"ammoRequired"		"1"
+
+	"actFire"			"1"
+	"actHolster"		"7"
+	"actReloadStart"	"5"
+	"actReload"			"3"
+	"actReloadEnd"		"4"
+	"actDraw"			"6"
+	"actIdle"			"0,8,9"
+
+	"snd_fire"			"weapon_shotgun.single"
+	"snd_empty"			"weapon_shotgun.empty"
+
+	"snd_reload"		"weapon_shotgun.reload"
+	"snd_reload_end"	"weapon_shotgun.cock"
+
+	// HLWeapon specific
+	"hudSlot"		"2"
+	"hudSlotPos"	"1"
+	"weight"		"15"
+}
+
+entityDef projectile_shotgun
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_buckshot"
+	"hitscans"		"12"
+	"spread"		"0.08716 0.08716"
+}
+
+entityDef projectile_shotgun_alt
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_buckshot"
+	"hitscans"		"24"
+	"spread"		"0.08716 0.08716"
+}
+
+entityDef fireInfo_shotgun
+{
+	"def_onFire"	"projectile_shotgun"
+	"ammoPerShot"		"1"
+	"fireRate"			"0.75"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+entityDef fireInfo_altShotgun
+{
+	"def_onFire"	"projectile_shotgun_alt"
+	"ammoPerShot"		"2"
+	"fireRate"			"1.5"
+	"actFire"			"2"
+	"snd_fire"			"weapon_shotgun.double"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+// multiplayer version
+entityDef projectile_shotgun_mp
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_buckshot"
+	"hitscans"		"12"
+	"spread"		"0.08716 0.04362"
+}
+
+entityDef projectile_shotgun_alt_mp
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_buckshot"
+	"hitscans"		"24"
+	"spread"		"0.17365 0.04362"
+}
+
+entityDef fireInfo_shotgun_mp
+{
+	"def_onFire"	"projectile_shotgun_mp"
+	"ammoPerShot"		"1"
+	"fireRate"			"1.25"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+entityDef fireInfo_altShotgun_mp
+{
+	"def_onFire"	"projectile_shotgun_alt_mp"
+	"ammoPerShot"		"2"
+	"fireRate"			"1.5"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+entityDef weapon_shotgun_mp
+{
+	"inherit"			"weapon_shotgun"
+	"def_fireInfo"		"fireInfo_shotgun_mp"
+	"def_altFireInfo"	"fireInfo_altShotgun_mp"
 }

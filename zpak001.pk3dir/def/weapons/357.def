@@ -3,17 +3,54 @@ entityDef weapon_357
 	"editor_color"		".3 .3 1"
 	"editor_mins"		"-16 -16 -16"
 	"editor_maxs"		"16 16 16"
-	"editor_usage"		".367 Revolver"
+	"editor_usage"		".357 Revolver"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_357.mdl"
-	"inv_item"			"$WEAPON_PYTHON"
+	"model_view"		"models/v_357.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"	"fireInfo_357"
+	"inv_name"		".357 Revolver"
+	"clipSize"		"6"
+
+	"actFire"		"2"
+	"actHolster"	"4"
+	"actReload"		"3"
+	"actDraw"		"5"
+	"actIdle"		"0,1,6,7"
+
+	"snd_fire"		"weapon_357.shoot"
+	"snd_empty"		"weapon_357.empty"
+	"snd_reload"	"weapon_357.reload"
+
+	// HLWeapon specific
+	"hudSlot"		"1"
+	"hudSlotPos"	"1"
+	"weight"		"15"
 }
 
 entityDef weapon_python
 {
 	"spawnclass" "weapon_357"
+}
+
+entityDef projectile_357
+{
+	"inherit"	"projectile_bullet_base"
+	"damage"	"skill:plr_357_bullet"
+}
+
+entityDef fireInfo_357
+{
+	"def_onFire"		"projectile_357"
+	"ammoType"			"ammo_357"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			".75"
+	"punchAngle"		"-10 0 0"
+	"model_flash"		"sprites/muzzleflash2.spr"
 }

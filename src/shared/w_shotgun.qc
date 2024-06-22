@@ -219,7 +219,7 @@ w_shotgun_primary(player pl)
 	Weapons_ViewAnimation(pl, SHOTGUN_FIRE1);
 	Weapons_ViewPunchAngle(pl, [-5,0,0]);
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
@@ -272,7 +272,7 @@ w_shotgun_secondary(player pl)
 	Weapons_ViewAnimation(pl, SHOTGUN_FIRE2);
 	Weapons_ViewPunchAngle(pl, [-10,0,0]);
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTSHOTGUN, 0.41f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTSHOTGUN, 0.5f);
@@ -383,7 +383,7 @@ w_shotgun_crosshair(player pl)
 float
 w_shotgun_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMSHOTGUN : ANIM_AIMSHOTGUN;
+	return pl.IsCrouching() ? ANIM_CR_AIMSHOTGUN : ANIM_AIMSHOTGUN;
 }
 
 void

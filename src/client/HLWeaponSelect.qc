@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2022 Vera Visions LLC.
+ * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -12,14 +12,52 @@
  * WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER
  * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-*/
+ */
+
+class
+HLWeaponSelect
+{
+	void HLWeaponSelect(void);
+
+	virtual void Draw(void);
+	virtual void SelectSlot(bool);
+	virtual void SelectNext(bool);
+	virtual void SelectPrevious(bool);
+	virtual void SelectBest(bool);
+};
 
 void
-Game_ServerModelEvent(float flTimeStamp, int iCode, string strData)
+HLWeaponSelect::HLWeaponSelect(void)
 {
-	switch (iCode) {
-	default:
-		Event_ServerModelEvent(flTimeStamp, iCode, strData);
-		break;
-	} 
+
+}
+
+void
+HLWeaponSelect::Draw(void)
+{
+
+}
+
+void
+HLWeaponSelect::SelectSlot(bool fastSwitch)
+{
+
+}
+
+void
+HLWeaponSelect::SelectNext(bool fastSwitch)
+{
+
+}
+
+void
+HLWeaponSelect::SelectPrevious(bool fastSwitch)
+{
+
+}
+
+void
+HLWeaponSelect::SelectBest(bool fastSwitch)
+{
+
 }

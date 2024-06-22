@@ -1,0 +1,30 @@
+entityDef monster_snark
+{
+	"spawnclass"		"NSMonster"
+	"model"		"models/w_squeak.mdl"
+	"netname"		"Snark"
+	"health"		"skill:snark_health"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 72"
+	"eye_height"		"12"
+	"team"		"2"
+	"propdata"		"actor_alien"
+	"speed_walk"		"32"
+	"speed_run"		"72"
+
+	"attack_ranged_range"	"180" // needs launch attack
+
+	"snd_idle"		"monster_snark.idle"
+	"snd_pain"		"monster_snark.pain"
+	"snd_death"		"monster_snark.death"
+	"leap_damage"		"skill:snark_dmg_bite"
+
+	events {
+		jump "AddVelocity" "512 0 250"
+		jump "StartSoundDef" "monster_snark.attack"
+		jump_variation1 "AddVelocity" "512 0 350"
+		jump_variation1 "StartSoundDef" "monster_snark.attack"
+		jump_variation2 "AddVelocity" "512 0 350"
+		jump_variation2 "StartSoundDef" "monster_snark.attack"
+	}
+}

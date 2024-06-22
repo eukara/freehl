@@ -1,0 +1,6 @@
+entityDef ammo_buckshot
+{
+	"inherit"			"ammo_base"
+	"model"				"models/w_shotbox.mdl"
+	"inv_ammo_buckshot"	"12"
+}

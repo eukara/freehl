@@ -33,7 +33,6 @@ Game_Worldspawn(void)
 
 	precache_model("models/player.mdl");
 	precache_model("models/w_weaponbox.mdl");
-	Weapons_Init();
 	Player_Precache();
 	FX_Corpse_Init();
 }

@@ -1,0 +1,6 @@
+entityDef ammo_crossbow
+{
+	"inherit"		"ammo_base"
+	"model"			"models/w_crossbow_clip.mdl"
+	"inv_ammo_bolt"	"5"
+}

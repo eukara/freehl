@@ -6,14 +6,66 @@ entityDef weapon_9mmhandgun
 	"editor_usage"		"9mm Handgun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_9mmhandgun.mdl"
-	"inv_item"			"$WEAPON_GLOCK"
+	"model_view"		"models/v_9mmhandgun.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"		"fireInfo_glock"
+	"def_altFireInfo"	"fireInfo_altGlock"
+	"inv_name"			"9mm Handgun"
+	"clipSize"			"17"
+	"ammoType" 			"ammo_9mm"
+	"ammoRequired" 		"1"
+	"ammoPerShot"		"1"
+	"punchAngle"		"-2 0 0"
+
+	"actFire"			"3"
+	"actAltFire"		"3"
+	"actFireLast"		"4"
+	"actAltFireLast"	"4"
+	"actHolster"		"8"
+	"actReload"			"6"
+	"actReloadEmpty"	"5"
+	"actDraw"			"7"
+	"actIdle"			"0,1,2"
+
+	"snd_fire"		"weapon_glock.fire"
+	"snd_altfire"	"weapon_glock.fire"
+	"snd_empty"		"weapon_glock.empty"
+
+	// HLWeapon specific
+	"hudSlot"		"1"
+	"hudSlotPos"	"0"
+	"weight"		"10"
 }
 
-entityDef weapon_glock
+entityDef projectile_glock
 {
-	"spawnclass" "weapon_9mmhandgun"
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_9mm_bullet"
+	"spread"		"0.01 0.01"
+}
+
+entityDef projectile_glock_fast
+{
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:plr_9mm_bullet"
+	"spread"		"0.1 0.1"
+}
+
+entityDef fireInfo_glock
+{
+	"def_onFire"	"projectile_glock"
+	"fireRate" 			".3"
+	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+entityDef fireInfo_altGlock
+{
+	"def_onFire"	"projectile_glock_fast"
+	"fireRate"			".2"
+	"model_flash"		"sprites/muzzleflash2.spr"
 }

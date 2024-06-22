@@ -33,10 +33,9 @@ class xen_plantlight:NSRenderableEntity
 void
 xen_plantlight::Respawn(void)
 {
+	super::Respawn();
 	SetSolid(SOLID_SLIDEBOX);
 	SetMovetype(MOVETYPE_WALK);
-	SetModel(GetSpawnModel());
-	SetOrigin(GetSpawnOrigin());
 }
 
 void

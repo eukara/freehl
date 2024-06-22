@@ -6,9 +6,42 @@ entityDef weapon_hornetgun
 	"editor_usage"		"Hornet Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_hgun.mdl"
-	"inv_item"			"$WEAPON_HORNETGUN"
+	"model_view"		"models/v_hgun.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	// weapon specific
+	"def_fireInfo"		"fireInfo_hornetgun"
+	"inv_name"			"Hornet Gun"
+	"inv_ammo_hornet"	"8"
+
+	"actFire"		"5"
+	"actHolster"	"3"
+	"actDraw"		"4"
+	"actIdle"		"0,1,2"
+
+	"snd_fire"		"weapon_hornetgun.fire"
+
+	// HLWeapon specific
+	"hudSlot"		"3"
+	"hudSlotPos"	"3"
+	"weight"		"10"
+}
+
+entityDef projectile_hornet
+{
+	"spawnclass" "NSProjectile"
+	"damage"	"10"
+}
+
+entityDef fireInfo_hornetgun
+{
+	"def_onFire"	"projectile_hornet"
+	"ammoType"			"ammo_hornet"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"1.0"
+	"punchAngle"		"-1 0 0"
 }

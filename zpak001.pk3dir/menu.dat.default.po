@@ -1,0 +1,1693 @@
+# ENGLISH LOCALISATION FILE.
+
+msgid "IDS_LANGUAGE"
+msgstr  "English"
+
+msgid "IDS_BORDERLESS_REGFAIL"
+msgstr  "Could not register %s edit control class."
+
+msgid "IDS_CHAT_IGNORE_MISLINKED"
+msgstr  "Ignoring mislinked chat room"
+
+msgid "IDS_CHAT_IGNORE_UNLINKED"
+msgstr  "Ignoring unlinked chat room"
+
+msgid "IDS_CREATE_MAPSCHANGED"
+msgstr  "The number of maps in the map directory changed."
+
+msgid "IDS_CREATE_LIBLISTBAD"
+msgstr  "The file 'liblist.gam' in the game directory was malformed."
+
+msgid "IDS_SOCKET_CONNECTIONFAILURE"
+msgstr  "Your network connection may have failed, continuing anway..."
+
+msgid "IDS_PLAYERINFO_NOMEM"
+msgstr  "Could not allocate memory for player information instance."
+
+msgid "IDS_CHAT_NOCONNECTION"
+msgstr  "Could not create chat server connection."
+
+msgid "IDS_CHAT_NOSTREAM"
+msgstr  "Could not create chat server data stream."
+
+msgid "IDS_CHAT_NOSELECT"
+msgstr  "Could not prepare chat server client for connection."
+
+msgid "IDS_CONTROLS_DELETE_LINKED"
+msgstr  "Deletion of linked key action item."
+
+msgid "IDS_CONTROLS_KBLIST_EMPTY"
+msgstr  "Keyboard bindings file 'kb_act.lst' is empty."
+
+msgid "IDS_CONTROLS_KBLIST_PARSEERROR"
+msgstr  "Error parsing bindings file 'kb_act.lst'."
+
+msgid "IDS_CONTROLS_KBKEYS_EMPTY"
+msgstr  "Keyboard bindings file 'kb_keys.lst' is empty."
+
+msgid "IDS_CONTROLS_KBKEYS_PARSEERROR"
+msgstr  "Error parsing file 'kb_keys.lst'."
+
+msgid "IDS_CONTROLS_KBKEYS_OVERFLOW"
+msgstr  "Too many actions in file 'kb_keys.lst'."
+
+msgid "IDS_PROFILE_COLOR"
+msgstr  "Colors"
+
+msgid "IDS_MAIN_NOCAPS"
+msgstr  "Could not query graphics device capabilities."
+
+msgid "IDS_MAIN_INSUFFICIENTCAPS"
+msgstr  "Your graphics card does not support a necessary raster operation."
+
+msgid "IDS_MAIN_REGWNDCLSFAIL"
+msgstr  "Could not register %s's window class."
+
+msgid "IDS_MAIN_INSUFFICIENTSOCKETS"
+msgstr  "Insufficient number of network sockets, networking may not operate correctly."
+
+msgid "IDS_MAIN_MEMMAPFAILURE"
+msgstr  "Memory-mapped file i/o initialization failed."
+
+msgid "IDS_PROFILE_NOMEM"
+msgstr  "Couldn't allocate memory for player profile, exiting."
+
+msgid "IDS_BTN_STRANGESIZE"
+msgstr  "Button face bitmap graphics file sizes appear invalid."
+
+msgid "IDS_MAIN_NOUSERMSGS"
+msgstr  "Could not register user messages."
+
+msgid "IDS_MAIN_NOFILEMAPPING"
+msgstr  "Could not create file mapping to engine."
+
+msgid "IDS_MAIN_NOMEMMAPCONNECT"
+msgstr  "Could not connect to server '%s'."
+
+msgid "IDS_MSG_OVERFLOW"
+msgstr  "SZ_GetSpace overflow without m_bAllowOverflow set"
+
+msgid "IDS_MSG_REQTOOBIG"
+msgstr  "SZ_GetSpace requested length is greater than available buffer size."
+
+msgid "IDS_MULTI_NOROOMSTATIC"
+msgstr  "Could not allocate room static text control."
+
+msgid "IDS_MULTI_NOROOMTAB"
+msgstr  "Could not allocate room tab control."
+
+msgid "IDS_MULTI_NOCHATWINDOW"
+msgstr  "Could not allocate chat display window control."
+
+msgid "IDS_MULTI_NOCHATINPUT"
+msgstr  "Could not allocate chat text input control."
+
+msgid "IDS_MULTI_NOUSERLIST"
+msgstr  "Could not allocate chat user list control."
+
+msgid "IDS_MULTI_NOSERVERLIST"
+msgstr  "Could not allocate server browser list control."
+
+msgid "IDS_MULTI_NOSELECTION"
+msgstr  "No servers selected."
+
+msgid "IDS_MULTI_NOARCHIVE"
+msgstr  "%s could not open the server list archive file: '%s'."
+
+msgid "IDS_CHAT_USER_NOMEM"
+msgstr  "Could not allocate space for new chat rrom user."
+
+msgid "IDS_MULTI_SERVER_NOMEM"
+msgstr  "Could not allocate space for a new server."
+
+msgid "IDS_MULTI_MASTER_BADLISTFILE"
+msgstr  "Could not open master server list file."
+
+msgid "IDS_MULTI_NODIALOG"
+msgstr  "SetDialog with no dialog!"
+
+msgid "IDS_PROFILE_REQUIRED"
+msgstr  "You must create or select a player profile to continue."
+
+msgid "IDS_ODCOMBO_REGFAIL"
+msgstr  "Could not register %s combobox class."
+
+msgid "IDS_ODEDIT_REGFAIL"
+msgstr  "Could not register %s edit control class."
+
+msgid "IDS_ODLIST_REGFAIL"
+msgstr  "Could not register %s list control class."
+
+msgid "IDS_ODSCROLL_REGFAIL"
+msgstr  "Could not register %s scrollbar class."
+
+msgid "IDS_ODSLIDER_REGFAIL"
+msgstr  "Could not register %s slider class."
+
+msgid "IDS_ODTAB_REGFAIL"
+msgstr  "Could not register %s tab control class."
+
+msgid "IDS_PROFILE_NICKREMOVEFAIL"
+msgstr  "Could not remove chat nicknames."
+
+msgid "IDS_PROFILE_NOPROFILE"
+msgstr  "No chosen profile."
+
+msgid "IDS_QUICK_NOSERVERS"
+msgstr  "Could not locate any active %s servers with available slots."
+
+msgid "IDS_QUICK_NOACTIVE"
+msgstr  "Could not connect to any active %s servers."
+
+msgid "IDS_README_NOMEM"
+msgstr  "Could not allocate buffer for readme: %i bytes"
+
+msgid "IDS_ROOM_BADNAME"
+msgstr  "The room name was invalid."
+
+msgid "IDS_SINGLE_NOSELECTION"
+msgstr  "You must select a save game slot from the available slots."
+
+msgid "IDS_SINGLE_CANTSAVE"
+msgstr  "You must be playing in a single player game to save."
+
+msgid "IDS_ODLISTBOX_REGFAIL"
+msgstr  "Could not register %s list box class."
+
+msgid "IDS_DIB_OPENFAIL"
+msgstr  "Could not open bitmap file '%s'."
+
+msgid "IDS_MCI_OPENFAIL"
+msgstr  "Could not open MCI file for playback: %s"
+
+msgid "IDS_MCI_GETIDFAIL"
+msgstr  "Could not get MCI Device ID for MCI device"
+
+msgid "IDS_MCI_WINDOWFAIL"
+msgstr  "Could not set up MCI window for playback of MCI device: %s"
+
+msgid "IDS_MCI_PUTFAIL"
+msgstr  "Could not display MCI playback of MCI device in window: %s"
+
+msgid "IDS_MCI_SEEKFAIL"
+msgstr  "Could not seek to start of MCI data: %s"
+
+msgid "IDS_MCI_BREAKFAIL"
+msgstr  "Could not set break key on MCI data: %s"
+
+msgid "IDS_MCI_PLAYFAIL"
+msgstr  "Could not start playback of MCI data: %s"
+
+msgid "IDS_MCI_STOPFAIL"
+msgstr  "Could not stop playback of MCI data: %s"
+
+msgid "IDS_MCI_CLOSEFAIL"
+msgstr  "Could not close MCI data: %s"
+
+msgid "IDS_CONTROLS_RESTOREFAIL"
+msgstr  "Could not restore default bindings for player."
+
+msgid "IDS_SND_BADNAME"
+msgstr  "Invalid sound name"
+
+msgid "IDS_PROFILE_ALLOCFAIL"
+msgstr  "Could not allocate space for key binding"
+
+msgid "IDS_AUDIO_NOPROFILE"
+msgstr  "Can't change audio settings without a current player profile."
+
+msgid "IDS_VIDEO_NOPROFILE"
+msgstr  "Can't change video settings without a current player profile."
+
+msgid "IDS_CONTROLS_KEYHELP"
+msgstr  "Use your mouse or the arrow keys to select an item. Double-click or press Enter to change an item. Press Delete to clear an item."
+
+msgid "IDS_ENDDEMO_URL"
+msgstr  "http://www.frag-net.com/"
+
+msgid "IDS_ORDER_URL"
+msgstr  "http://www.frag-net.com/"
+
+msgid "IDS_LOADSAVE_HINT"
+msgstr  "During play, you can quickly save your game by pressing %s. Load this game again by pressing %s."
+
+msgid "IDS_LAUNCHER_BUTTONSIZE"
+msgstr  "156 26"
+
+msgid "IDS_MEM_INSUFFICIENT"
+msgstr  "Your system reported only %.2fK of physical memory, %s requires at least 16MB."
+
+msgid "IDS_MEM_ALLOCFAIL"
+msgstr  "%s was unable to allocate %.2fK of memory."
+
+msgid "IDS_EVENT_CREATEFAIL"
+msgstr  "%s was unable to create a system object."
+
+msgid "IDS_OSVER_FAIL"
+msgstr  "%s was unable to retreive system information."
+
+msgid "IDS_OSVER_OUTDATED"
+msgstr  "%s requires Windows/95 or Windows/NT and above."
+
+msgid "IDS_OSVER_NTSP3"
+msgstr  "%s requires Service Pack 3 or above"
+
+msgid "IDS_OSVER_16BIT"
+msgstr  "%s requires 16 bit color. Please change your desktop settings to HiColor. Sometimes this is called"
+
+msgid "IDS_BINDING_ACTIONHEADING"
+msgstr  "Action"
+
+msgid "IDS_BINDING_PRIMARYHEADING"
+msgstr  "Key / button"
+
+msgid "IDS_BINDING_ALTERNATEHEADING"
+msgstr  "Alternate"
+
+msgid "IDS_BINDING_PROMPT"
+msgstr  "Press a key or button."
+
+msgid "IDS_URL_BROWSERFAIL"
+msgstr  "%s was unable to display the web page '%s', please make sure you have a web browser installed and that the association for opening .htm files is valid."
+
+msgid "IDS_SAVELOAD_TIMECOL"
+msgstr  "Time"
+
+msgid "IDS_SAVELOAD_GAMECOL"
+msgstr  "Game"
+
+msgid "IDS_SAVELOAD_ELAPSEDCOL"
+msgstr  "Elapsed Time"
+
+msgid "IDS_SERVER_GAMESERVER"
+msgstr  "Game"
+
+msgid "IDS_SERVER_SPEED"
+msgstr  "Net Spd"
+
+msgid "IDS_SERVER_MAP"
+msgstr  "Map"
+
+msgid "IDS_SERVER_PLAYERS"
+msgstr  "Players/Max"
+
+msgid "IDS_SERVER_GAME"
+msgstr  "Game Type"
+
+msgid "IDS_SERVER_NETWORK"
+msgstr  "Network"
+
+msgid "IDS_QUERY_STARTING"
+msgstr  "Starting..."
+
+msgid "IDS_QUERY_COMPLETED"
+msgstr  "%s completed."
+
+msgid "IDS_SERVER_REMOVE"
+msgstr  "Permanently remove %i servers from list?"
+
+msgid "IDS_SERVER_CONNECT"
+msgstr  "Initiating connection to %s..."
+
+msgid "IDS_SERVER_LANTAG"
+msgstr  "Lan"
+
+msgid "IDS_SERVER_INTERNETTAG"
+msgstr  "Internet"
+
+msgid "IDS_SERVER_MENU_CONNECT"
+msgstr  "Connect"
+
+msgid "IDS_SERVER_MENU_PLAYERINFO"
+msgstr  "Show player and rule information"
+
+msgid "IDS_SERVER_MENU_RULEINFO"
+msgstr  "Show rule information"
+
+msgid "IDS_SERVER_MENU_FILTER"
+msgstr  "Filter server"
+
+msgid "IDS_SERVER_MENU_ADDTOFAVORITE"
+msgstr  "Add to favorites"
+
+msgid "IDS_SERVER_MENU_REMOVEFROMFAV"
+msgstr  "Remove from favorites"
+
+msgid "IDS_SERVER_MENU_REMOVE"
+msgstr  "Permanently remove server"
+
+msgid "IDS_SERVER_MENU_NOPLAYERINFO"
+msgstr  "No player information available"
+
+msgid "IDS_SERVER_MENU_NOLANPLAYERINFO"
+msgstr  "Player information is not available for Lan games"
+
+msgid "IDS_SAVELOAD_QUICKLISTTEXT"
+msgstr  "[quick] %s"
+
+msgid "IDS_SAVELOAD_AUTOLISTITEM"
+msgstr  "[autosave] %s"
+
+msgid "IDS_PLAYERINFO_NUMBER"
+msgstr  "#"
+
+msgid "IDS_PLAYERINFO_NAME"
+msgstr  "Player Name"
+
+msgid "IDS_PLAYERINFO_KILLS"
+msgstr  "Kills"
+
+msgid "IDS_PLAYERINFO_TIME"
+msgstr  "Time"
+
+msgid "IDS_PLAYERINFO_SUIT"
+msgstr  "HEV Suit"
+
+msgid "IDS_QUICK_REQUEST"
+msgstr  "Requesting list of servers..., %.2f seconds left"
+
+msgid "IDS_QUICK_GOTLIST"
+msgstr  "List received..."
+
+msgid "IDS_QUICK_CONTACTING"
+msgstr  "Contacting servers..."
+
+msgid "IDS_QUICK_COMPLETEDSERVER"
+msgstr  "%s completed."
+
+msgid "IDS_SAVE_NEWCOMMENT"
+msgstr  "New Saved Game"
+
+msgid "IDS_SAVE_NEWTIME"
+msgstr  "New"
+
+msgid "IDS_SAVE_NEWFILETIME"
+msgstr  "Current"
+
+msgid "IDS_DDRAW_FAILEINIT"
+msgstr  "Direct Draw Init Failed (%08lx):%sn"
+
+msgid "IDS_DDRAW_DX4FAIL"
+msgstr  "Direct Draw 4 Init Failed (%08lx):%sn"
+
+msgid "IDS_VIDEO_MODECOL"
+msgstr  "Display mode"
+
+msgid "IDS_ROOM_NAMECOL"
+msgstr  "Name"
+
+msgid "IDS_ROOM_PEOPLECOL"
+msgstr  "People"
+
+msgid "IDS_ROOM_SERVERSCOL"
+msgstr  "Servers"
+
+msgid "IDS_DDRAW_REQUIRED"
+msgstr  "%s requires DirectDraw"
+
+msgid "IDS_DLL_LOADFAIL"
+msgstr  "Failed to load Engine DLL."
+
+msgid "IDS_CMDLINE_VTOPTS"
+msgstr  "-vt requires one of software, gl, or d3d."
+
+msgid "IDS_SAVE_NUMCHANGED"
+msgstr  "Number of saved games changed?"
+
+msgid "IDS_BINDINGS_ALLOCFAIL"
+msgstr  "Unable to allocate space for binding"
+
+msgid "IDS_GAMMA_LOADFAIL"
+msgstr  "Unable to locate the gamma image 'gamma.bmp'."
+
+msgid "IDS_DDRAW_RESTOREMODEFAIL"
+msgstr  "Unable to restore DirectDraw video mode."
+
+msgid "IDS_AUDIO_VOLUME"
+msgstr  "Game sound volume"
+
+msgid "IDS_AUDIO_SUITVOL"
+msgstr  "HEV suit volume"
+
+msgid "IDS_AUDIO_USECD"
+msgstr  "Play CD music."
+
+msgid "IDS_AUDIO_HIGHQUALITY"
+msgstr  "High quality sound"
+
+msgid "IDS_CFG_VIDHELP"
+msgstr  "Change screen size, video mode, gamma, and glare reduction."
+
+msgid "IDS_CFG_AUDIOHELP"
+msgstr  "Change sound volume and quality."
+
+msgid "IDS_CFG_CONTROLHELP"
+msgstr  "Change keyboard, mouse, and joystick settings."
+
+msgid "IDS_CFG_RETURNTOMAIN"
+msgstr  "Go back to the Main Menu."
+
+msgid "IDS_CREATEROOM_TITLE"
+msgstr  "Create Private Room"
+
+msgid "IDS_CREATEROOM_ROOMNAME"
+msgstr  "Room Name"
+
+msgid "IDS_CREATEROOM_ROOMTOPIC"
+msgstr  "Room Topic"
+
+msgid "IDS_CREATESERVER_NAME"
+msgstr  "Server Name:"
+
+msgid "IDS_CREATESERVER_MAP"
+msgstr  "Map:"
+
+msgid "IDS_CREATESERVER_ROOM"
+msgstr  "Associated Room:"
+
+msgid "IDS_CREATESERVER_GAMETYPE"
+msgstr  "Type of Game:"
+
+msgid "IDS_CREATESERVER_MAXPLAYERS"
+msgstr  "Max. Players:"
+
+msgid "IDS_FILTER_TITLE"
+msgstr  "Filter the list of %s games"
+
+msgid "IDS_FILTER_HEADING"
+msgstr  "Show only servers which:"
+
+msgid "IDS_FILTER_RESPONDING"
+msgstr  "are responding"
+
+msgid "IDS_FILTER_RESPONSETIME"
+msgstr  "responded more quickly than"
+
+msgid "IDS_FILTER_NOTFULL"
+msgstr  "are not full"
+
+msgid "IDS_FILTER_NOTEMPTY"
+msgstr  "have people currently playing"
+
+msgid "IDS_FILTER_ONFAVORITES"
+msgstr  "are in my 'favorites' list"
+
+msgid "IDS_FILTER_INCHATROOM"
+msgstr  "are associated with the selected chat room"
+
+msgid "IDS_FINDPLAYER_PLAYER"
+msgstr  "Player to find:"
+
+msgid "IDS_OPTS_CROSSHAIR"
+msgstr  "Crosshair"
+
+msgid "IDS_OPTS_REVERSE"
+msgstr  "Reverse mouse"
+
+msgid "IDS_OPTS_MLOOK"
+msgstr  "Mouse look"
+
+msgid "IDS_OPTS_LOOKSPRING"
+msgstr  "Look spring"
+
+msgid "IDS_OPTS_LOOKSTRAFE"
+msgstr  "Look strafe"
+
+msgid "IDS_OPTS_MFILTER"
+msgstr  "Mouse filter"
+
+msgid "IDS_OPTS_JOYSTICK"
+msgstr  "Joystick"
+
+msgid "IDS_OPTS_CROSSHAIRHELP"
+msgstr  "Enable the weapon aiming crosshair."
+
+msgid "IDS_OPTS_REVERSEHELP"
+msgstr  "Reverse mouse up/down axis."
+
+msgid "IDS_OPTS_MLOOKHELP"
+msgstr  "Use the mouse to look around instead of using the mouse to move."
+
+msgid "IDS_OPTS_LOOKSPRINGHELP"
+msgstr  "Causes the screen to \"spring\" back to looking straight ahead when you move forward."
+
+msgid "IDS_OPTS_LOOKSTRAFEHELP"
+msgstr  "In combination with your mouse look modifier, causes left-right movements to strafe instead of turn."
+
+msgid "IDS_OPTS_MFILTERHELP"
+msgstr  "Average mouse inputs over the last two frames to smooth out movements."
+
+msgid "IDS_OPTS_JOYSTICKHELP"
+msgstr  "Enable the joystick."
+
+msgid "IDS_OPTS_SENSITIVITYHELP"
+msgstr  "Mouse sensitivity."
+
+msgid "IDS_LOADSAVE_LOADHELP"
+msgstr  "Load a previously saved game"
+
+msgid "IDS_LOADSAVE_SAVEHELP"
+msgstr  "Save current game."
+
+msgid "IDS_LOADSAVE_RETURN"
+msgstr  "Go back to the Main Menu."
+
+msgid "IDS_MAIN_RETURNHELP"
+msgstr  "Return to game."
+
+msgid "IDS_MAIN_NEWGAMEHELP"
+msgstr  "Start a new game."
+
+msgid "IDS_MAIN_TRAININGHELP"
+msgstr "Learn how to play %s."
+
+msgid "IDS_MAIN_LOADHELP"
+msgstr  "Load a previously saved game."
+
+msgid "IDS_MAIN_LOADSAVEHELP"
+msgstr  "Load a saved game, save the current game."
+
+msgid "IDS_MAIN_CONFIGUREHELP"
+msgstr  "Change game settings, configure controls."
+
+msgid "IDS_MAIN_READMEHELP"
+msgstr  "View the Readme.txt file."
+
+msgid "IDS_MAIN_ORDERHELP"
+msgstr  "Order the full version of %s."
+
+msgid "IDS_MAIN_QUITHELP"
+msgstr "Quit playing %s."
+
+msgid "IDS_MAIN_QUICKHELP"
+msgstr  "Connect to the fastest, active Internet game server found."
+
+msgid "IDS_MAIN_MULTIPLAYERHELP"
+msgstr "Search for %s servers, chat with other players, configure character."
+
+msgid "IDS_CHAT_PROMPT"
+msgstr  "Type Message:"
+
+msgid "IDS_NEWGAME_EASYHELP"
+msgstr "Play %s on the 'easy' skill setting."
+
+msgid "IDS_NEWGAME_MEDIUMHELP"
+msgstr "Play %s on the 'medium' skill setting."
+
+msgid "IDS_NEWGAME_DIFFICULTHELP"
+msgstr "Play %s on the 'difficult' skill setting."
+
+msgid "IDS_NEWGAME_RETURNHELP"
+msgstr  "Go back to the Main Menu."
+
+msgid "IDS_NEWPROFILE_TITLE"
+msgstr  "Select Player"
+
+msgid "IDS_NEWPROFILE_NAME"
+msgstr  "Name:"
+
+msgid "IDS_NEWPROFILE_PASSWORD"
+msgstr  "Password:"
+
+msgid "IDS_NEWPROFILE_REMEMBER"
+msgstr  "remember password"
+
+msgid "IDS_PROFILE_MODEL"
+msgstr  "Player Model"
+
+msgid "IDS_PROFILE_NICKNAME"
+msgstr  "Player Name"
+
+msgid "IDS_PROFILE_SELECT"
+msgstr  "Player profile:"
+
+msgid "IDS_PROFILE_PROCEEDHELP"
+msgstr  "Chat with users and browse for servers."
+
+msgid "IDS_PROFILE_RETURNHELP"
+msgstr  "Go back to the Main Menu."
+
+msgid "IDS_VIDEO_SCREENSIZE"
+msgstr  "Screen size"
+
+msgid "IDS_VIDEO_GAMMA"
+msgstr  "Gamma"
+
+msgid "IDS_VIDEO_GLARE"
+msgstr  "Glare reduction"
+
+msgid "IDS_VIDEO_GAMMAHELP"
+msgstr  "Gamma: Adjusts %s's color balance to best suit your monitor. Move the slider until you can just make out the figure standing in shadow on the right side of the sample image."
+
+msgid "IDS_VIDEO_GLAREHELP"
+msgstr  "Glare Reduction: Adjusts darker colors to reduce the effect of glare on your monitor."
+
+msgid "IDS_VIDMODE_WINDOWED"
+msgstr  "Run in a window"
+
+msgid "IDS_VIDMODE_MOUSE"
+msgstr  "Use mouse"
+
+msgid "IDS_VIDMODE_GLLISTHEADER"
+msgstr  "OpenGL Driver"
+
+msgid "IDS_VIDMODE_D3DHEADER"
+msgstr  "D3D Device"
+
+msgid "IDS_VIDSELECT_OPTIONSHELP"
+msgstr  "Set video options such as screen size, gamma, and glare reduction."
+
+msgid "IDS_VIDSELECT_MODESHELP"
+msgstr  "Set video modes and configure 3D accelerators."
+
+msgid "IDS_VIDSELECT_RETURNHELP"
+msgstr  "Go back to the previous menu."
+
+msgid "IDS_SERVERS_REFRESH"
+msgstr  "Refreshing servers..."
+
+msgid "IDS_PROGRESS_START"
+msgstr  "Start"
+
+msgid "IDS_QUICK_CONTACT"
+msgstr  "Contacting servers..."
+
+msgid "IDS_QUICK_REQUESTLIST"
+msgstr  "Requesting list of servers..."
+
+msgid "IDS_README_NOFILE"
+msgstr  "Could not find readme.txt"
+
+msgid "IDS_STATUS_CONNECTING"
+msgstr  "Connecting to server '%s'"
+
+msgid "IDS_STATUS_CONNECTIONESTABLISHED"
+msgstr  "Connection established to %s, switching to game"
+
+msgid "IDS_STATUS_SKIPSERVER"
+msgstr  "Skipping..."
+
+msgid "IDS_STATUS_ELPASEDTIME"
+msgstr  "%sn%3.1f Seconds Elapsed"
+
+msgid "IDS_TRAINING_EXITCURRENT"
+msgstr  "Entering the Hazard Course will exit any current game, OK to exit?"
+
+msgid "IDS_MAIN_QUITPROMPTINGAME"
+msgstr "Quit %s without saving current game?"
+
+msgid "IDS_MAIN_QUITPROMPT"
+msgstr  "Are you sure you want to quit?"
+
+msgid "IDS_CONTROLS_CANCELPROMPT"
+msgstr  "Exit without saving changes?"
+
+msgid "IDS_LOAD_LOADPROMPT"
+msgstr  "Loading a game will exit any current game, OK to exit?"
+
+msgid "IDS_LOADSAVE_DELETEPROMPT"
+msgstr  "Delete selected game?"
+
+msgid "IDS_NEWGAME_NEWPROMPT"
+msgstr  "Starting a new game will exit any current game, OK to exit?"
+
+msgid "IDS_NICKNAME_ADD"
+msgstr  "Enter a name:"
+
+msgid "IDS_PROFILE_CANCELPROMPT"
+msgstr  "Save changes made to profile?"
+
+msgid "IDS_SAVE_INGAMEPROMPT"
+msgstr  "Can't save, you are not currently playing a game."
+
+msgid "IDS_SAVE_OVERWRITE"
+msgstr  "Are you sure you want to overwrite this saved game?"
+
+msgid "IDS_VIDEO_BADSETTINGS"
+msgstr  "Your video settings do not appear to be valid, use these settings anyway?"
+
+msgid "IDS_AUDIO_A3D"
+msgstr  "Enable A3D hardware support"
+
+msgid "IDS_BTN_DONE"
+msgstr  "Done"
+
+msgid "IDS_BTN_CONTROLS"
+msgstr  "Controls"
+
+msgid "IDS_BTN_AUDIO"
+msgstr  "Audio"
+
+msgid "IDS_BTN_VIDEO"
+msgstr  "Video"
+
+msgid "IDS_BTN_CANCEL"
+msgstr  "Cancel"
+
+msgid "IDS_BTN_CREATE"
+msgstr  "Create room"
+
+msgid "IDS_BTN_FILTER"
+msgstr  "Filter"
+
+msgid "IDS_BTN_FIND"
+msgstr  "Search"
+
+msgid "IDS_BTN_RETURN"
+msgstr  "Return"
+
+msgid "IDS_BTN_NEWGAME"
+msgstr  "New game"
+
+msgid "IDS_BTN_TRAINING"
+msgstr  "Hazard course"
+
+msgid "IDS_BTN_CONFIGURE"
+msgstr  "Configure"
+
+msgid "IDS_BTN_LOADSAVE"
+msgstr  "Save/load game"
+
+msgid "IDS_BTN_LOAD"
+msgstr  "Load game"
+
+msgid "IDS_BTN_MULTIPLAYER"
+msgstr  "Multiplayer"
+
+msgid "IDS_BTN_README"
+msgstr  "View readme"
+
+msgid "IDS_BTN_ORDER"
+msgstr  "Order"
+
+msgid "IDS_BTN_QUIT"
+msgstr  "Quit"
+
+msgid "IDS_BTN_ADVANCED"
+msgstr  "Advanced controls"
+
+msgid "IDS_BTN_REVERT"
+msgstr  "Cancel"
+
+msgid "IDS_BTN_RESTORE"
+msgstr  "Use defaults"
+
+msgid "IDS_BTN_DELETE"
+msgstr  "Delete"
+
+msgid "IDS_BTN_SAVE"
+msgstr  "Save game"
+
+msgid "IDS_BTN_LOGIN"
+msgstr  "Login"
+
+msgid "IDS_BTN_CONNECT"
+msgstr  "Connect"
+
+msgid "IDS_BTN_CREATESV"
+msgstr  "Create game"
+
+msgid "IDS_BTN_REFRESH"
+msgstr  "Refresh"
+
+msgid "IDS_BTN_ROOM"
+msgstr  "List rooms"
+
+msgid "IDS_BTN_EASY"
+msgstr  "Easy"
+
+msgid "IDS_BTN_MEDIUM"
+msgstr  "Medium"
+
+msgid "IDS_BTN_HARD"
+msgstr  "Difficult"
+
+msgid "IDS_BTN_YES"
+msgstr  "Yes"
+
+msgid "IDS_BTN_NO"
+msgstr  "No"
+
+msgid "IDS_BTN_OK"
+msgstr  "Ok"
+
+msgid "IDS_BTN_OPTIONS"
+msgstr  "Video options"
+
+msgid "IDS_BTN_MODES"
+msgstr  "Video modes"
+
+msgid "IDS_BTN_QUICK"
+msgstr  "Quick start"
+
+msgid "IDS_PROFILE_LOGO"
+msgstr  "Spraypaint Image"
+
+msgid "IDS_BTN_BROWSE"
+msgstr  "Internet games"
+
+msgid "IDS_MULTI_BROWSEHELP"
+msgstr "View a list of %s game servers and join the one of your choice."
+
+msgid "IDS_BTN_CHAT"
+msgstr  "Chat rooms"
+
+msgid "IDS_MULTI_CHATHELP"
+msgstr "Talk online with other %s players."
+
+msgid "IDS_BTN_LAN"
+msgstr  "Lan game"
+
+msgid "IDS_MULTI_LANHELP"
+msgstr "Set up a %s game on a local area network."
+
+msgid "IDS_BTN_CUSTOMIZE"
+msgstr  "Customize"
+
+msgid "IDS_MULTI_CUSTOMIZEHELP"
+msgstr  "Choose your player name, and select visual options for your character."
+
+msgid "IDS_CREATEROOM_ROOMPASSWORD"
+msgstr  "Room Password (optional)"
+
+msgid "IDS_PLAYERINFO_RULENAME"
+msgstr  "Server Rule"
+
+msgid "IDS_PLAYERINFO_RULEVALUE"
+msgstr  "Value"
+
+msgid "IDS_BTN_SEARCH"
+msgstr  "Search for Game"
+
+msgid "IDS_BTN_CHATMODE"
+msgstr  "Chat"
+
+msgid "IDS_BTN_LISTMODE"
+msgstr  "Internet games"
+
+msgid "IDS_BTN_EXIT"
+msgstr  "Exit"
+
+msgid "IDS_SERVER_MANUALADD"
+msgstr  "Add a server by manually by IP address..."
+
+msgid "IDS_SERVER_REQUESTNEWLIST"
+msgstr  "Request updated server list."
+
+msgid "IDS_PLAYERINFO_SERVERNAME"
+msgstr  "Server hostname:"
+
+msgid "IDS_PLAYERINFO_SERVERIP"
+msgstr  "Server IP address:"
+
+msgid "IDS_PLAYERINFO_SERVERPING"
+msgstr  "Server 'ping' time:"
+
+msgid "IDS_PROFILE_FACE"
+msgstr  "Player Face"
+
+msgid "IDS_PROFILE_SKIN"
+msgstr  "Player Skin"
+
+msgid "IDS_BTN_JOIN"
+msgstr  "Join Game"
+
+msgid "IDS_BTN_FINDGAME"
+msgstr  "Find Game"
+
+msgid "IDS_BTN_START"
+msgstr  "Start Game"
+
+msgid "IDS_PROFILE_LOGOCOLOR"
+msgstr  "Color"
+
+msgid "IDS_MULTI_RESUMEHELP"
+msgstr  "Return to your current muli-player game."
+
+msgid "IDS_MULTI_DISCONNECTHELP"
+msgstr  "Disconnect yourself from the game server."
+
+msgid "IDS_BTN_RESUME"
+msgstr  "Resume"
+
+msgid "IDS_BTN_DISCONNECT"
+msgstr  "Disconnect"
+
+msgid "IDS_BTN_ADDSERVER"
+msgstr  "Add server"
+
+msgid "IDS_BTN_UPDATE"
+msgstr  "Update"
+
+msgid "IDS_BTN_INFO"
+msgstr  "View game info"
+
+msgid "IDS_QUICKSTART_TITLE"
+msgstr  "Quick multiplayer"
+
+msgid "IDS_BTN_LISTROOMS"
+msgstr  "List rooms"
+
+msgid "IDS_BTN_GORE"
+msgstr  "Content control"
+
+msgid "IDS_BTN_AUTOPATCH"
+msgstr  "Update %s."
+
+msgid "IDS_CONFIGURE_GOREHELP"
+msgstr  "Disable visuals inappropriate for younger players and multiplayer."
+
+msgid "IDS_CONFIGURE_AUTOPATCHHELP"
+msgstr  "Download updates for %s."
+
+msgid "IDS_CHAT_NOSERVERS"
+msgstr  "Could not locate any Frag-Net servers."
+
+msgid "IDS_CHAT_NOPROFILE"
+msgstr  "Couldn't locate player profile"
+
+msgid "IDS_INIT_DX6REQUIRED"
+msgstr  "%s requires DirectX version 6 or above. Please install DirectX 6 and restart the game."
+
+msgid "IDS_FNET_VALIDATIONFAIL"
+msgstr  "Validation refused."
+
+msgid "IDS_FNET_VALIDATIONFAIL2"
+msgstr  "Validation refused."
+
+msgid "IDS_FNET_AUTHOUTOFORDER"
+msgstr  "Authentication out of order (1)."
+
+msgid "IDS_FNET_AUTHPROBLEM"
+msgstr  "Authentication problem (2)"
+
+msgid "IDS_FNET_ENCRYPTBAD"
+msgstr  "Error creating message (1)."
+
+msgid "IDS_FNET_BADPUBLICKEY"
+msgstr  "Invalid signal from authentication server (1)."
+
+msgid "IDS_FNET_AUTHNOMEM"
+msgstr  "Insufficient memory to receive authentication response."
+
+msgid "IDS_CD_NEEDCDKEY"
+msgstr  "You must type in a valid CD Key to play %s"
+
+msgid "IDS_CD_BADKEY"
+msgstr  "The CD Key you typed was invalid, please try again"
+
+msgid "IDS_CD_BADKEYTYPED"
+msgstr  "Your CD Key is invalid, please reenter the CD key"
+
+msgid "IDS_MD5_HASHFAIL"
+msgstr  "Could not validate %s"
+
+msgid "IDS_MAIN_REGISTERMSGFAIL"
+msgstr  "Couldn't register %s user message"
+
+msgid "IDS_CDCHECK_PROMPT"
+msgstr  "Please Insert the %s CD"
+
+msgid "IDS_SETTINGS_SERVERTYPEINVALID"
+msgstr  "Bogus list type in %s"
+
+msgid "IDS_TOKEN_EXPECTLEFTBRACE"
+msgstr  "Expecting { in %s"
+
+msgid "IDS_TOKEN_EXPECTRIGHTBRACE"
+msgstr  "Expecting } in %s"
+
+msgid "IDS_MULTI_ADDIPUNRESOLVABLE"
+msgstr  "That IP address could not be resolved."
+
+msgid "IDS_CHATCTRL_NOMEM"
+msgstr  "Couldn't allocate space for user name"
+
+msgid "IDS_CHATCTRL_NOTEXTMEM"
+msgstr  "Couldn't allocate space for chat text"
+
+msgid "IDS_CHATCTRL_WINREGFAIL"
+msgstr  "Couldn't register chat edit control"
+
+msgid "IDS_PROFILE_DEFAULTMISSING"
+msgstr  "Could not find default keybinding file %s"
+
+msgid "IDS_QUICK_NOMASTER"
+msgstr  "Unable to retrieve server list, check that your internet connection is active"
+
+msgid "IDS_QUICK_USINGPREVIOUSLIST"
+msgstr  "Unable to reach master, using previous list..."
+
+msgid "IDS_CHAT_NOROOMLIST"
+msgstr  "Could not obtain room list"
+
+msgid "IDS_SAVELOAD_NUMBEROFGAMESCHANGED"
+msgstr  "Number of saved games changed?"
+
+msgid "IDS_MAIN_EXITMULTIPLAYERPROMPT"
+msgstr  "Entering the multiplayer system will terminate your current single player game, OK to exit without saving?"
+
+msgid "IDS_CD_ENTERPROMPT"
+msgstr  "Please type in the CD Key displayed on the %s CD case"
+
+msgid "IDS_MULTISELECT_EXITGAMEPROMPT"
+msgstr  "Exiting the multiplayer system will terminate your current multiplayer game, OK to exit?"
+
+msgid "IDS_MULTI_ADDSERVERPROMPT"
+msgstr  "Enter server Internet address (e.g., 209.255.10.255:27015)"
+
+msgid "IDS_ROOM_NEEDPASS"
+msgstr  "Enter room password:"
+
+msgid "IDS_SAVE_CANTSAVE"
+msgstr  "Can't save, you are not currently playing a game."
+
+msgid "IDS_SAVE_OVERWRITEPROMPT"
+msgstr  "Are you sure you want to overwrite this saved game?"
+
+msgid "IDS_SAVE_DELETEPROMPT"
+msgstr  "Delete selected game?"
+
+msgid "IDS_AUTH_INUSE"
+msgstr  "Account in use"
+
+msgid "IDS_AUTH_BADACCOUNT"
+msgstr  "Invalid account"
+
+msgid "IDS_AUTH_BADREQ"
+msgstr  "Invalid server request"
+
+msgid "IDS_AUTH_BADCERTIFICATE"
+msgstr  "Invalid client certificate"
+
+msgid "IDS_AUTH_BADEXE"
+msgstr  "Invalid client value"
+
+msgid "IDS_AUTH_BADCERTIFICATE2"
+msgstr  "Invalid client certificate"
+
+msgid "IDS_AUTH_BADLOOKUP"
+msgstr  "Invalid client lookup value"
+
+msgid "IDS_AUTH_BADBITS"
+msgstr  "Invalid client authentication value"
+
+msgid "IDS_AUTH_CORRUPT"
+msgstr  "Corrupt executable"
+
+msgid "IDS_AUTH_INVALIDACCOUNT"
+msgstr  "Unknown account error"
+
+msgid "IDS_CHAT_STATUSUNCONNECTED"
+msgstr  "Unconnected."
+
+msgid "IDS_CHAT_FNETCONNECT"
+msgstr  "Attempting connection..."
+
+msgid "IDS_CHAT_USERENTER"
+msgstr  "%s entered..."
+
+msgid "IDS_CHAT_USERLEFT"
+msgstr  "%s left..."
+
+msgid "IDS_ENG_STARTING"
+msgstr  "Starting engine..."
+
+msgid "IDS_SERVERS_SEARCHING"
+msgstr  "Searching for servers..."
+
+msgid "IDS_SERVERS_LISTREC"
+msgstr  "Got Server List..."
+
+msgid "IDS_SERVERS_CONNECTING"
+msgstr  "Connecting to servers..."
+
+msgid "IDS_SERVERS_REQUESTINFO"
+msgstr  "Requesting server information"
+
+msgid "IDS_ROOM_CREATENOTICE"
+msgstr  "Creating room '%s', please wait"
+
+msgid "IDS_ROOM_CREATEPROMPTTITLE"
+msgstr  "Creating room"
+
+msgid "IDS_SAVE_TIMEHEADING"
+msgstr  "Time"
+
+msgid "IDS_SAVE_GAMEHEADING"
+msgstr  "Game"
+
+msgid "IDS_SAVE_ELAPSEDHEADING"
+msgstr  "Elapsed Time"
+
+msgid "IDS_SAVE_NEWCAPTION"
+msgstr  "New Saved Game"
+
+msgid "IDS_SAVE_NEWGAMETXT"
+msgstr  "New"
+
+msgid "IDS_SAVE_FILETIME"
+msgstr  "Current"
+
+msgid "IDS_STATUS_CONNECTINGNOTIME"
+msgstr  "Connecting to server '%s'...nn%s"
+
+msgid "IDS_MULTI_CHATROOMCAPTION"
+msgstr  "Room:"
+
+msgid "IDS_GORE_CHECKBOX"
+msgstr  "Activate content control"
+
+msgid "IDS_GORE_HELP"
+msgstr  "Check this box and enter password to disable visuals inappropriate for younger players and multiplayer. Anyone wishing to change this setting will need to use this password."
+
+msgid "IDS_GORE_PWPROMPT1"
+msgstr  "Enter password:"
+
+msgid "IDS_GORE_PWPROMPT2"
+msgstr  "Enter again to confirm:"
+
+msgid "IDS_GORE_PWMISMATCHED"
+msgstr  "The passwords you entered did not match, please try again."
+
+msgid "IDS_GORE_BADPW"
+msgstr  "Incorrect password"
+
+msgid "IDS_BTN_ADVANCEDSVR"
+msgstr  "Advanced options"
+
+msgid "IDS_OPTS_AUTOAIM"
+msgstr  "Autoaim"
+
+msgid "IDS_OPTS_AUTOAIMHELP"
+msgstr  "Allow %s to help you aim at enemies."
+
+msgid "IDS_BTN_PREVIEWS"
+msgstr  "Previews"
+
+msgid "IDS_MAIN_PREVIEWSHELP"
+msgstr  "Discover new stuff on Frag-Net."
+
+msgid "IDS_SECONDS_LEFT"
+msgstr  "%i seconds left..."
+
+msgid "IDS_MEDIA_PREVIEWURL"
+msgstr  "http://www.frag-net.com/"
+
+msgid "IDS_ADVANCEDSVR_PAGE"
+msgstr  "Page %i of %i"
+
+msgid "IDS_EMPTY"
+msgstr  ""
+
+msgid "IDS_MULTI_TYPE"
+msgstr  "Internet Connection Speed"
+
+msgid "IDS_MULTI_LAN"
+msgstr  "LAN - T1 > 1M"
+
+msgid "IDS_MULTI_ISDN"
+msgstr  "ISDN - 112K"
+
+msgid "IDS_MODEM56K"
+msgstr  "Modem - 56K"
+
+msgid "IDS_MODEM28K"
+msgstr  "Modem - 28.8K"
+
+msgid "IDS_OPTS_HIMODELS"
+msgstr  "High quality models (for fast computers)"
+
+msgid "IDS_OPTS_HIMODELSHELP"
+msgstr  ""
+
+msgid "IDS_CHAT_SOCKETERROR"
+msgstr  "Chat connection problem, retrying connection..."
+
+msgid "IDS_CHAT_RECONNECTFAIL"
+msgstr  "Reconnection to chat failed, please verify that you are connected to the internet and try again."
+
+msgid "IDS_CHAT_RECONNECTSUCCESS"
+msgstr  "Reconnected..."
+
+msgid "IDS_CHAT_JOINFAILED"
+msgstr  "Could not join room '%s'. Click 'List rooms' to select a different room."
+
+msgid "IDS_BTN_FNET"
+msgstr  "Visit FRAG-NET.COM"
+
+msgid "IDS_FNET_URL"
+msgstr  "www.frag-net.com"
+
+msgid "IDS_AUDIO_CDHINT"
+msgstr  "FLAC and other lossless formats are handled via FFMPEG."
+
+msgid "IDS_PREVIOUS"
+msgstr  "Previous"
+
+msgid "IDS_NEXT"
+msgstr  "Next"
+
+msgid "IDS_MODEM33K"
+msgstr  "Modem - 33.6K"
+
+msgid "IDS_MODEM14K"
+msgstr  "Modem - 14.4K"
+
+msgid "IDS_ROOM_PERMANENT"
+msgstr  "Permanent rooms"
+
+msgid "IDS_ROOM_USER"
+msgstr  "User-created rooms"
+
+msgid "IDS_MULTI_DONEHELP"
+msgstr  "Go back to the Main Menu."
+
+msgid "IDS_MULTI_FNETHELP"
+msgstr  "Go to the Frag-Net."
+
+msgid "IDS_AUDIO_EAX"
+msgstr  "Enable EAX hardware support"
+
+msgid "IDS_GL_NOMODE"
+msgstr  "The selected OpenGL mode is not supported by your video card."
+
+msgid "IDS_D3D_NOMODE"
+msgstr  "The selected D3D mode is not supported by your video card."
+
+msgid "IDS_VID_NOMODE"
+msgstr  "The selected video mode is not available."
+
+msgid "IDS_VID_RESELECT"
+msgstr  "Please select a different video mode."
+
+msgid "IDS_VID_INITFAIL"
+msgstr  "The video subsystem could not be initialized."
+
+msgid "IDS_NET_FNETCONNFAIL"
+msgstr  "Could not connect to the Frag-Net server. Please check your internet connection."
+
+msgid "IDS_NET_CORRUPT"
+msgstr  "Your %s executable is out of date. %s will now update to the current version."
+
+msgid "IDS_CDKEY_BAD"
+msgstr  "Your %s CD Key is invalid."
+
+msgid "IDS_MULTI_REFRESH"
+msgstr  "Requesting server information"
+
+msgid "IDS_CHAT_NOROOM"
+msgstr  "Not connected"
+
+msgid "IDS_RUN_PATCH"
+msgstr  "Check the Internet for updates?"
+
+msgid "IDS_FNET_AUTHFAILURE"
+msgstr  "Unable to authenticate with Frag-Net servers."
+
+msgid "IDS_FNET_LOGIN"
+msgstr  "Logging on to Frag-Net"
+
+msgid "IDS_LOGO_SIZEMISMATCH"
+msgstr  "Custom logos must have the same width and height."
+
+msgid "IDS_LOGO_OVERSIZED"
+msgstr  "Custom logos can be no larger than 64 x 64 pixels."
+
+msgid "IDS_LOGO_POWEROF2"
+msgstr  "Custom logo width and height must be 2, 4, 8, 16, 32, ro 64."
+
+msgid "IDS_MODEM_CUSTOM"
+msgstr  "Custom"
+
+msgid "IDS_MODEM_RATE"
+msgstr  "Enter data transfer rate (100 - 9999)"
+
+msgid "IDS_REGISTRY_UPDATE"
+msgstr  "Updating registry settings for %s. You will need to reconfigure your settings."
+
+msgid "IDS_CHAT_JOIN"
+msgstr  "Trying to join %s"
+
+msgid "IDS_CHAT_FLOOD"
+msgstr  "Too much text, please wait."
+
+msgid "IDS_CHAT_SEARCH"
+msgstr  "Searching for user %s..."
+
+msgid "IDS_CHAT_NOINFO"
+msgstr  "Directory server did not return any user information."
+
+msgid "IDS_CHAT_NOFIND"
+msgstr  "Couldn't find user %s"
+
+msgid "IDS_CHAT_FIND"
+msgstr  "Found %s in %s"
+
+msgid "IDS_CHAT_NOAUTH"
+msgstr  "Could not obtain authentication information"
+
+msgid "IDS_CHAT_NODIR"
+msgstr  "Server did not return any directory information."
+
+msgid "IDS_CHAT_NOSUCHROOM"
+msgstr  "Could not find room %s"
+
+msgid "IDS_CHAT_ROOMFULL"
+msgstr  "Can't join %s..., room has too many users (%i), try again later"
+
+msgid "IDS_CREATESV_NOADVANCED"
+msgstr  "No advanced options available"
+
+msgid "IDS_FNET_CDINUSE"
+msgstr  "Your %s CD Key is currently in use. Please try again later."
+
+msgid "IDS_CHAT_JOINHINT"
+msgstr  "Type /join [roomname] to join another chat room."
+
+msgid "IDS_FNET_BANNED"
+msgstr  "Your CD key cannot be used on the Frag-Net system."
+
+msgid "IDS_CONTENT_NOMULTIPLAYER"
+msgstr  "Content control configuration - on"
+
+msgid "IDS_PATCH_ERROR"
+msgstr  "%s AutoPatch Error"
+
+msgid "IDS_PATCH_NOUTIL"
+msgstr  "Utilites are not properly installed. Please reinstall from the CD."
+
+msgid "IDS_PATCH_FAIL"
+msgstr  "Could Not Run the AutoPatch Program"
+
+msgid "IDS_PATCH_BADINSTALL"
+msgstr  "%s is not properly Installed"
+
+msgid "IDS_CONNECT_FAILURE"
+msgstr  "Could not connect to game server\nReason: %s"
+
+msgid "IDS_MULTI_NEEDPASSWORD"
+msgstr  "Password required, please enter a password to try connecting again."
+
+msgid "IDS_VID_HINT"
+msgstr  "640 x 480 is recommended as the most reliable OpenGL mode. Other modes are hardware dependent and may not be available on your card. If you have a 3D card that incorporates the Voodoo, Voodoo 2, or Banshee chipsets, select the 3DFX Mini Driver as your OpenGL Driver."
+
+msgid "IDS_MULTI_LOGODISCONNECT"
+msgstr  "Changing your logo will terminate your current multiplayer game, OK to exit?"
+
+msgid "IDS_3D_WARNING"
+msgstr  "For 3D support, %s requires the current versions of device drivers on your system. The 3D Info link will help you ensure you have the correct drivers."
+
+msgid "IDS_3DSITE_URL"
+msgstr  ""
+
+msgid "IDS_FNET_MODIFIED"
+msgstr  "Your %s executable has been modified. Please check your system for viruses and then re-install %s."
+
+msgid "IDS_ADVANCEDMP_OFFSETS"
+msgstr  "0"
+
+msgid "IDS_AUDIO_OFFSET"
+msgstr  "0 0 0 0"
+
+msgid "IDS_CONFIGURE_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_CREATEROOM_OFFSET"
+msgstr  "0"
+
+msgid "IDS_CREATESERVER_OFFSET"
+msgstr  "0"
+
+msgid "IDS_GAMEOPTIONS_OFFSET"
+msgstr  "0 0 0 0"
+
+msgid "IDS_MAIN_OFFSET"
+msgstr  "0"
+
+msgid "IDS_KEYBOARD_OFFSET"
+msgstr  "0"
+
+msgid "IDS_LAN_OFFSET"
+msgstr  "110 50 75 80 70"
+
+msgid "IDS_LOAD_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_NETGAMEDLG_OFFSET"
+msgstr  "0 0 0"
+
+msgid "IDS_NEWGAMEDLG_OFFSET"
+msgstr  "0"
+
+msgid "IDS_PLAYERINFODLG_OFFSET"
+msgstr  "0"
+
+msgid "IDS_PLAYERPROFILEDLG_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_PROMPT_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_ROOM_OFFSET"
+msgstr  "0"
+
+msgid "IDS_VIDEODLG_OFFSET"
+msgstr  "0"
+
+msgid "IDS_VIDEOMODEDLG_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_VIDSELECTDLG_OFFSET"
+msgstr  "0 0"
+
+msgid "IDS_UPDATERREGISTRYINSTALLDIR"
+msgstr  "NUCLIDE"
+
+msgid "IDS_SPANISH"
+msgstr  "0"
+
+msgid "IDS_FRENCH"
+msgstr  "0"
+
+msgid "IDS_OPTS_JLOOKHELP"
+msgstr  "Use the joystick to look around instead of using the joystick to move."
+
+msgid "IDS_OPTS_JLOOK"
+msgstr  "Joystick look"
+
+msgid "IDS_GERMAN"
+msgstr  "0"
+
+msgid "IDS_CONNECT_PROTOCOLBAD"
+msgstr  "You cannot connect to a server which is operating under a different protocol version."
+
+msgid "IDS_SERVER_MENU_QUICK"
+msgstr  "Sort list using best server estimate"
+
+msgid "IDS_DECAL_LIMIT"
+msgstr  "Maximum number of decals in multiplayer."
+
+msgid "IDS_SPRITE_SKIP"
+msgstr  "Draw faster software sprites"
+
+msgid "IDS_MODEL_NAME"
+msgstr  "Player Model: %s"
+
+msgid "IDS_FILTER_BYGAME"
+msgstr  "are running game "
+
+msgid "IDS_BTN_SETINFO"
+msgstr  "Advanced options"
+
+msgid "IDS_MODLIST_TYPE"
+msgstr  "Type"
+
+msgid "IDS_MODLIST_NAME"
+msgstr  "Name"
+
+msgid "IDS_MODLIST_VERSION"
+msgstr  "Version"
+
+msgid "IDS_MODLIST_SIZE"
+msgstr  "Size"
+
+msgid "IDS_MODLIST_RATING"
+msgstr  "Rating"
+
+msgid "IDS_MODLIST_INSTALLED"
+msgstr  "Installed"
+
+msgid "IDS_MODLIST_SERVERS"
+msgstr  "Servers"
+
+msgid "IDS_MODLIST_PLAYERS"
+msgstr  "Players"
+
+msgid "IDS_MOD_DOWNLOADING"
+msgstr  "Downloading '%s'"
+
+msgid "IDS_MOD_DLSIZEMB"
+msgstr  "Total download size for game %s\n%.2fmb"
+
+msgid "IDS_MOD_DLSIZEKB"
+msgstr  "Total download size for game %s\n%.0fkb"
+
+msgid "IDS_MOD_DLSTATUS"
+msgstr  "Downloading %s from\n%s\nFile: %s\n%.0f%%"
+
+msgid "IDS_MOD_TIME"
+msgstr  "%.1f seconds"
+
+msgid "IDS_MOD_CONNECT"
+msgstr  "Connecting to %s"
+
+msgid "IDS_MOD_GETTINGSIZE"
+msgstr  "Getting download size"
+
+msgid "IDS_MOD_DLSTATUSSHORT"
+msgstr  "Downloading %s from\n%s"
+
+msgid "IDS_MOD_NOFILES"
+msgstr  "Nothing to download"
+
+msgid "IDS_MOD_NOLIBLIST"
+msgstr  "Could not find liblist.gam file on remote host\nDouble check that %s is a valid custom game site"
+
+msgid "IDS_INTERNET_CURRENTTOTALS"
+msgstr  "%i servers (%i players online)"
+
+msgid "IDS_SERVER_REFRESH"
+msgstr  "Refresh selected server"
+
+msgid "IDS_CONNECT_NEEDMOD"
+msgstr  "You cannot connect to a server running custom game %s until you install the custom game"
+
+msgid "IDS_MOD_REMOTEOPENFAIL"
+msgstr  "Could not open %s on remote machine"
+
+msgid "IDS_MOD_LOCALOPENFAIL"
+msgstr  "Could not open %s on local machine"
+
+msgid "IDS_BTN_CUSTOMGAME"
+msgstr  "Custom game"
+
+msgid "IDS_MAIN_CUSTOMHELP"
+msgstr  "Select a custom game, search the Internet for custom games"
+
+msgid "IDS_BTN_ACTIVATE"
+msgstr  "Activate"
+
+msgid "IDS_BTN_INSTALL"
+msgstr  "Install"
+
+msgid "IDS_BTN_DETAILS"
+msgstr  "Details"
+
+msgid "IDS_BTN_VISIT"
+msgstr  "Visit web site"
+
+msgid "IDS_BTN_REFRESHMODS"
+msgstr  "Refresh list"
+
+msgid "IDS_BTN_DEACTIVATE"
+msgstr  "Deactivate"
+
+msgid "IDS_MOD_INFO"
+msgstr  "Info:"
+
+msgid "IDS_YES"
+msgstr  "Yes"
+
+msgid "IDS_NO"
+msgstr  "No"
+
+msgid "IDS_UPDATE"
+msgstr  "Update"
+
+msgid "IDS_MODREQ_TITLE"
+msgstr  "Requesting custom game info"
+
+msgid "IDS_DOWNLOAD_WARNING"
+msgstr  "You are about to download a custom game. Downloading a custom game for %s has the same issues and risks as downloading any program from the Internet. They could contain viruses, have bugs that will crash your system causing you to lose unsaved work, or could perform operations that might harm your computer.\mYou can disable this warning by checking the \"Don't show this warning again\" checkbox at the bottom of this form."
+
+msgid "IDS_WARN_CHECKPROMPT"
+msgstr  "Don't show this warning again"
+
+msgid "IDS_MOD_VERSION"
+msgstr  "Custom game '%s' has a new version available, are you sure you want to select it before installing the updated version?"
+
+msgid "IDS_MOD_REINSTALL"
+msgstr  "Custom game %s is already installed, are you sure you want to re-install?"
+
+msgid "IDS_WARN_TITLE"
+msgstr  "Custom game download"
+
+msgid "IDS_MOD_ENGINEVERSION"
+msgstr  "Custom game '%s' was created for a different version of %s than the current version you have installed. Are you sure you want to select it before installing the updated version?"
+
+msgid "IDS_MOD_CONNVERSION"
+msgstr  "You cannot connect to a server running version %i of custom game '%s' until you upgrade to that version. Your current version is %i"
+
+msgid "IDS_CONNVERSION"
+msgstr  "You are attempting to connect to a server running game '%s' for %s version %s. Your current version of %s is %s. Continue anyway?"
+
+msgid "IDS_MOD_NOTINSTALLED"
+msgstr  "Can't activate custom game '%s', you must install the custom game first."
+
+msgid "IDS_REFRESH_SERVERS"
+msgstr  "%i servers remaining"
+
+msgid "IDS_DEDICATED"
+msgstr  "Dedicated server (faster, but you can't join the server from this machine)."
+
+msgid "IDS_MOD_MODVERSION"
+msgstr  "You are attempting to connect to a server running version %i of the game '%s', but you only have version %i installed. Continue anyway?"
+
+msgid "IDS_CONN_FULL"
+msgstr  "Can't connect to %s, server is full."
+
+msgid "IDS_MOD_UNZIP"
+msgstr  "Do you want to uncompress the files for game '%s'?"
+
+msgid "IDS_FAVSVRS_CORRUPT"
+msgstr  "The server data file favsvrs.dat appears to be corrupt.\n\nYou can request a new list of servers by pressing the Update button.\n\nDo you want to remove the corrupt file (you will have to re-enter your 'favorites' if you remove the file)?"
+
+msgid "UPDATE_DISABLED"
+msgstr "Disabled"
+
+msgid "UPDATE_ENABLED"
+msgstr "Enabled"
+
+msgid "UPDATE_CORRUPT"
+msgstr "Corrupt"
+
+msgid "UPDATE_NOTINSTALLED"
+msgstr "Not installed"
+
+msgid "UPDATE_PENDING_INSTALL"
+msgstr "Install (pending)"
+
+msgid "UPDATE_PENDING_REINSTALL"
+msgstr "Reinstall (pending)"
+
+msgid "UPDATE_PENDING_UNINSTALL"
+msgstr "Uninstall (pending)"
+
+msgid "UPDATE_PENDING_AUTOINSTALL"
+msgstr "Auto-install (pending)"
+
+msgid "UPDATE_PENDING_DISABLE"
+msgstr "Disable (pending)"
+
+msgid "UPDATE_PENDING_RETAIN"
+msgstr "Retain (pending)"
+
+msgid "PING_ICE"
+msgstr "Unavailable (ICE)"
+
+msgid "PING_ICE_S"
+msgstr "ICE"
+
+msgid "PING_IN_MS"
+msgstr "%d ms."

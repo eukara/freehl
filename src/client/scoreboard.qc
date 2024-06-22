@@ -29,7 +29,7 @@ Scores_Init(void)
 }
 
 void
-Scores_DrawTeam(player pl, vector pos)
+Scores_DrawTeam(NSClientPlayer pl, vector pos)
 {
 	drawfill(pos, [290, 1], SCORE_LINE_C, 1.0f, DRAWFLAG_ADDITIVE);
 
@@ -135,7 +135,7 @@ Scores_DrawTeam(player pl, vector pos)
 }
 
 void
-Scores_DrawNormal(player pl, vector pos)
+Scores_DrawNormal(NSClientPlayer pl, vector pos)
 {
 	drawfill(pos, [290, 1], SCORE_LINE_C, 1.0f, DRAWFLAG_ADDITIVE);
 
@@ -192,9 +192,9 @@ void
 Scores_Draw(void)
 {
 	vector pos;
-	player pl;
+	NSClientPlayer pl;
 
-	pl = (player)pSeat->m_ePlayer;
+	pl = (NSClientPlayer)pSeat->m_ePlayer;
 
 	if (autocvar_cl_centerscores) {
 		int c = 10;

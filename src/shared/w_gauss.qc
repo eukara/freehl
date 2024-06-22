@@ -182,7 +182,7 @@ void w_gauss_primary(player pl)
 
 	pl.ammo_uranium -= 2;
 
-	if (pl.flags & FL_CROUCHING)
+	if (pl.IsCrouching())
 		Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 	else
 		Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
@@ -224,7 +224,7 @@ void w_gauss_release(player pl)
 	} else if (pl.mode_tempstate == GAUSSTATE_FULL) {
 		Weapons_ViewAnimation(pl, GAUSS_FIRE1);
 
-		if (pl.flags & FL_CROUCHING)
+		if (pl.IsCrouching())
 			Animation_PlayerTop(pl, ANIM_CR_SHOOTGAUSS, 0.43f);
 		else
 			Animation_PlayerTop(pl, ANIM_SHOOTGAUSS, 0.43f);
@@ -382,7 +382,7 @@ void w_gauss_crosshair(player pl)
 
 float w_gauss_aimanim(player pl)
 {
-	return pl.flags & FL_CROUCHING ? ANIM_CR_AIMGAUSS : ANIM_AIMGAUSS;
+	return pl.IsCrouching() ? ANIM_CR_AIMGAUSS : ANIM_AIMGAUSS;
 }
 
 void w_gauss_hudpic(player pl, int selected, vector pos, float a)

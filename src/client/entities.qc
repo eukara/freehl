@@ -19,7 +19,17 @@ ClientGame_EntityUpdate(float id, float new)
 {
 	switch (id) {
 	case ENT_TRIPMINE:
-		w_tripmine_parse();
+		NSENTITY_READENTITY(HLTripmine, new)
+		break;
+	case ENT_WEAPON:
+		NSENTITY_READENTITY(HLWeapon, new)
+		break;
+	case ENT_PLAYER:
+#ifndef GEARBOX
+		NSENTITY_READENTITY(HLPlayer, new)
+#else
+		NSENTITY_READENTITY(OP4Player, new)
+#endif
 		break;
 	default:
 		return (0);

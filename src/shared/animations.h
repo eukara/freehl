@@ -90,6 +90,3 @@ enum
 	ANIM_CR_AIMBOW,
 	ANIM_CR_SHOOTBOW
 };
-
-void Animation_PlayerTop(player, float, float);
-void Animation_PlayerBottom(player, float, float);

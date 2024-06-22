@@ -1,0 +1,6 @@
+entityDef ammo_9mmclip
+{
+	"inherit"		"ammo_base"
+	"model"			"models/w_9mmclip.mdl"
+	"inv_ammo_9mm"	"17"
+}

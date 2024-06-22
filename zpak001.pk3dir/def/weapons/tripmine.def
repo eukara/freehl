@@ -6,12 +6,28 @@ entityDef weapon_tripmine
 	"editor_usage"		"Tripmine"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/v_tripmine.mdl"
+	"model_view"		"models/v_tripmine.mdl"
 	"body0"				"2"
 	"body1"				"2"
 	"frame"				"8"
-	"inv_item"			"$WEAPON_TRIPMINE"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+	"def_plant"			"monster_tripmine"
+
+	"inv_ammo_tripmine"	"1"
+	"ammoType"			"ammo_tripmine"
+	"ammoRequired"		"1"
+	"actIdle"		"0,1,4"
+	"actFire"		"2,3"
+	"actDraw"		"6"
+	"actHolster"	"5"
+	"removeOnEmpty" "1"
+
+	// HLWeapon specific
+	"hudSlot"		"4"
+	"hudSlotPos"	"2"
+	"weight"		"-10"
+	"crosshair"		"none"
 }

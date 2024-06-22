@@ -17,6 +17,7 @@
 void
 Obituary_Init(void)
 {
+#if 0
 	int c;
 	int i;
 	filestream fh;
@@ -74,6 +75,7 @@ Obituary_Init(void)
 	}
 
 	fclose(fh);
+#endif
 }
 
 void
@@ -86,6 +88,7 @@ Obituary_Precache(void)
 void
 Obituary_KillIcon(int id, float w)
 {
+#if 0
 	if (w > 0)
 	for (int i = 0; i < g_obtype_count; i++) {
 		if (g_weapons[w].name == g_obtypes[i].name) {
@@ -101,11 +104,13 @@ Obituary_KillIcon(int id, float w)
 			return;
 		}
 	}
+#endif
 }
 
 void
 Obituary_Add(string attacker, string victim, float weapon, float flags)
 {
+#if 0
 	int i;
 	int x, y;
 	x = OBITUARY_LINES;
@@ -143,6 +148,7 @@ Obituary_Add(string attacker, string victim, float weapon, float flags)
 			print("\n");
 		}
 	}
+#endif
 }
 
 void

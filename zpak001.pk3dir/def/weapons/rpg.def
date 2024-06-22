@@ -6,11 +6,35 @@ entityDef weapon_rpg
 	"editor_usage"		"Rocket Launcher"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_rpg.mdl"
-	"inv_item"			"$WEAPON_RPG"
+	"model_view"		"models/v_rpg.mdl"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	"def_fireInfo"		"fireInfo_rpg"
+	"def_altFireInfo"	"fireInfo_rpg_homing"
+	"ammoType"			"ammo_rocket"
+	"clipSize"			"1"
+	"ammoRequired" 		"1"
+	"ammoPerShot" 		"1"
+	"inv_ammo_rocket"	"1"
+	"fireRate"			"2.5"
+
+	"actIdle"			"0,1"
+	"actIdleEmpty"		"8,9"
+	"actHolster"		"4"
+	"actHolsterEmpty"	"6"
+	"actDraw"		"5"
+	"actDrawEmpty"	"7"
+	"actFire"		"3"
+	"actReload"		"2"
+
+	// HLWeapon specific
+	"hudSlot"		"3"
+	"hudSlotPos"	"0"
+	"weight"		"20"
+	"altLaser"		"1"
 }
 
 entityDef projectile_rocket
@@ -66,4 +90,14 @@ entityDef damage_rocketSplash
 {
 	"damage"	"skill:plr_rpg"
 	"radius"	"250"
+}
+
+entityDef fireInfo_rpg
+{
+	"def_onFire"	"projectile_rocket"
+}
+
+entityDef fireInfo_rpg_homing
+{
+	"def_onFire"	"projectile_rocket_homing"
 }

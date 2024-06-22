@@ -6,10 +6,36 @@ entityDef weapon_snark
 	"editor_usage"		"Snark"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"NSItem"
+	"spawnclass"		"HLWeapon"
 	"model"				"models/w_sqknest.mdl"
+	"model_view"		"models/v_squeak.mdl"
 	"frame"				"1"
-	"inv_item"			"$WEAPON_SNARK"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
+
+	"inv_name"				"Snark"
+	"inv_weapon"			"weapon_snark"
+	"inv_ammo_snark"	"5"
+	"def_onFire"		"projectile_snark"
+	"ammoType"				"ammo_snark"
+	"ammoRequired"			"1"
+	"silent_fire"			"1"
+	"primed_fuse"			"4"
+
+	"actIdle"		"0,1,2"
+	"actDraw"		"4"
+	"actHolster"	"3"
+	"actThrow"		"5"
+	"removeOnEmpty" "1"
+
+	// HLWeapon specific
+	"hudSlot"		"4"
+	"hudSlotPos"	"3"
+	"weight"		"5"
+	"crosshair"		"none"
+}
+
+entityDef projectile_snark
+{
+	"spawnclass"		"monster_snark"
 }

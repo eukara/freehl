@@ -1,0 +1,9 @@
+#define ACHIEVEMENT_01 1
+
+achievement achievement01
+{
+	"name"	"Test Achievement"
+	"description"	"This is a test achievement."
+	"id"	"ACHIEVEMENT_01"
+	"mtr_icon"	"missing"
+}

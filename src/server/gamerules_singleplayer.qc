@@ -50,7 +50,7 @@ HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
 	corpse.movetype = MOVETYPE_TOSS;
 	corpse.solid = SOLID_TRIGGER;
 	corpse.modelindex = pl.modelindex;
-	corpse.frame = ANIM_DIESIMPLE;
+	//corpse.frame = ANIM_DIESIMPLE;
 	corpse.angles = pl.angles;
 	corpse.velocity = pl.velocity;
 }
@@ -85,31 +85,32 @@ HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 	pl.ClearVelocity();
 	pl.SetInfoKey("*spec", "0");
 	pl.SetInfoKey("*deaths", ftos(pl.deaths));
-	pl.SetCanBleed(true);
+	pl.EnableBleeding();
 
 	if (startspot != "") {
 		LevelDecodeParms(pl);
 		pl.SetOrigin(Landmark_GetSpot());
+		pl.Physics_Run();
 	} else {
 		entity spawnPoint;
 		LevelNewParms();
 		spawnPoint = find(world, ::classname, "info_player_start");
 		pl.Transport(spawnPoint.origin, spawnPoint.angles);
+		pl.Physics_Run();
 	}
 
-	Weapons_RefreshAmmo(pl);
 	Client_FixAngle(pl, pl.angles);
 } 
 
 bool
-HLSingleplayerRules::ImpulseCommand(NSClient bp, float num)
+HLSingleplayerRules::ImpulseCommand(NSClient pl, float num)
 {
 	switch (num) {
 	case 101:
-		player pl = (player)bp;
 		pl.SetHealth(100);
 		pl.SetMaxHealth(100);
 		pl.SetArmor(100);
+#if 0
 		pl.g_items |= ITEM_SUIT;
 		Weapons_AddItem(pl, WEAPON_CROWBAR, -1);
 		Weapons_AddItem(pl, WEAPON_GLOCK, -1);
@@ -138,9 +139,10 @@ HLSingleplayerRules::ImpulseCommand(NSClient bp, float num)
 		Weapons_AddItem(pl, WEAPON_SPORELAUNCHER, -1);
 		Weapons_AddItem(pl, WEAPON_SHOCKRIFLE, -1);
 #endif
+#endif
 		break;
 	default:
-		return super::ImpulseCommand(bp, num);
+		return super::ImpulseCommand(pl, num);
 	}
 
 	return true;

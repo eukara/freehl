@@ -25,6 +25,7 @@ weapon_crossbow.fire
 	alerts
 	sample weapons/xbow_fire1.wav
 }
+
 weapon_crossbow.empty
 {
 	sample weapons/357_cock1.wav
@@ -243,4 +244,15 @@ weapon_egon.empty
 {
 	sample weapons/357_cock1.wav
 }
+
+weapon_egon.fire
+{
+	sample weapons/egon_windup2.wav
+}
+
+weapon_egon.fire_loop
+{
+	sample weapons/egon_run3.wav
+}
+
 

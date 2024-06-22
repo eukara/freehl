@@ -76,8 +76,9 @@ HUD_ItemNotify_Insert(int type, int count)
 
 /* called whenever we should check for pickup updates */
 void
-HUD_ItemNotify_Check(player pl)
+HUD_ItemNotify_Check(NSClientPlayer pl)
 {
+#if 0
 	int healthdiff = (int)bound(0, pl.health - pSeatLocal->m_iHealthOld, 100);
 	int armordiff = (int)bound(0, pl.armor - pSeatLocal->m_iArmorOld, 100);
 	bool ljDiff = ((pl.g_items & ITEM_LONGJUMP) > (pSeatLocal->m_iItemsOld & ITEM_LONGJUMP)) ? true : false;
@@ -107,4 +108,5 @@ HUD_ItemNotify_Check(player pl)
 	}
 
 	pSeatLocal->m_iItemsOld = pl.g_items;
+#endif
 }

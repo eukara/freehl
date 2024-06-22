@@ -1,4 +1,4 @@
-CC=fteqcc
+QCC=fteqcc
 
 all:
-	$(CC) progs.src
+	$(QCC) progs.src
