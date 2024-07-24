@@ -17,6 +17,7 @@
 void HUD_DrawWeaponSelect_Back(void);
 void HUD_DrawWeaponSelect_Forward(void);
 void HUD_DrawWeaponSelect_Last(void);
+void HUD_SlotSelect(int);
 
 int
 ClientGame_ConsoleCommand(void)
