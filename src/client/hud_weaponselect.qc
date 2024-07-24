@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2016-2024 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,80 +14,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-.NSWeapon m_nextWeapon;
-.NSWeapon m_prevWeapon;
-
 void View_ForceChange(NSClientPlayer pl, int targetWeapon);
 
-NSWeapon
-HLWeapon_SortWeaponChain(NSClientPlayer targetPlayer)
-{
-	NSWeapon itemChain = targetPlayer.m_itemList;
-	int heighestSlot = -1i;
-	int heighestPos = -1i;
-	NSWeapon firstWeapon, lastWeapon;
-
-	firstWeapon = lastWeapon = __NULL__;
-
-	if (!targetPlayer.m_itemList) {
-		return __NULL__;
-	}
-
-	/* first we determine the range of our hud buckets. */
-	while (itemChain) {
-		if (itemChain.IsWeapon() == true) {
-			int hudSlot = itemChain.GetDefInt("hudSlot");
-			int hudPos = itemChain.GetDefInt("hudSlotPos");
-
-			if (hudSlot > heighestSlot) {
-				heighestSlot = hudSlot;
-			}
-			if (hudPos > heighestPos) {
-				heighestPos = hudPos;
-			}
-		}
-
-		itemChain = itemChain.chain;
-	}
-
-	for (int hS = 0i; hS <= heighestSlot; hS++) {
-		for (int hP = 0i; hP <= heighestPos; hP++) {
-			itemChain = targetPlayer.m_itemList;
-
-			while (itemChain) {
-				if (itemChain.IsWeapon() == true) {
-					int hudSlot = itemChain.GetDefInt("hudSlot");
-					int hudPos = itemChain.GetDefInt("hudSlotPos");
-
-					if (hudSlot == hS && hudPos == hP) {
-						/* first weapon in the chain? */
-						if (!lastWeapon) {
-							firstWeapon = itemChain;
-							lastWeapon = firstWeapon;
-						} else {
-							/* assign this weapon to the last weapon of our chain. */
-							lastWeapon.m_nextWeapon = itemChain;
-							itemChain.m_prevWeapon = lastWeapon;
-							lastWeapon = itemChain;
-						}
-					}
-				}
-
-				itemChain = itemChain.chain;
-			}
-		}
-	}
-
-	/* test */
-	NSWeapon weaponTest = firstWeapon;
-	while (weaponTest) {
-		weaponTest = weaponTest.m_nextWeapon;
-	}
-
-	firstWeapon.m_prevWeapon = lastWeapon;
-
-	return (firstWeapon);
-}
 
 vector g_vecHUDNums[6] =
 {
@@ -98,15 +26,6 @@ vector g_vecHUDNums[6] =
 	[188 / 256, 92 / 128],
 	[208 / 256, 92 / 128]
 };
-
-bool
-HUD_DrawWeaponSelect_CanSwitch(NSClientPlayer pl)
-{
-	if (!pl.m_activeWeapon)
-		return false;
-
-	return true;
-}
 
 void
 HUD_SelectWeapon(NSWeapon nextWeapon)
@@ -123,39 +42,11 @@ HUD_SelectWeapon(NSWeapon nextWeapon)
 void
 HUD_DrawWeaponSelect_Forward(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
-	NSWeapon firstWeapon;
-
-	if (HUD_DrawWeaponSelect_CanSwitch(pl) = false) {
-		return;
-	}
-
-	firstWeapon = HLWeapon_SortWeaponChain(pl);
-
-	if (pl.m_activeWeapon.m_nextWeapon) {
-		HUD_SelectWeapon(pl.m_activeWeapon.m_nextWeapon);
-	} else {
-		HUD_SelectWeapon(firstWeapon);
-	}
 }
 
 void
 HUD_DrawWeaponSelect_Back(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
-	NSWeapon firstWeapon;
-
-	if (HUD_DrawWeaponSelect_CanSwitch(pl) = false) {
-		return;
-	}
-
-	firstWeapon = HLWeapon_SortWeaponChain(pl);
-
-	if (pl.m_activeWeapon.m_prevWeapon) {
-		HUD_SelectWeapon(pl.m_activeWeapon.m_prevWeapon);
-	} else {
-		HUD_SelectWeapon(firstWeapon);
-	}
 }
 
 void

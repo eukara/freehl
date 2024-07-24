@@ -1,5 +1,4 @@
 #pragma target fte_5768
-//#pragma flag enable assumeint
 #pragma progs_dat  "../../zpak001.pk3dir/csprogs.dat"
 
 #define CSQC
@@ -10,35 +9,30 @@
 #includelist
 ../../../src/shared/fteextensions.qc
 ../../../src/shared/defs.h
-defs.h
+../../../valve/src/client/defs.h
 ../../../src/client/defs.h
-
 ../../../src/vgui/include.src
-
 ../../../src/gs-entbase/client.src
 ../../../src/gs-entbase/shared.src
 ../shared/include.src
-
-draw.qc
-
-damage.qc
-init.qc
+../../../valve/src/client/draw.qc
+../../../valve/src/client/damage.qc
+../../../valve/src/client/init.qc
 ../../../valve/src/client/flashlight.qc
-entities.qc
-cmds.qc
-game_event.qc
+../../../valve/src/client/entities.qc
+../../../valve/src/client/cmds.qc
+../../../valve/src/client/game_event.qc
 ../../../valve/src/client/camera.qc
 ../../../valve/src/client/viewmodel.qc
-obituary.qc
-hud_sprite.qc
-hud_itemnotify.qc
-hud_dmgnotify.qc
-hud_ammonotify.qc
-hud.qc
-hud_weaponselect.qc
-scoreboard.qc
-
+../../../valve/src/client/obituary.qc
+../../../valve/src/client/hud_sprite.qc
+../../../valve/src/client/hud_itemnotify.qc
+../../../valve/src/client/hud_dmgnotify.qc
+../../../valve/src/client/hud_ammonotify.qc
+../../../valve/src/client/hud.qc
+../../../valve/src/client/hud_weaponselect.qc
+../../../valve/src/client/scoreboard.qc
 ../../../src/client/include.src
-vgui_motd.qc
+../../../valve/src/client/vgui_motd.qc
 ../../../src/shared/include.src
 #endlist

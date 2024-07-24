@@ -1,6 +1,6 @@
 entityDef monster_scientist
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"HLScientist"
 	"model"		"models/scientist.mdl"
 	"netname"		"Scientist"
 	"health"		"skill:scientist_health"

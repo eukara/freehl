@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2024 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,22 +14,51 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-typedef struct
+class
+HLScientist:NSTalkMonster
 {
-	string m_strImage;
-	vector m_vecSize;
-	vector m_vecCanvasSize;
-	vector m_vecCanvasPos;
-} hlsprite_t;
+	void HLScientist(void);
 
-void HLSprite_Init(void);
+	virtual void Respawn(void);
+};
 
-void HLSprite_Draw_RGBA(string spriteName, vector spritePos, vector spriteColor, float spriteAlpha, bool isAdditive);
+void
+HLScientist::HLScientist(void)
+{
 
-void HLSprite_Draw(string spriteName, vector spritePos, bool isAdditive);
+}
 
-void HLSprite_Draw_A(string spriteName, vector spritePos, float spriteAlpha, bool isAdditive);
+void
+HLScientist::Respawn(void)
+{
+	int bodyValue = GetSpawnInt("body");
+	super::Respawn();
 
-void HLSprite_Draw_RGB(string spriteName, vector spritePos, vector spriteColor, bool isAdditive);
+	if (bodyValue == -1i) {
+		SetBody((int)floor(random(1,5)));
+		SetSkin(0);
 
-void HLSprite_DrawCrosshair(string spriteName);
+		switch (bodyValue) {
+		case 1i:
+			m_flPitch = 105;
+			netname = "Walter";
+			SetBodyInGroup(1, 1);
+			break;
+		case 2i:
+			m_flPitch = 100;
+			netname = "Einstein";
+			SetBodyInGroup(1, 2);
+			break;
+		case 3i:
+			m_flPitch = 95;
+			netname = "Luther";
+			SetBodyInGroup(1, 3);
+			SetSkin(1);
+			break;
+		default:
+			m_flPitch = 100;
+			netname = "Slick";
+			SetBodyInGroup(1, 4);
+		}
+	}
+}

@@ -59,6 +59,7 @@
 /* uncompressed textures */
 #define IMAGEFMT_BMP /* sprays */
 #define IMAGEFMT_TGA
+#define IMAGEFMT_JPG
 
 /* compressed textures */
 #define IMAGEFMT_KTX
@@ -193,7 +194,6 @@
 #undef IMAGEFMT_XCF
 #undef IMAGEFMT_LMP
 #undef IMAGEFMT_PNG
-#undef IMAGEFMT_JPG
 #undef IMAGEFMT_GIF
 #undef IMAGEFMT_EXR
 #undef IPLOG

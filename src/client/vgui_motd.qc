@@ -61,5 +61,5 @@ VGUI_ShowMOTD(void)
 	}
 
 	winMotd.Show();
-	winMotd.SetPos((video_res / 2) - (winMotd.GetSize() / 2));
+	winMotd.SetPos((g_vidsize / 2) - (winMotd.GetSize() / 2));
 }

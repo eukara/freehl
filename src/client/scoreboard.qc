@@ -207,9 +207,9 @@ Scores_Draw(void)
 		}
 
 		c += (serverkeyfloat("teams") * 10);
-		pos = video_mins + [(video_res[0] / 2) - 145, (video_res[1] / 2) - c];
+		pos = video_mins + [(g_vidsize[0] / 2) - 145, (g_vidsize[1] / 2) - c];
 	} else {
-		pos = video_mins + [(video_res[0] / 2) - 145, 30];
+		pos = video_mins + [(g_vidsize[0] / 2) - 145, 30];
 	}
 
 	if (Util_IsTeamplay()) {

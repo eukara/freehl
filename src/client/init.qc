@@ -26,7 +26,10 @@ ClientGame_Init(float apilevel, string enginename, float engineversion)
 {
 	Obituary_Init();
 	registercommand("chooseteam");
-	registercommand("hudSort");
+
+	registercommand("lastinv");
+	registercommand("invnext");
+	registercommand("invprev");
 }
 
 void VGUI_ShowMOTD();
