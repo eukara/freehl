@@ -81,12 +81,14 @@ HUD_SlotSelect(int slot)
 	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
 	int curslot = g_weapons[pSeat->m_iHUDWeaponSelected].slot;
 	int i;
+#endif
 
 	if (g_textmenu != "") {
 		Textmenu_Input(slot);
 		return;
 	}
 
+#if 0
 	/* hack to see if we have ANY weapons at all. */
 	if (!pl.activeweapon) {
 		return;
