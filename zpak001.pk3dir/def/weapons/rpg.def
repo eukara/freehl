@@ -95,9 +95,11 @@ entityDef damage_rocketSplash
 entityDef fireInfo_rpg
 {
 	"def_onFire"	"projectile_rocket"
+	"punchAngle"	"-10 0 0"
 }
 
 entityDef fireInfo_rpg_homing
 {
 	"def_onFire"	"projectile_rocket_homing"
+	"punchAngle"	"-10 0 0"
 }

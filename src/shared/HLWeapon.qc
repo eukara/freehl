@@ -50,6 +50,7 @@ HLWeapon:NSWeapon
 	int m_iHudSlotPos;
 
 	string m_ammoIcon;
+	string m_ammo2Icon;
 	string m_crossHair;
 	NSWeapon m_nextWeapon;
 	virtual void UpdateGUI(void);
@@ -129,6 +130,12 @@ HLWeapon::AddedToInventory(void)
 		m_ammoIcon = sprintf("%s.ammo", strtolower(classname));
 	}
 
+	m_ammo2Icon = GetDefString("ammoIcon");
+
+	if (m_ammo2Icon == "") {
+		m_ammo2Icon = sprintf("%s.ammo2", strtolower(classname));
+	}
+
 	m_crossHair = GetDefString("crosshair");
 
 	if (m_crossHair == "") {
@@ -137,6 +144,10 @@ HLWeapon::AddedToInventory(void)
 
 	if (m_ammoIcon == "none") {
 		m_ammoIcon = __NULL__;
+	}
+
+	if (m_ammo2Icon == "none") {
+		m_ammo2Icon = __NULL__;
 	}
 
 	if (m_crossHair == "none") {
@@ -185,6 +196,12 @@ HLWeapon::UpdateGUI(void)
 	if (m_secondaryAmmoType && m_primaryAmmoType != m_secondaryAmmoType) {
 		ourOwner.a_ammo3 = ourOwner.GetReserveAmmo(m_secondaryAmmoType);
 		HUD_DrawAmmo3();
+
+		/* draw ammo icon */
+		if (m_ammo2Icon) {
+			vector ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 74];
+			HLSprite_Draw_RGBA(m_ammo2Icon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
+		}
 	}
 }
 
