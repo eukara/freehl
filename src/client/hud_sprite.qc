@@ -112,7 +112,7 @@ HLSprite_Init(void)
 	g_hlSpriteCount = 0i;
 	spriteCount = HLSprite_CountEntriesInFile("sprites/hud.txt");
 
-	sh = search_begin("sprites/weapon_*.txt", TRUE, TRUE);
+	sh = search_begin("sprites/*weapon_*.txt", TRUE, TRUE);
 
 	for (int i = 0; i < search_getsize(sh); i++) {
 		hudFile = search_getfilename(sh, i);
