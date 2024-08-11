@@ -43,7 +43,7 @@ entityDef projectile_9mmAR
 
 entityDef fireInfo_9mmAR
 {
-	"def_onFire"	"projectile_9mmAR"
+	"def_onFire"		"projectile_9mmAR"
 	"ammoType"			"ammo_9mm"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"

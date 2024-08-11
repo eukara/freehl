@@ -5,10 +5,12 @@ weapon_357.shoot
 	sample weapons/357_shot2.wav
 	distshader weapon_357.shoot_dist
 }
+
 weapon_357.empty
 {
 	sample weapons/357_cock1.wav
 }
+
 weapon_357.shoot_dist
 {
 	volume 0.1
@@ -72,6 +74,7 @@ weapon_glock.fire
 	alerts
 	sample weapons/pl_gun3.wav
 }
+
 weapon_glock.empty
 {
 	sample weapons/357_cock1.wav
@@ -133,6 +136,7 @@ weapon_mp5.gl
 	alerts
 	sample weapons/glauncher.wav
 }
+
 weapon_mp5.empty
 {
 	sample weapons/357_cock1.wav
@@ -167,6 +171,7 @@ weapon_rpg.shoot
 	alerts
 	sample weapons/rocketfire1.wav
 }
+
 weapon_rpg.empty
 {
 	sample weapons/357_cock1.wav
@@ -185,10 +190,12 @@ weapon_shotgun.double
 	sample weapons/dbarrel1.wav
 	distshader weapon_shotgun.distance
 }
+
 weapon_shotgun.empty
 {
 	sample weapons/357_cock1.wav
 }
+
 weapon_shotgun.distance
 {
 	volume 0.15
@@ -228,18 +235,27 @@ weapon_snark.hunt
 	sample squeek/sqk_hunt2.wav
 	sample squeek/sqk_hunt3.wav
 }
+
 weapon_gauss.empty
 {
 	sample weapons/357_cock1.wav
 }
+
 weapon_gauss.fire
 {
 	sample weapons/gauss2.wav
 }
+
 weapon_gauss.overcharge
 {
 	sample weapons/electro4.wav
 }
+
+weapon_gauss.revving
+{
+	sample ambience/pulsemachine.wav
+}
+
 weapon_egon.empty
 {
 	sample weapons/357_cock1.wav
@@ -255,4 +271,7 @@ weapon_egon.fire_loop
 	sample weapons/egon_run3.wav
 }
 
-
+weapon_egon.fire_stop
+{
+	sample weapons/egon_off1.wav
+}

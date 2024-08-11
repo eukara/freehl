@@ -21,7 +21,6 @@ entityDef weapon_gauss
 	"actIdle"			"0,1,2"
 	"actDraw"			"8"
 	"actHolster"		"7"
-	"actLoop"			"4"
 	"powerAmmo"			"1"
 	"snd_fire"			"weapon_gauss.fire"
 
@@ -45,7 +44,7 @@ entityDef projectile_gausscharge
 
 entityDef fireInfo_gauss
 {
-	"def_onFire"	"projectile_gauss"
+	"def_onFire"		"projectile_gauss"
 	"ammoPerShot" 		"2"
 	"fireRate" 			".2"
 	"punchAngle"		"-2 0 0"
@@ -55,12 +54,18 @@ entityDef fireInfo_gauss
 
 entityDef fireInfo_gausscharge
 {
+	"def_onFire"		"projectile_gausscharge"
 	"def_onRelease"		"projectile_gausscharge"
 	"ammoPerShot" 		"5"
 	"fireRate" 			"2"
 	"punchAngle"		"-2 0 0"
 	"model_flash"		"sprites/muzzleflash2.spr"
-	"primed_fuse"		"5"
+	"snd_fireStart"		"weapon_gauss.revving"
+	"snd_fire"			"weapon_gauss.overcharge"
+	"snd_release"		"weapon_gauss.fire"
+	"chargeTime"		"5"
 	"actRelease"		"5,6"
-	"actFire"			"3"
+	"actDelay"			"3"
+	"actLoop"			"4"
+	"knockbackRelease"	"1024"
 }

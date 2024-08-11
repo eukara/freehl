@@ -34,34 +34,44 @@ For example, `ammoIcon` being set to `weapon_foobar.ammo` will look up `ammo` in
 class
 HLWeapon:NSWeapon
 {
+public:
 	void HLWeapon(void);
 
-	bool m_bAltModeSwitch;
 	virtual void AddedToInventory(void);
-	virtual void PrimaryAttack(void);
-	virtual void SecondaryAttack(void);
 
 #ifdef SERVER
 	virtual void SpawnKey(string, string);
 #endif
 
 #ifdef CLIENT
+	virtual void UpdateGUI(void);
+	nonvirtual void DrawLaser(void);
+#endif
+
+private:
+#ifdef CLIENT
 	int m_iHudSlot;
 	int m_iHudSlotPos;
-
 	string m_ammoIcon;
 	string m_ammo2Icon;
 	string m_crossHair;
 	NSWeapon m_nextWeapon;
-	virtual void UpdateGUI(void);
-	nonvirtual void DrawLaser(void);
 #endif
+	bool m_bAltModeLaser;
 };
 
 void
 HLWeapon::HLWeapon(void)
 {
-
+#ifdef CLIENT
+	m_iHudSlot = 0i;
+	m_iHudSlotPos = 0i;
+	m_ammoIcon = __NULL__;
+	m_ammo2Icon = __NULL__;
+	m_crossHair = __NULL__;
+	m_nextWeapon = __NULL__;
+#endif
+	m_bAltModeLaser = false;
 }
 
 #ifdef SERVER
@@ -69,54 +79,11 @@ void
 HLWeapon::SpawnKey(string keyName, string setValue)
 {
 	switch (keyName) {
-	case "altLaser":
-	case "ammoIcon":
-	case "crosshair":
-	case "hudSlot":
-	case "hudSlotPos":
-		break;
 	default:
 		super::SpawnKey(keyName, setValue);
 	}
 }
 #endif
-
-void
-HLWeapon::PrimaryAttack(void)
-{
-	if (m_bAltModeSwitch == true) {
-		if (CanFire() == false) {
-			return;
-		}
-
-		//m_iMode = 1 - m_iMode;
-	}
-
-	if (m_iMode) {
-		super::SecondaryAttack();
-		return;
-	}
-
-	super::PrimaryAttack();
-}
-
-void
-HLWeapon::SecondaryAttack(void)
-{
-	if (m_bAltModeSwitch == true) {
-		if (CanFire() == false) {
-			return;
-		}
-
-		m_iMode = 1 - m_iMode;
-		SetAttackNext(1.0);
-		SetIdleNext(1.0f);
-		return;
-	}
-
-	super::SecondaryAttack();
-}
-
 
 void
 HLWeapon::AddedToInventory(void)
@@ -158,7 +125,7 @@ HLWeapon::AddedToInventory(void)
 	m_iHudSlotPos = GetDefInt("hudSlotPos");
 #endif
 
-	m_bAltModeSwitch = GetDefBool("altLaser");
+	m_bAltModeLaser = GetDefBool("altLaser");
 }
 
 #ifdef CLIENT
@@ -176,9 +143,36 @@ HLWeapon::UpdateGUI(void)
 		HLSprite_Draw_RGBA(m_ammoIcon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 	}
 
-	if (m_iMode) {
+	if (m_iMode && m_bAltModeLaser) {
 		DrawLaser();
 	}
+
+#if 1
+	vector vSize = [540,16];
+	vector vMainPos;
+	float progress;
+
+	progress = (m_flOverheating / m_fiOverheatLength);
+
+	if (progress > 1.0) {
+		progress = 1.0f;
+	}
+
+	if (m_fiOverheatLength && progress > 0) {
+		vMainPos = g_hudmins;
+		vMainPos[0] += (g_hudres[0] / 2) - (vSize[0] / 2);
+		vMainPos[1] += (g_hudres[1] / 2) - (vSize[1] / 2);
+
+		vector vBar = vSize;
+		vBar[0] = 538 * progress;
+		vBar[1] = 14;
+		drawfill(vMainPos + [1,1], vBar, g_hud_color, 1.0, DRAWFLAG_ADDITIVE);
+		drawfill(vMainPos, [vSize[0], 1], g_hud_color, 1.0f); // Top
+		drawfill([vMainPos[0], vMainPos[1] + vSize[1]], [vSize[0], 1], g_hud_color, 1.0f); // Bottom
+		drawfill(vMainPos, [1, vSize[1]], g_hud_color, 1.0f); // Left
+		drawfill([vMainPos[0] + vSize[0], vMainPos[1]], [1, vSize[1] + 1], g_hud_color, 1.0f); // Right
+	}
+#endif
 
 	if (m_bAmmoRequired == false)
 		return;

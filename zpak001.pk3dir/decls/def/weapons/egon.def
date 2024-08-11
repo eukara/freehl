@@ -19,13 +19,14 @@ entityDef weapon_egon
 	"ammoRequired"		"1"
 	"actIdle"			"0,1"
 	"actDraw"			"9"
-	"actFire"			"7,8"
-	"actFireLoop"		"7,8"
+	"actLoop"			"7,8"
+	"actFireEnd"		"1"
 	"actHolster"		"10"
 	"fireRate"			"0.2"
 
-	"snd_fire"			"weapon_egon.fire"
-	"snd_fire_loop"		"weapon_egon.fire_loop"
+	"snd_fireStart"		"weapon_egon.fire"
+	"snd_fireLoop"		"weapon_egon.fire_loop"
+	"snd_fireEnd"		"weapon_egon.fire_stop"
 	"fx_trail"			"weapon_egon.trail"
 	"fx_trail_world"	"weapon_egon.trail_world"
 

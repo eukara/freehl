@@ -488,8 +488,9 @@ HUD_Draw(void)
 #endif
 
 	/* little point in not drawing these, even if you don't have a suit */
-	if (pl.m_activeWeapon)
+	if (pl.m_activeWeapon) {
 		pl.m_activeWeapon.UpdateGUI();
+	}
 
 	HUD_DrawDamageIndicator();
 	HUD_DrawWeaponSelect();
