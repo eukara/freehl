@@ -1,7 +1,7 @@
 func_plat.move_0
 {
 	follow
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_plat.move_1
 {
@@ -71,7 +71,7 @@ func_plat.move_13
 
 func_plat.stop_0
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_plat.stop_1
 {

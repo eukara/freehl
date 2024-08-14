@@ -493,7 +493,7 @@ HUD_Draw(void)
 	}
 
 	HUD_DrawDamageIndicator();
-	HUD_DrawWeaponSelect();
+	pSeatLocal->weaponSelectionHUD.Draw();
 	Obituary_Draw();
 	Textmenu_Draw();
 
@@ -509,6 +509,7 @@ HUD_Draw(void)
 	HUD_DrawFlashlight();
 	HUD_DrawNotify();
 	Damage_Draw();
+
 }
 
 /* specatator main entry */

@@ -4,6 +4,8 @@
 !!samps diffuse reflectcube normalmap
 
 !!permu FAKESHADOWS
+!!permu BUMP
+!!permu REFLECTCUBEMASK
 !!cvardf r_glsl_pcf
 !!samps =FAKESHADOWS shadowmap
 

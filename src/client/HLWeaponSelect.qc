@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2024 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,50 +14,170 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-class
-HLWeaponSelect
-{
-	void HLWeaponSelect(void);
-
-	virtual void Draw(void);
-	virtual void SelectSlot(bool);
-	virtual void SelectNext(bool);
-	virtual void SelectPrevious(bool);
-	virtual void SelectBest(bool);
-};
+void NSWeapon_SelectWeapon(NSWeapon nextWeapon);
 
 void
 HLWeaponSelect::HLWeaponSelect(void)
 {
+	m_selectedWeapon = __NULL__;
+	m_flHUDWeaponSelectTime = 0.0f;
+}
 
+bool
+HLWeaponSelect::Active(void)
+{
+	return (m_flHUDWeaponSelectTime > time) ? (true) : (false);
+}
+
+void
+HLWeaponSelect::Trigger(void)
+{
+	NSWeapon_SelectWeapon(m_selectedWeapon);
+	Deactivate();
+}
+
+void
+HLWeaponSelect::Deactivate(void)
+{
+	m_selectedWeapon = __NULL__;
+	m_flHUDWeaponSelectTime = 0.0f;
 }
 
 void
 HLWeaponSelect::Draw(void)
 {
+	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
 
+	if (!pl.m_activeWeapon) {
+		return;
+	}
+
+	if (m_flHUDWeaponSelectTime < time) {
+		m_selectedWeapon = __NULL__;
+		return;
+	}
+
+	vector vecPos = g_hudmins + [16,16];
+	float lastSlot = -1;
+	float currentSlot;
+	HLWeapon linkedList = __NULL__;
+
+	/* since we have something in the inventory, start there */
+	linkedList = m_firstWeapon;
+
+	/* iterate through the inventory*/
+	while (linkedList) {
+		/* only iterate over weapons */
+		if (linkedList.IsWeapon() == true) {
+			currentSlot = linkedList. m_iHudSlot;
+
+			/* new slot started, reset Y axis */
+			if (lastSlot != currentSlot) {
+				/* new slot, new offset */
+				if (lastSlot == m_iWantSlot) {
+					vecPos[0] += 175;
+				} else {
+					vecPos[0] += 25;
+				}
+
+				/* quick hack to re-adjust */
+				if (lastSlot == -1) {
+					vecPos[0] = g_hudmins[0] + 16;
+				}
+
+				/* slot number icon at the top */
+				vecPos[1] = g_hudmins[1] + 16;
+				DrawSlotNum(vecPos, currentSlot + 1);
+				vecPos[1] += 20;
+			}
+
+			lastSlot = currentSlot;
+
+			/* selected slot VS unselected slot */
+			if (m_iWantSlot == currentSlot) {
+				if (linkedList == m_selectedWeapon) {
+					HLSprite_Draw_RGB(linkedList.m_iconSel, vecPos, g_hud_color, true);
+					HLSprite_Draw_RGB("selection", vecPos, g_hud_color, true);
+				} else {
+					HLSprite_Draw_RGB(linkedList.m_icon, vecPos, g_hud_color, true);
+				}
+				vecPos[1] += 50;
+			} else {
+				DrawSlotNum(vecPos, 0);
+				vecPos[1] += 25;
+			}
+		}
+
+		linkedList = (HLWeapon)linkedList.GetNextWeapon();
+	}
+}
+
+static string g_HLWeaponSelectBuckets[] =
+{
+	"bucket0",
+	"bucket1",
+	"bucket2",
+	"bucket3",
+	"bucket4",
+	"bucket5",
+	"bucket6",
+	"bucket7",
+	"bucket8",
+};
+
+void
+HLWeaponSelect::DrawSlotNum(vector vecPos, float fValue)
+{
+	HLSprite_Draw_RGB(g_HLWeaponSelectBuckets[fValue], vecPos, g_hud_color, true);
 }
 
 void
-HLWeaponSelect::SelectSlot(bool fastSwitch)
+HLWeaponSelect::SelectSlot(int wantedSlot, bool fastSwitch)
 {
-
 }
 
 void
 HLWeaponSelect::SelectNext(bool fastSwitch)
 {
+	NSClient ourPlayer = (NSClient)pSeat->m_ePlayer;
 
+	m_firstWeapon = (HLWeapon)ourPlayer.SortWeaponChain();
+
+	if (!m_selectedWeapon) {
+		m_selectedWeapon = (HLWeapon)ourPlayer.m_activeWeapon.GetNextWeapon();
+	} else {
+		m_selectedWeapon = (HLWeapon)m_selectedWeapon.GetNextWeapon();
+	}
+
+	/* wrap around */
+	if (!m_selectedWeapon) {
+		m_selectedWeapon = m_firstWeapon;
+	}
+
+	m_flHUDWeaponSelectTime = time + 3;
+	m_iWantSlot = m_selectedWeapon.m_iHudSlot;
+	m_iWantSlotPos = m_selectedWeapon.m_iHudSlotPos;
 }
 
 void
 HLWeaponSelect::SelectPrevious(bool fastSwitch)
 {
+	NSClient ourPlayer = (NSClient)pSeat->m_ePlayer;
 
-}
+	m_firstWeapon = (HLWeapon)ourPlayer.SortWeaponChain();
 
-void
-HLWeaponSelect::SelectBest(bool fastSwitch)
-{
+	if (!m_selectedWeapon) {
+		m_selectedWeapon = (HLWeapon)ourPlayer.m_activeWeapon.GetPreviousWeapon();
+	} else {
+		m_selectedWeapon = (HLWeapon)m_selectedWeapon.GetPreviousWeapon();
+	}
 
+	/* wrap around */
+	if (!m_selectedWeapon) {
+		m_selectedWeapon = m_firstWeapon;
+	}
+
+	m_flHUDWeaponSelectTime = time + 3;
+	m_iWantSlot = m_selectedWeapon.m_iHudSlot;
+	m_iWantSlotPos = m_selectedWeapon.m_iHudSlotPos;
 }

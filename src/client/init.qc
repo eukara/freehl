@@ -30,6 +30,8 @@ ClientGame_Init(float apilevel, string enginename, float engineversion)
 	registercommand("lastinv");
 	registercommand("invnext");
 	registercommand("invprev");
+
+	pSeatLocal->weaponSelectionHUD = spawn(HLWeaponSelect);
 }
 
 void VGUI_ShowMOTD();

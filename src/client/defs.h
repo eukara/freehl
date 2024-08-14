@@ -14,9 +14,11 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "../shared/defs.h"
 #include "obituary.h"
 #include "particles.h"
 #include "hud_sprite.h"
+#include "HLWeaponSelect.h"
 
 var int autocvar_cl_autoweaponswitch = TRUE;
 
@@ -60,6 +62,8 @@ struct
 
 	float m_flDamageIndicator;
 	float m_flTitleAlpha;
+
+	HLWeaponSelect weaponSelectionHUD;
 } g_seatslocal[4], *pSeatLocal;
 
 void HUD_DrawAmmo1(void);

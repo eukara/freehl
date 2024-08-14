@@ -44,6 +44,7 @@ class HLPlayer:NSClientPlayer
 	virtual void PredictPreFrame(void);
 	virtual void PredictPostFrame(void);
 	virtual void UpdateAliveCam(void);
+	virtual void ClientInputFrame(void);
 #else
 	virtual void EvaluateEntity(void);
 	virtual float SendEntity(entity, float);
@@ -78,6 +79,22 @@ HLPlayer::UpdatePlayerAnimation(float timelength)
 }
 
 #ifdef CLIENT
+void
+HLPlayer::ClientInputFrame(void)
+{
+	if (pSeatLocal->weaponSelectionHUD.Active()) {
+		if (input_buttons & INPUT_PRIMARY) {
+			pSeatLocal->weaponSelectionHUD.Trigger();
+		} else if (input_buttons & INPUT_SECONDARY) {
+			pSeatLocal->weaponSelectionHUD.Deactivate();
+		}
+
+		pSeat->m_flInputBlockTime = time + 0.2;
+	}
+
+	super::ClientInputFrame();
+}
+
 void Camera_RunPosBob(vector angles, __inout vector camera_pos);
 void Camera_StrafeRoll(__inout vector camera_angle);
 void Shake_Update(NSClientPlayer);

@@ -9,8 +9,8 @@
 #includelist
 ../../../src/shared/fteextensions.qc
 ../../../src/shared/defs.h
-../../../valve/src/client/defs.h
 ../../../src/client/defs.h
+../../../valve/src/client/defs.h
 ../../../src/vgui/include.src
 ../../../src/gs-entbase/client.src
 ../../../src/gs-entbase/shared.src
@@ -30,6 +30,7 @@
 ../../../valve/src/client/hud_dmgnotify.qc
 ../../../valve/src/client/hud_ammonotify.qc
 ../../../valve/src/client/hud.qc
+../../../valve/src/client/HLWeaponSelect.qc
 ../../../valve/src/client/hud_weaponselect.qc
 ../../../valve/src/client/scoreboard.qc
 ../../../src/client/include.src

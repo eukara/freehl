@@ -1,6 +1,6 @@
 func_door_rotating.move_0
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_door_rotating.move_1
 {
@@ -45,7 +45,7 @@ func_door_rotating.move_10
 
 func_door_rotating.stop_0
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_door_rotating.stop_1
 {

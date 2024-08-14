@@ -14,52 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/*! \brief Half-Life weapon base class. */
-/*!QUAKED HLWeapon (0 0.8 0.8) (-16 -16 0) (16 16 72) 
-# OVERVIEW
-Half-Life specific weapon based on NSWeapon.
-
-# NEW KEYS
-- "ammoIcon" - Which sprites/ image to use. See notes.
-- "crosshair" - Which sprites/ image to use as a crosshair. See notes.
-- "hudSlot" - In which weapon selection slot this weapon belongs to.
-- "hudSlotPos" - The position of the weapon in the respective weapon selection slot.
-
-# NOTES
-Both `ammoIcon` and `crosshair` refer to sprite declarations inside the sprites/ directory. FreeHL scans the `sprites/hud.txt` file and and weapon specific files.
-Since the weapon specific files only contain short names like `ammo` and `crosshair` you have to refer to them with a prefix separated by a `.` period symbol.
-
-For example, `ammoIcon` being set to `weapon_foobar.ammo` will look up `ammo` inside `sprites/weapon_foobar.txt`.
-*/
-class
-HLWeapon:NSWeapon
-{
-public:
-	void HLWeapon(void);
-
-	virtual void AddedToInventory(void);
-
-#ifdef SERVER
-	virtual void SpawnKey(string, string);
-#endif
-
-#ifdef CLIENT
-	virtual void UpdateGUI(void);
-	nonvirtual void DrawLaser(void);
-#endif
-
-private:
-#ifdef CLIENT
-	int m_iHudSlot;
-	int m_iHudSlotPos;
-	string m_ammoIcon;
-	string m_ammo2Icon;
-	string m_crossHair;
-	NSWeapon m_nextWeapon;
-#endif
-	bool m_bAltModeLaser;
-};
-
 void
 HLWeapon::HLWeapon(void)
 {
@@ -109,6 +63,18 @@ HLWeapon::AddedToInventory(void)
 		m_crossHair = sprintf("%s.crosshair", strtolower(classname));
 	}
 
+	m_icon = GetDefString("icon");
+
+	if (m_icon == "") {
+		m_icon = sprintf("%s.weapon", strtolower(classname));
+	}
+
+	m_iconSel = GetDefString("iconSelected");
+
+	if (m_iconSel == "") {
+		m_iconSel = sprintf("%s.weapon_s", strtolower(classname));
+	}
+
 	if (m_ammoIcon == "none") {
 		m_ammoIcon = __NULL__;
 	}
@@ -120,6 +86,15 @@ HLWeapon::AddedToInventory(void)
 	if (m_crossHair == "none") {
 		m_crossHair = __NULL__;
 	}
+
+	if (m_icon == "none") {
+		m_icon = __NULL__;
+	}
+
+	if (m_iconSel == "none") {
+		m_iconSel = __NULL__;
+	}
+
 
 	m_iHudSlot = GetDefInt("hudSlot");
 	m_iHudSlotPos = GetDefInt("hudSlotPos");
@@ -133,13 +108,14 @@ void
 HLWeapon::UpdateGUI(void)
 {
 	NSClientPlayer ourOwner = __NULL__;
+	vector ammoPos;
 
 	/* draw crosshair */
 	HLSprite_DrawCrosshair(m_crossHair);
 
 	/* draw ammo icon */
 	if (m_ammoIcon) {
-		vector ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 42];
+		ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 42];
 		HLSprite_Draw_RGBA(m_ammoIcon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 	}
 
@@ -193,7 +169,7 @@ HLWeapon::UpdateGUI(void)
 
 		/* draw ammo icon */
 		if (m_ammo2Icon) {
-			vector ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 74];
+			ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 74];
 			HLSprite_Draw_RGBA(m_ammo2Icon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 		}
 	}

@@ -27,13 +27,13 @@ ClientGame_ConsoleCommand(void)
 		sendevent("HLDM_Chooseteam", "s", argv(1));
 		break;
 	case "invnext":
-		HUD_DrawWeaponSelect_Back();
+		pSeatLocal->weaponSelectionHUD.SelectNext(false);
 		break;
 	case "invprev":
-		HUD_DrawWeaponSelect_Forward();
+		pSeatLocal->weaponSelectionHUD.SelectPrevious(false);
 		break;
 	case "lastinv":
-		HUD_DrawWeaponSelect_Last();
+		//HUD_DrawWeaponSelect_Last();
 		break;
 	case "slot1":
 		HUD_SlotSelect(0);

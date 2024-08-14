@@ -1,7 +1,7 @@
 func_door.move_0
 {
 	follow
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_door.move_1
 {
@@ -56,7 +56,7 @@ func_door.move_10
 
 func_door.stop_0
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 func_door.stop_1
 {

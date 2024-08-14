@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2024 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,7 +14,28 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include "../shared/defs.h"
-#include "gamerules.h"
-#include "items.h"
-#include "flashlight.h"
+class
+HLWeaponSelect
+{
+public:
+	void HLWeaponSelect(void);
+
+	virtual void Draw(void);
+	virtual void SelectSlot(int, bool);
+	virtual void SelectNext(bool);
+	virtual void SelectPrevious(bool);
+
+
+	virtual bool Active(void);
+	virtual void Trigger(void);
+	virtual void Deactivate(void);
+
+	virtual void DrawSlotNum(vector, float);
+
+private:
+	float m_flHUDWeaponSelectTime;
+	HLWeapon m_selectedWeapon;
+	HLWeapon m_firstWeapon;
+	int m_iWantSlot;
+	int m_iWantSlotPos;
+};

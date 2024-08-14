@@ -15,12 +15,12 @@ Player.Death
 
 Player.GaspLight
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 
 Player.GaspHeavy
 {
-	sample misc/null.wav
+	sample common/null.wav
 }
 
 Player.WaterExit
