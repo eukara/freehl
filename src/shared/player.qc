@@ -15,7 +15,6 @@
  */
 
 #include "animations.h"
-#include "skeleton.h"
 
 /* all custom SendFlags bits we can possibly send */
 enumflags
@@ -372,3 +371,27 @@ HLPlayer::SendEntity(entity ePEnt, float flChanged)
 	return (1);
 }
 #endif
+
+void
+HLPlayer::Physics_Jump(void)
+{
+	if (waterlevel >= 2) {
+		if (watertype == CONTENT_WATER) {
+			velocity[2] = 100;
+		} else if (watertype == CONTENT_SLIME) {
+			velocity[2] = 80;
+		} else {
+			velocity[2] = 50;
+		}
+	} else {
+		/* Half-Life: Longjump module */
+		if (IsCrouching() && HasItem("item_longjump")) {
+			makevectors([0, v_angle[1], 0]);
+			velocity = v_forward * 512;
+			velocity[2] += 100;
+		}
+		if (flags & FL_ONGROUND)
+			velocity[2] += 265;
+	}
+}
+
