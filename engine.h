@@ -29,7 +29,7 @@
 
  /* disable quake specific hacks and overrides */
 #define QUAKETC
-#define NOBUILTINMENUS
+//#define NOBUILTINMENUS
 #define NOLEGACY
 
 /* engine behaviour */
@@ -43,8 +43,11 @@
 #define USEAREAGRID /* leave it on, improves performance */
 #define AVAIL_DINPUT /* input for Windows */
 #define AVAIL_FREETYPE	/* for truetype font rendering */
-#define AVAIL_STBI /* avoid libpng/libjpeg dependancies */
+//#define AVAIL_STBI /* avoid libpng/libjpeg dependancies */
 #define ENGINE_ROUTING /* engine-side, fast routing */
+#define HAVE_MEDIA_DECODER	/* can play cin/roq, more with plugins */
+#define HAVE_MEDIA_ENCODER	/* capture/capturedemo work */
+#define PACKAGEMANAGER		/* enable/disable/download packages and plugins */
 
 #ifndef LEGACY_GPU
 	#define RTLIGHTS
@@ -141,8 +144,8 @@
 #undef HAVE_SPEEX	/* .xz decompression */
 #undef AVAIL_GZDEC	/* .gz decompression */
 #undef PACKAGE_DZIP	/* .dzip special-case archive support */
-#undef AVAIL_PNGLIB	/* .png image format support (read+screenshots) */
-#undef AVAIL_JPEGLIB	/* .jpeg image format support (read+screenshots) */
+#define AVAIL_PNGLIB	/* .png image format support (read+screenshots) */
+#define AVAIL_JPEGLIB	/* .jpeg image format support (read+screenshots) */
 #undef AVAIL_MP3_ACM	/* .mp3 support (in windows). */
 #undef IMAGEFMT_DDS
 #undef IMAGEFMT_PKM
@@ -179,11 +182,8 @@
 #undef HLSERVER			/* regressed, unfinished */
 #undef FTPSERVER
 #undef HAVE_JUKEBO		/* includes built-in jukebox */
-#define HAVE_MEDIA_DECODER	/* can play cin/roq, more with plugins */
-#undef HAVE_MEDIA_ENCODER	/* capture/capturedemo work */
 #undef HAVE_SPEECHTOTEXT	/* Windows speech-to-text thing */
 #undef SAVEDGAMES
-#undef PACKAGEMANAGER		/* enable/disable/download packages and plugins */
 #undef HEADLESSQUAKE
 #undef WAYLANDQUAKE
 #undef SERVER_DEMO_PLAYBACK	/* deprecated */

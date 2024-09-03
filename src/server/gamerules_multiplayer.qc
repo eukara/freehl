@@ -93,31 +93,37 @@ HLMultiplayerRules::CheckRules(void)
 }
 
 void
-HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
+HLMultiplayerRules::PlayerDeath(NSClientPlayer pl, NSActor attacker, NSDict damageDecl)
 {
+	vector damageLocation = damageDecl.GetVector("location");
+	int hitBody = (int)damageDecl.GetFloat("hitbody");
+	int damagePoints = (int)damageDecl.GetFloat("damage");
+
 	/* obituary networking */
 	WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET);
 	WriteByte(MSG_MULTICAST, EV_OBITUARY);
-	WriteString(MSG_MULTICAST, (g_dmg_eAttacker.netname) ? g_dmg_eAttacker.netname : g_dmg_eAttacker.classname);
+	WriteString(MSG_MULTICAST, (attacker.netname) ? attacker.netname : attacker.classname);
 	WriteString(MSG_MULTICAST, pl.netname);
-	WriteByte(MSG_MULTICAST, g_dmg_iWeapon);
+	WriteString(MSG_MULTICAST, damageDecl.GetString("weapon"));
 	WriteByte(MSG_MULTICAST, 0);
 	msg_entity = world;
 	multicast([0,0,0], MULTICAST_ALL);
 
-	Plugin_PlayerObituary(g_dmg_eAttacker, g_dmg_eTarget, g_dmg_iWeapon, g_dmg_iHitBody, g_dmg_iDamage);
+	//Plugin_PlayerObituary(g_dmg_eAttacker, g_dmg_eTarget, g_dmg_iWeapon, g_dmg_iHitBody, g_dmg_iDamage);
 
 	/* death-counter */
 	pl.deaths++;
 	pl.SetInfoKey("*deaths", ftos(pl.deaths));
 
 	/* update score-counter */
-	if (pl.flags & FL_CLIENT || pl.flags & FL_MONSTER)
-	if (g_dmg_eAttacker.flags & FL_CLIENT) {
-		if (pl == g_dmg_eAttacker)
-			g_dmg_eAttacker.frags--;
-		else
-			g_dmg_eAttacker.frags++;
+	if (isPlayer(pl) || isAI(pl)) {
+		if (isPlayer(attacker)) {
+			if (pl == attacker) {
+				attacker.frags--;
+			} else {
+				attacker.frags++;
+			}
+		}
 	}
 
 #ifdef VALVE
@@ -129,14 +135,13 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 
 	/* either gib, or make a corpse */
 	if (pl.health < -50) {
-		vector gibDir = vectoangles(pl.origin - g_dmg_eAttacker.origin);
-		float gibStrength = g_dmg_iDamage * 2.0f;
+		vector gibDir = vectoangles(pl.origin - attacker.origin);
+		float gibStrength = damagePoints * 2.0f;
 		BreakModel_Entity(pl, gibDir, gibStrength);
 	} else {
-#if 0
 		float deathAnimation = ANIM_DIESIMPLE;
 
-		switch (g_dmg_iHitBody) {
+		switch (hitBody) {
 		case BODY_HEAD:
 			deathAnimation = ANIM_DIEHEADSHOT;
 			break;
@@ -147,7 +152,7 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 			deathAnimation = ANIM_DIEGUTSHOT;
 			break;
 		default:
-			bool isFacing = pl.IsFacingPosition(g_dmg_vecLocation);
+			bool isFacing = pl.IsFacingPosition(damageLocation);
 
 			/* we still want a change to play ANIM_DIESIMPLE */
 			if (random() < 0.5)
@@ -166,11 +171,10 @@ HLMultiplayerRules::PlayerDeath(NSClientPlayer pl)
 		if (pl.IsCrouching()) {
 			newCorpse.SetSize(VEC_HULL_MIN, [16, 16, -16]);
 		}
-#endif
 	}
 
 	/* now let's make the real client invisible */
-	pl.SetTakedamage(DAMAGE_NO);
+	pl.MakeInvulnerable();
 	pl.gflags &= ~GF_FLASHLIGHT;
 	pl.gflags &= ~GF_EGONBEAM;
 
@@ -192,14 +196,8 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pl)
 	/* this is where the mods want to deviate */
 	entity spot;
 
-	pl.classname = "player";
-	pl.SetMaxHealth(100);
-	pl.SetHealth(100);
-	pl.SetTakedamage(DAMAGE_YES);
-	pl.SetSolid(SOLID_SLIDEBOX);
-	pl.SetMovetype(MOVETYPE_WALK);
-	pl.AddFlags(FL_CLIENT);
-	pl.viewzoom = 1.0;
+	EntityDef_SwitchClass(pl, "player_mp");
+	pl.MakePlayer();
 
 	/* player model selection */
 	if (IsTeamplay() == true) {
@@ -229,28 +227,7 @@ HLMultiplayerRules::PlayerSpawn(NSClientPlayer pl)
 		playerModel = "models/player.mdl";
 	}
 	
-	pl.SetModel(playerModel);
-	pl.SetSize(VEC_HULL_MIN, VEC_HULL_MAX);
-	pl.ClearVelocity();
-	pl.gravity = __NULL__;
-	pl.SetFrame(1);
-	pl.SendFlags = UPDATE_ALL;
-	pl.SetInfoKey("*spec", "0");
-	pl.SetInfoKey("*dead", "0");
-	pl.SetInfoKey("*deaths", ftos(pl.deaths));
-	pl.SetPropData("actor_human");
-	pl.EnableBleeding();
-
-	LevelNewParms();
-	LevelDecodeParms(pl);
-
-#if defined (VALVE) || defined (GEARBOX)
-	pl.GiveItem("item_suit");
-	pl.GiveItem("weapon_9mmhandgun");
-	pl.GiveItem("weapon_crowbar");
-	//pl.ammo_9mm = 44;
-#endif
-
+	pl.SetModelindex(getmodelindex(playerModel)); /* keep OG size */
 	spot = Spawn_SelectRandom("info_player_deathmatch");
 	pl.Transport(spot.origin, spot.angles);
 	Client_FixAngle(pl, pl.angles);
@@ -286,33 +263,4 @@ HLMultiplayerRules::HLMultiplayerRules(void)
 	/* these lines do nothing but tell the server to register those cvars */
 	autocvar(timelimit, 15, "Timelimit for multiplayer rounds");
 	autocvar(fraglimit, 15, "Points limit for multiplayer rounds");
-}
-
-void
-CSEv_HLDM_Chooseteam_s(string teamName)
-{
-	HLGameRules rules = (HLGameRules)g_grMode;
-	NSClientPlayer pl = (NSClientPlayer)self;
-
-	if (!teamName)
-		return;
-	if (rules.IsMultiplayer() == false)
-		return;
-	if (rules.IsTeamplay() == false)
-		return;
-	if (pl.IsDead() == true)
-		return;
-
-	HLMultiplayerRules mprules = (HLMultiplayerRules)rules;
-	int c = tokenizebyseparator(mprules.m_strTeamList, ";");
-
-	for (int i = 0; i < c; i++) {
-		if (argv(i) == teamName) {
-			pl.SetTeam((float)i + 1);
-			pl.SetHealth(-100);
-			pl.Death(pl, pl, 100i, g_vec_null, 0i);
-			//Damage_Apply(pl, pl, 100, 0, DMG_SKIP_ARMOR);
-			return;
-		}
-	}
 }

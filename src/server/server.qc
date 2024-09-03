@@ -17,10 +17,13 @@
 void
 Game_InitRules(void)
 {
+	Player_Precache();
+	FX_Corpse_Init();
+	
 	if (cvar("sv_playerslots") == 1 || cvar("coop") == 1) {
-		g_grMode = spawn(HLSingleplayerRules);
+		g_grMode = NSGameRules::InitFromProgs("maps/singleplayer.dat");
 	} else {
-		g_grMode = spawn(HLMultiplayerRules);
+		g_grMode = NSGameRules::InitFromProgs("maps/mp/gametypes/dm.dat");
 	}
 }
 
@@ -30,9 +33,6 @@ Game_Worldspawn(void)
 	Sound_Precache("Player.FlashLightOff");
 	Sound_Precache("Player.FlashLightOn");
 	Sound_Precache("item_weaponbox.Pickup");
-
 	precache_model("models/player.mdl");
 	precache_model("models/w_weaponbox.mdl");
-	Player_Precache();
-	FX_Corpse_Init();
 }

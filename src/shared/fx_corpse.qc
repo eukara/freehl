@@ -60,7 +60,7 @@ FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 	NSRenderableEntity body_next = (NSRenderableEntity)FX_Corpse_Next();
 	body_next.SetMovetype(MOVETYPE_BOUNCE);
 	body_next.SetSolid(SOLID_CORPSE);
-	body_next.SetModel(pl.GetModel());
+	body_next.SetModelindex(pl.GetModelindex());
 
 	if (pl.IsCrouching()) {
 		body_next.SetOrigin(pl.GetOrigin() + [0,0,32]);
@@ -75,6 +75,7 @@ FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
 	body_next.colormap = pl.colormap;
 	body_next.frame1time = 0.0f;
+	printf("CORPSE SPAWNED: modelindex %d; origin: %v\n", body_next.modelindex, body_next.origin);
 	return (entity)body_next;
 }
 #endif

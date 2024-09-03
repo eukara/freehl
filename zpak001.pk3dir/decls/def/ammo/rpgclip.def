@@ -2,5 +2,5 @@ entityDef ammo_rpgclip
 {
 	"inherit"			"ammo_base"
 	"model"				"models/w_rpgammo.mdl"
-	"inv_ammo_uranium"	"1"
+	"inv_ammo_rocket"	"1"
 }

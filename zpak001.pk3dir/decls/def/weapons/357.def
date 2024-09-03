@@ -31,6 +31,7 @@ entityDef weapon_357
 	"hudSlot"		"1"
 	"hudSlotPos"	"1"
 	"weight"		"15"
+	"killIcon"		"d_357"
 }
 
 entityDef weapon_python

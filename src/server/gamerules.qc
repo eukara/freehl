@@ -34,29 +34,6 @@ HLGameRules::LevelDecodeParms(NSClientPlayer pl)
 	pl.g_items = parm10;
 	pl.activeweapon = parm11;
 	pl.flags = parm64;
-
-#if 0
-	pl.ammo_9mm = parm12;
-	pl.ammo_357 = parm13;
-	pl.ammo_buckshot = parm14;
-	pl.ammo_m203_grenade = parm15;
-	pl.ammo_bolt = parm16;
-	pl.ammo_rocket = parm17;
-	pl.ammo_uranium = parm18;
-	pl.ammo_handgrenade = parm19;
-	pl.ammo_satchel = parm20;
-	pl.ammo_tripmine = parm21;
-	pl.ammo_snark = parm22;
-	pl.ammo_hornet = parm23;
-
-	pl.glock_mag = parm24;
-	pl.mp5_mag = parm25;
-	pl.python_mag = parm26;
-	pl.shotgun_mag = parm27;
-	pl.crossbow_mag = parm28;
-	pl.rpg_mag = parm29;
-	pl.satchel_chg = parm30;
-#endif
 }
 
 void

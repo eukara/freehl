@@ -24,7 +24,7 @@ ClientGame_ConsoleCommand(void)
 {
 	switch(argv(0)) {
 	case "chooseteam":
-		sendevent("HLDM_Chooseteam", "s", argv(1));
+		localcmd(sprintf("cmd %s %s\n", argv(0), argv(1)));
 		break;
 	case "invnext":
 		pSeatLocal->weaponSelectionHUD.SelectNext(false);

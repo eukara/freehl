@@ -45,6 +45,7 @@ class HLPlayer:NSClientPlayer
 	virtual void UpdateAliveCam(void);
 	virtual void ClientInputFrame(void);
 #else
+	virtual void Death(entity, entity, int, vector, int);
 	virtual void EvaluateEntity(void);
 	virtual float SendEntity(entity, float);
 	virtual void Save(float);
@@ -337,6 +338,52 @@ HLPlayer::EvaluateEntity(void)
 	EVALUATE_FIELD(anim_bottom, PLAYER_BOTTOMFRAME)
 	EVALUATE_FIELD(anim_bottom_time, PLAYER_BOTTOMFRAME)
 
+}
+
+void
+HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, int location)
+{
+	/* either gib, or make a corpse */
+	if (GetHealth()< -50) {
+		vector gibDir = vectoangles(GetOrigin() - attacker.origin);
+		float gibStrength = damagePoints * 2.0f;
+		BreakModel_Entity(this, gibDir, gibStrength);
+	} else {
+		float deathAnimation = ANIM_DIESIMPLE;
+
+		switch (location) {
+		case BODY_HEAD:
+			deathAnimation = ANIM_DIEHEADSHOT;
+			break;
+		case BODY_CHEST:
+			deathAnimation = ANIM_DIESPIN;
+			break;
+		case BODY_STOMACH:
+			deathAnimation = ANIM_DIEGUTSHOT;
+			break;
+		default:
+			bool isFacing = IsFacingPosition(GetOrigin() + (dir * 128));
+
+			/* we still want a change to play ANIM_DIESIMPLE */
+			if (random() < 0.5)
+			if (isFacing == false) {
+				deathAnimation = ANIM_DIEFORWARD;
+			} else {
+				deathAnimation = random() < 0.5 ? ANIM_DIEBACKWARDS1 : ANIM_DIEBACKWARDS1;
+			}
+
+			break;
+		}
+
+		NSEntity newCorpse = (NSEntity)FX_Corpse_Spawn(this, deathAnimation);
+
+		/* if we were crouching, adjust the bbox (thx 2 lack of crouch death animation) */
+		if (IsCrouching()) {
+			newCorpse.SetSize(VEC_HULL_MIN, [16, 16, -16]);
+		}
+	}
+	
+	super::Death(inflictor,  attacker,  damagePoints,  dir,  location);
 }
 
 /*

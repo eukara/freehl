@@ -27,15 +27,12 @@ typedef struct {
 	string src_sprite;		/* precaching reasons */
 } obituaryimg_t;
 
-obituaryimg_t *g_obtypes;
-int g_obtype_count;
-
 /* actual obituary storage */
 typedef struct
 {
 	string attacker;
 	string victim;
-	int icon;
+	string icon;
 } obituary_t;
 
 obituary_t g_obituary[OBITUARY_LINES];

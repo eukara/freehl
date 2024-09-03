@@ -3,11 +3,11 @@
 ../../../valve/src/shared/events.h
 ../../../valve/src/shared/flags.h
 ../../../valve/src/shared/skeleton.h
+../../../valve/src/shared/fx_corpse.qc
 ../../../valve/src/shared/player.qc
 ../../../valve/src/shared/animations.qc
 ../../../valve/src/shared/fx_blood.qc
 ../../../valve/src/shared/fx_gaussbeam.qc
-../../../valve/src/shared/fx_corpse.qc
 ../../../valve/src/shared/HLGaussBeam.qc
 ../../../valve/src/shared/HLWeapon.qc
 ../../../valve/src/shared/w_tripmine.qc

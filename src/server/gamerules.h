@@ -33,7 +33,7 @@ class HLSingleplayerRules:HLGameRules
 {
 	/* client */
 	virtual void(NSClientPlayer) PlayerSpawn;
-	virtual void(NSClientPlayer) PlayerDeath;
+	virtual void(NSClientPlayer, NSActor, NSDict) PlayerDeath;
 	virtual bool(void) IsMultiplayer;
 	virtual bool ImpulseCommand(NSClient, float);
 };
@@ -52,7 +52,7 @@ class HLMultiplayerRules:HLGameRules
 
 	/* client */
 	virtual void(NSClientPlayer) PlayerSpawn;
-	virtual void(NSClientPlayer) PlayerDeath;
+	virtual void(NSClientPlayer, NSActor, NSDict) PlayerDeath;
 	virtual bool(NSClientPlayer, string) ConsoleCommand;
 	virtual bool(void) IsMultiplayer;
 	virtual bool(void) IsTeamplay;

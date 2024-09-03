@@ -21,11 +21,11 @@ HLSingleplayerRules::IsMultiplayer(void)
 }
 
 void
-HLSingleplayerRules::PlayerDeath(NSClientPlayer pl)
+HLSingleplayerRules::PlayerDeath(NSClientPlayer pl, NSActor attacker, NSDict damageDecl)
 {
 	pl.SetMovetype(MOVETYPE_NONE);
 	pl.SetSolid(SOLID_NOT);
-	pl.SetTakedamage(DAMAGE_NO);
+	pl.MakeInvulnerable();
 	pl.SetHealth(0);
 	pl.StartSoundDef("Player.Death", CHAN_AUTO, true);
 
@@ -63,7 +63,7 @@ HLSingleplayerRules::PlayerSpawn(NSClientPlayer pl)
 	pl.classname = "player";
 	pl.SetHealth(100);
 	pl.SetMaxHealth(100);
-	pl.SetTakedamage(DAMAGE_YES);
+	pl.MakeVulnerable();
 	pl.SetSolid(SOLID_SLIDEBOX);
 	pl.SetMovetype(MOVETYPE_WALK);
 	pl.AddFlags(FL_CLIENT);

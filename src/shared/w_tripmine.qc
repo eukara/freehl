@@ -84,7 +84,7 @@ HLTripmine::Spawned(void)
 {
 	super::Spawned();
 
-	SetTakedamage(DAMAGE_NO);
+	MakeInvulnerable();
 	SetSolid(SOLID_NOT);
 	SetMovetype(MOVETYPE_NONE);
 	SetSize([-8,-8,-8], [8,8,8]);
@@ -105,7 +105,7 @@ HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, int
 	float explosionRadius = explosionDamage * 2.5f;
 
 	/* This is to prevent infinite loops in Damage_Radius */
-	SetTakedamage(DAMAGE_NO);
+	MakeInvulnerable();
 
 	pointparticles(particleeffectnum("fx_explosion.main"), GetOrigin(), [0,0,0], 1);
 
@@ -130,7 +130,7 @@ HLTripmine::Ready(void)
 		/* Laser calibrated to N units! */
 		m_vecEndPos = trace_endpos;
 		SetHealth(1);
-		SetTakedamage(DAMAGE_YES);
+		MakeVulnerable();
 		StartSoundDef("weapon_tripmine.activate", CHAN_WEAPON, true);
 		SetSolid(SOLID_BBOX);
 		ForceNetworkUpdate();

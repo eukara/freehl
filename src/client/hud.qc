@@ -144,12 +144,6 @@ HUD_DrawHealth(void)
 		pSeatLocal->m_flHealthAlpha = 1.0;
 	}
 
-	if (pSeatLocal->m_flHealthAlpha >= HUD_ALPHA) {
-		pSeatLocal->m_flHealthAlpha -= clframetime * 0.5;
-	} else {
-		pSeatLocal->m_flHealthAlpha = HUD_ALPHA;
-	}
-
 	pos = g_hudmins + [88, g_hudres[1] - 42];
 	if (pl.health > 25) {
 		drawsubpic(
@@ -178,6 +172,12 @@ HUD_DrawHealth(void)
 	}
 
 	pSeatLocal->m_iHealthOld = pl.health;
+
+	if (pSeatLocal->m_flHealthAlpha >= HUD_ALPHA) {
+		pSeatLocal->m_flHealthAlpha = bound(HUD_ALPHA, pSeatLocal->m_flHealthAlpha - (clframetime * 0.5), 1.0);
+	} else {
+		pSeatLocal->m_flHealthAlpha = HUD_ALPHA;
+	}
 }
 
 /* armor/suit charge */
@@ -191,12 +191,6 @@ HUD_DrawArmor(void)
 	
 	if (pl.armor != pSeatLocal->m_iArmorOld) {
 		pSeatLocal->m_flArmorAlpha = 1.0;
-	}
-
-	if (pSeatLocal->m_flArmorAlpha >= HUD_ALPHA) {
-		pSeatLocal->m_flArmorAlpha -= clframetime * 0.5;
-	} else {
-		pSeatLocal->m_flArmorAlpha = HUD_ALPHA;
 	}
 
 	drawsubpic(
@@ -226,6 +220,12 @@ HUD_DrawArmor(void)
 
 	HUD_DrawNums(pl.armor, pos, pSeatLocal->m_flArmorAlpha, g_hud_color);
 	pSeatLocal->m_iArmorOld = pl.armor;
+
+	if (pSeatLocal->m_flArmorAlpha >= HUD_ALPHA) {
+		pSeatLocal->m_flArmorAlpha = bound(HUD_ALPHA, pSeatLocal->m_flArmorAlpha - (clframetime * 0.5), 1.0);
+	} else {
+		pSeatLocal->m_flArmorAlpha = HUD_ALPHA;
+	}
 }
 
 /* magazine/clip ammo */
@@ -240,15 +240,15 @@ HUD_DrawAmmo1(void)
 		pSeatLocal->m_iAmmo1Old = pl.a_ammo1;
 	}
 
-	if (pSeatLocal->m_flAmmo1Alpha >= HUD_ALPHA) {
-		pSeatLocal->m_flAmmo1Alpha -= clframetime * 0.5;
-	} else {
-		pSeatLocal->m_flAmmo1Alpha = HUD_ALPHA;
-	}
-
 	pos = g_hudmins + [g_hudres[0] - 152, g_hudres[1] - 42];
 	HUD_DrawNums(pl.a_ammo1, pos, pSeatLocal->m_flAmmo1Alpha, g_hud_color);
 	HUD_DrawSeperator(pos + [30,0]);
+
+	if (pSeatLocal->m_flAmmo1Alpha >= HUD_ALPHA) {
+		pSeatLocal->m_flAmmo1Alpha = bound(HUD_ALPHA, pSeatLocal->m_flAmmo1Alpha - (clframetime * 0.5), 1.0);
+	} else {
+		pSeatLocal->m_flAmmo1Alpha = HUD_ALPHA;
+	}
 }
 
 /* leftover type ammo */
@@ -263,14 +263,14 @@ HUD_DrawAmmo2(void)
 		pSeatLocal->m_iAmmo2Old = pl.a_ammo2;
 	}
 
+	pos = g_hudmins + [g_hudres[0] - 72, g_hudres[1] - 42];
+	HUD_DrawNums(pl.a_ammo2, pos, pSeatLocal->m_flAmmo2Alpha, g_hud_color);
+
 	if (pSeatLocal->m_flAmmo2Alpha >= HUD_ALPHA) {
-		pSeatLocal->m_flAmmo2Alpha -= clframetime * 0.5;
+		pSeatLocal->m_flAmmo2Alpha = bound(HUD_ALPHA, pSeatLocal->m_flAmmo2Alpha - (clframetime * 0.5), 1.0);
 	} else {
 		pSeatLocal->m_flAmmo2Alpha = HUD_ALPHA;
 	}
-
-	pos = g_hudmins + [g_hudres[0] - 72, g_hudres[1] - 42];
-	HUD_DrawNums(pl.a_ammo2, pos, pSeatLocal->m_flAmmo2Alpha, g_hud_color);
 }
 
 /* special ammo */
@@ -285,14 +285,15 @@ HUD_DrawAmmo3(void)
 		pSeatLocal->m_iAmmo3Old = pl.a_ammo3;
 	}
 
+	pos = g_hudmins + [g_hudres[0] - 72, g_hudres[1] - 74];
+	HUD_DrawNums(pl.a_ammo3, pos, pSeatLocal->m_flAmmo3Alpha, g_hud_color);
+
 	if (pSeatLocal->m_flAmmo3Alpha >= HUD_ALPHA) {
-		pSeatLocal->m_flAmmo3Alpha -= clframetime * 0.5;
+		pSeatLocal->m_flAmmo3Alpha = bound(HUD_ALPHA, pSeatLocal->m_flAmmo3Alpha - (clframetime * 0.5), 1.0);
 	} else {
 		pSeatLocal->m_flAmmo3Alpha = HUD_ALPHA;
 	}
 
-	pos = g_hudmins + [g_hudres[0] - 72, g_hudres[1] - 74];
-	HUD_DrawNums(pl.a_ammo3, pos, pSeatLocal->m_flAmmo3Alpha, g_hud_color);
 }
 
 /* ammo bar */
