@@ -51,7 +51,7 @@ HLWeapon::AddedToInventory(void)
 		m_ammoIcon = sprintf("%s.ammo", strtolower(classname));
 	}
 
-	m_ammo2Icon = GetDefString("ammoIcon");
+	m_ammo2Icon = GetDefString("ammo2Icon");
 
 	if (m_ammo2Icon == "") {
 		m_ammo2Icon = sprintf("%s.ammo2", strtolower(classname));

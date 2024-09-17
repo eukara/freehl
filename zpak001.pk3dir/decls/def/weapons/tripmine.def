@@ -14,20 +14,38 @@ entityDef weapon_tripmine
 	"frame"				"8"
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
-	"def_plant"			"monster_tripmine"
+
+	"def_fireInfo"		"fireInfo_tripminePlant"
 
 	"inv_ammo_tripmine"	"1"
 	"ammoType"			"ammo_tripmine"
 	"ammoRequired"		"1"
-	"actIdle"		"0,1,4"
-	"actFire"		"2,3"
-	"actDraw"		"6"
-	"actHolster"	"5"
-	"removeOnEmpty" "1"
+	"act_idle"			"0,1,4"
+	"act_fire"			"2,3"
+	"act_draw"			"6"
+	"act_holster"		"5"
+	"removeOnEmpty"		"1"
 
 	// HLWeapon specific
-	"hudSlot"		"4"
-	"hudSlotPos"	"2"
-	"weight"		"-10"
-	"crosshair"		"none"
+	"hudSlot"			"4"
+	"hudSlotPos"		"2"
+	"weight"			"-10"
+	"crosshair"			"none"
+}
+
+entityDef fireInfo_tripminePlant
+{
+	"def_onFire"		"projectile_tripmine"
+	"fireRate"			"0.5"
+	"testDistance"		"-64"
+}
+
+entityDef projectile_tripmine
+{
+	"spawnclass"		"NSAttack"
+	"def_plant"			"monster_tripmine"
+	"plant"				"1"
+	"plantOnGround"		"0"
+	"plantDistance"		"64"
+	"plantOffset"		"8"
 }

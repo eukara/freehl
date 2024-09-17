@@ -19,11 +19,17 @@ entityDef weapon_9mmAR
 	"clipSize"			"50"
 	"clipSizeDefault"	"25"
 
-	"actFire"		"5,6,7"
-	"actHolster"	"4"
-	"actReload"		"3"
-	"actDraw"		"4"
-	"actIdle"		"0,1"
+	"ammoIcon"			"weapon_9mmar.ammo"
+	"ammo2Icon"			"weapon_9mmar.ammo2"
+	"crosshair"			"weapon_9mmar.crosshair"
+	"icon"				"weapon_9mmar.weapon"
+	"iconSelected"		"weapon_9mmar.weapon_s"
+
+	"act_fire"		"5,6,7"
+	"act_holster"	"4"
+	"act_reload"		"3"
+	"act_draw"		"4"
+	"act_idle"		"0,1"
 
 	"snd_fire"		"weapon_mp5.shoot"
 	"snd_empty"		"weapon_mp5.empty"
@@ -61,7 +67,7 @@ entityDef fireInfo_ARGrenade
 	"fireRate"			"1"
 	"punchAngle"		"-10 0 0"
 	"snd_fire"			"weapon_mp5.gl"
-	"actFire"			"2"
+	"act_fire"			"2"
 }
 
 entityDef projectile_ARgrenade

@@ -20,9 +20,9 @@ entityDef weapon_satchel
 	"fireRate"			"1.0"
 	"removeOnEmpty" "1"
 
-	"actIdle"			"0,1"
-	"actDraw"			"2"
-	"actFire"			"3"
+	"act_idle"			"0,1"
+	"act_draw"			"2"
+	"act_fire"			"3"
 
 	// HLWeapon specific
 	"hudSlot"		"4"

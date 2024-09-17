@@ -22,10 +22,10 @@ entityDef weapon_snark
 	"silent_fire"			"1"
 	"primed_fuse"			"4"
 
-	"actIdle"		"0,1,2"
-	"actDraw"		"4"
-	"actHolster"	"3"
-	"actThrow"		"5"
+	"act_idle"		"0,1,2"
+	"act_draw"		"4"
+	"act_holster"	"3"
+	"act_throw"		"5"
 	"removeOnEmpty" "1"
 
 	// HLWeapon specific

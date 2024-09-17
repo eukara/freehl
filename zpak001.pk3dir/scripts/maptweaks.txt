@@ -1,21 +1,12 @@
 mutliplayer
 {
 	when-cvar deathmatch equals 1
-	replace weapon_crowbar weapon_crowbar_mp 
 	replace weapon_357 weapon_357_mp 
-	replace weapon_python weapon_python_mp 
+	replace weapon_python weapon_357_mp 
 	replace weapon_9mmAR weapon_9mmAR_mp 
-	replace weapon_mp5 weapon_mp5_mp 
+	replace weapon_mp5 weapon_9mmAR_mp 
 	replace weapon_crossbow weapon_crossbow_mp 
-	replace weapon_egon weapon_egon_mp 
-	replace weapon_gauss weapon_gauss_mp 
-	replace weapon_handgrenade weapon_handgrenade_mp 
-	replace weapon_hornetgun weapon_hornetgun_mp 
-	replace weapon_rpg weapon_rpg_mp 
-	replace weapon_satchel weapon_satchel_mp 
 	replace weapon_shotgun weapon_shotgun_mp 
-	replace weapon_snark weapon_snark_mp 
-	replace weapon_tripmine weapon_tripmine_mp 
 }
 
 deprecated

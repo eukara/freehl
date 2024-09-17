@@ -17,11 +17,17 @@ entityDef weapon_357
 	"inv_name"		".357 Revolver"
 	"clipSize"		"6"
 
-	"actFire"		"2"
-	"actHolster"	"4"
-	"actReload"		"3"
-	"actDraw"		"5"
-	"actIdle"		"0,1,6,7"
+	"ammoIcon"			"weapon_357.ammo"
+	"ammo2Icon"			"weapon_357.ammo2"
+	"crosshair"			"weapon_357.crosshair"
+	"icon"				"weapon_357.weapon"
+	"iconSelected"		"weapon_357.weapon_s"
+
+	"act_fire"		"2"
+	"act_holster"	"4"
+	"act_reload"		"3"
+	"act_draw"		"5"
+	"act_idle"		"0,1,6,7"
 
 	"snd_fire"		"weapon_357.shoot"
 	"snd_empty"		"weapon_357.empty"
@@ -36,7 +42,7 @@ entityDef weapon_357
 
 entityDef weapon_python
 {
-	"spawnclass" "weapon_357"
+	"inherit" "weapon_357"
 }
 
 entityDef projectile_357
@@ -54,4 +60,12 @@ entityDef fireInfo_357
 	"fireRate"			".75"
 	"punchAngle"		"-10 0 0"
 	"model_flash"		"sprites/muzzleflash2.spr"
+}
+
+// multiplayer variant
+entityDef weapon_357_mp
+{
+	"inherit" 		"weapon_357"
+	"view_geomset"	"geomset 4 2\n"
+	"zoomFov"		"45"
 }

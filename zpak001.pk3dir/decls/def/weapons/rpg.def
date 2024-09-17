@@ -21,14 +21,14 @@ entityDef weapon_rpg
 	"inv_ammo_rocket"	"1"
 	"fireRate"			"2.5"
 
-	"actIdle"			"0,1"
-	"actIdleEmpty"		"8,9"
-	"actHolster"		"4"
-	"actHolsterEmpty"	"6"
-	"actDraw"		"5"
-	"actDrawEmpty"	"7"
-	"actFire"		"3"
-	"actReload"		"2"
+	"act_idle"			"0,1"
+	"act_idleEmpty"		"8,9"
+	"act_holster"		"4"
+	"act_holsterEmpty"	"6"
+	"act_draw"		"5"
+	"act_drawEmpty"	"7"
+	"act_fire"		"3"
+	"act_reload"		"2"
 
 	// HLWeapon specific
 	"hudSlot"		"3"

@@ -7,7 +7,7 @@
 #define FULLENGINENAME		"Rad-Therapy"
 #define GAME_SHORTNAME		"HL"
 #define GAME_BASEGAMES		"valve"
-#define GAME_PROTOCOL		"FTE-HalfLife"
+#define GAME_PROTOCOL		"FTE-RadTherapy"
 
 #define BRANDING_ICON "freecs.ico"
 #define DISTRIBUTION "FHL"

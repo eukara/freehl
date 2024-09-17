@@ -17,15 +17,21 @@ entityDef weapon_crossbow
 	"inv_name"		"Crossbow"
 	"clipSize"		"5"
 
-	"actFire"			"4"
-	"actFireLast"		"6"
-	"actHolster"		"10"
-	"actHolsterEmpty"	"11"
-	"actReload"			"7"
-	"actDraw"			"8"
-	"actDrawEmpty"		"9"
-	"actIdle"			"0,2"
-	"actIdleEmpty"		"1,3"
+	"ammoIcon"			"weapon_crossbow.ammo"
+	"ammo2Icon"			"weapon_crossbow.ammo2"
+	"crosshair"			"weapon_crossbow.crosshair"
+	"icon"				"weapon_crossbow.weapon"
+	"iconSelected"		"weapon_crossbow.weapon_s"
+
+	"act_fire"			"4"
+	"act_fireLast"		"6"
+	"act_holster"		"10"
+	"act_holsterEmpty"	"11"
+	"act_reload"			"7"
+	"act_draw"			"8"
+	"act_drawEmpty"		"9"
+	"act_idle"			"0,2"
+	"act_idleEmpty"		"1,3"
 
 	"snd_fire"		"weapon_crossbow.fire"
 	"snd_empty"		"weapon_crossbow.empty"
@@ -38,14 +44,26 @@ entityDef weapon_crossbow
 	"zoomFov"		"18"
 }
 
+entityDef weapon_crossbow_mp
+{
+	"inherit"		"weapon_crossbow"
+	"def_fireInfo"	"fireInfo_crossbowMP"
+}
+
 entityDef fireInfo_crossbow
 {
-	"def_onFire"	"projectile_arrow"
+	"def_onFire"		"projectile_arrow"
 	"ammoType"			"ammo_bolt"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
 	"fireRate"			"1.0"
 	"punchAngle"		"-2 0 0"
+}
+
+entityDef fireInfo_crossbowMP
+{
+	"inherit"		"fireInfo_crossbow"
+	"def_onFire"	"projectile_arrowExplosive"
 }
 
 entityDef debris_arrow

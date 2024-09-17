@@ -1,0 +1,10 @@
+entityDef item_healthkit
+{
+	"spawnclass"	"NSItem"
+	"model"			"models/w_medkit.mdl"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"snd_acquire"	"item.healthkit"
+	"snd_respawn"	"item.respawn"
+	"inv_health"	"skill:healthkit"
+}

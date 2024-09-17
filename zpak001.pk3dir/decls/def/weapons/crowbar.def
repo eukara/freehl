@@ -13,23 +13,22 @@ entityDef weapon_crowbar
 	"snd_respawn"		"item.respawn"
 
 	// weapon specific
-	"def_melee"			"damage_crowbar"
-	"melee_distance"	"32"
+	"def_onFire"		"projectile_crowbar"
 	"inv_name"			"Crowbar"
-	"clipSize"			"6"
-	"ammoType"			""
 	"ammoRequired"		"0"
-	"clipSize"			"0"
 	"silent_fire"		"1"
 
-	"meleeRateMiss"		"0.5"
-	"meleeRateHit"		"0.25"
+	"testDistance"		"-32"
+	"failRate"			"0.5"
+	"fireRate"			"0.25"
+	"snd_fire"			"weapon_crowbar.hit"
+	"snd_fireFailed"	"weapon_crowbar.miss"
 
-	"actIdle"			"0"
-	"actDraw"			"1"
-	"actHolster"		"2"
-	"actMeleeMiss"		"4,5,7"
-	"actMeleeHit"		"3,6,8"
+	"act_idle"			"0"
+	"act_draw"			"1"
+	"act_holster"		"2"
+	"act_fireFailed"	"4,5,7"
+	"act_fire"			"3,6,8"
 
 	// HLWeapon specific
 	"hudSlot"		"0"
@@ -39,14 +38,11 @@ entityDef weapon_crowbar
 	"ammoIcon"		"none"
 }
 
-entityDef damage_crowbar
+entityDef projectile_crowbar
 {
-	"damage"			"skill:plr_crowbar"
-//	"kickDir"			"-1 0 0"
-//	"knockback"			"20"
-//	"push"				"20000"
-	"gib"				"1"
-
-	"snd_hit"			"weapon_crowbar.hit"
-	"snd_miss"			"weapon_crowbar.miss"
+	"spawnclass"			"NSProjectile"
+	"damage"				"skill:plr_crowbar"
+	"is_bullet"				"1"
+	"decal_impact"			"Impact.Shot"
+	"detonate_on_world" 	"1"
 }

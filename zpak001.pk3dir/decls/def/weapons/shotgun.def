@@ -20,14 +20,21 @@ entityDef weapon_shotgun
 	"inv_ammo_buckshot"	"4"
 	"ammoType"			"ammo_buckshot"
 	"ammoRequired"		"1"
+	"model_flash"		"sprites/muzzleflash2.spr"
 
-	"actFire"			"1"
-	"actHolster"		"7"
-	"actReloadStart"	"5"
-	"actReload"			"3"
-	"actReloadEnd"		"4"
-	"actDraw"			"6"
-	"actIdle"			"0,8,9"
+	"ammoIcon"			"weapon_shotgun.ammo"
+	"ammo2Icon"			"weapon_shotgun.ammo2"
+	"crosshair"			"weapon_shotgun.crosshair"
+	"icon"				"weapon_shotgun.weapon"
+	"iconSelected"		"weapon_shotgun.weapon_s"
+
+	"act_fire"			"1"
+	"act_holster"		"7"
+	"act_reloadStart"	"5"
+	"act_reload"			"3"
+	"act_reloadEnd"		"4"
+	"act_draw"			"6"
+	"act_idle"			"0,8,9"
 
 	"snd_fire"			"weapon_shotgun.single"
 	"snd_empty"			"weapon_shotgun.empty"
@@ -63,7 +70,6 @@ entityDef fireInfo_shotgun
 	"ammoPerShot"		"1"
 	"fireRate"			"0.75"
 	"punchAngle"		"-5 0 0"
-	"model_flash"		"sprites/muzzleflash2.spr"
 }
 
 entityDef fireInfo_altShotgun
@@ -71,10 +77,9 @@ entityDef fireInfo_altShotgun
 	"def_onFire"	"projectile_shotgun_alt"
 	"ammoPerShot"		"2"
 	"fireRate"			"1.5"
-	"actFire"			"2"
+	"act_fire"			"2"
 	"punchAngle"		"-10 0 0"
 	"snd_fire"			"weapon_shotgun.double"
-	"model_flash"		"sprites/muzzleflash2.spr"
 }
 
 // multiplayer version
@@ -98,9 +103,8 @@ entityDef fireInfo_shotgun_mp
 {
 	"def_onFire"	"projectile_shotgun_mp"
 	"ammoPerShot"		"1"
-	"fireRate"			"1.25"
+	"fireRate"			"0.75"
 	"punchAngle"		"-5 0 0"
-	"model_flash"		"sprites/muzzleflash2.spr"
 }
 
 entityDef fireInfo_altShotgun_mp
@@ -109,7 +113,6 @@ entityDef fireInfo_altShotgun_mp
 	"ammoPerShot"		"2"
 	"fireRate"			"1.5"
 	"punchAngle"		"-10 0 0"
-	"model_flash"		"sprites/muzzleflash2.spr"
 }
 
 entityDef weapon_shotgun_mp
