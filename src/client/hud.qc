@@ -540,3 +540,42 @@ HUD_DrawSpectator(void)
 	vecPos[1] = g_hudmins[1] + g_hudres[1] - 40;
 	drawstring(vecPos, strText, [20,20], [1,1,1], 1.0f, DRAWFLAG_ADDITIVE);
 }
+
+
+float
+HUD_InputFrame(float inputButtons)
+{
+	if (pSeatLocal->weaponSelectionHUD.Active()) {
+		if (inputButtons & INPUT_PRIMARY) {
+			pSeatLocal->weaponSelectionHUD.Trigger();
+		} else if (inputButtons & INPUT_SECONDARY) {
+			pSeatLocal->weaponSelectionHUD.Deactivate();
+		}
+
+		inputButtons &= ~INPUT_PRIMARY;
+		inputButtons &= ~INPUT_SECONDARY;
+
+		return (0.2f);
+	}
+
+	return (0.0f);
+}
+
+bool
+HUD_ConsoleCommand(string commandString)
+{
+	tokenize_console(commandString);
+
+	switch (argv(0)) {
+	case "invnext":
+		pSeatLocal->weaponSelectionHUD.SelectNext(false);
+		break;
+	case "invprev":
+		pSeatLocal->weaponSelectionHUD.SelectPrevious(false);
+		break;
+	default:
+		return (false);
+	}
+
+	return (true);
+}

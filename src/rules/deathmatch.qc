@@ -14,11 +14,10 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "dm.dat"
+#pragma PROGS_DAT  "../../zpak001.pk3dir/progs/deathmatch.dat"
 
-#include "../../../../../src/server/mapC.h"
+#include "../../../src/server/api.h"
 
-entity lastSpawn;
 string g_strTeamList;
 const string mp_teamlist_fallback = "scientist;hgrunt";
 var string autocvar_mp_teamlist = mp_teamlist_fallback;
@@ -26,21 +25,19 @@ var string autocvar_mp_teamlist = mp_teamlist_fallback;
 bool
 IsTeamplay(void)
 {
-	return getCvarInt("mp_teamplay") ? (true) : (false);
+	return cvars.GetBool("mp_teamplay");
 }
 
 bool
 AllowFlashlight(void)
 {
-	return getCvarInt("mp_flashlight") ? (true) : (false);
+	return cvars.GetBool("mp_flashlight");
 }
 
 void
 CodeCallback_StartGameType(void)
 {
-	//MOTD_LoadDefault();
-	
-	setServerInfo("scorepoints", "0");
+	motd.LoadDefault();
 
 	if (IsTeamplay() == true) {
 		int c;
@@ -55,16 +52,15 @@ CodeCallback_StartGameType(void)
 			c = tokenizebyseparator(g_strTeamList, ";");
 		}
 
-		setServerInfo("teams", itos(c));
-
 		/* initialize all dem teams */
 		for (int i = 0; i < c; i++) {
-			setServerInfo(sprintf("team_%i", i+1i), argv(i));
-			setServerInfo(sprintf("teamscore_%i", i+1i), "0");
+			teams.SetUp(i+1, argv(i), [255,255,255], true);
+			teams.SetSpawnPoint(i+1, "info_player_deathmatch");
 		}
 	} else {
-		setServerInfo("teams", "0");
+		game.SetSpawnPoint("info_player_deathmatch");
 	}
+
 }
 
 void
@@ -72,7 +68,7 @@ CodeCallback_PlayerSpawn(void)
 {
 	string playerModel;
 
-	changeClass(self, "player_mp");
+	ents.ChangeToClass(self, "player_mp");
 
 	if (IsTeamplay() == true) {
 		float teamCount = tokenizebyseparator(g_strTeamList, ";");
@@ -83,14 +79,14 @@ CodeCallback_PlayerSpawn(void)
 		/* TODO: this should sort us into the lowest team */
 		if (playerTeam == 0) {
 			playerTeam = 1 + floor(random(0, teamCount)); /* teams start at 1 after all */
-			sendInput(self, "SetTeam", ftos(playerTeam), self);
+			ents.Input(self, "SetTeam", ftos(playerTeam), self);
 		}
 
 		teamModel = argv(playerTeam - 1);
 		playerModel = sprintf("models/player/%s/%s.mdl", teamModel, teamModel);
 	} else {
 		/* interpret the 'model' InfoKey */
-		playerModel = getUserInfo(self, "model");
+		playerModel = userinfo.GetString(self, "model");
 
 		if (playerModel != "") {
 			playerModel = sprintf("models/player/%s/%s.mdl", playerModel, playerModel);
@@ -98,13 +94,17 @@ CodeCallback_PlayerSpawn(void)
 	}
 
 	/* fallback is always models/player.mdl for Half-Life */
-	if (playerModel == "" || fileExists(playerModel) == false) {
+	if (playerModel == "" || exists.InVFS(playerModel) == false) {
 		playerModel = "models/player.mdl";
 	}
 
 	self.modelindex = getmodelindex(playerModel); /* keep OG size */
-	lastSpawn = getSpawnpoint("info_player_deathmatch");
-	setorigin(self, lastSpawn.origin);
+	game.TeleportToSpawn(self);
+
+	decl damageDecl = declManager.New();
+	declManager.AddKey(damageDecl, "damage", "50");
+	declManager.Delete(damageDecl);
+	combat.Damage(self, self, self, damageDecl, self.origin, g_vec_null, self.origin);
 }
 
 void
@@ -129,13 +129,13 @@ CodeCallback_PlayerDamage(entity inflictor, entity attacker)
 void
 CodeCallback_PlayerKilled(entity inflictor, entity attacker, string weapon)
 {
-	obituary(self.netname, attacker.netname, weapon, "");
+	combat.Obituary(self.netname, attacker.netname, weapon, "");
 
 	/* death-counter */
 	self.deaths++;
 
 	/* update score-counter */
-	if (isPlayer(attacker)) {
+	if (ents.isPlayer(attacker)) {
 		if (self == attacker) {
 			attacker.frags--;
 		} else {
@@ -168,8 +168,8 @@ CodeCallback_ClientCommand(string command)
 		for (float i = 0; i < c; i++) {
 			if (argv(i) == teamName) {
 				string newTeam = ftos(i + 1);
-				sendInput(self, "SetTeam", newTeam, self);
-				sendInput(self, "Damage", "1000", self);
+				ents.Input(self, "SetTeam", newTeam, self);
+				ents.Input(self, "Damage", "1000", self);
 				break;
 			}
 		}
@@ -187,7 +187,7 @@ CodeCallback_ImpulseCommand(float impulseNum)
 	switch (impulseNum) {
 	case 100:
 		if (AllowFlashlight() == true) {
-			sendInput(self, "UseItem", "item_suit", self);
+			ents.Input(self, "UseItem", "item_suit", self);
 		}
 		break;
 	default:

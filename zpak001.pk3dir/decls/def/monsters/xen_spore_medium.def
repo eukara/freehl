@@ -1,0 +1,11 @@
+entityDef xen_spore_medium
+{
+	"spawnclass"	"NSSurfacePropEntity"
+	"model"			"models/fungus.mdl"
+	"netname"		"Xen Spore (Medium)"
+	"health"		"0"
+	"mins"			"-40 -40 0"
+	"maxs"			"40 40 120"
+	"propdata"		"actor_alien"
+	"frame"			"0"
+}

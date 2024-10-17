@@ -1,10 +1,10 @@
 # Rad-Therapy (FreeHL)
 
-Clean-room reimplementation of Valve Corporation's Half-Life: Deathmatch and Half-Life (Experimental, this means Singleplayer is NOT complete).
+Clean-room reimplementation of Valve's Half-Life: Deathmatch and Half-Life (Experimental, this means Singleplayer is NOT complete).
 
 Similar to FreeCS, this aims to recreate the feeling of the original game.
 It's designed to work with the content from the CD version of the game.
-Currently I do not aim to support the Steam version.
+You can use the data files from the Steam version also, but don't expect authenticity. Also servers may or may not, depending on the level, be compatible between versions.
 
 Netplay improvements, such as prediction of both player physics and weapon-logic
 are present.
@@ -25,7 +25,7 @@ Clone the repository into the Nuclide-SDK and build it:
 
 ```
 $ git clone https://code.idtech.space/fn/valve valve
-$ SKIP_UPDATE=1 SKIP_RADIANT=1 ./build_game.sh valve
+$ make game GAME=valve
 ```
 
 You can also issue `make` inside `valve/src/`, but it won't build an `entities.def` file for use in Radiant (level editor family).
@@ -34,7 +34,7 @@ You can also issue `make` inside `valve/src/`, but it won't build an `entities.d
 The engine should automatically detect Half-Life when placed within the game directory, however you may need to pass `-halflife` just in case you have one massive directory with multiple FTE-supported games in it for example.
 
 You can also launch mods like this: `fteqw -halflife -game cstrike`
-Useful for development, so you don't always have to use the **Custom Game** menu.
+Useful for development, so you don't have to use the **Custom Game** menu.
 
 ## Community
 

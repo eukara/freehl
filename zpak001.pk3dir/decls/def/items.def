@@ -1,3 +1,4 @@
 #include "items/battery.def"
 #include "items/healthkit.def"
 #include "items/suit.def"
+#include "items/longjump.def"

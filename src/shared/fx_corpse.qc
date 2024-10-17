@@ -18,15 +18,23 @@
 #define CORPSES_MAX 16
 entity g_bodies;
 
+var bool autocvar_corpse_ragdolls = true;
+
 void
 FX_Corpse_Init(void)
 {
-	entity next = spawn(NSRenderableEntity);
+	entity next;
+
+	if (autocvar_corpse_ragdolls)
+		next = spawn(NSRagdoll);
+	else
+		next = spawn(NSRenderableEntity);
+
 	g_bodies = next;
 
 	for ( int i = 0; i <= CORPSES_MAX; i++ ) {
 		next.classname = "corpse";
-		next.owner = spawn(NSRenderableEntity);
+		next.owner = spawn(NSRagdoll);
 		
 		if ( i == CORPSES_MAX ) {
 			next.owner = g_bodies;
@@ -57,7 +65,7 @@ FX_Corpse_Update(void)
 entity
 FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 {
-	NSRenderableEntity body_next = (NSRenderableEntity)FX_Corpse_Next();
+	NSRagdoll body_next = (NSRagdoll)FX_Corpse_Next();
 	body_next.SetMovetype(MOVETYPE_BOUNCE);
 	body_next.SetSolid(SOLID_CORPSE);
 	body_next.SetModelindex(pl.GetModelindex());
@@ -75,7 +83,6 @@ FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
 	body_next.colormap = pl.colormap;
 	body_next.frame1time = 0.0f;
-	printf("CORPSE SPAWNED: modelindex %d; origin: %v\n", body_next.modelindex, body_next.origin);
 	return (entity)body_next;
 }
 #endif

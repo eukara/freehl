@@ -1,62 +1,57 @@
-weapon_357.shoot
-{
-	alerts
-	sample weapons/357_shot1.wav
-	sample weapons/357_shot2.wav
-	distshader weapon_357.shoot_dist
-}
-
-weapon_357.empty
+Weapons.Empty
 {
 	sample weapons/357_cock1.wav
 }
 
-weapon_357.shoot_dist
+Weapon_357.Single
+{
+	alerts
+	sample weapons/357_shot1.wav
+	sample weapons/357_shot2.wav
+	distshader Weapon_357.SingleDistance
+}
+
+Weapon_357.SingleDistance
 {
 	volume 0.1
 	sample ambience/rifle1.wav
 }
 
-weapon_357.reload
+Weapon_357.Reload
 {
 	sample weapons/357_reload1.wav
 }
 
-weapon_crossbow.fire
+Weapon_Crossbow.Single
 {
 	alerts
 	sample weapons/xbow_fire1.wav
 }
 
-weapon_crossbow.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_crossbow.hit
+Weapon_Crossbow.BoltHitWorld
 {
 	sample weapons/xbow_hit1.wav
 }
 
-weapon_crossbow.hitbody
+Weapon_Crossbow.BoltHitBody
 {
 	sample weapons/xbow_hitbod1.wav
 	sample weapons/xbow_hitbod2.wav
 }
 
-weapon_crossbow.reload
+Weapon_Crossbow.Reload
 {
 	sample weapons/xbow_reload1.wav
 }
 
-weapon_crowbar.hit
+Weapon_Crowbar.Melee_HitWorld
 {
 	alerts
 	sample weapons/cbar_hit1.wav
 	sample weapons/cbar_hit2.wav
 }
 
-weapon_crowbar.hitbody
+Weapon_Crowbar.Melee_Hit
 {
 	alerts
 	sample weapons/cbar_hitbod1.wav
@@ -64,37 +59,32 @@ weapon_crowbar.hitbody
 	sample weapons/cbar_hitbod3.wav
 }
 
-weapon_crowbar.miss
+Weapon_Crowbar.Single
 {
 	sample weapons/cbar_miss1.wav
 }
 
-weapon_glock.fire
+Weapon_Glock.Single
 {
 	alerts
 	sample weapons/pl_gun3.wav
 }
 
-weapon_glock.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_handgrenade.bounce
+Weapon_HandGrenade.GrenadeBounce
 {
 	sample weapons/grenade_hit1.wav
 	sample weapons/grenade_hit2.wav
 	sample weapons/grenade_hit3.wav
 }
 
-weapon_handgrenade.explode
+BaseExplosionEffect.Sound
 {
 	sample weapons/explode3.wav
 	sample weapons/explode4.wav
 	sample weapons/explode5.wav
 }
 
-weapon_hornetgun.fire
+Weapon_Hornetgun.Single
 {
 	alerts
 	sample agrunt/ag_fire1.wav
@@ -102,47 +92,42 @@ weapon_hornetgun.fire
 	sample agrunt/ag_fire3.wav
 }
 
-weapon_hornetgun.buzz
+Hornet.Buzz
 {
 	sample hornet/ag_buzz1.wav
 	sample hornet/ag_buzz2.wav
 	sample hornet/ag_buzz3.wav
 }
 
-weapon_hornetgun.hit
+Hornet.Die
 {
 	sample hornet/ag_hornethit1.wav
 	sample hornet/ag_hornethit2.wav
 	sample hornet/ag_hornethit3.wav
 }
 
-weapon_mp5.shoot
+Weapon_MP5.Single
 {
 	alerts
 	sample weapons/hks1.wav
 	sample weapons/hks2.wav
 	sample weapons/hks3.wav
-	distshader weapon_mp5.shoot_dist
+	distshader Weapon_MP5.SingleDist
 }
 
-weapon_mp5.shoot_dist
+Weapon_MP5.SingleDist
 {
 	volume 0.1
 	sample ambience/rifle2.wav
 }
 
-weapon_mp5.gl
+Weapon_MP5.Double
 {
 	alerts
 	sample weapons/glauncher.wav
 }
 
-weapon_mp5.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_satchel.bounce
+SatchelCharge.Bounce
 {
 	sample weapons/g_bounce1.wav
 	sample weapons/g_bounce2.wav
@@ -151,127 +136,107 @@ weapon_satchel.bounce
 	sample weapons/g_bounce5.wav
 }
 
-weapon_tripmine.deploy
+TripmineGrenade.Deploy
 {
 	sample weapons/mine_deploy.wav
 }
 
-weapon_tripmine.charge
+TripmineGrenade.Charge
 {
 	sample weapons/mine_charge.wav
 }
 
-weapon_tripmine.activate
+TripmineGrenade.Activate
 {
 	sample weapons/mine_activate.wav
 }
 
-weapon_rpg.shoot
+Weapon_RPG.Single
 {
 	alerts
 	sample weapons/rocketfire1.wav
 }
 
-weapon_rpg.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_shotgun.single
+Weapon_Shotgun.Single
 {
 	alerts
 	sample weapons/sbarrel1.wav
-	distshader weapon_shotgun.distance
+	distshader Weapon_Shotgun.DistantShot
 }
 
-weapon_shotgun.double
+Weapon_Shotgun.Double
 {
 	alerts
 	sample weapons/dbarrel1.wav
-	distshader weapon_shotgun.distance
+	distshader Weapon_Shotgun.DistantShot
 }
 
-weapon_shotgun.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_shotgun.distance
+Weapon_Shotgun.DistantShot
 {
 	volume 0.15
 	sample ambience/biggun3.wav
 }
 
-weapon_shotgun.reload
+Weapon_Shotgun.Reload
 {
 	sample weapons/reload3.wav
 }
 
-weapon_shotgun.cock
+Weapon_Shotgun.Special1
 {
 	sample weapons/scock1.wav
 }
 
-weapon_snark.deploy
+Snark.Deploy
 {
 	pitch_min 1.0
 	pitch_max 1.1
 	sample squeek/sqk_deploy1.wav
 }
 
-weapon_snark.die
+Snark.Squeak
 {
 	sample squeek/sqk_die1.wav
 }
 
-weapon_snark.blast
+Snark.Die
 {
 	sample squeek/sqk_blast1.wav
 }
 
-weapon_snark.hunt
+Snark.Bounce
 {
 	sample squeek/sqk_hunt1.wav
 	sample squeek/sqk_hunt2.wav
 	sample squeek/sqk_hunt3.wav
 }
 
-weapon_gauss.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_gauss.fire
+Weapon_Gauss.Fire
 {
 	sample weapons/gauss2.wav
 }
 
-weapon_gauss.overcharge
+Weapon_Gauss.StaticDischarge
 {
 	sample weapons/electro4.wav
 }
 
-weapon_gauss.revving
+Weapon_Gauss.Spin
 {
 	sample ambience/pulsemachine.wav
 }
 
-weapon_egon.empty
-{
-	sample weapons/357_cock1.wav
-}
-
-weapon_egon.fire
+Weapon_Gluon.Start
 {
 	sample weapons/egon_windup2.wav
 }
 
-weapon_egon.fire_loop
+Weapon_Gluon.Run
 {
 	sample weapons/egon_run3.wav
 }
 
-weapon_egon.fire_stop
+Weapon_Gluon.Off
 {
 	sample weapons/egon_off1.wav
 }

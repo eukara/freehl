@@ -1,0 +1,17 @@
+typeInfo material
+{
+	"C" "gs_material_concrete"
+	"D" "gs_material_dirt"
+	"F" "gs_material_flesh"
+	"G" "gs_material_grate"
+	"H" "gs_material_alien"
+	"M" "gs_material_metal"
+	"O" "gs_material_foliage"
+	"P" "gs_material_computer"
+	"R" "gs_material_rocks"
+	"S" "gs_material_slosh"
+	"T" "gs_material_tile"
+	"V" "gs_material_vent"
+	"W" "gs_material_wood"
+	"Y" "gs_material_glass"
+}

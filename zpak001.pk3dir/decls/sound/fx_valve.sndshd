@@ -22,7 +22,7 @@ fx.gaussbeam
 	sample weapons/electro6.wav
 } 
 
-fx.spark
+DoSpark
 {
 	attenuation idle
 	sample buttons/spark1.wav

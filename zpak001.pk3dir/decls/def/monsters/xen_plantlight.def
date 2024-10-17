@@ -1,0 +1,10 @@
+entityDef xen_plantlight
+{
+	"spawnclass"			"NSSurfacePropEntity"
+	"model"					"models/light.mdl"
+	"netname"				"Xen Plant Light"
+	"health"				"0"
+	"mins"					"-48 -48 0"
+	"maxs"					"48 48 32"
+	"propdata"				"actor_alien"
+}

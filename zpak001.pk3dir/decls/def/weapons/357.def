@@ -29,9 +29,9 @@ entityDef weapon_357
 	"act_draw"		"5"
 	"act_idle"		"0,1,6,7"
 
-	"snd_fire"		"weapon_357.shoot"
-	"snd_empty"		"weapon_357.empty"
-	"snd_reload"	"weapon_357.reload"
+	"snd_fire"		"Weapon_357.Single"
+	"snd_empty"		"Weapons.Empty"
+	"snd_reload"	"Weapon_357.Reload"
 
 	// HLWeapon specific
 	"hudSlot"		"1"

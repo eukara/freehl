@@ -30,9 +30,9 @@ entityDef weapon_9mmhandgun
 	"act_draw"			"7"
 	"act_idle"			"0,1,2"
 
-	"snd_fire"		"weapon_glock.fire"
-	"snd_altfire"	"weapon_glock.fire"
-	"snd_empty"		"weapon_glock.empty"
+	"snd_fire"		"Weapon_Glock.Single"
+	"snd_altfire"	"Weapon_Glock.Single"
+	"snd_empty"		"Weapons.Empty"
 
 	// HLWeapon specific
 	"hudSlot"		"1"

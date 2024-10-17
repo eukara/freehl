@@ -18,6 +18,11 @@ Player.GaspLight
 	sample common/null.wav
 }
 
+Player.Pain
+{
+	sample common/null.wav
+}
+
 Player.GaspHeavy
 {
 	sample common/null.wav

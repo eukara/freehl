@@ -20,6 +20,8 @@ entityDef weapon_rpg
 	"ammoPerShot" 		"1"
 	"inv_ammo_rocket"	"1"
 	"fireRate"			"2.5"
+	"snd_fire"			"Weapon_RPG.Single"
+	"snd_empty"			"Weapons.Empty"
 
 	"act_idle"			"0,1"
 	"act_idleEmpty"		"8,9"
@@ -66,12 +68,14 @@ entityDef projectile_rocket
 	"light_color"		"1 0.8 0.4"
 	"light_radius"		"160"
 	"light_offset"		"0 0 0"
+	"detonate_offset"			"24"
 
 	"explode_light_color"		"2 1.6 0.8"
 	"explode_light_radius"		"320"
 	"explode_light_fadetime"	"0.5"
 
 	"snd_explode"	"fx.explosion"
+	"offset"			"0 7 -3"
 }
 
 entityDef projectile_rocket_homing

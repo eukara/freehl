@@ -26,12 +26,6 @@ ClientGame_ConsoleCommand(void)
 	case "chooseteam":
 		localcmd(sprintf("cmd %s %s\n", argv(0), argv(1)));
 		break;
-	case "invnext":
-		pSeatLocal->weaponSelectionHUD.SelectNext(false);
-		break;
-	case "invprev":
-		pSeatLocal->weaponSelectionHUD.SelectPrevious(false);
-		break;
 	case "lastinv":
 		//HUD_DrawWeaponSelect_Last();
 		break;

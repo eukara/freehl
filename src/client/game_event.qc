@@ -65,7 +65,7 @@ ClientGame_EventParse(float fHeader)
 			sendevent("PlayerSwitchWeapon", "i", w);
 		}
 
-		HUD_WeaponPickupNotify(w);
+		//HUD_WeaponPickupNotify(w);
 		break;
 	default:
 		return (0);

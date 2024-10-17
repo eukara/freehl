@@ -1,6 +1,6 @@
 entityDef item_suit
 {
-	"spawnclass"	"NSItem"
+	"spawnclass"	"HLSuit"
 	"model"			"models/w_suit.mdl"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 16"

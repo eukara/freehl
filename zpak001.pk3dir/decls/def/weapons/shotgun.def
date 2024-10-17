@@ -36,11 +36,11 @@ entityDef weapon_shotgun
 	"act_draw"			"6"
 	"act_idle"			"0,8,9"
 
-	"snd_fire"			"weapon_shotgun.single"
-	"snd_empty"			"weapon_shotgun.empty"
+	"snd_fire"			"Weapon_Shotgun.Single"
+	"snd_empty"			"Weapons.Empty"
 
-	"snd_reload"		"weapon_shotgun.reload"
-	"snd_reload_end"	"weapon_shotgun.cock"
+	"snd_reload"		"Weapon_Shotgun.Reload"
+	"snd_reload_end"	"Weapon_Shotgun.Special1"
 
 	// HLWeapon specific
 	"hudSlot"		"2"
@@ -67,19 +67,19 @@ entityDef projectile_shotgun_alt
 entityDef fireInfo_shotgun
 {
 	"def_onFire"	"projectile_shotgun"
-	"ammoPerShot"		"1"
-	"fireRate"			"0.75"
-	"punchAngle"		"-5 0 0"
+	"ammoPerShot"	"1"
+	"fireRate"		"0.75"
+	"punchAngle"	"-5 0 0"
 }
 
 entityDef fireInfo_altShotgun
 {
 	"def_onFire"	"projectile_shotgun_alt"
-	"ammoPerShot"		"2"
-	"fireRate"			"1.5"
-	"act_fire"			"2"
-	"punchAngle"		"-10 0 0"
-	"snd_fire"			"weapon_shotgun.double"
+	"ammoPerShot"	"2"
+	"fireRate"		"1.5"
+	"act_fire"		"2"
+	"punchAngle"	"-10 0 0"
+	"snd_fire"		"Weapon_Shotgun.Double"
 }
 
 // multiplayer version
@@ -102,17 +102,17 @@ entityDef projectile_shotgun_alt_mp
 entityDef fireInfo_shotgun_mp
 {
 	"def_onFire"	"projectile_shotgun_mp"
-	"ammoPerShot"		"1"
-	"fireRate"			"0.75"
-	"punchAngle"		"-5 0 0"
+	"ammoPerShot"	"1"
+	"fireRate"		"0.75"
+	"punchAngle"	"-5 0 0"
 }
 
 entityDef fireInfo_altShotgun_mp
 {
 	"def_onFire"	"projectile_shotgun_alt_mp"
-	"ammoPerShot"		"2"
-	"fireRate"			"1.5"
-	"punchAngle"		"-10 0 0"
+	"ammoPerShot"	"2"
+	"fireRate"		"1.5"
+	"punchAngle"	"-10 0 0"
 }
 
 entityDef weapon_shotgun_mp

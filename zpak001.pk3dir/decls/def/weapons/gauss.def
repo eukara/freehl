@@ -22,7 +22,8 @@ entityDef weapon_gauss
 	"act_draw"			"8"
 	"act_holster"		"7"
 	"powerAmmo"			"1"
-	"snd_fire"			"weapon_gauss.fire"
+	"snd_fire"			"Weapon_Gauss.Fire"
+	"snd_empty"			"Weapons.Empty"
 
 	// HLWeapon specific
 	"hudSlot"		"3"
@@ -60,9 +61,9 @@ entityDef fireInfo_gausscharge
 	"fireRate" 			"2"
 	"punchAngle"		"-2 0 0"
 	"model_flash"		"sprites/muzzleflash2.spr"
-	"snd_fireStart"		"weapon_gauss.revving"
-	"snd_fire"			"weapon_gauss.overcharge"
-	"snd_release"		"weapon_gauss.fire"
+	"snd_fireStart"		"Weapon_Gauss.Spin"
+	"snd_fire"			"Weapon_Gauss.StaticDischarge"
+	"snd_release"		"Weapon_Gauss.Fire"
 	"chargeTime"		"5"
 	"act_release"		"5,6"
 	"act_delay"			"3"

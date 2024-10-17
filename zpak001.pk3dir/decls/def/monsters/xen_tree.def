@@ -1,0 +1,35 @@
+entityDef xen_tree
+{
+	"spawnclass"			"NSMonster"
+	"model"					"models/tree.mdl"
+	"netname"				"Xen Tree"
+	"health"				"0"
+	"mins"					"-24 -24 0"
+	"maxs"					"24 24 188"
+	"propdata"				"actor_alien"
+	"team"					"0"
+
+	"speed_walk"			"0"
+	"speed_run"				"0"
+
+	"def_attack_melee"		"melee_xenTree_stab"
+	"melee_range"			"96"
+
+
+	"snd_sight"				""
+	"snd_idle"				""
+	"snd_pain"				""
+	"snd_death"				""
+	"snd_melee_attack"		"monster_zombie.attack"
+	"snd_melee_attack_hit"	"monster_zombie.attackhit"
+	"snd_melee_attack_miss"	"monster_zombie.attackmiss"
+	"snd_thud"				"monster_generic.thud"
+}
+
+entityDef melee_xenTree_stab
+{
+	"damage"		"skill:zombie_dmg_one_slash"
+	"delay"			"1.25f"
+	"wait"			"0.1"
+	"attempts"		"1"
+}

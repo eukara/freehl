@@ -131,6 +131,9 @@ HLPlayer::UpdateAliveCam(void)
 .string oldmodel;
 //string Weapons_GetPlayermodel(NSClientPlayer, int);
 
+var bool autocvar_cg_flashlightClassic = true;
+var float autocvar_r_shadow_realtime_dlight;
+
 void
 HLPlayer::UpdatePlayerAttachments(bool visible)
 {
@@ -150,10 +153,14 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 		makevectors(ang);
 		traceline(src, src + (v_forward * 8096), MOVE_NORMAL, this);
 
-		if (serverkeyfloat("*bspversion") == BSPVER_HL) {
-			dynamiclight_add(trace_endpos + (trace_plane_normal * 4), 128, [1,1,1]);
+		if (autocvar_cg_flashlightClassic == true) {
+			if (autocvar_r_shadow_realtime_dlight == 0) {
+				dynamiclight_add(trace_endpos + (trace_plane_normal * 4), 128, [1,1,1]);
+			} else {
+				dynamiclight_add(trace_endpos + (trace_plane_normal * 48.0f), 96, [1,1,1]);
+			}
 		} else {
-			float p = dynamiclight_add(src, 512, [1,1,1], 0, "textures/flashlight");
+			float p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "textures/flashlight");
 			dynamiclight_set(p, LFIELD_ANGLES, ang);
 			dynamiclight_set(p, LFIELD_FLAGS, 3);
 		}
@@ -340,6 +347,7 @@ HLPlayer::EvaluateEntity(void)
 
 }
 
+entity FX_Corpse_Spawn(NSClientPlayer pl, float anim);
 void
 HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, int location)
 {
@@ -441,4 +449,3 @@ HLPlayer::Physics_Jump(void)
 			velocity[2] += 265;
 	}
 }
-

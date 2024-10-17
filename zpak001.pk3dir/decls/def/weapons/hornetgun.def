@@ -22,7 +22,7 @@ entityDef weapon_hornetgun
 	"act_draw"		"4"
 	"act_idle"		"0,1,2"
 
-	"snd_fire"		"weapon_hornetgun.fire"
+	"snd_fire"		"Weapon_Hornetgun.Single"
 
 	// HLWeapon specific
 	"hudSlot"		"3"

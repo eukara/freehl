@@ -17,13 +17,12 @@
 void
 Game_InitRules(void)
 {
-	Player_Precache();
 	FX_Corpse_Init();
 	
 	if (cvar("sv_playerslots") == 1 || cvar("coop") == 1) {
-		g_grMode = NSGameRules::InitFromProgs("maps/singleplayer.dat");
+		g_grMode = NSGameRules::InitFromProgs("progs/singleplayer.dat");
 	} else {
-		g_grMode = NSGameRules::InitFromProgs("maps/mp/gametypes/dm.dat");
+		g_grMode = NSGameRules::InitFromProgs("progs/deathmatch.dat");
 	}
 }
 

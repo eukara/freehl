@@ -51,6 +51,7 @@ ClientGame_InitDone(void)
 void
 ClientGame_RendererRestart(string rstr)
 {
+	precache_model("models/v_tripmine.mdl");
 	precache_model("models/shell.mdl");
 	precache_model("models/shotgunshell.mdl");
 

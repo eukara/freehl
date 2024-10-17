@@ -15,6 +15,3 @@
  */
 
 #include "../shared/defs.h"
-#include "gamerules.h"
-#include "items.h"
-#include "flashlight.h"

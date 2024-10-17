@@ -183,7 +183,7 @@
 #undef FTPSERVER
 #undef HAVE_JUKEBO		/* includes built-in jukebox */
 #undef HAVE_SPEECHTOTEXT	/* Windows speech-to-text thing */
-#undef SAVEDGAMES
+#define SAVEDGAMES
 #undef HEADLESSQUAKE
 #undef WAYLANDQUAKE
 #undef SERVER_DEMO_PLAYBACK	/* deprecated */
@@ -193,7 +193,7 @@
 #undef IMAGEFMT_PSD
 #undef IMAGEFMT_XCF
 #undef IMAGEFMT_LMP
-#undef IMAGEFMT_PNG
+#define IMAGEFMT_PNG
 #undef IMAGEFMT_GIF
 #undef IMAGEFMT_EXR
 #undef IPLOG

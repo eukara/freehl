@@ -13,26 +13,26 @@ entityDef weapon_snark
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 
-	"inv_name"				"Snark"
-	"inv_weapon"			"weapon_snark"
+	"inv_name"			"Snark"
+	"inv_weapon"		"weapon_snark"
 	"inv_ammo_snark"	"5"
 	"def_onFire"		"projectile_snark"
-	"ammoType"				"ammo_snark"
-	"ammoRequired"			"1"
-	"silent_fire"			"1"
-	"primed_fuse"			"4"
+	"ammoType"			"ammo_snark"
+	"ammoRequired"		"1"
+	"silent_fire"		"1"
+	"primed_fuse"		"4"
 
-	"act_idle"		"0,1,2"
-	"act_draw"		"4"
-	"act_holster"	"3"
-	"act_throw"		"5"
-	"removeOnEmpty" "1"
+	"act_idle"			"0,1,2"
+	"act_draw"			"4"
+	"act_holster"		"3"
+	"act_throw"			"5"
+	"removeOnEmpty" 	"1"
 
 	// HLWeapon specific
-	"hudSlot"		"4"
-	"hudSlotPos"	"3"
-	"weight"		"5"
-	"crosshair"		"none"
+	"hudSlot"			"4"
+	"hudSlotPos"		"3"
+	"weight"			"5"
+	"crosshair"			"none"
 }
 
 entityDef projectile_snark

@@ -43,7 +43,7 @@ entityDef projectile_satchel
 	"frame"				"1"
 	"mins"				"-1 -1 -4"
 	"maxs"				"1 1 4"
-	"snd_bounce"		"weapon_satchel.bounce"
+	"snd_bounce"		"SatchelCharge.Bounce"
 	"inherit_velocity"	"1"
 
 	"def_splash_damage"	"damage_satchelExplosion"

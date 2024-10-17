@@ -21,8 +21,7 @@ entityDef weapon_crowbar
 	"testDistance"		"-32"
 	"failRate"			"0.5"
 	"fireRate"			"0.25"
-	"snd_fire"			"weapon_crowbar.hit"
-	"snd_fireFailed"	"weapon_crowbar.miss"
+	"snd_fireFailed"	"Weapon_Crowbar.Single"
 
 	"act_idle"			"0"
 	"act_draw"			"1"
@@ -45,4 +44,6 @@ entityDef projectile_crowbar
 	"is_bullet"				"1"
 	"decal_impact"			"Impact.Shot"
 	"detonate_on_world" 	"1"
+	"snd_hitBody"			"Weapon_Crowbar.Melee_Hit"
+	"snd_hitWorld"			"Weapon_Crowbar.Melee_HitWorld"
 }

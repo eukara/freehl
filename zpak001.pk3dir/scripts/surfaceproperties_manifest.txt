@@ -1,0 +1,4 @@
+surfaceproperties_manifest
+{
+	file "scripts/surfaceproperties_valve.txt"
+}

@@ -25,6 +25,7 @@ entityDef weapon_tripmine
 	"act_draw"			"6"
 	"act_holster"		"5"
 	"removeOnEmpty"		"1"
+	"snd_fire"			"TripmineGrenade.Deploy"
 
 	// HLWeapon specific
 	"hudSlot"			"4"

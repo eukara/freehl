@@ -94,6 +94,7 @@ HLTripmine::Spawned(void)
 		ScheduleThink(Ready, 0.0f);
 	} else {
 		ScheduleThink(Ready, 4.0f);
+		StartSoundDef("TripmineGrenade.Charge", CHAN_VOICE, true);
 	}
 }
 
@@ -109,7 +110,7 @@ HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, int
 
 	pointparticles(particleeffectnum("fx_explosion.main"), GetOrigin(), [0,0,0], 1);
 
-	radiusDamage(explosionPos, explosionRadius, 0i, (int)explosionDamage, attacker);
+	combat.RadiusDamage(explosionPos, explosionRadius, 0i, (int)explosionDamage, attacker, "");
 	StartSoundDef("fx.explosion", CHAN_VOICE, true);
 	Destroy();
 }
@@ -131,7 +132,7 @@ HLTripmine::Ready(void)
 		m_vecEndPos = trace_endpos;
 		SetHealth(1);
 		MakeVulnerable();
-		StartSoundDef("weapon_tripmine.activate", CHAN_WEAPON, true);
+		StartSoundDef("TripmineGrenade.Activate", CHAN_WEAPON, true);
 		SetSolid(SOLID_BBOX);
 		ForceNetworkUpdate();
 	}

@@ -153,24 +153,6 @@ gs_material_alien
 	break "func_breakable.break_flesh"
 }
 
-gs_material_snow
-{
-	gamematerial K
-	part_bulletimpact "impact_default.main"
-	bulletimpact "sfx_impact.snow"
-	stepleft "step_snow.left"
-	stepright "step_snow.right"
-}
-
-gs_material_sand
-{
-	gamematerial N
-	part_bulletimpact "impact_default.main"
-	bulletimpact "sfx_impact.sand"
-	stepleft "step_sand.left"
-	stepright "step_sand.right"
-}
-
 gs_material_foliage
 {
 	gamematerial O

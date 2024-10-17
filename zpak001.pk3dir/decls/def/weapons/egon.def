@@ -24,9 +24,9 @@ entityDef weapon_egon
 	"act_holster"		"10"
 	"fireRate"			"0.2"
 
-	"snd_fireStart"		"weapon_egon.fire"
-	"snd_fireLoop"		"weapon_egon.fire_loop"
-	"snd_fireEnd"		"weapon_egon.fire_stop"
+	"snd_fireStart"		"Weapon_Gluon.Start"
+	"snd_fireLoop"		"Weapon_Gluon.Run"
+	"snd_fireEnd"		"Weapon_Gluon.Off"
 	"fx_trail"			"weapon_egon.trail"
 	"fx_trail_world"	"weapon_egon.trail_world"
 
