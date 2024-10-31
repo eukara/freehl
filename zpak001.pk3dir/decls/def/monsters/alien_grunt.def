@@ -26,19 +26,19 @@ entityDef monster_alien_grunt
 
 	// animation event callbacks
 	events {
-		1 "SpawnProjectileDef"	"ranged_agrunt_shot"
+		1 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
 		1 "StartSoundDef"		"weapon_hornetgun.fire"
 
-		2 "SpawnProjectileDef"	"ranged_agrunt_shot"
+		2 "SpawnProjectileDef"	"ranged_agrunt_shot_red"
 		2 "StartSoundDef"		"weapon_hornetgun.fire"
 
-		3 "SpawnProjectileDef"	"ranged_agrunt_shot"
+		3 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
 		3 "StartSoundDef"		"weapon_hornetgun.fire"
 
-		4 "SpawnProjectileDef"	"ranged_agrunt_shot"
+		4 "SpawnProjectileDef"	"ranged_agrunt_shot_red"
 		4 "StartSoundDef"		"weapon_hornetgun.fire"
 
-		5 "SpawnProjectileDef"	"ranged_agrunt_shot"
+		5 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
 		5 "StartSoundDef"		"weapon_hornetgun.fire"
 
 		10 "StartSoundDef"		"monster_alien_grunt.step_left"
@@ -53,15 +53,33 @@ entityDef melee_agrunt_punch
 }
 
 
-entityDef ranged_agrunt_shot
+entityDef ranged_agrunt_shot_red
 {
 	"spawnclass"			"NSProjectile"
 	"model"					"models/hornet.mdl"
 
 	"def_damage"			"damage_hornetDirect"
-
 	"health"				"0"
-	"velocity"				"300"
+	"velocity"				"600"
+	"fuse"					"10"
+	"detonate_on_fuse"		"0"
+	"detonate_on_death"		"0"
+	"detonate_on_world"		"0"
+	"detonate_on_actor"		"1"
+	"impact_damage_effect"	"1"
+	"impact_gib"			"0"
+	"smoke_fly"				"weapon_hornet.red_trail"
+}
+
+
+entityDef ranged_agrunt_shot_orange
+{
+	"spawnclass"			"NSProjectile"
+	"model"					"models/hornet.mdl"
+
+	"def_damage"			"damage_hornetDirect"
+	"health"				"0"
+	"velocity"				"800"
 	"fuse"					"10"
 	"detonate_on_fuse"		"0"
 	"detonate_on_death"		"0"
@@ -70,6 +88,9 @@ entityDef ranged_agrunt_shot
 	"impact_damage_effect"	"1"
 	"impact_gib"			"0"
 	"smoke_fly"				"weapon_hornet.trail"
+	"trackEnemy"			"1"
+	"trackJitter"			"8 16 16"
+	"trackDelay"			"0.1"
 }
 
 entityDef damage_hornetDirect

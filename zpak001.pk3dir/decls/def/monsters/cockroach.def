@@ -13,3 +13,6 @@ entityDef monster_cockroach
 	"speed_walk"		"0"
 	"speed_run"		"0"
 }
+
+TODO: coverhintnodeflags: FLESH | LOWLIGHT
+TODO: OnSeenPlayer: MoveToCover

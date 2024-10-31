@@ -1,14 +1,98 @@
 entityDef monster_bigmomma
 {
-	"spawnclass"		"NSMonster"
-	"model"		"models/big_mom.mdl"
+	"spawnclass"	"NSMonster"
+	"model"			"models/big_mom.mdl"
 	"netname"		"Big Momma"
 	"health"		"100"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
-	"eye_height"		"64"
-	"team"		"2"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
+	"eye_height"	"64"
+	"team"			"2"
 	"propdata"		"actor_alien"
-	"speed_walk"		"46"
+	"speed_walk"	"0"
 	"speed_run"		"292"
+
+	"attack_ranged_range"	"512"
+	"attack_melee_range"	"152"
+	"def_attack_melee"		"melee_bigmomma"
+	"def_attack_ranged"		"ranged_bigmomma_spit"
+
+	"snd_alert"		"BigMomma.Alert"
+	"snd_pain"		"BigMomma.Pain"
+	"snd_death"		"BigMomma.Die"
+
+	"snd_precache"	"BigMomma.FootstepLeft"
+	"snd_precache"	"BigMomma.FootstepRight"
+	"snd_precache"	"BigMomma.ChildDie" // She mourns when her children die, who wouldn't?
+	"snd_precache"	"BigMomma.Sack"
+	"snd_precache"	"monster_bigmomma.scream"
+	"snd_precache"	"BigMomma.LaunchMortar"
+	"snd_precache"	"BigMomma.Attack"
+	"snd_precache"	"BigMomma.AttackHit"
+	"snd_precache"	"BigMomma.AttackMiss"
+	"snd_precache"	"BigMomma.Birth" // BigMomma.LayHeadcrab seems to be the same?
+
+	"snd_precache"	"NPC_BigMomma.SpitTouch1"
+	"snd_precache"	"NPC_BigMomma.SpitHit1"
+	"snd_precache"	"NPC_BigMomma.SpitHit2"
+
+	events {
+		// footsteps
+		1 "StartSoundDef"	"BigMomma.FootstepLeft"
+		2 "StartSoundDef"	"BigMomma.FootstepRight"
+		3 "StartSoundDef"	"BigMomma.FootstepLeft"
+		4 "StartSoundDef"	"BigMomma.FootstepRight"
+
+		// sfx
+		5 "StartSoundDef"	"BigMomma.Sack"
+		6 "StartSoundDef"	"BigMomma.Die"
+		14 "StartSoundDef"	"monster_bigmomma.scream"
+		15 "StartSoundDef"	"BigMomma.Pain"
+		16 "StartSoundDef"	"BigMomma.Attack"
+		17 "StartSoundDef"	"BigMomma.Birth"
+
+		// melee attacks
+		8 "SpawnProjectileDef"	"melee_bigmomma"
+		9 "SpawnProjectileDef"	"melee_bigmomma"
+		10 "SpawnProjectileDef	"melee_bigmomma"
+
+		// ranged attack
+		11 "SpawnProjectileOffset"	"ranged_bigmomma_spit 0 0 180"
+
+		// spawn offspring
+		12 "SpawnProjectileDef"	"monster_babycrab"
+
+		// trigger our targets
+		50 "UseTargets"			""
+
+		// jump forward
+		13 "AddVelocity"		"200 0 500"
+	}
+}
+
+entityDef melee_bigmomma
+{
+	"damage"	"skill:bullsquid_dmg_bite"
+	"delay"	"0.25f"
+}
+
+entityDef ranged_bigmomma_spit
+{
+	"spawnclass"			"NSProjectile"
+	"model"					"sprites/mommaspit.spr"
+	"mins"					"-16 -16 -16"
+	"mins"					"16 16 16"
+
+	"def_damage"			"damage_spitDirect"
+
+	"health"				"0"
+	"velocity"				"900"
+	"fuse"					"10"
+	"detonate_on_fuse"		"0"
+	"detonate_on_death"		"0"
+	"detonate_on_world"		"1"
+	"detonate_on_actor"		"1"
+	"impact_damage_effect"	"1"
+	"impact_gib"			"0"
+	"trackEnemy"			"1"
 }

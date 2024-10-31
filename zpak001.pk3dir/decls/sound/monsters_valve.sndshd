@@ -159,44 +159,72 @@ monster_barney.pain
 	sample barney/ba_pain1.wav
 }
 
-monster_bigmomma.alert
+NPC_BigMomma.SpitTouch1
+{
+	sample bullchicken/bc_acid1.wav
+}
+
+NPC_BigMomma.SpitHit1
+{
+	sample bullchicken/bc_spithit1.wav
+}
+
+NPC_BigMomma.SpitHit2
+{
+	sample bullchicken/bc_spithit2.wav
+}
+
+BigMomma.Alert
 {
 	sample gonarch/gon_alert1.wav
 	sample gonarch/gon_alert2.wav
 	sample gonarch/gon_alert3.wav
 }
 
-// the groans for when she spits?
-monster_bigmomma.attack
+BigMomma.Attack
 {
 	sample gonarch/gon_attack1.wav
 	sample gonarch/gon_attack2.wav
 	sample gonarch/gon_attack3.wav
 }
 
-/ mourns the death of her children
-monster_bigmomma.child
+// She mourns when her children die, who wouldn't?
+BigMomma.ChildDie
 {
 	sample gonarch/gon_childdie1.wav
 	sample gonarch/gon_childdie2.wav
 	sample gonarch/gon_childdie3.wav
 }
 
-monster_bigmomma.die
+BigMomma.Die
 {
 	sample gonarch/gon_die1.wav
 	sample gonarch/gon_die2.wav
 	sample gonarch/gon_die3.wav
 }
 
-monster_bigmomma.idle
+BigMomma.Sack
 {
 	sample gonarch/gon_sack1.wav
 	sample gonarch/gon_sack2.wav
 	sample gonarch/gon_sack3.wav
 }
 
-monster_bigmomma.pain
+BigMomma.Birth
+{
+	sample gonarch/gon_sack1.wav
+	sample gonarch/gon_sack2.wav
+	sample gonarch/gon_sack3.wav
+}
+
+BigMomma.LaunchMortar
+{
+	sample gonarch/gon_sack1.wav
+	sample gonarch/gon_sack2.wav
+	sample gonarch/gon_sack3.wav
+}
+
+BigMomma.Pain
 {
 	sample gonarch/gon_pain2.wav
 	sample gonarch/gon_pain3.wav
@@ -205,7 +233,15 @@ monster_bigmomma.pain
 }
 
 // has unique foot step sounds
-monster_bigmomma.step
+BigMomma.FootstepLeft
+{
+	sample gonarch/gon_step1.wav
+	sample gonarch/gon_step2.wav
+	sample gonarch/gon_step3.wav
+}
+
+// HL:S does this
+BigMomma.FootstepRight
 {
 	sample gonarch/gon_step1.wav
 	sample gonarch/gon_step2.wav

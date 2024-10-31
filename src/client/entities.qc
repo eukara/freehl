@@ -25,9 +25,7 @@ ClientGame_EntityUpdate(float id, float new)
 		NSENTITY_READENTITY(HLWeapon, new)
 		break;
 	case ENT_PLAYER:
-#ifdef GEARBOX
-		NSENTITY_READENTITY(OP4Player, new)
-#elif SCIHUNT
+#ifdef SCIHUNT
 		NSENTITY_READENTITY(SHPlayer, new)
 #else
 		NSENTITY_READENTITY(HLPlayer, new)

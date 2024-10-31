@@ -1,0 +1,7 @@
+// Vera Visions Material
+{
+	program lightmapped
+	polygonOffset 1
+	diffusemap "textures/sfx/alpha.tga"
+	normalmap "textures/sfx/mirror_n.tga"
+}

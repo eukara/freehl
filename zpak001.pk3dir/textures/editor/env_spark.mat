@@ -1,0 +1,8 @@
+{
+	diffusemap textures/editor/env_spark.tga
+	
+	{
+		map $diffuse
+		alphaFunc GE128
+	}
+}

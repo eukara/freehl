@@ -1,15 +1,15 @@
 entityDef monster_gman
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"	"NSTalkMonster"
 	"model"			"models/gman.mdl"
 	"netname"		"G-Man"
-	"health"		"0" // he can't die, he's the G-Man!
+	"health"		"" // he can't die, he's the G-Man!
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 72"
-	"eye_height"		"64"
+	"eye_height"	"64"
 	"team"			"0"
-	"propdata"		"actor_human"
+	"propdata"		"actor_robot"
 
-	"speed_walk"		"77"
+	"speed_walk"	"77"
 	"speed_run"		"364" // day one only
 }

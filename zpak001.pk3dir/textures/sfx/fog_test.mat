@@ -1,0 +1,11 @@
+// Vera Visions Material
+{
+	fogParms ( 0.5 0.5 0.5 ) 1024
+	surfaceParm fog
+	surfaceParm nolightmap
+	surfaceParm nonsolid
+	surfaceParm trans
+
+	qer_editorImage "textures/sfx/fog.tga"
+	qer_trans 0.4
+}

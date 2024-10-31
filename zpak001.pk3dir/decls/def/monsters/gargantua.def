@@ -1,14 +1,25 @@
 entityDef monster_gargantua
 {
 	"spawnclass"		"NSMonster"
-	"model"		"models/garg.mdl"
-	"netname"		"Gargantua"
-	"health"		"skill:gargantua_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"model"				"models/garg.mdl"
+	"netname"			"Gargantua"
+	"health"			"skill:gargantua_health"
+	"mins"				"-32 -32 0"
+	"maxs"				"32 32 128"
 	"eye_height"		"64"
-	"team"		"2"
-	"propdata"		"actor_alien"
+	"team"				"2"
+	"propdata"			"actor_alien"
 	"speed_walk"		"46"
-	"speed_run"		"292"
+	"speed_run"			"292"
+
+	events {
+		// attacks
+		1 "SpawnProjectileDef"	"melee_gargantua"
+		5 "SpawnProjectileDef"	"stomp_gargantua"
+
+		// sfx
+		3 "StartSoundDef" "monster_gargantua.step"
+		4 "StartSoundDef" "monster_gargantua.step"
+		6 "StartSoundDef" "monster_gargantua.breathe"
+	}
 }

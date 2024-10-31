@@ -1,0 +1,8 @@
+{
+	diffusemap textures/editor/trigger_relay.tga
+	
+	{
+		map $diffuse
+		alphaFunc GE128
+	}
+}

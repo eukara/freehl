@@ -1,0 +1,11 @@
+// Vera Visions Material
+{
+	polygonOffset 1
+	diffusemap "textures/sfx/mirror.tga"
+	normalmap "textures/sfx/mirror_n.tga"
+
+	{
+		program lightmapped_reflect
+		map $reflection
+	}
+}

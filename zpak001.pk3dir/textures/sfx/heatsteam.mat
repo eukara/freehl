@@ -1,0 +1,26 @@
+// Vera Visions Material
+{
+	surfaceParm trans
+	surfaceParm nomarks
+	surfaceParm nolightmap
+	surfaceParm nonsolid
+	cull none
+
+if $programs
+	{
+		program heat
+		map "textures/sfx/steam.tga"
+		map "textures/sfx/normwobble.tga"
+		map $refraction
+		blendFunc blend
+	}
+else
+	{
+		clampmap "textures/sfx/steam.tga"
+		rgbGen vertex
+		alphaGen vertex
+		blendFunc blend
+	}
+endif
+}
+

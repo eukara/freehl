@@ -1,0 +1,6 @@
+{
+	{
+		map $whiteimage
+		rgbGen const (0.25 0.25 0.25)
+	}
+}

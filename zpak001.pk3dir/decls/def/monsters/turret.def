@@ -1,15 +1,16 @@
 entityDef monster_turret
 {
-	"spawnclass"		"NSTalkMonster"
-	"model"		"models/turret.mdl"
+	"spawnclass"	"NSTalkMonster"
+	"model"			"models/turret.mdl"
 	"netname"		"Turret"
 	"health"		"skill:turret_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 32"
-	"eye_height"		"64"
-	"team"		"2"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 32"
+	"eye_height"	"64"
+	"team"			"1"
 	"propdata"		"actor_robot"
 
-	"speed_walk"		"0"
+	"speed_walk"	"0"
 	"speed_run"		"0"
+	"static"		"1"
 }

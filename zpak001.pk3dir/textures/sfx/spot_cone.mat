@@ -1,0 +1,15 @@
+// Vera Visions Material
+{
+	surfaceParm trans
+	surfaceParm nomarks
+	surfaceParm nolightmap
+	surfaceParm nonsolid
+	cull none
+
+	{
+		clampmap "textures/sfx/cone.tga"
+		blendFunc add
+		rgbGen vertex
+	}
+}
+

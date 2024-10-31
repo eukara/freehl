@@ -34,7 +34,11 @@ FX_Corpse_Init(void)
 
 	for ( int i = 0; i <= CORPSES_MAX; i++ ) {
 		next.classname = "corpse";
-		next.owner = spawn(NSRagdoll);
+
+		if (autocvar_corpse_ragdolls)
+			next.owner = spawn(NSRagdoll);
+		else
+			next.owner = spawn(NSRenderableEntity);
 		
 		if ( i == CORPSES_MAX ) {
 			next.owner = g_bodies;
@@ -66,8 +70,15 @@ entity
 FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 {
 	NSRagdoll body_next = (NSRagdoll)FX_Corpse_Next();
-	body_next.SetMovetype(MOVETYPE_BOUNCE);
-	body_next.SetSolid(SOLID_CORPSE);
+
+	if (autocvar_corpse_ragdolls) {
+		body_next.SetMovetype(MOVETYPE_PHYSICS);
+		body_next.SetSolid(SOLID_NOT);
+	} else {
+		body_next.SetMovetype(MOVETYPE_BOUNCE);
+		body_next.SetSolid(SOLID_CORPSE);
+	}
+
 	body_next.SetModelindex(pl.GetModelindex());
 
 	if (pl.IsCrouching()) {
@@ -80,9 +91,11 @@ FX_Corpse_Spawn(NSClientPlayer pl, float anim)
 	body_next.SetAngles(pl.GetAngles());
 	body_next.SetVelocity(pl.GetVelocity() + [0,0,120]);
 	body_next.SetFrame(anim);
+	body_next.m_iBody = pl.m_iBody;
 	body_next.ScheduleThink(FX_Corpse_Update, 0.0f);
 	body_next.colormap = pl.colormap;
 	body_next.frame1time = 0.0f;
+
 	return (entity)body_next;
 }
 #endif

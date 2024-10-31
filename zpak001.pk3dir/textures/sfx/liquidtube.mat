@@ -1,0 +1,16 @@
+// Vera Visions Material
+{
+	qer_editorImage "textures/liquid/water2.tga"
+	sort banner
+	qer_trans 0.8
+	surfaceParm nonsolid
+	surfaceParm trans
+	surfaceParm water
+	surfaceParm nodlight
+
+	{
+		program refract
+		map $refraction
+		map "textures/liquid/water1_n.tga"
+	}
+}

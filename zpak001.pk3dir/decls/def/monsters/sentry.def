@@ -1,15 +1,42 @@
 entityDef monster_sentry
 {
-	"spawnclass"		"NSTalkMonster"
-	"model"		"models/sentry.mdl"
+	"spawnclass"	"NSTalkMonster"
+	"model"			"models/sentry.mdl"
 	"netname"		"Turret"
 	"health"		"skill:sentry_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
-	"eye_height"		"64"
-	"team"		"2"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
+	"eye_height"	"64"
+	"team"			"1"
 	"propdata"		"actor_robot"
 
-	"speed_walk"		"0"
+	"def_attack_ranged"		"ranged_sentry_shot"
+	"attack_ranged_range"	"1024"
+
+	"snd_idle"			"monster_sentry.combatIdle"
+	"snd_death"			"monster_sentry.die"
+	"snd_ranged_attack"	"monster_sentry.fire"
+	"snd_thud"			"monster_generic.thud"
+
+	"act_idle"			"0" // when the sentry is turned off.
+//	"act_sleep"			"4"	// when the sentry retires;The animation is a dupe
+	"act_excited"		"3" // waking up
+	"act_dieSimple"		"5"
+	"act_dieForward"	"5"
+	"act_dieViolent"	"5"
+	"act_combatIdle"	"2" // scanning
+	"act_rangeAttack1"	"1"
+	"act_rangeAttack2"	"1"
+
+	"speed_walk"	"0"
 	"speed_run"		"0"
+}
+
+entityDef ranged_sentry_shot
+{
+	"inherit"	"projectile_bullet_base"
+	"damage"	"skill:hgrunt_pellets"
+	"delay"		"0.1"
+	"attempts"	"8"
+	"wait"		"2"
 }

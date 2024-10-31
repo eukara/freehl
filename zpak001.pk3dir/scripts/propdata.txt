@@ -40,11 +40,19 @@
 	{
 		"breakable_model" "gibs_alien"
 		"breakable_count" "4"
+		"surfaceprop"	"gs_material_alien"
 	}
 	"actor_human"
 	{
 		"breakable_model" "gibs_human"
 		"breakable_count" "6"
+		"surfaceprop"	"gs_material_flesh"
+	}
+	"actor_robot"
+	{
+		"breakable_model" "gibs_metalplate"
+		"breakable_count" "6"
+		"surfaceprop"	"gs_material_computer"
 	}
 	
 	

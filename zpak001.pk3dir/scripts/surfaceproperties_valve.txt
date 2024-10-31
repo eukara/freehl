@@ -49,7 +49,7 @@ gs_material_ladder
 gs_material_flesh
 {
 	gamematerial F
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "flesh.bulletimpact"
 	bulletimpact "sfx_impact.flesh"
 	stepleft "step_flesh.left"
 	stepright "step_flesh.right"
@@ -103,16 +103,6 @@ gs_material_rocks
 	break "func_breakable.break_cinder"
 }
 
-gs_material_flesh
-{
-	gamematerial F
-	part_bulletimpact "impact_default.main"
-	bulletimpact "sfx_impact.flesh"
-	stepleft "step_flesh.left"
-	stepright "step_flesh.right"
-	break "func_breakable.break_flesh"
-}
-
 gs_material_concrete
 {
 	gamematerial C
@@ -146,7 +136,7 @@ gs_material_grate
 gs_material_alien
 {
 	gamematerial H
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "alien.bulletimpact"
 	bulletimpact "sfx_impact.alien"
 	stepleft "step_alien.left"
 	stepright "step_alien.right"

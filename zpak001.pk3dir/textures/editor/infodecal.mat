@@ -1,0 +1,8 @@
+{
+	diffusemap textures/editor/infodecal.tga
+	
+	{
+		map $diffuse
+		alphaFunc GE128
+	}
+}

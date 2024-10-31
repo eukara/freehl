@@ -3,13 +3,45 @@ entityDef monster_alien_controller
 	"spawnclass"		"NSTalkMonster"
 	"model"		"models/controller.mdl"
 	"netname"		"Alien Controller"
-	"health"		"0"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"health"		"skill:controller_health"
+	"mins"		"-32 -32 0"
+	"maxs"		"32 32 64"
 	"eye_height"		"64"
 	"team"		"2"
 	"propdata"		"actor_alien"
 
-	"speed_walk"		"0"
-	"speed_run"		"0"
+	"speed_walk"		"100"
+	"speed_run"		"500"
+	"flying"		"1"
+	"fly_offset"	"128"
+	"attack_ranged_range"	"1024"
+
+	events {
+		// ranged attack
+		2 "SpawnProjectileOffset"	"ranged_controller_ball 0 0 36"
+		3 "StartSoundDef"	"Controller.Attack"
+	}
+}
+
+
+
+entityDef ranged_controller_ball
+{
+	"spawnclass"			"NSProjectile"
+	"model"					"sprites/xspark4.spr"
+	"mins"					"-16 -16 -16"
+	"mins"					"16 16 16"
+
+	"def_damage"			"damage_spitDirect"
+
+	"health"				"0"
+	"velocity"				"900"
+	"fuse"					"10"
+	"detonate_on_fuse"		"0"
+	"detonate_on_death"		"0"
+	"detonate_on_world"		"1"
+	"detonate_on_actor"		"1"
+	"impact_damage_effect"	"1"
+	"impact_gib"			"0"
+	"trackEnemy"			"1"
 }

@@ -42,6 +42,7 @@ entityDef projectile_crowbar
 	"spawnclass"			"NSProjectile"
 	"damage"				"skill:plr_crowbar"
 	"is_bullet"				"1"
+	"range"					"32"
 	"decal_impact"			"Impact.Shot"
 	"detonate_on_world" 	"1"
 	"snd_hitBody"			"Weapon_Crowbar.Melee_Hit"

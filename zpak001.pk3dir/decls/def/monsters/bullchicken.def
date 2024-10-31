@@ -13,7 +13,7 @@ entityDef monster_bullchicken
 	"speed_run"		"72"
 
 	"attack_ranged_range"	"512"
-	"attack_melee1_range"	"86"	// tailwhip
+	"attack_melee_range"	"86"	// tailwhip
 	"attack_melee2_range"	"86"	// bite
 	"def_attack_melee"	"melee_bullchicken_tailwhip"
 	"def_attack_melee2"	"melee_bullchicken_bite"

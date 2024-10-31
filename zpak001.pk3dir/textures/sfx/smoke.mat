@@ -1,0 +1,16 @@
+// Vera Visions Material
+{
+	surfaceParm trans
+	surfaceParm nomarks
+	surfaceParm nolightmap
+	surfaceParm nonsolid
+	cull none
+
+	{
+		clampmap "textures/sfx/smoke.tga"
+		rgbGen vertex
+		alphaGen vertex
+		blendFunc blend
+	}
+}
+

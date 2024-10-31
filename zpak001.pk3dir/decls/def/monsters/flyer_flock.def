@@ -12,4 +12,5 @@ entityDef monster_flyer_flock
 
 	"speed_walk"		"64"
 	"speed_run"		"364"
+	"flying"		"1"
 }

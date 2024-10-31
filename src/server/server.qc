@@ -17,12 +17,18 @@
 void
 Game_InitRules(void)
 {
+	string gameType = cvar_string("g_gametype");
+
 	FX_Corpse_Init();
-	
-	if (cvar("sv_playerslots") == 1 || cvar("coop") == 1) {
-		g_grMode = NSGameRules::InitFromProgs("progs/singleplayer.dat");
+
+	if (STRING_SET(gameType)) {
+		g_grMode = NSGameRules::InitFromProgs(strcat("progs/", gameType, ".dat"));
 	} else {
-		g_grMode = NSGameRules::InitFromProgs("progs/deathmatch.dat");
+		if (cvar("sv_playerslots") == 1 || cvar("coop") == 1) {
+			g_grMode = NSGameRules::InitFromProgs("progs/singleplayer.dat");
+		} else {
+			g_grMode = NSGameRules::InitFromProgs("progs/deathmatch.dat");
+		}
 	}
 }
 

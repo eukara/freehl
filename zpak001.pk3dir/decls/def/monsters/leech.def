@@ -1,15 +1,28 @@
 entityDef monster_leech
 {
 	"spawnclass"		"NSTalkMonster"
-	"model"		"models/leech.mdl"
-	"netname"		"Leech"
-	"health"		"0"
-	"mins"		"-8 -8 0"
-	"maxs"		"8 8 8"
+	"model"				"models/leech.mdl"
+	"netname"			"Leech"
+	"health"			"skill:leech_health"
+	"mins"				"-8 -8 0"
+	"maxs"				"8 8 8"
 	"eye_height"		"64"
-	"team"		"2"
-	"propdata"		"actor_alien"
+	"team"				"2"
+	"propdata"			"actor_alien"
 
-	"speed_walk"		"0"
-	"speed_run"		"0"
+	"speed_walk"		"32"
+	"speed_run"			"64"
+
+	"def_attack_melee"		"melee_leech_bite"
+	"melee_range"			"24"
+
+	"snd_melee_attack_hit"	"monster_zombie.attackhit"
+}
+
+entityDef melee_leech_bite
+{
+	"damage"		"skill:zombie_dmg_one_slash"
+	"delay"			"0.2"
+	"wait"			"2"
+	"attempts"		"1"
 }
