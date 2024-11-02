@@ -2,15 +2,15 @@ entityDef monster_stukabat
 {
 	"spawnclass"		"NSMonster"
 	"model"				"models/stukabat.mdl"
-	"netname"			"Floater"
+	"netname"			"Stukabat"
 	"health"			"25"
 	"mins"				"-16 -16 0"
 	"maxs"				"16 16 16"
 	"eye_height"		"64"
 	"team"				"2"
 	"propdata"			"actor_alien"
+	"lands"				"1"		// TODO
 	"flying"			"1"
-	"fly_offset"		"32"
 
 	"speed_walk"		"25"	// These values are
 	"speed_run"			"50"	// purely speculative

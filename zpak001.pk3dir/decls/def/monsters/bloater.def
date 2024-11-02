@@ -1,15 +1,17 @@
 entityDef monster_bloater
 {
-	"spawnclass"		"NSTalkMonster"
-	"model"		"models/floater.mdl"
-	"netname"		"Bloater"
-	"health"		"25"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"spawnclass"		"NSMonster"
+	"model"				"models/floater.mdl"
+	"netname"			"Flocking Floater" // wonder if it's the Floater from Cosmos
+	"health"			"25"
+	"mins"				"-16 -16 0"
+	"maxs"				"16 16 72"
 	"eye_height"		"64"
-	"team"		"2"
-	"propdata"		"actor_alien"
+	"team"				"2"
+	"propdata"			"actor_alien"
+	"flying"			"1"
+	"fly_offset"		"64"
 
 	"speed_walk"		"64"
-	"speed_run"		"364" // day one only
+	"speed_run"			"364" // day one only
 }

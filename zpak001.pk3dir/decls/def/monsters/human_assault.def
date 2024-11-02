@@ -2,7 +2,7 @@ entityDef monster_human_assault
 {
 	"spawnclass"	"NSSquadMonster"
 	"model"			"models/hassault.mdl"
-	"netname"		"Grunt"
+	"netname"		"Human Assault"
 	"health"		"skill:hgrunt_health"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 72"
@@ -13,15 +13,15 @@ entityDef monster_human_assault
 	"speed_run"		"304"
 
 	// melee attack
-	"def_attack_melee"	"melee_hassault_kick"
+	"def_attack_melee"		"melee_hassault_kick"
 	"attack_melee_range"	"96"
-	"snd_melee_attack"	"monster_human_grunt.kick"
+	"snd_melee_attack"		"monster_human_grunt.kick"
 
 	// primary ranged attack
-	"def_attack_ranged"	"ranged_hassault_20mm"
-	"snd_ranged_attack"	"Weapon_MP5.Single"
+	"def_attack_ranged"		"ranged_hassault_20mm"
+	"snd_ranged_attack"		"Weapon_MP5.Single"
 	"attack_ranged_range"	"1024"
-	"reload_count"		"30"
+	"reload_count"			"30"
 
 	"snd_idle"		"monster_human_grunt.idle"
 	"snd_pain"		"HGrunt.Pain"
@@ -29,7 +29,6 @@ entityDef monster_human_assault
 	"snd_reload"	"HGrunt.Reload"
 
 	"squad_leader" "1"	// Intended to be the squad leader whenever present
-
 }
 
 entityDef melee_hassault_kick

@@ -1,12 +1,12 @@
-entityDef monster_floater
+entityDef monster_snapbug
 {
 	"spawnclass"		"NSMonster"
-	"model"				"models/floater.mdl"
-	"netname"			"Floater"
+	"model"				"models/snapbug.mdl"
+	"netname"			"Snapbug"
 	"health"			"25"
 	"mins"				"-16 -16 0"
 	"maxs"				"16 16 16"
-	"eye_height"		"64"
+	"eye_height"		"12"
 	"team"				"2"
 	"propdata"			"actor_alien"
 	"flying"			"1"

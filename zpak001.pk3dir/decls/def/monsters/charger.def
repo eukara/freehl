@@ -1,0 +1,34 @@
+entityDef monster_charger
+{
+	"spawnclass"		"NSMonster"
+	"model"				"models/charger.mdl"
+	"netname"			"Charger"
+	"health"			"skill:charger_health"
+	"mins"				"-16 -16 0"
+	"maxs"				"16 16 72"
+	"eye_height"		"48"
+	"team"				"2"
+	"propdata"			"actor_alien"
+	"speed_walk"		"72"
+	"speed_run"			"160"
+
+	"def_attack_melee"		"melee_charger_stab"
+	"melee_range"			"96"
+
+//	"snd_sight"				"Charger.Alert"
+//	"snd_idle"				"Charger.Idle"
+//	"snd_pain"				"Charger.Pain"
+//	"snd_death"				"Charger.Die"
+//	"snd_melee_attack"		"Charger.Attack"
+//	"snd_melee_attack_hit"	"Charger.Hit"
+//	"snd_melee_attack_miss"	"Charger.attackmiss"
+	"snd_thud"				"monster_generic.thud"
+}
+
+entityDef melee_charger_stab
+{
+	"damage"		"skill:charger_dmg_one_slash"
+	"delay"			"0.5"
+	"wait"			"0.5"
+	"attempts"		"2"
+}

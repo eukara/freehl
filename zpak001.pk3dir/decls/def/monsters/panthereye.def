@@ -1,0 +1,41 @@
+entityDef monster_panther
+{
+	"spawnclass"	"NSMonster"
+	"model"			"models/panther.mdl"
+	"netname"		"Panther Eye"
+	"health"		"skill:panther_health"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
+	"eye_height"	"48"
+	"team"			"2"
+	"propdata"		"actor_alien"
+	"speed_walk"	"32"
+	"speed_run"		"72"
+
+	"def_attack_melee"		"melee_panther_stab"
+	"melee_range"			"96"
+	"attack_ranged_range"	"180" // needs launch attack
+
+//	"snd_sight"		"monster_panther.alert"
+//	"snd_idle"		"monster_panther.idle"
+//	"snd_pain"		"monster_panther.pain"
+//	"snd_death"		"monster_panther.death"
+	"leap_damage"	"skill:panther_dmg_bite"
+
+	events {
+		jump "AddVelocity" "512 0 250"
+		jump "StartSoundDef" "monster_panther.attack"
+		jump_variation1 "AddVelocity" "512 0 350"
+		jump_variation1 "StartSoundDef" "monster_panther.attack"
+		jump_variation2 "AddVelocity" "512 0 350"
+		jump_variation2 "StartSoundDef" "monster_panther.attack"
+	}
+}
+
+entityDef melee_panther_stab
+{
+	"damage"		"skill:panther_dmg_one_slash"
+	"delay"			"0.5"
+	"wait"			"0.5"
+	"attempts"		"2"
+}
