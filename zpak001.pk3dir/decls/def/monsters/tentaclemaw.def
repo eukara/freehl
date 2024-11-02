@@ -1,0 +1,9 @@
+entityDef monster_tentaclemaw
+{
+	"spawnclass"	"cycler"
+	"model"			"models/maw.mdl"
+	"netname"		"Tentacle Maw"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"propdata"		"actor_alien"
+}

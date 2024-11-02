@@ -8,6 +8,16 @@ ammo.respawn
 	sample items/suitchargeok1.wav
 }
 
+item.airtank
+{
+	sample items/airtank1.wav
+}
+
+item.antidote
+{
+	sample items/medshotno1.wav
+}
+
 item.battery
 {
 	sample items/gunpickup2.wav
@@ -16,6 +26,11 @@ item.battery
 item.healthkit
 {
 	sample items/smallmedkit1.wav
+}
+
+item.security
+{
+	sample fvox/bell.wav
 }
 
 item.suit

@@ -40,6 +40,7 @@
 #include "monsters/snapbug.def"
 #include "monsters/stukabat.def"
 #include "monsters/tentacle.def"
+#include "monsters/tentaclemaw.def"
 #include "monsters/tripmine.def"
 #include "monsters/turret.def"
 #include "monsters/xen_hair.def"

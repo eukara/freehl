@@ -1,0 +1,11 @@
+entityDef item_antidote
+{
+	"spawnclass"	"NSItem"
+	"model"			"models/w_longjump.mdl"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 16"
+	"snd_acquire"	"item.antidote"
+	"snd_respawn"	"item.respawn"
+	"requires"		"item_suit"
+	"inv_carry"		"1"
+}
