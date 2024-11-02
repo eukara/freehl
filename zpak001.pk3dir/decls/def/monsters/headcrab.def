@@ -1,22 +1,22 @@
 entityDef monster_headcrab
 {
 	"spawnclass"		"NSMonster"
-	"model"		"models/headcrab.mdl"
-	"netname"		"Headcrab"
-	"health"		"skill:headcrab_health"
-	"mins"		"-16 -16 0"
-	"maxs"		"16 16 72"
+	"model"				"models/headcrab.mdl"
+	"netname"			"Headcrab"
+	"health"			"skill:headcrab_health"
+	"mins"				"-16 -16 0"
+	"maxs"				"16 16 72"
 	"eye_height"		"12"
-	"team"		"2"
-	"propdata"		"actor_alien"
+	"team"				"2"
+	"propdata"			"actor_alien"
 	"speed_walk"		"32"
-	"speed_run"		"72"
+	"speed_run"			"72"
 
 	"attack_ranged_range"	"180" // needs launch attack
 
-	"snd_idle"		"monster_headcrab.idle"
-	"snd_pain"		"monster_headcrab.pain"
-	"snd_death"		"monster_headcrab.death"
+	"snd_idle"			"monster_headcrab.idle"
+	"snd_pain"			"monster_headcrab.pain"
+	"snd_death"			"monster_headcrab.death"
 	"leap_damage"		"skill:headcrab_dmg_bite"
 
 	events {

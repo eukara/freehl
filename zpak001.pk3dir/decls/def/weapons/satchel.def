@@ -15,20 +15,20 @@ entityDef weapon_satchel
 	"ammoType"			"ammo_satchel"
 	"inv_ammo_satchel"	"1"
 	"ammoRequired"		"1"
-	"def_onFire"	"projectile_satchel"
+	"def_onFire"		"projectile_satchel"
 	"detonateOnFire"	"projectile_satchel"
 	"fireRate"			"1.0"
-	"removeOnEmpty" "1"
+	"removeOnEmpty" 	"1"
 
 	"act_idle"			"0,1"
 	"act_draw"			"2"
 	"act_fire"			"3"
 
 	// HLWeapon specific
-	"hudSlot"		"4"
-	"hudSlotPos"	"1"
-	"weight"		"-20"
-	"crosshair"		"none"
+	"hudSlot"			"4"
+	"hudSlotPos"		"1"
+	"weight"			"-20"
+	"crosshair"			"none"
 }
 
 entityDef projectile_satchel

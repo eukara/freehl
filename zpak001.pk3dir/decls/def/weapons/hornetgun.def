@@ -9,39 +9,60 @@ entityDef weapon_hornetgun
 	"spawnclass"		"HLWeapon"
 	"model"				"models/w_hgun.mdl"
 	"model_view"		"models/v_hgun.mdl"
-	"snd_acquire"		"weapon.pickup"
+	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_hornetgun"
+	"def_altFireInfo"	"fireInfo_hornetgunAlt"
 	"inv_name"			"Hornet Gun"
 	"inv_ammo_hornet"	"8"
 
-	"act_fire"		"5"
-	"act_holster"	"3"
-	"act_draw"		"4"
-	"act_idle"		"0,1,2"
+	"act_fire"			"5"
+	"act_holster"		"3"
+	"act_draw"			"4"
+	"act_idle"			"0,1,2"
 
-	"snd_fire"		"Weapon_Hornetgun.Single"
+	"snd_fire"			"Weapon_Hornetgun.Single"
 
 	// HLWeapon specific
-	"hudSlot"		"3"
-	"hudSlotPos"	"3"
-	"weight"		"10"
+	"hudSlot"			"3"
+	"hudSlotPos"		"3"
+	"weight"			"10"
+	"regenAmmo"			"1"
+	"regenRate"			"0.7"
 }
 
 entityDef projectile_hornet
 {
-	"spawnclass" "NSProjectile"
+	"inherit" 	"ranged_agrunt_shot_orange"
 	"damage"	"10"
+	"offset"	"24 8 -16"
+}
+
+entityDef projectile_hornet_red
+{
+	"inherit" 	"ranged_agrunt_shot_red"
+	"damage"	"10"
+	"offset"	"24 8 -16"
 }
 
 entityDef fireInfo_hornetgun
 {
-	"def_onFire"	"projectile_hornet"
+	"def_onFire"		"projectile_hornet"
 	"ammoType"			"ammo_hornet"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
 	"fireRate"			"1.0"
+	"punchAngle"		"-1 0 0"
+}
+
+entityDef fireInfo_hornetgunAlt
+{
+	"def_onFire"		"projectile_hornet_red"
+	"ammoType"			"ammo_hornet"
+	"ammoRequired"		"1"
+	"ammoPerShot"		"1"
+	"fireRate"			"0.2"
 	"punchAngle"		"-1 0 0"
 }

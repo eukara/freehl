@@ -37,5 +37,8 @@ entityDef weapon_snark
 
 entityDef projectile_snark
 {
-	"spawnclass"		"monster_snark"
+	"spawnclass"		"NSAttack"
+	"def_drop"			"monster_snark"
+	"dropDistance"		"24"
+	"dropOffset"		"8"
 }

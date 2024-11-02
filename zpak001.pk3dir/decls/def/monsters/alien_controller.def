@@ -1,19 +1,19 @@
 entityDef monster_alien_controller
 {
 	"spawnclass"		"NSTalkMonster"
-	"model"		"models/controller.mdl"
-	"netname"		"Alien Controller"
-	"health"		"skill:controller_health"
-	"mins"		"-32 -32 0"
-	"maxs"		"32 32 64"
+	"model"				"models/controller.mdl"
+	"netname"			"Alien Controller"
+	"health"			"skill:controller_health"
+	"mins"				"-32 -32 0"
+	"maxs"				"32 32 64"
 	"eye_height"		"64"
-	"team"		"2"
-	"propdata"		"actor_alien"
+	"team"				"2"
+	"propdata"			"actor_alien"
 
-	"speed_walk"		"100"
-	"speed_run"		"500"
-	"flying"		"1"
-	"fly_offset"	"128"
+	"speed_walk"			"100"
+	"speed_run"				"500"
+	"flying"				"1"
+	"fly_offset"			"128"
 	"attack_ranged_range"	"1024"
 
 	events {

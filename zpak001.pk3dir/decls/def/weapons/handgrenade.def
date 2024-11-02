@@ -1,4 +1,3 @@
-
 entityDef weapon_handgrenade
 {
 	"editor_color"			".3 .3 1"
@@ -15,7 +14,7 @@ entityDef weapon_handgrenade
 
 	"inv_name"				"Hand Grenade"
 	"inv_weapon"			"weapon_handgrenade"
-	"inv_ammo_handgrenade"	"5"
+	"inv_ammo_handgrenade"	"1"
 	"def_onRelease"			"projectile_handgrenade"
 	"def_onFire"			"projectile_handgrenade"
 

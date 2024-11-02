@@ -37,6 +37,7 @@ entityDef weapon_rpg
 	"hudSlotPos"	"0"
 	"weight"		"20"
 	"altLaser"		"1"
+	"altMode"			"1"
 }
 
 entityDef projectile_rocket
