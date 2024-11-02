@@ -1,0 +1,58 @@
+entityDef monster_human_assault
+{
+	"spawnclass"	"NSSquadMonster"
+	"model"			"models/hassault.mdl"
+	"netname"		"Grunt"
+	"health"		"skill:hgrunt_health"
+	"mins"			"-16 -16 0"
+	"maxs"			"16 16 72"
+	"eye_height"	"64"
+	"team"			"1"
+	"propdata"		"actor_human"
+	"speed_walk"	"41"
+	"speed_run"		"304"
+
+	// melee attack
+	"def_attack_melee"	"melee_hassault_kick"
+	"attack_melee_range"	"96"
+	"snd_melee_attack"	"monster_human_grunt.kick"
+
+	// primary ranged attack
+	"def_attack_ranged"	"ranged_hassault_20mm"
+	"snd_ranged_attack"	"Weapon_MP5.Single"
+	"attack_ranged_range"	"1024"
+	"reload_count"		"30"
+
+	"snd_idle"		"monster_human_grunt.idle"
+	"snd_pain"		"HGrunt.Pain"
+	"snd_death"		"HGrunt.Die"
+	"snd_reload"	"HGrunt.Reload"
+
+	"squad_leader" "1"	// Intended to be the squad leader whenever present
+
+}
+
+entityDef melee_hassault_kick
+{
+	"spawnclass"	"NSProjectile"
+	"is_bullet"		"1"
+	"damage"		"skill:hgrunt_kick"
+	"delay"			"0.25"
+	"range"			"64"
+}
+
+entityDef ranged_hassault_20mm
+{
+	"inherit"	"projectile_bullet_base"
+	"damage"	"skill:hgrunt_pellets"
+	"burst"	"3"
+	"burst_delay"	"0.5"
+	"delay"	"0.1"
+}
+
+entityDef ranged_hassault_shot
+{
+	"inherit"	"projectile_bullet_base"
+	"damage"	"skill:hgrunt_pellets"
+	"delay"	"1.0"
+}

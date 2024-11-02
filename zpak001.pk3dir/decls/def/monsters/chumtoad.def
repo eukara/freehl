@@ -1,0 +1,15 @@
+entityDef monster_chumtoad
+{
+	"spawnclass"		"NSMonster"
+	"model"				"models/chumtaod.mdl"
+	"netname"			"Chumtoad"
+	"health"			"10"
+	"mins"				"-16 -16 0"
+	"maxs"				"16 16 16"
+	"eye_height"		"12"
+	"team"				"0"
+	"propdata"			"actor_alien"
+
+	"speed_walk"		"25"	// These values are
+	"speed_run"			"50"	// purely speculative
+}
