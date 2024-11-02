@@ -21,7 +21,7 @@ entityDef weapon_tripmine
 	"ammoType"			"ammo_tripmine"
 	"ammoRequired"		"1"
 	"act_idle"			"0,1,4"
-	"act_fire"			"2,3"
+	"act_fire"			"3"
 	"act_draw"			"6"
 	"act_holster"		"5"
 	"removeOnEmpty"		"1"
