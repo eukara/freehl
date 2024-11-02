@@ -41,4 +41,5 @@ entityDef projectile_snark
 	"def_drop"			"monster_snark"
 	"dropDistance"		"24"
 	"dropOffset"		"8"
+	"drop"				"1"
 }

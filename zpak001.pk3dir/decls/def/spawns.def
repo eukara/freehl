@@ -24,3 +24,12 @@ entityDef info_player_coop
 	"editor_description" "Cooperative Spawn Point"
 	"editor_color" "1 0 0"
 }
+
+entityDef info_spectator_start
+{
+	"spawnclass" "NSSpawnPoint"
+	"editor_mins" "-16 -16 -16"
+	"editor_maxs" "16 16 16"
+	"editor_description" "Spectator Spawn Point"
+	"editor_color" "1 0 0"
+}
