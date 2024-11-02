@@ -1,7 +1,7 @@
 entityDef monster_chumtoad
 {
 	"spawnclass"		"NSMonster"
-	"model"				"models/chumtaod.mdl"
+	"model"				"models/chumtoad.mdl"
 	"netname"			"Chumtoad"
 	"health"			"10"
 	"mins"				"-16 -16 0"

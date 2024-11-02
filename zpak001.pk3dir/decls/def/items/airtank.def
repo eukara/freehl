@@ -1,7 +1,7 @@
 entityDef item_airtank
 {
 	"spawnclass"	"NSItem"
-	"model"			"models/w_airtank.mdl"
+	"model"			"models/w_oxygen.mdl"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 16"
 	"snd_acquire"	"item.airtank"
