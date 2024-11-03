@@ -1,7 +1,7 @@
+#include "items/suit.def"
 #include "items/airtank.def"
 #include "items/antidote.def"
 #include "items/battery.def"
 #include "items/healthkit.def"
 #include "items/longjump.def"
 #include "items/security.def"
-#include "items/suit.def"

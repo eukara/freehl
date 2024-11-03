@@ -19,11 +19,11 @@ entityDef monster_barney
 	"speed_walk"			"64"
 	"speed_run"				"364"
 
-	"snd_pain"				"monster_barney.pain"
-	"snd_death"				"monster_barney.die"
-	"snd_ranged_attack"		"weapon_glock.fire"
-	"snd_reload"			"monster_human_grunt.reload"
-	"snd_thud"				"monster_generic.thud"
+	"snd_pain"				"Barney.Pain"
+	"snd_death"				"Barney.Die"
+	"snd_ranged_attack"		"Barney.FirePistol"
+	"snd_reload"			"HGrunt.Reload"
+	"snd_thud"				"AI_BaseNPC.BodyDrop_Light"
 
 	"talk_answer"			"!BA_ANSWER"
 	"talk_ask"				"!BA_QUESTION"

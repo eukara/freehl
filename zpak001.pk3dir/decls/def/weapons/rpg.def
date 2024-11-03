@@ -95,6 +95,7 @@ entityDef damage_rocketSplash
 {
 	"damage"	"skill:plr_rpg"
 	"radius"	"250"
+	"push"		"10000"
 }
 
 entityDef fireInfo_rpg

@@ -4,8 +4,8 @@ entityDef monster_snark
 	"model"				"models/w_squeak.mdl"
 	"netname"			"Snark"
 	"health"			"skill:snark_health"
-	"mins"				"-16 -16 0"
-	"maxs"				"16 16 32"
+	"mins"				"-4 -4 0"
+	"maxs"				"4 4 8"
 	"eye_height"		"12"
 	"team"				"3"
 	"propdata"			"actor_alien"
@@ -16,7 +16,7 @@ entityDef monster_snark
 	"act_walk"			"3"
 	"act_run"			"3"
 
-	"attack_ranged_range"	"96" // needs launch attack
+	"attack_ranged_range"	"96"
 
 	"snd_idle"			"monster_snark.idle"
 	"snd_pain"			"monster_snark.pain"

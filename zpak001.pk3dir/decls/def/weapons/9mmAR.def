@@ -92,6 +92,7 @@ entityDef projectile_ARgrenade
 
 	"def_damage"		"damage_ARgrenadeDirect"
 	"def_splash_damage"	"damage_ARgrenadeSplash"
+	"push"		"10000"
 }
 
 entityDef damage_ARgrenadeDirect
@@ -115,7 +116,7 @@ entityDef projectile_9mmAR_mp
 
 entityDef fireInfo_9mmAR_mp
 {
-	"def_onFire"	"projectile_9mmAR_mp"
+	"def_onFire"		"projectile_9mmAR_mp"
 	"ammoType"			"ammo_9mm"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"

@@ -68,4 +68,5 @@ entityDef damage_handgrenadeSplash
 {
 	"damage"	"skill:plr_hand_grenade"
 	"radius"	"250"
+	"push"		"7500"
 }
