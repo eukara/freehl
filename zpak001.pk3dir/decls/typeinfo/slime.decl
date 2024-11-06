@@ -1,0 +1,5 @@
+typeInfo slime
+{
+	"damage"	"10"
+	"dmgtime"	"1.0"
+}

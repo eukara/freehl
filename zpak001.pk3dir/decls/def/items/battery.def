@@ -8,5 +8,4 @@ entityDef item_battery
 	"snd_respawn"	"item.respawn"
 	"inv_armor"		"skill:battery"
 	"requires"		"item_suit"
-	"inv_carry"		"1"
 }

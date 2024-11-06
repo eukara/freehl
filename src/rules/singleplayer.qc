@@ -19,21 +19,21 @@
 #include "../../../src/server/api.h"
 
 void
-CodeCallback_PlayerSpawn(void)
+CodeCallback_PlayerSpawn(entity playerEntity)
 {
+	ents.ChangeToClass(playerEntity, "player");
 	game.TeleportToSpawn(self);
-
 }
 
 bool
-CodeCallback_PlayerRequestRespawn(void)
+CodeCallback_PlayerRequestRespawn(entity playerEntity)
 {
 	localcmd("load quick\n");
 	return (true);
 }
 
 bool
-CodeCallback_ImpulseCommand(float impulseNum)
+CodeCallback_ImpulseCommand(entity playerEntity, float impulseNum)
 {
 	switch (impulseNum) {
 	case 100:

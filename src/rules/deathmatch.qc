@@ -64,29 +64,29 @@ CodeCallback_StartGameType(void)
 }
 
 void
-CodeCallback_PlayerSpawn(void)
+CodeCallback_PlayerSpawn(entity playerEntity)
 {
 	string playerModel;
 
-	ents.ChangeToClass(self, "player_mp");
+	ents.ChangeToClass(playerEntity, "player_mp");
 
 	if (IsTeamplay() == true) {
 		float teamCount = tokenizebyseparator(g_strTeamList, ";");
-		float playerTeam = self.team;
+		float playerTeam = playerEntity.team;
 		string teamModel;
 
 		/* not part of a team? pick one of the ones we have */
 		/* TODO: this should sort us into the lowest team */
 		if (playerTeam == 0) {
 			playerTeam = 1 + floor(random(0, teamCount)); /* teams start at 1 after all */
-			ents.Input(self, "SetTeam", ftos(playerTeam), self);
+			ents.Input(playerEntity, "SetTeam", ftos(playerTeam), playerEntity);
 		}
 
 		teamModel = argv(playerTeam - 1);
 		playerModel = sprintf("models/player/%s/%s.mdl", teamModel, teamModel);
 	} else {
 		/* interpret the 'model' InfoKey */
-		playerModel = userinfo.GetString(self, "model");
+		playerModel = userinfo.GetString(playerEntity, "model");
 
 		if (playerModel != "") {
 			playerModel = sprintf("models/player/%s/%s.mdl", playerModel, playerModel);
@@ -98,36 +98,31 @@ CodeCallback_PlayerSpawn(void)
 		playerModel = "models/player.mdl";
 	}
 
-	self.modelindex = getmodelindex(playerModel); /* keep OG size */
-	game.TeleportToSpawn(self);
-
-	decl damageDecl = declManager.New();
-	declManager.AddKey(damageDecl, "damage", "50");
-	declManager.Delete(damageDecl);
-	combat.Damage(self, self, self, damageDecl, self.origin, g_vec_null, self.origin);
+	playerEntity.modelindex = getmodelindex(playerModel); /* keep OG size */
+	game.TeleportToSpawn(playerEntity);
 }
 
 void
-CodeCallback_PlayerDisconnect(void)
+CodeCallback_PlayerDisconnect(entity playerEntity)
 {
 
 }
 
 bool
-CodeCallback_PlayerRequestRespawn(void)
+CodeCallback_PlayerRequestRespawn(entity playerEntity)
 {
-	CodeCallback_PlayerSpawn();
+	CodeCallback_PlayerSpawn(playerEntity);
 	return (true);
 }
 
 void
-CodeCallback_PlayerDamage(entity inflictor, entity attacker)
+CodeCallback_PlayerDamage(entity playerEntity, entity inflictor, entity attacker)
 {
 
 }
 
 void
-CodeCallback_PlayerKilled(entity inflictor, entity attacker, string weapon)
+CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker, string weapon)
 {
 	combat.Obituary(self.netname, attacker.netname, weapon, "");
 
@@ -145,7 +140,7 @@ CodeCallback_PlayerKilled(entity inflictor, entity attacker, string weapon)
 }
 
 bool
-CodeCallback_ClientCommand(string command)
+CodeCallback_ClientCommand(entity playerEntity, string command)
 {
 	float commandArgs = tokenize(command);
 
@@ -182,7 +177,7 @@ CodeCallback_ClientCommand(string command)
 }
 
 bool
-CodeCallback_ImpulseCommand(float impulseNum)
+CodeCallback_ImpulseCommand(entity playerEntity, float impulseNum)
 {
 	switch (impulseNum) {
 	case 100:

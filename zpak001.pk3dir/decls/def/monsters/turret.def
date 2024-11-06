@@ -12,5 +12,7 @@ entityDef monster_turret
 
 	"speed_walk"	"0"
 	"speed_run"		"0"
-	"static"		"1"
+	"turn_rate"		"0"
+	"use_nav"		"0"
+	"bleed"			"0"
 }

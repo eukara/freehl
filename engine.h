@@ -14,6 +14,7 @@
 #define DISTRIBUTIONLONG "eukara"
 #define GAME_FULLNAME		FULLENGINENAME
 #define GAME_DEFAULTPORT	23000
+#define GAME_DEFAULTCMDS	"game_valve;fteplug_ffmpeg;plug_load ffmpeg;exec quake.rc"
 #define ENGINEWEBSITE "https://www.frag-net.com/"
 
 #ifndef GLQUAKE

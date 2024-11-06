@@ -141,6 +141,7 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 	if (gflags & GF_FLASHLIGHT) {
 		vector src;
 		vector ang;
+		float p;
 		
 		if (entnum != player_localentnum) {
 			src = origin + view_ofs;
@@ -155,15 +156,17 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 
 		if (autocvar_cg_flashlightClassic == true) {
 			if (autocvar_r_shadow_realtime_dlight == 0) {
-				dynamiclight_add(trace_endpos + (trace_plane_normal * 4), 128, [1,1,1]);
+				p = dynamiclight_add(trace_endpos + (trace_plane_normal * 4), 128, [1,1,1]);
 			} else {
-				dynamiclight_add(trace_endpos + (trace_plane_normal * 48.0f), 96, [1,1,1]);
+				p = dynamiclight_add(trace_endpos + (trace_plane_normal * 48.0f), 96, [1,1,1]);
 			}
 		} else {
-			float p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "textures/flashlight");
+			p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "textures/flashlight");
 			dynamiclight_set(p, LFIELD_ANGLES, ang);
 			dynamiclight_set(p, LFIELD_FLAGS, 3);
 		}
+
+		dynamiclight_set(p, LFIELD_STYLE, 64);
 	}
 
 	/* FIXME: this needs to be incorporated and simplified, now that we can handle it all in-class */

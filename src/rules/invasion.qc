@@ -48,7 +48,6 @@ CodeCallback_StartGameType(void)
 	ents.Precache(autocvar_invasion_monsterClass);
 	motd.LoadDefault();
 	game.SetSpawnPoint("info_player_deathmatch");
-	cvars.SetBool("coop", true);
 
 	teams.SetUp(1, "Military", [0, 255, 0], false);
 	teams.SetUp(2, "Aliens", [255, 0, 0], false);
@@ -63,15 +62,15 @@ CodeCallback_StartGameType(void)
 }
 
 void
-CodeCallback_PlayerSpawn(void)
+CodeCallback_PlayerSpawn(entity playerEntity)
 {
 	string playerModel;
 
-	ents.ChangeToClass(self, "player_mp");
-	ents.Input(self, "SetTeam", "3", world);
+	ents.ChangeToClass(playerEntity, "player_mp");
+	ents.Input(playerEntity, "SetTeam", "3", world);
 
 	/* interpret the 'model' InfoKey */
-	playerModel = userinfo.GetString(self, "model");
+	playerModel = userinfo.GetString(playerEntity, "model");
 
 	if (playerModel != "") {
 		playerModel = sprintf("models/player/%s/%s.mdl", playerModel, playerModel);
@@ -82,40 +81,40 @@ CodeCallback_PlayerSpawn(void)
 		playerModel = "models/player.mdl";
 	}
 
-	self.modelindex = getmodelindex(playerModel); /* keep OG size */
-	game.TeleportToSpawn(self);
+	playerEntity.modelindex = getmodelindex(playerModel); /* keep OG size */
+	game.TeleportToSpawn(playerEntity);
 }
 
 void
-CodeCallback_PlayerDisconnect(void)
+CodeCallback_PlayerDisconnect(entity playerEntity)
 {
 
 }
 
 bool
-CodeCallback_PlayerRequestRespawn(void)
+CodeCallback_PlayerRequestRespawn(entity playerEntity)
 {
-	CodeCallback_PlayerSpawn();
+	CodeCallback_PlayerSpawn(playerEntity);
 	return (true);
 }
 
 void
-CodeCallback_PlayerDamage(entity inflictor, entity attacker)
+CodeCallback_PlayerDamage(entity playerEntity, entity inflictor, entity attacker)
 {
 
 }
 
 void
-CodeCallback_PlayerKilled(entity inflictor, entity attacker, string weapon)
+CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker, string weapon)
 {
-	combat.Obituary(self.netname, attacker.netname, weapon, "");
+	combat.Obituary(playerEntity.netname, attacker.netname, weapon, "");
 
 	/* death-counter */
-	self.deaths++;
+	playerEntity.deaths++;
 
 	/* update score-counter */
 	if (ents.isPlayer(attacker)) {
-		if (self == attacker) {
+		if (playerEntity == attacker) {
 			attacker.frags--;
 		} else {
 			attacker.frags++;
@@ -126,13 +125,13 @@ CodeCallback_PlayerKilled(entity inflictor, entity attacker, string weapon)
 }
 
 void
-CodeCallback_NPCKilled(entity inflictor, entity attacker, string weapon)
+CodeCallback_NPCKilled(entity npcEntity, entity inflictor, entity attacker, string weapon)
 {
-	combat.Obituary(self.netname, attacker.netname, weapon, "");
+	combat.Obituary(npcEntity.netname, attacker.netname, weapon, "");
 
 	/* update score-counter */
 	if (ents.isPlayer(attacker)) {
-		if (self == attacker) {
+		if (npcEntity == attacker) {
 			attacker.frags--;
 		} else {
 			attacker.frags++;
@@ -141,12 +140,12 @@ CodeCallback_NPCKilled(entity inflictor, entity attacker, string weapon)
 }
 
 bool
-CodeCallback_ImpulseCommand(float impulseNum)
+CodeCallback_ImpulseCommand(entity playerEntity, float impulseNum)
 {
 	switch (impulseNum) {
 	case 100:
 		if (AllowFlashlight() == true) {
-			ents.Input(self, "UseItem", "item_suit", self);
+			ents.Input(playerEntity, "UseItem", "item_suit", playerEntity);
 		}
 		break;
 	default:
