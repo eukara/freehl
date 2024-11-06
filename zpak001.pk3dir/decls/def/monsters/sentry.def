@@ -2,7 +2,7 @@ entityDef monster_sentry
 {
 	"spawnclass"	"NSTalkMonster"
 	"model"			"models/sentry.mdl"
-	"netname"		"Turret"
+	"netname"		"Sentry"
 	"health"		"skill:sentry_health"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 72"
@@ -13,10 +13,9 @@ entityDef monster_sentry
 	"def_attack_ranged"		"ranged_sentry_shot"
 	"attack_ranged_range"	"1024"
 
-	"snd_idle"			"monster_sentry.combatIdle"
-	"snd_death"			"monster_sentry.die"
-	"snd_ranged_attack"	"monster_sentry.fire"
-	"snd_thud"			"monster_generic.thud"
+	"snd_idle"			"Turret.Ping"
+	"snd_death"			"Sentry.Die"
+	"snd_ranged_attack"	"Sentry.Shoot"
 
 	"act_idle"			"0" // when the sentry is turned off.
 //	"act_sleep"			"4"	// when the sentry retires;The animation is a dupe

@@ -13,53 +13,56 @@ entityDef monster_human_grunt
 	"speed_run"		"304"
 
 	// melee attack
-	"def_attack_melee"	"melee_hgrunt_kick"
+	"def_attack_melee"		"melee_hgrunt_kick"
 	"attack_melee_range"	"96"
-	"snd_melee_attack"	"monster_human_grunt.kick"
+	"snd_melee_attack"		"HGrunt.Kick"
 
 	// primary ranged attack
-	"def_attack_ranged"	"ranged_hgrunt_mp5"
-	"snd_ranged_attack"	"Weapon_MP5.Single"
+	"def_attack_ranged"		"ranged_hgrunt_mp5"
+	"snd_ranged_attack"		"HGrunt.9MM"
 	"attack_ranged_range"	"1024"
-	"reload_count"		"30"
+	"reload_count"			"30"
 
 	// special attack
 	"def_attack_special_1"	"projectile_hgrunt_grenade"
 	"attack_special_range"	"1024"
-	"projectile_delay"	"1.0"
+	"projectile_delay"		"1.0"
 
-	"snd_idle"		"monster_human_grunt.idle"
-	"snd_pain"		"HGrunt.Pain"
-	"snd_death"		"HGrunt.Die"
-	"snd_reload"	"HGrunt.Reload"
-	"weapons"		"3"
+	// TODO					Unclear how these work
+	// TODO					!HG_CHECK
+	// TODO					!HG CLEAR
+	"talk_answer"			"!HG_ANSWER"
+	"talk_ask"				"!HG_QUEST"
+	"talk_idle"				"!HG_IDLE"
+	"snd_pain"				"HGrunt.Pain"
+	"snd_death"				"HGrunt.Die"
+	"snd_reload"			"HGrunt.Reload"
+	"weapons"				"3"
 
-	"squad_leader_body"	"1:2"
+	"squad_leader_body"		"1:2"
 
 	// grenade launcher
 	when "weapons" contains 4 {
-		"body1" "4"
+		"body1"					"4"
 		"def_attack_special_1"	"projectile_hgrunt_ARgrenade"
-		"skin" "1"
+		"skin"					"1"
 	}
 
 	// shotgun grunt
 	when "weapons" contains 8 {
-		"body2" "2"
-		"reload_count" "8"
-		"snd_ranged_attack"	"weapon_shotgun.single"
+		"body2"				"2"
+		"reload_count"		"8"
+		"snd_ranged_attack"	"HGrunt.Shotgun"
 		"def_attack_ranged"	"ranged_hgrunt_shot"
 	}
 
 	when "spawnflags" contains 32 {
-		"squad_leader" "1"
+		"squad_leader"		"1"
 	}
-
-
 
 	// animation event callbacks
 	events {
-		2 "StartSoundDef"		"HGrunt.Reload"
+		2 "StartSoundDef"	"HGrunt.Reload"
 	}
 }
 
@@ -74,76 +77,76 @@ entityDef melee_hgrunt_kick
 
 entityDef ranged_hgrunt_mp5
 {
-	"inherit"	"projectile_bullet_base"
-	"damage"	"skill:hgrunt_pellets"
-	"burst"	"3"
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:hgrunt_pellets"
+	"burst"			"3"
 	"burst_delay"	"0.5"
-	"delay"	"0.1"
+	"delay"			"0.1"
 }
 
 entityDef ranged_hgrunt_shot
 {
-	"inherit"	"projectile_bullet_base"
-	"damage"	"skill:hgrunt_pellets"
-	"delay"	"1.0"
+	"inherit"		"projectile_bullet_base"
+	"damage"		"skill:hgrunt_pellets"
+	"delay"			"1.0"
 }
 
 entityDef projectile_hgrunt_ARgrenade
 {
-	"spawnclass"		"NSProjectile"
-	"model"		"models/grenade.mdl"
+	"spawnclass"				"NSProjectile"
+	"model"						"models/grenade.mdl"
 
-	"def_splash_damage"	"damage_grenadeSplash"
+	"def_splash_damage"			"damage_grenadeSplash"
 
-	"health"		"0"
-	"velocity"		"800 0 400"
-	"angular_velocity"	"300 300 300"
-	"fuse"		"4"
-	"bounce"		"1"
-	"detonate_on_fuse"	"1"
-	"detonate_on_death"	"0"
-	"detonate_on_world"	"1"
-	"detonate_on_actor"	"1"
-	"impact_damage_effect"	"1"
-	"impact_gib"		"1"
+	"health"					"0"
+	"velocity"					"800 0 400"
+	"angular_velocity"			"300 300 300"
+	"fuse"						"4"
+	"bounce"					"1"
+	"detonate_on_fuse"			"1"
+	"detonate_on_death"			"0"
+	"detonate_on_world"			"1"
+	"detonate_on_actor"			"1"
+	"impact_damage_effect"		"1"
+	"impact_gib"				"1"
 
-	"model_detonate"		"fx_explosion.main"
+	"model_detonate"			"fx_explosion.main"
 
-	"explode_light_color"	"2 1.6 0.8"
-	"explode_light_radius"	"320"
+	"explode_light_color"		"2 1.6 0.8"
+	"explode_light_radius"		"320"
 	"explode_light_fadetime"	"0.5"
 
-	"snd_explode"		"weapon_handgrenade.explode"
-	"snd_bounce"		"weapon_handgrenade.bounce"
+	"snd_explode"				"weapon_handgrenade.explode"
+	"snd_bounce"				"weapon_handgrenade.bounce"
 }
 
 entityDef projectile_hgrunt_grenade
 {
-	"spawnclass"		"NSProjectile"
-	"model"		"models/w_grenade.mdl"
+	"spawnclass"				"NSProjectile"
+	"model"						"models/w_grenade.mdl"
 
-	"def_splash_damage"	"damage_grenadeSplash"
+	"def_splash_damage"			"damage_grenadeSplash"
 
-	"health"		"0"
-	"velocity"		"600 0 200"
-	"angular_velocity"	"300 300 300"
-	"fuse"		"4"
-	"bounce"		"1"
-	"detonate_on_fuse"	"1"
-	"detonate_on_death"	"0"
-	"detonate_on_world"	"0"
-	"detonate_on_actor"	"0"
-	"impact_damage_effect"	"1"
-	"impact_gib"		"1"
+	"health"					"0"
+	"velocity"					"600 0 200"
+	"angular_velocity"			"300 300 300"
+	"fuse"						"4"
+	"bounce"					"1"
+	"detonate_on_fuse"			"1"
+	"detonate_on_death"			"0"
+	"detonate_on_world"			"0"
+	"detonate_on_actor"			"0"
+	"impact_damage_effect"		"1"
+	"impact_gib"				"1"
 
-	"model_detonate"		"fx_explosion.main"
+	"model_detonate"			"fx_explosion.main"
 
-	"explode_light_color"	"2 1.6 0.8"
-	"explode_light_radius"	"320"
+	"explode_light_color"		"2 1.6 0.8"
+	"explode_light_radius"		"320"
 	"explode_light_fadetime"	"0.5"
 
-	"snd_explode"		"weapon_handgrenade.explode"
-	"snd_bounce"		"weapon_handgrenade.bounce"
+	"snd_explode"				"weapon_handgrenade.explode"
+	"snd_bounce"				"weapon_handgrenade.bounce"
 }
 
 entityDef damage_grenadeSplash

@@ -39,6 +39,7 @@
 #include "monsters/skeleton_dead.def"
 #include "monsters/snapbug.def"
 #include "monsters/snark.def"
+#include "monsters/sphere.def"
 #include "monsters/stukabat.def"
 #include "monsters/tentacle.def"
 #include "monsters/tentaclemaw.def"

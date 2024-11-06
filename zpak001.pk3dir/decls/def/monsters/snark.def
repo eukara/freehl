@@ -18,9 +18,11 @@ entityDef monster_snark
 
 	"attack_ranged_range"	"96"
 
-	"snd_idle"			"monster_snark.idle"
-	"snd_pain"			"monster_snark.pain"
-	"snd_death"			"monster_snark.death"
+	//					Snark.Deploy
+	"snd_attack"		"Snark.Bounce"
+	"snd_pain"			"Snark.Pain"
+	"snd_death"			"Snark.Die"
+	"snd_gib"			"Snark.Gibbed"
 	"leap_damage"		"skill:snark_dmg_bite"
 
 	events {

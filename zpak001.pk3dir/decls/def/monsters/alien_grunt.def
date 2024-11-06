@@ -16,33 +16,33 @@ entityDef monster_alien_grunt
 	"attack_melee_range"	"96"
 	"attack_ranged_range"	"512"
 
-	"snd_idle"				"monster_alien_grunt.idle"
-	"snd_pain"				"monster_alien_grunt.pain"
-	"snd_death"				"monster_alien_grunt.pain"
-	"snd_melee_attack"		"monster_alien_grunt.attack"
-	"snd_melee_attack_hit"	"monster_zombie.attackhit"
-	"snd_melee_attack_miss"	"monster_zombie.attackmiss"
-	"snd_thud"				"monster_generic.thud"
+	"snd_alert"				"AlienGrunt.Alert
+	"snd_idle"				"AlienGrunt.Idle"
+	"snd_pain"				"AlienGrunt.Pain"
+	"snd_death"				"AlienGrunt.Pain"
+	"snd_melee_attack"		"AlienGrunt.Attack"
+	"snd_melee_attack_hit"	"AlienGrunt.AttackHit"
+	"snd_melee_attack_miss"	"AlienGrunt.AttackMiss"
 
 	// animation event callbacks
 	events {
 		1 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
-		1 "StartSoundDef"		"weapon_hornetgun.fire"
+		1 "StartSoundDef"		"AlienGrunt.FireGun"
 
 		2 "SpawnProjectileDef"	"ranged_agrunt_shot_red"
-		2 "StartSoundDef"		"weapon_hornetgun.fire"
+		2 "StartSoundDef"		"AlienGrunt.FireGun"
 
 		3 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
-		3 "StartSoundDef"		"weapon_hornetgun.fire"
+		3 "StartSoundDef"		"AlienGrunt.FireGun"
 
 		4 "SpawnProjectileDef"	"ranged_agrunt_shot_red"
-		4 "StartSoundDef"		"weapon_hornetgun.fire"
+		4 "StartSoundDef"		"AlienGrunt.FireGun"
 
 		5 "SpawnProjectileDef"	"ranged_agrunt_shot_orange"
-		5 "StartSoundDef"		"weapon_hornetgun.fire"
+		5 "StartSoundDef"		"AlienGrunt.FireGun"
 
-		10 "StartSoundDef"		"monster_alien_grunt.step_left"
-		11 "StartSoundDef"		"monster_alien_grunt.step_right"
+		10 "StartSoundDef"		"AlienGrunt.LeftFoot"
+		11 "StartSoundDef"		"AlienGrunt.RightFoot"
 	}
 }
 

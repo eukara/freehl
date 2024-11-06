@@ -16,22 +16,22 @@ entityDef monster_alien_slave
 	"melee_range"			"96"
 	"attack_ranged_range"	"512"
 
-	"snd_idle"		"monster_alien_slave.idle"
-	"snd_pain"		"monster_alien_slave.pain"
-	"snd_death"		"monster_alien_slave.die"
-	"snd_thud"		"monster_generic.thud"
+	"snd_idle"		"Vortigaunt.Idle"
+	"snd_pain"		"Vortigaunt.Pain"
+	"snd_death"		"Vortigaunt.Die"
 
 	// animation event callbacks
 	events {
 		1 "SpawnProjectileDef"	"melee_islave_claw"
-		1 "StartSoundDef"		"monster_alien_slave.claw"
+		1 "StartSoundDef"		"Vortigaunt.AttackMiss"
 
 		2 "SpawnProjectileDef"	"melee_islave_claw"
-		2 "StartSoundDef"		"monster_alien_slave.claw"
+		2 "StartSoundDef"		"Vortigaunt.AttackMiss"
 
 		// beam powerup, both left and right hand
 		3 "SpawnDefAttachment"	"islave_beampowerup 0"
 		3 "SpawnDefAttachment"	"islave_beampowerup 1"
+		3 "StartSoundDef"		"Vortigaunt.ZapPowerup"
 
 		// fire a beam towards the target
 		4 "SpawnDefAttachment"	"islave_beamattack 0"
@@ -39,6 +39,7 @@ entityDef monster_alien_slave
 		4 "SpawnDefAttachment"	"islave_beamattack 1"
 		4 "SpawnDefAttachment"	"islave_beamattack 1"
 		4 "SpawnProjectileDef"	"ranged_islave_zap"
+		4 "StartSoundDef"		"Vortigaunt.ZapShoot"
 
 		// kill anything parented to us
 		5 "KillChildClass"		"islave_beampowerup"

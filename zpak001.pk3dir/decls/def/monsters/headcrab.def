@@ -14,17 +14,18 @@ entityDef monster_headcrab
 
 	"attack_ranged_range"	"180" // needs launch attack
 
-	"snd_idle"			"monster_headcrab.idle"
-	"snd_pain"			"monster_headcrab.pain"
-	"snd_death"			"monster_headcrab.death"
-	"leap_damage"		"skill:headcrab_dmg_bite"
+	"snd_idle"				"Headcrab.Idle"
+	"snd_pain"				"Headcrab.Pain"
+	"snd_death"				"Headcrab.Die"
+	"snd_melee_attack_hit"	"Headcrab.Bite"
+	"leap_damage"			"skill:headcrab_dmg_bite"
 
 	events {
 		jump "AddVelocity" "512 0 250"
-		jump "StartSoundDef" "monster_headcrab.attack"
+		jump "StartSoundDef" "Headcrab.Attack"
 		jump_variation1 "AddVelocity" "512 0 350"
-		jump_variation1 "StartSoundDef" "monster_headcrab.attack"
+		jump_variation1 "StartSoundDef" "Headcrab.Attack"
 		jump_variation2 "AddVelocity" "512 0 350"
-		jump_variation2 "StartSoundDef" "monster_headcrab.attack"
+		jump_variation2 "StartSoundDef" "Headcrab.Attack"
 	}
 }

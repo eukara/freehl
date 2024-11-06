@@ -10,7 +10,7 @@ BodyDrop.Heavy
 	sample common/bodydrop4.wav
 }
 
-monster_alien_grunt.alert
+AlienGrunt.Alert
 {
 	sample agrunt/ag_alert1.wav
 	sample agrunt/ag_alert2.wav
@@ -19,14 +19,14 @@ monster_alien_grunt.alert
 	sample agrunt/ag_alert5.wav
 }
 
-monster_alien_grunt.attack
+AlienGrunt.Attack
 {
 	sample agrunt/ag_attack1.wav
 	sample agrunt/ag_attack2.wav
 	sample agrunt/ag_attack3.wav
 }
 
-monster_alien_grunt.die
+AlienGrunt.Die
 {
 	sample agrunt/ag_die1.wav
 	sample agrunt/ag_die2.wav
@@ -35,7 +35,7 @@ monster_alien_grunt.die
 	sample agrunt/ag_die5.wav
 }
 
-monster_alien_grunt.idle
+AlienGrunt.Idle
 {
 	sample agrunt/ag_idle1.wav
 	sample agrunt/ag_idle2.wav
@@ -44,7 +44,7 @@ monster_alien_grunt.idle
 	sample agrunt/ag_idle5.wav
 }
 
-monster_alien_grunt.pain
+AlienGrunt.Pain
 {
 	sample agrunt/ag_pain1.wav
 	sample agrunt/ag_pain2.wav
@@ -53,41 +53,61 @@ monster_alien_grunt.pain
 	sample agrunt/ag_pain5.wav
 }
 
-monster_alien_grunt.step_left
+AlienGrunt.LeftFoot
 {
 	pitch 0.7
 	sample player/pl_ladder2.wav
 	sample player/pl_ladder4.wav
 }
 
-monster_alien_grunt.step_right
+AlienGrunt.RightFoot
 {
 	pitch 0.7
 	sample player/pl_ladder1.wav
 	sample player/pl_ladder3.wav
 }
 
-monster_alien_controller.alert
+AlienGrunt.FireGun
+{
+	sample turret/tu_fire1.wav
+}
+
+Apache.FireGun
+{
+	sample turret/tu_fire1.wav
+}
+
+Apache.RPG
+{
+	sample weapons/rocket1.wav
+}
+
+ApacheHVR.Ignite
+{
+	sample weapons/rocket1.wav
+}
+
+Controller.Alert
 {
 	sample controller/con_alert1.wav
 	sample controller/con_alert2.wav
 	sample controller/con_alert3.wav
 }
 
-monster_alien_controller.attack
+Controller.Attack
 {
 	sample controller/con_attack1.wav
 	sample controller/con_attack2.wav
 	sample controller/con_attack3.wav
 }
 
-monster_alien_controller.die
+Controller.Die
 {
 	sample controller/con_die1.wav
 	sample controller/con_die2.wav
 }
 
-monster_alien_controller.idle
+Controller.Idle
 {
 	sample controller/con_idle1.wav
 	sample controller/con_idle2.wav
@@ -96,31 +116,31 @@ monster_alien_controller.idle
 	sample controller/con_idle5.wav
 }
 
-monster_alien_controller.pain
+Controller.Pain
 {
 	sample controller/con_pain1.wav
 	sample controller/con_pain2.wav
 	sample controller/con_pain3.wav
 }
 
-monster_alien_slave.die
+Vortigaunt.Die
 {
 	sample aslave/slv_die1.wav
 	sample aslave/slv_die2.wav
 }
 
-monster_alien_slave.pain
+Vortigaunt.Pain
 {
 	sample aslave/slv_pain1.wav
 	sample aslave/slv_pain2.wav
 }
 
-monster_alien_slave.attack_charge
+Vortigaunt.ZapPowerup
 {
 	sample debris/zap4.wav
 }
 
-monster_alien_slave.attack_shoot
+Vortigaunt.ZapShoot
 {
 	pitch_min 1.3
 	pitch_max 1.6
@@ -128,31 +148,44 @@ monster_alien_slave.attack_shoot
 }
 
 // bcl_bite3 is played when an entity is in it's mouth bcl_tongue1 unused?
-monster_barnacle.attackchew
+Barnacle.Chew
 {
 	sample barnacle/bcl_chew1.wav
 	sample barnacle/bcl_chew2.wav
 	sample barnacle/bcl_chew3.wav
 }
-monster_barnacle.attackpull
+
+Barnacle.Bite
+{
+	sample barnacle/bcl_bite3.wav
+}
+
+Barnacle.Alert
 {
 	sample barnacle/bcl_alert2.wav
 }
 
-monster_barnacle.die
+Barnacle.Die
 {
 	sample barnacle/bcl_die1.wav
 	sample barnacle/bcl_die3.wav
 }
 
-monster_barney.die
+Barney.Die
 {
 	sample barney/ba_die1.wav
 	sample barney/ba_die1.wav
 	sample barney/ba_die2.wav
 }
 
-monster_barney.pain
+Barney.FirePistol
+{
+	sample barney/ba_die1.wav
+	sample barney/ba_die1.wav
+	sample barney/ba_die2.wav
+}
+
+Barney.Pain
 {
 	sample barney/ba_pain1.wav
 	sample barney/ba_pain1.wav
@@ -248,39 +281,35 @@ BigMomma.FootstepRight
 	sample gonarch/gon_step3.wav
 }
 
-monster_bullchicken.attack
+Bullsquid.Growl
 {
 	sample bullchicken/bc_attackgrowl1.wav
 	sample bullchicken/bc_attackgrowl2.wav
 	sample bullchicken/bc_attackgrowl3.wav
 }
 
-monster_bullchicken.attackbite
+Bullsquid.Bite
 {
 	sample bullchicken/bc_bite1.wav
-}
-
-monster_bullchicken.attackthrow
-{
 	sample bullchicken/bc_bite2.wav
 	sample bullchicken/bc_bite3.wav
 }
 
-monster_bullchicken.attackshoot
+Bullsquid.Attack
 {
 	sample bullchicken/bc_attack1.wav
 	sample bullchicken/bc_attack2.wav
 	sample bullchicken/bc_attack3.wav
 }
 
-monster_bullchicken.die
+Bullsquid.Die
 {
 	sample bullchicken/bc_die1.wav
 	sample bullchicken/bc_die2.wav
 	sample bullchicken/bc_die3.wav
 }
 
-monster_bullchicken.idle
+Bullsquid.Idle
 {
 	sample bullchicken/bc_idle1.wav
 	sample bullchicken/bc_idle2.wav
@@ -289,7 +318,7 @@ monster_bullchicken.idle
 	sample bullchicken/bc_idle5.wav
 }
 
-monster_bullchicken.pain
+Bullsquid.Pain
 {
 	sample bullchicken/bc_pain1.wav
 	sample bullchicken/bc_pain2.wav
@@ -297,13 +326,42 @@ monster_bullchicken.pain
 	sample bullchicken/bc_pain4.wav
 }
 
-monster_cockroach.die
+Roach.Die
 {
 	sample roach/rch_die.wav
+}
+
+Roach.Smash
+{
 	sample roach/rch_smash.wav
 }
 
-monster_gargantua.alert
+Roach.Walk
+{
+	sample roach/rch_walk.wav
+}
+
+HAssassin.Shot
+{
+	sample weapons/pl_gun1.wav
+	sample weapons/pl_gun2.wav
+}
+
+HAssassin.Footstep
+{
+	sample player/pl_step1.wav
+	sample player/pl_step2.wav
+	sample player/pl_step3.wav
+	sample player/pl_step4.wav
+}
+
+// Not sure what this does
+HAssassin.Beamsound
+{
+	debris/beamstart1.wav
+}
+
+Garg.Alert
 {
 	sample garg/gar_alert1.wav
 	sample garg/gar_alert2.wav
@@ -311,48 +369,35 @@ monster_gargantua.alert
 }
 
 // similar to bullsquid groans during and after attacks
-monster_gargantua.attack
+Garg.Attack
 {
 	sample garg/gar_attack1.wav
 	sample garg/gar_attack2.wav
 	sample garg/gar_attack3.wav
 }
 
-monster_gargantua.attackflame
+Garg.AttackMiss
 {
-	sample garg/gar_flamerun1.wav
+	sample zombie/claw_miss1.wav
+	sample zombie/claw_miss2.wav
 }
 
-monster_gargantua.attackflameoff
-{
-	sample garg/gar_flameoff1.wav
-}
-
-monster_gargantua.attackflameon
-{
-	sample garg/gar_flameon1.wav
-}
-
-
-monster_gargantua.die
+Garg.Die
 {
 	sample garg/gar_die1.wav
 	sample garg/gar_die2.wav
 }
 
-monster_gargantua.idle
+Garg.Idle
 {
 	sample garg/gar_idle1.wav
 	sample garg/gar_idle2.wav
 	sample garg/gar_idle3.wav
 	sample garg/gar_idle4.wav
 	sample garg/gar_idle5.wav
-	sample garg/gar_breathe1.wav
-	sample garg/gar_breathe2.wav
-	sample garg/gar_breathe3.wav
 }
 
-monster_gargantua.pain
+Garg.Pain
 {
 	sample garg/gar_pain1.wav
 	sample garg/gar_pain2.wav
@@ -360,10 +405,42 @@ monster_gargantua.pain
 }
 
 // has unique foot step sounds
-monster_gargantua.step
+Garg.Footstep
 {
 	sample garg/gar_step1.wav
 	sample garg/gar_step2.wav
+}
+
+Garg.Breath
+{
+	sample garg/gar_breathe1.wav
+	sample garg/gar_breathe2.wav
+	sample garg/gar_breathe3.wav
+}
+
+Garg.Stomp
+{
+	sample weapons/mine_charge.wav
+}
+
+Garg.StompSound
+{
+	sample garg/gar_stomp1.wav
+}
+
+Garg.BeamAttackOff
+{
+	sample garg/gar_flameoff1.wav
+}
+
+Garg.BeamAttackOn
+{
+	sample garg/gar_flameon1.wav
+}
+
+Garg.BeamAttackRun
+{
+	sample garg/gar_flamerun1.wav
 }
 
 monster_headcrab.alert
@@ -373,25 +450,25 @@ monster_headcrab.alert
 }
 
 // these attack sounds are actually the cry when it jumps
-monster_headcrab.attack
+Headcrab.Attack
 {
 	sample headcrab/hc_attack1.wav
 	sample headcrab/hc_attack2.wav
 	sample headcrab/hc_attack3.wav
 }
 
-monster_headcrab.attackhit
+Headcrab.Bite
 {
 	sample headcrab/hc_headbite.wav
 }
 
-monster_headcrab.die
+Headcrab.Die
 {
 	sample headcrab/hc_die1.wav
 	sample headcrab/hc_die2.wav
 }
 
-monster_headcrab.idle
+Headcrab.Idle
 {
 	sample headcrab/hc_idle1.wav
 	sample headcrab/hc_idle2.wav
@@ -400,7 +477,7 @@ monster_headcrab.idle
 	sample headcrab/hc_idle5.wav
 }
 
-monster_headcrab.pain
+Headcrab.Pain
 {
 	sample headcrab/hc_pain1.wav
 	sample headcrab/hc_pain2.wav
@@ -408,13 +485,15 @@ monster_headcrab.pain
 }
 
 
-monster_babycrab.alert
+Babycrab.Alert
 {
+	pitch_min 140
+	pitch_max 150
 	sample headcrab/hc_alert1.wav
 	sample headcrab/hc_alert2.wav
 }
 
-monster_babycrab.attack
+Babycrab.Attack
 {
 	pitch_min 140
 	pitch_max 150
@@ -423,14 +502,14 @@ monster_babycrab.attack
 	sample headcrab/hc_attack3.wav
 }
 
-monster_babycrab.attackhit
+Babycrab.Bite
 {
 	pitch_min 140
 	pitch_max 150
 	sample headcrab/hc_headbite.wav
 }
 
-monster_babycrab.die
+Babycrab.Die
 {
 	pitch_min 140
 	pitch_max 150
@@ -438,7 +517,7 @@ monster_babycrab.die
 	sample headcrab/hc_die2.wav
 }
 
-monster_babycrab.idle
+Babycrab.Idle
 {
 	pitch_min 140
 	pitch_max 150
@@ -449,7 +528,7 @@ monster_babycrab.idle
 	sample headcrab/hc_idle5.wav
 }
 
-monster_babycrab.pain
+Babycrab.Pain
 {
 	pitch_min 140
 	pitch_max 150
@@ -458,29 +537,38 @@ monster_babycrab.pain
 	sample headcrab/hc_pain3.wav
 }
 
-monster_houndeye.alert
+HoundEye.Alert
 {
 	sample houndeye/he_alert1.wav
 	sample houndeye/he_alert2.wav
 	sample houndeye/he_alert3.wav
 }
 
-monster_houndeye.attack
+HoundEye.Anger1
+{
+	sample houndeye/he_pain3.wav
+}
+
+HoundEye.Anger2
+{
+	sample houndeye/he_pain1.wav
+}
+
+HoundEye.Warn
 {
 	sample houndeye/he_attack1.wav
 	sample houndeye/he_attack2.wav
 	sample houndeye/he_attack3.wav
 }
 
-monster_houndeye.blast
+HoundEye.Sonic
 {
 	sample houndeye/he_blast1.wav
 	sample houndeye/he_blast2.wav
 	sample houndeye/he_blast3.wav
 }
 
-
-monster_houndeye.die
+HoundEye.Die
 {
 	sample houndeye/he_die1.wav
 	sample houndeye/he_die2.wav
@@ -488,19 +576,23 @@ monster_houndeye.die
 }
 
 // Not sure where the hunt sounds are actually used
-monster_houndeye.idle
+HoundEye.Hunt
 {
 	sample houndeye/he_hunt1.wav
 	sample houndeye/he_hunt2.wav
 	sample houndeye/he_hunt3.wav
 	sample houndeye/he_hunt4.wav
+}
+
+HoundEye.Idle
+{
 	sample houndeye/he_idle1.wav
 	sample houndeye/he_idle2.wav
 	sample houndeye/he_idle3.wav
 	sample houndeye/he_idle4.wav
 }
 
-monster_houndeye.pain
+HoundEye.Pain
 {
 	sample houndeye/he_pain1.wav
 	sample houndeye/he_pain2.wav
@@ -509,21 +601,25 @@ monster_houndeye.pain
 	sample houndeye/he_pain5.wav
 }
 
-monster_human_grunt.idle
+HGrunt.9MM
 {
-	sample hgrunt/gr_idle1.wav
-	sample hgrunt/gr_idle2.wav
-	sample hgrunt/gr_idle3.wav
+	sample hgrunt/gr_mgun1.wav
+	sample hgrunt/gr_mgun2.wav
 }
 
-monster_human_grunt.die
+HGrunt.Shotgun
+{
+	sample weapons/sbarrel1.wav
+}
+
+HGrunt.Die
 {
 	sample hgrunt/gr_die1.wav
 	sample hgrunt/gr_die2.wav
 	sample hgrunt/gr_die3.wav
 }
 
-monster_human_grunt.pain
+HGrunt.Pain
 {
 	sample hgrunt/gr_pain1.wav
 	sample hgrunt/gr_pain2.wav
@@ -532,30 +628,41 @@ monster_human_grunt.pain
 	sample hgrunt/gr_pain5.wav
 }
 
-monster_human_grunt.kick
+HGrunt.GrenadeLaunch
+{
+	sample weapons/glauncher.wav
+}
+
+HGrunt.Kick
 {
 	sample zombie/claw_miss2.wav
 }
 
-monster_human_grunt.reload
+HGrunt.Reload
 {
 	sample hgrunt/gr_reload1.wav
 }
 
-monster_ichthyosaur.alert
+Ichthyosaur.Alert
 {
 	sample ichy/ichy_alert1.wav
 	sample ichy/ichy_alert2.wav
 	sample ichy/ichy_alert3.wav
 }
 
-monster_ichthyosaur.attack
+Ichthyosaur.Attack
 {
 	sample ichy/ichy_attack1.wav
 	sample ichy/ichy_attack2.wav
 }
 
-monster_ichthyosaur.die
+Ichthyosaur.Bite
+{
+	sample ichy/ichy_bite1.wav
+	sample ichy/ichy_bite2.wav
+}
+
+Ichthyosaur.Die
 {
 	sample ichy/ichy_die1.wav
 	sample ichy/ichy_die2.wav
@@ -563,7 +670,7 @@ monster_ichthyosaur.die
 	sample ichy/ichy_die4.wav
 }
 
-monster_ichthyosaur.idle
+Ichthyosaur.Idle
 {
 	sample ichy/ichy_idle1.wav
 	sample ichy/ichy_idle2.wav
@@ -571,7 +678,7 @@ monster_ichthyosaur.idle
 	sample ichy/ichy_idle4.wav
 }
 
-monster_ichthyosaur.pain
+Ichthyosaur.Pain
 {
 	sample ichy/ichy_pain1.wav
 	sample ichy/ichy_pain2.wav
@@ -580,67 +687,78 @@ monster_ichthyosaur.pain
 	sample ichy/ichy_pain5.wav
 }
 
-monster_leech.alert
+Leech.Alert
 {
 	sample leech/leech_alert1.wav
 	sample leech/leech_alert2.wav
 }
 
-monster_leech.attack
+Leech.Attack
 {
 	sample leech/leech_bite1.wav
 	sample leech/leech_bite2.wav
 	sample leech/leech_bite3.wav
 }
 
-// other sounds
-// * x_shoot1 - ?
-// * nih_die2 - used in map not code?
-
 // these attack sounds are his growls
-monster_nihilanth.attack
+Nihilanth.Attack
 {
 	sample x/x_attack1.wav
 	sample x/x_attack2.wav
 	sample x/x_attack3.wav
 }
 
-monster_nihilanth.attackball
+Nihilanth.BallAttack
 {
 	sample x/x_ballattack1.wav
 }
 
-monster_nihilanth.attackballmove
+Nihilanth.BallAttackMove
 {
 	sample x/x_teleattack1.wav
 }
 
-monster_nihilanth.die
+Nihilanth.Die
 {
 	sample x/x_die1.wav
 }
 
-monster_nihilanth.idle
+Nihilanth.PainLaugh
 {
 	sample x/x_laugh1.wav
 	sample x/x_laugh2.wav
 }
 
-monster_nihilanth.pain
+Nihilanth.Pain
 {
 	sample x/x_pain1.wav
 	sample x/x_pain2.wav
 	sample x/x_pain3.wav
 }
 
-monster_nihilanth.recharge
+Nihilanth.Recharge
 {
 	sample x/x_recharge1.wav
 	sample x/x_recharge2.wav
 	sample x/x_recharge3.wav
 }
 
-monster_scientist.die
+Nihilanth.FriendBeam
+{
+	sample debris/beamstart7.wav
+}
+
+NihilanthHVR.Zap
+{
+	sample debris/zap4.wav
+}
+
+NihilanthHVR.TeleAttack
+{
+	sample x/x_teleattack1.wav
+}
+
+Scientist.Die
 {
 	sample scientist/sci_die1.wav
 	sample scientist/sci_die2.wav
@@ -648,7 +766,7 @@ monster_scientist.die
 	sample scientist/sci_die4.wav
 }
 
-monster_scientist.pain
+Scientist.Pain
 {
 	sample scientist/sci_pain1.wav
 	sample scientist/sci_pain2.wav
@@ -662,94 +780,176 @@ monster_scientist.pain
 	sample scientist/sci_pain10.wav
 }
 
-monster_sentry.alert
+Turret.Alert
+{
+	sample turret/tu_alert.wav
+}
+
+Turret.Deploy
 {
 	sample turret/tu_deploy.wav
 }
 
-monster_sentry.die
+Turret.Die
 {
 	sample turret/tu_die.wav
 	sample turret/tu_die2.wav
 	sample turret/tu_die3.wav
 }
 
-monster_sentry.idle
+Turret.Shoot
+{
+	sample turret/tu_fire1.wav
+}
+
+Turret.SpinUpCall
+{
+	sample turret/tu_spinup.wav
+}
+
+Turret.SpinDownCall
+{
+	sample turret/tu_spindown.wav
+}
+
+Sentry.Die
+{
+	sample turret/tu_die.wav
+	sample turret/tu_die2.wav
+	sample turret/tu_die3.wav
+}
+
+Sentry.Shoot
+{
+	sample weapons/hks1.wav
+	sample weapons/hks2.wav
+	sample weapons/hks3.wav
+}
+
+Snark.Bounce
+{
+	sample squeek/sqk_hunt1.wav
+	sample squeek/sqk_hunt2.wav
+	sample squeek/sqk_hunt3.wav
+}
+
+Snark.Deploy
+{
+	sample squeek/sqk_deploy1.wav
+}
+
+Snark.Die
+{
+	sample squeek/sqk_blast1.wav
+}
+
+Snark.Gibbed
+{
+	sample common/bodysplat.wav
+}
+
+Turret.Spinup
+{
+	sample turret/tu_active2.wav
+}
+
+Turret.Ping
 {
 	sample turret/tu_ping.wav
 }
 
-monster_sentry.retract
+Turret.Undeploy
 {
 	sample turret/tu_retract.wav
 }
 
 // cut sounds listing here because why not
-monster_tentacle.alert
+Tentacle.Alert
 {
 	sample tentacle/te_alert1.wav
 	sample tentacle/te_alert2.wav
 }
 
-monster_tentacle.attack
+Tentacle.Flies
+{
+	sample ambience/flies.wav
+}
+
+Tentacle.HitSilo
 {
 	sample tentacle/te_strike1.wav
 	sample tentacle/te_strike2.wav
 }
 
-monster_tentacle.die
+Tentacle.HitDirt
+{
+	sample player/pl_dirt1.wav
+	sample player/pl_dirt2.wav
+}
+
+Tentacle.HitWater
+{
+	sample player/pl_slosh1.wav
+	sample player/pl_slosh2.wav
+	sample player/pl_slosh3.wav
+	sample player/pl_slosh4.wav
+}
+
+Tentacle.Death
 {
 	sample tentacle/te_death2.wav
 }
 
-// includes some cut sounds might be interesting
-monster_tentacle.idle
+Tentacle.Roar
 {
 	sample tentacle/te_roar1.wav
 	sample tentacle/te_roar2.wav
+}
+
+Tentacle.Search
+{
 	sample tentacle/te_search1.wav
 	sample tentacle/te_search2.wav
+}
+
+Tentacle.Sing
+{
 	sample tentacle/te_sing1.wav
 	sample tentacle/te_sing2.wav
 }
 
-monster_turret.spindown
+Tentacle.Squirm
 {
-	sample turret/tu_spindown.wav
+	sample ambience/squirm2.wav
 }
 
-monster_turret.spinup
-{
-	sample turret/tu_spinup.wav
-}
-
-monster_zombie.alert
+Zombie.Alert
 {
 	sample zombie/zo_alert10.wav
 	sample zombie/zo_alert20.wav
 	sample zombie/zo_alert30.wav
 }
 
-monster_zombie.attack
+Zombie.Attack
 {
 	sample zombie/zo_attack1.wav
 	sample zombie/zo_attack2.wav
 }
 
-monster_zombie.attackhit
+Zombie.AttackHit
 {
 	sample zombie/claw_strike1.wav
 	sample zombie/claw_strike2.wav
 	sample zombie/claw_strike3.wav
 }
 
-monster_zombie.attackmiss
+Zombie.AttackMiss
 {
 	sample zombie/claw_miss1.wav
 	sample zombie/claw_miss2.wav
 }
 
-monster_zombie.idle
+Zombie.Idle
 {
 	sample zombie/zo_idle1.wav
 	sample zombie/zo_idle2.wav
@@ -757,7 +957,7 @@ monster_zombie.idle
 	sample zombie/zo_idle4.wav
 }
 
-monster_zombie.pain
+Zombie.Pain
 {
 	sample zombie/zo_pain1.wav
 	sample zombie/zo_pain2.wav

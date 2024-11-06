@@ -25,14 +25,13 @@ entityDef monster_zombie
 	"def_attack_melee"		"melee_zombie_stab"
 	"melee_range"			"96"
 
-	"snd_sight"				"monster_zombie.alert"
-	"snd_idle"				"monster_zombie.idle"
-	"snd_pain"				"monster_zombie.pain"
+	"snd_sight"				"Zombie.Alert"
+	"snd_idle"				"Zombie.Idle"
+	"snd_pain"				"Zombie.Pain"
 	"snd_death"				""
-	"snd_melee_attack"		"monster_zombie.attack"
-	"snd_melee_attack_hit"	"monster_zombie.attackhit"
-	"snd_melee_attack_miss"	"monster_zombie.attackmiss"
-	"snd_thud"				"monster_generic.thud"
+	"snd_melee_attack"		"Zombie.Attack"
+	"snd_melee_attack_hit"	"Zombie.AttackHit"
+	"snd_melee_attack_miss"	"Zombie.AttackMiss"
 }
 
 entityDef melee_zombie_stab

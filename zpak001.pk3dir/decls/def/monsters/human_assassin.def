@@ -2,7 +2,7 @@ entityDef monster_human_assassin
 {
 	"spawnclass"			"NSTalkMonster"
 	"model"					"models/hassassin.mdl"
-	"netname"				"Assassin"
+	"netname"				"Human Assassin"
 	"health"				"skill:hassassin_health"
 	"mins"					"-16 -16 0"
 	"maxs"					"16 16 72"
@@ -17,12 +17,10 @@ entityDef monster_human_assassin
 	"speed_walk"			"0"
 	"speed_run"				"364"
 
-	"snd_thud"				"monster_generic.thud"
-
 	// animation event callbacks
 	events {
 		1 "SpawnProjectileDef"	"ranged_hassassin_shot"
-		1 "StartSoundDef"		"monster_human_assassin.fire"
+		1 "StartSoundDef"		"HAssassin.Shot"
 	}
 }
 

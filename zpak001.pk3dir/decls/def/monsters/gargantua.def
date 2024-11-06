@@ -12,14 +12,17 @@ entityDef monster_gargantua
 	"speed_walk"		"46"
 	"speed_run"			"292"
 
+	"snd_idle"			"Garg.Idle"
+	"snd_death"			"Garg.Die"
+
 	events {
 		// attacks
 		1 "SpawnProjectileDef"	"melee_gargantua"
 		5 "SpawnProjectileDef"	"stomp_gargantua"
 
 		// sfx
-		3 "StartSoundDef" "monster_gargantua.step"
-		4 "StartSoundDef" "monster_gargantua.step"
-		6 "StartSoundDef" "monster_gargantua.breathe"
+		3 "StartSoundDef" "Garg.Footstep"
+		4 "StartSoundDef" "Garg.Footstep"
+		6 "StartSoundDef" "Garg.Breath"
 	}
 }
