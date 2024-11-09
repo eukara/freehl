@@ -1,3 +1,6 @@
 #pragma sourcefile client/progs.src
 #pragma sourcefile server/progs.src
 #pragma sourcefile menu/progs.src
+#pragma sourcefile rules/deathmatch.qc
+#pragma sourcefile rules/singleplayer.qc
+#pragma sourcefile rules/invasion.qc
