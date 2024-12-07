@@ -2,55 +2,55 @@
 {
 	"gs_material_glass"
 	{
-		"breakable_model" "gibs_glass"
+		"breakable_model" "GlassChunks"
 	}
 	"gs_material_wood"
 	{
-		"breakable_model" "gibs_wood"
+		"breakable_model" "WoodChunks"
 	}
 	"gs_material_metal"
 	{
-		"breakable_model" "gibs_metalplate"
+		"breakable_model" "MetalChunks"
 	}
 	"gs_material_flesh"
 	{
-		"breakable_model" "gibs_flesh"
+		"breakable_model" "HumanGibs"
 	}
 	"gs_material_cinderblock"
 	{
-		"breakable_model" "gibs_cinder"
+		"breakable_model" "CinderBlocks"
 	}
 	"gs_material_tile"
 	{
-		"breakable_model" "gibs_ceiling"
+		"breakable_model" "CeilingTile"
 	}
 	"gs_material_computer"
 	{
-		"breakable_model" "gibs_computer"
+		"breakable_model" "ComputerGibs"
 	}
 	"gs_material_unbreakableglass"
 	{
-		"breakable_model" "gibs_glass"
+		"breakable_model" "GlassChunks"
 	}
 	"gs_material_rocks"
 	{
-		"breakable_model" "gibs_rock"
+		"breakable_model" "RockGibs"
 	}
 	"actor_alien"
 	{
-		"breakable_model" "gibs_alien"
+		"breakable_model" "AlienGibs"
 		"breakable_count" "4"
 		"surfaceprop"	"gs_material_alien"
 	}
 	"actor_human"
 	{
-		"breakable_model" "gibs_human"
+		"breakable_model" "HumanGibs"
 		"breakable_count" "6"
 		"surfaceprop"	"gs_material_flesh"
 	}
 	"actor_robot"
 	{
-		"breakable_model" "gibs_metalplate"
+		"breakable_model" "MetalChunks"
 		"breakable_count" "6"
 		"surfaceprop"	"gs_material_computer"
 	}
@@ -58,39 +58,43 @@
 	
 	"BreakableModels"
 	{
-		"gibs_glass"
+		"GlassChunks"
 		{
 			"models/glassgibs.mdl#submodels=8#rendermode=5" "5.0"
 		}
-		"gibs_wood"
+		"WoodChunks"
 		{
 			"models/woodgibs.mdl#submodels=3" "5.0"
 		}
-		"gibs_metalplate"
+		"MetalChunks"
 		{
 			"models/metalplategibs.mdl#submodels=13" "5.0"
 		}
-		"gibs_flesh"
+		"FleshGibs"
 		{
 			"models/fleshgibs.mdl#submodels=4" "5.0"
 		}
-		"gibs_ceiling"
+		"CeilingTile"
 		{
 			"models/ceilinggibs.mdl#submodels=4" "5.0"
 		}
-		"gibs_computer"
+		"ComputerGibs"
 		{
 			"models/computergibs.mdl#submodels=15" "5.0"
 		}
-		"gibs_rock"
+		"RockGibs"
 		{
 			"models/rockgibs.mdl#submodels=3" "5.0"
 		}
-		"gibs_cinder"
+		"WebGibs"
+		{
+			"models/webgibs.mdl" "5.0"
+		}
+		"CinderBlocks"
 		{
 			"models/cindergibs.mdl#submodels=9" "5.0"
 		}
-		"gibs_alien"
+		"AlienGibs"
 		{
 			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
 			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
@@ -98,7 +102,7 @@
 			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
 			"models/agibs.mdl#submodels=4#impactdecal=Blood.Alien" "5.0"
 		}
-		"gibs_human"
+		"HumanGibs"
 		{
 			"models/gib_b_bone.mdl#impactdecal=Blood.Human" "5.0"
 			"models/gib_legbone.mdl#impactdecal=Blood.Human" "5.0"
