@@ -15,7 +15,7 @@
  */
 
 void
-Player_Flashlight(NSClientPlayer pl)
+Player_Flashlight(ncPlayer pl)
 {
 
 }

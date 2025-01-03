@@ -22,7 +22,7 @@ void
 CodeCallback_PlayerSpawn(entity playerEntity)
 {
 	ents.ChangeToClass(playerEntity, "player");
-	game.TeleportToSpawn(self);
+	game.TeleportToSpawn(playerEntity);
 }
 
 bool

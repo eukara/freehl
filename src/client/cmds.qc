@@ -18,11 +18,19 @@ void HUD_DrawWeaponSelect_Back(void);
 void HUD_DrawWeaponSelect_Forward(void);
 void HUD_DrawWeaponSelect_Last(void);
 void HUD_SlotSelect(int);
+void VGUI_ChooseClass(int);
+void VGUI_ChooseTeam(void);
 
 int
 ClientGame_ConsoleCommand(void)
 {
 	switch(argv(0)) {
+	case "changeclass":
+		VGUI_ChooseClass(userinfo.GetInteger(pSeat->m_ePlayer, "*team"));
+		break;
+	case "changeteam":
+		VGUI_ChooseTeam();
+		break;
 	case "chooseteam":
 		localcmd(sprintf("cmd %s %s\n", argv(0), argv(1)));
 		break;

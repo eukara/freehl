@@ -1,6 +1,6 @@
 entityDef info_player_start
 {
-	"spawnclass" "NSSpawnPoint"
+	"spawnclass" "ncSpawnPoint"
 	"editor_mins" "-16 -16 -36"
 	"editor_maxs" "16 16 36"
 	"editor_description" "Singleplayer Spawn Point"
@@ -9,7 +9,7 @@ entityDef info_player_start
 
 entityDef info_player_deathmatch
 {
-	"spawnclass" "NSSpawnPoint"
+	"spawnclass" "ncSpawnPoint"
 	"editor_mins" "-16 -16 -36"
 	"editor_maxs" "16 16 36"
 	"editor_description" "Deathmatch Spawn Point"
@@ -18,7 +18,7 @@ entityDef info_player_deathmatch
 
 entityDef info_player_coop
 {
-	"spawnclass" "NSSpawnPoint"
+	"spawnclass" "ncSpawnPoint"
 	"editor_mins" "-16 -16 -36"
 	"editor_maxs" "16 16 36"
 	"editor_description" "Cooperative Spawn Point"
@@ -27,7 +27,7 @@ entityDef info_player_coop
 
 entityDef info_spectator_start
 {
-	"spawnclass" "NSSpawnPoint"
+	"spawnclass" "ncSpawnPoint"
 	"editor_mins" "-16 -16 -16"
 	"editor_maxs" "16 16 16"
 	"editor_description" "Spectator Spawn Point"

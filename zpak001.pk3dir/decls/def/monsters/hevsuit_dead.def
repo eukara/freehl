@@ -1,6 +1,6 @@
 entityDef monster_hevsuit_dead
 {
-	"spawnclass"	"NSMonster"
+	"spawnclass"	"ncMonster"
 	"model"		"models/player.mdl"
 	"body1"		"1"
 	"netname"	"Dead H.E.V. Scientist"

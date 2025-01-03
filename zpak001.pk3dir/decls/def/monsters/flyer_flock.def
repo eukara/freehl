@@ -1,6 +1,6 @@
 entityDef monster_flyer_flock
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"		"models/aflock.mdl"
 	"netname"		"Flyer Flock"
 	"health"		"0"

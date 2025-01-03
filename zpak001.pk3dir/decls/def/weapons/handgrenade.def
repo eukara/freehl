@@ -41,7 +41,7 @@ entityDef weapon_handgrenade
 
 entityDef projectile_handgrenade
 {
-	"spawnclass"		"NSProjectile"
+	"spawnclass"		"ncProjectile"
 	"model"				"models/w_grenade.mdl"
 	"frame"				"1"
 	"fuse"				"4"

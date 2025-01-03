@@ -32,7 +32,7 @@ enum
  * Because not being able to place it around levels would be boring.
  * Some maps, such as subtransit and a few singleplayer chapters have this. */
 
-class HLTripmine:NSSurfacePropEntity
+class HLTripmine:ncSurfacePropEntity
 {
 	void HLTripmine(void);
 
@@ -40,8 +40,8 @@ class HLTripmine:NSSurfacePropEntity
 	virtual void Respawn(void);
 	virtual void Spawned(void);
 	virtual void Ready(void);
-	virtual void Pain(entity, entity, int, vector, int);
-	virtual void Death(entity, entity, int, vector, int);
+	virtual void Pain(entity, entity, int, vector, vector, int);
+	virtual void Death(entity, entity, int, vector, vector, int);
 	virtual float SendEntity(entity, float);
 #endif
 
@@ -99,7 +99,7 @@ HLTripmine::Spawned(void)
 }
 
 void
-HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, int location)
+HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
 {
 	vector explosionPos = GetOrigin();
 	float explosionDamage = Skill_GetValue("plr_tripmine", 150);
@@ -116,9 +116,9 @@ HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, int
 }
 
 void
-HLTripmine::Pain(entity inflictor, entity attacker, int damage, vector dir, int location)
+HLTripmine::Pain(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
 {
-	Death(trace_ent, attacker, 0, g_vec_null, 0);
+	Death(inflictor, attacker, damage, dir, absImpactPos, hitBody);
 }
 
 void
@@ -139,7 +139,7 @@ HLTripmine::Ready(void)
 
 	/* laser shorter than when calibrated, explode! */
 	if (trace_endpos != m_vecEndPos) {
-		Death(trace_ent, real_owner, 0, g_vec_null, 0);
+		Death(trace_ent, real_owner, 0, g_vec_null, origin, 0);
 		return;
 	}
 

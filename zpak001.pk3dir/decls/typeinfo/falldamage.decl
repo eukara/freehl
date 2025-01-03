@@ -1,0 +1,8 @@
+// dictionary containing various settings for fall damage
+typeInfo falldamage
+{
+	"minFallDistance"	"580"	// we need to fall this fast before we take damage
+	"maxFallDistance"	"1024"	// we will have a 100 HP hit at this speed
+	"minLandDistance"	"400"	// at this distance, we'll play the player 'land' sound
+	"punchAngleScale"	"15"	// Fall punch scaler.
+}

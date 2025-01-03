@@ -1,12 +1,12 @@
 entityDef monster_sentry
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/sentry.mdl"
 	"netname"		"Sentry"
 	"health"		"skill:sentry_health"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 72"
-	"eye_height"	"64"
+	"eye_height"	"60"
 	"team"			"1"
 	"propdata"		"actor_robot"
 
@@ -29,6 +29,10 @@ entityDef monster_sentry
 
 	"speed_walk"	"0"
 	"speed_run"		"0"
+	"turn_rate"		"0"
+	"use_nav"		"0"
+	"bleed"			"0"
+	"fireFromHead"	"1"
 }
 
 entityDef ranged_sentry_shot

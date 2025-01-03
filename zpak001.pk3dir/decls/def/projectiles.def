@@ -1,6 +1,6 @@
 entityDef projectile_bullet_base
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"is_bullet"				"1"
 	"decal_impact"			"Impact.BigShot"
 	"detonate_on_world" 	"1"
@@ -8,7 +8,7 @@ entityDef projectile_bullet_base
 
 entityDef projectile_egonbeam
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"is_bullet"				"1"
 	"damage"				"skill:plr_egon"
 	"detonate_on_world" 	"0"

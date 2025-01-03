@@ -1,3 +1,13 @@
+#define 9MMHANDGUN_IDLE1		0
+#define 9MMHANDGUN_IDLE2		1
+#define 9MMHANDGUN_IDLE3		2
+#define 9MMHANDGUN_FIRE			3
+#define 9MMHANDGUN_FIRELAST		4
+#define 9MMHANDGUN_RELOADEMPTY	5
+#define 9MMHANDGUN_RELOAD		6
+#define 9MMHANDGUN_DRAW			7
+#define 9MMHANDGUN_HOLSTER		8
+
 entityDef weapon_9mmhandgun
 {
 	"editor_color"		".3 .3 1"
@@ -22,13 +32,13 @@ entityDef weapon_9mmhandgun
 	"ammoPerShot"		"1"
 	"punchAngle"		"-2 0 0"
 
-	"act_fire"			"3"
-	"act_fireLast"		"4"
-	"act_holster"		"8"
-	"act_reload"			"6"
-	"act_reloadEmpty"	"5"
-	"act_draw"			"7"
-	"act_idle"			"0,1,2"
+	"act_fire"			"$9MMHANDGUN_FIRE"
+	"act_fireLast"		"$9MMHANDGUN_FIRELAST"
+	"act_holster"		"$9MMHANDGUN_HOLSTER"
+	"act_reload"		"$9MMHANDGUN_RELOAD"
+	"act_reloadEmpty"	"$9MMHANDGUN_RELOADEMPTY"
+	"act_draw"			"$9MMHANDGUN_DRAW"
+	"act_idle"			"$9MMHANDGUN_IDLE1,$9MMHANDGUN_IDLE2,$9MMHANDGUN_IDLE3"
 
 	"snd_fire"		"Weapon_Glock.Single"
 	"snd_altfire"	"Weapon_Glock.Single"

@@ -39,7 +39,7 @@ entityDef weapon_crowbar
 
 entityDef projectile_crowbar
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"damage"				"skill:plr_crowbar"
 	"is_bullet"				"1"
 	"range"					"32"

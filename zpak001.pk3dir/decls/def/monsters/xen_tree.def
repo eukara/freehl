@@ -1,6 +1,6 @@
 entityDef xen_tree
 {
-	"spawnclass"			"NSMonster"
+	"spawnclass"			"ncMonster"
 	"model"					"models/tree.mdl"
 	"netname"				"Xen Tree"
 	"health"				"0"

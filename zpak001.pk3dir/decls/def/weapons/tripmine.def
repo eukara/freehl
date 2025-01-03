@@ -43,7 +43,7 @@ entityDef fireInfo_tripminePlant
 
 entityDef projectile_tripmine
 {
-	"spawnclass"		"NSAttack"
+	"spawnclass"		"ncAttack"
 	"def_plant"			"monster_tripmine"
 	"plant"				"1"
 	"plantOnGround"		"0"

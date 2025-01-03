@@ -1,6 +1,6 @@
 entityDef monster_babycrab
 {
-	"spawnclass"			"NSMonster"
+	"spawnclass"			"ncMonster"
 	"inherit"				"monster_headcrab"
 	"model"					"models/baby_headcrab.mdl"
 	"health"				"skill:babycrab_health"

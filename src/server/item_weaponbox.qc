@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-class item_weaponbox:NSRenderableEntity
+class item_weaponbox:ncRenderableEntity
 {
 	int ammo_9mm;
 	int ammo_357;

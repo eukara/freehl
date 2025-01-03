@@ -45,7 +45,7 @@ FX_Blood(vector pos, vector color)
 #else
 	static void Blood_Touch(void)
 	{
-		if (self.think != NSEntity::Destroy) {
+		if (self.think != ncEntity::Destroy) {
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
 			Decals_Place(self.origin, sprintf("{blood%d", floor(random(1,9))));
 		else {
@@ -54,12 +54,12 @@ FX_Blood(vector pos, vector color)
 		}
 		}
 
-		self.think = NSEntity::Destroy;
+		self.think = ncEntity::Destroy;
 		self.nextthink = time + 5.0f;
 	}
 	static void ABlood_Touch(void)
 	{
-		if (self.think != NSEntity::Destroy) {
+		if (self.think != ncEntity::Destroy) {
 		if (serverkeyfloat("*bspversion") == BSPVER_HL)
 			Decals_Place(self.origin, sprintf("{yblood%d", floor(random(1,9))));
 		else {
@@ -68,7 +68,7 @@ FX_Blood(vector pos, vector color)
 		}
 		}
 
-		self.think = NSEntity::Destroy;
+		self.think = ncEntity::Destroy;
 		self.nextthink = time + 5.0f;
 	}
 
@@ -89,7 +89,7 @@ FX_Blood(vector pos, vector color)
 	eBlood.nextthink = time + 0.05f;
 
 	for (int i = 0; i < 3; i++) {
-		NSRenderableEntity ePart = spawn(NSRenderableEntity);
+		ncRenderableEntity ePart = spawn(ncRenderableEntity);
 		ePart.SetOrigin(pos);
 		ePart.SetModel("sprites/blood.spr");
 		ePart.SetMovetype(MOVETYPE_BOUNCE);

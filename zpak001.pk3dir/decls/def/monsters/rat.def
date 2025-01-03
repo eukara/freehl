@@ -1,6 +1,6 @@
 entityDef monster_rat
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"		"models/bigrat.mdl"
 	"netname"		"Rat"
 	"health"		"0"

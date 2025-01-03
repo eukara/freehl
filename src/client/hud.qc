@@ -138,7 +138,7 @@ void
 HUD_DrawHealth(void)
 {
 	vector pos;
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 
 	if (pl.health != pSeatLocal->m_iHealthOld) {
 		pSeatLocal->m_flHealthAlpha = 1.0;
@@ -185,7 +185,7 @@ void
 HUD_DrawArmor(void)
 {
 	vector pos;
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 
 	pos = g_hudmins + [198, g_hudres[1] - 42];
 	
@@ -232,7 +232,7 @@ HUD_DrawArmor(void)
 void
 HUD_DrawAmmo1(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	vector pos;
 
 	if (pl.a_ammo1 != pSeatLocal->m_iAmmo1Old) {
@@ -255,7 +255,7 @@ HUD_DrawAmmo1(void)
 void
 HUD_DrawAmmo2(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	vector pos;
 
 	if (pl.a_ammo2 != pSeatLocal->m_iAmmo2Old) {
@@ -277,7 +277,7 @@ HUD_DrawAmmo2(void)
 void
 HUD_DrawAmmo3(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	vector pos;
 
 	if (pl.a_ammo3 != pSeatLocal->m_iAmmo3Old) {
@@ -314,7 +314,7 @@ void
 HUD_DrawFlashlight(void)
 {
 	vector pos;
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	pos = g_hudmins + [g_hudres[0] - 48, 16];
 
 	/* both on, draw both sprites at full intensity */
@@ -390,7 +390,7 @@ HUD_DrawLogo(void)
 void
 HUD_DrawNotify(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)self;
+	ncPlayer pl = (ncPlayer)self;
 	vector pos;
 	float a;
 
@@ -473,7 +473,7 @@ HUD_TimeRemaining(void)
 void
 HUD_Draw(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 
 #ifndef TFC
 	#ifndef GEARBOX
@@ -519,7 +519,7 @@ HUD_DrawSpectator(void)
 {
 	Textmenu_Draw();
 
-	NSClientSpectator spec = (NSClientSpectator)pSeat->m_ePlayer;
+	ncSpectator spec = (ncSpectator)pSeat->m_ePlayer;
 
 	drawfont = Font_GetID(FONT_20);
 	vector vecPos = [0.0f, 0.0f, 0.0f];

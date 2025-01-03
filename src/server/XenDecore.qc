@@ -15,7 +15,7 @@
  */
 
 class
-XenDecore:NSSurfacePropEntity
+XenDecore:ncSurfacePropEntity
 {
 public:
 	void XenDecore(void);
@@ -27,7 +27,7 @@ public:
 private:
 	float m_flDamageTime;
 	float m_flDamageTest;
-	NSDict m_damageDecl;
+	ncDict m_damageDecl;
 };
 
 void
@@ -66,7 +66,7 @@ XenDecore::Respawn(void)
 	SetFrame(GetSpawnFloat("frame"));
 
 	if (!m_damageDecl) {
-		m_damageDecl = spawn(NSDict);
+		m_damageDecl = spawn(ncDict);
 		m_damageDecl.AddKey("damage", GetSpawnString("damage"));
 	}
 

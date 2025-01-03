@@ -29,6 +29,8 @@ varying vec2 lm0;
 varying vec2 lm1, lm2, lm3;
 #endif
 
+varying vec3 plane;
+
 #ifdef REFLECTCUBE
 varying vec3 eyevector;
 varying mat3 invsurface;
@@ -55,9 +57,15 @@ varying mat3 invsurface;
 		tex_c = v_texcoord;
 		gl_Position = ftetransform();
 
-		/* HACK: func_conveyor needs us to scroll this surface! */
-		if (e_glowmod.g == 0.5)
+#ifdef SCROLL
+		/* HACK: func_conveyor needs us to scroll the top of this surface! */
+		if (e_glowmod.g == 0.5 /*&& v_normal.z > 0.7*/) {
 			tex_c[0] += (e_time * (e_glowmod.b * 1024.0)) * -0.01;
+		}
+#endif
+
+		/* needed for water HACK in fragment shader bit */
+		plane = v_normal;
 
 #ifdef REFLECTCUBE
 		invsurface[0] = v_svector;
@@ -137,6 +145,13 @@ varying mat3 invsurface;
 	{
 		vec4 diffuse_f;
 
+		/* HACK: render-top-only to deal with func_water style brushes.
+		remove only when the engine gives the ability to force this + warp + fog
+		on CONTENT_WATER/SLIME/LAVA volumes */
+		if (e_glowmod.r == 0.25 && plane != vec3(0, 0, 1)) {
+			discard;
+		}
+
 #if r_skipDiffuse==1
 		diffuse_f = vec4(1.0,1.0,1.0,1.0);
 #else
@@ -156,6 +171,7 @@ varying mat3 invsurface;
 			discard;
 		}
 #endif
+
 		/* lighting */
 		//diffuse_f.rgb = vec3(1,1,1);
 		diffuse_f.rgb *= lightmap_fragment();

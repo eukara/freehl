@@ -1,6 +1,6 @@
 entityDef item_antidote
 {
-	"spawnclass"	"NSItem"
+	"spawnclass"	"ncItem"
 	"model"			"models/w_antidote.mdl"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 16"

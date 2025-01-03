@@ -1,6 +1,6 @@
 entityDef xen_hair
 {
-	"spawnclass"	"NSSurfacePropEntity"
+	"spawnclass"	"ncSurfacePropEntity"
 	"model"			"models/hair.mdl"
 	"netname"		"Xen Hair"
 	"health"		"0"

@@ -1,6 +1,6 @@
 #ifdef SERVER
 class
-HLGaussBeam:NSProjectile
+HLGaussBeam:ncProjectile
 {
 	void HLGaussBeam(void);
 
@@ -29,7 +29,7 @@ HLGaussBeam::Launch(vector startPos, vector launchDir, float fuseOffset, float p
 void
 HLGaussBeam::GaussAttack(float fuseOffset)
 {
-	NSClientPlayer ourOwner = (NSClientPlayer)owner;
+	ncPlayer ourOwner = (ncPlayer)owner;
 	int iLoop = 6i;
 	vector vecCurPlane;
 	vector vecCurPos;

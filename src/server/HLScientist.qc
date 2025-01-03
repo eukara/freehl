@@ -15,7 +15,7 @@
  */
 
 class
-HLScientist:NSTalkMonster
+HLScientist:ncTalkMonster
 {
 	void HLScientist(void);
 

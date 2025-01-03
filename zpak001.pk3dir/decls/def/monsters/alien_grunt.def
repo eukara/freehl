@@ -1,6 +1,6 @@
 entityDef monster_alien_grunt
 {
-	"spawnclass"	"NSMonster"
+	"spawnclass"	"ncMonster"
 	"model"			"models/agrunt.mdl"
 	"netname"		"Alien Grunt"
 	"health"		"skill:agrunt_health"
@@ -55,7 +55,7 @@ entityDef melee_agrunt_punch
 
 entityDef ranged_agrunt_shot_red
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"model"					"models/hornet.mdl"
 
 	"def_damage"			"damage_hornetDirect"
@@ -74,7 +74,7 @@ entityDef ranged_agrunt_shot_red
 
 entityDef ranged_agrunt_shot_orange
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"model"					"models/hornet.mdl"
 
 	"def_damage"			"damage_hornetDirect"

@@ -107,14 +107,14 @@ HLWeapon::AddedToInventory(void)
 void
 HLWeapon::UpdateGUI(void)
 {
-	NSClientPlayer ourOwner = __NULL__;
+	ncPlayer ourOwner = __NULL__;
 	vector ammoPos;
 
 	/* draw crosshair */
 	HLSprite_DrawCrosshair(m_crossHair);
 
 	/* draw ammo icon */
-	if (m_ammoIcon) {
+	if (STRING_SET(m_ammoIcon)) {
 		ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 42];
 		HLSprite_Draw_RGBA(m_ammoIcon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 	}
@@ -150,10 +150,11 @@ HLWeapon::UpdateGUI(void)
 	}
 #endif
 
-	if (m_bAmmoRequired == false)
+	if (m_bAmmoRequired == false) {
 		return;
+	}
 
-	ourOwner = (NSClientPlayer)GetOwner();
+	ourOwner = (ncPlayer)GetOwner();
 
 	if (m_iClipSize > 0i) {
 		ourOwner.a_ammo1 = m_iClip;
@@ -163,12 +164,12 @@ HLWeapon::UpdateGUI(void)
 	ourOwner.a_ammo2 = ourOwner.GetReserveAmmo(m_primaryAmmoType);
 	HUD_DrawAmmo2();
 
-	if (m_secondaryAmmoType && m_primaryAmmoType != m_secondaryAmmoType) {
+	if (UsesSecondaryAmmo() && m_primaryAmmoType != m_secondaryAmmoType) {
 		ourOwner.a_ammo3 = ourOwner.GetReserveAmmo(m_secondaryAmmoType);
 		HUD_DrawAmmo3();
 
 		/* draw ammo icon */
-		if (m_ammo2Icon) {
+		if (STRING_SET(m_ammo2Icon)) {
 			ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 74];
 			HLSprite_Draw_RGBA(m_ammo2Icon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 		}
@@ -178,7 +179,7 @@ HLWeapon::UpdateGUI(void)
 void
 HLWeapon::DrawLaser(void)
 {
-	NSClientPlayer ourOwner = (NSClientPlayer)GetOwner();
+	ncPlayer ourOwner = (ncPlayer)GetOwner();
 	float lerpValue;
 	vector laser_pos = g_vec_null;
 	vector jitter = [0.0f, 0.0f, 0.0f];

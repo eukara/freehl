@@ -1,6 +1,6 @@
 entityDef monster_gman
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/gman.mdl"
 	"netname"		"G-Man"
 	"health"		"" // he can't die, he's the G-Man!

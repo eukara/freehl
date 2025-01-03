@@ -1,6 +1,6 @@
 entityDef ammo_base
 {
-	"spawnclass"	"NSItem"
+	"spawnclass"	"ncItem"
 	"snd_acquire"	"ammo.pickup"
 	"snd_respawn"	"ammo.respawn"
 	"mins"			"-16 -16 0"

@@ -12,7 +12,7 @@ entityDef weapon_9mmAR
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 
-	// NSWeapon specific
+	// ncWeapon specific
 	"def_fireInfo"		"fireInfo_9mmAR"
 	"def_altFireInfo"	"fireInfo_ARGrenade"
 	"inv_name"			"9mm AR"
@@ -72,7 +72,7 @@ entityDef fireInfo_ARGrenade
 
 entityDef projectile_ARgrenade
 {
-	"spawnclass"		"NSProjectile"
+	"spawnclass"		"ncProjectile"
 	"model"				"models/grenade.mdl"
 	"offset"			"16 0 0"
 	"velocity"			"800 0 0"

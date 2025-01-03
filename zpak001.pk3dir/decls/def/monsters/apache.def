@@ -1,6 +1,6 @@
 entityDef monster_apache
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/apache.mdl"
 	"netname"		"Apache"
 	"health"		"0"

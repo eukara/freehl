@@ -1,6 +1,6 @@
 entityDef xen_plantlight
 {
-	"spawnclass"			"NSSurfacePropEntity"
+	"spawnclass"			"ncSurfacePropEntity"
 	"model"					"models/light.mdl"
 	"netname"				"Xen Plant Light"
 	"health"				"0"

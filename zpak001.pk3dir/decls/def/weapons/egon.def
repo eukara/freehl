@@ -1,4 +1,3 @@
-// gives 20 ammo
 entityDef weapon_egon
 {
 	"editor_color"		".3 .3 1"
@@ -20,7 +19,7 @@ entityDef weapon_egon
 	"act_idle"			"0,1"
 	"act_draw"			"9"
 	"act_loop"			"7,8"
-	"act_fireEnd"		"1"
+	"act_fireStop"		"1"
 	"act_holster"		"10"
 	"fireRate"			"0.2"
 

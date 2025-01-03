@@ -1,6 +1,6 @@
 entityDef monster_human_grunt
 {
-	"spawnclass"	"NSSquadMonster"
+	"spawnclass"	"ncSquadMonster"
 	"model"			"models/hgrunt.mdl"
 	"netname"		"Grunt"
 	"health"		"skill:hgrunt_health"
@@ -68,7 +68,7 @@ entityDef monster_human_grunt
 
 entityDef melee_hgrunt_kick
 {
-	"spawnclass"	"NSProjectile"
+	"spawnclass"	"ncProjectile"
 	"is_bullet"		"1"
 	"damage"		"skill:hgrunt_kick"
 	"delay"			"0.25"
@@ -93,7 +93,7 @@ entityDef ranged_hgrunt_shot
 
 entityDef projectile_hgrunt_ARgrenade
 {
-	"spawnclass"				"NSProjectile"
+	"spawnclass"				"ncProjectile"
 	"model"						"models/grenade.mdl"
 
 	"def_splash_damage"			"damage_grenadeSplash"
@@ -122,7 +122,7 @@ entityDef projectile_hgrunt_ARgrenade
 
 entityDef projectile_hgrunt_grenade
 {
-	"spawnclass"				"NSProjectile"
+	"spawnclass"				"ncProjectile"
 	"model"						"models/w_grenade.mdl"
 
 	"def_splash_damage"			"damage_grenadeSplash"

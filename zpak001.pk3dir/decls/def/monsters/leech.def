@@ -1,6 +1,6 @@
 entityDef monster_leech
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"				"models/leech.mdl"
 	"netname"			"Leech"
 	"health"			"skill:leech_health"

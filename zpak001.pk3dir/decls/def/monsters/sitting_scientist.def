@@ -1,6 +1,6 @@
 entityDef monster_sitting_scientist
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"			"models/scientist.mdl"
 	"netname"		"Seated Scientist"
 	"health"		"skill:scientist_health"

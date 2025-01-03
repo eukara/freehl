@@ -1,6 +1,6 @@
 entityDef monster_miniturret
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/miniturret.mdl"
 	"netname"		"Mini-Turret"
 	"health"		"skill:miniturret_health"

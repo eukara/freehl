@@ -1,4 +1,12 @@
+// dictionary containing various settings for water volumes
 typeInfo water
 {
+	"def_damage"	"water_damage"
+	"dmgtime"	"1"
+}
+
+typeInfo water_damage
+{
 	"damage"	"2"
+	"noArmor"	"1"
 }

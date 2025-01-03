@@ -1,6 +1,6 @@
 entityDef monster_barnacle
 {
-	"spawnclass"	"NSMonster"
+	"spawnclass"	"ncMonster"
 	"model"			"models/barnacle.mdl"
 	"netname"		"Barnacle"
 	"health"		"skill:barnacle_health"

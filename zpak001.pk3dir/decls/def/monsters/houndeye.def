@@ -1,6 +1,6 @@
 entityDef monster_houndeye
 {
-	"spawnclass"			"NSMonster"
+	"spawnclass"			"ncMonster"
 	"model"					"models/houndeye.mdl"
 	"netname"				"Houndeye"
 	"health"				"skill:houndeye_health"

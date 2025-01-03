@@ -1,6 +1,6 @@
 entityDef item_healthkit
 {
-	"spawnclass"	"NSItem"
+	"spawnclass"	"ncItem"
 	"model"			"models/w_medkit.mdl"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 16"

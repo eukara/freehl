@@ -1,6 +1,6 @@
 entityDef monster_osprey
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"				"models/osprey.mdl"
 	"netname"			"Osprey"
 	"health"			"0"

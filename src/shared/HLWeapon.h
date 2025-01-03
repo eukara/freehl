@@ -17,7 +17,7 @@
 /*! \brief Half-Life weapon base class. */
 /*!QUAKED HLWeapon (0 0.8 0.8) (-16 -16 0) (16 16 72) 
 # OVERVIEW
-Half-Life specific weapon based on NSWeapon.
+Half-Life specific weapon based on ncWeapon.
 
 # NEW KEYS
 - "ammoIcon" - Which sprites/ image to use. See notes.
@@ -32,7 +32,7 @@ Since the weapon specific files only contain short names like `ammo` and `crossh
 For example, `ammoIcon` being set to `weapon_foobar.ammo` will look up `ammo` inside `sprites/weapon_foobar.txt`.
 */
 class
-HLWeapon:NSWeapon
+HLWeapon:ncWeapon
 {
 public:
 	void HLWeapon(void);
@@ -57,7 +57,7 @@ private:
 	string m_crossHair;
 	string m_icon;
 	string m_iconSel;
-	NSWeapon m_nextWeapon;
+	ncWeapon m_nextWeapon;
 #endif
 	bool m_bAltModeLaser;
 };

@@ -1,6 +1,6 @@
 entityDef monster_alien_controller
 {
-	"spawnclass"			"NSTalkMonster"
+	"spawnclass"			"ncTalkMonster"
 	"model"					"models/controller.mdl"
 	"netname"				"Alien Controller"
 	"health"				"skill:controller_health"
@@ -31,7 +31,7 @@ entityDef monster_alien_controller
 
 entityDef ranged_controller_ball
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"model"					"sprites/xspark4.spr"
 	"mins"					"-16 -16 -16"
 	"mins"					"16 16 16"

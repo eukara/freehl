@@ -1,5 +1,5 @@
 color "255 170 0"
 alpha 255
 rendersize "12 19"
-path fonts/nimbus/NimbusSanL-Reg.otf
+path fonts/tahoma.ttf
 size 12

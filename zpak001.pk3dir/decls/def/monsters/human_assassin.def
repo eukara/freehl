@@ -1,6 +1,6 @@
 entityDef monster_human_assassin
 {
-	"spawnclass"			"NSTalkMonster"
+	"spawnclass"			"ncTalkMonster"
 	"model"					"models/hassassin.mdl"
 	"netname"				"Human Assassin"
 	"health"				"skill:hassassin_health"

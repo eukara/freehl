@@ -1,5 +1,5 @@
 class
-HLSuit:NSItem
+HLSuit:ncItem
 {
 	void HLSuit(void);
 

@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void NSWeapon_SelectWeapon(NSWeapon nextWeapon);
+void ncWeapon_SelectWeapon(ncWeapon nextWeapon);
 
 void
 HLWeaponSelect::HLWeaponSelect(void)
@@ -32,7 +32,7 @@ HLWeaponSelect::Active(void)
 void
 HLWeaponSelect::Trigger(void)
 {
-	NSWeapon_SelectWeapon(m_selectedWeapon);
+	ncWeapon_SelectWeapon(m_selectedWeapon);
 	Deactivate();
 }
 
@@ -46,7 +46,7 @@ HLWeaponSelect::Deactivate(void)
 void
 HLWeaponSelect::Draw(void)
 {
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 
 	if (!pl.m_activeWeapon) {
 		return;
@@ -139,7 +139,7 @@ HLWeaponSelect::SelectSlot(int wantedSlot, bool fastSwitch)
 void
 HLWeaponSelect::SelectNext(bool fastSwitch)
 {
-	NSClient ourPlayer = (NSClient)pSeat->m_ePlayer;
+	ncClient ourPlayer = (ncClient)pSeat->m_ePlayer;
 
 	m_firstWeapon = (HLWeapon)ourPlayer.SortWeaponChain();
 
@@ -162,7 +162,7 @@ HLWeaponSelect::SelectNext(bool fastSwitch)
 void
 HLWeaponSelect::SelectPrevious(bool fastSwitch)
 {
-	NSClient ourPlayer = (NSClient)pSeat->m_ePlayer;
+	ncClient ourPlayer = (ncClient)pSeat->m_ePlayer;
 
 	m_firstWeapon = (HLWeapon)ourPlayer.SortWeaponChain();
 

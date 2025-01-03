@@ -1,6 +1,6 @@
 entityDef monster_zombie
 {
-	"spawnclass"		"NSMonster"
+	"spawnclass"		"ncMonster"
 	"model"				"models/zombie.mdl"
 	"netname"			"Zombie"
 	"health"			"skill:zombie_health"

@@ -1,6 +1,6 @@
 entityDef monster_alien_slave
 {
-	"spawnclass"	"NSMonster"
+	"spawnclass"	"ncMonster"
 	"model"			"models/islave.mdl"
 	"netname"		"Vortigaunt"
 	"health"		"skill:islave_health"
@@ -84,7 +84,7 @@ entityDef damage_islave_zap
 
 entityDef ranged_islave_zap
 {
-	"spawnclass"			"NSProjectile"
+	"spawnclass"			"ncProjectile"
 	"mins"					"-16 -16 -32"
 	"maxs"					"16 16 32"
 	"def_damage"			"damage_islave_zap"

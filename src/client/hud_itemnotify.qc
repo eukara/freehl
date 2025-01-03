@@ -76,7 +76,7 @@ HUD_ItemNotify_Insert(int type, int count)
 
 /* called whenever we should check for pickup updates */
 void
-HUD_ItemNotify_Check(NSClientPlayer pl)
+HUD_ItemNotify_Check(ncPlayer pl)
 {
 #if 0
 	int healthdiff = (int)bound(0, pl.health - pSeatLocal->m_iHealthOld, 100);

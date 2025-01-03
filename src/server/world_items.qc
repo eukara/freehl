@@ -15,7 +15,7 @@
  */
 
 /* This is one of those leftovers from trying to get a game out in time */
-class world_items:NSRenderableEntity
+class world_items:ncRenderableEntity
 {
 	void(void) world_items;
 };

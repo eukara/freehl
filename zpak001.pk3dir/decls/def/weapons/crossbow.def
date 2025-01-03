@@ -68,13 +68,13 @@ entityDef fireInfo_crossbowMP
 
 entityDef debris_arrow
 {
-	"spawnclass"		"NSProjectile"
+	"spawnclass"		"ncProjectile"
 	"model"				"models/crossbow_bolt.mdl"
 }
 
 entityDef projectile_arrow
 {
-	"spawnclass"		"NSProjectile"
+	"spawnclass"		"ncProjectile"
 	"model"				"models/crossbow_bolt.mdl"
 	"velocity"			"2000 0 0"
 	"angular_velocity"	"0 0 20"

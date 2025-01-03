@@ -1,6 +1,6 @@
 entityDef xen_spore_small
 {
-	"spawnclass"	"NSSurfacePropEntity"
+	"spawnclass"	"ncSurfacePropEntity"
 	"model"			"models/fungus(small).mdl"
 	"netname"		"Xen Spore (Small)"
 	"health"		"0"

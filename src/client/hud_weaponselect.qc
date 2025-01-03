@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void View_ForceChange(NSClientPlayer pl, int targetWeapon);
+void View_ForceChange(ncPlayer pl, int targetWeapon);
 
 
 vector g_vecHUDNums[6] =
@@ -28,7 +28,7 @@ vector g_vecHUDNums[6] =
 };
 
 void
-HUD_SelectWeapon(NSWeapon nextWeapon)
+HUD_SelectWeapon(ncWeapon nextWeapon)
 {
 	if (!nextWeapon) {
 		pSeat->m_iHUDWeaponSelected = 0i;
@@ -78,12 +78,12 @@ void
 HUD_SlotSelect(int slot)
 {
 #if 0
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	int curslot = g_weapons[pSeat->m_iHUDWeaponSelected].slot;
 	int i;
 #endif
 
-	if (g_textmenu != "") {
+	if (Textmenu_IsActive() == true) {
 		Textmenu_Input(slot);
 		return;
 	}
@@ -136,7 +136,7 @@ void
 HUD_DrawWeaponSelect(void)
 {
 #if 0
-	NSClientPlayer pl = (NSClientPlayer)pSeat->m_ePlayer;
+	ncPlayer pl = (ncPlayer)pSeat->m_ePlayer;
 	if (!pl.activeweapon) {
 		return;
 	}

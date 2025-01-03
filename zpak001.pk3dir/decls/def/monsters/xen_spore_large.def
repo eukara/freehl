@@ -1,6 +1,6 @@
 entityDef xen_spore_large
 {
-	"spawnclass"	"NSSurfacePropEntity"
+	"spawnclass"	"ncSurfacePropEntity"
 	"model"			"models/fungus(large).mdl"
 	"netname"		"Xen Spore (Large)"
 	"health"		"0"

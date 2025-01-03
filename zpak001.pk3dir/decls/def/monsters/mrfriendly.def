@@ -1,6 +1,6 @@
 entityDef monster_mrfriendly
 {
-	"spawnclass"		"NSMonster"
+	"spawnclass"		"ncMonster"
 	"model"				"models/friendly.mdl"
 	"netname"			"Mr. Friendly"
 	"health"			"100"

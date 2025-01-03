@@ -1,11 +1,10 @@
 #pragma target fte_5768_5768
-//#pragma flag enable assumeint
 #pragma progs_dat  "../../zpak001.pk3dir/menu.dat"
 #define MENU
 #define GAME_DIR "valve"
 #define MODEL_PREVIEW
 
 #includelist
-../../../src/menu-fn/includes.src
+../../../src/menu-vgui/includes.src
 #endlist
  

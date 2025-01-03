@@ -1,6 +1,6 @@
 entityDef monster_tentacle
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"		"models/tentacle2.mdl"
 	"netname"		"Tentacle"
 	"health"		"25"

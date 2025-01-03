@@ -1,6 +1,6 @@
 entityDef monster_barney_dead
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"			"models/barney.mdl"
 	"netname"		"Barney"
 	"health"		"skill:barney_heath"

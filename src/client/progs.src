@@ -1,10 +1,10 @@
 #pragma target fte_5768
 #pragma progs_dat  "../../zpak001.pk3dir/csprogs.dat"
+#pragma forcecrc 54730
 
 #define CSQC
 #define CLIENT
 #define VALVE
-#define CLASSIC_VGUI
 
 #includelist
 ../../../src/shared/fteextensions.qc
@@ -34,6 +34,8 @@
 ../../../valve/src/client/hud_weaponselect.qc
 ../../../valve/src/client/scoreboard.qc
 ../../../src/client/include.src
+../../../valve/src/client/vgui_changeclass.qc
+../../../valve/src/client/vgui_chooseteam.qc
 ../../../valve/src/client/vgui_motd.qc
 ../../../src/shared/include.src
 #endlist

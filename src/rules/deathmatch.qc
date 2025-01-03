@@ -64,7 +64,7 @@ CodeCallback_StartGameType(void)
 }
 
 void
-CodeCallback_PlayerSpawn(entity playerEntity)
+HLDM_PlayerSpawn(entity playerEntity)
 {
 	string playerModel;
 
@@ -103,6 +103,18 @@ CodeCallback_PlayerSpawn(entity playerEntity)
 }
 
 void
+CodeCallback_PlayerSpawn(entity playerEntity)
+{
+	if (IsTeamplay() == false) {
+		HLDM_PlayerSpawn(playerEntity);
+	} else {
+		ents.ChangeToClass(playerEntity, "spectator");
+		game.TeleportToSpawn(playerEntity);
+	}
+}
+
+
+void
 CodeCallback_PlayerDisconnect(entity playerEntity)
 {
 
@@ -121,17 +133,25 @@ CodeCallback_PlayerDamage(entity playerEntity, entity inflictor, entity attacker
 
 }
 
+bool
+CodeCallback_CallRequestTeam(entity playerEntity, int teamNum)
+{
+	ents.Input(playerEntity, "SetTeam", itos(teamNum), playerEntity);
+	ents.Input(playerEntity, "Damage", "1000", playerEntity);
+	return (true);
+}
+
 void
 CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker, string weapon)
 {
-	combat.Obituary(self.netname, attacker.netname, weapon, "");
+	combat.Obituary(playerEntity.netname, attacker.netname, weapon, "");
 
 	/* death-counter */
-	self.deaths++;
+	playerEntity.deaths++;
 
 	/* update score-counter */
 	if (ents.isPlayer(attacker)) {
-		if (self == attacker) {
+		if (playerEntity == attacker) {
 			attacker.frags--;
 		} else {
 			attacker.frags++;
@@ -163,8 +183,8 @@ CodeCallback_ClientCommand(entity playerEntity, string command)
 		for (float i = 0; i < c; i++) {
 			if (argv(i) == teamName) {
 				string newTeam = ftos(i + 1);
-				ents.Input(self, "SetTeam", newTeam, self);
-				ents.Input(self, "Damage", "1000", self);
+				ents.Input(playerEntity, "SetTeam", newTeam, playerEntity);
+				ents.Input(playerEntity, "Damage", "1000", playerEntity);
 				break;
 			}
 		}
@@ -182,7 +202,7 @@ CodeCallback_ImpulseCommand(entity playerEntity, float impulseNum)
 	switch (impulseNum) {
 	case 100:
 		if (AllowFlashlight() == true) {
-			ents.Input(self, "UseItem", "item_suit", self);
+			ents.Input(playerEntity, "UseItem", "item_suit", playerEntity);
 		}
 		break;
 	default:

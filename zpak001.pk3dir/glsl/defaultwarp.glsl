@@ -9,6 +9,7 @@
 #include "sys/fog.h"
 
 varying vec2 tc;
+varying vec3 plane;
 
 #ifdef LIT
 varying vec2 lm0;
@@ -18,6 +19,7 @@ varying vec2 lm0;
 	void main ()
 	{
 		tc = v_texcoord.st;
+		plane = v_normal;
 	#ifdef FLOW
 		tc.s += e_time * -0.5;
 	#endif
@@ -60,6 +62,14 @@ vec2 hash22(vec2 p)
 	void main ()
 	{
 		vec2 ntc;
+
+		/* HACK: render-top-only to deal with func_water style brushes.
+		remove only when the engine gives the ability to force this + warp + fog
+		on CONTENT_WATER/SLIME/LAVA volumes */
+		if (e_glowmod.r == 0.25 && plane != vec3(0, 0, 1)) {
+			discard;
+		}
+
 		ntc.s = tc.s + sin(tc.t+ e_time)*0.125;
 		ntc.t = tc.t + sin(tc.s+ e_time)*0.125;
 		vec4 diffuse_f = texture2D(s_diffuse, ntc);

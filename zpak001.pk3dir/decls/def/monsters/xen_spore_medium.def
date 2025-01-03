@@ -1,6 +1,6 @@
 entityDef xen_spore_medium
 {
-	"spawnclass"	"NSSurfacePropEntity"
+	"spawnclass"	"ncSurfacePropEntity"
 	"model"			"models/fungus.mdl"
 	"netname"		"Xen Spore (Medium)"
 	"health"		"0"

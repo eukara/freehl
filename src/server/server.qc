@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2016-2025 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13,24 +13,6 @@
  * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-
-void
-Game_InitRules(void)
-{
-	string gameType = cvar_string("g_gametype");
-
-	FX_Corpse_Init();
-
-	if (STRING_SET(gameType)) {
-		g_grMode = NSGameRules::InitFromProgs(strcat("progs/", gameType, ".dat"));
-	} else {
-		if (cvar("sv_playerslots") == 1 || cvar("coop") == 1) {
-			g_grMode = NSGameRules::InitFromProgs("progs/singleplayer.dat");
-		} else {
-			g_grMode = NSGameRules::InitFromProgs("progs/deathmatch.dat");
-		}
-	}
-}
 
 void
 Game_Worldspawn(void)

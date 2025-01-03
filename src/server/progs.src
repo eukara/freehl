@@ -1,6 +1,7 @@
 #pragma target fte_5768
 //#pragma flag enable assumeint
 #pragma progs_dat  "../../zpak001.pk3dir/progs.dat"
+#pragma forcecrc 54730
 
 #define QWSSQC
 #define SERVER

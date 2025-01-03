@@ -1,6 +1,6 @@
 entityDef monster_human_assault
 {
-	"spawnclass"	"NSSquadMonster"
+	"spawnclass"	"ncSquadMonster"
 	"model"			"models/hassault.mdl"
 	"netname"		"Human Assault"
 	"health"		"skill:hgrunt_health"
@@ -33,7 +33,7 @@ entityDef monster_human_assault
 
 entityDef melee_hassault_kick
 {
-	"spawnclass"	"NSProjectile"
+	"spawnclass"	"ncProjectile"
 	"is_bullet"		"1"
 	"damage"		"skill:hgrunt_kick"
 	"delay"			"0.25"

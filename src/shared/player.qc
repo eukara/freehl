@@ -23,7 +23,7 @@ enumflags
 	PLAYER_BOTTOMFRAME
 };
 
-class HLPlayer:NSClientPlayer
+class HLPlayer:ncPlayer
 {
 	void(void) HLPlayer;
 
@@ -45,7 +45,7 @@ class HLPlayer:NSClientPlayer
 	virtual void UpdateAliveCam(void);
 	virtual void ClientInputFrame(void);
 #else
-	virtual void Death(entity, entity, int, vector, int);
+	virtual void Death(entity, entity, int, vector, vector, int);
 	virtual void EvaluateEntity(void);
 	virtual float SendEntity(entity, float);
 	virtual void Save(float);
@@ -97,7 +97,7 @@ HLPlayer::ClientInputFrame(void)
 
 void Camera_RunPosBob(vector angles, __inout vector camera_pos);
 void Camera_StrafeRoll(__inout vector camera_angle);
-void Shake_Update(NSClientPlayer);
+void Shake_Update(ncPlayer);
 
 void
 HLPlayer::UpdateAliveCam(void)
@@ -110,7 +110,7 @@ HLPlayer::UpdateAliveCam(void)
 	g_view.SetCameraAngle(view_angles);
 
 	if (vehicle) {
-		NSVehicle veh = (NSVehicle)vehicle;
+		ncVehicle veh = (ncVehicle)vehicle;
 
 		if (veh.UpdateView)
 			veh.UpdateView();
@@ -129,7 +129,7 @@ HLPlayer::UpdateAliveCam(void)
 }
 
 .string oldmodel;
-//string Weapons_GetPlayermodel(NSClientPlayer, int);
+//string Weapons_GetPlayermodel(ncPlayer, int);
 
 var bool autocvar_cg_flashlightClassic = true;
 var float autocvar_r_shadow_realtime_dlight;
@@ -161,7 +161,7 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 				p = dynamiclight_add(trace_endpos + (trace_plane_normal * 48.0f), 96, [1,1,1]);
 			}
 		} else {
-			p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "textures/flashlight");
+			p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "lights/flashlight");
 			dynamiclight_set(p, LFIELD_ANGLES, ang);
 			dynamiclight_set(p, LFIELD_FLAGS, 3);
 		}
@@ -190,7 +190,7 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 		p_model.skeletonindex = skel_create(p_model.modelindex);
 
 		/* hack this thing in here FIXME: this should be done when popping in/out of a pvs */
-		if (autocvar(cl_himodels, 1, "Use high-quality thisayer models over lower-definition ones"))
+		if (autocvar(cl_himodels, 1, "Use high-quality player models over lower-definition ones"))
 			setcustomskin(this, "", "geomset 0 2\n");
 		else
 			setcustomskin(this, "", "geomset 0 1\n");
@@ -219,8 +219,8 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 	}
 }
 
-void HUD_AmmoNotify_Check(NSClientPlayer pl);
-void HUD_ItemNotify_Check(NSClientPlayer pl);
+void HUD_AmmoNotify_Check(ncPlayer pl);
+void HUD_ItemNotify_Check(ncPlayer pl);
 /*
 =================
 HLPlayer::ReceiveEntity
@@ -340,7 +340,7 @@ void
 HLPlayer::EvaluateEntity(void)
 {
 	/* the generic client attributes */
-	NSClientPlayer::EvaluateEntity();
+	ncPlayer::EvaluateEntity();
 
 	EVALUATE_FIELD(anim_top, PLAYER_TOPFRAME)
 	EVALUATE_FIELD(anim_top_time, PLAYER_TOPFRAME)
@@ -350,19 +350,17 @@ HLPlayer::EvaluateEntity(void)
 
 }
 
-entity FX_Corpse_Spawn(NSClientPlayer pl, float anim);
 void
-HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, int location)
+HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, vector absImpactPos, int hitBody)
 {
 	/* either gib, or make a corpse */
 	if (GetHealth()< -50) {
-		vector gibDir = vectoangles(GetOrigin() - attacker.origin);
 		float gibStrength = damagePoints * 2.0f;
-		BreakModel_Entity(this, gibDir, gibStrength);
+		BreakModel_Entity(this, dir, gibStrength);
 	} else {
 		float deathAnimation = ANIM_DIESIMPLE;
 
-		switch (location) {
+		switch (hitBody) {
 		case BODY_HEAD:
 			deathAnimation = ANIM_DIEHEADSHOT;
 			break;
@@ -373,7 +371,7 @@ HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir,
 			deathAnimation = ANIM_DIEGUTSHOT;
 			break;
 		default:
-			bool isFacing = IsFacingPosition(GetOrigin() + (dir * 128));
+			bool isFacing = IsFacingPosition(absImpactPos);
 
 			/* we still want a change to play ANIM_DIESIMPLE */
 			if (random() < 0.5)
@@ -386,7 +384,7 @@ HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir,
 			break;
 		}
 
-		NSEntity newCorpse = (NSEntity)FX_Corpse_Spawn(this, deathAnimation);
+		ncEntity newCorpse = (ncEntity)BodyQue_Spawn(this, deathAnimation);
 
 		/* if we were crouching, adjust the bbox (thx 2 lack of crouch death animation) */
 		if (IsCrouching()) {
@@ -394,7 +392,7 @@ HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir,
 		}
 	}
 	
-	super::Death(inflictor,  attacker,  damagePoints,  dir,  location);
+	super::Death(inflictor,  attacker,  damagePoints,  dir, absImpactPos, hitBody);
 }
 
 /*
@@ -418,7 +416,7 @@ HLPlayer::SendEntity(entity ePEnt, float flChanged)
 	flChanged = OptimiseChangedFlags(ePEnt, flChanged);
 
 	/* the generic client attributes */
-	NSClientPlayer::SendEntity(ePEnt, flChanged);
+	ncPlayer::SendEntity(ePEnt, flChanged);
 
 	SENDENTITY_BYTE(anim_top, PLAYER_TOPFRAME)
 	SENDENTITY_FLOAT(anim_top_time, PLAYER_TOPFRAME)

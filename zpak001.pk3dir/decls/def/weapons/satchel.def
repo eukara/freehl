@@ -12,13 +12,10 @@ entityDef weapon_satchel
 	"snd_acquire"		"weapon.pickup"
 	"snd_respawn"		"item.respawn"
 
+	"def_fireInfo"		"fireInfo_satchel_primary"
+	"def_altFireInfo"	"fireInfo_satchel_secondary"
 	"ammoType"			"ammo_satchel"
 	"inv_ammo_satchel"	"1"
-	"ammoRequired"		"1"
-	"def_onFire"		"projectile_satchel"
-	"detonateOnFire"	"projectile_satchel"
-	"fireRate"			"1.0"
-	"removeOnEmpty" 	"1"
 
 	"act_idle"			"0,1"
 	"act_draw"			"2"
@@ -33,7 +30,7 @@ entityDef weapon_satchel
 
 entityDef projectile_satchel
 {
-	"spawnclass"		"NSProjectile"
+	"spawnclass"		"ncProjectile"
 	"model"				"models/w_satchel.mdl"
 	"velocity"			"274 0 0"
 	"angular_velocity"	"0 400 0"
@@ -58,3 +55,21 @@ entityDef damage_satchelExplosion
 	"damage"	"skill:plr_satchel"
 	"radius"	"375"
 }
+
+entityDef fireInfo_satchel_primary
+{
+	"def_onFire"		"projectile_satchel"
+	"detonateOnFire"	"projectile_satchel"
+	"fireRate"			"1.0"
+	"removeOnEmpty" 	"1"
+	"ammoRequired"		"1"
+}
+
+entityDef fireInfo_satchel_secondary
+{
+	"def_onFire"		"projectile_satchel"
+	"fireRate"			"1.0"
+	"removeOnEmpty" 	"1"
+	"ammoRequired"		"1"
+}
+

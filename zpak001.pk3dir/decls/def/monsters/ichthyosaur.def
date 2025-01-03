@@ -1,6 +1,6 @@
 entityDef monster_ichthyosaur
 {
-	"spawnclass"		"NSTalkMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"				"models/icky.mdl"
 	"netname"			"Ichthyosaur"
 	"health"			"0"

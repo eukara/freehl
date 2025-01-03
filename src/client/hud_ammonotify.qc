@@ -113,7 +113,7 @@ HUD_AmmoNotify_Insert(int type, int count)
 
 /* called whenever we should check for pickup updates */
 void
-HUD_AmmoNotify_Check(NSClientPlayer pl)
+HUD_AmmoNotify_Check(ncPlayer pl)
 {
 	HUD_AmmoNotify_Insert(0, pl.m_iAmmoTypes[1] - pl.m_iAmmoTypes_net[1]);
 	HUD_AmmoNotify_Insert(1, pl.m_iAmmoTypes[2] - pl.m_iAmmoTypes_net[2]);

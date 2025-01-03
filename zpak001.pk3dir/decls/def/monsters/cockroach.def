@@ -1,6 +1,6 @@
 entityDef monster_cockroach
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/roach.mdl"
 	"netname"		"Cockroach"
 	"health"		"0"

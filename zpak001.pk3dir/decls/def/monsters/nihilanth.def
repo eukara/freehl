@@ -1,6 +1,6 @@
 entityDef monster_nihilanth
 {
-	"spawnclass"	"NSTalkMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/nihilanth.mdl"
 	"netname"		"Nihilanth"
 	"health"		"0"
