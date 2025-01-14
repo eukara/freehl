@@ -45,7 +45,7 @@ AllowFlashlight(void)
 void
 CodeCallback_StartGameType(void)
 {
-	ents.Precache(autocvar_invasion_monsterClass);
+	precache.Entity(autocvar_invasion_monsterClass);
 	motd.LoadDefault();
 	game.SetSpawnPoint("info_player_deathmatch");
 

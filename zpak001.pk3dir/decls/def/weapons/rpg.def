@@ -9,7 +9,7 @@ entityDef weapon_rpg
 	"spawnclass"		"HLWeapon"
 	"model"				"models/w_rpg.mdl"
 	"model_view"		"models/v_rpg.mdl"
-	"snd_acquire"		"weapon.pickup"
+	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
 
 	"def_fireInfo"		"fireInfo_rpg"

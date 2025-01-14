@@ -1,0 +1,9 @@
+typeInfo hgrunt_combatFail
+{
+	"task_1"			"StopMovement"
+	"task_2"			"PlayActivity combatIdle"
+	"task_3"			"TurnToEnemy"
+	"task_4"			"WaitPVS"
+	"fail_onCanRangedAttack1"			"1"
+	"fail_onCanRangedAttack2"			"1"
+}

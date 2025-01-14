@@ -1,0 +1,18 @@
+typeInfo hgrunt_rangedAttack2
+{
+	"task_1"		"StopMovement"
+	"task_2"		"TurnToEnemy"
+	"task_3"		"PlayActivity crouch"
+	"task_4"		"TaskCheck_FriendlyFire"
+	"task_5"		"AttackRanged1"
+	"task_6"		"TurnToEnemy"
+	"task_7"		"TaskCheck_FriendlyFire"
+	"task_8"		"AttackRanged1"
+	"task_9"		"TurnToEnemy"
+	"task_10"		"TaskCheck_FriendlyFire"
+	"task_11"		"AttackRanged1"
+	"task_12"		"TurnToEnemy"
+	"task_13"		"TaskCheck_FriendlyFire"
+	"task_14"		"AttackRanged1"
+	"DeadEnemy"	"PerformSchedule hgrunt_victoryDance"
+}

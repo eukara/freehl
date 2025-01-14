@@ -32,7 +32,7 @@ void world_items::world_items(void)
 				spawnfunc_item_battery();
 				break;
 			case 45:
-				spawnfunc_item_suit();
+				spawnfunc_HLSuit();
 				break;
 			default:
 			}

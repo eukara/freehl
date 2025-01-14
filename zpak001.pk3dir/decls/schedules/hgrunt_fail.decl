@@ -1,0 +1,12 @@
+typeInfo hgrunt_fail
+{
+	"task_1"			"StopMovement"
+	"task_2"			"PlayActivity idle"
+	"task_3"			"Wait 2"
+	"task_4"			"WaitPVS"
+	"fail_onCanRangedAttack1"			"1"
+	"fail_onCanRangedAttack2"			"1"
+	"fail_onCanMeleeAttack1"			"1"
+	"fail_onCanMeleeAttack2"			"1"
+	"NewEnemy"		"PerformSchedule hgrunt_combatFace"
+}

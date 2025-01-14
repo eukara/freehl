@@ -1,0 +1,23 @@
+typeInfo hgrunt_suppress
+{
+	"task_1"		"StopMovement"
+	"task_2"		"TurnToEnemy"
+	"task_3"		"TaskCheck_FriendlyFire"
+	"task_4"		"AttackRanged1"
+	"task_5"		"TurnToEnemy"
+	"task_6"		"TaskCheck_FriendlyFire"
+	"task_7"		"AttackRanged1"
+	"task_8"		"TurnToEnemy"
+	"task_9"		"TaskCheck_FriendlyFire"
+	"task_10"		"AttackRanged1"
+	"task_11"		"TurnToEnemy"
+	"task_12"		"TaskCheck_FriendlyFire"
+	"task_13"		"AttackRanged1"
+	"task_14"		"TurnToEnemy"
+	"task_15"		"TaskCheck_FriendlyFire"
+	"task_16"		"AttackRanged1"
+	"fail_onDeadEnemy"			"1"
+	"fail_onAlertSound"		"1"
+	"fail_onDamage"			"1"
+	"fail_onNoAmmo"			"1"
+}

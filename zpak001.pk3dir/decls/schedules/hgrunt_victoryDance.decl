@@ -1,0 +1,11 @@
+typeInfo hgrunt_victoryDance
+{
+	"task_1"			"StopMovement"
+	"task_2"			"TurnToEnemy"
+	"task_3"			"Wait 1.5"
+	"task_4"			"TargetEnemy"
+	"task_5"			"WalkToTarget"
+	"task_6"			"PlayActivity victoryDance"
+	"fail_onNewEnemy"			"1"
+	"fail_onDamage"			"1"
+}

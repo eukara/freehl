@@ -1,6 +1,6 @@
 entityDef monster_human_grunt
 {
-	"spawnclass"	"ncSquadMonster"
+	"spawnclass"	"ncTalkMonster"
 	"model"			"models/hgrunt.mdl"
 	"netname"		"Grunt"
 	"health"		"skill:hgrunt_health"
@@ -39,6 +39,10 @@ entityDef monster_human_grunt
 	"snd_reload"			"HGrunt.Reload"
 	"weapons"				"3"
 
+	"mindset_idle"			"hgrunt_idle"
+	"mindset_defense"		"hgrunt_takeCover"
+	"mindset_combat"		"hgrunt_combatFace"
+
 	"squad_leader_body"		"1:2"
 
 	// grenade launcher
@@ -63,6 +67,13 @@ entityDef monster_human_grunt
 	// animation event callbacks
 	events {
 		2 "StartSoundDef"	"HGrunt.Reload"
+		3 "SpawnProjectileDef"	"melee_hgrunt_kick"
+		4 "SpawnProjectileDef"	"ranged_hgrunt_mp5"
+		5 "SpawnProjectileDef"	"ranged_hgrunt_mp5"
+		6 "SpawnProjectileDef"	"ranged_hgrunt_mp5"
+		7 "SpawnProjectileDef"	"projectile_hgrunt_grenade"
+		8 "SpawnProjectileDef"	"projectile_hgrunt_ARgrenade"
+		9 "SpawnProjectileDef"	"projectile_hgrunt_grenadePlant"
 	}
 }
 
@@ -145,8 +156,14 @@ entityDef projectile_hgrunt_grenade
 	"explode_light_radius"		"320"
 	"explode_light_fadetime"	"0.5"
 
-	"snd_explode"				"weapon_handgrenade.explode"
-	"snd_bounce"				"weapon_handgrenade.bounce"
+	"snd_explode"				"BaseExplosionEffect.Sound"
+	"snd_bounce"				"Weapon_HandGrenade.GrenadeBounce"
+}
+
+entityDef projectile_hgrunt_grenadePlant
+{
+	"inherit"					"projectile_hgrunt_grenade"
+	"velocity"					"15 0 128"
 }
 
 entityDef damage_grenadeSplash

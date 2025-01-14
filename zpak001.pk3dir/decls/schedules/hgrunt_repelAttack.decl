@@ -1,0 +1,6 @@
+typeInfo hgrunt_repelAttack
+{
+	"task_1"			"StopMovement"
+	"task_2"			"TurnToEnemy"
+	"task_3"			"PlayActivity fly"
+}

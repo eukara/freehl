@@ -20,13 +20,13 @@ entityDef monster_snark
 
 	//					Snark.Deploy
 	"snd_attack"		"Snark.Bounce"
-	"snd_pain"			"Snark.Pain"
+	"snd_pain"			"Snark.Die"
 	"snd_death"			"Snark.Die"
 	"snd_gib"			"Snark.Gibbed"
 	"leap_damage"		"skill:snark_dmg_bite"
 
 	events {
 		jump "AddVelocity" "512 0 250"
-		jump "StartSoundDef" "monster_snark.attack"
+		jump "StartSoundDef" "Snark.Squeak"
 	}
 }

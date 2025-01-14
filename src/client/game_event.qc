@@ -24,20 +24,6 @@ ClientGame_EventParse(float fHeader)
 	case EV_HITNOTIFY:
 		pSeatLocal->m_flDamageIndicator = 1.0f;
 		break;
-	case EV_BLOOD:
-		vector vBloodPos = g_vec_null;
-		vector vBloodColor = g_vec_null;
-
-		vBloodPos[0] = readcoord();
-		vBloodPos[1] = readcoord();
-		vBloodPos[2] = readcoord();
-
-		vBloodColor[0] = readbyte() / 255;
-		vBloodColor[1] = readbyte() / 255;
-		vBloodColor[2] = readbyte() / 255;
-
-		FX_Blood(vBloodPos, vBloodColor);
-		break;
 	case EV_GAUSSBEAM:
 		FX_GaussBeam_Parse();
 		break;

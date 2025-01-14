@@ -9,7 +9,7 @@ entityDef weapon_handgrenade
 	"spawnclass"			"HLWeapon"
 	"model"					"models/w_grenade.mdl"
 	"model_view"			"models/v_grenade.mdl"
-	"snd_acquire"			"weapon.pickup"
+	"snd_acquire"			"Player.PickupWeapon"
 	"snd_respawn"			"item.respawn"
 
 	"inv_name"				"Hand Grenade"

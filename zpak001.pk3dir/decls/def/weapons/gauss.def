@@ -9,7 +9,7 @@ entityDef weapon_gauss
 	"spawnclass"		"HLWeapon"
 	"model"				"models/w_gauss.mdl"
 	"model_view"		"models/v_gauss.mdl"
-	"snd_acquire"		"weapon.pickup"
+	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
 
 	// weapon specific

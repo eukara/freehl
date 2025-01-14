@@ -70,7 +70,6 @@ ClientGame_RendererRestart(string rstr)
 	Damage_Precache();
 	Obituary_Precache();
 
-	FX_Blood_Init();
 	FX_GaussBeam_Init();
 
 	BEAM_TRIPMINE = particleeffectnum("weapon_tripmine.beam");

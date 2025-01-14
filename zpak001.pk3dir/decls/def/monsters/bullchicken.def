@@ -18,11 +18,10 @@ entityDef monster_bullchicken
 	"def_attack_melee"		"melee_bullchicken_tailwhip"
 	"def_attack_melee2"		"melee_bullchicken_bite"
 
-	"snd_alert"				"Bullsquid.Alert"
+	"snd_alert"				"Bullsquid.Growl"
 	"snd_idle"				"Bullsquid.Idle"
 	"snd_pain"				"Bullsquid.Pain"
 	"snd_death"				"Bullsquid.Die"
-	//						Bullsquid.Growl
 
 	events {
 		1 "SpawnProjectileDef" "ranged_bullchicken_spit"

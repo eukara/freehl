@@ -1,0 +1,9 @@
+typeInfo hgrunt_establishLoF
+{
+	"task_1"			"SetFailSchedule hgrunt_fail"
+	"task_2"			"TargetEnemy"
+	"task_3"			"Sentence !HG_COVER"
+	"task_4"			"RunToTarget"
+	"task_5"			"WaitForMovement"
+	"task_6"			"PerformSchedule hgrunt_rangedAttack1A"
+}

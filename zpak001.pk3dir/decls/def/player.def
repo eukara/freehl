@@ -7,6 +7,21 @@ entityDef player
 	"propdata"			"actor_human"
 	"armorProtection"	"0.2"
 	"armorBonus"		"0.5"
+	
+	"snd_stepladderLeft"	"step_ladder.left"
+	"snd_stepladderRight"	"step_ladder.right"
+	"snd_fall"				"Player.FallDamage"
+	"snd_landHard"			"Player.LightFall"
+	"snd_death"				"Player.Death"
+	"snd_airGaspLight"		"Player.GaspLight"
+	"snd_pain"				"Player.Pain"
+	"snd_airGaspHeavy"		"Player.GaspHeavy"
+	"snd_waterExit"			"Player.WaterExit"
+	"snd_waterEnter"		"Player.WaterEnter"
+	"snd_useDeny"			"Player.DenyWeaponSelection"
+	"snd_useSuccess"		"Player.WeaponSelected"
+	"snd_waterWade"			"Player.Wade"
+	"snd_waterSwim"			"Player.Swim"
 }
 
 entityDef player_mp

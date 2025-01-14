@@ -10,7 +10,7 @@ entityDef weapon_snark
 	"model"				"models/w_sqknest.mdl"
 	"model_view"		"models/v_squeak.mdl"
 	"frame"				"1"
-	"snd_acquire"		"weapon.pickup"
+	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
 
 	"inv_name"			"Snark"

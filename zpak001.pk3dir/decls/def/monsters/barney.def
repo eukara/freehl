@@ -23,7 +23,6 @@ entityDef monster_barney
 	"snd_death"				"Barney.Die"
 	"snd_ranged_attack"		"Barney.FirePistol"
 	"snd_reload"			"HGrunt.Reload"
-	"snd_thud"				"AI_BaseNPC.BodyDrop_Light"
 
 	"talk_answer"			"!BA_ANSWER"
 	"talk_ask"				"!BA_QUESTION"

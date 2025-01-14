@@ -1,0 +1,7 @@
+typeInfo hgrunt_foundEnemy
+{
+	"task_1"			"StopMovement"
+	"task_2"			"TurnToEnemy"
+	"task_3"			"PlayActivity signal1"
+	"task_4"			"ChangeMindset combat"
+}

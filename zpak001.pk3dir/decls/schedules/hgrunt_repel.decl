@@ -1,0 +1,10 @@
+typeInfo hgrunt_repel
+{
+	"task_1"				"StopMovement"
+	"task_2"				"TurnToIdealPosition"
+	"task_3"				"PlayActivity glide"
+	"fail_onNewEnemy"		"1"
+	"fail_onSeeEnemy"		"1"
+	"fail_onDamage"		"1"
+	"fail_onAlertSound"	"1"
+}

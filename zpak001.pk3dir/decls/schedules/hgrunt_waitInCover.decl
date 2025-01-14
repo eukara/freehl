@@ -1,0 +1,15 @@
+typeInfo hgrunt_waitInCover
+{
+	"task_1"			"SetFailSchedule hgrunt_takeCover"
+	"task_2"			"StopMovement"
+	"task_3"			"PlayActivity idle"
+	"task_4"			"WaitFacingEnemy"
+	"fail_onNewEnemy"			"1"
+	"fail_onAlertSound"		"1"
+	"fail_onCanRangedAttack1"	"1"
+	"fail_onCanRangedAttack2"	"1"
+	"fail_onCanMeleeAttack1"	"1"
+	"fail_onCanMeleeAttack2"	"1"
+	"CanRangedAttack1"	"PerformSchedule hgrunt_rangedAttack1A"
+	"CanRangedAttack2"	"PerformSchedule hgrunt_rangedAttack2"
+}

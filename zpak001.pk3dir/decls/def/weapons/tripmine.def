@@ -12,7 +12,7 @@ entityDef weapon_tripmine
 	"body0"				"2"
 	"body1"				"2"
 	"frame"				"8"
-	"snd_acquire"		"weapon.pickup"
+	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
 
 	"def_fireInfo"		"fireInfo_tripminePlant"

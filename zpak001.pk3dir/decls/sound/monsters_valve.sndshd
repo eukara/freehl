@@ -283,7 +283,6 @@ BigMomma.FootstepRight
 
 Bullsquid.Growl
 {
-	sample bullchicken/bc_attackgrowl1.wav
 	sample bullchicken/bc_attackgrowl2.wav
 	sample bullchicken/bc_attackgrowl3.wav
 }

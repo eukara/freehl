@@ -1,0 +1,13 @@
+typeInfo hgrunt_repelLand
+{
+	"task_1"				"StopMovement"
+	"task_2"				"PlayActivity land"
+	"task_3"				"TargetLastPosition"
+	"task_4"				"RunToTarget"
+	"task_5"				"WaitForMovement"
+	"task_6"				"ClearLastPosition"
+	"fail_onNewEnemy"		"1"
+	"fail_onSeeEnemy"		"1"
+	"fail_onDamage"		"1"
+	"fail_onAlertSound"	"1"
+}

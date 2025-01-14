@@ -119,3 +119,9 @@ Player.Swim
 	sample player/pl_swim3.wav
 	sample player/pl_swim4.wav
 }
+
+Player.PickupWeapon
+{
+	sample items/gunpickup2.wav
+}
+

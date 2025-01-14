@@ -1,0 +1,11 @@
+typeInfo hgrunt_grenadeCover
+{
+	"task_1"		"StopMovement"
+	"task_2"		"FindCoverNodeFromEnemy 99"
+	"task_3"		"FindFarCoverNodeFromEnemy 384"
+	"task_4"		"PlayActivity specialAttack1"
+	"task_5"		"CLEAR MOVE WAIT ?"
+	"task_6"		"RunToTarget"
+	"task_7"		"WaitForMovement"
+	"task_8"		"PerformSchedule hgrunt_WaitInCover"
+}

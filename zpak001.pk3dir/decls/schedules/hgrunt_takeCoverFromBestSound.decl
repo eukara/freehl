@@ -1,0 +1,10 @@
+typeInfo hgrunt_takeCoverFromBestSound
+{
+	"task_1"			"SetFailScheduke cower"
+	"task_2"			"StopMovement"
+	"task_3"			"FindCoverFromBestSound"
+	"task_4"			"RunToTarget"
+	"task_5"			"WaitForMovement"
+	"task_6"			"Rememeber inCover"
+	"task_7"			"TurnLeft 179"
+}

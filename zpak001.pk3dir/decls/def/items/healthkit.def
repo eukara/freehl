@@ -7,4 +7,5 @@ entityDef item_healthkit
 	"snd_acquire"	"item.healthkit"
 	"snd_respawn"	"item.respawn"
 	"inv_health"	"skill:healthkit"
+	"droptofloor"	"1"
 }

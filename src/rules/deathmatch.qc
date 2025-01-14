@@ -38,6 +38,7 @@ void
 CodeCallback_StartGameType(void)
 {
 	motd.LoadDefault();
+	precache.Entity("player_mp");
 
 	if (IsTeamplay() == true) {
 		int c;
