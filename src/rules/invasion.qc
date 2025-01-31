@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "../../zpak001.pk3dir/progs/invasion.dat"
+#pragma PROGS_DAT  "../../progs/invasion.dat"
 
 #include "../../../src/server/api.h"
 

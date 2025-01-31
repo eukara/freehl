@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/trigger_auto.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

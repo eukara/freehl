@@ -1,0 +1,64 @@
++0~fifties_lgt2
+{
+	program defaultwall
+	diffusemap +0~fifties_lgt2
+	fullbrightmap +0~fifties_lgt2
+}
+
++0~fifts_lght4
+{
+	program defaultwall
+	diffusemap +0~fifts_lght4
+	fullbrightmap +0~fifts_lght4
+}
+
++0~light2a
+{
+	program defaultwall
+	diffusemap +0~light2a
+	fullbrightmap +0~light2a
+}
+
++0~generic85
+{
+	program defaultwall
+	diffusemap +0~tnnl_lgt3
+	fullbrightmap +0~tnnl_lgt3
+}
++0~tnnl_lgt3
+{
+	program defaultwall
+	diffusemap +0~tnnl_lgt3
+	fullbrightmap +0~tnnl_lgt3
+}
+
++ametswitch1
+{
+	program defaultwall
+	diffusemap +ametswitch1
+	fullbrightmap +ametswitch1
+}
+
+
++a~fifts_lght4
+{
+	program defaultwall
+	diffusemap +a~fifts_lght4
+	fullbrightmap +a~fifts_lght4
+}
+
+
+flatbed_lite1
+{
+	program defaultwall
+	diffusemap flatbed_hlite2
+	fullbrightmap flatbed_hlite2
+}
+
+
+flatbed_hlite2
+{
+	program defaultwall
+	diffusemap flatbed_hlite2
+	fullbrightmap flatbed_hlite2
+}

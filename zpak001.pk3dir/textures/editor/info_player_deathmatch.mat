@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/info_player_deathmatch.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

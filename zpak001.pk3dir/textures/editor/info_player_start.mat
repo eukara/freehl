@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/info_player_start.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

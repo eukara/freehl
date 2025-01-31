@@ -14,7 +14,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "../../zpak001.pk3dir/progs/singleplayer.dat"
+#pragma PROGS_DAT  "../../progs/singleplayer.dat"
 
 #include "../../../src/server/api.h"
 

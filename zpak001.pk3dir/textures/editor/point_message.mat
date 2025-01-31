@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/point_message.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

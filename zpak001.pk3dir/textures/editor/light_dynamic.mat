@@ -1,9 +1,0 @@
-{
-	diffusemap textures/editor/light_dynamic.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-		rgbGen vertex
-	}
-}

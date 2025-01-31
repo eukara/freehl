@@ -1,5 +1,5 @@
 #pragma target fte_5768
-#pragma progs_dat  "../../zpak001.pk3dir/csprogs.dat"
+#pragma progs_dat  "../../csprogs.dat"
 #pragma forcecrc 54730
 
 #define CSQC
@@ -14,7 +14,7 @@
 ../../../src/vgui/include.src
 ../../../src/gs-entbase/client.src
 ../../../src/gs-entbase/shared.src
-../shared/include.src
+../../../valve/src/shared/include.src
 ../../../valve/src/client/draw.qc
 ../../../valve/src/client/damage.qc
 ../../../valve/src/client/init.qc

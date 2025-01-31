@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/path_track.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

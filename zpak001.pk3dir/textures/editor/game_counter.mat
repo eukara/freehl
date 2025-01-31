@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/game_counter.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

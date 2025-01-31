@@ -1,8 +1,0 @@
-{
-	diffusemap textures/editor/multi_manager.tga
-	
-	{
-		map $diffuse
-		alphaFunc GE128
-	}
-}

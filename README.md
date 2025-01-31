@@ -1,40 +1,38 @@
-# Rad-Therapy (FreeHL)
+# ![](img/rt.png) Rad-Therapy
 
-Clean-room reimplementation of Valve's Half-Life: Deathmatch and Half-Life (Experimental, this means Singleplayer is NOT complete).
-
-Similar to Tactical Retreat (FreeCS), this aims to recreate the feeling of the original game.
-It's designed to work with the content from the Steam & CD version of the game.
-There may be version mismatches between the different versions of Half-Life that you play. So you have to make sure you're running similar versions when hosting a game for someone.
-
-Netplay improvements, such as prediction of both player physics and weapon-logic
-are present.
-
-This is 100% original code, feel free to audit however you wish.
-No proprietary SDKs have been looked at or taken apart, unlike similar projects.
+This is a port of the 1998 game 'Half-Life' to Quake(World). Powered by Nuclide and the [FTE Engine](https://www.fteqw.org/).
 
 ![Preview 1](img/preview1.jpg)
 ![Preview 2](img/preview2.jpg)
 ![Preview 3](img/preview3.jpg)
 ![Preview 4](img/preview4.jpg)
 
-## Installing 
-To run it, all you need is [FTEQW](https://www.fteqw.org) and [the latest release .pk3 file](https://www.frag-net.com/pkgs/package_valve.pk3), which you save into `Half-Life/valve/`. That's about it. You can install updates through the **Configuration > Updates** menu.
+## Installing/Running
 
-## Building
-Clone the repository into the [Nuclide-SDK](https://developer.vera-visions.com) and build it:
+To run it, all you need is [FTE](https://www.fteqw.org) and [the latest release .pk3 file](https://www.frag-net.com/pkgs/package_valve.pk3), which you save into `Half-Life/valve/`. 
+
+**That's about it.**
+
+You can install updates through the **Configuration > Updates** menu.
+
+As this is Quake, there is no native game code. This is CPU architecture independent.
+You only need to build from source if you plan on making changes.
+
+## Building from Source
+
+Clone the repository into the [Nuclide-SDK](https://code.idtech.space/vera/nuclide) and build it like so:
 
 ```
+$ cd nuclide
 $ git clone https://code.idtech.space/fn/valve valve
 $ make game GAME=valve
 ```
 
-You can also issue `make` inside `valve/src/`, but it won't build an `entities.def` file for use in Radiant (level editor family).
-
 ## Notes
+
 The engine should automatically detect Half-Life when placed within the game directory, however you may need to pass `-halflife` just in case you have one massive directory with multiple FTE-supported games in it for example.
 
 You can also launch mods like this: `fteqw -halflife -game cstrike`
-Useful for development, so you don't have to use the **Custom Game** menu.
 
 ## Community
 
@@ -60,7 +58,7 @@ We've had people ask in the oddest of places for help, please don't do that.
 ## License
 ISC License
 
-Copyright (c) 2016-2024 Marco Cawthorne <marco@icculus.org>
+Copyright (c) 2016-2025 Marco "eukara" Cawthorne <marco@icculus.org>
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

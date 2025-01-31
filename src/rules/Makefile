@@ -1,7 +1,7 @@
 QCC=fteqcc
 
 all:
-	mkdir -pv ../../zpak001.pk3dir/progs/
-	$(QCC) deathmatch.qc
-	$(QCC) singleplayer.qc
-	$(QCC) invasion.qc
+	mkdir -pv ../../progs/
+	$(QCC) $(CFLAGS) -I../../../src/server deathmatch.qc 
+	$(QCC) $(CFLAGS) -I../../../src/server singleplayer.qc
+	$(QCC) $(CFLAGS) -I../../../src/server invasion.qc

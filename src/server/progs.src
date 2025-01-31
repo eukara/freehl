@@ -1,6 +1,5 @@
 #pragma target fte_5768
-//#pragma flag enable assumeint
-#pragma progs_dat  "../../zpak001.pk3dir/progs.dat"
+#pragma progs_dat  "../../progs.dat"
 #pragma forcecrc 54730
 
 #define QWSSQC
@@ -15,10 +14,10 @@
 ../../../src/gs-entbase/server.src
 ../../../src/gs-entbase/shared.src
 ../../../valve/src/server/defs.h
-../shared/include.src
-HLScientist.qc
-HLSuit.qc
-XenDecore.qc
+../../../valve/src/shared/include.src
+../../../valve/src/server/HLScientist.qc
+../../../valve/src/server/HLSuit.qc
+../../../valve/src/server/XenDecore.qc
 ../../../src/botlib/include.src
 ../../../valve/src/server/server.qc
 ../../../src/server/include.src
