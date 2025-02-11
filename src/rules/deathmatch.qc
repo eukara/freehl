@@ -63,7 +63,14 @@ CodeCallback_StartGameType(void)
 	}
 
 	for (entity s = world; (s = ents.NextItem(s));) {
-		ents.Input(s, "SetRespawnTime", "30.0f", world);
+		string isWeapon = substring(s.classname, 0, 7);
+		string isAmmo = substring(s.classname, 0, 5);
+
+		if (isWeapon == "weapon_" || isAmmo == "ammo_") {
+			ents.Input(s, "SetRespawnTime", "20.0f", world);
+		} else {
+			ents.Input(s, "SetRespawnTime", "30.0f", world);
+		}
 	}
 }
 

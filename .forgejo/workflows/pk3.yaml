@@ -10,14 +10,14 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
-		repository: vera/nuclide
-		ref: Develop
+        repository: vera/nuclide
+        ref: Develop
 
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
-		ref: Develop
-		path: "./${{ github.event.repository.name }}"
+        ref: Develop
+        path: "./${{ github.event.repository.name }}"
 
     - name: assemble pk4
       run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
