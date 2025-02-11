@@ -5,5 +5,5 @@
 #define MODEL_PREVIEW
 
 #includelist
-../../../src/menu-vgui/includes.src
+../../../src/menu-fn/includes.src
 #endlist
