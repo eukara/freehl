@@ -1,0 +1,28 @@
+name: pk4
+
+on: push
+
+jobs:
+  build:
+    runs-on: docker
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+		repository: vera/nuclide
+		ref: Develop
+
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+		ref: Develop
+		path: "./${{ github.event.repository.name }}"
+
+    - name: assemble pk4
+      run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: pkg-lists
+        path: build/bin-content/${{ github.event.repository.name }}/*.pk4

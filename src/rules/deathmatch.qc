@@ -62,6 +62,9 @@ CodeCallback_StartGameType(void)
 		game.SetSpawnPoint("info_player_deathmatch");
 	}
 
+	for (entity s = world; (s = ents.NextItem(s));) {
+		ents.Input(s, "SetRespawnTime", "30.0f", world);
+	}
 }
 
 void
