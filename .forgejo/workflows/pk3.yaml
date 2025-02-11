@@ -19,6 +19,12 @@ jobs:
         ref: Develop
         path: "./${{ github.event.repository.name }}"
 
+    - name: apt install zip
+      run: |
+        apt update
+        apt install -y \
+        zip
+
     - name: assemble pk4
       run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
 
