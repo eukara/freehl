@@ -30,5 +30,13 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: pkg-lists
-        path: build/bin-content/${{ github.event.repository.name }}/*.pk4
+        name: content
+        path: ./build/bin-content/${{ github.event.repository.name }}/*
+
+    - uses: actions/forgejo-release@v2
+      with:
+        url: https://code.idtech.space
+        repo: "${{ github.repository }}"
+        direction: upload
+        release-dir: ./build/bin-content/${{ github.event.repository.name }}/
+        token: ${{ secrets.TOKEN }}
