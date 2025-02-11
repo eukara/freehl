@@ -30,8 +30,8 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: content
-        path: ./build/bin-content/${{ github.event.repository.name }}/*
+        name: build-log
+        path: ./build/bin-content.log
 
     - uses: actions/forgejo-release@v2
       with:
