@@ -1,6 +1,6 @@
 name: pk4
 
-on: push
+on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   build:
@@ -37,6 +37,13 @@ jobs:
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
+        tag: "${{ github.ref_name }}"
+        sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
         token: ${{ secrets.TOKEN }}
+        title: "Development Build"
+        release-notes: "Auto-generated development build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
+        prerelease: true
+        override: true
+        release-notes-assistant: true

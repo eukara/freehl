@@ -35,10 +35,15 @@ AllowFlashlight(void)
 }
 
 void
+CodeCallback_Precache(void)
+{
+	precache.Entity("player_mp");
+}
+
+void
 CodeCallback_StartGameType(void)
 {
 	motd.LoadDefault();
-	precache.Entity("player_mp");
 
 	if (IsTeamplay() == true) {
 		int c;
