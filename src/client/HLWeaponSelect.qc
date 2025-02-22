@@ -68,7 +68,7 @@ HLWeaponSelect::Draw(void)
 	/* iterate through the inventory*/
 	while (linkedList) {
 		/* only iterate over weapons */
-		if (linkedList.IsWeapon() == true) {
+		if (isWeapon(linkedList) == true) {
 			currentSlot = linkedList. m_iHudSlot;
 
 			/* new slot started, reset Y axis */
