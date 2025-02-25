@@ -37,7 +37,7 @@ jobs:
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
-        tag: "${{ github.actor_id }}.${{ github.run_id }}"
+        tag: "${{ github.run_id }}"
         sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
