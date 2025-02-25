@@ -1,8 +1,6 @@
 name: pk4
 
 on: [ push, pull_request, workflow_dispatch ]
-  branches:
-    - Develop
 
 jobs:
   build:
