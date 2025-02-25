@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2024-2025 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

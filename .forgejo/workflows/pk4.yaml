@@ -1,6 +1,8 @@
 name: pk4
 
 on: [ push, pull_request, workflow_dispatch ]
+  branches:
+    - Develop
 
 jobs:
   build:
@@ -21,7 +23,7 @@ jobs:
 
     - name: apt install zip
       run: |
-        apt update
+        apt updatecs
         apt install -y \
         zip
 
@@ -37,7 +39,7 @@ jobs:
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
-        tag: "${{ github.ref_name }}"
+        tag: "${{ github.actor_id }}.${{ github.run_id }}"
         sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
@@ -45,5 +47,5 @@ jobs:
         title: "Development Build"
         release-notes: "Auto-generated development build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
         prerelease: true
-        override: true
+        override: false
         release-notes-assistant: true
