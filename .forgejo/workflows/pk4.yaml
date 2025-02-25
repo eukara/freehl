@@ -45,5 +45,5 @@ jobs:
         title: "Development Build"
         release-notes: "Auto-generated development build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
         prerelease: true
-        override: false
+        override: ${{ vars.OVERRIDE || "false" }}
         release-notes-assistant: true
