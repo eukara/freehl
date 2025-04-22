@@ -6,7 +6,7 @@ entityDef weapon_snark
 	"editor_usage"		"Snark"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_sqknest.mdl"
 	"model_view"		"models/v_squeak.mdl"
 	"frame"				"1"
@@ -28,7 +28,7 @@ entityDef weapon_snark
 	"act_throw"			"5"
 	"removeOnEmpty" 	"1"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"			"4"
 	"hudSlotPos"		"3"
 	"weight"			"5"

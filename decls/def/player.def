@@ -1,13 +1,14 @@
 entityDef player
 {
-	"spawnclass"		"HLPlayer"
+	"spawnclass"		"hlPlayer"
 	"health"			"100"
 	"maxarmor"			"100"
 	"bleeds"			"1"
 	"propdata"			"actor_human"
 	"armorProtection"	"0.2"
 	"armorBonus"		"0.5"
-	
+	"model"				"models/player.mdl"
+
 	"snd_stepladderLeft"	"step_ladder.left"
 	"snd_stepladderRight"	"step_ladder.right"
 	"snd_fall"				"Player.FallDamage"
@@ -26,6 +27,7 @@ entityDef player
 
 entityDef player_mp
 {
+	"spawnclass"		"hlPlayer"
 	"inherit"			"player"
 	"ammo_9mm"			"44"
 	"item"				"item_suit"

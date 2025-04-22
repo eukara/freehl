@@ -32,9 +32,9 @@ enum
  * Because not being able to place it around levels would be boring.
  * Some maps, such as subtransit and a few singleplayer chapters have this. */
 
-class HLTripmine:ncSurfacePropEntity
+class hlTripmine:ncSurfacePropEntity
 {
-	void HLTripmine(void);
+	void hlTripmine(void);
 
 #ifdef SERVER
 	virtual void Respawn(void);
@@ -60,7 +60,7 @@ private:
 };
 
 void
-HLTripmine::HLTripmine(void)
+hlTripmine::hlTripmine(void)
 {
 #ifdef CLIENT
 	solid = SOLID_BBOX;
@@ -73,14 +73,14 @@ HLTripmine::HLTripmine(void)
 
 #ifdef SERVER
 void
-HLTripmine::Respawn(void)
+hlTripmine::Respawn(void)
 {
 	super::Respawn();
 	RestoreAngles();
 }
 
 void
-HLTripmine::Spawned(void)
+hlTripmine::Spawned(void)
 {
 	super::Spawned();
 
@@ -99,7 +99,7 @@ HLTripmine::Spawned(void)
 }
 
 void
-HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
+hlTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
 {
 	vector explosionPos = GetOrigin();
 	float explosionDamage = Skill_GetValue("plr_tripmine", 150);
@@ -116,13 +116,13 @@ HLTripmine::Death(entity inflictor, entity attacker, int damage, vector dir, vec
 }
 
 void
-HLTripmine::Pain(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
+hlTripmine::Pain(entity inflictor, entity attacker, int damage, vector dir, vector absImpactPos, int hitBody)
 {
 	Death(inflictor, attacker, damage, dir, absImpactPos, hitBody);
 }
 
 void
-HLTripmine::Ready(void)
+hlTripmine::Ready(void)
 {
 	traceline(origin, origin + GetForward() * 2048, FALSE, this);
 
@@ -148,7 +148,7 @@ HLTripmine::Ready(void)
 }
 
 float
-HLTripmine::SendEntity(entity ePEnt, float flChanged)
+hlTripmine::SendEntity(entity ePEnt, float flChanged)
 {
 	WriteByte(MSG_ENTITY, ENT_TRIPMINE);
 	WriteFloat(MSG_ENTITY, flChanged);
@@ -168,7 +168,7 @@ HLTripmine::SendEntity(entity ePEnt, float flChanged)
 
 #ifdef CLIENT
 void
-HLTripmine::ReceiveEntity(float flNew, float flChanged)
+hlTripmine::ReceiveEntity(float flNew, float flChanged)
 {
 	this.origin[0] = readcoord();
 	this.origin[1] = readcoord();
@@ -189,7 +189,7 @@ HLTripmine::ReceiveEntity(float flNew, float flChanged)
 }
 
 float
-HLTripmine::predraw(void)
+hlTripmine::predraw(void)
 {
 	if (m_iActive) {
 		trailparticles(BEAM_TRIPMINE, this, GetOrigin(), m_vecEndPos);

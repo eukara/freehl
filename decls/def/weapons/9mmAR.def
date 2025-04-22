@@ -6,7 +6,7 @@ entityDef weapon_9mmAR
 	"editor_usage"		"9mm AR"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_9mmAR.mdl"
 	"model_view"		"models/v_9mmAR.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -34,7 +34,7 @@ entityDef weapon_9mmAR
 	"snd_fire"		"Weapon_MP5.Single"
 	"snd_empty"		"Weapons.Empty"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"2"
 	"hudSlotPos"	"0"
 	"weight"		"15"
@@ -92,7 +92,10 @@ entityDef projectile_ARgrenade
 
 	"def_damage"		"damage_ARgrenadeDirect"
 	"def_splash_damage"	"damage_ARgrenadeSplash"
-	"push"		"10000"
+	"detonate_offset"			"24"
+	"explode_light_color"		"1 0.5 0"
+	"explode_light_radius"		"1024"
+	"explode_light_fadetime"	"3"
 }
 
 entityDef damage_ARgrenadeDirect
@@ -104,6 +107,7 @@ entityDef damage_ARgrenadeSplash
 {
 	"damage"	"skill:plr_9mmAR_grenade"
 	"radius"	"160"
+	"knockback"				"300"
 }
 
 // multiplayer version

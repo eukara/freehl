@@ -23,9 +23,9 @@ enumflags
 	PLAYER_BOTTOMFRAME
 };
 
-class HLPlayer:ncPlayer
+class hlPlayer:ncPlayer
 {
-	void(void) HLPlayer;
+	void(void) hlPlayer;
 
 	/* animation */
 	PREDICTED_INT(anim_top)
@@ -43,7 +43,6 @@ class HLPlayer:ncPlayer
 	virtual void PredictPreFrame(void);
 	virtual void PredictPostFrame(void);
 	virtual void UpdateAliveCam(void);
-	virtual void ClientInputFrame(void);
 #else
 	virtual void Death(entity, entity, int, vector, vector, int);
 	virtual void EvaluateEntity(void);
@@ -53,11 +52,11 @@ class HLPlayer:ncPlayer
 #endif
 };
 
-void Animation_PlayerTop(HLPlayer, float, float);
-void Animation_PlayerBottom(HLPlayer, float, float);
+void Animation_PlayerTop(hlPlayer, float, float);
+void Animation_PlayerBottom(hlPlayer, float, float);
 
 void
-HLPlayer::HLPlayer(void)
+hlPlayer::hlPlayer(void)
 {
 	anim_top = 0;
 	anim_top_time = 0;
@@ -66,11 +65,11 @@ HLPlayer::HLPlayer(void)
 	anim_bottom_time = 0;
 }
 
-void Animation_PlayerUpdate(HLPlayer); 
-void Animation_TimerUpdate(HLPlayer, float); 
+void Animation_PlayerUpdate(hlPlayer); 
+void Animation_TimerUpdate(hlPlayer, float); 
 
 void
-HLPlayer::UpdatePlayerAnimation(float timelength)
+hlPlayer::UpdatePlayerAnimation(float timelength)
 {
 	/* calculate our skeletal progression */
 	Animation_PlayerUpdate(this);
@@ -79,28 +78,12 @@ HLPlayer::UpdatePlayerAnimation(float timelength)
 }
 
 #ifdef CLIENT
-void
-HLPlayer::ClientInputFrame(void)
-{
-	if (pSeatLocal->weaponSelectionHUD.Active()) {
-		if (input_buttons & INPUT_PRIMARY) {
-			pSeatLocal->weaponSelectionHUD.Trigger();
-		} else if (input_buttons & INPUT_SECONDARY) {
-			pSeatLocal->weaponSelectionHUD.Deactivate();
-		}
-
-		pSeat->m_flInputBlockTime = time + 0.2;
-	}
-
-	super::ClientInputFrame();
-}
-
 void Camera_RunPosBob(vector angles, __inout vector camera_pos);
 void Camera_StrafeRoll(__inout vector camera_angle);
 void Shake_Update(ncPlayer);
 
 void
-HLPlayer::UpdateAliveCam(void)
+hlPlayer::UpdateAliveCam(void)
 {
 	vector cam_pos = GetEyePos();
 	Camera_RunPosBob(view_angles, cam_pos);
@@ -119,13 +102,13 @@ HLPlayer::UpdateAliveCam(void)
 			makevectors(view_angles);
 			vector vStart = [pSeat->m_vecPredictedOrigin[0], pSeat->m_vecPredictedOrigin[1], pSeat->m_vecPredictedOrigin[2] + 16] + (v_right * 4);
 			vector vEnd = vStart + (v_forward * -48) + [0,0,16] + (v_right * 4);
-			traceline(vStart, vEnd, FALSE, this);
+			traceline(vStart, vEnd, MOVE_NORMAL, this);
 			g_view.SetCameraOrigin(trace_endpos + (v_forward * 5));
 		}
 	}
 
 	Shake_Update(this);
-	g_view.AddPunchAngle(punchangle);
+	g_view.AddPunchAngle(m_punchAngle);
 }
 
 .string oldmodel;
@@ -135,7 +118,7 @@ var bool autocvar_cg_flashlightClassic = true;
 var float autocvar_r_shadow_realtime_dlight;
 
 void
-HLPlayer::UpdatePlayerAttachments(bool visible)
+hlPlayer::UpdatePlayerAttachments(bool visible)
 {
 	/* draw the flashlight */
 	if (gflags & GF_FLASHLIGHT) {
@@ -219,15 +202,13 @@ HLPlayer::UpdatePlayerAttachments(bool visible)
 	}
 }
 
-void HUD_AmmoNotify_Check(ncPlayer pl);
-void HUD_ItemNotify_Check(ncPlayer pl);
 /*
 =================
-HLPlayer::ReceiveEntity
+hlPlayer::ReceiveEntity
 =================
 */
 void
-HLPlayer::ReceiveEntity(float new, float flChanged)
+hlPlayer::ReceiveEntity(float new, float flChanged)
 {
 	/* the generic client attributes */
 	super::ReceiveEntity(new, flChanged);
@@ -241,33 +222,27 @@ HLPlayer::ReceiveEntity(float new, float flChanged)
 
 	setorigin(this, origin);
 
-	/* these only concern the current HLPlayer */
+	/* these only concern the current hlPlayer */
 	CSQC_UpdateSeat();
 	if (this != pSeat->m_ePlayer)
 		return;
 
 	/* do not notify us of updates when spawning initially */
-	if (flChanged == UPDATE_ALL)
+	if (flChanged == UPDATE_ALL) {
 		PredictPreFrame();
-
-	if (flChanged & PLAYER_AMMOTYPES ) {
-		HUD_AmmoNotify_Check(this);
 	}
-
-	if (flChanged & PLAYER_ITEMS || flChanged & PLAYER_HEALTH)
-		HUD_ItemNotify_Check(this);
 }
 
 /*
 =================
-HLPlayer::PredictPostFrame
+hlPlayer::PredictPostFrame
 
 Save the last valid server values away in the _net variants of each field
 so we can roll them back later.
 =================
 */
 void
-HLPlayer::PredictPreFrame(void)
+hlPlayer::PredictPreFrame(void)
 {
 	/* the generic client attributes */
 	super::PredictPreFrame();
@@ -281,13 +256,13 @@ HLPlayer::PredictPreFrame(void)
 
 /*
 =================
-HLPlayer::PredictPostFrame
+hlPlayer::PredictPostFrame
 
 Where we roll back our values to the ones last sent/verified by the server.
 =================
 */
 void
-HLPlayer::PredictPostFrame(void)
+hlPlayer::PredictPostFrame(void)
 {
 	/* the generic client attributes */
 	super::PredictPostFrame();
@@ -301,7 +276,7 @@ HLPlayer::PredictPostFrame(void)
 
 #else
 void
-HLPlayer::Save(float handle)
+hlPlayer::Save(float handle)
 {
 	super::Save(handle);
 
@@ -313,7 +288,7 @@ HLPlayer::Save(float handle)
 }
 
 void
-HLPlayer::Restore(string strKey, string strValue)
+hlPlayer::Restore(string strKey, string strValue)
 {
 	switch (strKey) {
 	case "anim_top":
@@ -337,7 +312,7 @@ HLPlayer::Restore(string strKey, string strValue)
 }
 
 void
-HLPlayer::EvaluateEntity(void)
+hlPlayer::EvaluateEntity(void)
 {
 	/* the generic client attributes */
 	ncPlayer::EvaluateEntity();
@@ -351,7 +326,7 @@ HLPlayer::EvaluateEntity(void)
 }
 
 void
-HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, vector absImpactPos, int hitBody)
+hlPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, vector absImpactPos, int hitBody)
 {
 	/* either gib, or make a corpse */
 	if (GetHealth()< -50) {
@@ -384,12 +359,7 @@ HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir,
 			break;
 		}
 
-		ncEntity newCorpse = (ncEntity)BodyQue_Spawn(this, deathAnimation);
-
-		/* if we were crouching, adjust the bbox (thx 2 lack of crouch death animation) */
-		if (IsCrouching()) {
-			newCorpse.SetSize(VEC_HULL_MIN, [16, 16, -16]);
-		}
+		MakeCorpse(deathAnimation);
 	}
 	
 	super::Death(inflictor,  attacker,  damagePoints,  dir, absImpactPos, hitBody);
@@ -397,17 +367,17 @@ HLPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir,
 
 /*
 =================
-HLPlayer::SendEntity
+hlPlayer::SendEntity
 =================
 */
 float
-HLPlayer::SendEntity(entity ePEnt, float flChanged)
+hlPlayer::SendEntity(entity ePEnt, float flChanged)
 {
 	/* just-in-case. */
 	if (IsPlayer() == false)
 		return (0);
 
-	/* don't broadcast invisible HLPlayers */
+	/* don't broadcast invisible hlPlayers */
 	if (IsFakeSpectator() && ePEnt != this)
 		return (0);
 	if (!GetModelindex() && ePEnt != this)
@@ -429,7 +399,7 @@ HLPlayer::SendEntity(entity ePEnt, float flChanged)
 #endif
 
 void
-HLPlayer::Physics_Jump(void)
+hlPlayer::Physics_Jump(void)
 {
 	if (waterlevel >= 2) {
 		if (watertype == CONTENT_WATER) {

@@ -15,7 +15,7 @@
  */
 
 void
-HLWeapon::HLWeapon(void)
+hlWeapon::hlWeapon(void)
 {
 #ifdef CLIENT
 	m_iHudSlot = 0i;
@@ -30,7 +30,7 @@ HLWeapon::HLWeapon(void)
 
 #ifdef SERVER
 void
-HLWeapon::SpawnKey(string keyName, string setValue)
+hlWeapon::SpawnKey(string keyName, string setValue)
 {
 	switch (keyName) {
 	default:
@@ -40,7 +40,7 @@ HLWeapon::SpawnKey(string keyName, string setValue)
 #endif
 
 void
-HLWeapon::AddedToInventory(void)
+hlWeapon::AddedToInventory(void)
 {
 	super::AddedToInventory();
 
@@ -48,31 +48,31 @@ HLWeapon::AddedToInventory(void)
 	m_ammoIcon = GetDefString("ammoIcon");
 
 	if (m_ammoIcon == "") {
-		m_ammoIcon = sprintf("%s.ammo", strtolower(classname));
+		m_ammoIcon = sprintf("%s.ammo", strtolower(declclass));
 	}
 
 	m_ammo2Icon = GetDefString("ammo2Icon");
 
 	if (m_ammo2Icon == "") {
-		m_ammo2Icon = sprintf("%s.ammo2", strtolower(classname));
+		m_ammo2Icon = sprintf("%s.ammo2", strtolower(declclass));
 	}
 
 	m_crossHair = GetDefString("crosshair");
 
 	if (m_crossHair == "") {
-		m_crossHair = sprintf("%s.crosshair", strtolower(classname));
+		m_crossHair = sprintf("%s.crosshair", strtolower(declclass));
 	}
 
 	m_icon = GetDefString("icon");
 
 	if (m_icon == "") {
-		m_icon = sprintf("%s.weapon", strtolower(classname));
+		m_icon = sprintf("%s.weapon", strtolower(declclass));
 	}
 
 	m_iconSel = GetDefString("iconSelected");
 
 	if (m_iconSel == "") {
-		m_iconSel = sprintf("%s.weapon_s", strtolower(classname));
+		m_iconSel = sprintf("%s.weapon_s", strtolower(declclass));
 	}
 
 	if (m_ammoIcon == "none") {
@@ -105,8 +105,9 @@ HLWeapon::AddedToInventory(void)
 
 #ifdef CLIENT
 void
-HLWeapon::UpdateGUI(void)
+hlWeapon::UpdateGUI(void)
 {
+#if 0
 	ncPlayer ourOwner = __NULL__;
 	vector ammoPos;
 
@@ -119,7 +120,7 @@ HLWeapon::UpdateGUI(void)
 		HLSprite_Draw_RGBA(m_ammoIcon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 	}
 
-	if (m_iMode && m_bAltModeLaser) {
+	if (FireInfoSelected() && m_bAltModeLaser) {
 		DrawLaser();
 	}
 
@@ -128,7 +129,7 @@ HLWeapon::UpdateGUI(void)
 	vector vMainPos;
 	float progress;
 
-	progress = (m_flOverheating / m_fiOverheatLength);
+	progress = (OverheatingProgress() / m_fiOverheatLength);
 
 	if (progress > 1.0) {
 		progress = 1.0f;
@@ -150,14 +151,14 @@ HLWeapon::UpdateGUI(void)
 	}
 #endif
 
-	if (m_bAmmoRequired == false) {
+	if (RequiresAmmo() == false) {
 		return;
 	}
 
 	ourOwner = (ncPlayer)GetOwner();
 
-	if (m_iClipSize > 0i) {
-		ourOwner.a_ammo1 = m_iClip;
+	if (GetClipSize() > 0i) {
+		ourOwner.a_ammo1 = GetClip();
 		HUD_DrawAmmo1();
 	}
 
@@ -174,10 +175,11 @@ HLWeapon::UpdateGUI(void)
 			HLSprite_Draw_RGBA(m_ammo2Icon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
 		}
 	}
+#endif
 }
 
 void
-HLWeapon::DrawLaser(void)
+hlWeapon::DrawLaser(void)
 {
 	ncPlayer ourOwner = (ncPlayer)GetOwner();
 	float lerpValue;

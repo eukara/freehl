@@ -1,4 +1,4 @@
-# ![](img/rt.png) Rad-Therapy
+# ![](img/rt.png) Rad-Therapy (FreeHL)
 
 This is a port of the 1998 game 'Half-Life' to Quake(World). Powered by Nuclide and the [FTE Engine](https://www.fteqw.org/).
 

@@ -6,7 +6,7 @@ entityDef weapon_handgrenade
 	"editor_usage"			"Hand Grenade"
 	"editor_rotatable"		"1"
 
-	"spawnclass"			"HLWeapon"
+	"spawnclass"			"hlWeapon"
 	"model"					"models/w_grenade.mdl"
 	"model_view"			"models/v_grenade.mdl"
 	"snd_acquire"			"Player.PickupWeapon"
@@ -32,7 +32,7 @@ entityDef weapon_handgrenade
 	"act_delay"				"2"
 	"act_release"			"3,4,5"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"				"4"
 	"hudSlotPos"			"0"
 	"weight"				"5"
@@ -47,7 +47,7 @@ entityDef projectile_handgrenade
 	"fuse"				"4"
 	"thrown"			"1"
 	"detonate_on_fuse"	"1"
-	"detonate_offset"	"24"
+	"detonate_offset"	"64"
 	"bounce"			"1"
 	"angular_velocity"	"-350 0 0"
 	"velocity"			"300 0 40"
@@ -57,6 +57,11 @@ entityDef projectile_handgrenade
 	"decal_detonate"	"ExplosionScorch"
 	"def_damage"		"damage_handgrenadeDirect"
 	"def_splash_damage"	"damage_handgrenadeSplash"
+
+	"explode_light_color"		"1 0.5 0"
+	"explode_light_radius"		"1024"
+	"explode_light_fadetime"	"3"
+
 }
 
 entityDef damage_handgrenadeDirect

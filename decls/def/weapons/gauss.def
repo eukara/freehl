@@ -6,7 +6,7 @@ entityDef weapon_gauss
 	"editor_usage"		"Tau Cannon"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_gauss.mdl"
 	"model_view"		"models/v_gauss.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -25,7 +25,7 @@ entityDef weapon_gauss
 	"snd_fire"			"Weapon_Gauss.Fire"
 	"snd_empty"			"Weapons.Empty"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"3"
 	"hudSlotPos"	"1"
 	"weight"		"20"

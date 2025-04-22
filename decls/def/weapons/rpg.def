@@ -6,7 +6,7 @@ entityDef weapon_rpg
 	"editor_usage"		"Rocket Launcher"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_rpg.mdl"
 	"model_view"		"models/v_rpg.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -33,7 +33,7 @@ entityDef weapon_rpg
 	"act_reload"		"2"
 	"act_release"		"2"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"3"
 	"hudSlotPos"	"0"
 	"weight"		"20"
@@ -71,10 +71,11 @@ entityDef projectile_rocket
 	"light_radius"				"160"
 	"light_offset"				"0 0 0"
 	"detonate_offset"			"24"
+	"detonate_offset"	"64"
 
-	"explode_light_color"		"2 1.6 0.8"
-	"explode_light_radius"		"320"
-	"explode_light_fadetime"	"0.5"
+	"explode_light_color"		"1 0.5 0"
+	"explode_light_radius"		"1024"
+	"explode_light_fadetime"	"3"
 
 	"snd_explode"				"fx.explosion"
 	"offset"					"0 7 -3"

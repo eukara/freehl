@@ -40,23 +40,23 @@ HLScientist::Respawn(void)
 
 		switch (bodyValue) {
 		case 1i:
-			m_flPitch = 105;
+			SetSentencePitch(105);
 			netname = "Walter";
 			SetBodyInGroup(1, 1);
 			break;
 		case 2i:
-			m_flPitch = 100;
+			SetSentencePitch(100);
 			netname = "Einstein";
 			SetBodyInGroup(1, 2);
 			break;
 		case 3i:
-			m_flPitch = 95;
+			SetSentencePitch(95);
 			netname = "Luther";
 			SetBodyInGroup(1, 3);
 			SetSkin(1);
 			break;
 		default:
-			m_flPitch = 100;
+			SetSentencePitch(100);
 			netname = "Slick";
 			SetBodyInGroup(1, 4);
 		}

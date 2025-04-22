@@ -15,7 +15,7 @@
  */
 
 /*! \brief Half-Life weapon base class. */
-/*!QUAKED HLWeapon (0 0.8 0.8) (-16 -16 0) (16 16 72) 
+/*!QUAKED hlWeapon (0 0.8 0.8) (-16 -16 0) (16 16 72) 
 # OVERVIEW
 Half-Life specific weapon based on ncWeapon.
 
@@ -32,10 +32,10 @@ Since the weapon specific files only contain short names like `ammo` and `crossh
 For example, `ammoIcon` being set to `weapon_foobar.ammo` will look up `ammo` inside `sprites/weapon_foobar.txt`.
 */
 class
-HLWeapon:ncWeapon
+hlWeapon:ncWeapon
 {
 public:
-	void HLWeapon(void);
+	void hlWeapon(void);
 
 	virtual void AddedToInventory(void);
 

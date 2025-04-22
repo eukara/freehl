@@ -6,7 +6,7 @@ entityDef weapon_hornetgun
 	"editor_usage"		"Hornet Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_hgun.mdl"
 	"model_view"		"models/v_hgun.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -25,7 +25,7 @@ entityDef weapon_hornetgun
 
 	"snd_fire"			"Weapon_Hornetgun.Single"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"			"3"
 	"hudSlotPos"		"3"
 	"weight"			"10"

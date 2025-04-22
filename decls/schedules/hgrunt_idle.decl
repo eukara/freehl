@@ -4,8 +4,6 @@ typeInfo hgrunt_idle
 	"task_2"			"PlayActivity idle"
 	"task_3"			"Wait 2"
 	"task_4"			"WaitPVS"
-	"fail_onNewEnemy"	"1"
-	"fail_onDamage"	"1"
-	"NewEnemy"		"PerformSchedule hgrunt_foundEnemy"
-	"Damage"			"PerformSchedule hgrunt_takeCover"
+	"NewEnemy"		"AlertSquadWithMindset combat"
+	"Damage"			"AlertSquadWithMindset defense"
 }

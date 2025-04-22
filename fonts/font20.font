@@ -1,3 +1,4 @@
 path "creditsfont?fmt=h"
+path_ttf fonts/nimbus/NimbusSanL-Bol.otf
 size 20
 additive 1

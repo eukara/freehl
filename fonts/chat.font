@@ -1,2 +1,3 @@
 path "CONCHARS?fmt=h"
+path_ttf fonts/nimbus/NimbusSanL-Reg.otf
 size 12

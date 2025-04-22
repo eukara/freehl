@@ -66,7 +66,7 @@ VGUIChangeClassButton::OnMouseUp(void)
 	int teamID = player.GetTeam();
 	string classType = teams.ClassForIndex(teamID, classSelection);
 
-	localcmd(sprintf("cmd %s\n", classType));
+	localcmd(sprintf("cmd join %s\n", classType));
 	winClassSelection.Hide();
 }
 

@@ -25,6 +25,10 @@ public:
 	virtual void SelectNext(bool);
 	virtual void SelectPrevious(bool);
 
+	nonvirtual void Event_Opened(void);
+	nonvirtual void Event_Closed(void);
+	nonvirtual void Event_SelectionChanged(void);
+	nonvirtual void Event_SelectionTriggered(void);
 
 	virtual bool Active(void);
 	virtual void Trigger(void);
@@ -34,8 +38,9 @@ public:
 
 private:
 	float m_flHUDWeaponSelectTime;
-	HLWeapon m_selectedWeapon;
-	HLWeapon m_firstWeapon;
+	entity m_selectedWeapon;
+	entity m_firstWeapon;
+	entity m_lastWeapon;
 	int m_iWantSlot;
 	int m_iWantSlotPos;
 };

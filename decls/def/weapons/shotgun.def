@@ -6,7 +6,7 @@ entityDef weapon_shotgun
 	"editor_usage"		"Shotgun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_shotgun.mdl"
 	"model_view"		"models/v_shotgun.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -42,7 +42,7 @@ entityDef weapon_shotgun
 	"snd_reload"		"Weapon_Shotgun.Reload"
 	"snd_reload_end"	"Weapon_Shotgun.Special1"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"2"
 	"hudSlotPos"	"1"
 	"weight"		"15"

@@ -1,8 +1,9 @@
-1644
+1645
 1 cfg/skill_manifest.cfg
 1 cfg/skill_valve.cfg
 1 coop.config
 1 csprogs.dat
+1 hud.dat
 1 data/boot_camp.way
 1 data/bounce.way
 1 data/crossfire.way

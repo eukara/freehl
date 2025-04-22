@@ -9,4 +9,7 @@ typeInfo hgrunt_takeCover
 	"task_7"		"WaitForMovement"
 	"task_8"		"Remember inCover"
 	"task_9"		"PerformSchedule hgrunt_waitInCover"
+	"task_9"		"ChangeMindset combat"
+	"fail_NewEnemy"	"1"
+	"fail_OccludedEnemy"	"1"
 }

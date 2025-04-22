@@ -32,8 +32,6 @@ ClientGame_Init(float apilevel, string enginename, float engineversion)
 	registercommand("lastinv");
 	registercommand("invnext");
 	registercommand("invprev");
-
-	pSeatLocal->weaponSelectionHUD = spawn(HLWeaponSelect);
 }
 
 void VGUI_ShowMOTD();
@@ -53,21 +51,20 @@ ClientGame_InitDone(void)
 void
 ClientGame_RendererRestart(string rstr)
 {
-	precache_model("models/v_tripmine.mdl");
-	precache_model("models/shell.mdl");
-	precache_model("models/shotgunshell.mdl");
+	precache.Model("models/v_tripmine.mdl");
+	precache.Model("models/shell.mdl");
+	precache.Model("models/shotgunshell.mdl");
 
 	/* there's also muzzleflash.spr, but that's just MUZZLE_SMALL again */
-	precache_model("sprites/muzzleflash1.spr");
-	precache_model("sprites/muzzleflash2.spr");
-	precache_model("sprites/muzzleflash3.spr");
-	MUZZLE_RIFLE = (int)getmodelindex("sprites/muzzleflash1.spr");
-	MUZZLE_SMALL = (int)getmodelindex("sprites/muzzleflash2.spr");
-	MUZZLE_WEIRD = (int)getmodelindex("sprites/muzzleflash3.spr");
+	precache.Model("sprites/muzzleflash1.spr");
+	precache.Model("sprites/muzzleflash2.spr");
+	precache.Model("sprites/muzzleflash3.spr");
+
+	MUZZLE_RIFLE = (int)precache.Model("sprites/muzzleflash1.spr");
+	MUZZLE_SMALL = (int)precache.Model("sprites/muzzleflash2.spr");
+	MUZZLE_WEIRD = (int)precache.Model("sprites/muzzleflash3.spr");
 
 	HLSprite_Init();
-
-	Damage_Precache();
 	Obituary_Precache();
 
 	FX_GaussBeam_Init();

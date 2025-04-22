@@ -3,7 +3,10 @@
 !!samps diffuse lightmap
 !!cvardf gl_mono=0
 !!cvardf gl_stipplealpha=0
+!!cvardf r_waterLit=0
 !!cvardf r_waterRipples=0
+!!cvardf r_waterRippleResolution=5.0
+!!cvardf r_waterRippleRadius=2.0f
 
 #include "sys/defs.h"
 #include "sys/fog.h"
@@ -104,10 +107,10 @@ vec2 hash22(vec2 p)
 		#else
 	#ifdef LIT
 
-		#define MAX_RADIUS 2
+		#define MAX_RADIUS r_waterRippleRadius
 
 		#if r_waterRipples ==1
-		float resolution = 5.0f;
+		float resolution = r_waterRippleResolution;
 		float riptime = e_time;
 		vec2 uv = tc.xy * resolution;
 		vec2 p0 = floor(uv);
@@ -141,8 +144,11 @@ vec2 hash22(vec2 p)
 
 		diffuse_f = texture2D(s_diffuse, tc + n.yz);
 		#endif
-		//diffuse_f.rgb += pow(clamp(dot(n, normalize(vec3(1., 0.7, 0.5))), 0., 1.), 6.);
+
+		#if r_waterLit==1
 		diffuse_f.rgb *= (texture2D(s_lightmap, lm0) * e_lmscale).rgb;
+		#endif
+
 	#endif
 		#endif
 

@@ -18,7 +18,6 @@
 #include "obituary.h"
 #include "particles.h"
 #include "hud_sprite.h"
-#include "HLWeaponSelect.h"
 
 var int autocvar_cl_autoweaponswitch = TRUE;
 
@@ -62,13 +61,6 @@ struct
 
 	float m_flDamageIndicator;
 	float m_flTitleAlpha;
-
-	HLWeaponSelect weaponSelectionHUD;
 } g_seatslocal[4], *pSeatLocal;
 
-void HUD_DrawAmmo1(void);
-void HUD_DrawAmmo2(void);
-void HUD_DrawAmmo3(void);
-void HUD_DrawAmmoBar(vector pos, float val, float max, float a);
-void HUD_WeaponPickupNotify(int);
 

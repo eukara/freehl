@@ -181,7 +181,7 @@ water
 
 lava
 {
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "fx_impact.lava"
 	bulletimpact "sfx_impact.slosh"
 	stepleft "step_slosh.left"
 	stepright "step_slosh.right"
@@ -189,7 +189,7 @@ lava
 
 slime
 {
-	part_bulletimpact "impact_default.main"
+	part_bulletimpact "fx_impact.slime"
 	bulletimpact "sfx_impact.slosh"
 	stepleft "step_slosh.left"
 	stepright "step_slosh.right"

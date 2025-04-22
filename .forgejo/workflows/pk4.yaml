@@ -1,43 +1,48 @@
 name: pk4
 
-on: [ push, pull_request, workflow_dispatch ]
+on:
+  push:
+    branches: [ master ]
+    tags: ['*']
 
 jobs:
   build:
     runs-on: docker
 
     steps:
+      name: clone nuclide src tree
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
         repository: vera/nuclide
-        ref: Develop
 
-    - uses: actions/checkout@v3
+    - name: clone game src tree
+      uses: actions/checkout@v3
       with:
         fetch-depth: 1
-        ref: Develop
         path: "./${{ github.event.repository.name }}"
 
-    - name: apt install zip
+    - name: install zip(1)
       run: |
         apt update
         apt install -y \
         zip
 
-    - name: assemble pk4
+    - name: build .pk4
       run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
 
-    - uses: actions/upload-artifact@v3
+    - name: upload log
+      uses: actions/upload-artifact@v3
       with:
         name: build-log
         path: ./build/bin-content.log
 
-    - uses: actions/forgejo-release@v2
+    - name: upload release
+      uses: actions/forgejo-release@v2
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
-        tag: "${{ github.run_id }}"
+        tag: "${{ github.ref_name }}"
         sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/

@@ -1,3 +1,4 @@
 rendersize "14 11 12"
 path fonts/nimbus/NimbusSanL-Reg.otf
+path_ttf fonts/nimbus/NimbusSanL-Reg.otf
 size 12

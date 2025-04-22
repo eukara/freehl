@@ -25,7 +25,7 @@ FX_GaussBeam_Init(void)
 	TRAIL_GAUSSBEAM = particleeffectnum("weapon_gauss.beam");
 	precache_model("sprites/yelflare1.spr");
 	precache_model("sprites/yelflare2.spr");
-	Sound_Precache("fx.gaussbeam");
+	SoundDef_Precache("fx.gaussbeam");
 }
 
 void
@@ -92,7 +92,7 @@ FX_GaussBeam_Piece(vector vecPos, vector vecFlyDir)
 
 	float r = random();
 
-	Sound_PlayAt(vecPos, "fx.gaussbeam");
+	SoundDef_PlayAt(vecPos, "fx.gaussbeam");
 
 	for (int i = 0; i < 4; i++) {
 		entity sub = spawn();

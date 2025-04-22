@@ -6,7 +6,7 @@ entityDef weapon_crossbow
 	"editor_usage"		"Crossbow"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_crossbow.mdl"
 	"model_view"		"models/v_crossbow.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -37,7 +37,7 @@ entityDef weapon_crossbow
 	"snd_empty"		"Weapons.Empty"
 	"snd_reload"	"Weapon_Crossbow.Reload"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"2"
 	"hudSlotPos"	"2"
 	"weight"		"10"

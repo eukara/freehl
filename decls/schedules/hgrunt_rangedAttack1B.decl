@@ -14,11 +14,10 @@ typeInfo hgrunt_rangedAttack1B
 	"task_12"					"TurnToEnemy"
 	"task_13"					"TaskCheck_FriendlyFire"
 	"task_14"					"AttackRanged1"
-	"fail_onNewEnemy"			"1"
 	"fail_onDeadEnemy"			"1"
 	"fail_onHeavyDamage"		"1"
 	"fail_onAlertSound"		"1"
-	"fail_onOccludedEnemy"		"1"
 	"fail_onNoAmmo"			"1"
+	"fal_onOccludedEnemy"		"1"
 	"DeadEnemy"	"PerformSchedule hgrunt_victoryDance"
 }

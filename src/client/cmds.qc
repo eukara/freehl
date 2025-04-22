@@ -14,10 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-void HUD_DrawWeaponSelect_Back(void);
-void HUD_DrawWeaponSelect_Forward(void);
-void HUD_DrawWeaponSelect_Last(void);
-void HUD_SlotSelect(int);
 void VGUI_ChooseClass(int);
 void VGUI_ChooseTeam(void);
 
@@ -33,39 +29,6 @@ ClientGame_ConsoleCommand(void)
 		break;
 	case "chooseteam":
 		localcmd(sprintf("cmd %s %s\n", argv(0), argv(1)));
-		break;
-	case "lastinv":
-		//HUD_DrawWeaponSelect_Last();
-		break;
-	case "slot1":
-		HUD_SlotSelect(0);
-		break;
-	case "slot2":
-		HUD_SlotSelect(1);
-		break;
-	case "slot3":
-		HUD_SlotSelect(2);
-		break;
-	case "slot4":
-		HUD_SlotSelect(3);
-		break;
-	case "slot5":
-		HUD_SlotSelect(4);
-		break;
-	case "slot6":
-		HUD_SlotSelect(5);
-		break;
-	case "slot7":
-		HUD_SlotSelect(6);
-		break;
-	case "slot8":
-		HUD_SlotSelect(7);
-		break;
-	case "slot9":
-		HUD_SlotSelect(8);
-		break;
-	case "slot10":
-		HUD_SlotSelect(9);
 		break;
 	default:
 		return (0);

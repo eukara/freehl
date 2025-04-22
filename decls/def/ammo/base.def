@@ -3,6 +3,7 @@ entityDef ammo_base
 	"spawnclass"	"ncItem"
 	"snd_acquire"	"ammo.pickup"
 	"snd_respawn"	"ammo.respawn"
-	"mins"			"-16 -16 0"
-	"maxs"			"16 16 16"
+	"mins"			"-12 -12 0"
+	"maxs"			"12 12 12"
+	"droptofloor"	"1"
 }

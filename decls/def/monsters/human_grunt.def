@@ -42,6 +42,7 @@ entityDef monster_human_grunt
 	"mindset_idle"			"hgrunt_idle"
 	"mindset_defense"		"hgrunt_takeCover"
 	"mindset_combat"		"hgrunt_combatFace"
+	"mindset_hunt"			"hgrunt_searchPlayer"
 
 	"squad_leader_body"		"1:2"
 

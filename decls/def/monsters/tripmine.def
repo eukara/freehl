@@ -1,6 +1,6 @@
 entityDef monster_tripmine
 {
-	"spawnclass"	"HLTripmine"
+	"spawnclass"	"hlTripmine"
 	"snd_precache1"	"TripmineGrenade.Charge"
 	"snd_precache2"	"TripmineGrenade.Activate"
 }

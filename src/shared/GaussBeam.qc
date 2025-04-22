@@ -23,7 +23,7 @@ HLGaussBeam::Launch(vector startPos, vector launchDir, float fuseOffset, float p
 	else
 		FX_GaussBeam(startPos, launchDir, 0, owner);
 
-	NSError("fuseOffset: %f", fuseOffset);
+	ncError("fuseOffset: %f", fuseOffset);
 }
 
 void

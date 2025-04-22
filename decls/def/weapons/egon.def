@@ -6,7 +6,7 @@ entityDef weapon_egon
 	"editor_usage"		"Gluon Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_egon.mdl"
 	"model_view"		"models/v_egon.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -32,7 +32,7 @@ entityDef weapon_egon
 	"joint_view_trail"	"Gauss"
 	"joint_world_trail"	"Gauss"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"3"
 	"hudSlotPos"	"2"
 	"weight"		"15"

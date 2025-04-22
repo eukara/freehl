@@ -18,28 +18,11 @@ int
 ClientGame_EventParse(float fHeader)
 {
 	switch (fHeader) {
-	case EV_OBITUARY:
-		Obituary_Parse();
-		break;
 	case EV_HITNOTIFY:
 		pSeatLocal->m_flDamageIndicator = 1.0f;
 		break;
 	case EV_GAUSSBEAM:
 		FX_GaussBeam_Parse();
-		break;
-	case EV_CHAT:
-		float fSender = readbyte();
-		float fTeam = readbyte();
-		string sMessage = readstring();
-
-		CSQC_Parse_Print(Util_ChatFormat(fSender, 0, sMessage), PRINT_CHAT);
-		break;
-	case EV_CHAT_TEAM:
-		float fSender2 = readbyte();
-		float fTeam2 = readbyte();
-		string sMessage2 = readstring();
-
-		CSQC_Parse_Print(Util_ChatFormat(fSender2, fTeam2, sMessage2), PRINT_CHAT);
 		break;
 	case EV_VIEWMODEL:
 		View_PlayAnimation(readbyte());

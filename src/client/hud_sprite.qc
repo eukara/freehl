@@ -29,7 +29,7 @@ HLSprite_CountEntriesInFile(string fileName)
 	hudFile = fopen(fileName, FILE_READ);
 
 	if (hudFile < 0) {
-		NSError("Missing file %S", fileName);
+		ncError("Missing file %S", fileName);
 		return (-1i);
 	}
 
@@ -65,7 +65,7 @@ HLSprite_LoadFromFile(string fileName, string prefix)
 	hudFile = fopen(fileName, FILE_READ);
 
 	if (hudFile < 0) {
-		NSError("Missing file %S", fileName);
+		ncError("Missing file %S", fileName);
 		return (false);
 	}
 
@@ -139,9 +139,9 @@ HLSprite_Init(void)
 		prefix = substring(hudFile, 8, -4);
 		HLSprite_LoadFromFile(hudFile, prefix);
 	}
-	
+
 	search_end(sh);
-	NSLog("...initialized %i HL sprites.", spriteCount);
+	ncLog("...initialized %i HL sprites.", spriteCount);
 }
 
 void
@@ -152,7 +152,7 @@ HLSprite_Draw_RGBA(string spriteName, vector spritePos, vector spriteColor, floa
 	spriteNum = (int)hash_get(g_hashhlsprite, spriteName, -1i);
 
 	if (spriteNum == -1i) {
-		NSError("Cannot draw sprite %S!", spriteName);
+		ncError("Cannot draw sprite %S!", spriteName);
 		return;
 	}
 
@@ -198,7 +198,7 @@ HLSprite_DrawCrosshair(string spriteName)
 	spriteNum = (int)hash_get(g_hashhlsprite, spriteName, -1i);
 
 	if (spriteNum == -1i) {
-		NSError("Cannot draw sprite %S!", spriteName);
+		ncError("Cannot draw sprite %S!", spriteName);
 		return;
 	}
 

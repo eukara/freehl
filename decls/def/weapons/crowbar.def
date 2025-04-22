@@ -6,7 +6,7 @@ entityDef weapon_crowbar
 	"editor_usage"		"Crowbar"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/w_crowbar.mdl"
 	"model_view"		"models/v_crowbar.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -18,7 +18,7 @@ entityDef weapon_crowbar
 	"ammoRequired"		"0"
 	"silent_fire"		"1"
 
-	"testDistance"		"-32"
+	"testDistance"		"-48"
 	"failRate"			"0.5"
 	"fireRate"			"0.25"
 	"snd_fireFailed"	"Weapon_Crowbar.Single"
@@ -29,7 +29,7 @@ entityDef weapon_crowbar
 	"act_fireFailed"	"4,5,7"
 	"act_fire"			"3,6,8"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"		"0"
 	"hudSlotPos"	"0"
 	"weight"		"0"
@@ -42,9 +42,9 @@ entityDef projectile_crowbar
 	"spawnclass"			"ncProjectile"
 	"damage"				"skill:plr_crowbar"
 	"is_bullet"				"1"
-	"range"					"32"
-	"decal_impact"			"Impact.Shot"
-	"detonate_on_world" 	"1"
+	"range"					"48"
+	"decal_detonate"		"Impact.Shot"
+	"detonate_on_world" 	"0"
 	"snd_hitBody"			"Weapon_Crowbar.Melee_Hit"
 	"snd_hitWorld"			"Weapon_Crowbar.Melee_HitWorld"
 }

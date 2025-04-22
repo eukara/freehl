@@ -16,6 +16,11 @@ Impact.BigShot
 	"{bigshot5" "1"
 }
 
+Impact.Gauss
+{
+	"{gaussshot1" "1"
+}
+
 Impact.Break
 {
 	"{break1" "1"

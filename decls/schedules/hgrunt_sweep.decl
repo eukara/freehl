@@ -11,5 +11,6 @@ typeInfo hgrunt_sweep
 	"fail_onAlertSound"		"1"
 	"CanRangedAttack1"			"PerformSchedule hgrunt_rangedAttack1A"
 	"CanRangedAttack2"			"PerformSchedule hgrunt_rangedAttack2"
-	"Damage"					"ChangeMindset defense"
+	"Damage"					"AlertSquadWithMindset defense"
+	"OccludedEnemy"			"AlertSquadWithMindset hunt"
 }

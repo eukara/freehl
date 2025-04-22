@@ -37,14 +37,13 @@ AllowFlashlight(void)
 void
 CodeCallback_Precache(void)
 {
+	motd.LoadDefault();
 	precache.Entity("player_mp");
 }
 
 void
 CodeCallback_StartGameType(void)
 {
-	motd.LoadDefault();
-
 	if (IsTeamplay() == true) {
 		int c;
 
@@ -67,7 +66,7 @@ CodeCallback_StartGameType(void)
 		game.SetSpawnPoint("info_player_deathmatch");
 	}
 
-	for (entity s = world; (s = ents.NextItem(s));) {
+	for (entity s = world; (s = next.Item(s));) {
 		string isWeapon = substring(s.classname, 0, 7);
 		string isAmmo = substring(s.classname, 0, 5);
 
@@ -79,6 +78,24 @@ CodeCallback_StartGameType(void)
 	}
 }
 
+float
+HLDM_IndexForName(string modelName)
+{
+	float modelID = 0;
+
+	if (modelName != "") {
+		string playerModel = "";
+		playerModel = sprintf("models/player/%s/%s.mdl", modelName, modelName);
+		modelID = getmodelindex(playerModel);
+	}
+
+	if (modelID) {
+		return (modelID);
+	}
+
+	return getmodelindex("models/player.mdl");
+}
+
 void
 HLDM_PlayerSpawn(entity playerEntity)
 {
@@ -86,7 +103,7 @@ HLDM_PlayerSpawn(entity playerEntity)
 
 	ents.ChangeToClass(playerEntity, "player_mp");
 
-	if (IsTeamplay() == true) {
+	if (teams.TeamCount() >= 1) {
 		float teamCount = tokenizebyseparator(g_strTeamList, ";");
 		float playerTeam = playerEntity.team;
 		string teamModel;
@@ -121,7 +138,7 @@ HLDM_PlayerSpawn(entity playerEntity)
 void
 CodeCallback_PlayerSpawn(entity playerEntity)
 {
-	if (IsTeamplay() == false) {
+	if (teams.TeamCount() <= 0)  {
 		HLDM_PlayerSpawn(playerEntity);
 	} else {
 		ents.ChangeToClass(playerEntity, "spectator");
@@ -139,7 +156,10 @@ CodeCallback_PlayerDisconnect(entity playerEntity)
 bool
 CodeCallback_PlayerRequestRespawn(entity playerEntity)
 {
-	CodeCallback_PlayerSpawn(playerEntity);
+	if (is.Alive(playerEntity) == false) {
+		HLDM_PlayerSpawn(playerEntity);
+	}
+
 	return (true);
 }
 
@@ -160,17 +180,25 @@ CodeCallback_CallRequestTeam(entity playerEntity, int teamNum)
 void
 CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker, string weapon)
 {
+	int fragLimit = cvars.GetInteger("fraglimit");
+
 	combat.Obituary(playerEntity.netname, attacker.netname, weapon, "");
 
 	/* death-counter */
 	playerEntity.deaths++;
 
 	/* update score-counter */
-	if (ents.isPlayer(attacker)) {
+	if (is.Player(attacker)) {
 		if (playerEntity == attacker) {
 			attacker.frags--;
 		} else {
 			attacker.frags++;
+		}
+	}
+
+	if (fragLimit >= 1) {
+		if (attacker.frags >= fragLimit) {
+			game.LoadNextMap();
 		}
 	}
 }
@@ -185,7 +213,7 @@ CodeCallback_ClientCommand(entity playerEntity, string command)
 		string teamName = argv(1);
 
 		/* wrong mode */
-		if (IsTeamplay() == false) {
+		if (teams.TeamCount() <= 0)  {
 			break;
 		}
 
@@ -204,6 +232,20 @@ CodeCallback_ClientCommand(entity playerEntity, string command)
 				break;
 			}
 		}
+		break;
+	case "join":
+		string className = argv(1);
+		if (is.Alive(playerEntity) == true) {
+			break;
+		}
+
+		if (STRING_SET(className)) {
+			ents.ChangeToClass(playerEntity, strcat("player_", className));
+			game.TeleportToSpawn(playerEntity);
+		} else {
+			HLDM_PlayerSpawn(playerEntity);
+		}
+
 		break;
 	default:
 		return (false);

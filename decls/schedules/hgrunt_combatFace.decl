@@ -4,10 +4,9 @@ typeInfo hgrunt_combatFace
 	"task_2"			"PlayActivity idleAngry"
 	"task_3"			"TurnToEnemy"
 	"task_4"			"PerformSchedule hgrunt_sweep"
-	"fail_onNewEnemy"	"1"
 	"fail_onDeadEnemy"	"1"
 	"fail_onDamage"	"1"
-	"fail_onCanRangedAttack1"			"1"
-	"fail_onCanRangedAttack2"			"1"
-	"Damage"					"ChangeMindset defense"
+	"CanRangedAttack1"			"PerformSchedule hgrunt_rangedAttack1A"
+	"CanRangedAttack2"			"PerformSchedule hgrunt_rangedAttack2"
+	"Damage"					"AlertSquadWithMindset defense"
 }

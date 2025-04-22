@@ -41,6 +41,8 @@ VGUITeamSelectButton::OnMouseUp(void)
 
 	if (teams.TotalClasses(tag) > 0i) {
 		VGUI_ChooseClass(tag);
+	} else {
+		localcmd(sprintf("cmd join\n", tag));
 	}
 
 	winChooseTeam.Hide();

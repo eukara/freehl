@@ -6,7 +6,7 @@ entityDef weapon_tripmine
 	"editor_usage"		"Tripmine"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"model"				"models/v_tripmine.mdl"
 	"model_view"		"models/v_tripmine.mdl"
 	"body0"				"2"
@@ -27,7 +27,7 @@ entityDef weapon_tripmine
 	"removeOnEmpty"		"1"
 	"snd_fire"			"TripmineGrenade.Deploy"
 
-	// HLWeapon specific
+	// hlWeapon specific
 	"hudSlot"			"4"
 	"hudSlotPos"		"2"
 	"weight"			"-10"

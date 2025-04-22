@@ -19,17 +19,20 @@ ClientGame_EntityUpdate(float id, float new)
 {
 	switch (id) {
 	case ENT_TRIPMINE:
-		NSENTITY_READENTITY(HLTripmine, new)
+		NSENTITY_READENTITY(hlTripmine, new)
 		break;
 	case ENT_WEAPON:
-		NSENTITY_READENTITY(HLWeapon, new)
+		NSENTITY_READENTITY(hlWeapon, new)
 		break;
 	case ENT_PLAYER:
 #ifdef SCIHUNT
-		NSENTITY_READENTITY(SHPlayer, new)
+		NSENTITY_READENTITY(shPlayer, new)
 #else
-		NSENTITY_READENTITY(HLPlayer, new)
+		NSENTITY_READENTITY(hlPlayer, new)
 #endif
+		break;
+	case ENT_HLHUDCOUNTER:
+		NSENTITY_READENTITY(hlHUDCounter, new)
 		break;
 	default:
 		return (0);
