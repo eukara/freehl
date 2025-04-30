@@ -23,6 +23,7 @@ ClientGame_PreDraw(void)
 void
 ClientGame_PostDraw(void)
 {
+#if 0
 	if (pSeatLocal->m_flTitleAlpha > 0.0) {
 		vector title1Pos = g_hudmins + (g_hudres / 2) + [-238,-15];
 		vector title2Pos = g_hudmins + (g_hudres / 2) + [18,-15];
@@ -58,4 +59,5 @@ ClientGame_PostDraw(void)
 
 		pSeatLocal->m_flTitleAlpha -= frametime;
 	}
+#endif
 }

@@ -2,7 +2,6 @@
 
 #include "../../../src/client/api.h"
 
-font_s FONT_SMALL;
 font_s FONT_BIG;
 font_s FONT_WEAPONICON;
 font_s FONT_WEAPONNUM;
@@ -24,7 +23,7 @@ var float autocvar_hlhud_hideTime  = 3.0f;
 #include "WeaponSelect.qc"
 
 
-var string g_ammoPic;
+noref var string g_ammoPic;
 HLWeaponSelect weaponSelectionHUD;
 
 var float g_oldHealth;
@@ -264,7 +263,7 @@ typedef enum
 
 #define ITEM_COUNT 3
 
-string g_item_spr;
+noref var string g_item_spr;
 
 typedef struct
 {
@@ -409,6 +408,7 @@ HUD_Init(void)
 void
 HUD_ReloadVideoResources(void)
 {
+#if 0
 	font.Load("fonts/chat.font", FONT_SMALL);
 	font.Load("fonts/font20.font", FONT_BIG);
 	font.Load("fonts/weaponicon.font", FONT_WEAPONICON);
@@ -416,6 +416,7 @@ HUD_ReloadVideoResources(void)
 	font.Load("fonts/weapontext.font", FONT_WEAPONTEXT);
 	font.Load("fonts/weaponnumbers.font", FONT_WEAPONNUM);
 	font.Load("fonts/weaponnumbers_blurry.font", FONT_WEAPONNUMB);
+#endif
 
 	g_hud1_spr = spriteframe("sprites/640hud1.spr", 0, 0.0f);
 	g_hud2_spr = spriteframe("sprites/640hud2.spr", 0, 0.0f);
@@ -634,7 +635,7 @@ HUD_Draw(void)
 
 
 	if (1) {
-		vector pos = g_hudMins + [g_hudRes[0] - 192, g_hudRes[1] - 128];
+		pos = g_hudMins + [g_hudRes[0] - 192, g_hudRes[1] - 128];
 		pos[1] += 48;
 		HUD_ItemNotify_Draw(pos);
 		HUD_AmmoNotify_Draw(pos);

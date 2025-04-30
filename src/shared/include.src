@@ -4,7 +4,6 @@
 ../../../valve/src/shared/flags.h
 ../../../valve/src/shared/skeleton.h
 ../../../valve/src/shared/Player.qc
-../../../valve/src/shared/animations.qc
 ../../../valve/src/shared/fx_gaussbeam.qc
 ../../../valve/src/shared/GaussBeam.qc
 ../../../valve/src/shared/Weapon.qc

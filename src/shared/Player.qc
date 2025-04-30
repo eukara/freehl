@@ -16,26 +16,11 @@
 
 #include "animations.h"
 
-/* all custom SendFlags bits we can possibly send */
-enumflags
-{
-	PLAYER_TOPFRAME = PLAYER_CUSTOMFIELDSTART,
-	PLAYER_BOTTOMFRAME
-};
-
 class hlPlayer:ncPlayer
 {
 	void(void) hlPlayer;
 
-	/* animation */
-	PREDICTED_INT(anim_top)
-	PREDICTED_FLOAT(anim_top_time)
-	PREDICTED_FLOAT(anim_top_delay)
-	PREDICTED_INT(anim_bottom)
-	PREDICTED_FLOAT(anim_bottom_time)
-
 	virtual void Physics_Jump(void);
-	virtual void UpdatePlayerAnimation(float);
 
 #ifdef CLIENT
 	virtual void UpdatePlayerAttachments(bool);
@@ -52,29 +37,9 @@ class hlPlayer:ncPlayer
 #endif
 };
 
-void Animation_PlayerTop(hlPlayer, float, float);
-void Animation_PlayerBottom(hlPlayer, float, float);
-
 void
 hlPlayer::hlPlayer(void)
 {
-	anim_top = 0;
-	anim_top_time = 0;
-	anim_top_delay = 0;
-	anim_bottom = 0;
-	anim_bottom_time = 0;
-}
-
-void Animation_PlayerUpdate(hlPlayer); 
-void Animation_TimerUpdate(hlPlayer, float); 
-
-void
-hlPlayer::UpdatePlayerAnimation(float timelength)
-{
-	/* calculate our skeletal progression */
-	Animation_PlayerUpdate(this);
-	/* advance animation timers */
-	Animation_TimerUpdate(this, timelength);
 }
 
 #ifdef CLIENT
@@ -213,13 +178,6 @@ hlPlayer::ReceiveEntity(float new, float flChanged)
 	/* the generic client attributes */
 	super::ReceiveEntity(new, flChanged);
 
-	/* animation */
-	READENTITY_BYTE(anim_top, PLAYER_TOPFRAME)
-	READENTITY_FLOAT(anim_top_time, PLAYER_TOPFRAME)
-	READENTITY_FLOAT(anim_top_delay, PLAYER_TOPFRAME)
-	READENTITY_BYTE(anim_bottom, PLAYER_BOTTOMFRAME)
-	READENTITY_FLOAT(anim_bottom_time, PLAYER_BOTTOMFRAME)
-
 	setorigin(this, origin);
 
 	/* these only concern the current hlPlayer */
@@ -246,12 +204,6 @@ hlPlayer::PredictPreFrame(void)
 {
 	/* the generic client attributes */
 	super::PredictPreFrame();
-
-	SAVE_STATE(anim_top)
-	SAVE_STATE(anim_top_delay)
-	SAVE_STATE(anim_top_time)
-	SAVE_STATE(anim_bottom)
-	SAVE_STATE(anim_bottom_time)
 }
 
 /*
@@ -266,12 +218,6 @@ hlPlayer::PredictPostFrame(void)
 {
 	/* the generic client attributes */
 	super::PredictPostFrame();
-
-	ROLL_BACK(anim_top)
-	ROLL_BACK(anim_top_delay)
-	ROLL_BACK(anim_top_time)
-	ROLL_BACK(anim_bottom)
-	ROLL_BACK(anim_bottom_time)
 }
 
 #else
@@ -279,33 +225,12 @@ void
 hlPlayer::Save(float handle)
 {
 	super::Save(handle);
-
-	SaveInt(handle, "anim_top", anim_top);
-	SaveFloat(handle, "anim_top_time", anim_top_time);
-	SaveFloat(handle, "anim_top_delay", anim_top_delay);
-	SaveInt(handle, "anim_bottom", anim_bottom);
-	SaveFloat(handle, "anim_bottom_time", anim_bottom_time);
 }
 
 void
 hlPlayer::Restore(string strKey, string strValue)
 {
 	switch (strKey) {
-	case "anim_top":
-		anim_top = ReadInt(strValue);
-		break;
-	case "anim_top_time":
-		anim_top_time = ReadFloat(strValue);
-		break;
-	case "anim_top_delay":
-		anim_top_delay = ReadFloat(strValue);
-		break;
-	case "anim_bottom":
-		anim_bottom = ReadInt(strValue);
-		break;
-	case "anim_bottom_time":
-		anim_bottom_time = ReadFloat(strValue);
-		break;
 	default:
 		super::Restore(strKey, strValue);
 	}
@@ -316,12 +241,6 @@ hlPlayer::EvaluateEntity(void)
 {
 	/* the generic client attributes */
 	ncPlayer::EvaluateEntity();
-
-	EVALUATE_FIELD(anim_top, PLAYER_TOPFRAME)
-	EVALUATE_FIELD(anim_top_time, PLAYER_TOPFRAME)
-	EVALUATE_FIELD(anim_top_delay, PLAYER_TOPFRAME)
-	EVALUATE_FIELD(anim_bottom, PLAYER_BOTTOMFRAME)
-	EVALUATE_FIELD(anim_bottom_time, PLAYER_BOTTOMFRAME)
 
 }
 
@@ -387,12 +306,6 @@ hlPlayer::SendEntity(entity ePEnt, float flChanged)
 
 	/* the generic client attributes */
 	ncPlayer::SendEntity(ePEnt, flChanged);
-
-	SENDENTITY_BYTE(anim_top, PLAYER_TOPFRAME)
-	SENDENTITY_FLOAT(anim_top_time, PLAYER_TOPFRAME)
-	SENDENTITY_FLOAT(anim_top_delay, PLAYER_TOPFRAME)
-	SENDENTITY_BYTE(anim_bottom, PLAYER_BOTTOMFRAME)
-	SENDENTITY_FLOAT(anim_bottom_time, PLAYER_BOTTOMFRAME)
 
 	return (1);
 }

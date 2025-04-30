@@ -25,14 +25,6 @@ vector g_hud_color;
 vector g_hudmins;
 vector g_hudres;
 
-var string g_hud1_spr;
-var string g_hud2_spr;
-var string g_hud3_spr;
-var string g_hud4_spr;
-var string g_hud5_spr;
-var string g_hud6_spr;
-var string g_hud7_spr;
-var string g_cross_spr;
 var string g_laser_spr;
 
 /* muzzleflash indices */
