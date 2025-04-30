@@ -11,6 +11,7 @@ entityDef weapon_gauss
 	"model_view"		"models/v_gauss.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
+	"animPrefix"		"gauss"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_gauss"

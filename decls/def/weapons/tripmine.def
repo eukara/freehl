@@ -14,6 +14,7 @@ entityDef weapon_tripmine
 	"frame"				"8"
 	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
+	"animPrefix"		"tripmine"
 
 	"def_fireInfo"		"fireInfo_tripminePlant"
 

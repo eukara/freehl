@@ -11,6 +11,7 @@ entityDef weapon_rpg
 	"model_view"		"models/v_rpg.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
+	"animPrefix"		"rpg"
 
 	"def_fireInfo"		"fireInfo_rpg"
 	"def_altFireInfo"	"fireInfo_rpg_homing"

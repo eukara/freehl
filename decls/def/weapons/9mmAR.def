@@ -18,6 +18,7 @@ entityDef weapon_9mmAR
 	"inv_name"			"9mm AR"
 	"clipSize"			"50"
 	"clipSizeDefault"	"25"
+	"animPrefix"		"mp5"
 
 	"ammoIcon"			"weapon_9mmar.ammo"
 	"ammo2Icon"			"weapon_9mmar.ammo2"

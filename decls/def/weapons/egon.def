@@ -22,6 +22,7 @@ entityDef weapon_egon
 	"act_fireStop"		"1"
 	"act_holster"		"10"
 	"fireRate"			"0.2"
+	"animPrefix"		"egon"
 
 	"snd_fireStart"		"Weapon_Gluon.Start"
 	"snd_fireLoop"		"Weapon_Gluon.Run"

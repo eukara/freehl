@@ -16,6 +16,7 @@ entityDef weapon_crossbow
 	"def_fireInfo"	"fireInfo_crossbow"
 	"inv_name"		"Crossbow"
 	"clipSize"		"5"
+	"animPrefix"		"crossbow"
 
 	"ammoIcon"			"weapon_crossbow.ammo"
 	"ammo2Icon"			"weapon_crossbow.ammo2"

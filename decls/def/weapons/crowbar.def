@@ -17,6 +17,7 @@ entityDef weapon_crowbar
 	"inv_name"			"Crowbar"
 	"ammoRequired"		"0"
 	"silent_fire"		"1"
+	"animPrefix"		"crowbar"
 
 	"testDistance"		"-48"
 	"failRate"			"0.5"

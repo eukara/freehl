@@ -11,6 +11,7 @@ entityDef weapon_handgrenade
 	"model_view"			"models/v_grenade.mdl"
 	"snd_acquire"			"Player.PickupWeapon"
 	"snd_respawn"			"item.respawn"
+	"animPrefix"			"crowbar"
 
 	"inv_name"				"Hand Grenade"
 	"inv_weapon"			"weapon_handgrenade"

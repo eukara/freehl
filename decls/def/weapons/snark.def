@@ -12,6 +12,7 @@ entityDef weapon_snark
 	"frame"				"1"
 	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
+	"animPrefix"		"squeak"
 
 	"inv_name"			"Snark"
 	"inv_weapon"		"weapon_snark"

@@ -9,6 +9,85 @@ entityDef player
 	"armorBonus"		"0.5"
 	"model"				"models/player.mdl"
 
+	"spine"				"Bip01 Spine"
+	"torsoStart"		"Bip01 Spine"
+	"torsoEnd"			"Bip01 R Finger12"
+
+	"act_idle"			"0"
+	"act_jump"			"8"
+	"act_walk_crouch"	"6"
+	"act_idle_crouch"	"7"
+	"act_run"			"12"
+	"act_walk"			"13"
+
+	"act_aim"			"16,14"
+	"act_attack"		"17,15"
+
+	"act_aim_crowbar"				"25"
+	"act_attack_crowbar"			"26"
+	"act_aim_crouch_crowbar"		"27"
+	"act_attack_crouch_crowbar"		"28"
+
+	"act_aim_tripmine"				"29"
+	"act_attack_tripmine"			"30"
+	"act_aim_crouch_tripmine"		"31"
+	"act_attack_crouch_tripmine"		"32"
+
+	"act_aim_onehand"				"33"
+	"act_attack_onehand"			"34"
+	"act_aim_crouch_onehand"		"35"
+	"act_attack_crouch_onehand"		"36"
+
+	"act_aim_python"				"37"
+	"act_attack_python"			"38"
+	"act_aim_crouch_python"		"39"
+	"act_attack_crouch_python"		"40"
+
+	"act_aim_shotgun"				"41"
+	"act_attack_shotgun"			"42"
+	"act_aim_crouch_shotgun"		"43"
+	"act_attack_crouch_shotgun"		"44"
+
+	"act_aim_gauss"				"45"
+	"act_attack_gauss"			"46"
+	"act_aim_crouch_gauss"		"47"
+	"act_attack_crouch_gauss"		"48"
+
+	"act_aim_mp5"				"49"
+	"act_attack_mp5"			"50"
+	"act_aim_crouch_mp5"		"51"
+	"act_attack_crouch_mp5"		"52"
+
+
+	"act_aim_rpg"				"53"
+	"act_attack_rpg"			"54"
+	"act_aim_crouch_rpg"		"55"
+	"act_attack_crouch_rpg"		"56"
+
+
+	"act_aim_egon"				"57"
+	"act_attack_egon"			"58"
+	"act_aim_crouch_egon"		"59"
+	"act_attack_crouch_egon"		"60"
+
+
+	"act_aim_squeak"				"61"
+	"act_attack_squeak"			"62"
+	"act_aim_crouch_squeak"		"63"
+	"act_attack_crouch_squeak"		"64"
+
+
+	"act_aim_hive"				"65"
+	"act_attack_hive"			"66"
+	"act_aim_crouch_hive"		"67"
+	"act_attack_crouch_hive"		"68"
+
+
+	"act_aim_crossbow"				"69"
+	"act_attack_crossbow"			"70"
+	"act_aim_crouch_crossbow"		"71"
+	"act_attack_crouch_crossbow"		"71"
+
 	"snd_stepladderLeft"	"step_ladder.left"
 	"snd_stepladderRight"	"step_ladder.right"
 	"snd_fall"				"Player.FallDamage"

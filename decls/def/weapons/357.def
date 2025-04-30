@@ -16,6 +16,7 @@ entityDef weapon_357
 	"def_fireInfo"	"fireInfo_357"
 	"inv_name"		".357 Revolver"
 	"clipSize"		"6"
+	"animPrefix"	"python"
 
 	"ammoIcon"			"weapon_357.ammo"
 	"ammo2Icon"			"weapon_357.ammo2"

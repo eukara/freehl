@@ -31,6 +31,7 @@ entityDef weapon_9mmhandgun
 	"ammoRequired" 		"1"
 	"ammoPerShot"		"1"
 	"punchAngle"		"-2 0 0"
+	"animPrefix"		"onehand"
 
 	"act_fire"			"$9MMHANDGUN_FIRE"
 	"act_fireLast"		"$9MMHANDGUN_FIRELAST"

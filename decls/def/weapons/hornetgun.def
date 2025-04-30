@@ -11,6 +11,7 @@ entityDef weapon_hornetgun
 	"model_view"		"models/v_hgun.mdl"
 	"snd_acquire"		"Player.PickupWeapon"
 	"snd_respawn"		"item.respawn"
+	"animPrefix"		"hive"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_hornetgun"
