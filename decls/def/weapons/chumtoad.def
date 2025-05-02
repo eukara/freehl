@@ -1,0 +1,52 @@
+#define CHUMTOAD_IDLE 0
+#define CHUMTOAD_FIDGET1 1
+#define CHUMTOAD_FIDGET2 2
+#define CHUMTOAD_HOLSTER 3
+#define CHUMTOAD_DRAW 4
+#define CHUMTOAD_FIRE 5
+
+entityDef weapon_chumtoad
+{
+	"editor_color"		".3 .3 1"
+	"editor_mins"		"-16 -16 -16"
+	"editor_maxs"		"16 16 16"
+	"editor_usage"		"Chumtoad"
+	"editor_rotatable"	"1"
+
+	"inherit"			"weapon_base"
+	"model"				"models/chumtoad.mdl"
+	"model_player"		"models/p_squeak.mdl"
+	"model_view"		"models/v_chub.mdl"
+	"frame"				"1"
+	"animPrefix"		"squeak"
+
+	"inv_name"			"Chumtoad"
+	"inv_weapon"		"weapon_chumtoad"
+	"inv_ammo_chumtoad"	"5"
+	"def_onFire"		"projectile_chumtoad"
+	"ammoType"			"ammo_chumtoad"
+	"ammoRequired"		"1"
+	"silent_fire"		"1"
+	"primed_fuse"		"4"
+
+	"act_idle"			"$CHUMTOAD_IDLE,$CHUMTOAD_FIDGET1,$CHUMTOAD_FIDGET2"
+	"act_draw"			"$CHUMTOAD_DRAW"
+	"act_holster"		"$CHUMTOAD_HOLSTER"
+	"act_fire"			"$CHUMTOAD_FIRE"
+	"removeOnEmpty" 	"1"
+
+	// hlWeapon specific
+	"hudSlot"			"4"
+	"hudSlotPos"		"4"
+	"weight"			"5"
+	"crosshair"			"none"
+}
+
+entityDef projectile_chumtoad
+{
+	"spawnclass"		"ncAttack"
+	"def_drop"			"monster_chumtoad"
+	"dropDistance"		"24"
+	"dropOffset"		"8"
+	"drop"				"1"
+}

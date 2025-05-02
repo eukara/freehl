@@ -1,3 +1,16 @@
+#define CROSSBOW_IDLE 0
+#define CROSSBOW_IDLE_EMPTY 1
+#define CROSSBOW_FIDGET 2
+#define CROSSBOW_FIDGET_EMPTY 3
+#define CROSSBOW_FIRE1 4
+#define CROSSBOW_FIRE2 5
+#define CROSSBOW_FIRE_LAST 6
+#define CROSSBOW_RELOAD 7
+#define CROSSBOW_DRAW 8
+#define CROSSBOW_DRAW_EMPTY 9
+#define CROSSBOW_HOLSTER 10
+#define CROSSBOW_HOLSTER_EMPTY 11
+
 entityDef weapon_crossbow
 {
 	"editor_color"		".3 .3 1"
@@ -6,17 +19,16 @@ entityDef weapon_crossbow
 	"editor_usage"		"Crossbow"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_crossbow.mdl"
+	"model_player"		"models/p_crossbow.mdl"
 	"model_view"		"models/v_crossbow.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"animPrefix"		"crossbow"
 
 	// weapon specific
-	"def_fireInfo"	"fireInfo_crossbow"
-	"inv_name"		"Crossbow"
-	"clipSize"		"5"
-	"animPrefix"		"crossbow"
+	"def_fireInfo"		"fireInfo_crossbow"
+	"inv_name"			"Crossbow"
+	"clipSize"			"5"
 
 	"ammoIcon"			"weapon_crossbow.ammo"
 	"ammo2Icon"			"weapon_crossbow.ammo2"
@@ -24,25 +36,25 @@ entityDef weapon_crossbow
 	"icon"				"weapon_crossbow.weapon"
 	"iconSelected"		"weapon_crossbow.weapon_s"
 
-	"act_fire"			"4"
-	"act_fireLast"		"6"
-	"act_holster"		"10"
-	"act_holsterEmpty"	"11"
-	"act_reload"			"7"
-	"act_draw"			"8"
-	"act_drawEmpty"		"9"
-	"act_idle"			"0,2"
-	"act_idleEmpty"		"1,3"
+	"act_fire"			"$CROSSBOW_FIRE1,$CROSSBOW_FIRE2"
+	"act_fireLast"		"$$CROSSBOW_FIRE_LAST"
+	"act_holster"		"$CROSSBOW_HOLSTER"
+	"act_holsterEmpty"	"$CROSSBOW_HOLSTER_EMPTY"
+	"act_reload"		"$CROSSBOW_RELOAD"
+	"act_draw"			"$CROSSBOW_DRAW"
+	"act_drawEmpty"		"$CROSSBOW_DRAW_EMPTY"
+	"act_idle"			"$CROSSBOW_IDLE,$CROSSBOW_FIDGET"
+	"act_idleEmpty"		"$CROSSBOW_IDLE_EMPTY,$CROSSBOW_FIDGET_EMPTY"
 
-	"snd_fire"		"Weapon_Crossbow.Single"
-	"snd_empty"		"Weapons.Empty"
-	"snd_reload"	"Weapon_Crossbow.Reload"
+	"snd_fire"			"Weapon_Crossbow.Single"
+	"snd_empty"			"Weapons.Empty"
+	"snd_reload"		"Weapon_Crossbow.Reload"
 
 	// hlWeapon specific
-	"hudSlot"		"2"
-	"hudSlotPos"	"2"
-	"weight"		"10"
-	"zoomFov"		"18"
+	"hudSlot"			"2"
+	"hudSlotPos"		"2"
+	"weight"			"10"
+	"zoomFov"			"18"
 }
 
 entityDef weapon_crossbow_mp

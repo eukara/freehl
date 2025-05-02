@@ -1,3 +1,13 @@
+#define TRIPMINE_IDLE1 0
+#define TRIPMINE_IDLE2 1
+#define TRIPMINE_RESET 2
+#define TRIPMINE_FIRE 3
+#define TRIPMINE_FIDGET 4
+#define TRIPMINE_HOLSTER 5
+#define TRIPMINE_DRAW 6
+#define TRIPMINE_PLANT_WALL 7
+#define TRIPMINE_PLANT_GROUND 8
+
 entityDef weapon_tripmine
 {
 	"editor_color"		".3 .3 1"
@@ -6,14 +16,13 @@ entityDef weapon_tripmine
 	"editor_usage"		"Tripmine"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/v_tripmine.mdl"
+	"model_player"		"models/p_tripmine.mdl"
 	"model_view"		"models/v_tripmine.mdl"
-	"body0"				"2"
+	"body0"				"2" // World Model is unusual, so we must set body and frame instead
 	"body1"				"2"
 	"frame"				"8"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
 	"animPrefix"		"tripmine"
 
 	"def_fireInfo"		"fireInfo_tripminePlant"
@@ -21,10 +30,10 @@ entityDef weapon_tripmine
 	"inv_ammo_tripmine"	"1"
 	"ammoType"			"ammo_tripmine"
 	"ammoRequired"		"1"
-	"act_idle"			"0,1,4"
-	"act_fire"			"3"
-	"act_draw"			"6"
-	"act_holster"		"5"
+	"act_idle"			"$TRIPMINE_IDLE1,$TRIPMINE_IDLE2,$TRIPMINE_FIDGET"
+	"act_fire"			"$TRIPMINE_FIRE"
+	"act_draw"			"$TRIPMINE_DRAW"
+	"act_holster"		"$TRIPMINE_HOLSTER"
 	"removeOnEmpty"		"1"
 	"snd_fire"			"TripmineGrenade.Deploy"
 

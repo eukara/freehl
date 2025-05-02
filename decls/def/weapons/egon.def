@@ -1,3 +1,15 @@
+#define EGON_IDLE 0
+#define EGON_FIDGET 1
+#define EGON_SECONDARY_MODE_START 2
+#define EGON_SECONDARY_FIRE 3
+#define EGON_SECONDARY_MODE_END 4
+#define EGON_FIRE1 5
+#define EGON_FIRE2 6
+#define EGON_FIRE3 7
+#define EGON_FIRE4 8
+#define EGON_DRAW 9
+#define EGON_HOLSTER 10
+
 entityDef weapon_egon
 {
 	"editor_color"		".3 .3 1"
@@ -6,23 +18,22 @@ entityDef weapon_egon
 	"editor_usage"		"Gluon Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_egon.mdl"
+	"model_player"		"models/p_egon.mdl"
 	"model_view"		"models/v_egon.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"animPrefix"		"egon"
 	"def_onFire"		"projectile_egonbeam"
 
 	"inv_ammo_uranium"	"20"
 	"ammoType"			"ammo_uranium"
 	"ammoRequired"		"1"
-	"act_idle"			"0,1"
-	"act_draw"			"9"
-	"act_loop"			"7,8"
-	"act_fireStop"		"1"
-	"act_holster"		"10"
+	"act_idle"			"$EGON_IDLE,$EGON_FIDGET"
+	"act_draw"			"$EGON_DRAW"
+	"act_loop"			"$EGON_FIRE1,$EGON_FIRE2,$EGON_FIRE3,$EGON_FIRE4"
+	"act_fireStop"		"$EGON_FIDGET"
+	"act_holster"		"$EGON_HOLSTER"
 	"fireRate"			"0.2"
-	"animPrefix"		"egon"
 
 	"snd_fireStart"		"Weapon_Gluon.Start"
 	"snd_fireLoop"		"Weapon_Gluon.Run"

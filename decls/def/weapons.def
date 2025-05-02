@@ -1,6 +1,6 @@
 entityDef weapon_base
 {
-	"spawnclass"		"HLWeapon"
+	"spawnclass"		"hlWeapon"
 	"mins"				"-16 -16 0"
 	"maxs"				"16 16 16"
 	"snd_acquire"		"Player.PickupWeapon"
@@ -10,6 +10,7 @@ entityDef weapon_base
 #include "weapons/357.def"
 #include "weapons/9mmAR.def"
 #include "weapons/9mmhandgun.def"
+#include "weapons/chumtoad.def"
 #include "weapons/crossbow.def"
 #include "weapons/crowbar.def"
 #include "weapons/egon.def"

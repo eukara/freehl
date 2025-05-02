@@ -1,3 +1,15 @@
+#define CROWBAR_IDLE1 0
+#define CROWBAR_DRAW 1
+#define CROWBAR_HOLSTER 2
+#define CROWBAR_FIRE1_HIT 3
+#define CROWBAR_FIRE1_MISS 4
+#define CROWBAR_FIRE2_HIT 5
+#define CROWBAR_FIRE2_MISS 6
+#define CROWBAR_FIRE3_MISS 7
+#define CROWBAR_FIRE3_HIT 8
+#define CROWBAR_IDLE2 9
+#define CROWBAR_IDLE3 10
+
 entityDef weapon_crowbar
 {
 	"editor_color"		".3 .3 1"
@@ -6,29 +18,28 @@ entityDef weapon_crowbar
 	"editor_usage"		"Crowbar"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_crowbar.mdl"
+	"model_player"		"models/p_crowbar.mdl"
 	"model_view"		"models/v_crowbar.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"animPrefix"		"crowbar"
 
 	// weapon specific
 	"def_onFire"		"projectile_crowbar"
 	"inv_name"			"Crowbar"
 	"ammoRequired"		"0"
 	"silent_fire"		"1"
-	"animPrefix"		"crowbar"
 
 	"testDistance"		"-48"
 	"failRate"			"0.5"
 	"fireRate"			"0.25"
 	"snd_fireFailed"	"Weapon_Crowbar.Single"
 
-	"act_idle"			"0"
-	"act_draw"			"1"
-	"act_holster"		"2"
-	"act_fireFailed"	"4,5,7"
-	"act_fire"			"3,6,8"
+	"act_idle"			"$CROWBAR_IDLE1,$CROWBAR_IDLE2,$CROWBAR_IDLE3"
+	"act_draw"			"$CROWBAR_DRAW"
+	"act_holster"		"$CROWBAR_HOLSTER"
+	"act_fireFailed"	"$CROWBAR_FIRE1_MISS,$CROWBAR_FIRE2_MISS,$CROWBAR_FIRE3_MISS"
+	"act_fire"			"$CROWBAR_FIRE1_HIT,$CROWBAR_FIRE2_HIT,$CROWBAR_FIRE3_HIT"
 
 	// hlWeapon specific
 	"hudSlot"		"0"

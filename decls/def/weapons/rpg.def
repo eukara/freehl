@@ -1,3 +1,14 @@
+#define RPG_IDLE 0
+#define RPG_FIDGET 1
+#define RPG_RELOAD 2
+#define RPG_FIRE 3
+#define RPG_HOLSTER 4
+#define RPG_DRAW 5
+#define RPG_HOLSTER_EMPTY 6
+#define RPG_DRAW_EMPTY 7
+#define RPG_IDLE_EMPTY 8
+#define RPG_FIDGET_EMPTY 9
+
 entityDef weapon_rpg
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +17,10 @@ entityDef weapon_rpg
 	"editor_usage"		"Rocket Launcher"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_rpg.mdl"
+	"model_player"		"models/p_rpg.mdl"
 	"model_view"		"models/v_rpg.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
 	"animPrefix"		"rpg"
 
 	"def_fireInfo"		"fireInfo_rpg"
@@ -24,15 +34,15 @@ entityDef weapon_rpg
 	"snd_fire"			"Weapon_RPG.Single"
 	"snd_empty"			"Weapons.Empty"
 
-	"act_idle"			"0,1"
-	"act_idleEmpty"		"8,9"
-	"act_holster"		"4"
-	"act_holsterEmpty"	"6"
-	"act_draw"			"5"
-	"act_drawEmpty"		"7"
-	"act_fire"			"3"
-	"act_reload"		"2"
-	"act_release"		"2"
+	"act_idle"			"$RPG_IDLE,$RPG_FIDGET"
+	"act_idleEmpty"		"$RPG_IDLE_EMPTY,$RPG_FIDGET_EMPTY"
+	"act_holster"		"$RPG_HOLSTER"
+	"act_holsterEmpty"	"$RPG_HOLSTER_EMPTY"
+	"act_draw"			"$RPG_DRAW"
+	"act_drawEmpty"		"$RPG_DRAW_EMPTY"
+	"act_fire"			"$RPG_FIRE"
+	"act_reload"		"$RPG_RELOAD"
+	"act_release"		"$RPG_RELOAD"
 
 	// hlWeapon specific
 	"hudSlot"		"3"
@@ -71,8 +81,7 @@ entityDef projectile_rocket
 	"light_color"				"1 1 1"
 	"light_radius"				"160"
 	"light_offset"				"0 0 0"
-	"detonate_offset"			"24"
-	"detonate_offset"	"64"
+	"detonate_offset"			"64"
 
 	"explode_light_color"		"1 0.5 0"
 	"explode_light_radius"		"1024"

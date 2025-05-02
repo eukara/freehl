@@ -1,3 +1,12 @@
+#define 9MMAR_IDLE1 0
+#define 9MMAR_IDLE2 1
+#define 9MMAR_SECONDARY 2
+#define 9MMAR_RELOAD 3
+#define 9MMAR_DRAW 4
+#define 9MMAR_FIRE1 5
+#define 9MMAR_FIRE2 6
+#define 9MMAR_FIRE3 7
+
 entityDef weapon_9mmAR
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +15,11 @@ entityDef weapon_9mmAR
 	"editor_usage"		"9mm AR"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_9mmAR.mdl"
+	"model"				"models/p_9mmAR.mdl"
 	"model_view"		"models/v_9mmAR.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"animPrefix"		"mp5"
 
 	// ncWeapon specific
 	"def_fireInfo"		"fireInfo_9mmAR"
@@ -18,7 +27,6 @@ entityDef weapon_9mmAR
 	"inv_name"			"9mm AR"
 	"clipSize"			"50"
 	"clipSizeDefault"	"25"
-	"animPrefix"		"mp5"
 
 	"ammoIcon"			"weapon_9mmar.ammo"
 	"ammo2Icon"			"weapon_9mmar.ammo2"
@@ -26,19 +34,19 @@ entityDef weapon_9mmAR
 	"icon"				"weapon_9mmar.weapon"
 	"iconSelected"		"weapon_9mmar.weapon_s"
 
-	"act_fire"		"5,6,7"
-	"act_holster"	"4"
-	"act_reload"		"3"
-	"act_draw"		"4"
-	"act_idle"		"0,1"
+	"act_fire"			"$9MMAR_FIRE1,$9MMAR_FIRE2,$9MMAR_FIRE3"
+//	"act_holster"		"$9MMAR_HOLSTER"
+	"act_reload"		"$9MMAR_RELOAD"
+	"act_draw"			"$9MMAR_DRAW"
+	"act_idle"			"$9MMAR_IDLE1,$9MMAR_IDLE2"
 
-	"snd_fire"		"Weapon_MP5.Single"
-	"snd_empty"		"Weapons.Empty"
+	"snd_fire"			"Weapon_MP5.Single"
+	"snd_empty"			"Weapons.Empty"
 
 	// hlWeapon specific
-	"hudSlot"		"2"
-	"hudSlotPos"	"0"
-	"weight"		"15"
+	"hudSlot"			"2"
+	"hudSlotPos"		"0"
+	"weight"			"15"
 }
 
 entityDef projectile_9mmAR
@@ -61,14 +69,14 @@ entityDef fireInfo_9mmAR
 
 entityDef fireInfo_ARGrenade
 {
-	"def_onFire"	"projectile_ARgrenade"
+	"def_onFire"		"projectile_ARgrenade"
 	"ammoType"			"ammo_m203_grenade"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
 	"fireRate"			"1"
 	"punchAngle"		"-10 0 0"
 	"snd_fire"			"Weapon_MP5.Double"
-	"act_fire"			"2"
+	"act_fire"			"$9MMAR_SECONDARY"
 }
 
 entityDef projectile_ARgrenade
@@ -93,6 +101,7 @@ entityDef projectile_ARgrenade
 
 	"def_damage"		"damage_ARgrenadeDirect"
 	"def_splash_damage"	"damage_ARgrenadeSplash"
+
 	"detonate_offset"			"24"
 	"explode_light_color"		"1 0.5 0"
 	"explode_light_radius"		"1024"
@@ -108,7 +117,8 @@ entityDef damage_ARgrenadeSplash
 {
 	"damage"	"skill:plr_9mmAR_grenade"
 	"radius"	"160"
-	"knockback"				"300"
+	"knockback"	"300"
+	"push"		"10000"
 }
 
 // multiplayer version

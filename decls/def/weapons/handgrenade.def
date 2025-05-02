@@ -1,3 +1,12 @@
+#define GRENADE_IDLE 0
+#define GRENADE_FIDGET 1
+#define GRENADE_CHARGE 2
+#define GRENADE_FIRE1 3
+#define GRENADE_FIRE2 4
+#define GRENADE_FIRE3 5
+#define GRENADE_HOLSTER 6
+#define GRENADE_DRAW 7
+
 entityDef weapon_handgrenade
 {
 	"editor_color"			".3 .3 1"
@@ -6,11 +15,10 @@ entityDef weapon_handgrenade
 	"editor_usage"			"Hand Grenade"
 	"editor_rotatable"		"1"
 
-	"spawnclass"			"hlWeapon"
+	"inherit"				"weapon_base"
 	"model"					"models/w_grenade.mdl"
+	"model_player"			"models/p_grenade.mdl"
 	"model_view"			"models/v_grenade.mdl"
-	"snd_acquire"			"Player.PickupWeapon"
-	"snd_respawn"			"item.respawn"
 	"animPrefix"			"crowbar"
 
 	"inv_name"				"Hand Grenade"
@@ -26,12 +34,12 @@ entityDef weapon_handgrenade
 	"removeOnEmpty"			"1"
 	"drawAfterRelease"		"1"
 
-	"act_idle"				"0,1"
-	"act_draw"				"7"
-	"act_holster"			"6"
-	"act_fire"				"7"
-	"act_delay"				"2"
-	"act_release"			"3,4,5"
+	"act_idle"				"$GRENADE_IDLE,$GRENADE_FIDGET"
+	"act_draw"				"$GRENADE_DRAW"
+	"act_holster"			"$GRENADE_HOLSTER"
+	"act_fire"				"$GRENADE_DRAW"
+	"act_delay"				"$GRENADE_CHARGE"
+	"act_release"			"$GRENADE_FIRE1,$GRENADE_FIRE2,$GRENADE_FIRE3"
 
 	// hlWeapon specific
 	"hudSlot"				"4"
@@ -62,7 +70,6 @@ entityDef projectile_handgrenade
 	"explode_light_color"		"1 0.5 0"
 	"explode_light_radius"		"1024"
 	"explode_light_fadetime"	"3"
-
 }
 
 entityDef damage_handgrenadeDirect

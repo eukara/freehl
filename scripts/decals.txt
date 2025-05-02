@@ -58,3 +58,11 @@ Blood.Alien
 	"{yblood7" "1"
 	"{yblood8" "1"
 }
+
+// OPPOSING FORCE (1999)
+ShockScorch
+{
+	"{ofscorch1" "1"
+	"{ofscorch2" "1"
+	"{ofscorch3" "1"
+}

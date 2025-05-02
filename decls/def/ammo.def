@@ -1,4 +1,13 @@
-#include "ammo/base.def"
+entityDef ammo_base
+{
+	"spawnclass"	"ncItem"
+	"snd_acquire"	"ammo.pickup"
+	"snd_respawn"	"ammo.respawn"
+	"mins"			"-12 -12 0"
+	"maxs"			"12 12 12"
+	"droptofloor"	"1"
+}
+
 #include "ammo/buckshot.def"
 #include "ammo/357.def"
 #include "ammo/9mmAR.def"
@@ -24,6 +33,7 @@ entityDef ammo_types {
 	"ammo_snark"			"10"
 	"ammo_hornet"			"11"
 	"ammo_m203_grenade"		"12"
+	"ammo_chumtoad"			"13"
 }
 
 entityDef ammo_names {
@@ -40,6 +50,7 @@ entityDef ammo_names {
 	"ammo_snark"			"Squeak Grenades"
 	"ammo_hornet"			"Hornets"
 	"ammo_m203_grenade"		"M203 Grenades"
+	"ammo_chumtoad"			"Chumtoads"
 }
 
 entityDef ammo_max {
@@ -56,4 +67,5 @@ entityDef ammo_max {
 	"ammo_snark"			"10"
 	"ammo_hornet"			"8"
 	"ammo_m203_grenade"		"10"
+	"ammo_chumtoad"			"10"
 }

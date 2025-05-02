@@ -1,3 +1,10 @@
+#define HIVE_IDLE 0
+#define HIVE_FIDGET1 1
+#define HIVE_FIDGET2 2
+#define HIVE_HOLSTER 3
+#define HIVE_DRAW 4
+#define HIVE_FIRE 5
+
 entityDef weapon_hornetgun
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +13,9 @@ entityDef weapon_hornetgun
 	"editor_usage"		"Hornet Gun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_hgun.mdl"
 	"model_view"		"models/v_hgun.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
 	"animPrefix"		"hive"
 
 	// weapon specific
@@ -19,10 +24,10 @@ entityDef weapon_hornetgun
 	"inv_name"			"Hornet Gun"
 	"inv_ammo_hornet"	"8"
 
-	"act_fire"			"5"
-	"act_holster"		"3"
-	"act_draw"			"4"
-	"act_idle"			"0,1,2"
+	"act_fire"			"$HIVE_FIRE"
+	"act_holster"		"$HIVE_HOLSTER"
+	"act_draw"			"$HIVE_DRAW"
+	"act_idle"			"$HIVE_IDLE,$HIVE_FIDGET1,$HIVE_FIDGET2"
 
 	"snd_fire"			"Weapon_Hornetgun.Single"
 
@@ -36,14 +41,16 @@ entityDef weapon_hornetgun
 
 entityDef projectile_hornet
 {
-	"inherit" 	"ranged_agrunt_shot_orange"
+	"inherit" 	"ranged_agrunt_shot_orange
+"
 	"damage"	"10"
 	"offset"	"24 8 -16"
 }
 
 entityDef projectile_hornet_red
 {
-	"inherit" 	"ranged_agrunt_shot_red"
+	"inherit" 	"ranged_agrunt_shot_red
+"
 	"damage"	"10"
 	"offset"	"24 8 -16"
 }

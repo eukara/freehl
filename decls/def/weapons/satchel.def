@@ -1,3 +1,12 @@
+#define SATCHEL_IDLE 0
+#define SATCHEL_FIDGET 1
+#define SATCHEL_DRAW 2
+#define SATCHEL_FIRE 3
+#define SATCHEL_HOLSTER 4
+
+// Thankfully both viewmodels
+// have the same ACT order
+
 entityDef weapon_satchel
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +15,10 @@ entityDef weapon_satchel
 	"editor_usage"		"Satchel"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_satchel.mdl"
+	"model_player"		"models/p_satchel.mdl"
 	"model_view"		"models/v_satchel.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
 	"animPrefix"		"onehand"
 
 	"def_fireInfo"		"fireInfo_satchel_primary"
@@ -18,9 +26,10 @@ entityDef weapon_satchel
 	"ammoType"			"ammo_satchel"
 	"inv_ammo_satchel"	"1"
 
-	"act_idle"			"0,1"
-	"act_draw"			"2"
-	"act_fire"			"3"
+	"act_idle"			"$SATCHEL_IDLE,$SATCHEL_FIDGET"
+	"act_draw"			"$SATCHEL_DRAW"
+	"act_fire"			"$SATCHEL_FIRE"
+	"act_holster"		"$SATCHEL_HOLSTER"
 
 	// hlWeapon specific
 	"hudSlot"			"4"
@@ -44,13 +53,15 @@ entityDef projectile_satchel
 	"snd_bounce"		"SatchelCharge.Bounce"
 	"inherit_velocity"	"1"
 
-	"def_splash_damage"	"damage_satchelExplosion"
-	"model_detonate"	"fx_explosion.main"
-	"snd_explode"		"fx.explosion"
-	"decal_detonate"	"ExplosionScorch"
+	"def_splash_damage"			"damage_satchelExplosion"
+	"model_detonate"			"fx_explosion.main"
+	"snd_explode"				"fx.explosion"
+	"decal_detonate"			"ExplosionScorch"
 	"explode_light_color"		"1 0.5 0"
 	"explode_light_radius"		"1024"
 	"explode_light_fadetime"	"3"
+
+	
 }
 
 entityDef damage_satchelExplosion
@@ -74,5 +85,7 @@ entityDef fireInfo_satchel_secondary
 	"fireRate"			"1.0"
 	"removeOnEmpty" 	"1"
 	"ammoRequired"		"1"
+	"model_player"		"models/p_satchel_radio.mdl"
+	"model_view"		"models/v_satchel_radio.mdl"
 }
 

@@ -1,3 +1,14 @@
+#define SHOTGUN_IDLE1 0
+#define SHOTGUN_FIRE 1
+#define SHOTGUN_SECONDARY 2
+#define SHOTGUN_RELOAD 3
+#define SHOTGUN_RELOAD_END 4
+#define SHOTGUN_RELOAD_START 5
+#define SHOTGUN_DRAW 6
+#define SHOTGUN_HOLSTER 7
+#define SHOTGUN_IDLE2 8
+#define SHOTGUN_IDLE3 9
+
 entityDef weapon_shotgun
 {
 	"editor_color"		".3 .3 1"
@@ -6,11 +17,10 @@ entityDef weapon_shotgun
 	"editor_usage"		"Shotgun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_shotgun.mdl"
+	"model_player"		"models/p_shotgun.mdl"
 	"model_view"		"models/v_shotgun.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
 	"animPrefix"		"shotgun"
 
 	// weapon specific
@@ -29,13 +39,13 @@ entityDef weapon_shotgun
 	"icon"				"weapon_shotgun.weapon"
 	"iconSelected"		"weapon_shotgun.weapon_s"
 
-	"act_fire"			"1"
-	"act_holster"		"7"
-	"act_reloadStart"	"5"
-	"act_reload"			"3"
-	"act_reloadEnd"		"4"
-	"act_draw"			"6"
-	"act_idle"			"0,8,9"
+	"act_fire"			"$SHOTGUN_FIRE"
+	"act_holster"		"$SHOTGUN_HOLSTER"
+	"act_reloadStart"	"$SHOTGUN_RELOAD_START"
+	"act_reload"		"$SHOTGUN_RELOAD"
+	"act_reloadEnd"		"$SHOTGUN_RELOAD_END"
+	"act_draw"			"$SHOTGUN_DRAW"
+	"act_idle"			"$SHOTGUN_IDLE1,$SHOTGUN_IDLE2,$SHOTGUN_IDLE3"
 
 	"snd_fire"			"Weapon_Shotgun.Single"
 	"snd_empty"			"Weapons.Empty"
@@ -78,7 +88,7 @@ entityDef fireInfo_altShotgun
 	"def_onFire"	"projectile_shotgun_alt"
 	"ammoPerShot"	"2"
 	"fireRate"		"1.5"
-	"act_fire"		"2"
+	"act_fire"		"$SHOTGUN_SECONDARY"
 	"punchAngle"	"-10 0 0"
 	"snd_fire"		"Weapon_Shotgun.Double"
 }

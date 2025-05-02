@@ -1,3 +1,10 @@
+#define SNARK_IDLE 0
+#define SNARK_FIDGET1 1
+#define SNARK_FIDGET2 2
+#define SNARK_HOLSTER 3
+#define SNARK_DRAW 4
+#define SNARK_FIRE 5
+
 entityDef weapon_snark
 {
 	"editor_color"		".3 .3 1"
@@ -6,12 +13,11 @@ entityDef weapon_snark
 	"editor_usage"		"Snark"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_sqknest.mdl"
+	"model_player"		"models/p_squeak.mdl"
 	"model_view"		"models/v_squeak.mdl"
-	"frame"				"1"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"frame"				"1" // World Model has no static idle, so we set frame instead
 	"animPrefix"		"squeak"
 
 	"inv_name"			"Snark"
@@ -23,10 +29,10 @@ entityDef weapon_snark
 	"silent_fire"		"1"
 	"primed_fuse"		"4"
 
-	"act_idle"			"0,1,2"
-	"act_draw"			"4"
-	"act_holster"		"3"
-	"act_throw"			"5"
+	"act_idle"			"$SNARK_IDLE,$SNARK_FIDGET1,$SNARK_FIDGET2"
+	"act_draw"			"$SNARK_DRAW"
+	"act_holster"		"$SNARK_HOLSTER"
+	"act_fire"			"$SNARK_FIRE"
 	"removeOnEmpty" 	"1"
 
 	// hlWeapon specific
