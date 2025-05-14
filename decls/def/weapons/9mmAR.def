@@ -17,7 +17,7 @@ entityDef weapon_9mmAR
 
 	"inherit"			"weapon_base"
 	"model"				"models/w_9mmAR.mdl"
-	"model"				"models/p_9mmAR.mdl"
+	"model_player"		"models/p_9mmAR.mdl"
 	"model_view"		"models/v_9mmAR.mdl"
 	"animPrefix"		"mp5"
 
@@ -27,6 +27,10 @@ entityDef weapon_9mmAR
 	"inv_name"			"9mm AR"
 	"clipSize"			"50"
 	"clipSizeDefault"	"25"
+
+	"def_ejectBrass"	"debris_brass_fast"
+	"ejectBrassDelay"	"0"
+	"ejectBrassOffset"	"17 6 -8"
 
 	"ammoIcon"			"weapon_9mmar.ammo"
 	"ammo2Icon"			"weapon_9mmar.ammo2"

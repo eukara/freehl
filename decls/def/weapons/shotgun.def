@@ -32,6 +32,8 @@ entityDef weapon_shotgun
 	"ammoType"			"ammo_buckshot"
 	"ammoRequired"		"1"
 	"model_flash"		"sprites/muzzleflash2.spr"
+	"def_ejectBrass"	"debris_shell"
+	"ejectBrassOffset"	"20 7 -12"
 
 	"ammoIcon"			"weapon_shotgun.ammo"
 	"ammo2Icon"			"weapon_shotgun.ammo2"
@@ -49,9 +51,10 @@ entityDef weapon_shotgun
 
 	"snd_fire"			"Weapon_Shotgun.Single"
 	"snd_empty"			"Weapons.Empty"
+	"snd_ejectBrass"	"Weapon_Shotgun.Special1"
 
 	"snd_reload"		"Weapon_Shotgun.Reload"
-	"snd_reload_end"	"Weapon_Shotgun.Special1"
+	"snd_reloadEnd"		"Weapon_Shotgun.Special1"
 
 	// hlWeapon specific
 	"hudSlot"		"2"
@@ -81,6 +84,7 @@ entityDef fireInfo_shotgun
 	"ammoPerShot"	"1"
 	"fireRate"		"0.75"
 	"punchAngle"	"-5 0 0"
+	"ejectBrassDelay"	"50"
 }
 
 entityDef fireInfo_altShotgun
@@ -91,6 +95,7 @@ entityDef fireInfo_altShotgun
 	"act_fire"		"$SHOTGUN_SECONDARY"
 	"punchAngle"	"-10 0 0"
 	"snd_fire"		"Weapon_Shotgun.Double"
+	"ejectBrassDelay"	"80"
 }
 
 // multiplayer version

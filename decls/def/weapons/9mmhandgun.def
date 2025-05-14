@@ -16,11 +16,11 @@ entityDef weapon_9mmhandgun
 	"editor_usage"		"9mm Handgun"
 	"editor_rotatable"	"1"
 
-	"spawnclass"		"hlWeapon"
+	"inherit"			"weapon_base"
 	"model"				"models/w_9mmhandgun.mdl"
+	"model_player"		"models/p_9mmhandgun.mdl"
 	"model_view"		"models/v_9mmhandgun.mdl"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_respawn"		"item.respawn"
+	"animPrefix"		"onehand"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_glock"
@@ -31,7 +31,10 @@ entityDef weapon_9mmhandgun
 	"ammoRequired" 		"1"
 	"ammoPerShot"		"1"
 	"punchAngle"		"-2 0 0"
-	"animPrefix"		"onehand"
+
+	"def_ejectBrass"	"debris_brass"
+	"ejectBrassDelay"	"10"
+	"ejectBrassOffset"	"18 6 -6"
 
 	"act_fire"			"$9MMHANDGUN_FIRE"
 	"act_fireLast"		"$9MMHANDGUN_FIRELAST"
