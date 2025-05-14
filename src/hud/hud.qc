@@ -93,7 +93,7 @@ vector g_ammotype[AMMO_COUNT] = {
 };
 
 void
-HUD_AmmoNotify_Draw(__inout vector pos)
+HLHUD_AmmoNotify_Draw(__inout vector pos)
 {
 	pos[0] = g_hudMins[0] + g_hudRes[0] - 40;
 
@@ -113,7 +113,7 @@ HUD_AmmoNotify_Draw(__inout vector pos)
 
 		/* we'll use the alpha to control the offset so it gently glides down when fading out */
 		pos -= [0, 32 * a]; /* go up a notch */
-		drawsubpic(pos,
+		draw.SubPic(pos,
 			[24,24],
 			g_hud7_spr,
 			srcpos,
@@ -133,7 +133,7 @@ HUD_AmmoNotify_Draw(__inout vector pos)
 }
 
 void
-HUD_AmmoNotify_Insert(int type, int count)
+HLHUD_AmmoNotify_Insert(int type, int count)
 {
 	if (count <= 0)
 		return;
@@ -221,7 +221,7 @@ HLHUD_DamageNotifyDraw(vector hudmins, vector res)
 		a *= bound(0.0f, g_dmgnotify[i].alpha, 1.0);
 
 		if (i < 4)
-		drawsubpic(pos,
+		draw.SubPic(pos,
 			[64,64],
 			g_dmg1_spr,
 			srcpos,
@@ -231,7 +231,7 @@ HLHUD_DamageNotifyDraw(vector hudmins, vector res)
 			DRAWFLAG_ADDITIVE
 		);
 		else
-		drawsubpic(pos,
+		draw.SubPic(pos,
 			[64,64],
 			g_dmg2_spr,
 			srcpos,
@@ -279,9 +279,10 @@ vector g_itemtype[ITEM_COUNT] = {
 };
 
 void
-HUD_ItemNotify_Draw(__inout vector pos)
+HLHUD_ItemNotify_Draw(__inout vector pos)
 {
 	pos[0] = g_hudMins[0] + g_hudRes[0] - 44;
+
 	for (int i = 0; i < ITEM_COUNT; i++) {
 		vector srcpos;
 		float a;
@@ -298,7 +299,7 @@ HUD_ItemNotify_Draw(__inout vector pos)
 
 		/* we'll use the alpha to control the offset so it gently glides down when fading out */
 		pos -= [0, 52 * a]; /* go up a notch */
-		drawsubpic(pos + [-20,0],
+		draw.SubPic(pos + [-20,0],
 			[44,44],
 			g_hud2_spr,
 			srcpos,
@@ -321,7 +322,7 @@ HUD_ItemNotify_Draw(__inout vector pos)
 }
 
 void
-HUD_ItemNotify_Insert(int type, int count)
+HLHUD_ItemNotify_Insert(int type, int count)
 {
 	if (count <= 0) {
 		return;
@@ -337,13 +338,13 @@ HUD_PickedUpItem(string itemClass)
 {
 	switch (itemClass) {
 	case "item_battery":
-		HUD_ItemNotify_Insert(0i, 1i);
+		HLHUD_ItemNotify_Insert(0i, 1i);
 		break;
 	case "item_healthkit":
-		HUD_ItemNotify_Insert(1i, 1i);
+		HLHUD_ItemNotify_Insert(1i, 1i);
 		break;
 	case "item_longjump":
-		HUD_ItemNotify_Insert(2i, 1i);
+		HLHUD_ItemNotify_Insert(2i, 1i);
 		break;
 	}
 }
@@ -490,9 +491,9 @@ float spr_flash2[4] = {
 };
 
 void
-HUD_DrawNumber(int iNumber, vector vecPos, float fAlpha, vector vColor)
+HLHUD_DrawNumber(int iNumber, vector vecPos, float fAlpha, vector vColor)
 {
-	drawsubpic(vecPos,
+	draw.SubPic(vecPos,
 		[24,24],
 		g_hud7_spr,
 		[spr_hudnum[iNumber], 0],
@@ -504,25 +505,25 @@ HUD_DrawNumber(int iNumber, vector vecPos, float fAlpha, vector vColor)
 }
 
 void
-HUD_DrawNums(float fNumber, vector vecPos, float fAlpha, vector vColor)
+HLHUD_DrawNums(float fNumber, vector vecPos, float fAlpha, vector vColor)
 {
 	int iNumber = fNumber;
 	if (iNumber > 0) {
 		while (iNumber > 0) {
-			HUD_DrawNumber((float)iNumber % 10, vecPos, fAlpha, vColor);
+			HLHUD_DrawNumber((float)iNumber % 10, vecPos, fAlpha, vColor);
 			iNumber = iNumber / 10;
 			vecPos[0] -= 20;
 		} 
 	} else {
-		HUD_DrawNumber(0, vecPos, fAlpha, vColor);
+		HLHUD_DrawNumber(0, vecPos, fAlpha, vColor);
 	}
 }
 
 void
-HUD_DrawHealth(vector pos, float healthValue)
+HLHUD_DrawHealth(vector pos, float healthValue)
 {
 	if (healthValue > 25) {
-		drawsubpic(
+		draw.SubPic(
 			pos + [-72,-4],
 			[32,32],
 			g_hud7_spr,
@@ -532,9 +533,9 @@ HUD_DrawHealth(vector pos, float healthValue)
 			g_healthAlpha,
 			DRAWFLAG_ADDITIVE
 		);
-		HUD_DrawNums(healthValue, pos, g_healthAlpha, g_fg_color);
+		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, g_fg_color);
 	} else {
-		drawsubpic(
+		draw.SubPic(
 			pos + [-72,-4],
 			[32,32],
 			g_hud7_spr,
@@ -544,14 +545,14 @@ HUD_DrawHealth(vector pos, float healthValue)
 			g_healthAlpha,
 			DRAWFLAG_ADDITIVE
 		);
-		HUD_DrawNums(healthValue, pos, g_healthAlpha, [1,0,0]);
+		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, [1,0,0]);
 	}
 }
 
 void
-HUD_DrawArmor(vector pos, float armorValue)
+HLHUD_DrawArmor(vector pos, float armorValue)
 {
-	drawsubpic(
+	draw.SubPic(
 		pos + [-80,-9],
 		[40,40],
 		g_hud7_spr,
@@ -564,7 +565,7 @@ HUD_DrawArmor(vector pos, float armorValue)
 
 	if (armorValue > 0) {
 		float perc = bound(0, (armorValue / 100), 1.0);
-		drawsubpic(
+		draw.SubPic(
 			pos + [-80,-9] + [0, 40 * (1.0-perc)],
 			[40, 40 * perc],
 			g_hud7_spr,
@@ -576,13 +577,13 @@ HUD_DrawArmor(vector pos, float armorValue)
 		);
 	}
 
-	HUD_DrawNums(armorValue, pos, g_armorAlpha, g_fg_color);
+	HLHUD_DrawNums(armorValue, pos, g_armorAlpha, g_fg_color);
 }
 
 void
 HUD_DrawSeperator(vector pos)
 {
-	drawsubpic(pos,
+	draw.SubPic(pos,
 		[2,24],
 		g_hud7_spr,
 		[240/256, 0],
@@ -594,22 +595,22 @@ HUD_DrawSeperator(vector pos)
 }
 
 void
-HUD_DrawAmmo1(vector pos, float ammoValue)
+HLHUD_DrawAmmo1(vector pos, float ammoValue)
 {
-	HUD_DrawNums(ammoValue, pos, g_clipAlpha, g_fg_color);
+	HLHUD_DrawNums(ammoValue, pos, g_clipAlpha, g_fg_color);
 	HUD_DrawSeperator(pos + [30,0]);
 }
 
 void
-HUD_DrawAmmo2(vector pos, float ammoValue)
+HLHUD_DrawAmmo2(vector pos, float ammoValue)
 {
-	HUD_DrawNums(ammoValue, pos, g_ammo1Alpha, g_fg_color);
+	HLHUD_DrawNums(ammoValue, pos, g_ammo1Alpha, g_fg_color);
 }
 
 void
-HUD_DrawAmmo3(vector pos, float ammoValue)
+HLHUD_DrawAmmo3(vector pos, float ammoValue)
 {
-	HUD_DrawNums(ammoValue, pos, g_ammo2Alpha, g_fg_color);
+	HLHUD_DrawNums(ammoValue, pos, g_ammo2Alpha, g_fg_color);
 }
 
 void
@@ -637,8 +638,8 @@ HUD_Draw(void)
 	if (1) {
 		pos = g_hudMins + [g_hudRes[0] - 192, g_hudRes[1] - 128];
 		pos[1] += 48;
-		HUD_ItemNotify_Draw(pos);
-		HUD_AmmoNotify_Draw(pos);
+		HLHUD_ItemNotify_Draw(pos);
+		HLHUD_AmmoNotify_Draw(pos);
 	}
 
 
@@ -725,9 +726,9 @@ HUD_Draw(void)
 	}
 
 	pos = hud_mins + [88, hud_size[1] - 42];
-	HUD_DrawHealth(pos, healthValue); 
+	HLHUD_DrawHealth(pos, healthValue); 
 	pos = hud_mins + [198, hud_size[1] - 42];
-	HUD_DrawArmor(pos, armorValue);
+	HLHUD_DrawArmor(pos, armorValue);
 
 	weaponSelectionHUD.Draw();
 
@@ -741,18 +742,18 @@ HUD_Draw(void)
 	/* ammo 2 */
 	if (weapon.UsesSecondaryAmmo() == true) {
 		pos = hud_mins + [hud_size[0] - 72, hud_size[1] - 74];
-		HUD_DrawAmmo3(pos, ammoValue2);
+		HLHUD_DrawAmmo3(pos, ammoValue2);
 	} else {
 		pos = hud_mins + [hud_size[0] - 102 - 16, hud_size[1] - 48];
 	}
 
 	if (weapon.GetClipSize() > 0) {
 		pos = hud_mins + [hud_size[0] - 152, hud_size[1] - 42];
-		HUD_DrawAmmo1(pos, clipValue);
+		HLHUD_DrawAmmo1(pos, clipValue);
 	}
 
 	pos = hud_mins + [hud_size[0] - 72, hud_size[1] - 42];
-	HUD_DrawAmmo2(pos, ammoValue);
+	HLHUD_DrawAmmo2(pos, ammoValue);
 
 	HLHUD_ClampTimers();
 }
@@ -889,55 +890,55 @@ HUD_AmmoChanged(int ammoType, int absoluteValue, int deltaValue)
 	   the old HUD code. this can be changed to be decl specific at some point! */
 	switch (ammoTypeName) {
 	case "ammo_9mm":
-		HUD_AmmoNotify_Insert(0, deltaValue);
+		HLHUD_AmmoNotify_Insert(0, deltaValue);
 		break;
 	case "ammo_357":
-		HUD_AmmoNotify_Insert(1, deltaValue);
+		HLHUD_AmmoNotify_Insert(1, deltaValue);
 		break;
 	case "ammo_m203_grenade":
-		HUD_AmmoNotify_Insert(2, deltaValue);
+		HLHUD_AmmoNotify_Insert(2, deltaValue);
 		break;
 	case "ammo_buckshot":
-		HUD_AmmoNotify_Insert(3, deltaValue);
+		HLHUD_AmmoNotify_Insert(3, deltaValue);
 		break;
 	case "ammo_bolt":
-		HUD_AmmoNotify_Insert(4, deltaValue);
+		HLHUD_AmmoNotify_Insert(4, deltaValue);
 		break;
 	case "ammo_rocket":
-		HUD_AmmoNotify_Insert(5, deltaValue);
+		HLHUD_AmmoNotify_Insert(5, deltaValue);
 		break;
 	case "ammo_uranium":
-		HUD_AmmoNotify_Insert(6, deltaValue);
+		HLHUD_AmmoNotify_Insert(6, deltaValue);
 		break;
 	case "ammo_hornet":
-		HUD_AmmoNotify_Insert(7, deltaValue);
+		HLHUD_AmmoNotify_Insert(7, deltaValue);
 		break;
 	case "ammo_handgrenade":
-		HUD_AmmoNotify_Insert(8, deltaValue);
+		HLHUD_AmmoNotify_Insert(8, deltaValue);
 		break;
 	case "ammo_satchel":
-		HUD_AmmoNotify_Insert(9, deltaValue);
+		HLHUD_AmmoNotify_Insert(9, deltaValue);
 		break;
 	case "ammo_snark":
-		HUD_AmmoNotify_Insert(10, deltaValue);
+		HLHUD_AmmoNotify_Insert(10, deltaValue);
 		break;
 	case "ammo_tripmine":
-		HUD_AmmoNotify_Insert(11, deltaValue);
+		HLHUD_AmmoNotify_Insert(11, deltaValue);
 		break;
 	case "ammo_556":
-		HUD_AmmoNotify_Insert(12, deltaValue);
+		HLHUD_AmmoNotify_Insert(12, deltaValue);
 		break;
 	case "ammo_762":
-		HUD_AmmoNotify_Insert(13, deltaValue);
+		HLHUD_AmmoNotify_Insert(13, deltaValue);
 		break;
 	case "ammo_spore":
-		HUD_AmmoNotify_Insert(14, deltaValue);
+		HLHUD_AmmoNotify_Insert(14, deltaValue);
 		break;
 	case "ammo_shock":
-		HUD_AmmoNotify_Insert(15, deltaValue);
+		HLHUD_AmmoNotify_Insert(15, deltaValue);
 		break;
 	case "ammo_penguin":
-		HUD_AmmoNotify_Insert(16, deltaValue);
+		HLHUD_AmmoNotify_Insert(16, deltaValue);
 		break;
 	}
 }
