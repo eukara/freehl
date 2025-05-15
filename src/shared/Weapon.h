@@ -41,6 +41,8 @@ public:
 
 #ifdef SERVER
 	virtual void SpawnKey(string, string);
+	virtual void FireInfoChanged(void);
+	virtual void SwitchedFromWeapon(void);
 #endif
 
 #ifdef CLIENT
@@ -60,4 +62,8 @@ private:
 	ncWeapon m_nextWeapon;
 #endif
 	bool m_bAltModeLaser;
+
+#ifdef SERVER
+	ncRenderableEntity m_laserEntity;
+#endif
 };

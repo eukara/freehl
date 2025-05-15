@@ -103,6 +103,49 @@ hlWeapon::AddedToInventory(void)
 	m_bAltModeLaser = GetDefBool("altLaser");
 }
 
+#ifdef SERVER
+
+void
+hlWeapon::SwitchedFromWeapon(void)
+{
+	if (m_laserEntity) {
+		m_laserEntity.Destroy();
+		m_laserEntity = 0;
+	}
+}
+
+void
+hlWeapon::FireInfoChanged(void)
+{
+	static void UpdateLaser(void) {
+		ncEntity ourOwner = (ncEntity)owner;
+		vector src = ourOwner.GetEyePos();
+		vector dir = anglesToForward(owner.v_angle);
+		traceline(src, src + (dir * 4096.0f), MOVE_NORMAL, owner);
+		setorigin(self, trace_endpos + (dir * -4));
+	}
+
+	if (FireInfoSelected() && m_bAltModeLaser) {
+		if (m_laserEntity) {
+			return;
+		}
+
+		m_laserEntity = spawn(ncRenderableEntity);
+		m_laserEntity.SetModel("sprites/laserdot.spr");
+		m_laserEntity.SetRenderMode(RM_ADDITIVE);
+		m_laserEntity.SetRenderColor([255, 255, 255]);
+		m_laserEntity.SetRenderAmt(255);
+		m_laserEntity.customphysics = UpdateLaser;
+		m_laserEntity.owner = owner;
+	} else {
+		if (m_laserEntity) {
+			m_laserEntity.Destroy();
+			m_laserEntity = 0;
+		}
+	}
+}
+#endif
+
 #ifdef CLIENT
 void
 hlWeapon::UpdateGUI(void)
@@ -150,31 +193,6 @@ hlWeapon::UpdateGUI(void)
 		drawfill([vMainPos[0] + vSize[0], vMainPos[1]], [1, vSize[1] + 1], g_hud_color, 1.0f); // Right
 	}
 #endif
-
-	if (RequiresAmmo() == false) {
-		return;
-	}
-
-	ourOwner = (ncPlayer)GetOwner();
-
-	if (GetClipSize() > 0i) {
-		ourOwner.a_ammo1 = GetClip();
-		HUD_DrawAmmo1();
-	}
-
-	ourOwner.a_ammo2 = ourOwner.GetReserveAmmo(m_primaryAmmoType);
-	HUD_DrawAmmo2();
-
-	if (UsesSecondaryAmmo() && m_primaryAmmoType != m_secondaryAmmoType) {
-		ourOwner.a_ammo3 = ourOwner.GetReserveAmmo(m_secondaryAmmoType);
-		HUD_DrawAmmo3();
-
-		/* draw ammo icon */
-		if (STRING_SET(m_ammo2Icon)) {
-			ammoPos = g_hudmins + [g_hudres[0] - 48, g_hudres[1] - 74];
-			HLSprite_Draw_RGBA(m_ammo2Icon, ammoPos, g_hud_color, pSeatLocal->m_flAmmo2Alpha, true);
-		}
-	}
 #endif
 }
 

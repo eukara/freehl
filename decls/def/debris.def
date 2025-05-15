@@ -1,0 +1,43 @@
+entityDef debris_brass
+{
+	"spawnclass"		"ncDebris"
+	"mins"				"-1 -1 -1"
+	"maxs"				"1 1 1"
+	"model"				"models/shell.mdl"
+	"velocity"			"0 80 40"
+	"gravity"			"0.5"
+	"mass"				"0.5"
+}
+
+entityDef debris_brass_fast
+{
+	"spawnclass"		"ncDebris"
+	"mins"				"-1 -1 -1"
+	"maxs"				"1 1 1"
+	"model"				"models/shell.mdl"
+	"velocity"			"0 160 40"
+	"gravity"			"0.5"
+	"mass"				"0.5"
+}
+
+entityDef debris_brass_high
+{
+	"spawnclass"		"ncDebris"
+	"mins"				"-1 -1 -1"
+	"maxs"				"1 1 1"
+	"model"				"models/shell.mdl"
+	"velocity"			"0 160 120"
+	"gravity"			"0.5"
+	"mass"				"0.5"
+}
+
+entityDef debris_shell
+{
+	"spawnclass"		"ncDebris"
+	"mins"				"-1 -1 -1"
+	"maxs"				"1 1 1"
+	"model"				"models/shotgunshell.mdl"
+	"velocity"			"0 160 40"
+	"gravity"			"0.5"
+	"mass"				"0.5"
+}

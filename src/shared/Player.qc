@@ -51,11 +51,12 @@ void
 hlPlayer::UpdateAliveCam(void)
 {
 	vector cam_pos = GetEyePos();
+	vector camOffset = autocvar(pm_thirdPersonAngle, [0,0,0]);
 	Camera_RunPosBob(view_angles, cam_pos);
 
 	g_view.SetCameraOrigin(cam_pos);
 	Camera_StrafeRoll(view_angles);
-	g_view.SetCameraAngle(view_angles);
+	g_view.SetCameraAngle(view_angles + camOffset);
 
 	if (vehicle) {
 		ncVehicle veh = (ncVehicle)vehicle;
@@ -64,7 +65,7 @@ hlPlayer::UpdateAliveCam(void)
 			veh.UpdateView();
 	} else if (health) {
 		if (autocvar_pm_thirdPerson == TRUE) {
-			makevectors(view_angles);
+			makevectors(view_angles + camOffset);
 			vector vStart = [pSeat->m_vecPredictedOrigin[0], pSeat->m_vecPredictedOrigin[1], pSeat->m_vecPredictedOrigin[2] + 16] + (v_right * 4);
 			vector vEnd = vStart + (v_forward * -48) + [0,0,16] + (v_right * 4);
 			traceline(vStart, vEnd, MOVE_NORMAL, this);
@@ -122,7 +123,7 @@ hlPlayer::UpdatePlayerAttachments(bool visible)
 		return;
 
 	/* what's the current weapon model supposed to be anyway? */
-	p_model.oldmodel = 0;//Weapons_GetPlayermodel(this, activeweapon);
+	p_model.oldmodel = modelnameforindex(vw_index);
 
 	/* we changed weapons, update skeletonindex */
 	if (p_model.model != p_model.oldmodel) {
