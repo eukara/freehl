@@ -10,7 +10,7 @@ font_s FONT_VERDANA;
 font_s FONT_WEAPONTEXT;
 font_s FONT_WEAPONICON_SEL;
 
-var vector autocvar_hlhud_fgColor  = [1.0, 0.86, 0.0];
+var vector autocvar_hlhud_fgColor  = [1, 170/255, 0];
 var float autocvar_hlhud_fgAlpha  = 0.39f;
 var float autocvar_hlhud_altBucket  = 0.0;
 var float autocvar_hlhud_bucketNumAlpha  = 0.5f;
@@ -419,21 +419,21 @@ HUD_ReloadVideoResources(void)
 	font.Load("fonts/weaponnumbers_blurry.font", FONT_WEAPONNUMB);
 #endif
 
-	g_hud1_spr = spriteframe("sprites/640hud1.spr", 0, 0.0f);
-	g_hud2_spr = spriteframe("sprites/640hud2.spr", 0, 0.0f);
-	g_hud3_spr = spriteframe("sprites/640hud3.spr", 0, 0.0f);
-	g_hud4_spr = spriteframe("sprites/640hud4.spr", 0, 0.0f);
-	g_hud5_spr = spriteframe("sprites/640hud5.spr", 0, 0.0f);
-	g_hud6_spr = spriteframe("sprites/640hud6.spr", 0, 0.0f);
-	g_hud7_spr = spriteframe("sprites/640hud7.spr", 0, 0.0f);
+	g_hud1_spr = precache.SpriteFrame("sprites/640hud1.spr", 0, 0.0f);
+	g_hud2_spr = precache.SpriteFrame("sprites/640hud2.spr", 0, 0.0f);
+	g_hud3_spr = precache.SpriteFrame("sprites/640hud3.spr", 0, 0.0f);
+	g_hud4_spr = precache.SpriteFrame("sprites/640hud4.spr", 0, 0.0f);
+	g_hud5_spr = precache.SpriteFrame("sprites/640hud5.spr", 0, 0.0f);
+	g_hud6_spr = precache.SpriteFrame("sprites/640hud6.spr", 0, 0.0f);
+	g_hud7_spr = precache.SpriteFrame("sprites/640hud7.spr", 0, 0.0f);
 
-	g_damage_spr_t = spriteframe("sprites/640_pain.spr", 0, 0.0f);
-	g_damage_spr_r = spriteframe("sprites/640_pain.spr", 1, 0.0f);
-	g_damage_spr_b = spriteframe("sprites/640_pain.spr", 2, 0.0f);
-	g_damage_spr_l = spriteframe("sprites/640_pain.spr", 3, 0.0f);
+	g_damage_spr_t = precache.SpriteFrame("sprites/640_pain.spr", 0, 0.0f);
+	g_damage_spr_r = precache.SpriteFrame("sprites/640_pain.spr", 1, 0.0f);
+	g_damage_spr_b = precache.SpriteFrame("sprites/640_pain.spr", 2, 0.0f);
+	g_damage_spr_l = precache.SpriteFrame("sprites/640_pain.spr", 3, 0.0f);
 
-	g_dmg1_spr = spriteframe("sprites/640hud8.spr", 0, 0.0f);
-	g_dmg2_spr = spriteframe("sprites/640hud9.spr", 0, 0.0f);
+	g_dmg1_spr = precache.SpriteFrame("sprites/640hud8.spr", 0, 0.0f);
+	g_dmg2_spr = precache.SpriteFrame("sprites/640hud9.spr", 0, 0.0f);
 }
 
 /* Use first frame for drawing (needs precache) */

@@ -9,7 +9,7 @@
 #define GAME_BASEGAMES		"valve"
 #define GAME_PROTOCOL		"FTE-RadTherapy"
 
-#define BRANDING_ICON "freecs.ico"
+#define BRANDING_ICON "valve.ico"
 #define DISTRIBUTION "FHL"
 #define DISTRIBUTIONLONG "eukara"
 #define GAME_FULLNAME		FULLENGINENAME
