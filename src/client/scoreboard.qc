@@ -110,7 +110,7 @@ Scores_DrawTeam(ncPlayer pl, vector pos)
 				tmpColor[0] = getplayerkeyfloat(i, "*icon1_r");
 				tmpColor[1] = getplayerkeyfloat(i, "*icon1_g");
 				tmpColor[2] = getplayerkeyfloat(i, "*icon1_b");
-				HLSprite_Draw_RGB(temp, pos - [8, 0], tmpColor, true);
+				ncInterfaceSpriteSheet::Draw_RGB(temp, pos - [8, 0], tmpColor, true);
 			}
 
 			temp = getplayerkeyvalue(i, "*icon2");
@@ -118,7 +118,7 @@ Scores_DrawTeam(ncPlayer pl, vector pos)
 				tmpColor[0] = getplayerkeyfloat(i, "*icon2_r");
 				tmpColor[1] = getplayerkeyfloat(i, "*icon2_g");
 				tmpColor[2] = getplayerkeyfloat(i, "*icon2_b");
-				HLSprite_Draw_RGB(temp, pos + [8, 0], tmpColor, true);
+				ncInterfaceSpriteSheet::Draw_RGB(temp, pos + [8, 0], tmpColor, true);
 			}
 
 			/* Get the latency and align it left to right */

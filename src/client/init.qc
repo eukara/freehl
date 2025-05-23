@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2021 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2016-2025 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -24,14 +24,6 @@ Comparable to worldspawn in SSQC in that it's mostly used for precaches
 void
 ClientGame_Init(float apilevel, string enginename, float engineversion)
 {
-	Obituary_Init();
-	registercommand("changeclass");
-	registercommand("changeteam");
-	registercommand("chooseteam");
-
-	registercommand("lastinv");
-	registercommand("invnext");
-	registercommand("invprev");
 }
 
 void VGUI_ShowMOTD();
@@ -51,23 +43,6 @@ ClientGame_InitDone(void)
 void
 ClientGame_RendererRestart(string rstr)
 {
-	precache.Model("models/v_tripmine.mdl");
-	precache.Model("models/shell.mdl");
-	precache.Model("models/shotgunshell.mdl");
-
-	/* there's also muzzleflash.spr, but that's just MUZZLE_SMALL again */
-	precache.Model("sprites/muzzleflash1.spr");
-	precache.Model("sprites/muzzleflash2.spr");
-	precache.Model("sprites/muzzleflash3.spr");
-
-	MUZZLE_RIFLE = (int)precache.Model("sprites/muzzleflash1.spr");
-	MUZZLE_SMALL = (int)precache.Model("sprites/muzzleflash2.spr");
-	MUZZLE_WEIRD = (int)precache.Model("sprites/muzzleflash3.spr");
-
-	HLSprite_Init();
-	Obituary_Precache();
-
 	FX_GaussBeam_Init();
-
 	BEAM_TRIPMINE = particleeffectnum("weapon_tripmine.beam");
 }

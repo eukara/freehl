@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Vera Visions LLC.
+ * Copyright (c) 2023-2025 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -227,8 +227,9 @@ hlHUDCounter::ReceiveEntity(float flNew, float flChanged)
 void
 hlHUDCounter::postdraw(void)
 {
-	if (!m_bEnabled)
+	if (!m_bEnabled) {
 		return;
+	}
 
 	float textLength = Font_StringWidth(m_strText, true, FONT_CON);
 	vector vecProj = g_vec_null;
@@ -254,7 +255,7 @@ hlHUDCounter::postdraw(void)
 			drawpic(vecProj, m_strIcon, [64, 64], [1,1,1], a, DRAWFLAG_ADDITIVE);
 		}
 	} else {
-		HLSprite_Draw_RGBA(m_strIcon, vecProj, colormod / 255, a, m_bAdditive);
+		ncInterfaceSpriteSheet::Draw_RGBA(m_strIcon, vecProj, colormod / 255, a, m_bAdditive);
 	}
 
 	/* counter */

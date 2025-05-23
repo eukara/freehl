@@ -38,11 +38,15 @@ VGUI_ShowMOTD(void)
 			VGUI_ChooseTeam();
 		}
 
-		winMotd.Hide();
+		if (winMotd) {
+			winMotd.Hide();
+		}
 	}
 
-	if (MOTD_GetLineCount() < 1i)
+	if (MOTD_GetLineCount() < 1i) {
+		VGUI_ShowMOTD_Close();
 		return;
+	}
 
 	if (!initialized) {
 		initialized = TRUE;
