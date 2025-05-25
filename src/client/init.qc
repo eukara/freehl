@@ -24,6 +24,7 @@ Comparable to worldspawn in SSQC in that it's mostly used for precaches
 void
 ClientGame_Init(float apilevel, string enginename, float engineversion)
 {
+	registercommand("changeteam");
 }
 
 void VGUI_ShowMOTD();

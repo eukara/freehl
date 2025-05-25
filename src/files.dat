@@ -1544,6 +1544,7 @@
 1 particles/fx_explosion.cfg
 1 particles/fx_impact.cfg
 1 particles/fx_spark.cfg
+1 particles/fx_rain.cfg
 1 particles/impact_default.cfg
 1 particles/impact_glass.cfg
 1 particles/impact_unbreakable.cfg
