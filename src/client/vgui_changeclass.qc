@@ -79,8 +79,11 @@ VGUIChangeClassButton::OnMouseEntered(void)
 	string baseName = teams.ClassForIndex(teamID, classSelection);
 
 	lblClassTitle.SetTitle(baseName);
-	imgClassPreview.SetImage(strcat("gfx/classes/", baseName, "_", teamName));
-	lblClassDescription.SetTitle(g_classDescrRandomPC);
+	imgClassPreview.SetImage(strcat("models/player/", baseName, "/", baseName));
+	imgClassPreview.SetSize([170,221]);
+	lblClassDescription.SetTitle(Titles_GetTextBody(strcat("ClassDescription_", baseName)));
+
+	lblClassTitle.SetTitle(Titles_GetTextBody(teams.ClassForIndex(teamID, classSelection)));
 }
 
 void
@@ -130,7 +133,7 @@ VGUI_ChooseClass(int wishTeam)
 		g_uiDesktop.Add(winClassSelection);
 		winClassSelection.Add(lblSelectClass);
 		winClassSelection.Add(frmClassInfo);
-		winClassSelection.Add(imgClassPreview);
+		//winClassSelection.Add(imgClassPreview);
 		winClassSelection.Add(lblClassTitle);
 		winClassSelection.Add(lblClassCounter);
 		winClassSelection.Add(lblClassDescription);

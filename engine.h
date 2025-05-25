@@ -9,13 +9,13 @@
 #define GAME_BASEGAMES		"valve"
 #define GAME_PROTOCOL		"FTE-RadTherapy"
 
-#define BRANDING_ICON "valve.ico"
-#define DISTRIBUTION "FHL"
-#define DISTRIBUTIONLONG "eukara"
+#define BRANDING_ICON		"valve.ico"
+#define DISTRIBUTION		"FHL"
+#define DISTRIBUTIONLONG	"frag-net.com"
 #define GAME_FULLNAME		FULLENGINENAME
-#define GAME_DEFAULTPORT	23000
+#define GAME_DEFAULTPORT	27015
 #define GAME_DEFAULTCMDS	"game_valve;fteplug_ffmpeg;plug_load ffmpeg;exec quake.rc"
-#define ENGINEWEBSITE "https://www.frag-net.com/"
+#define ENGINEWEBSITE		"https://www.frag-net.com/"
 
 #ifndef GLQUAKE
 #define GLQUAKE
