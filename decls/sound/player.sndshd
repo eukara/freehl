@@ -1,43 +1,6 @@
-Player.FallDamage
-{
-	sample player/pl_fallpain3.wav
-}
-
-Player.LightFall
-{
-	sample player/pl_fallpain1.wav
-}
-
 Player.Death
 {
 	sample fvox/flatline.wav
-}
-
-Player.GaspLight
-{
-	sample common/null.wav
-}
-
-Player.Pain
-{
-	sample common/null.wav
-}
-
-Player.GaspHeavy
-{
-	sample common/null.wav
-}
-
-Player.WaterExit
-{
-	sample player/pl_wade1.wav
-	sample player/pl_wade3.wav
-}
-
-Player.WaterEnter
-{
-	sample player/pl_wade2.wav
-	sample player/pl_wade4.wav
 }
 
 Player.DenyWeaponSelection
@@ -49,6 +12,123 @@ Player.DenyWeaponSelection
 	sample common/wpn_denyselect.wav
 }
 
+Player.DrownContinue
+{
+	sample common/null.wav
+}
+
+Player.FallDamage
+{
+	sample player/pl_fallpain3.wav
+}
+
+Player.FlashLightOn
+{
+	follow
+	volume 0.8
+	sample items/flashlight1.wav
+}
+
+Player.FlashLightOff
+{
+	follow
+	volume 0.8
+	sample items/flashlight1.wav
+}
+
+Player.GaspLight
+{
+	sample common/null.wav
+}
+
+Player.GaspHeavy
+{
+	sample common/null.wav
+}
+
+Player.LightFall
+{
+	sample player/pl_fallpain1.wav
+}
+
+Player.Swim
+{
+	sample player/pl_swim1.wav
+	sample player/pl_swim2.wav
+	sample player/pl_swim3.wav
+	sample player/pl_swim4.wav
+}
+
+Player.Pain
+{
+	sample common/null.wav
+}
+
+SprayCan.Paint
+{
+	sample player/sprayer.wav
+}
+
+Player.PickupWeapon
+{
+	sample items/gunpickup2.wav
+}
+
+Player.TrainUse
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample plats/train_use1.wav
+}
+
+Player.Use
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_select.wav
+}
+
+Player.UseDeny
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_select.wav
+}
+Player.UseNPC
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_select.wav
+}
+
+Player.Wade
+{
+	sample player/pl_wade1.wav
+	sample player/pl_wade2.wav
+	sample player/pl_wade3.wav
+	sample player/pl_wade4.wav
+}
+
+Player.WaterEnter
+{
+	sample player/pl_wade2.wav
+	sample player/pl_wade4.wav
+}
+
+Player.WaterExit
+{
+	sample player/pl_wade1.wav
+	sample player/pl_wade3.wav
+}
+
 Player.WeaponSelected
 {
 	follow
@@ -56,6 +136,15 @@ Player.WeaponSelected
 	attenuation none
 	volume 0.5
 	sample common/wpn_select.wav
+}
+
+Player.WeaponSelectionClose
+{
+	follow
+	omnidirectional
+	attenuation none
+	volume 0.5
+	sample common/wpn_hudoff.wav
 }
 
 Player.WeaponSelectionMoveSlot
@@ -75,53 +164,3 @@ Player.WeaponSelectionOpen
 	volume 0.5
 	sample common/wpn_hudon.wav
 }
-
-Player.WeaponSelectionClose
-{
-	follow
-	omnidirectional
-	attenuation none
-	volume 0.5
-	sample common/wpn_hudoff.wav
-}
-
-Player.FlashLightOn
-{
-	follow
-	volume 0.8
-	sample items/flashlight1.wav
-}
-
-Player.FlashLightOff
-{
-	follow
-	volume 0.8
-	sample items/flashlight1.wav
-}
-
-SprayCan.Paint
-{
-	sample player/sprayer.wav
-}
-
-Player.Wade
-{
-	sample player/pl_wade1.wav
-	sample player/pl_wade2.wav
-	sample player/pl_wade3.wav
-	sample player/pl_wade4.wav
-}
-
-Player.Swim
-{
-	sample player/pl_swim1.wav
-	sample player/pl_swim2.wav
-	sample player/pl_swim3.wav
-	sample player/pl_swim4.wav
-}
-
-Player.PickupWeapon
-{
-	sample items/gunpickup2.wav
-}
-
