@@ -2,7 +2,6 @@
 #pragma PROGS_DAT  "../../progs/deathmatch.dat"
 
 #includelist
-../../../src/common/include.src
-../../../src/server/api.h
+../../../src/rules.src
 deathmatch.qc
 #endlist

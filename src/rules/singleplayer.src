@@ -2,7 +2,6 @@
 #pragma PROGS_DAT  "../../progs/singleplayer.dat"
 
 #includelist
-../../../src/common/include.src
-../../../src/server/api.h
+../../../src/rules.src
 singleplayer.qc
 #endlist
