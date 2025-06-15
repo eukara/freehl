@@ -7,7 +7,7 @@
 #define VALVE
 
 #includelist
-../../../src/shared/fteextensions.qc
+../../../src/common/include.src
 ../../../src/shared/defs.h
 ../../../src/server/defs.h
 ../../../src/botlib/botinfo.h

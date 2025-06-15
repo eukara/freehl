@@ -1,0 +1,8 @@
+#pragma target fte_5768
+#pragma PROGS_DAT  "../../progs/deathmatch.dat"
+
+#includelist
+../../../src/common/include.src
+../../../src/server/api.h
+deathmatch.qc
+#endlist

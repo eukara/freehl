@@ -1,0 +1,8 @@
+#pragma target fte_5768
+#pragma PROGS_DAT  "../../progs/invasion.dat"
+
+#includelist
+../../../src/common/include.src
+../../../src/server/api.h
+invasion.qc
+#endlist

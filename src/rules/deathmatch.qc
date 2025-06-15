@@ -14,9 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "../../progs/deathmatch.dat"
-
-#include "../../../src/server/api.h"
 
 string g_strTeamList;
 const string mp_teamlist_fallback = "scientist;hgrunt";

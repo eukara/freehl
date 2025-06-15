@@ -14,10 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "../../progs/singleplayer.dat"
-
-#include "../../../src/server/api.h"
-
 void
 CodeCallback_PlayerSpawn(entity playerEntity)
 {

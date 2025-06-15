@@ -1,0 +1,15 @@
+#pragma target fte_5768
+#pragma PROGS_DAT  "../../hud.dat"
+
+#define CSQC
+#define CLIENT
+#define VALVE
+
+#includelist
+../../../src/common/include.src
+../../../src/client/api.h
+WeaponSelect.h
+hud.h
+hud.qc
+WeaponSelect.qc
+#endlist

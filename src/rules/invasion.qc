@@ -14,10 +14,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#pragma PROGS_DAT  "../../progs/invasion.dat"
-
-#include "../../../src/server/api.h"
-
 var string autocvar_invasion_monsterClass = "monster_zombie";
 var int autocvar_invasion_monsterCount = 5;
 
