@@ -1,44 +1,42 @@
-name: pk4
+name: Nightly PAK
 
 on:
-  push:
-    branches: [ master ]
-    tags: ['*']
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
     runs-on: docker
 
     steps:
-      name: clone nuclide src tree
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
         repository: vera/nuclide
+        ref: current
 
-    - name: clone game src tree
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
+        ref: current
         path: "./${{ github.event.repository.name }}"
 
-    - name: install zip(1)
+    - name: apt install zip
       run: |
         apt update
         apt install -y \
         zip
 
-    - name: build .pk4
+    - name: assemble pk4
       run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
 
-    - name: upload log
-      uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3
       with:
         name: build-log
         path: ./build/bin-content.log
 
-    - name: upload release
-      uses: actions/forgejo-release@v2
+    - uses: actions/forgejo-release@v2
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
@@ -50,5 +48,5 @@ jobs:
         title: "Development Build"
         release-notes: "Auto-generated development build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
         prerelease: true
-        override: ${{ vars.OVERRIDE || "false" }}
+        override: true
         release-notes-assistant: true

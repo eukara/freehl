@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: docker
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        repository: vera/nuclide
+        ref: current
+
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+        ref: current
+        path: "./${{ github.event.repository.name }}"
+
+    - name: apt install zip
+      run: |
+        apt update
+        apt install -y \
+        zip
+
+    - name: make game
+      run: make game GAME=${{ github.event.repository.name }}
