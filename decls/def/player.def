@@ -1,22 +1,23 @@
 entityDef player
 {
-	"spawnclass"		"hlPlayer"
+	"spawnclass"			"hlPlayer"
 	"health"			"100"
 	"maxarmor"			"100"
 	"bleeds"			"1"
 	"propdata"			"actor_human"
-	"armorProtection"	"0.2"
-	"armorBonus"		"0.5"
+	"armorProtection"		"0.2"
+	"armorBonus"			"0.5"
 	"model"				"models/player.mdl"
+	"animBackend"			"1"
 
 	"spine"				"Bip01 Spine"
-	"torsoStart"		"Bip01 Spine"
+	"torsoStart"			"Bip01 Spine"
 	"torsoEnd"			"Bip01 R Finger12"
 
 	"act_idle"			"0"
 	"act_jump"			"8"
-	"act_walk_crouch"	"6"
-	"act_idle_crouch"	"7"
+	"act_walk_crouch"		"6"
+	"act_idle_crouch"		"7"
 	"act_run"			"12"
 	"act_walk"			"13"
 
