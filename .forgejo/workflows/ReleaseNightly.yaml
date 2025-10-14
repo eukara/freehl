@@ -19,7 +19,6 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
-        ref: current
         path: "./${{ github.event.repository.name }}"
 
     - name: apt install zip
@@ -40,13 +39,13 @@ jobs:
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
-        tag: "${{ github.ref_name }}"
+        tag: "nightly-${{ github.ref_name }}"
         sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
         token: ${{ secrets.TOKEN }}
         title: "Development Build"
-        release-notes: "Auto-generated development build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
+        release-notes: "Nightly build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
         prerelease: true
         override: true
         release-notes-assistant: true
