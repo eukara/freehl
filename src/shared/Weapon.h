@@ -37,7 +37,7 @@ hlWeapon:ncWeapon
 public:
 	void hlWeapon(void);
 
-	virtual void AddedToInventory(void);
+	virtual void ReloadCachedAttributes(void);
 
 #ifdef SERVER
 	virtual void SpawnKey(string, string);

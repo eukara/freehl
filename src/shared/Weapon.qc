@@ -38,9 +38,9 @@ hlWeapon::SpawnKey(string keyName, string setValue)
 #endif
 
 void
-hlWeapon::AddedToInventory(void)
+hlWeapon::ReloadCachedAttributes(void)
 {
-	super::AddedToInventory();
+	super::ReloadCachedAttributes();
 
 #ifdef CLIENT
 	m_ammoIcon = GetDefString("ammoIcon");
