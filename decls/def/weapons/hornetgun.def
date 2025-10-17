@@ -17,6 +17,7 @@ entityDef weapon_hornetgun
 	"model"				"models/w_hgun.mdl"
 	"model_view"		"models/v_hgun.mdl"
 	"animPrefix"		"hive"
+	"killIcon"		"d_grenade"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_hornetgun"

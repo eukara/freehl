@@ -23,6 +23,7 @@ entityDef weapon_crowbar
 	"model_player"		"models/p_crowbar.mdl"
 	"model_view"		"models/v_crowbar.mdl"
 	"animPrefix"		"crowbar"
+	"killIcon"		"d_crowbar"
 
 	// weapon specific
 	"def_onFire"		"projectile_crowbar"

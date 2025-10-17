@@ -605,6 +605,12 @@ HUD_DrawSpectator(vector hud_mins, vector hud_size)
 }
 
 void
+HUD_DrawIntermission(void)
+{
+	HLHUD_DrawObituaries([g_hudRes[0] - 16, 48], true);
+}
+
+void
 HUD_WeaponSwitched(string weaponName)
 {
 	g_spriteAmmoIcon = atlasPic.Load(strcat(weaponName, ".ammo"));

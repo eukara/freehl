@@ -21,6 +21,7 @@ entityDef weapon_gauss
 	"model_player"		"models/p_gauss.mdl"
 	"model_view"		"models/v_gauss.mdl"
 	"animPrefix"		"gauss"
+	"killIcon"		"d_gauss"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_gauss"

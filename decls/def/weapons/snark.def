@@ -19,6 +19,7 @@ entityDef weapon_snark
 	"model_view"		"models/v_squeak.mdl"
 	"frame"				"1" // World Model has no static idle, so we set frame instead
 	"animPrefix"		"squeak"
+	"killIcon"		"d_snark"
 
 	"inv_name"			"Snark"
 	"inv_weapon"		"weapon_snark"
