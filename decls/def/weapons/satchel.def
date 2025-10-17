@@ -20,6 +20,7 @@ entityDef weapon_satchel
 	"model_player"		"models/p_satchel.mdl"
 	"model_view"		"models/v_satchel.mdl"
 	"animPrefix"		"onehand"
+	"killIcon"		"d_satchel"
 
 	"def_fireInfo"		"fireInfo_satchel_primary"
 	"def_altFireInfo"	"fireInfo_satchel_secondary"

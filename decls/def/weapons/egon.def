@@ -24,6 +24,7 @@ entityDef weapon_egon
 	"model_view"		"models/v_egon.mdl"
 	"animPrefix"		"egon"
 	"def_onFire"		"projectile_egonbeam"
+	"killIcon"		"d_egon"
 
 	"inv_ammo_uranium"	"20"
 	"ammoType"			"ammo_uranium"

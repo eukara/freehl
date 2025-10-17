@@ -22,6 +22,7 @@ entityDef weapon_shotgun
 	"model_player"		"models/p_shotgun.mdl"
 	"model_view"		"models/v_shotgun.mdl"
 	"animPrefix"		"shotgun"
+	"killIcon"		"d_shotgun"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_shotgun"

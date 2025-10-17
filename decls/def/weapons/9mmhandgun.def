@@ -21,6 +21,7 @@ entityDef weapon_9mmhandgun
 	"model_player"		"models/p_9mmhandgun.mdl"
 	"model_view"		"models/v_9mmhandgun.mdl"
 	"animPrefix"		"onehand"
+	"killIcon"		"d_9mmhandgun"
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_glock"
