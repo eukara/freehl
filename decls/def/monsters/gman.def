@@ -1,5 +1,6 @@
 entityDef monster_gman
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncTalkMonster"
 	"model"			"models/gman.mdl"
 	"netname"		"G-Man"

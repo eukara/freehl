@@ -1,0 +1,9 @@
+typeInfo huntPlayer
+{
+	"task_1"	"SetFailSchedule alert"
+	"task_2"	"StopMovement"
+	"task_3"	"TargetNearestPlayer"
+	"task_4"	"RunToEnemyWithinRadius 256"
+	"task_5"	"WaitForMovement"
+	"CanRangedAttack1"	"ChangeMindset rangedCombat"
+}

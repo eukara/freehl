@@ -26,8 +26,9 @@ WaveTimer_Tick(void)
 	/* spawn a new monster */
 	if (monsterCount < autocvar_invasion_monsterCount) {
 		entity zombie = ents.Create(autocvar_invasion_monsterClass, [0,0,0]);
+		ents.Input(zombie, "SetTeam", "1", self);
 		game.TeleportToSpawn(zombie);
-		ents.Input(zombie, "HordeOn", "", world);
+		ents.Input(zombie, "ChangeMindset", "search", self);
 	}
 
 	self.nextthink = time + 2.0f;
@@ -42,6 +43,7 @@ AllowFlashlight(void)
 void
 CodeCallback_StartGameType(void)
 {
+	precache.Entity("player_mp");
 	precache.Entity(autocvar_invasion_monsterClass);
 	motd.LoadDefault();
 	game.SetSpawnPoint("info_player_deathmatch");
@@ -124,7 +126,33 @@ CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker
 void
 CodeCallback_NPCKilled(entity npcEntity, entity inflictor, entity attacker, string weapon)
 {
-	combat.Obituary(npcEntity.netname, attacker.netname, weapon, "");
+	string npcName;
+	string attackerName;
+
+	if (npcEntity) {
+		npcName = npcEntity.netname;
+
+		if (!STRING_SET(npcName)) {
+			npcName = npcEntity.classname;
+		}
+	} else {
+		npcName = "Unknown";
+	}
+
+	if (attacker) {
+		if (!STRING_SET(attacker.netname)) {
+			attackerName = attacker.classname;
+		} else {
+			attackerName = attacker.netname;
+		}
+	} else {
+		npcName = "Unknown";
+	}
+
+	if (npcEntity == attacker)
+		combat.Obituary(npcEntity.netname, attacker.netname, weapon, "self");
+	else
+		combat.Obituary(npcEntity.netname, attacker.netname, weapon, "");
 
 	/* update score-counter */
 	if (is.Player(attacker)) {

@@ -1,5 +1,6 @@
 entityDef monster_alien_grunt
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncMonster"
 	"model"			"models/agrunt.mdl"
 	"netname"		"Alien Grunt"

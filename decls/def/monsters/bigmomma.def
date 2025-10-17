@@ -1,5 +1,6 @@
 entityDef monster_bigmomma
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncMonster"
 	"model"			"models/big_mom.mdl"
 	"netname"		"Big Momma"

@@ -1,5 +1,6 @@
 entityDef monster_charger
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"		"ncMonster"
 	"model"				"models/charger.mdl"
 	"netname"			"Charger"

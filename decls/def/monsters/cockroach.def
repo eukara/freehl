@@ -1,20 +1,20 @@
 entityDef monster_cockroach
 {
-	"spawnclass"	"ncTalkMonster"
+	"inherit"		"hlBaseMonster"
+	"spawnclass"		"ncTalkMonster"
 	"model"			"models/roach.mdl"
 	"netname"		"Cockroach"
-	"health"		"0"
+	"health"		"1"
 	"mins"			"-8 -8 0"
 	"maxs"			"8 8 8"
-	"eye_height"	"64"
+	"eye_height"		"64"
 	"team"			"0"
 	"propdata"		"actor_alien"
 
-	"speed_walk"	"0"
-	"speed_run"		"0"
+	"speed_walk"		"100"
+	"speed_run"		"100"
 
 	"snd_walk"		"Roach.Walk"
-}
 
-TODO: coverhintnodeflags: FLESH | LOWLIGHT
-TODO: OnSeenPlayer: MoveToCover
+	"OnPlayerTouch"		"!self,Damage,1,0.0,-1"
+}

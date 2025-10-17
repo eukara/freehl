@@ -1,5 +1,6 @@
 entityDef monster_scientist
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"HLScientist"
 	"model"					"models/scientist.mdl"
 	"netname"				"Scientist"
