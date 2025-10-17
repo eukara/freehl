@@ -1,5 +1,6 @@
 entityDef monster_barney
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"ncTalkMonster"
 	"model"					"models/barney.mdl"
 	"netname"				"Barney"

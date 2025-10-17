@@ -1,5 +1,6 @@
 entityDef monster_snark
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"		"ncMonster"
 	"model"				"models/w_squeak.mdl"
 	"netname"			"Snark"

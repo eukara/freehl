@@ -1,5 +1,6 @@
 entityDef monster_human_grunt
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncTalkMonster"
 	"model"			"models/hgrunt.mdl"
 	"netname"		"Grunt"

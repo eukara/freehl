@@ -1,5 +1,6 @@
 entityDef monster_human_assault
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncSquadMonster"
 	"model"			"models/hassault.mdl"
 	"netname"		"Human Assault"
@@ -28,7 +29,7 @@ entityDef monster_human_assault
 	"snd_death"		"HGrunt.Die"
 	"snd_reload"	"HGrunt.Reload"
 
-	"squad_leader" "1"	// Intended to be the squad leader whenever present
+	"squad_leader" "1"	// Intended to be the squad leader whenever present
 }
 
 entityDef melee_hassault_kick

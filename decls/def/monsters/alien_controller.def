@@ -1,5 +1,6 @@
 entityDef monster_alien_controller
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"ncTalkMonster"
 	"model"					"models/controller.mdl"
 	"netname"				"Alien Controller"

@@ -1,5 +1,6 @@
 entityDef monster_gargantua
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"		"ncMonster"
 	"model"				"models/garg.mdl"
 	"netname"			"Gargantua"

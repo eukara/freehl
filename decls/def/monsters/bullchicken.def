@@ -1,5 +1,6 @@
 entityDef monster_bullchicken
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"ncMonster"
 	"model"					"models/bullsquid.mdl"
 	"netname"				"Bullsquid"

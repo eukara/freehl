@@ -1,5 +1,6 @@
 entityDef monster_babycrab
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"ncMonster"
 	"inherit"				"monster_headcrab"
 	"model"					"models/baby_headcrab.mdl"

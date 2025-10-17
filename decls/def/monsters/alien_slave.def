@@ -1,5 +1,6 @@
 entityDef monster_alien_slave
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"	"ncMonster"
 	"model"			"models/islave.mdl"
 	"netname"		"Vortigaunt"

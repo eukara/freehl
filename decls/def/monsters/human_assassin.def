@@ -1,5 +1,6 @@
 entityDef monster_human_assassin
 {
+	"inherit"	"hlBaseMonster"
 	"spawnclass"			"ncTalkMonster"
 	"model"					"models/hassassin.mdl"
 	"netname"				"Human Assassin"

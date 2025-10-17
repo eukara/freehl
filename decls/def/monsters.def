@@ -1,3 +1,9 @@
+entityDef hlBaseMonster
+{
+	"mindset_hunt"		"huntPlayer"
+	"mindset_search"	"searchNearestPlayer"
+}
+
 #include "monsters/alien_controller.def"
 #include "monsters/alien_grunt.def"
 #include "monsters/alien_slave.def"
