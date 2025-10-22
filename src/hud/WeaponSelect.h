@@ -24,6 +24,7 @@ public:
 	virtual void SelectSlot(int, bool);
 	virtual void SelectNext(bool);
 	virtual void SelectPrevious(bool);
+	virtual void SelectLast(bool);
 	virtual void DrawBar(vector, float);
 
 	nonvirtual void Event_Opened(void);

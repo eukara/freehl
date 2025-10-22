@@ -234,6 +234,17 @@ HUD_Init(void)
 
 	weaponSelectionHUD = spawn(HLWeaponSelect);
 	g_spriteCrosshair = -1i;
+
+	registercommand("slot1");
+	registercommand("slot2");
+	registercommand("slot3");
+	registercommand("slot4");
+	registercommand("slot5");
+	registercommand("slot6");
+	registercommand("slot7");
+	registercommand("slot8");
+	registercommand("slot9");
+	registercommand("slot10");
 }
 
 void
@@ -645,6 +656,39 @@ HUD_ConsoleCommand(string commandString)
 		break;
 	case "invprev":
 		weaponSelectionHUD.SelectPrevious(false);
+		break;
+	case "lastinv":
+		weaponSelectionHUD.SelectLast(false);
+		break;
+	case "slot1":
+		weaponSelectionHUD.SelectSlot(1, false);
+		break;
+	case "slot2":
+		weaponSelectionHUD.SelectSlot(2, false);
+		break;
+	case "slot3":
+		weaponSelectionHUD.SelectSlot(3, false);
+		break;
+	case "slot4":
+		weaponSelectionHUD.SelectSlot(4, false);
+		break;
+	case "slot5":
+		weaponSelectionHUD.SelectSlot(5, false);
+		break;
+	case "slot6":
+		weaponSelectionHUD.SelectSlot(6, false);
+		break;
+	case "slot7":
+		weaponSelectionHUD.SelectSlot(7, false);
+		break;
+	case "slot8":
+		weaponSelectionHUD.SelectSlot(8, false);
+		break;
+	case "slot9":
+		weaponSelectionHUD.SelectSlot(9, false);
+		break;
+	case "slot10":
+		weaponSelectionHUD.SelectSlot(10, false);
 		break;
 	default:
 		return (false);

@@ -35,11 +35,7 @@ CodeCallback_Precache(void)
 {
 	motd.LoadDefault();
 	precache.Entity("player_mp");
-}
 
-void
-CodeCallback_StartGameType(void)
-{
 	if (IsTeamplay() == true) {
 		int c;
 
@@ -61,6 +57,11 @@ CodeCallback_StartGameType(void)
 	} else {
 		game.SetSpawnPoint("info_player_deathmatch");
 	}
+}
+
+void
+CodeCallback_StartGameType(void)
+{
 
 	for (entity s = world; (s = next.Item(s));) {
 		string isWeapon = substring(s.classname, 0, 7);

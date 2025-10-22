@@ -218,6 +218,69 @@ HLWeaponSelect::DrawSlotNum(vector vecPos, float fValue)
 void
 HLWeaponSelect::SelectSlot(int wantedSlot, bool fastSwitch)
 {
+	wantedSlot -= 1;
+	
+	m_firstWeapon = weapon.GetFirstWeaponInInventory();
+	m_lastWeapon = weapon.GetLastWeaponInInventory();
+
+	entity weaponNumerator = weapon.GetFirstWeaponInInventory();
+	entity currentWeapon = m_selectedWeapon;
+	int currentWeaponSlot = weapon.GetSlot(currentWeapon);
+	bool checkRange = (wantedSlot == currentWeaponSlot) ? (true) : (false);
+	bool passedWeapon = false;
+	entity firstWeaponInSlot = 0;
+	entity lastSelected = m_selectedWeapon;
+
+	do {
+		int weaponSlot = weapon.GetSlot(weaponNumerator);
+
+		/* not in slot, skip */
+		if (wantedSlot != weaponSlot) {
+			continue;
+		}
+		
+		if (!firstWeaponInSlot) {
+			firstWeaponInSlot = weaponNumerator;
+		}
+
+		/* next weapon in slot */
+		if (weaponNumerator == currentWeapon) {
+			/* past our current weapon! */
+			if (checkRange) {
+				passedWeapon = true;
+			}
+			continue;
+		}
+
+		/* only proceed if we've gone past our current weapon. */
+		if (checkRange && passedWeapon == false) {
+			continue;
+		}
+		
+		m_selectedWeapon = weaponNumerator;
+		break;
+	} while ((weaponNumerator = weapon.GetNextWeaponRelativeTo(weaponNumerator)));
+	
+	/* wrap around */
+	if (!m_selectedWeapon || m_selectedWeapon == lastSelected) {
+		m_selectedWeapon = firstWeaponInSlot;
+	}
+
+	/* there's nothing to be found */
+	if (!m_selectedWeapon) {
+		m_selectedWeapon = lastSelected;
+		return;
+	}
+
+	if (m_flHUDWeaponSelectTime < time) {
+		Event_Opened();
+	} else {
+		Event_SelectionChanged();
+	}
+
+	m_flHUDWeaponSelectTime = time + autocvar_hlhud_hideTime;
+	m_iWantSlot = weapon.GetSlot(m_selectedWeapon);
+	m_iWantSlotPos = weapon.GetSlotPos(m_selectedWeapon);
 }
 
 void
@@ -283,4 +346,11 @@ HLWeaponSelect::SelectPrevious(bool fastSwitch)
 	m_flHUDWeaponSelectTime = time + autocvar_hlhud_hideTime;
 	m_iWantSlot = weapon.GetSlot(m_selectedWeapon);
 	m_iWantSlotPos = weapon.GetSlotPos(m_selectedWeapon);
+}
+
+
+void
+HLWeaponSelect::SelectLast(bool fastSwitch)
+{
+
 }
