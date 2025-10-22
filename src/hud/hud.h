@@ -2,11 +2,24 @@ font_s FONT_20;
 font_s FONT_CHAT;
 
 var vector autocvar_hlhud_fgColor  = [1, 160/255, 0];
+
+var vector autocvar_hlhud_healthColor1  = [1, 160/255, 0];
+var vector autocvar_hlhud_healthColor2  = [1, 160/255, 0];
+var vector autocvar_hlhud_armorColor1  = [1, 160/255, 0];
+var vector autocvar_hlhud_armorColor2  = [1, 160/255, 0];
+var vector autocvar_hlhud_lowHealthColor1  = [1, 0, 0];
+var vector autocvar_hlhud_lowHealthColor2  = [1, 0, 0];
+var vector autocvar_hlhud_lowArmorColor1  = [1, 0, 0];
+var vector autocvar_hlhud_lowArmorColor2  = [1, 0, 0];
+
 var float autocvar_hlhud_fgAlpha  = 100/255;
 var float autocvar_hlhud_fgAlphaScale  = 1.0;
 var float autocvar_hlhud_altBucket  = 0.0;
 var float autocvar_hlhud_bucketNumAlpha  = 0.5f;
 var float autocvar_hlhud_hideTime  = 3.0f;
+var bool autocvar_hlhud_leadingZeroes = false;
+var bool autocvar_hlhud_leadingZeroesAlpha = 0.15f;
+var bool autocvar_hlhud_leadingZeroesLimit = true;
 
 #define g_fg_color autocvar_hlhud_fgColor
 #define g_fg_alpha autocvar_hlhud_fgAlpha
@@ -223,6 +236,7 @@ float spr_flash2[4] = {
 #define HLHUD_SPRITES 61i
 int g_spriteSheets[HLHUD_SPRITES];
 int g_spriteAmmoIcon;
+int g_spriteAmmo2Icon;
 int g_spriteCrosshair;
 
 typedef enum

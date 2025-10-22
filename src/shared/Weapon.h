@@ -20,7 +20,8 @@
 Half-Life specific weapon based on ncWeapon.
 
 # NEW KEYS
-- "ammoIcon" - Which sprites/ image to use. See notes.
+- "ammoIcon" - Which sprites/ image to use for the primary ammo type. See notes.
+- "ammo2Icon" - Which sprites/ image to use for the secondary. See notes.
 - "crosshair" - Which sprites/ image to use as a crosshair. See notes.
 - "hudSlot" - In which weapon selection slot this weapon belongs to.
 - "hudSlotPos" - The position of the weapon in the respective weapon selection slot.
@@ -51,9 +52,6 @@ public:
 
 private:
 #ifdef CLIENT
-	string m_ammoIcon;
-	string m_ammo2Icon;
-	string m_crossHair;
 	ncWeapon m_nextWeapon;
 #endif
 	bool m_bAltModeLaser;

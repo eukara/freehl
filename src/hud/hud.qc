@@ -175,6 +175,11 @@ HUD_PickedUpItem(string itemClass)
 	}
 }
 
+void
+HUD_DrawSeperator(vector vecPos, float sepAlpha, vector sepColor)
+{
+	draw.Pic(vecPos, "fade_additive", [1,24], sepColor, sepAlpha, DRAWFLAG_NORMAL);
+}
 
 void
 HLHUD_UpdateTimers(float health, float armor, float clip, float ammo1, float ammo2)
@@ -294,49 +299,82 @@ HLHUD_DrawNumber(int iNumber, vector vecPos, float fAlpha, vector vColor)
 void
 HLHUD_DrawNums(float fNumber, vector vecPos, float fAlpha, vector vColor)
 {
+	vector oldPos = vecPos;
 	int iNumber = fNumber;
 	if (iNumber > 0) {
 		while (iNumber > 0) {
 			HLHUD_DrawNumber((float)iNumber % 10, vecPos, fAlpha, vColor);
 			iNumber = iNumber / 10;
 			vecPos[0] -= 20;
-		} 
+		}
 	} else {
 		HLHUD_DrawNumber(0, vecPos, fAlpha, vColor);
+	}
+
+	/* bonus: fun gimmick leading zero display */
+	if (autocvar_hlhud_leadingZeroes) {
+		if (fNumber < 100) {
+			HLHUD_DrawNumber(0, oldPos + [-40, 0], fAlpha * autocvar_hlhud_leadingZeroesAlpha, vColor);
+		}
+		
+		if (fNumber < 10) {
+			HLHUD_DrawNumber(0, oldPos + [-20, 0], fAlpha * autocvar_hlhud_leadingZeroesAlpha, vColor);
+		}
 	}
 }
 
 void
 HLHUD_DrawHealth(vector pos, float healthValue)
 {
+	vector colorLerp;
+
 	if (healthValue > 25) {
+		float percentageAmount = ((healthValue - 25) * (1/75)); /* low health starts at 25 */
+		colorLerp[0] = lerp(autocvar_hlhud_healthColor1[0], autocvar_hlhud_healthColor2[0], percentageAmount);
+		colorLerp[1] = lerp(autocvar_hlhud_healthColor1[1], autocvar_hlhud_healthColor2[1], percentageAmount);
+		colorLerp[2] = lerp(autocvar_hlhud_healthColor1[2], autocvar_hlhud_healthColor2[2], percentageAmount);
+	
 		atlasPic.Draw_RGBA(
 			g_spriteSheets[S_CROSS],
 			pos + [-72,-4],
-			g_fg_color * g_healthAlpha,
+			colorLerp * g_healthAlpha,
 			g_fg_alphaScale, 
 			true
 		);
-		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, g_fg_color);
+		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, colorLerp);
 	} else {
+		float percentageAmount = (healthValue * (1/25)); /* 0 - 25 */
+		colorLerp[0] = lerp(autocvar_hlhud_lowHealthColor1[0], autocvar_hlhud_lowHealthColor2[0], percentageAmount);
+		colorLerp[1] = lerp(autocvar_hlhud_lowHealthColor1[1], autocvar_hlhud_lowHealthColor2[1], percentageAmount);
+		colorLerp[2] = lerp(autocvar_hlhud_lowHealthColor1[2], autocvar_hlhud_lowHealthColor2[2], percentageAmount);
+
 		atlasPic.Draw_RGBA(
 			g_spriteSheets[S_CROSS],
 			pos + [-72,-4],
-			[1,0,0],
+			colorLerp,
 			g_fg_alphaScale, 
 			true
 		);
-		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, [1,0,0]);
+		HLHUD_DrawNums(healthValue, pos, g_healthAlpha, colorLerp);
 	}
+
+	HUD_DrawSeperator(pos + [25,0], g_fg_alphaScale, colorLerp * g_healthAlpha);
+
 }
 
 void
 HLHUD_DrawArmor(vector pos, float armorValue)
 {
+	vector colorLerp;
+	float percentageAmount = (armorValue * (1/100)); /* low health starts at 25 */
+	colorLerp[0] = lerp(autocvar_hlhud_armorColor1[0], autocvar_hlhud_armorColor2[0], percentageAmount);
+	colorLerp[1] = lerp(autocvar_hlhud_armorColor1[1], autocvar_hlhud_armorColor2[1], percentageAmount);
+	colorLerp[2] = lerp(autocvar_hlhud_armorColor1[2], autocvar_hlhud_armorColor2[2], percentageAmount);
+
 	atlasPic.Draw_RGBA(
 		g_spriteSheets[S_SUIT_EMPTY],
 		pos + [-80,-9],
-		g_fg_color * g_armorAlpha,
+		colorLerp * g_armorAlpha,
 		g_fg_alphaScale, 
 		true
 	);
@@ -348,13 +386,13 @@ HLHUD_DrawArmor(vector pos, float armorValue)
 			g_spriteSheets[S_SUIT_FULL],
 			pos + [-80,-9],
 			perc,
-			g_fg_color * g_armorAlpha,
+			colorLerp * g_armorAlpha,
 			g_fg_alphaScale, 
 			true
 		);
 	}
 
-	HLHUD_DrawNums(armorValue, pos, g_armorAlpha, g_fg_color);
+	HLHUD_DrawNums(armorValue, pos, g_fg_alphaScale, colorLerp * g_armorAlpha);
 }
 
 void
@@ -454,22 +492,10 @@ HLHUD_DrawObituaries(vector drawAtPos, bool rightAlign)
 }
 
 void
-HUD_DrawSeperator(vector vecPos)
-{
-	atlasPic.Draw_RGBA(
-		g_spriteSheets[S_DIVIDER],
-		vecPos - [0, 7],
-		g_fg_color * HUD_ALPHA,
-		g_fg_alphaScale, 
-		true
-	);
-}
-
-void
 HLHUD_DrawAmmo1(vector pos, float ammoValue)
 {
 	HLHUD_DrawNums(ammoValue, pos, g_clipAlpha, g_fg_color);
-	HUD_DrawSeperator(pos + [30,0]);
+	HUD_DrawSeperator(pos + [30,0], g_fg_alphaScale, g_fg_color * g_clipAlpha);
 }
 
 void
@@ -585,6 +611,15 @@ HUD_Draw(void)
 	/* ammo 2 */
 	if (weapon.UsesSecondaryAmmo() == true) {
 		pos = hud_mins + [hud_size[0] - 72, hud_size[1] - 74];
+
+		atlasPic.Draw_RGBA(
+			g_spriteAmmo2Icon,
+			pos + [24,0],
+			g_fg_color,
+			g_fg_alphaScale,
+			true
+		);
+
 		HLHUD_DrawAmmo3(pos, ammoValue2);
 	}
 
@@ -624,8 +659,9 @@ HUD_DrawIntermission(void)
 void
 HUD_WeaponSwitched(string weaponName)
 {
-	g_spriteAmmoIcon = atlasPic.Load(strcat(weaponName, ".ammo"));
-	g_spriteCrosshair = atlasPic.Load(strcat(weaponName, ".crosshair"));
+	g_spriteAmmoIcon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo"));
+	g_spriteAmmo2Icon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo2"));
+	g_spriteCrosshair = atlasPic.Load(strcat(strtolower(weaponName), ".crosshair"));
 	g_ammoDisplayAlpha = 1.0f;
 }
 
