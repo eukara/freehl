@@ -16,6 +16,11 @@
 
 var float autocvar_hlhud_weaponIconAlpha = 0.75;
 var float autocvar_hlhud_weaponIconSelectedAlpha = 1.0f;
+var bool autocvar_hlhud_selectCurrentWeaponFirst = false;
+
+var vector autocvar_hlhud_ammoBarColor1 = [0, 1, 0];
+var vector autocvar_hlhud_ammoBarColor2 = [0, 1, 0];
+
 
 void
 HLWeaponSelect::HLWeaponSelect(void)
@@ -82,9 +87,9 @@ HLWeaponSelect::DrawBar(vector drawAtPos, float percentageAmount)
 	draw.Rect(drawAtPos + [10,0], [20,4], g_fg_color, 1.0f);
 
 	barWidth = bound(1, 20 * percentageAmount, 20);
-	colorLerp[0] = lerp(1.0, 0.0f, percentageAmount);
-	colorLerp[1] = lerp(0.0, 1.0f, percentageAmount);
-	colorLerp[2] = lerp(0.0, 0.0f, percentageAmount);
+	colorLerp[0] = lerp(autocvar_hlhud_ammoBarColor1[0], autocvar_hlhud_ammoBarColor2[0], percentageAmount);
+	colorLerp[1] = lerp(autocvar_hlhud_ammoBarColor1[1], autocvar_hlhud_ammoBarColor2[1], percentageAmount);
+	colorLerp[2] = lerp(autocvar_hlhud_ammoBarColor1[2], autocvar_hlhud_ammoBarColor2[2], percentageAmount);
 
 	draw.Rect(drawAtPos + [10,0], [barWidth,4], colorLerp, 1.0f);
 }
@@ -296,7 +301,11 @@ HLWeaponSelect::SelectNext(bool fastSwitch)
 	m_lastWeapon = weapon.GetLastWeaponInInventory();
 
 	if (!m_selectedWeapon) {
-		m_selectedWeapon = weapon.GetNextWeaponRelativeTo(currentWeapon);
+		if (autocvar_hlhud_selectCurrentWeaponFirst) {
+			m_selectedWeapon = currentWeapon;
+		} else {
+			m_selectedWeapon = weapon.GetNextWeaponRelativeTo(currentWeapon);
+		}
 	} else {
 		m_selectedWeapon = weapon.GetNextWeaponRelativeTo(m_selectedWeapon);
 	}
@@ -327,7 +336,11 @@ HLWeaponSelect::SelectPrevious(bool fastSwitch)
 	m_lastWeapon = weapon.GetLastWeaponInInventory();
 
 	if (!m_selectedWeapon) {
-		m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(currentWeapon);
+		if (autocvar_hlhud_selectCurrentWeaponFirst) {
+			m_selectedWeapon = currentWeapon;
+		} else {
+			m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(currentWeapon);
+		}
 	} else {
 		m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(m_selectedWeapon);
 	}

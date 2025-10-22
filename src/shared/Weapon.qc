@@ -18,9 +18,6 @@ void
 hlWeapon::hlWeapon(void)
 {
 #ifdef CLIENT
-	m_ammoIcon = __NULL__;
-	m_ammo2Icon = __NULL__;
-	m_crossHair = __NULL__;
 	m_nextWeapon = __NULL__;
 #endif
 	m_bAltModeLaser = false;
@@ -43,50 +40,16 @@ hlWeapon::ReloadCachedAttributes(void)
 	super::ReloadCachedAttributes();
 
 #ifdef CLIENT
-	m_ammoIcon = GetDefString("ammoIcon");
-
-	if (m_ammoIcon == "") {
-		m_ammoIcon = sprintf("%s.ammo", strtolower(declclass));
-	}
-
-	m_ammo2Icon = GetDefString("ammo2Icon");
-
-	if (m_ammo2Icon == "") {
-		m_ammo2Icon = sprintf("%s.ammo2", strtolower(declclass));
-	}
-
-	m_crossHair = GetDefString("crosshair");
-
-	if (m_crossHair == "") {
-		m_crossHair = sprintf("%s.crosshair", strtolower(declclass));
-	}
-
 	m_weaponHUDIcon = GetDefString("icon");
 
-	if (m_weaponHUDIcon == "") {
+	if (!STRING_SET(m_weaponHUDIcon)) {
 		m_weaponHUDIcon = sprintf("%s.weapon", strtolower(declclass));
 	}
 
 	m_weaponHUDIconSel = GetDefString("iconSelected");
-	
+
 	if (!STRING_SET(m_weaponHUDIconSel)) {
-		m_weaponHUDIconSel = m_weaponHUDIcon;
-	}
-
-	if (m_weaponHUDIconSel == "") {
 		m_weaponHUDIconSel = sprintf("%s.weapon_s", strtolower(declclass));
-	}
-
-	if (m_ammoIcon == "none") {
-		m_ammoIcon = __NULL__;
-	}
-
-	if (m_ammo2Icon == "none") {
-		m_ammo2Icon = __NULL__;
-	}
-
-	if (m_crossHair == "none") {
-		m_crossHair = __NULL__;
 	}
 
 	if (m_weaponHUDIcon == "none") {
