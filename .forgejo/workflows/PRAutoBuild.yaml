@@ -1,13 +1,16 @@
-name: Nightly PAK
+name: Auto-Build
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
     runs-on: docker
+
+    steps:
+    - name: set env
+      run: echo "::set-env name=PAKTAG::$(date +'%Y-%m-%d')"
 
     steps:
     - uses: actions/checkout@v3
@@ -39,7 +42,7 @@ jobs:
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
-        tag: "nightly-${{ github.ref_name }}"
+        tag: "${{ env.PAKTAG }}"
         sha: "${{ github.sha }}"
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
