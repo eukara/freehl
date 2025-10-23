@@ -44,7 +44,7 @@ entityDef weapon_crowbar
 
 	// hlWeapon specific
 	"hudSlot"		"0"
-	"hudSlotPos"	"0"
+	"hudSlotPos"		"0"
 	"weight"		"0"
 	"crosshair"		"none"
 	"ammoIcon"		"none"
@@ -53,12 +53,12 @@ entityDef weapon_crowbar
 
 entityDef projectile_crowbar
 {
-	"spawnclass"			"ncProjectile"
-	"damage"			"skill:plr_crowbar"
-	"is_bullet"			"1"
-	"range"				"48"
-	"decal_detonate"		"Impact.Shot"
-	"detonate_on_world" 		"0"
-	"snd_hitBody"			"Weapon_Crowbar.Melee_Hit"
-	"snd_hitWorld"			"Weapon_Crowbar.Melee_HitWorld"
+	"spawnclass"		"ncProjectile"
+	"damage"		"skill:plr_crowbar"
+	"is_bullet"		"1"
+	"range"			"48"
+	"decal_detonate"	"Impact.Shot"
+	"detonate_on_world" 	"0"
+	"snd_hitBody"		"Weapon_Crowbar.Melee_Hit"
+	"snd_hitWorld"		"Weapon_Crowbar.Melee_HitWorld"
 }

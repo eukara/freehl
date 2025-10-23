@@ -15,8 +15,8 @@ entityDef weapon_satchel
 	"editor_usage"		"Satchel"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_satchel.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_satchel.mdl"
 	"model_player"		"models/p_satchel.mdl"
 	"model_view"		"models/v_satchel.mdl"
 	"animPrefix"		"onehand"
@@ -24,12 +24,12 @@ entityDef weapon_satchel
 
 	"def_fireInfo"		"fireInfo_satchel_primary"
 	"def_altFireInfo"	"fireInfo_satchel_secondary"
-	"ammoType"			"ammo_satchel"
+	"ammoType"		"ammo_satchel"
 	"inv_ammo_satchel"	"1"
 
-	"act_idle"			"$SATCHEL_IDLE,$SATCHEL_FIDGET"
-	"act_draw"			"$SATCHEL_DRAW"
-	"act_fire"			"$SATCHEL_FIRE"
+	"act_idle"		"$SATCHEL_IDLE,$SATCHEL_FIDGET"
+	"act_draw"		"$SATCHEL_DRAW"
+	"act_fire"		"$SATCHEL_FIRE"
 	"act_holster"		"$SATCHEL_HOLSTER"
 
 	// hlWeapon specific
@@ -43,22 +43,22 @@ entityDef weapon_satchel
 entityDef projectile_satchel
 {
 	"spawnclass"		"ncProjectile"
-	"model"				"models/w_satchel.mdl"
-	"velocity"			"274 0 0"
+	"model"			"models/w_satchel.mdl"
+	"velocity"		"274 0 0"
 	"angular_velocity"	"0 400 0"
-	"friction"			"0.8"
-	"gravity"			"0.5"
-	"bounce"			"1"
-	"frame"				"1"
-	"mins"				"-1 -1 -4"
-	"maxs"				"1 1 4"
+	"friction"		"0.8"
+	"gravity"		"0.5"
+	"bounce"		"1"
+	"frame"			"1"
+	"mins"			"-1 -1 -4"
+	"maxs"			"1 1 4"
 	"snd_bounce"		"SatchelCharge.Bounce"
 	"inherit_velocity"	"1"
 
-	"def_splash_damage"			"damage_satchelExplosion"
-	"model_detonate"			"fx_explosion.main"
-	"snd_explode"				"fx.explosion"
-	"decal_detonate"			"ExplosionScorch"
+	"def_splash_damage"		"damage_satchelExplosion"
+	"model_detonate"		"fx_explosion.main"
+	"snd_explode"			"fx.explosion"
+	"decal_detonate"		"ExplosionScorch"
 	"explode_light_color"		"1 0.5 0"
 	"explode_light_radius"		"1024"
 	"explode_light_fadetime"	"3"
@@ -72,9 +72,9 @@ entityDef damage_satchelExplosion
 
 entityDef fireInfo_satchel_secondary
 {
-	"def_onFire"		"projectile_satchel"
+	"def_onFire"		""
 	"detonateOnFire"	"projectile_satchel"
-	"fireRate"			"1.0"
+	"fireRate"		"1.0"
 	"removeOnEmpty" 	"1"
 	"ammoRequired"		"1"
 	"model_player"		"models/p_satchel_radio.mdl"
@@ -84,10 +84,9 @@ entityDef fireInfo_satchel_secondary
 entityDef fireInfo_satchel_primary
 {
 	"def_onFire"		"projectile_satchel"
-	"fireRate"			"1.0"
+	"fireRate"		"1.0"
 	"removeOnEmpty" 	"1"
 	"ammoRequired"		"1"
 	"model_player"		"models/p_satchel_radio.mdl"
 	"model_view"		"models/v_satchel_radio.mdl"
 }
-

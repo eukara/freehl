@@ -61,6 +61,7 @@ entityDef weapon_shotgun
 	"hudSlot"		"2"
 	"hudSlotPos"	"1"
 	"weight"		"15"
+	"fireUnderwater"	"0"
 }
 
 entityDef projectile_shotgun

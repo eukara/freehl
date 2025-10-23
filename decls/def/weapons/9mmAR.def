@@ -52,6 +52,7 @@ entityDef weapon_9mmAR
 	"hudSlot"			"2"
 	"hudSlotPos"		"0"
 	"weight"			"15"
+	"fireUnderwater"	"0"
 }
 
 entityDef projectile_9mmAR

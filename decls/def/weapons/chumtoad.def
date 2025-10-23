@@ -40,6 +40,7 @@ entityDef weapon_chumtoad
 	"hudSlotPos"		"4"
 	"weight"			"5"
 	"crosshair"			"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_chumtoad

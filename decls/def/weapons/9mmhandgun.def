@@ -3,7 +3,7 @@
 #define 9MMHANDGUN_IDLE3		2
 #define 9MMHANDGUN_FIRE			3
 #define 9MMHANDGUN_FIRELAST		4
-#define 9MMHANDGUN_RELOADEMPTY	5
+#define 9MMHANDGUN_RELOADEMPTY		5
 #define 9MMHANDGUN_RELOAD		6
 #define 9MMHANDGUN_DRAW			7
 #define 9MMHANDGUN_HOLSTER		8
@@ -16,8 +16,8 @@ entityDef weapon_9mmhandgun
 	"editor_usage"		"9mm Handgun"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_9mmhandgun.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_9mmhandgun.mdl"
 	"model_player"		"models/p_9mmhandgun.mdl"
 	"model_view"		"models/v_9mmhandgun.mdl"
 	"animPrefix"		"onehand"
@@ -26,9 +26,9 @@ entityDef weapon_9mmhandgun
 	// weapon specific
 	"def_fireInfo"		"fireInfo_glock"
 	"def_altFireInfo"	"fireInfo_altGlock"
-	"inv_name"			"9mm Handgun"
-	"clipSize"			"17"
-	"ammoType" 			"ammo_9mm"
+	"inv_name"		"9mm Handgun"
+	"clipSize"		"17"
+	"ammoType" 		"ammo_9mm"
 	"ammoRequired" 		"1"
 	"ammoPerShot"		"1"
 	"punchAngle"		"-2 0 0"
@@ -51,7 +51,7 @@ entityDef weapon_9mmhandgun
 
 	// hlWeapon specific
 	"hudSlot"		"1"
-	"hudSlotPos"	"0"
+	"hudSlotPos"		"0"
 	"weight"		"10"
 	"fireUnderwater"	"1"
 }
@@ -72,14 +72,14 @@ entityDef projectile_glock_fast
 
 entityDef fireInfo_glock
 {
-	"def_onFire"	"projectile_glock"
-	"fireRate" 			".3"
+	"def_onFire"		"projectile_glock"
+	"fireRate" 		".3"
 	"model_flash"		"sprites/muzzleflash2.spr"
 }
 
 entityDef fireInfo_altGlock
 {
-	"def_onFire"	"projectile_glock_fast"
-	"fireRate"			".2"
+	"def_onFire"		"projectile_glock_fast"
+	"fireRate"		".2"
 	"model_flash"		"sprites/muzzleflash2.spr"
 }

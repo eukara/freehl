@@ -50,4 +50,5 @@ entityDef weapon_egon
 	"hudSlot"		"3"
 	"hudSlotPos"		"2"
 	"weight"		"15"
+	"fireUnderwater"	"0"
 }

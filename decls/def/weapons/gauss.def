@@ -40,6 +40,7 @@ entityDef weapon_gauss
 	"hudSlot"		"3"
 	"hudSlotPos"	"1"
 	"weight"		"20"
+	"fireUnderwater"	"0"
 }
 
 entityDef projectile_gauss

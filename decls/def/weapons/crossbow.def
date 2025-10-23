@@ -1,15 +1,15 @@
-#define CROSSBOW_IDLE 0
-#define CROSSBOW_IDLE_EMPTY 1
-#define CROSSBOW_FIDGET 2
-#define CROSSBOW_FIDGET_EMPTY 3
-#define CROSSBOW_FIRE 4
-#define CROSSBOW_RELOAD 5
-#define CROSSBOW_FIRE_LAST 6
-#define CROSSBOW_RELOAD_EMPTY 7
-#define CROSSBOW_DRAW 8
-#define CROSSBOW_DRAW_EMPTY 9
-#define CROSSBOW_HOLSTER 10
-#define CROSSBOW_HOLSTER_EMPTY 11
+#define CROSSBOW_IDLE		0
+#define CROSSBOW_IDLE_EMPTY	1
+#define CROSSBOW_FIDGET		2
+#define CROSSBOW_FIDGET_EMPTY	3
+#define CROSSBOW_FIRE		4
+#define CROSSBOW_RELOAD		5
+#define CROSSBOW_FIRE_LAST	6
+#define CROSSBOW_RELOAD_EMPTY	7
+#define CROSSBOW_DRAW		8
+#define CROSSBOW_DRAW_EMPTY	9
+#define CROSSBOW_HOLSTER	10
+#define CROSSBOW_HOLSTER_EMPTY	11
 
 entityDef weapon_crossbow
 {
@@ -72,20 +72,20 @@ entityDef fireInfo_crossbow
 	"def_onFire"		"projectile_arrow"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
-	"fireRate"			"1.0"
+	"fireRate"		"1.0"
 	"punchAngle"		"-2 0 0"
 }
 
 entityDef fireInfo_crossbowMP
 {
 	"inherit"		"fireInfo_crossbow"
-	"def_onFire"	"projectile_arrowExplosive"
+	"def_onFire"		"projectile_arrowExplosive"
 }
 
 entityDef debris_arrow
 {
 	"spawnclass"		"ncProjectile"
-	"model"				"models/crossbow_bolt.mdl"
+	"model"			"models/crossbow_bolt.mdl"
 }
 
 entityDef projectile_arrow

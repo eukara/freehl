@@ -13,23 +13,25 @@ entityDef weapon_snark
 	"editor_usage"		"Snark"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_sqknest.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_sqknest.mdl"
 	"model_player"		"models/p_squeak.mdl"
 	"model_view"		"models/v_squeak.mdl"
-	"frame"				"1" // World Model has no static idle, so we set frame instead
+
+	// World Model has no static idle, so we set frame instead
+	"frame"			"1"
 	"animPrefix"		"squeak"
 	"killIcon"		"d_snark"
 
-	"inv_name"			"Snark"
+	"inv_name"		"Snark"
 	"inv_weapon"		"weapon_snark"
 	"inv_ammo_snark"	"5"
 	"def_fireInfo"		"fireInfo_snark"
 
-	"act_idle"			"$SNARK_IDLE,$SNARK_FIDGET1,$SNARK_FIDGET2"
-	"act_draw"			"$SNARK_DRAW"
+	"act_idle"		"$SNARK_IDLE,$SNARK_FIDGET1,$SNARK_FIDGET2"
+	"act_draw"		"$SNARK_DRAW"
 	"act_holster"		"$SNARK_HOLSTER"
-	"act_fire"			"$SNARK_FIRE"
+	"act_fire"		"$SNARK_FIRE"
 	"removeOnEmpty" 	"1"
 
 	// hlWeapon specific
@@ -43,8 +45,8 @@ entityDef weapon_snark
 entityDef fireInfo_snark
 {
 	"def_onFire"		"projectile_snark"
-	"fireRate"			"1.0"
-	"ammoType"			"ammo_snark"
+	"fireRate"		"1.0"
+	"ammoType"		"ammo_snark"
 	"ammoRequired"		"1"
 	"silent_fire"		"1"
 	"removeOnEmpty" 	"1"
@@ -52,14 +54,14 @@ entityDef fireInfo_snark
 
 entityDef projectile_snark
 {
-	"spawnclass"			"ncProjectile"
-	"OnSpawn"				"!self,SpawnDefAttachment,monster_snark,0,-1"
+	"spawnclass"		"ncProjectile"
+	"OnSpawn"		"!self,SpawnDefAttachment,monster_snark,0,-1"
 
-	"health"				"0"
-	"velocity"				"0"
-	"angular_velocity"		"0 0 200"
-	"detonate_on_death"		"1"
-	"detonate_on_world"		"1"
-	"detonate_on_actor"		"1"
-	"offset"				"32 0 0"
+	"health"		"0"
+	"velocity"		"0"
+	"angular_velocity"	"0 0 200"
+	"detonate_on_death"	"1"
+	"detonate_on_world"	"1"
+	"detonate_on_actor"	"1"
+	"offset"		"32 0 0"
 }
