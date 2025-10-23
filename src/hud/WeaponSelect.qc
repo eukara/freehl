@@ -173,28 +173,35 @@ HLWeaponSelect::Draw(void)
 
 			/* selected slot VS unselected slot */
 			if (m_iWantSlot == currentSlot) {
+				vector weaponColor = g_fg_color;
+				bool isEmpty = weapon.IsEmpty(linkedList);
+
+				if (isEmpty) {
+					weaponColor = [1, 0, 0];
+				}
+					
 				float ammo1Percentage = (float)weapon.GetAmmo1(linkedList) / (float)weapon.MaxAmmo(linkedList);
 				float ammo2Percentage = (float)weapon.GetAmmo2(linkedList) / (float)weapon.MaxAmmo(linkedList);
 
 				if (linkedList == m_selectedWeapon) {
-					atlasPic.Draw_RGBA(atlasPic.Load(weapon.GetSelectedIcon(linkedList)), vecPos, g_fg_color * autocvar_hlhud_weaponIconSelectedAlpha, g_fg_alphaScale, true);
-					atlasPic.Draw_RGBA(g_spriteSheets[S_SELECTION], vecPos, g_fg_color * autocvar_hlhud_weaponIconSelectedAlpha, g_fg_alphaScale, true);
+					atlasPic.Draw_RGBA(atlasPic.Load(weapon.GetSelectedIcon(linkedList)), vecPos, weaponColor * autocvar_hlhud_weaponIconSelectedAlpha, g_fg_alphaScale, true);
+					atlasPic.Draw_RGBA(g_spriteSheets[S_SELECTION], vecPos, weaponColor * autocvar_hlhud_weaponIconSelectedAlpha, g_fg_alphaScale, true);
 
-					if (weapon.AmmoRequired(linkedList) == true) {
+					if (isEmpty == false && weapon.AmmoRequired(linkedList) == true) {
 						DrawBar(vecPos, ammo1Percentage);
 					}
 
-					if (weapon.UsesSecondaryAmmo(linkedList) == true) {
+					if (isEmpty == false && weapon.UsesSecondaryAmmo(linkedList) == true) {
 						DrawBar(vecPos + [35, 0], ammo2Percentage);
 					}
 				} else {
-					atlasPic.Draw_RGBA(atlasPic.Load(weapon.GetIcon(linkedList)), vecPos, g_fg_color * autocvar_hlhud_weaponIconAlpha, g_fg_alphaScale, true);
+					atlasPic.Draw_RGBA(atlasPic.Load(weapon.GetIcon(linkedList)), vecPos, weaponColor * autocvar_hlhud_weaponIconAlpha, g_fg_alphaScale, true);
 
-					if (weapon.AmmoRequired(linkedList) == true) {
+					if (isEmpty == false && weapon.AmmoRequired(linkedList) == true) {
 						DrawBar(vecPos, ammo1Percentage);
 					}
 
-					if (weapon.UsesSecondaryAmmo(linkedList) == true) {
+					if (isEmpty == false && weapon.UsesSecondaryAmmo(linkedList) == true) {
 						DrawBar(vecPos + [35, 0], ammo2Percentage);
 					}
 				}
@@ -310,6 +317,11 @@ HLWeaponSelect::SelectNext(bool fastSwitch)
 		m_selectedWeapon = weapon.GetNextWeaponRelativeTo(m_selectedWeapon);
 	}
 
+	/* iterate over non-empty weapons only */
+	while (weapon.IsEmpty(m_selectedWeapon) == true && m_selectedWeapon) {
+		m_selectedWeapon = weapon.GetNextWeaponRelativeTo(m_selectedWeapon);
+	}
+
 	/* wrap around */
 	if (!m_selectedWeapon) {
 		m_selectedWeapon = m_firstWeapon;
@@ -342,6 +354,11 @@ HLWeaponSelect::SelectPrevious(bool fastSwitch)
 			m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(currentWeapon);
 		}
 	} else {
+		m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(m_selectedWeapon);
+	}
+
+	/* iterate over non-empty weapons only */
+	while (weapon.IsEmpty(m_selectedWeapon) == true && m_selectedWeapon) {
 		m_selectedWeapon = weapon.GetPreviousWeaponRelativeTo(m_selectedWeapon);
 	}
 
