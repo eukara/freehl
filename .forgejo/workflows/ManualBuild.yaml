@@ -8,35 +8,39 @@ jobs:
     runs-on: docker
 
     steps:
-    - uses: actions/checkout@v3
+    - name: clone nuclide
+      uses: actions/checkout@v3
       with:
         fetch-depth: 1
         repository: vera/nuclide
         ref: current
 
-    - uses: actions/checkout@v3
+    - name: clone game
+      uses: actions/checkout@v3
       with:
         fetch-depth: 1
         path: "./${{ github.event.repository.name }}"
 
-    - name: apt install zip
+    - name: add pkg zip
       run: |
         apt update
         apt install -y \
         zip
 
-    - name: assemble pk4
+    - name: set env
+      run: echo "PAKTAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+    - name: build pak
       run: make dist-pak NAME=bin GAME=${{ github.event.repository.name }}
 
-    - uses: actions/upload-artifact@v3
+    - name: upload log artifact
+      uses: actions/upload-artifact@v3
       with:
         name: build-log
         path: ./build/bin-content.log
 
-    - name: set date env
-      run: echo "PAKTAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-    - uses: actions/forgejo-release@v2
+    - name: upload pak
+      uses: actions/forgejo-release@v2
       with:
         url: https://code.idtech.space
         repo: "${{ github.repository }}"
@@ -45,8 +49,7 @@ jobs:
         direction: upload
         release-dir: ./build/bin-content/${{ github.event.repository.name }}/
         token: ${{ secrets.TOKEN }}
-        title: "Development Build"
-        release-notes: "Nightly build, override ${{ github.event.repository.name }}/package_${{ github.event.repository.name }}.pk4."
-        prerelease: true
+        title: "Manual Build"
+        prerelease: false
         override: true
         release-notes-assistant: true
