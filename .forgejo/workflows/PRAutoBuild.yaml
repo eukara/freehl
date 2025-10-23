@@ -9,10 +9,6 @@ jobs:
     runs-on: docker
 
     steps:
-    - name: set env
-      run: echo "::set-env name=PAKTAG::$(date +'%Y-%m-%d')"
-
-    steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 1
@@ -37,6 +33,9 @@ jobs:
       with:
         name: build-log
         path: ./build/bin-content.log
+
+    - name: set env
+      run: echo "::set-env name=PAKTAG::$(date +'%Y-%m-%d')"
 
     - uses: actions/forgejo-release@v2
       with:
