@@ -414,9 +414,9 @@ hlHUDCounter::postdraw(void)
 		} else {
 			drawpic(vecProj, m_strIcon, [64, 64], [1,1,1], a, DRAWFLAG_ADDITIVE);
 		}
-	} else if (STRING_SET(m_strIcon)) {
+	} /* else if (STRING_SET(m_strIcon)) {
 		ncInterfaceSpriteSheet::Draw_RGBA(m_strIcon, vecProj, colormod / 255, a, m_bAdditive);
-	}
+	} */
 
 	/* counter */
 	projectedPos = vecProj + [80, 20];
