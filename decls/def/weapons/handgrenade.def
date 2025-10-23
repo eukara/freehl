@@ -42,10 +42,11 @@ entityDef weapon_handgrenade
 	"act_release"			"$GRENADE_FIRE1,$GRENADE_FIRE2,$GRENADE_FIRE3"
 
 	// hlWeapon specific
-	"hudSlot"				"4"
-	"hudSlotPos"			"0"
-	"weight"				"5"
-	"crosshair"				"none"
+	"hudSlot"		"4"
+	"hudSlotPos"		"0"
+	"weight"		"5"
+	"crosshair"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_handgrenade

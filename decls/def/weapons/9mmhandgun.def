@@ -37,22 +37,23 @@ entityDef weapon_9mmhandgun
 	"ejectBrassDelay"	"10"
 	"ejectBrassOffset"	"18 6 -6"
 
-	"act_fire"			"$9MMHANDGUN_FIRE"
+	"act_fire"		"$9MMHANDGUN_FIRE"
 	"act_fireLast"		"$9MMHANDGUN_FIRELAST"
 	"act_holster"		"$9MMHANDGUN_HOLSTER"
 	"act_reload"		"$9MMHANDGUN_RELOAD"
 	"act_reloadEmpty"	"$9MMHANDGUN_RELOADEMPTY"
-	"act_draw"			"$9MMHANDGUN_DRAW"
-	"act_idle"			"$9MMHANDGUN_IDLE1,$9MMHANDGUN_IDLE2,$9MMHANDGUN_IDLE3"
+	"act_draw"		"$9MMHANDGUN_DRAW"
+	"act_idle"		"$9MMHANDGUN_IDLE1,$9MMHANDGUN_IDLE2,$9MMHANDGUN_IDLE3"
 
 	"snd_fire"		"Weapon_Glock.Single"
-	"snd_altfire"	"Weapon_Glock.Single"
+	"snd_altfire"		"Weapon_Glock.Single"
 	"snd_empty"		"Weapons.Empty"
 
 	// hlWeapon specific
 	"hudSlot"		"1"
 	"hudSlotPos"	"0"
 	"weight"		"10"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_glock

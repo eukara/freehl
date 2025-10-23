@@ -33,10 +33,11 @@ entityDef weapon_satchel
 	"act_holster"		"$SATCHEL_HOLSTER"
 
 	// hlWeapon specific
-	"hudSlot"			"4"
+	"hudSlot"		"4"
 	"hudSlotPos"		"1"
-	"weight"			"-20"
-	"crosshair"			"none"
+	"weight"		"-20"
+	"crosshair"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_satchel

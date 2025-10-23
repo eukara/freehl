@@ -18,8 +18,8 @@ entityDef weapon_crowbar
 	"editor_usage"		"Crowbar"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_crowbar.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_crowbar.mdl"
 	"model_player"		"models/p_crowbar.mdl"
 	"model_view"		"models/v_crowbar.mdl"
 	"animPrefix"		"crowbar"
@@ -27,20 +27,20 @@ entityDef weapon_crowbar
 
 	// weapon specific
 	"def_onFire"		"projectile_crowbar"
-	"inv_name"			"Crowbar"
+	"inv_name"		"Crowbar"
 	"ammoRequired"		"0"
 	"silent_fire"		"1"
 
 	"testDistance"		"-48"
-	"failRate"			"0.5"
-	"fireRate"			"0.25"
+	"failRate"		"0.5"
+	"fireRate"		"0.25"
 	"snd_fireFailed"	"Weapon_Crowbar.Single"
 
-	"act_idle"			"$CROWBAR_IDLE1,$CROWBAR_IDLE2,$CROWBAR_IDLE3"
-	"act_draw"			"$CROWBAR_DRAW"
+	"act_idle"		"$CROWBAR_IDLE1,$CROWBAR_IDLE2,$CROWBAR_IDLE3"
+	"act_draw"		"$CROWBAR_DRAW"
 	"act_holster"		"$CROWBAR_HOLSTER"
 	"act_fireFailed"	"$CROWBAR_FIRE1_MISS,$CROWBAR_FIRE2_MISS,$CROWBAR_FIRE3_MISS"
-	"act_fire"			"$CROWBAR_FIRE1_HIT,$CROWBAR_FIRE2_HIT,$CROWBAR_FIRE3_HIT"
+	"act_fire"		"$CROWBAR_FIRE1_HIT,$CROWBAR_FIRE2_HIT,$CROWBAR_FIRE3_HIT"
 
 	// hlWeapon specific
 	"hudSlot"		"0"
@@ -48,16 +48,17 @@ entityDef weapon_crowbar
 	"weight"		"0"
 	"crosshair"		"none"
 	"ammoIcon"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_crowbar
 {
 	"spawnclass"			"ncProjectile"
-	"damage"				"skill:plr_crowbar"
-	"is_bullet"				"1"
-	"range"					"48"
+	"damage"			"skill:plr_crowbar"
+	"is_bullet"			"1"
+	"range"				"48"
 	"decal_detonate"		"Impact.Shot"
-	"detonate_on_world" 	"0"
+	"detonate_on_world" 		"0"
 	"snd_hitBody"			"Weapon_Crowbar.Melee_Hit"
 	"snd_hitWorld"			"Weapon_Crowbar.Melee_HitWorld"
 }

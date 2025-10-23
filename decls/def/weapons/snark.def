@@ -33,10 +33,11 @@ entityDef weapon_snark
 	"removeOnEmpty" 	"1"
 
 	// hlWeapon specific
-	"hudSlot"			"4"
+	"hudSlot"		"4"
 	"hudSlotPos"		"3"
-	"weight"			"5"
-	"crosshair"			"none"
+	"weight"		"5"
+	"crosshair"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef fireInfo_snark

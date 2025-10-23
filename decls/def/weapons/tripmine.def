@@ -36,10 +36,11 @@ entityDef weapon_tripmine
 	"snd_fire"			"TripmineGrenade.Deploy"
 
 	// hlWeapon specific
-	"hudSlot"			"4"
+	"hudSlot"		"4"
 	"hudSlotPos"		"2"
-	"weight"			"-10"
-	"crosshair"			"none"
+	"weight"		"-10"
+	"crosshair"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef fireInfo_tripminePlant
