@@ -22,11 +22,5 @@ jobs:
         fetch-depth: 1
         path: "./${{ github.event.repository.name }}"
 
-    - name: add pkg zip
-      run: |
-        apt update
-        apt install -y \
-        zip
-
     - name: build progs
       run: make game GAME=${{ github.event.repository.name }}
