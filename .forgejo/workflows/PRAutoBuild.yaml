@@ -34,8 +34,8 @@ jobs:
         name: build-log
         path: ./build/bin-content.log
 
-    - name: set env
-      run: echo "::set-env name=PAKTAG::$(date +'%Y-%m-%d')"
+    - name: set date env
+      run: echo "PAKTAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
     - uses: actions/forgejo-release@v2
       with:
