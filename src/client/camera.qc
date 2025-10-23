@@ -26,7 +26,7 @@ struct
 
 /* tilts the camera for a head-bob like effect when moving */
 void
-Camera_RunBob(__inout vector camera_angle)
+HLCamera_RunBob(__inout vector camera_angle)
 {
 	if (!autocvar(v_cambob, 0, "Enables bobbing effect for the first-person camera"))
 		return;
@@ -64,7 +64,7 @@ Camera_RunBob(__inout vector camera_angle)
 
 /* applies a tilt to the camera for when we're strafing left to right */
 void
-Camera_StrafeRoll(__inout vector camera_angle)
+HLCamera_StrafeRoll(__inout vector camera_angle)
 {
 	if (!autocvar(v_camroll, 1, "Enables strafe-roll for the first-person camera"))
 		return;
@@ -81,11 +81,24 @@ Camera_StrafeRoll(__inout vector camera_angle)
 float Viewmodel_GetBob(void);
 
 /* tilts the camera for a head-bob like effect when moving */
-void
-Camera_RunPosBob(vector angles, __inout vector camera_pos)
+vector
+HLCamera_RunPosBob(vector angles)
 {
 	int s = (float)getproperty(VF_ACTIVESEAT);
 	pCamBob = &g_camBobVars[s];
 	makevectors(view_angles);
-	camera_pos += (v_up * Viewmodel_GetBob());
+	return (v_up * Viewmodel_GetBob());
+}
+
+
+vector
+Camera_RunBob(vector camera_angle)
+{
+	return [0,0,0];
+}
+
+vector
+Camera_StrafeRoll(vector camera_angle)
+{
+	return [0,0,0];
 }
