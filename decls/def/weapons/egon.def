@@ -18,8 +18,8 @@ entityDef weapon_egon
 	"editor_usage"		"Gluon Gun"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_egon.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_egon.mdl"
 	"model_player"		"models/p_egon.mdl"
 	"model_view"		"models/v_egon.mdl"
 	"animPrefix"		"egon"
@@ -27,20 +27,20 @@ entityDef weapon_egon
 	"killIcon"		"d_egon"
 
 	"inv_ammo_uranium"	"20"
-	"ammoType"			"ammo_uranium"
+	"ammoType"		"ammo_uranium"
 	"ammoRequired"		"1"
-	"act_idle"			"$EGON_IDLE,$EGON_FIDGET"
-	"act_draw"			"$EGON_DRAW"
-	"act_loop"			"$EGON_FIRE1,$EGON_FIRE2,$EGON_FIRE3,$EGON_FIRE4"
-	"act_fireStart"			"$EGON_FIRE4"
+	"act_idle"		"$EGON_IDLE,$EGON_FIDGET"
+	"act_draw"		"$EGON_DRAW"
+	"act_loop"		"$EGON_FIRE1,$EGON_FIRE2,$EGON_FIRE3,$EGON_FIRE4"
+	"act_fireStart"		"$EGON_FIRE4"
 	"act_fireStop"		"$EGON_FIDGET"
 	"act_holster"		"$EGON_HOLSTER"
-	"fireRate"			"0.2"
+	"fireRate"		"0.2"
 
 	"snd_fireStart"		"Weapon_Gluon.Start"
 	"snd_fireLoop"		"Weapon_Gluon.Run"
 	"snd_fireEnd"		"Weapon_Gluon.Off"
-	"fx_trail"			"weapon_egon.trail"
+	"fx_trail"		"weapon_egon.trail"
 	"fx_trail_world"	"weapon_egon.trail_world"
 
 	"joint_view_trail"	"Gauss"
@@ -48,6 +48,7 @@ entityDef weapon_egon
 
 	// hlWeapon specific
 	"hudSlot"		"3"
-	"hudSlotPos"	"2"
+	"hudSlotPos"		"2"
 	"weight"		"15"
+	"fireUnderwater"	"0"
 }

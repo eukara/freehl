@@ -48,6 +48,7 @@ entityDef weapon_357
 	"hudSlotPos"		"1"
 	"weight"			"15"
 	"killIcon"			"d_357"
+	"fireUnderwater"	"0"
 }
 
 entityDef weapon_python

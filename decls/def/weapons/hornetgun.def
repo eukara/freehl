@@ -33,11 +33,12 @@ entityDef weapon_hornetgun
 	"snd_fire"			"Weapon_Hornetgun.Single"
 
 	// hlWeapon specific
-	"hudSlot"			"3"
+	"hudSlot"		"3"
 	"hudSlotPos"		"3"
-	"weight"			"10"
-	"regenAmmo"			"1"
-	"regenRate"			"0.7"
+	"weight"		"10"
+	"regenAmmo"		"1"
+	"regenRate"		"0.7"
+	"fireUnderwater"	"1"
 }
 
 entityDef projectile_hornet

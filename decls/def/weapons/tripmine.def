@@ -16,38 +16,39 @@ entityDef weapon_tripmine
 	"editor_usage"		"Tripmine"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/v_tripmine.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/v_tripmine.mdl"
 	"model_player"		"models/p_tripmine.mdl"
 	"model_view"		"models/v_tripmine.mdl"
-	"body0"				"2" // World Model is unusual, so we must set body and frame instead
-	"body1"				"2"
-	"frame"				"8"
+	"body0"			"2" // World Model is unusual, so we must set body and frame instead
+	"body1"			"2"
+	"frame"			"8"
 	"animPrefix"		"tripmine"
 	"killIcon"		"d_tripmine"
 
 	"def_fireInfo"		"fireInfo_tripminePlant"
 
 	"inv_ammo_tripmine"	"1"
-	"act_idle"			"$TRIPMINE_IDLE1,$TRIPMINE_IDLE2,$TRIPMINE_FIDGET"
-	"act_fire"			"$TRIPMINE_FIRE"
-	"act_draw"			"$TRIPMINE_DRAW"
+	"act_idle"		"$TRIPMINE_IDLE1,$TRIPMINE_IDLE2,$TRIPMINE_FIDGET"
+	"act_fire"		"$TRIPMINE_FIRE"
+	"act_draw"		"$TRIPMINE_DRAW"
 	"act_holster"		"$TRIPMINE_HOLSTER"
-	"snd_fire"			"TripmineGrenade.Deploy"
+	"snd_fire"		"TripmineGrenade.Deploy"
 
 	// hlWeapon specific
-	"hudSlot"			"4"
+	"hudSlot"		"4"
 	"hudSlotPos"		"2"
-	"weight"			"-10"
-	"crosshair"			"none"
+	"weight"		"-10"
+	"crosshair"		"none"
+	"fireUnderwater"	"1"
 }
 
 entityDef fireInfo_tripminePlant
 {
 	"def_onFire"		"projectile_tripmine"
-	"fireRate"			"0.5"
+	"fireRate"		"0.5"
 	"testDistance"		"-64"
-	"ammoType"			"ammo_tripmine"
+	"ammoType"		"ammo_tripmine"
 	"ammoRequired"		"1"
 	"removeOnEmpty" 	"1"
 }
@@ -55,8 +56,8 @@ entityDef fireInfo_tripminePlant
 entityDef projectile_tripmine
 {
 	"spawnclass"		"ncAttack"
-	"def_plant"			"monster_tripmine"
-	"plant"				"1"
+	"def_plant"		"monster_tripmine"
+	"plant"			"1"
 	"plantOnGround"		"0"
 	"plantDistance"		"64"
 	"plantOffset"		"8"

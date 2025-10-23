@@ -1,15 +1,15 @@
-#define CROSSBOW_IDLE 0
-#define CROSSBOW_IDLE_EMPTY 1
-#define CROSSBOW_FIDGET 2
-#define CROSSBOW_FIDGET_EMPTY 3
-#define CROSSBOW_FIRE 4
-#define CROSSBOW_RELOAD 5
-#define CROSSBOW_FIRE_LAST 6
-#define CROSSBOW_RELOAD_EMPTY 7
-#define CROSSBOW_DRAW 8
-#define CROSSBOW_DRAW_EMPTY 9
-#define CROSSBOW_HOLSTER 10
-#define CROSSBOW_HOLSTER_EMPTY 11
+#define CROSSBOW_IDLE		0
+#define CROSSBOW_IDLE_EMPTY	1
+#define CROSSBOW_FIDGET		2
+#define CROSSBOW_FIDGET_EMPTY	3
+#define CROSSBOW_FIRE		4
+#define CROSSBOW_RELOAD		5
+#define CROSSBOW_FIRE_LAST	6
+#define CROSSBOW_RELOAD_EMPTY	7
+#define CROSSBOW_DRAW		8
+#define CROSSBOW_DRAW_EMPTY	9
+#define CROSSBOW_HOLSTER	10
+#define CROSSBOW_HOLSTER_EMPTY	11
 
 entityDef weapon_crossbow
 {
@@ -19,8 +19,8 @@ entityDef weapon_crossbow
 	"editor_usage"		"Crossbow"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_crossbow.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_crossbow.mdl"
 	"model_player"		"models/p_crossbow.mdl"
 	"model_view"		"models/v_crossbow.mdl"
 	"animPrefix"		"crossbow"
@@ -28,36 +28,37 @@ entityDef weapon_crossbow
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_crossbow"
-	"inv_name"			"Crossbow"
-	"clipSize"			"5"
+	"inv_name"		"Crossbow"
+	"clipSize"		"5"
 
-	"ammoIcon"			"weapon_crossbow.ammo"
-	"ammo2Icon"			"weapon_crossbow.ammo2"
-	"crosshair"			"weapon_crossbow.crosshair"
-	"icon"				"weapon_crossbow.weapon"
+	"ammoIcon"		"weapon_crossbow.ammo"
+	"ammo2Icon"		"weapon_crossbow.ammo2"
+	"crosshair"		"weapon_crossbow.crosshair"
+	"icon"			"weapon_crossbow.weapon"
 	"iconSelected"		"weapon_crossbow.weapon_s"
 
-	"act_fire"			"$CROSSBOW_FIRE"
+	"act_fire"		"$CROSSBOW_FIRE"
 	"act_fireLast"		"$CROSSBOW_FIRE_LAST"
 	"act_holster"		"$CROSSBOW_HOLSTER"
 	"act_holsterEmpty"	"$CROSSBOW_HOLSTER_EMPTY"
 	"act_reload"		"$CROSSBOW_RELOAD"
 	"act_reloadEmpty"	"$CROSSBOW_RELOAD_EMPTY"
-	"act_draw"			"$CROSSBOW_DRAW"
+	"act_draw"		"$CROSSBOW_DRAW"
 	"act_drawEmpty"		"$CROSSBOW_DRAW_EMPTY"
-	"act_idle"			"$CROSSBOW_IDLE,$CROSSBOW_FIDGET"
+	"act_idle"		"$CROSSBOW_IDLE,$CROSSBOW_FIDGET"
 	"act_idleEmpty"		"$CROSSBOW_IDLE_EMPTY,$CROSSBOW_FIDGET_EMPTY"
 
-	"snd_fire"			"Weapon_Crossbow.Single"
-	"snd_empty"			"Weapons.Empty"
+	"snd_fire"		"Weapon_Crossbow.Single"
+	"snd_empty"		"Weapons.Empty"
 	"snd_reload"		"Weapon_Crossbow.Reload"
 
 	// hlWeapon specific
-	"hudSlot"			"2"
+	"hudSlot"		"2"
 	"hudSlotPos"		"2"
-	"weight"			"10"
-	"zoomFov"			"18"
-	"ammoType"			"ammo_bolt"
+	"weight"		"10"
+	"zoomFov"		"18"
+	"ammoType"		"ammo_bolt"
+	"fireUnderwater"	"1"
 }
 
 entityDef weapon_crossbow_mp
@@ -71,30 +72,30 @@ entityDef fireInfo_crossbow
 	"def_onFire"		"projectile_arrow"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
-	"fireRate"			"1.0"
+	"fireRate"		"1.0"
 	"punchAngle"		"-2 0 0"
 }
 
 entityDef fireInfo_crossbowMP
 {
 	"inherit"		"fireInfo_crossbow"
-	"def_onFire"	"projectile_arrowExplosive"
+	"def_onFire"		"projectile_arrowExplosive"
 }
 
 entityDef debris_arrow
 {
 	"spawnclass"		"ncProjectile"
-	"model"				"models/crossbow_bolt.mdl"
+	"model"			"models/crossbow_bolt.mdl"
 }
 
 entityDef projectile_arrow
 {
 	"spawnclass"		"ncProjectile"
-	"model"				"models/crossbow_bolt.mdl"
-	"velocity"			"2000 0 0"
+	"model"			"models/crossbow_bolt.mdl"
+	"velocity"		"2000 0 0"
 	"angular_velocity"	"0 0 20"
-	"mins"				"0 0 0"
-	"maxs"				"0 0 0"
+	"mins"			"0 0 0"
+	"maxs"			"0 0 0"
 	"def_damage"		"damage_arrowDirect"
 	"model_detonate"	"fx_spark.main"
 	"snd_explode"		"DoSpark"
@@ -104,11 +105,11 @@ entityDef projectile_arrow
 	"detonate_on_death"	"1"
 	"detonate_on_world"	"1"
 	"detonate_on_actor"	"1"
-	"projectile_debris" "debris_arrow"
+	"projectile_debris"	"debris_arrow"
 	"debris_count"		"1"
 	"debris_stick"		"1"
 	"debris_offset"		"8 0 0"
-	"offset"			"0 7 -8"
+	"offset"		"0 7 -8"
 }
 
 entityDef damage_arrowDirect
@@ -118,8 +119,8 @@ entityDef damage_arrowDirect
 
 entityDef projectile_arrowExplosive
 {
-	"inherit"			"projectile_arrow"
-	"smoke_fly"			"weapon_crossbow.trail"
+	"inherit"		"projectile_arrow"
+	"smoke_fly"		"weapon_crossbow.trail"
 	"def_damage"		""
 	"def_splash_damage"	"damage_arrowSplash"
 	"model_detonate"	"fx_explosion.main"
