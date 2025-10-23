@@ -56,6 +56,10 @@ private:
 	PREDICTED_VECTOR(m_vecPosXY)
 	PREDICTED_VECTOR_N(colormod)
 
+#ifdef CLIENT
+	int m_iconHandle;
+#endif
+
 #ifdef SERVER
 	int m_teamScore;
 #endif

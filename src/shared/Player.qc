@@ -42,8 +42,8 @@ hlPlayer::hlPlayer(void)
 }
 
 #ifdef CLIENT
-void Camera_RunPosBob(vector angles, __inout vector camera_pos);
-void Camera_StrafeRoll(__inout vector camera_angle);
+vector HLCamera_RunPosBob(vector angles);
+void HLCamera_StrafeRoll(__inout vector camera_angle);
 void Shake_Update(ncPlayer);
 
 void
@@ -51,10 +51,9 @@ hlPlayer::UpdateAliveCam(void)
 {
 	vector cam_pos = GetEyePos();
 	vector camOffset = autocvar(pm_thirdPersonAngle, [0,0,0]);
-	Camera_RunPosBob(view_angles, cam_pos);
 
-	g_view.SetCameraOrigin(cam_pos);
-	Camera_StrafeRoll(view_angles);
+	g_view.SetCameraOrigin(cam_pos + HLCamera_RunPosBob(view_angles));
+	HLCamera_StrafeRoll(view_angles);
 	g_view.SetCameraAngle(view_angles + camOffset);
 
 	if (vehicle) {

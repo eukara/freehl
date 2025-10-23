@@ -361,10 +361,10 @@ void
 HLHUD_DrawNumber(int iNumber, vector vecPos, float fAlpha, vector vColor)
 {
 	atlasPic.Draw_RGBA(
-		g_spriteSheets[S_NUMBER_0 + iNumber],
+		atlasPic.Load(g_hlSpriteNames[S_NUMBER_0 + iNumber]),
 		vecPos,
-		vColor,
-		fAlpha,
+		vColor * fAlpha,
+		1.0,
 		true
 	);
 }
@@ -410,16 +410,16 @@ hlHUDCounter::postdraw(void)
 
 	if (modelindex) {
 		if (!m_bAdditive) {
-			drawpic(vecProj, m_strIcon, [64, 64], [1,1,1], a);
+			drawpic(vecProj, m_strIcon, [64, 64], [1,1,1], a, DRAWFLAG_NORMAL);
 		} else {
 			drawpic(vecProj, m_strIcon, [64, 64], [1,1,1], a, DRAWFLAG_ADDITIVE);
 		}
-	} else {
-		//ncInterfaceSpriteSheet::Draw_RGBA(m_strIcon, vecProj, colormod / 255, a, m_bAdditive);
-	}
+	} /* else if (STRING_SET(m_strIcon)) {
+		ncInterfaceSpriteSheet::Draw_RGBA(m_strIcon, vecProj, colormod / 255, a, m_bAdditive);
+	} */
 
 	/* counter */
-	projectedPos = vecProj + [64, 12];
-	HLHUD_DrawNums((float)m_counterValue, projectedPos, 1.0, colormod / 255);
+	projectedPos = vecProj + [80, 20];
+	HLHUD_DrawNums((float)m_counterValue, projectedPos, a, colormod / 255);
 }
 #endif
