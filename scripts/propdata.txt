@@ -54,8 +54,7 @@
 		"breakable_count" "6"
 		"surfaceprop"	"gs_material_computer"
 	}
-	
-	
+
 	"BreakableModels"
 	{
 		"GlassChunks"

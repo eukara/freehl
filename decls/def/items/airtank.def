@@ -1,10 +1,15 @@
 entityDef item_airtank
 {
-	"spawnclass"	"ncItem"
+	"spawnclass"		"ncDispenser"
 	"model"			"models/w_oxygen.mdl"
 	"mins"			"-16 -16 0"
 	"maxs"			"16 16 16"
-	"snd_acquire"	"item.airtank"
-	"snd_respawn"	"item.respawn"
+
 	"requires"		"item_suit"
+
+	"snd_event1"		"item.airtank"
+	"snd_event2"		"item.airtank"
+
+	"health"		"50"
+	"inv_air"		"20"
 }

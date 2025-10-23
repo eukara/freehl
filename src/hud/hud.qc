@@ -659,9 +659,30 @@ HUD_DrawIntermission(void)
 void
 HUD_WeaponSwitched(string weaponName)
 {
-	g_spriteAmmoIcon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo"));
-	g_spriteAmmo2Icon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo2"));
-	g_spriteCrosshair = atlasPic.Load(strcat(strtolower(weaponName), ".crosshair"));
+	string ammoIcon = entityDef.GetString(weaponName, "ammoIcon");
+	string ammo2Icon = entityDef.GetString(weaponName, "ammo2Icon");
+	string crossHair = entityDef.GetString(weaponName, "crosshair");
+	
+	g_spriteCrosshair = -1;
+
+	if (!STRING_SET(ammoIcon)) {
+		g_spriteAmmoIcon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo"));
+	} else {
+		g_spriteAmmoIcon = atlasPic.Load(ammoIcon);
+	}
+
+	if (!STRING_SET(ammo2Icon)) {
+		g_spriteAmmo2Icon = atlasPic.Load(strcat(strtolower(weaponName), ".ammo2"));
+	} else  {
+		g_spriteAmmo2Icon = atlasPic.Load(ammo2Icon);
+	}
+
+	if (!STRING_SET(crossHair)) {
+		g_spriteCrosshair = atlasPic.Load(strcat(strtolower(weaponName), ".crosshair"));
+	} else if (crossHair != "none") {
+		g_spriteCrosshair = atlasPic.Load(crossHair);
+	}
+
 	g_ammoDisplayAlpha = 1.0f;
 }
 
