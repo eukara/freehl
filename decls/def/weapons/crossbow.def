@@ -57,18 +57,18 @@ entityDef weapon_crossbow
 	"hudSlotPos"		"2"
 	"weight"			"10"
 	"zoomFov"			"18"
+	"ammoType"			"ammo_bolt"
 }
 
 entityDef weapon_crossbow_mp
 {
 	"inherit"		"weapon_crossbow"
-	"def_fireInfo"	"fireInfo_crossbowMP"
+	"def_fireInfo"		"fireInfo_crossbowMP"
 }
 
 entityDef fireInfo_crossbow
 {
 	"def_onFire"		"projectile_arrow"
-	"ammoType"			"ammo_bolt"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
 	"fireRate"			"1.0"

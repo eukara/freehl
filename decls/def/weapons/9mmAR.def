@@ -36,7 +36,7 @@ entityDef weapon_9mmAR
 	"ammo2Icon"			"weapon_9mmar.ammo2"
 	"crosshair"			"weapon_9mmar.crosshair"
 	"icon"				"weapon_9mmar.weapon"
-	"iconSelected"		"weapon_9mmar.weapon_s"
+	"iconSelected"			"weapon_9mmar.weapon_s"
 	"killIcon"		"d_9mmAR"
 
 	"act_fire"			"$9MMAR_FIRE1,$9MMAR_FIRE2,$9MMAR_FIRE3"

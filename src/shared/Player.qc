@@ -108,6 +108,8 @@ hlPlayer::UpdatePlayerAttachments(bool visible)
 			} else {
 				p = dynamiclight_add(trace_endpos + (trace_plane_normal * 48.0f), 96, [1,1,1]);
 			}
+			dynamiclight_set(p, LFIELD_CORONA, 0);
+			dynamiclight_set(p, LFIELD_CORONASCALE, 0);
 		} else {
 			p = dynamiclight_add(src + (v_forward * 16), 512, [1,1,1], 0, "lights/flashlight");
 			dynamiclight_set(p, LFIELD_ANGLES, ang);
@@ -213,47 +215,11 @@ hlPlayer::Restore(string strKey, string strValue)
 	}
 }
 
-
 void
 hlPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, vector absImpactPos, int hitBody)
-{
-	/* either gib, or make a corpse */
-	if (GetHealth()< -50) {
-		float gibStrength = damagePoints * 2.0f;
-		BreakModel_Entity(this, dir, gibStrength);
-	} else {
-		float deathAnimation = ANIM_DIESIMPLE;
-
-		switch (hitBody) {
-		case BODY_HEAD:
-			deathAnimation = ANIM_DIEHEADSHOT;
-			break;
-		case BODY_CHEST:
-			deathAnimation = ANIM_DIESPIN;
-			break;
-		case BODY_STOMACH:
-			deathAnimation = ANIM_DIEGUTSHOT;
-			break;
-		default:
-			bool isFacing = IsFacingPosition(absImpactPos);
-
-			/* we still want a change to play ANIM_DIESIMPLE */
-			if (random() < 0.5)
-			if (isFacing == false) {
-				deathAnimation = ANIM_DIEFORWARD;
-			} else {
-				deathAnimation = random() < 0.5 ? ANIM_DIEBACKWARDS1 : ANIM_DIEBACKWARDS1;
-			}
-
-			break;
-		}
-
-		MakeCorpse(deathAnimation);
-	}
-	
-	ncPlayer::Death(inflictor,  attacker,  damagePoints,  dir, absImpactPos, hitBody);
+{	
+	super::Death(inflictor,  attacker,  damagePoints,  dir, absImpactPos, hitBody);
 }
-
 
 #endif
 

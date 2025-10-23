@@ -69,7 +69,7 @@ entityDef damage_satchelExplosion
 	"radius"	"375"
 }
 
-entityDef fireInfo_satchel_primary
+entityDef fireInfo_satchel_secondary
 {
 	"def_onFire"		"projectile_satchel"
 	"detonateOnFire"	"projectile_satchel"
@@ -80,7 +80,7 @@ entityDef fireInfo_satchel_primary
 	"model_view"		"models/v_satchel_radio.mdl"
 }
 
-entityDef fireInfo_satchel_secondary
+entityDef fireInfo_satchel_primary
 {
 	"def_onFire"		"projectile_satchel"
 	"fireRate"			"1.0"
