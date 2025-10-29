@@ -45,7 +45,7 @@ entityDef weapon_crowbar
 	// hlWeapon specific
 	"hudSlot"		"0"
 	"hudSlotPos"		"0"
-	"weight"		"0"
+	"weight"		"1"
 	"crosshair"		"none"
 	"ammoIcon"		"none"
 	"fireUnderwater"	"1"

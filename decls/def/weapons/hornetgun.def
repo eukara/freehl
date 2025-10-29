@@ -13,8 +13,8 @@ entityDef weapon_hornetgun
 	"editor_usage"		"Hornet Gun"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_hgun.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_hgun.mdl"
 	"model_view"		"models/v_hgun.mdl"
 	"animPrefix"		"hive"
 	"killIcon"		"d_grenade"
@@ -22,15 +22,15 @@ entityDef weapon_hornetgun
 	// weapon specific
 	"def_fireInfo"		"fireInfo_hornetgun"
 	"def_altFireInfo"	"fireInfo_hornetgunAlt"
-	"inv_name"			"Hornet Gun"
+	"inv_name"		"Hornet Gun"
 	"inv_ammo_hornet"	"8"
 
-	"act_fire"			"$HIVE_FIRE"
+	"act_fire"		"$HIVE_FIRE"
 	"act_holster"		"$HIVE_HOLSTER"
-	"act_draw"			"$HIVE_DRAW"
-	"act_idle"			"$HIVE_IDLE,$HIVE_FIDGET1,$HIVE_FIDGET2"
+	"act_draw"		"$HIVE_DRAW"
+	"act_idle"		"$HIVE_IDLE,$HIVE_FIDGET1,$HIVE_FIDGET2"
 
-	"snd_fire"			"Weapon_Hornetgun.Single"
+	"snd_fire"		"Weapon_Hornetgun.Single"
 
 	// hlWeapon specific
 	"hudSlot"		"3"

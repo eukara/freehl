@@ -16,8 +16,8 @@ entityDef weapon_gauss
 	"editor_usage"		"Tau Cannon"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_gauss.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_gauss.mdl"
 	"model_player"		"models/p_gauss.mdl"
 	"model_view"		"models/v_gauss.mdl"
 	"animPrefix"		"gauss"

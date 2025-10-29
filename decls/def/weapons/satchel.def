@@ -38,6 +38,7 @@ entityDef weapon_satchel
 	"weight"		"-20"
 	"crosshair"		"none"
 	"fireUnderwater"	"1"
+	"switchOnEmpty"		"0"
 }
 
 entityDef projectile_satchel
@@ -85,7 +86,7 @@ entityDef fireInfo_satchel_primary
 {
 	"def_onFire"		"projectile_satchel"
 	"fireRate"		"1.0"
-	"removeOnEmpty" 	"1"
+	"removeOnEmpty" 	"0"
 	"ammoRequired"		"1"
 	"model_player"		"models/p_satchel_radio.mdl"
 	"model_view"		"models/v_satchel_radio.mdl"

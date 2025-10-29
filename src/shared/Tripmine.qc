@@ -91,9 +91,12 @@ hlTripmine::Ready(void)
 		/* Laser calibrated to N units! */
 		m_vecEndPos = trace_endpos;
 		SetHealth(1);
+		frame = TRIPMINE_WORLD;
 		MakeVulnerable();
 		StartSoundDef("TripmineGrenade.Activate", CHAN_WEAPON, true);
 		SetSolid(SOLID_BBOX);
+		SetMovetype(MOVETYPE_NONE);
+		SetSize([-8,-8,-8], [8,8,8]);
 		ForceNetworkUpdate();
 	}
 
