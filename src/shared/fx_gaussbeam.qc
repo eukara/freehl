@@ -53,7 +53,7 @@ void
 FX_GaussBeam_Piece(vector vecPos, vector vecFlyDir)
 {
 	static float FX_GaussBeam_Piece_Fade(void) {
-		dynamiclight_add(self.origin, 256 * self.alpha, [1.0,0.5,0]);
+		dynamiclight_add(self.origin, 128 * self.alpha, [1.0,0.5,0]);
 
 		self.alpha -= frametime * 0.25;
 
@@ -142,12 +142,12 @@ FX_GaussBeam(vector vecPos, vector vecAngle, int numBeams, entity eOwner)
 	makevectors(vecAngle);
 	vecDir = v_forward;
 	vecSrc = vecPos;
-	vecEndPos = vecSrc + v_forward * 1024;
+	vecEndPos = vecSrc + vecDir * 1024.0f;
 	traceline(vecSrc, vecEndPos, FALSE, eOwner);
 	vecCurPlane = trace_plane_normal;
 	vecCurPos = trace_endpos;
 	trailparticles(TRAIL_GAUSSBEAM, eOwner, vecSrc + (v_right * 8) + (v_up * -12), trace_endpos);
-	FX_GaussBeam_Piece(trace_endpos, vecDir * -1);
+	FX_GaussBeam_Piece(trace_endpos + (vecDir * -16), vecDir * -1);
 	Decals_Place(trace_endpos, "{gaussshot1");
 
 	makevectors(vecAngle);

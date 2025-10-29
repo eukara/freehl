@@ -36,7 +36,7 @@ public:
 	virtual void Trigger(void);
 	virtual void Deactivate(void);
 
-	virtual void DrawSlotNum(vector, float);
+	virtual void DrawSlotNum(vector, float, bool);
 
 private:
 	float m_flHUDWeaponSelectTime;

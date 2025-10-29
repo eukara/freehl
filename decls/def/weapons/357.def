@@ -15,8 +15,8 @@ entityDef weapon_357
 	"editor_usage"		".357 Revolver"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_357.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_357.mdl"
 	"model_player"		"models/p_357.mdl"
 	"model_view"		"models/v_357.mdl"
 	"animPrefix"		"python"
@@ -24,30 +24,30 @@ entityDef weapon_357
 
 	// weapon specific
 	"def_fireInfo"		"fireInfo_357"
-	"inv_name"			".357 Revolver"
-	"clipSize"			"6"
+	"inv_name"		".357 Revolver"
+	"clipSize"		"6"
 
-	"ammoIcon"			"weapon_357.ammo"
-	"ammo2Icon"			"weapon_357.ammo2"
-	"crosshair"			"weapon_357.crosshair"
-	"icon"				"weapon_357.weapon"
+	"ammoIcon"		"weapon_357.ammo"
+	"ammo2Icon"		"weapon_357.ammo2"
+	"crosshair"		"weapon_357.crosshair"
+	"icon"			"weapon_357.weapon"
 	"iconSelected"		"weapon_357.weapon_s"
 
-	"act_fire"			"$357_FIRE"
+	"act_fire"		"$357_FIRE"
 	"act_holster"		"$357_HOLSTER"
 	"act_reload"		"$357_RELOAD"
-	"act_draw"			"$357_DRAW"
-	"act_idle"			"$357_IDLE1,$357_FIDGET,$357_IDLE2,$357_IDLE3"
+	"act_draw"		"$357_DRAW"
+	"act_idle"		"$357_IDLE1,$357_FIDGET,$357_IDLE2,$357_IDLE3"
 
-	"snd_fire"			"Weapon_357.Single"
-	"snd_empty"			"Weapons.Empty"
+	"snd_fire"		"Weapon_357.Single"
+	"snd_empty"		"Weapons.Empty"
 	"snd_reload"		"Weapon_357.Reload"
 
 	// hlWeapon specific
-	"hudSlot"			"1"
+	"hudSlot"		"1"
 	"hudSlotPos"		"1"
-	"weight"			"15"
-	"killIcon"			"d_357"
+	"weight"		"15"
+	"killIcon"		"d_357"
 	"fireUnderwater"	"0"
 }
 
@@ -65,10 +65,10 @@ entityDef projectile_357
 entityDef fireInfo_357
 {
 	"def_onFire"		"projectile_357"
-	"ammoType"			"ammo_357"
+	"ammoType"		"ammo_357"
 	"ammoRequired"		"1"
 	"ammoPerShot"		"1"
-	"fireRate"			".75"
+	"fireRate"		".75"
 	"punchAngle"		"-10 0 0"
 	"model_flash"		"sprites/muzzleflash2.spr"
 }
@@ -76,7 +76,7 @@ entityDef fireInfo_357
 // multiplayer variant
 entityDef weapon_357_mp
 {
-	"inherit" 			"weapon_357"
+	"inherit" 		"weapon_357"
 	"view_geomset"		"geomset 4 2\n"
-	"zoomFov"			"45"
+	"zoomFov"		"45"
 }

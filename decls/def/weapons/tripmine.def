@@ -41,6 +41,7 @@ entityDef weapon_tripmine
 	"weight"		"-10"
 	"crosshair"		"none"
 	"fireUnderwater"	"1"
+	"removeOnEmpty" 	"1"
 }
 
 entityDef fireInfo_tripminePlant
@@ -50,7 +51,6 @@ entityDef fireInfo_tripminePlant
 	"testDistance"		"-64"
 	"ammoType"		"ammo_tripmine"
 	"ammoRequired"		"1"
-	"removeOnEmpty" 	"1"
 }
 
 entityDef projectile_tripmine

@@ -153,19 +153,20 @@ HLWeaponSelect::Draw(void)
 
 			}
 
+			bool isEmpty = weapon.IsEmpty(linkedList);
+
 			/* new slot started */
 			if (lastSlot != currentSlot) {
 				/* every slot number is accompanied by their own tiny bg rect */
 				if (m_iWantSlot != currentSlot) {
-					DrawSlotNum(vecPos, 0);
+					DrawSlotNum(vecPos, 0, isEmpty);
 				}
 
 				/* draw num on top of the bg */
-				DrawSlotNum(vecPos + [0, -20], currentSlot + 1);
+				DrawSlotNum(vecPos + [0, -20], currentSlot + 1, false);
 			} else {
-				/* draw a RT specific, faint box for every item in the other slots */
 				if (m_iWantSlot != currentSlot) {
-					DrawSlotNum(vecPos, 0);
+					DrawSlotNum(vecPos, 0, isEmpty);
 				}
 			}
 
@@ -174,7 +175,6 @@ HLWeaponSelect::Draw(void)
 			/* selected slot VS unselected slot */
 			if (m_iWantSlot == currentSlot) {
 				vector weaponColor = g_fg_color;
-				bool isEmpty = weapon.IsEmpty(linkedList);
 
 				if (isEmpty) {
 					weaponColor = [1, 0, 0];
@@ -216,12 +216,12 @@ HLWeaponSelect::Draw(void)
 }
 
 void
-HLWeaponSelect::DrawSlotNum(vector vecPos, float fValue)
+HLWeaponSelect::DrawSlotNum(vector vecPos, float fValue, bool emptyWeapon)
 {
 	atlasPic.Draw_RGBA(
 		g_spriteSheets[S_BUCKET0 + fValue],
 		vecPos,
-		g_fg_color,
+		emptyWeapon ? [1,0,0] : g_fg_color,
 		g_fg_alphaScale,
 		true
 	);

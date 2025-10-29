@@ -15,8 +15,8 @@ entityDef weapon_9mmAR
 	"editor_usage"		"9mm AR"
 	"editor_rotatable"	"1"
 
-	"inherit"			"weapon_base"
-	"model"				"models/w_9mmar.mdl"
+	"inherit"		"weapon_base"
+	"model"			"models/w_9mmar.mdl"
 	"model_player"		"models/p_9mmar.mdl"
 	"model_view"		"models/v_9mmar.mdl"
 	"animPrefix"		"mp5"

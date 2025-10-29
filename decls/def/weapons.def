@@ -1,13 +1,4 @@
-entityDef weapon_base
-{
-	"spawnclass"		"hlWeapon"
-	"mins"				"-16 -16 0"
-	"maxs"				"16 16 16"
-	"snd_acquire"		"Player.PickupWeapon"
-	"snd_empty"			"Weapons.Empty"
-	"snd_respawn"		"item.respawn"
-}
-
+#include "weapons/base.def"
 #include "weapons/357.def"
 #include "weapons/9mmAR.def"
 #include "weapons/9mmhandgun.def"
