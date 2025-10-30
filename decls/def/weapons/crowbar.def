@@ -25,6 +25,11 @@ entityDef weapon_crowbar
 	"animPrefix"		"crowbar"
 	"killIcon"		"d_crowbar"
 
+	"ammoIcon"		""
+	"crosshair"		""
+	"icon"			"weapon_crowbar.weapon"
+	"iconSelected"		"weapon_crowbar.weapon_s"
+
 	// weapon specific
 	"def_onFire"		"projectile_crowbar"
 	"inv_name"		"Crowbar"

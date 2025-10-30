@@ -33,6 +33,11 @@ entityDef weapon_9mmhandgun
 	"ammoPerShot"		"1"
 	"punchAngle"		"-2 0 0"
 
+	"ammoIcon"		"weapon_9mmhandgun.ammo"
+	"crosshair"		"weapon_9mmhandgun.crosshair"
+	"icon"			"weapon_9mmhandgun.weapon"
+	"iconSelected"		"weapon_9mmhandgun.weapon_s"
+
 	"def_ejectBrass"	"debris_brass"
 	"ejectBrassDelay"	"10"
 	"ejectBrassOffset"	"18 6 -6"
