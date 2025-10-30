@@ -15,6 +15,11 @@ entityDef weapon_satchel
 	"editor_usage"		"Satchel"
 	"editor_rotatable"	"1"
 
+	"ammoIcon"		"weapon_satchel.ammo"
+	"crosshair"		""
+	"icon"			"weapon_satchel.weapon"
+	"iconSelected"		"weapon_satchel.weapon_s"
+
 	"inherit"		"weapon_base"
 	"model"			"models/w_satchel.mdl"
 	"model_player"		"models/p_satchel.mdl"

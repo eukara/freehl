@@ -21,6 +21,11 @@ entityDef weapon_handgrenade
 	"model_view"		"models/v_grenade.mdl"
 	"animPrefix"		"crowbar"
 
+	"ammoIcon"		"weapon_handgrenade.ammo"
+	"crosshair"		""
+	"icon"			"weapon_handgrenade.weapon"
+	"iconSelected"		"weapon_handgrenade.weapon_s"
+
 	"inv_name"		"Hand Grenade"
 	// do not enable this, because this very well messes with inheritance...
 	//"inv_weapon"		"weapon_handgrenade"
