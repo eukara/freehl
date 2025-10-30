@@ -21,7 +21,7 @@ entityDef weapon_chumtoad
 	"animPrefix"		"squeak"
 
 	"inv_name"		"Chumtoad"
-	"inv_weapon"		"weapon_chumtoad"
+	//"inv_weapon"		"weapon_chumtoad"
 	"inv_ammo_chumtoad"	"5"
 	"def_onFire"		"projectile_chumtoad"
 	"ammoType"		"ammo_chumtoad"
