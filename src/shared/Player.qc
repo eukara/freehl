@@ -84,6 +84,8 @@ var float autocvar_r_shadow_realtime_dlight;
 void
 hlPlayer::UpdatePlayerAttachments(bool visible)
 {
+	ncPlayer viewPlayer = (ncPlayer)pSeat->m_ePlayer;
+
 	/* draw the flashlight */
 	if (gflags & GF_FLASHLIGHT) {
 		vector src;
@@ -117,6 +119,25 @@ hlPlayer::UpdatePlayerAttachments(bool visible)
 		}
 
 		dynamiclight_set(p, LFIELD_STYLE, 64);
+	}
+
+	/* zombie vision! */
+	if (viewPlayer.gflags & GF_ZOMBIEVISION) {
+		float oldRenderFX = GetRenderFX();
+		SetRenderFX(RFX_GLOWSHELL);
+		
+		if ((userinfo.GetInteger(viewPlayer, "*team") != userinfo.GetInteger(this, "*team"))) {
+			SetRenderColor([255,0,0]);
+		} else {
+			SetRenderColor([0,255,0]);
+		}
+
+		RenderFXPass();
+		SetRenderFX(oldRenderFX);
+	}
+
+	if (gflags & GF_NIGHTVISION) {
+		dynamiclight_add(origin, 768, [1,1,1]);
 	}
 
 	/* FIXME: this needs to be incorporated and simplified, now that we can handle it all in-class */
