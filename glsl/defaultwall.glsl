@@ -97,7 +97,7 @@ varying mat3 invsurface;
 #else
 		lightmaps  = texture2D(s_lightmap, lm0).rgb * e_lmscale.rgb;
 #endif
-		if (gl_ldr == 1.0) {
+		if (gl_ldr == 1) {
 
 			if (lightmaps.r > 1.5)
 				lightmaps.r = 1.5;
@@ -107,7 +107,7 @@ varying mat3 invsurface;
 				lightmaps.b = 1.5;
 
 			lightmaps.rgb * 0.5;
-			lightmaps.rgb = floor(lightmaps.rgb * vec3(32,64,32))/vec3(32,64,32);
+			lightmaps.rgb = floor(lightmaps.rgb * vec3(32,64,32)) / vec3(32,64,32);
 			lightmaps.rgb * 2.0;
 		}
 
@@ -128,8 +128,8 @@ varying mat3 invsurface;
 		vec2 coord_ofs;
 		vec2 size;
 
-		size.x = 1.0 / textureSize(targ, 0).x;
-		size.y = 1.0 / textureSize(targ, 0).y;
+		size.x = 1.0 / float(textureSize(targ, 0).x);
+		size.y = 1.0 / float(textureSize(targ, 0).y);
 
 		if (index == 0)
 			coord_ofs = vec2(0.25, 0.0);
@@ -231,7 +231,7 @@ varying mat3 invsurface;
 	#endif
 
 	#if gl_mono==1
-		float bw = (diffuse_f.r + diffuse_f.g + diffuse_f.b) / 3.0;
+		float bw = (diffuse_f.r + diffuse_f.g + diffuse_f.b) / float(3.0);
 		diffuse_f.rgb = vec3(bw, bw, bw);
 	#endif
 

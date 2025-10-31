@@ -32,8 +32,8 @@ uniform vec4 e_vlscale;
 		vec2 coord_ofs;
 		vec2 size;
 
-		size.x = 1.0 / textureSize(targ, 0).x;
-		size.y = 1.0 / textureSize(targ, 0).y;
+		size.x = 1.0 / float(textureSize(targ, 0).x);
+		size.y = 1.0 / float(textureSize(targ, 0).y);
 
 		if (index == 0)
 			coord_ofs = vec2(0.25, 0.0);
@@ -65,7 +65,7 @@ uniform vec4 e_vlscale;
 		col = fog4blend(col * vc * e_colourident * e_vlscale);
 
 	#if gl_mono==1
-		float bw = (col.r + col.g + col.b) / 3.0;
+		float bw = (col.r + col.g + col.b) / float(3.0);
 		col.rgb = vec3(bw, bw, bw) * 1.5;
 	#endif
 

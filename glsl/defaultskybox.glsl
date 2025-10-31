@@ -20,8 +20,8 @@ void main ()
 {
 	vec4 skybox = textureCube(s_reflectcube, pos);
 
-	if (gl_mono == 1.0) {
-		float bw = (skybox.r + skybox.g + skybox.b) / 3.0;
+	if (gl_mono == 1) {
+		float bw = float(skybox.r + skybox.g + skybox.b) / 3.0;
 		skybox.rgb = vec3(bw, bw, bw) * 1.5;
 	}
 
