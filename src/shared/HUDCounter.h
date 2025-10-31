@@ -45,6 +45,7 @@ public:
 #ifdef CLIENT
 	virtual void ReceiveEntity(float, float);
 	virtual void postdraw(void);
+	virtual void ReloadVideoResources(void);
 #endif
 
 private:

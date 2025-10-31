@@ -334,6 +334,12 @@ hlHUDCounter::SendEntity(entity ePEnt, float flChanged)
 
 #ifdef CLIENT
 void
+hlHUDCounter::ReloadVideoResources(void)
+{
+	m_strIcon = spriteframe(modelnameforindex(modelindex), 0, 0.0f);
+}
+
+void
 hlHUDCounter::ReceiveEntity(float flNew, float flChanged)
 {
 	READENTITY_COORD(origin[0], HUDCOUNTER_CHANGED_ORIGIN)
