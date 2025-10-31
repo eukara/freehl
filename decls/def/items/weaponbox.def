@@ -1,0 +1,7 @@
+entityDef item_weaponbox
+{
+	"spawnclass"	"ncItem"
+	"model"		"models/w_weaponbox.mdl"
+	"mins"		"-16 -16 0"
+	"maxs"		"16 16 16"
+}

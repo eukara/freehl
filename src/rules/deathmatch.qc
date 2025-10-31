@@ -175,6 +175,53 @@ CodeCallback_CallRequestTeam(entity playerEntity, int teamNum)
 }
 
 void
+MakeItemSolid(void)
+{
+	self.movetype = MOVETYPE_NONE;
+	self.solid = SOLID_TRIGGER;
+	setsize(self, [-16, -16, 0], [16, 16, 32]);
+	self.owner = __NULL__;
+}
+
+void
+HLDM_DropWeaponBox(entity playerEntity)
+{
+	entity weaponBox;
+	string currentWeapon = actor.CurrentWeapon(playerEntity);
+	string weaponBoxModel = entityDef.GetString("item_weaponbox", "model");
+
+	if (!STRING_SET(currentWeapon)) {
+		return;
+	}
+
+	weaponBox = ents.Create(currentWeapon, playerEntity.origin);
+	weaponBox.velocity = anglesToForward(playerEntity.v_angle + [0, random(-90, 90), 0]) * 200.0f;
+	setmodel(weaponBox, weaponBoxModel);
+
+	/* AddAmmo for every reserve type */
+	for (int i = 1; i <= ammo.Count(); i++) {
+		int reserve = actor.GetReserveAmmo(playerEntity, i);
+		string ammoName = ammo.NameForNum(i);
+		
+		if (!STRING_SET(ammoName)) {
+			continue;
+		}
+
+		if (reserve > 0) {
+			string ammoData = sprintf("%s %i",  ammo.NameForNum(i), reserve);
+			printf("Placing %s in box from %s\n", ammoData, playerEntity.netname);
+			ents.Input(weaponBox, "AddAmmo", ammoData, world);
+		}
+	}
+
+	weaponBox.solid = SOLID_NOT;
+	weaponBox.movetype = MOVETYPE_BOUNCE;
+	setsize(self, [0, 0, 0], [0, 0, 0]);
+	weaponBox.think = MakeItemSolid;
+	weaponBox.nextthink = time + 1.0f;
+}
+
+void
 CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker, string weapon)
 {
 	int fragLimit = cvars.GetInteger("fraglimit");
@@ -186,6 +233,8 @@ CodeCallback_PlayerKilled(entity playerEntity, entity inflictor, entity attacker
 
 	/* death-counter */
 	playerEntity.deaths++;
+	
+	HLDM_DropWeaponBox(playerEntity);
 
 	/* update score-counter */
 	if (is.Player(attacker)) {

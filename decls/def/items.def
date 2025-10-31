@@ -5,3 +5,4 @@
 #include "items/healthkit.def"
 #include "items/longjump.def"
 #include "items/security.def"
+#include "items/weaponbox.def"
