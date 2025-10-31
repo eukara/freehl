@@ -33,6 +33,7 @@ class hlPlayer:ncPlayer
 	virtual void Death(entity, entity, int, vector, vector, int);
 	virtual void Save(float);
 	virtual void Restore(string,string);
+	virtual void MakePlayer(void);
 #endif
 };
 
@@ -40,6 +41,17 @@ void
 hlPlayer::hlPlayer(void)
 {
 }
+
+#ifdef SERVER
+void
+hlPlayer::MakePlayer(void)
+{
+	super::MakePlayer();
+	gflags &= ~GF_FLASHLIGHT;
+	gflags &= ~GF_ZOMBIEVISION;
+	gflags &= ~GF_NIGHTVISION;
+}
+#endif
 
 #ifdef CLIENT
 vector HLCamera_RunPosBob(vector angles);
@@ -237,7 +249,10 @@ hlPlayer::Restore(string strKey, string strValue)
 
 void
 hlPlayer::Death(entity inflictor, entity attacker, int damagePoints, vector dir, vector absImpactPos, int hitBody)
-{	
+{
+	gflags &= ~GF_FLASHLIGHT;
+	gflags &= ~GF_ZOMBIEVISION;
+	gflags &= ~GF_NIGHTVISION;
 	super::Death(inflictor,  attacker,  damagePoints,  dir, absImpactPos, hitBody);
 }
 
