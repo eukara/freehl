@@ -96,7 +96,7 @@ varying vec3 light;
 
 		light *= e_lmscale.r;
 
-		if (gl_ldr == 1.0) {
+		if (gl_ldr == 1) {
 			if (light.r > 1.5)
 				light.r = 1.5;
 			if (light.g > 1.5)
@@ -105,7 +105,7 @@ varying vec3 light;
 				light.b = 1.5;
 
 			light.rgb * 0.5;
-			light.rgb = floor(light.rgb * vec3(32,64,32))/vec3(32,64,32);
+			light.rgb = floor(light.rgb * vec3(32,64,32)) / vec3(32,64,32);
 			light.rgb * 2.0;
 			light.rgb *= 0.75;
 		}
@@ -123,7 +123,7 @@ varying vec3 light;
 		tex_c.y = 0.5 - reflected.z * 0.5;
 	#else
 		/* code contributed by Slartibarty */
-		vec3 tmp = e_eyepos * -1.0f;
+		vec3 tmp = e_eyepos * -1.0;
 
 		int boneid = int(v_bone.r);
 		tmp.x += m_bones_mat3x4[boneid][0][3];
@@ -139,11 +139,9 @@ varying vec3 light;
 
 		float na;
 
-		// calc s coord
 		na = dot( v_normal, chromeRight );
 		tex_c.x = ( na + 1.0 ) * 0.5;
 
-		// calc t coord
 		na = dot( v_normal, chromeUp );
 		tex_c.y = ( na + 1.0 ) * 0.5;
 	#endif
@@ -173,8 +171,8 @@ varying vec3 light;
 		vec2 coord_ofs;
 		vec2 size;
 
-		size.x = 1.0 / textureSize(targ, 0).x;
-		size.y = 1.0 / textureSize(targ, 0).y;
+		size.x = 1.0 / float(textureSize(targ, 0).x);
+		size.y = 1.0 / float(textureSize(targ, 0).y);
 
 		if (index == 0)
 			coord_ofs = vec2(0.25, 0.0);
@@ -198,53 +196,53 @@ varying vec3 light;
 		s = max(0.0, min(100.0, s));
 		v = max(0.0, min(100.0, v));
 
-		s /= 100;
-		v /= 100;
+		s /= float(100.0);
+		v /= float(100.0);
 
-		if (s == 0) {
-			col.x= col.y = col.z = int(v*255);
-			return col / 255.0;
+		if (s == 0.0) {
+			col.x = col.y = col.z = floor(v * 255.0);
+			return col / float(255.0);
 		}
 
-		h /= 60;
+		h /= float(60.0);
 		i = int(floor(h));
-		f = h - i;
-		p = v * (1 - s);
-		q = v * (1 - s * f);
-		t = v * (1 - s * (1 - f));
+		f = h - float(i);
+		p = v * (1.0 - s);
+		q = v * (1.0 - s * f);
+		t = v * (1.0 - s * (1.0 - f));
 
 		switch (i) {
 		case 0:
-			col[0] = int(255*v);
-			col[1] = int(255*t);
-			col[2] = int(255*p);
+			col[0] = floor(255.0*v);
+			col[1] = floor(255.0*t);
+			col[2] = floor(255.0*p);
 			break;
 		case 1:
-			col[0] = int(255*q);
-			col[1] = int(255*v);
-			col[2] = int(255*p);
+			col[0] = floor(255.0*q);
+			col[1] = floor(255.0*v);
+			col[2] = floor(255.0*p);
 			break;
 		case 2:
-			col[0] = int(255*p);
-			col[1] = int(255*v);
-			col[2] = int(255*t);
+			col[0] = floor(255.0*p);
+			col[1] = floor(255.0*v);
+			col[2] = floor(255.0*t);
 			break;
 		case 3:
-			col[0] = int(255*p);
-			col[1] = int(255*q);
-			col[2] = int(255*v);
+			col[0] = floor(255.0*p);
+			col[1] = floor(255.0*q);
+			col[2] = floor(255.0*v);
 			break;
 		case 4:
-			col[0] = int(255*t);
-			col[1] = int(255*p);
-			col[2] = int(255*v);
+			col[0] = floor(255.0*t);
+			col[1] = floor(255.0*p);
+			col[2] = floor(255.0*v);
 			break;
 		default:
-			col[0] = int(255*v);
-			col[1] = int(255*p);
-			col[2] = int(255*q);
+			col[0] = floor(255.0*v);
+			col[1] = floor(255.0*p);
+			col[2] = floor(255.0*q);
 		}
-		return col / 255.0;
+		return col / float(255.0);
 	}
 
 	void main ()
@@ -265,7 +263,7 @@ varying vec3 light;
 		vec4 uc = texture2D(s_upper, tex_c);
 
 		if (e_colourident.z == 2.0) {
-			vec3 topcolor = hsv2rgb(e_colourident.x * 360, 100, 100);
+			vec3 topcolor = hsv2rgb(float(e_colourident.x) * 360.0, 100.0, 100.0);
 			diffuse_f.rgb += uc.rgb*topcolor*uc.a;
 		} else {
 			diffuse_f.rgb += uc.rgb*e_uppercolour*uc.a;
@@ -276,7 +274,7 @@ varying vec3 light;
 		vec4 lc = texture2D(s_lower, tex_c);
 
 		if (e_colourident.z == 2.0) {
-			vec3 bottomcolor = hsv2rgb(e_colourident.y * 360, 100, 100);
+			vec3 bottomcolor = hsv2rgb(float(e_colourident.y) * 360.0, 100.0, 100.0);
 			diffuse_f.rgb += lc.rgb*bottomcolor*lc.a;
 		} else {
 			diffuse_f.rgb += lc.rgb*e_lowercolour*lc.a;
@@ -307,7 +305,7 @@ varying vec3 light;
 
 		if (alpha <= 0.0) {
 				discard;
-		} else if (alpha <= 0.25) {
+		} else if (alpha <= 0.25f) {
 			diffuse_f.a = 1.0;
 			if (x + y == 2)
 				discard;
@@ -327,7 +325,7 @@ varying vec3 light;
 	#endif
 
 	#if gl_mono==1
-			float bw = (diffuse_f.r + diffuse_f.g + diffuse_f.b) / 3.0;
+			float bw = (diffuse_f.r + diffuse_f.g + diffuse_f.b) / float(3.0);
 			diffuse_f.rgb = vec3(bw, bw, bw);
 	#endif
 
