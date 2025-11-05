@@ -59,7 +59,6 @@ void
 HLHUD_DamageNotifyDraw(vector hudmins, vector res)
 {
 	vector pos;
-	
 	pos = hudmins + [16, res[1] - 128];
 
 	for (int i = 0; i < DMG_COUNT; i++) {
@@ -226,8 +225,9 @@ HLHUD_BigNums(vector pos, string numString, float alpha)
 		float backAlpha = bound(0.0f, alpha - g_fg_alpha, 1.0f);
 		draw.Text_RGBA(pos + [random(-2,2), 0], numString, g_fg_color, backAlpha, FONT_20);
 		draw.Text_RGBA(pos, numString, g_fg_color, alpha, FONT_20);
-	} else
+	} else {
 		draw.Text_RGBA(pos, numString, g_fg_color, alpha, FONT_20);
+	}
 }
 
 void
