@@ -29,7 +29,7 @@ entityDef weapon_handgrenade
 	"inv_name"		"Hand Grenade"
 	// do not enable this, because this very well messes with inheritance...
 	//"inv_weapon"		"weapon_handgrenade"
-	"inv_ammo_handgrenade"	"1"
+	"inv_ammo_handgrenade"	"5"
 	"def_onRelease"		"projectile_handgrenade"
 	"def_onFire"		"projectile_handgrenade"
 

@@ -17,6 +17,7 @@
 string g_strTeamList;
 const string mp_teamlist_fallback = "scientist;hgrunt";
 var string autocvar_mp_teamlist = mp_teamlist_fallback;
+var bool autocvar_mp_dropAllAmmo = false;
 
 bool
 IsTeamplay(void)
@@ -143,7 +144,6 @@ CodeCallback_PlayerSpawn(entity playerEntity)
 	}
 }
 
-
 void
 CodeCallback_PlayerDisconnect(entity playerEntity)
 {
@@ -175,12 +175,36 @@ CodeCallback_CallRequestTeam(entity playerEntity, int teamNum)
 }
 
 void
-MakeItemSolid(void)
+HLDM_DropItem(entity playerEntity, string currentWeapon)
 {
-	self.movetype = MOVETYPE_NONE;
-	self.solid = SOLID_TRIGGER;
-	setsize(self, [-16, -16, 0], [16, 16, 32]);
-	self.owner = __NULL__;
+	entity weaponBox;
+	string weaponBoxModel = entityDef.GetString("item_weaponbox", "model");
+
+	if (!STRING_SET(currentWeapon)) {
+		return;
+	}
+
+	weaponBox = actor.DropItem(playerEntity, currentWeapon);
+
+	/* exit early */
+	if (!weaponBox) {
+		return;
+	}
+
+	setmodel(weaponBox, weaponBoxModel);
+	string ammoTypes = weaponInfo.AmmoTypes(currentWeapon);
+
+	for (int i = 0; i < tokenize(ammoTypes); i++) {
+		string typeName = argv(i);
+		int numForName = ammo.NumForName(typeName);
+		float reserve = floor((float)actor.GetReserveAmmo(playerEntity, numForName) * 0.5f);
+
+		if (reserve > 0) {
+			string ammoData = sprintf("%s %d",  typeName, reserve);
+			ents.Input(weaponBox, "SetAmmo", ammoData, world);
+			ents.Input(playerEntity, "UseAmmo", ammoData, world);
+		}
+	}
 }
 
 void
@@ -194,31 +218,47 @@ HLDM_DropWeaponBox(entity playerEntity)
 		return;
 	}
 
-	weaponBox = ents.Create(currentWeapon, playerEntity.origin);
-	weaponBox.velocity = anglesToForward(playerEntity.v_angle + [0, random(-90, 90), 0]) * 200.0f;
+	weaponBox = actor.DropItem(playerEntity, currentWeapon);
+
+	/* exit early */
+	if (!weaponBox) {
+		return;
+	}
+
 	setmodel(weaponBox, weaponBoxModel);
 
 	/* AddAmmo for every reserve type */
-	for (int i = 1; i <= ammo.Count(); i++) {
-		int reserve = actor.GetReserveAmmo(playerEntity, i);
-		string ammoName = ammo.NameForNum(i);
+	if (autocvar_mp_dropAllAmmo) {
+		for (int i = 1; i <= ammo.Count(); i++) {
+			int reserve = actor.GetReserveAmmo(playerEntity, i);
+			string ammoName = ammo.NameForNum(i);
 		
-		if (!STRING_SET(ammoName)) {
-			continue;
-		}
+			if (!STRING_SET(ammoName)) {
+				continue;
+			}
 
-		if (reserve > 0) {
-			string ammoData = sprintf("%s %i",  ammo.NameForNum(i), reserve);
-			printf("Placing %s in box from %s\n", ammoData, playerEntity.netname);
-			ents.Input(weaponBox, "AddAmmo", ammoData, world);
+			if (reserve > 0) {
+				string ammoData = sprintf("%s %i",  ammo.NameForNum(i), reserve);
+				ents.Input(weaponBox, "SetAmmo", ammoData, world);
+				ents.Input(playerEntity, "UseAmmo", ammoData, world);
+			}
 		}
+	} else {
+		string ammoTypes = weaponInfo.AmmoTypes(currentWeapon);
+
+		for (int i = 0; i < tokenize(ammoTypes); i++) {
+			string typeName = argv(i);
+			int numForName = ammo.NumForName(typeName);
+			int reserve = actor.GetReserveAmmo(playerEntity, numForName);
+
+			if (reserve > 0) {
+				string ammoData = sprintf("%s %i",  typeName, reserve);
+				ents.Input(weaponBox, "SetAmmo", ammoData, world);
+				ents.Input(playerEntity, "UseAmmo", ammoData, world);
+			}
+		}
+		
 	}
-
-	weaponBox.solid = SOLID_NOT;
-	weaponBox.movetype = MOVETYPE_BOUNCE;
-	setsize(self, [0, 0, 0], [0, 0, 0]);
-	weaponBox.think = MakeItemSolid;
-	weaponBox.nextthink = time + 1.0f;
 }
 
 void
@@ -295,6 +335,22 @@ CodeCallback_ClientCommand(entity playerEntity, string command)
 			HLDM_PlayerSpawn(playerEntity);
 		}
 
+		break;
+	/* introduced in Team Fortress Classic */
+	case "drop":
+		string specifiedItem = argv(1);
+
+		if (!STRING_SET(specifiedItem)) {
+			specifiedItem = actor.CurrentWeapon(playerEntity);
+		}
+		
+		if (substring(specifiedItem, 0, 7) != "weapon_") {
+			specifiedItem = "";
+		}
+
+		if (STRING_SET(specifiedItem)) {
+			HLDM_DropItem(playerEntity, specifiedItem);
+		}
 		break;
 	default:
 		return (false);
