@@ -25,6 +25,7 @@ void
 ClientGame_Init(float apilevel, string enginename, float engineversion)
 {
 	registercommand("changeteam");
+	registercommand("drop");
 }
 
 

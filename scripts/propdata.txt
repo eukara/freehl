@@ -59,7 +59,7 @@
 	{
 		"GlassChunks"
 		{
-			"models/glassgibs.mdl#submodels=8#rendermode=5" "5.0"
+			"models/glassgibs.mdl#submodels=8#rendermode=2#renderamt=96" "5.0"
 		}
 		"WoodChunks"
 		{

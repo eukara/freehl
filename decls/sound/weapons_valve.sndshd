@@ -159,7 +159,8 @@ Weapon_RPG.Single
 
 Rocket.Fly
 {
-	alerts
+	follow
+	attenuation normal
 	sample weapons/rocket1.wav
 }
 

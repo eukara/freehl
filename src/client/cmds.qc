@@ -21,6 +21,9 @@ ClientGame_ConsoleCommand(void)
 	case "chooseteam":
 		localcmd(sprintf("cmd %s %s\n", argv(0), argv(1)));
 		break;
+	case "drop":
+		localcmd(sprintf("cmd drop\n"));
+		break;
 	default:
 		return (0);
 	}

@@ -45,4 +45,5 @@ private:
 	entity m_lastWeapon;
 	int m_iWantSlot;
 	int m_iWantSlotPos;
+	int m_cachedSlot;
 };
