@@ -74,6 +74,7 @@ entityDef damage_satchelExplosion
 {
 	"damage"	"skill:plr_satchel"
 	"radius"	"375"
+	"knockback"	"1000"
 }
 
 entityDef fireInfo_satchel_secondary

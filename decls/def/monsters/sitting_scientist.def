@@ -9,7 +9,8 @@ entityDef monster_sitting_scientist
 	"eye_height"		"64"
 	"team"			"0"
 	"propdata"		"actor_human"
-	"sequence"			"75"
+	"dead"			"1"
+	"sequence"		"75"
 
 	// Body Types
 

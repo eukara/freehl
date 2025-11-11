@@ -90,6 +90,12 @@ HLCamera_RunPosBob(vector angles)
 	return (v_up * Viewmodel_GetBob());
 }
 
+vector
+Camera_AddCamBob(vector cameraAngle)
+{
+	vector angmod = g_vec_null;
+	return angmod;
+}
 
 vector
 Camera_RunBob(vector camera_angle)

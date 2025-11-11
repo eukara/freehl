@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Marco Cawthorne <marco@icculus.org>
+ * Copyright (c) 2024-2025 Marco Cawthorne <marco@icculus.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -17,6 +17,7 @@
 var float autocvar_hlhud_weaponIconAlpha = 0.75;
 var float autocvar_hlhud_weaponIconSelectedAlpha = 1.0f;
 var bool autocvar_hlhud_selectCurrentWeaponFirst = false;
+var int autocvar_hlhud_minimumSlots = 5;
 
 var vector autocvar_hlhud_ammoBarColor1 = [0, 1, 0];
 var vector autocvar_hlhud_ammoBarColor2 = [0, 1, 0];
@@ -151,6 +152,13 @@ HLWeaponSelect::Draw(void)
 				/* slot number icon at the top */
 				vecPos[1] = hudMins[1] + 25;
 
+				/* Fluff: draw slot category for weapons we don't have */
+				for (int i = m_cachedSlot + 1; i < currentSlot; i++) {
+					DrawSlotNum(vecPos + [0, -20], i + 1, false);
+					vecPos[0] += 25;
+				}
+				m_cachedSlot = currentSlot;
+
 			}
 
 			bool isEmpty = weapon.IsEmpty(linkedList);
@@ -212,6 +220,20 @@ HLWeaponSelect::Draw(void)
 		}
 
 		linkedList = weapon.GetNextWeaponRelativeTo(linkedList);
+	}
+
+	vecPos[1] = hudMins[1] + 25;
+	
+	if (m_iWantSlot == currentSlot) {
+		vecPos[0] += 175;
+	} else {
+		vecPos[0] += 25;
+	}
+
+	/* Fluff: empty categories over the current inventory layout */
+	for (int i = m_cachedSlot + 1; i < autocvar_hlhud_minimumSlots; i++) {
+		DrawSlotNum(vecPos + [0, -20], i + 1, false);
+		vecPos[0] += 25;
 	}
 }
 
